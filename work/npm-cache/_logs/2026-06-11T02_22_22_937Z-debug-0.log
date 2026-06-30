@@ -1,0 +1,19 @@
+0 verbose cli /Users/khaduy/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node /Users/khaduy/Documents/Codex/2026-06-11/files-mentioned-by-the-user-chatgpt/work/npm/bin/npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v24.14.0
+3 silly config load:file:/Users/khaduy/Documents/Codex/2026-06-11/files-mentioned-by-the-user-chatgpt/work/npm/npmrc
+4 silly config load:file:/Users/khaduy/Documents/Codex/2026-06-11/files-mentioned-by-the-user-chatgpt/.npmrc
+5 silly config load:file:/Users/khaduy/.npmrc
+6 silly config load:file:/Users/khaduy/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/etc/npmrc
+7 verbose title npm view next@14 version
+8 verbose argv "view" "next@14" "version" "--cache" "work/npm-cache"
+9 verbose logfile logs-max:10 dir:/Users/khaduy/Documents/Codex/2026-06-11/files-mentioned-by-the-user-chatgpt/work/npm-cache/_logs/2026-06-11T02_22_22_937Z-
+10 verbose logfile /Users/khaduy/Documents/Codex/2026-06-11/files-mentioned-by-the-user-chatgpt/work/npm-cache/_logs/2026-06-11T02_22_22_937Z-debug-0.log
+11 silly logfile done cleaning log files
+12 http fetch GET 200 https://registry.npmjs.org/next 221ms (cache revalidated)
+13 verbose cwd /Users/khaduy/Documents/Codex/2026-06-11/files-mentioned-by-the-user-chatgpt
+14 verbose os Darwin 22.6.0
+15 verbose node v24.14.0
+16 verbose npm  v10.9.2
+17 verbose exit 0
+18 info ok

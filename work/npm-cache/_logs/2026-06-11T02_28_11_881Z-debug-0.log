@@ -1,0 +1,202 @@
+0 verbose cli /Users/khaduy/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node /Users/khaduy/Documents/Codex/2026-06-11/files-mentioned-by-the-user-chatgpt/work/npm/bin/npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v24.14.0
+3 silly config load:file:/Users/khaduy/Documents/Codex/2026-06-11/files-mentioned-by-the-user-chatgpt/work/npm/npmrc
+4 silly config load:file:/Users/khaduy/Documents/Codex/2026-06-11/files-mentioned-by-the-user-chatgpt/.npmrc
+5 silly config load:file:/Users/khaduy/.npmrc
+6 silly config load:file:/Users/khaduy/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/etc/npmrc
+7 verbose title npm audit
+8 verbose argv "audit" "--omit" "dev" "--cache" "work/npm-cache"
+9 verbose logfile logs-max:10 dir:/Users/khaduy/Documents/Codex/2026-06-11/files-mentioned-by-the-user-chatgpt/work/npm-cache/_logs/2026-06-11T02_28_11_881Z-
+10 verbose logfile /Users/khaduy/Documents/Codex/2026-06-11/files-mentioned-by-the-user-chatgpt/work/npm-cache/_logs/2026-06-11T02_28_11_881Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:2348810240 maxSize:587202560 maxEntrySize:293601280
+13 silly audit bulk request {
+13 silly audit   '@next/env': [ '14.2.35' ],
+13 silly audit   '@next/swc-darwin-arm64': [ '14.2.33' ],
+13 silly audit   '@next/swc-darwin-x64': [ '14.2.33' ],
+13 silly audit   '@next/swc-linux-arm64-gnu': [ '14.2.33' ],
+13 silly audit   '@next/swc-linux-arm64-musl': [ '14.2.33' ],
+13 silly audit   '@next/swc-linux-x64-gnu': [ '14.2.33' ],
+13 silly audit   '@next/swc-linux-x64-musl': [ '14.2.33' ],
+13 silly audit   '@next/swc-win32-arm64-msvc': [ '14.2.33' ],
+13 silly audit   '@next/swc-win32-ia32-msvc': [ '14.2.33' ],
+13 silly audit   '@next/swc-win32-x64-msvc': [ '14.2.33' ],
+13 silly audit   '@swc/counter': [ '0.1.3' ],
+13 silly audit   '@swc/helpers': [ '0.5.5' ],
+13 silly audit   busboy: [ '1.6.0' ],
+13 silly audit   'caniuse-lite': [ '1.0.30001797' ],
+13 silly audit   'client-only': [ '0.0.1' ],
+13 silly audit   'framer-motion': [ '11.18.2' ],
+13 silly audit   'graceful-fs': [ '4.2.11' ],
+13 silly audit   'js-tokens': [ '4.0.0' ],
+13 silly audit   'loose-envify': [ '1.4.0' ],
+13 silly audit   'lucide-react': [ '0.468.0' ],
+13 silly audit   'motion-dom': [ '11.18.1' ],
+13 silly audit   'motion-utils': [ '11.18.1' ],
+13 silly audit   nanoid: [ '3.3.12' ],
+13 silly audit   next: [ '14.2.35' ],
+13 silly audit   postcss: [ '8.4.31' ],
+13 silly audit   picocolors: [ '1.1.1' ],
+13 silly audit   react: [ '18.3.1' ],
+13 silly audit   'react-dom': [ '18.3.1' ],
+13 silly audit   scheduler: [ '0.23.2' ],
+13 silly audit   'source-map-js': [ '1.2.1' ],
+13 silly audit   streamsearch: [ '1.1.0' ],
+13 silly audit   'styled-jsx': [ '5.1.1' ],
+13 silly audit   tslib: [ '2.8.1' ]
+13 silly audit }
+14 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 444ms
+15 silly audit report {
+15 silly audit report   next: [
+15 silly audit report     {
+15 silly audit report       id: 1117931,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-8h8q-6873-q5fj',
+15 silly audit report       title: 'Next.js Vulnerable to Denial of Service with Server Components',
+15 silly audit report       severity: 'high',
+15 silly audit report       vulnerable_versions: '>=13.0.0 <15.5.16',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     },
+15 silly audit report     {
+15 silly audit report       id: 1118942,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-3g8h-86w9-wvmq',
+15 silly audit report       title: "Next.js's Middleware / Proxy redirects can be cache-poisoned",
+15 silly audit report       severity: 'low',
+15 silly audit report       vulnerable_versions: '>=12.2.0 <15.5.16',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     },
+15 silly audit report     {
+15 silly audit report       id: 1118944,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-ffhc-5mcf-pf4q',
+15 silly audit report       title: 'Next.js vulnerable to cross-site scripting in App Router applications using CSP nonces',
+15 silly audit report       severity: 'moderate',
+15 silly audit report       vulnerable_versions: '>=13.4.0 <15.5.16',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     },
+15 silly audit report     {
+15 silly audit report       id: 1118946,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-vfv6-92ff-j949',
+15 silly audit report       title: 'Next.js vulnerable to cache poisoning via collisions in React Server Component cache-busting',
+15 silly audit report       severity: 'low',
+15 silly audit report       vulnerable_versions: '>=13.4.6 <15.5.16',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     },
+15 silly audit report     {
+15 silly audit report       id: 1118948,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-gx5p-jg67-6x7h',
+15 silly audit report       title: 'Next.js has cross-site scripting in beforeInteractive scripts with untrusted input',
+15 silly audit report       severity: 'moderate',
+15 silly audit report       vulnerable_versions: '>=13.0.0 <15.5.16',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     },
+15 silly audit report     {
+15 silly audit report       id: 1118952,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-h64f-5h5j-jqjh',
+15 silly audit report       title: 'Next.js has a Denial of Service in the Image Optimization API',
+15 silly audit report       severity: 'moderate',
+15 silly audit report       vulnerable_versions: '>=10.0.0 <15.5.16',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     },
+15 silly audit report     {
+15 silly audit report       id: 1118954,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-c4j6-fc7j-m34r',
+15 silly audit report       title: 'Next.js vulnerable to server-side request forgery in applications using WebSocket upgrades',
+15 silly audit report       severity: 'high',
+15 silly audit report       vulnerable_versions: '>=13.4.13 <15.5.16',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     },
+15 silly audit report     {
+15 silly audit report       id: 1118958,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-wfc6-r584-vfw7',
+15 silly audit report       title: 'Next.js vulnerable to cache poisoning in React Server Component responses',
+15 silly audit report       severity: 'moderate',
+15 silly audit report       vulnerable_versions: '>=14.2.0 <15.5.16',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     },
+15 silly audit report     {
+15 silly audit report       id: 1118962,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-36qx-fr4f-26g5',
+15 silly audit report       title: 'Next.js has a Middleware / Proxy bypass in Pages Router applications using i18n',
+15 silly audit report       severity: 'high',
+15 silly audit report       vulnerable_versions: '>=12.2.0 <15.5.16',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     },
+15 silly audit report     {
+15 silly audit report       id: 1112593,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-9g9p-9gw9-jx7f',
+15 silly audit report       title: 'Next.js self-hosted applications vulnerable to DoS via Image Optimizer remotePatterns configuration',
+15 silly audit report       severity: 'moderate',
+15 silly audit report       vulnerable_versions: '>=10.0.0 <15.5.10',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     },
+15 silly audit report     {
+15 silly audit report       id: 1112653,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-h25m-26qc-wcjf',
+15 silly audit report       title: 'Next.js HTTP request deserialization can lead to DoS when using insecure React Server Components',
+15 silly audit report       severity: 'high',
+15 silly audit report       vulnerable_versions: '>=13.0.0 <15.0.8',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     },
+15 silly audit report     {
+15 silly audit report       id: 1114897,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-ggv3-7p47-pfv8',
+15 silly audit report       title: 'Next.js: HTTP request smuggling in rewrites',
+15 silly audit report       severity: 'moderate',
+15 silly audit report       vulnerable_versions: '>=9.5.0 <15.5.13',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     },
+15 silly audit report     {
+15 silly audit report       id: 1114940,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-3x4c-7xq6-9pq8',
+15 silly audit report       title: 'Next.js: Unbounded next/image disk cache growth can exhaust storage',
+15 silly audit report       severity: 'moderate',
+15 silly audit report       vulnerable_versions: '>=10.0.0 <15.5.14',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     },
+15 silly audit report     {
+15 silly audit report       id: 1116376,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-q4gf-8mx6-v5v3',
+15 silly audit report       title: 'Next.js has a Denial of Service with Server Components',
+15 silly audit report       severity: 'high',
+15 silly audit report       vulnerable_versions: '>=13.0.0 <15.5.15',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     }
+15 silly audit report   ],
+15 silly audit report   postcss: [
+15 silly audit report     {
+15 silly audit report       id: 1117015,
+15 silly audit report       url: 'https://github.com/advisories/GHSA-qx2v-qp2m-jg93',
+15 silly audit report       title: 'PostCSS has XSS via Unescaped </style> in its CSS Stringify Output',
+15 silly audit report       severity: 'moderate',
+15 silly audit report       vulnerable_versions: '<8.5.10',
+15 silly audit report       cwe: [Array],
+15 silly audit report       cvss: [Object]
+15 silly audit report     }
+15 silly audit report   ]
+15 silly audit report }
+16 silly packumentCache corgi:https://registry.npmjs.org/next cache-miss
+17 silly packumentCache corgi:https://registry.npmjs.org/postcss cache-miss
+18 http fetch GET 200 https://registry.npmjs.org/next 100ms (cache revalidated)
+19 silly packumentCache corgi:https://registry.npmjs.org/next set size:25241831 disposed:false
+20 http fetch GET 200 https://registry.npmjs.org/postcss 721ms (cache revalidated)
+21 silly packumentCache corgi:https://registry.npmjs.org/postcss set size:344717 disposed:false
+22 verbose cwd /Users/khaduy/Documents/Codex/2026-06-11/files-mentioned-by-the-user-chatgpt
+23 verbose os Darwin 22.6.0
+24 verbose node v24.14.0
+25 verbose npm  v10.9.2
+26 verbose exit 1
+27 verbose code 1
