@@ -486,8 +486,8 @@ export const en: typeof vi = {
   heroCompany: "Tùng Phát Wood Trading & Service Co., Ltd.",
   heroTitle1: "Engineered",
   heroTitle2: "wood",
-  heroTitle3: "materials &",
-  heroTitle4: "CNC solutions",
+  heroTitle3: "& CNC",
+  heroTitle4: "solutions",
   heroDescription:
     "Supplying materials from trusted brands, combined with CNC machining to specification, serving furniture workshops, carpenters, architects, and business clients.",
   heroCtaExplore: "Explore catalogue",
