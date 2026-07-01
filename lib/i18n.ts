@@ -29,8 +29,8 @@ export const vi = {
   heroCompany: "Công ty TNHH TM Dịch vụ Gỗ Tùng Phát",
   heroTitle1: "Vật liệu",
   heroTitle2: "gỗ ghép",
-  heroTitle3: "và giải pháp",
-  heroTitle4: "gia công CNC",
+  heroTitle3: "Gia công",
+  heroTitle4: "CNC",
   heroDescription:
     "Phân phối vật liệu từ các thương hiệu uy tín, kết hợp gia công CNC theo kích thước và bản vẽ, phục vụ xưởng nội thất, thợ mộc, kiến trúc sư và khách hàng doanh nghiệp.",
   heroCtaExplore: "Khám phá catalogue",
