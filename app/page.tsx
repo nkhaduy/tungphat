@@ -85,22 +85,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Process */}
-      <section className="bg-[#f6f7f5] py-20 lg:py-28">
-        <div className="container-shell">
-          <SectionTitle eyebrow={t.processEyebrow} title={t.processTitle} description={t.processDescription} />
-          <ol className="mt-12 grid gap-px overflow-hidden bg-forest-900/15 sm:grid-cols-2 lg:grid-cols-5">
-            {t.processSteps.map(([number, title]: string[]) => (
-              <li key={number} className="min-h-[190px] bg-white p-6">
-                <span className="text-3xl font-extrabold text-wood-500">{number}</span>
-                <h3 className="mt-8 text-base font-extrabold leading-6 text-forest-950">{title}</h3>
-              </li>
-            ))}
-          </ol>
-          <p className="mt-7 max-w-5xl text-sm leading-7 text-slate-700"><strong>{t.processScope.split(":")[0]}:</strong>{t.processScope.includes(":") ? t.processScope.substring(t.processScope.indexOf(":") + 1) : ""}</p>
-        </div>
-      </section>
-
       <WorkshopMedia />
 
       {/* Why us */}
