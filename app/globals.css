@@ -134,3 +134,33 @@ input:focus, textarea:focus, select:focus {
     width: min(100% - 24px, 1240px);
   }
 }
+
+/* ── Hero layout helpers ── */
+.hero-headline {
+  font-size: clamp(2.4rem, 4vw, 3.875rem);
+}
+
+@media (min-width: 1024px) {
+  .hero-content {
+    padding-top: 108px;
+    padding-bottom: 64px;
+  }
+}
+
+/* Compact layout for short laptop viewports */
+@media (min-width: 1024px) and (max-height: 820px) {
+  .hero-headline { font-size: clamp(2rem, 3.7vw, 3.4rem); }
+  .hero-content { padding-top: 92px; padding-bottom: 36px; }
+  .hero-eyebrow { margin-bottom: 14px !important; }
+  .hero-desc { margin-top: 16px !important; }
+  .hero-cta { margin-top: 18px !important; }
+}
+
+@media (min-width: 1024px) and (max-height: 740px) {
+  .hero-headline { font-size: clamp(1.75rem, 3.3vw, 3rem); }
+  .hero-content { padding-top: 84px; padding-bottom: 24px; }
+  .hero-eyebrow { margin-bottom: 10px !important; }
+  .hero-desc { margin-top: 12px !important; }
+  .hero-cta { margin-top: 14px !important; }
+  .hero-cta a { min-height: 48px !important; }
+}
