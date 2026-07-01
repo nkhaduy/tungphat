@@ -11,6 +11,7 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { Partners } from "@/components/Partners";
 import { WorkshopMedia } from "@/components/WorkshopMedia";
 import { ReviewSection } from "@/components/ReviewSection";
+import { FloatingButtons } from "@/components/FloatingButtons";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
 
