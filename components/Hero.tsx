@@ -31,7 +31,7 @@ export function Hero() {
       <div className="hero-content container-shell relative flex min-h-[548px] flex-col justify-center py-14 lg:min-h-[100svh]">
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduceMotion ? 0 : .65 }} className="max-w-[780px]">
           <p className="hero-eyebrow mb-5 flex items-center gap-3 text-xs font-bold uppercase tracking-[.16em] text-orange-300"><span className="h-0.5 w-10 bg-wood-500" /> {t.heroCompany}</p>
-          <h1 className="hero-headline font-display font-extrabold leading-[1.05] tracking-[-.03em]">
+          <h1 className="hero-headline font-display font-extrabold tracking-[-.03em]">
             <span className="block">
               {t.heroTitle1} <strong className="font-extrabold text-wood-500">{t.heroTitle2}</strong>
             </span>
