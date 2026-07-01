@@ -19,7 +19,6 @@ export function Hero() {
     const timer = window.setInterval(() => setActive((value) => (value + 1) % slides.length), 6500);
     return () => window.clearInterval(timer);
   }, [reduceMotion]);
-  const { lang } = useLang();
   return (
     <section id="trang-chu" className="relative min-h-[620px] overflow-hidden bg-forest-950 pt-[72px] text-white lg:min-h-[100svh] lg:pt-0">
       <AnimatePresence initial={false}>
