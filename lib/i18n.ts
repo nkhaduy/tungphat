@@ -29,8 +29,8 @@ export const vi = {
   heroCompany: "Công ty TNHH TM Dịch vụ Gỗ Tùng Phát",
   heroTitle1: "Vật liệu",
   heroTitle2: "gỗ ghép",
-  heroTitle3: "Gia công",
-  heroTitle4: "CNC",
+  heroTitle3: "và giải pháp",
+  heroTitle4: "gia công CNC",
   heroDescription:
     "Phân phối vật liệu từ các thương hiệu uy tín, kết hợp gia công CNC theo kích thước và bản vẽ, phục vụ xưởng nội thất, thợ mộc, kiến trúc sư và khách hàng doanh nghiệp.",
   heroCtaExplore: "Khám phá catalogue",
@@ -486,8 +486,8 @@ export const en: typeof vi = {
   heroCompany: "Tùng Phát Wood Trading & Service Co., Ltd.",
   heroTitle1: "Engineered",
   heroTitle2: "wood",
-  heroTitle3: "& CNC",
-  heroTitle4: "solutions",
+  heroTitle3: "materials &",
+  heroTitle4: "CNC solutions",
   heroDescription:
     "Supplying materials from trusted brands, combined with CNC machining to specification, serving furniture workshops, carpenters, architects, and business clients.",
   heroCtaExplore: "Explore catalogue",

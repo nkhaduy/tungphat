@@ -50,9 +50,9 @@ export function Header() {
           : "border-transparent bg-transparent"
       ].join(" ")}
     >
-      <div className="container-shell flex h-[72px] items-center justify-between gap-5 xl:h-[88px]">
+      <div className="container-shell flex h-[76px] items-center justify-between gap-5 xl:h-[78px]">
         {/* Logo — switches between white and color based on scroll */}
-        <Link href="/" className="relative h-[44px] w-[200px] shrink-0 sm:w-[240px] xl:h-[48px] xl:w-[280px]">
+        <Link href="/" className="relative h-[52px] w-[232px] shrink-0 sm:w-[282px] xl:h-[56px] xl:w-[318px]">
           <Image
             src="/logo-horizontal-white.png"
             alt="Tùng Phát"
@@ -77,14 +77,14 @@ export function Header() {
         <nav className="hidden items-center gap-6 xl:flex" aria-label="Điều hướng chính">
           <a
             href={links[0][1]}
-            className={`text-[.875rem] font-semibold transition-colors duration-300 hover:text-wood-500 ${scrolled ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
+            className={`text-[.8125rem] font-bold transition-colors duration-300 hover:text-wood-500 ${scrolled ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
           >
             {links[0][0]}
           </a>
           <div className="group relative flex items-center">
             <a
               href="/san-pham"
-              className={`py-7 text-[.875rem] font-semibold transition-colors duration-300 hover:text-wood-500 ${scrolled ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
+              className={`py-7 text-[.8125rem] font-bold transition-colors duration-300 hover:text-wood-500 ${scrolled ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
             >
               {t.navProducts}
             </a>
@@ -108,7 +108,7 @@ export function Header() {
             <a
               key={href}
               href={href}
-              className={`text-[.875rem] font-semibold transition-colors duration-300 ${scrolled ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
+              className={`text-[.8125rem] font-bold transition-colors duration-300 ${scrolled ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
             >
               {label}
             </a>

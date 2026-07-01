@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, Boxes, Check, FileUp, Layers3, MessageCircle, Phone, Ruler, ShieldCheck } from "lucide-react";
+import { ArrowRight, Boxes, Check, ClipboardList, FileUp, Layers3, MessageCircle, Phone, Ruler, ShieldCheck } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { ContactForm } from "@/components/ContactForm";
@@ -11,7 +11,6 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { Partners } from "@/components/Partners";
 import { WorkshopMedia } from "@/components/WorkshopMedia";
 import { ReviewSection } from "@/components/ReviewSection";
-import { FloatingButtons } from "@/components/FloatingButtons";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
 
@@ -147,7 +146,11 @@ export default function Home() {
       </section>
 
       <Footer />
-      <FloatingButtons />
+      <div className="fixed bottom-4 right-4 z-40 flex flex-col gap-2">
+        <a href="#bao-gia" className="hidden min-h-12 items-center gap-2 bg-wood-500 px-4 text-sm font-bold text-white shadow-md sm:flex"><ClipboardList size={17} /> {t.floatingQuote}</a>
+        <a href="https://zalo.me/0909259160" target="_blank" rel="noreferrer" aria-label="Mở Zalo Tùng Phát" className="grid h-12 w-12 place-items-center self-end rounded-full bg-[#0068ff] text-xs font-extrabold text-white shadow-md">Zalo</a>
+        <a href="tel:0909259160" aria-label="Gọi Tùng Phát" className="grid h-12 w-12 place-items-center self-end rounded-full bg-wood-500 text-white shadow-md sm:hidden"><Phone size={20} /></a>
+      </div>
     </main>
   );
 }
