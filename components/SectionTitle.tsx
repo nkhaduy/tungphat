@@ -17,7 +17,7 @@ export function SectionTitle({
     <div className={centered ? "mx-auto max-w-3xl text-center" : "max-w-2xl"}>
       <span className={`eyebrow ${centered ? "justify-center" : ""}`}>{eyebrow}</span>
       <h2
-        className={`mt-4 font-display text-3xl font-bold leading-[1.15] tracking-[-0.035em] sm:text-4xl lg:text-[3.1rem] ${
+        className={`mt-4 font-display text-3xl font-bold leading-[1.28] tracking-[-0.035em] sm:text-4xl lg:text-[3.1rem] lg:leading-[1.3] ${
           light ? "text-white" : "text-forest-950"
         }`}
       >
