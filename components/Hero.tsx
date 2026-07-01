@@ -41,7 +41,7 @@ export function Hero() {
           </h1>
           {lang === "vi" ? (
             <p className="hero-desc mt-6 max-w-[660px] text-pretty text-base leading-relaxed text-white/82 lg:text-[1.0625rem]">
-              Phân phối <span className="font-semibold text-white">vật liệu gỗ từ các thương hiệu uy tín</span> và gia công <span className="font-semibold text-white">CNC theo kích thước, bản vẽ</span>, đáp ứng nhu cầu của xưởng nội thất, thợ mộc, kiến trúc sư và doanh nghiệp.
+              Phân phối vật liệu gỗ từ các thương hiệu uy tín và gia công CNC theo kích thước, bản vẽ, đáp ứng nhu cầu của xưởng nội thất, thợ mộc, kiến trúc sư và doanh nghiệp.
             </p>
           ) : (
             <p className="hero-desc mt-6 max-w-[660px] text-pretty text-base leading-relaxed text-white/82 lg:text-[1.0625rem]">{t.heroDescription}</p>
