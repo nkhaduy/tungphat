@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, Boxes, Check, ClipboardList, FileUp, Layers3, MessageCircle, Phone, Ruler, ShieldCheck } from "lucide-react";
+import { ArrowRight, Boxes, Check, FileUp, Layers3, MessageCircle, Phone, Ruler, ShieldCheck } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { ContactForm } from "@/components/ContactForm";
