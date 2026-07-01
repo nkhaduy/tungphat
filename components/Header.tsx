@@ -29,28 +29,19 @@ export function Header() {
       return;
     }
 
-    // Sentinel element pinned to the bottom edge of the hero
-    const sentinel = document.createElement("div");
-    sentinel.setAttribute("aria-hidden", "true");
-    sentinel.style.cssText =
-      "position:absolute;bottom:0;left:0;width:1px;height:1px;pointer-events:none;";
-    const heroPos = getComputedStyle(hero).position;
-    if (heroPos === "static") hero.style.position = "relative";
-    hero.appendChild(sentinel);
-
-    // rootMargin: -82px from top creates hysteresis matching header height.
-    // The sentinel is considered "visible" only when it clears the fixed header.
-    // This prevents flicker when slowly scrolling near the hero boundary.
+    // Observe the hero section directly.
+    // rootMargin shrinks the viewport by the header height from the top so the
+    // transition fires when the hero's last pixel clears the fixed header —
+    // the most natural switch point with built-in hysteresis (event-driven,
+    // not polled, so no toggling unless the element physically straddles
+    // the boundary repeatedly).
     const observer = new IntersectionObserver(
       ([entry]) => setScrolled(!entry.isIntersecting),
       { rootMargin: "-82px 0px 0px 0px", threshold: 0 }
     );
-    observer.observe(sentinel);
+    observer.observe(hero);
 
-    return () => {
-      observer.disconnect();
-      sentinel.remove();
-    };
+    return () => observer.disconnect();
   }, []);
 
   const productLinks: [string, string][] = [
