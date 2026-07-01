@@ -4,8 +4,9 @@
     {
       "name": "tungphat-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 3000
+      "runtimeArgs": ["run", "dev", "--", "--port", "$PORT"],
+      "port": 3000,
+      "autoPort": true
     }
   ]
 }
