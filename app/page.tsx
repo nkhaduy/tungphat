@@ -146,10 +146,17 @@ export default function Home() {
       </section>
 
       <Footer />
-      <div className="fixed bottom-4 right-4 z-40 flex flex-col gap-2">
-        <a href="#bao-gia" className="hidden min-h-12 items-center gap-2 bg-wood-500 px-4 text-sm font-bold text-white shadow-md sm:flex"><ClipboardList size={17} /> {t.floatingQuote}</a>
-        <a href="https://zalo.me/0909259160" target="_blank" rel="noreferrer" aria-label="Mở Zalo Tùng Phát" className="grid h-12 w-12 place-items-center self-end rounded-full bg-[#0068ff] text-xs font-extrabold text-white shadow-md">Zalo</a>
-        <a href="tel:0909259160" aria-label="Gọi Tùng Phát" className="grid h-12 w-12 place-items-center self-end rounded-full bg-wood-500 text-white shadow-md sm:hidden"><Phone size={20} /></a>
+      <div className="fixed bottom-4 right-4 z-40 flex flex-col items-end gap-3">
+        <a
+          href="https://zalo.me/0909259160"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Mở Zalo Tùng Phát"
+          className="grid h-[54px] w-[54px] place-items-center rounded-full bg-[#0068ff] text-[14px] font-extrabold text-white shadow-[0_6px_20px_rgba(0,0,0,0.22)] transition-transform hover:scale-[1.06] sm:h-[58px] sm:w-[58px] lg:h-[62px] lg:w-[62px] lg:text-[15px]"
+        >
+          Zalo
+        </a>
+        <a href="tel:0909259160" aria-label="Gọi Tùng Phát" className="grid h-[52px] w-[52px] place-items-center rounded-full bg-wood-500 text-white shadow-md sm:hidden"><Phone size={20} /></a>
       </div>
     </main>
   );
