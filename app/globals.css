@@ -39,16 +39,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   margin-inline: auto;
 }
 
-.site-header {
-  background-color: rgba(6, 43, 29, .95);
-}
-
-@media (min-width: 1280px) {
-  .site-header {
-    border-color: rgba(0, 0, 0, .10);
-    background-color: rgba(255, 255, 255, .94);
-  }
-}
+/* site-header adaptive styles are handled in Header.tsx via scroll state */
 
 .technical-grid {
   background-image:
