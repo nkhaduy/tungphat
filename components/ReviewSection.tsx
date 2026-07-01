@@ -46,7 +46,7 @@ export function ReviewSection() {
           <Reveal>
             <div className="max-w-xl">
               <span className="eyebrow">{t.reviewEyebrow}</span>
-              <h2 className="mt-4 text-balance font-display text-3xl font-bold leading-[1.15] tracking-[-0.035em] text-forest-950 sm:text-4xl lg:text-[3.1rem]">
+              <h2 className="mt-4 text-balance font-display text-3xl font-bold leading-[1.28] tracking-[-0.035em] text-forest-950 sm:text-4xl lg:text-[3.1rem] lg:leading-[1.3]">
                 {t.reviewTitle}
               </h2>
               <p className="mt-5 text-pretty leading-7 text-slate-600">{t.reviewSubtitle}</p>
