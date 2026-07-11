@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Download, FileText } from "lucide-react";
+import { ArrowRight, Download, FileText, MessageCircle } from "lucide-react";
 import type { Brand } from "@/lib/brands";
 import { BrandPlaceholder } from "@/components/BrandPlaceholder";
 
@@ -80,7 +80,7 @@ export function BrandPage({ brand }: { brand: Brand }) {
               <h2 className="text-2xl font-extrabold text-forest-950 sm:text-3xl">Sản phẩm {brand.name}</h2>
               <p className="mt-3 text-sm text-slate-600">Thông tin sản phẩm đang được cập nhật.</p>
             </div>
-            <Link href="/#bao-gia" className="inline-flex min-h-12 w-fit items-center gap-2 bg-wood-500 px-5 text-sm font-bold text-white">Yêu cầu báo giá <ArrowRight size={17} /></Link>
+            <a href="https://zalo.me/0909259160" target="_blank" rel="noopener noreferrer" aria-label="Yêu cầu báo giá" className="inline-flex min-h-12 w-fit items-center gap-2 bg-wood-500 px-5 text-sm font-bold text-white">Yêu cầu báo giá <MessageCircle size={17} /></a>
           </div>
 
           <fieldset disabled className="mt-8">

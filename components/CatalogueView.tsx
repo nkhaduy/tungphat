@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Download, FileText, ImageIcon } from "lucide-react";
+import { ArrowRight, FileText, ImageIcon, MessageCircle } from "lucide-react";
 import type { Brand } from "@/lib/brands";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
@@ -80,9 +80,9 @@ export function CatalogueView({ brand }: { brand: Brand }) {
           <div className="mt-12 rounded-lg border border-forest-900/15 bg-[#f6f7f5] p-8 text-center">
             <h2 className="text-xl font-extrabold text-forest-950">{t.catalogueRequestCta}</h2>
             <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-slate-600">{t.cataloguePlaceholder}</p>
-            <Link href="/#bao-gia" className="mt-6 inline-flex min-h-12 items-center gap-2 bg-wood-500 px-6 text-sm font-bold text-white transition hover:bg-wood-600">
-              {t.ctaGetQuote} <ArrowRight size={17} />
-            </Link>
+            <a href="https://zalo.me/0909259160" target="_blank" rel="noopener noreferrer" aria-label={t.ctaGetQuote} className="mt-6 inline-flex min-h-12 items-center gap-2 bg-wood-500 px-6 text-sm font-bold text-white transition hover:bg-wood-600">
+              {t.ctaGetQuote} <MessageCircle size={17} />
+            </a>
           </div>
         </div>
       </section>

@@ -203,17 +203,20 @@ export function LegalPage({ type }: LegalPageProps) {
                     <h2 className="text-2xl font-extrabold sm:text-3xl">{t.legalCTAHeading}</h2>
                     <p className="mt-3 max-w-md text-sm leading-7 text-white/72">{t.legalCTAText}</p>
                     <div className="mt-6 flex flex-wrap gap-3">
-                      <Link
-                        href="/#bao-gia"
+                      <a
+                        href="https://zalo.me/0909259160"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={t.legalCTAQuote}
                         className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-wood-500 px-6 text-sm font-bold text-white transition hover:bg-wood-600"
                       >
                         {t.legalCTAQuote}
                         <ArrowRight size={17} />
-                      </Link>
+                      </a>
                       <a
                         href="https://zalo.me/0909259160"
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 text-sm font-bold transition hover:bg-white hover:text-forest-950"
                       >
                         <MessageCircle size={17} />
