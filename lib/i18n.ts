@@ -34,7 +34,7 @@ export const vi = {
   heroDescription:
     "Phân phối vật liệu gỗ từ các thương hiệu uy tín và gia công CNC theo kích thước, bản vẽ, đáp ứng nhu cầu của xưởng nội thất, thợ mộc, kiến trúc sư và doanh nghiệp.",
   heroCtaExplore: "Khám phá catalogue",
-  heroCtaQuote: "Gửi file nhận báo giá CNC",
+  heroCtaQuote: "Liên hệ báo giá",
 
   /* ── Partners ── */
   partnersTitle: "ĐỐI TÁC & THƯƠNG HIỆU PHÂN PHỐI",
@@ -44,8 +44,6 @@ export const vi = {
   /* ── Product categories ── */
   categoryEyebrow: "Danh mục vật liệu",
   categoryTitle: "Tìm đúng tấm ván cho đúng hạng mục",
-  categoryDescription:
-    "Chọn theo lõi ván, bề mặt hoặc ứng dụng. Gửi mã để chúng tôi kiểm tra tình trạng hàng và quy cách.",
   categoryCtaCheck: "Kiểm tra hàng & nhận báo giá",
   categoryCtaRequest: "Yêu cầu báo giá",
 
@@ -73,8 +71,7 @@ export const vi = {
     "Gia công chi tiết theo file",
     "Kiểm tra trước bàn giao"
   ],
-  cncCta: "Tải file CNC lên để nhận báo giá",
-  cncFormats: "Định dạng tiếp nhận: DXF · DWG · PDF · AI/CDR · Hình ảnh / bản phác thảo",
+  cncCta: "Liên hệ báo giá dựa trên bản vẽ",
   cncOverlay: "Gia công theo kích thước & bản vẽ",
 
   /* ── Process ── */
@@ -214,7 +211,6 @@ export const vi = {
   workshopTitle: "Xưởng, vật liệu và thành phẩm Tùng Phát",
   workshopDescription:
     "Tập trung vào năng lực kho/xưởng và chất lượng gia công để bạn đánh giá trước khi đặt hàng.",
-  workshopDisclaimer: "Ảnh không gian chỉ dùng để minh họa ứng dụng",
   workshopGalleryLabels: [
     "Kho ván và vật liệu",
     "Máy CNC đang vận hành",
@@ -233,30 +229,12 @@ export const vi = {
     "Dán chỉ và hoàn thiện sản phẩm"
   ],
 
-  /* ── Contact form ── */
-  formTitle: "Bạn đã có mã vật liệu hoặc bản vẽ?",
-  formDescription:
-    "Gửi thông tin để chúng tôi kiểm tra hàng và báo giá nhanh.",
-  formZalo: "Liên hệ Zalo: 0909 259 160",
-  formCall: "Gọi tư vấn: 0909 259 160",
-  formHeading: "Gửi yêu cầu báo giá",
-  formSubheading: "Điền quy cách càng rõ, báo giá càng nhanh và sát nhu cầu.",
-  formName: "Họ và tên *",
-  formNamePlaceholder: "Nguyễn Văn A",
-  formPhone: "Số điện thoại *",
-  formPhonePlaceholder: "0909 259 160",
-  formNeed: "Nhu cầu",
-  formNeedPlaceholder: "Chọn nhu cầu",
-  formNeedMaterial: "Mua vật liệu",
-  formNeedCNC: "Gia công CNC",
-  formNeedBoth: "Cả vật liệu và CNC",
-  formQuantity: "Số lượng / quy cách",
-  formQuantityPlaceholder: "Ví dụ: 20 tấm, 18 mm",
-  formMessage: "Thông tin cần báo giá",
-  formMessagePlaceholder:
-    "Mã vật liệu, kích thước, số lượng hoặc yêu cầu gia công...",
-  formFileUpload: "Tải file DXF, DWG, PDF, AI/CDR hoặc hình phác thảo",
-  formSubmit: "Gửi yêu cầu báo giá",
+  /* ── Contact CTA ── */
+  contactEyebrow: "LIÊN HỆ TÙNG PHÁT",
+  contactTitle: "Bạn đang tìm đối tác cung cấp vật liệu hoặc gia công CNC?",
+  contactDescription:
+    "Trao đổi trực tiếp với Tùng Phát để được tư vấn mã vật liệu, quy cách và phương án gia công phù hợp với nhu cầu thực tế.",
+  contactCta: "Liên hệ hợp tác",
 
   /* ── Footer ── */
   footerDescription:
@@ -491,7 +469,7 @@ export const en: typeof vi = {
   heroDescription:
     "Supplying materials from trusted brands, combined with CNC machining to specification, serving furniture workshops, carpenters, architects, and business clients.",
   heroCtaExplore: "Explore catalogue",
-  heroCtaQuote: "Send file for CNC quote",
+  heroCtaQuote: "Contact for a quote",
 
   partnersTitle: "PARTNERS & DISTRIBUTED BRANDS",
   partnersDescription:
@@ -499,8 +477,6 @@ export const en: typeof vi = {
 
   categoryEyebrow: "Material Categories",
   categoryTitle: "Find the right panel for the right application",
-  categoryDescription:
-    "Browse by core, surface, or application. Send a material code and we will check stock and specifications.",
   categoryCtaCheck: "Check stock & get a quote",
   categoryCtaRequest: "Request a quote",
 
@@ -527,8 +503,7 @@ export const en: typeof vi = {
     "Detail machining from files",
     "Pre-delivery inspection"
   ],
-  cncCta: "Upload CNC file for a quote",
-  cncFormats: "Accepted formats: DXF · DWG · PDF · AI/CDR · Images / sketches",
+  cncCta: "Request a drawing-based quote",
   cncOverlay: "Machining to size & drawing",
 
   processEyebrow: "Ordering Process",
@@ -664,7 +639,6 @@ export const en: typeof vi = {
   workshopTitle: "Tùng Phát Workshop, Materials & Finished Products",
   workshopDescription:
     "Focus on warehouse and workshop capability and machining quality so you can evaluate before ordering.",
-  workshopDisclaimer: "Images are for application illustration only",
   workshopGalleryLabels: [
     "Panel and material warehouse",
     "CNC machine in operation",
@@ -683,30 +657,11 @@ export const en: typeof vi = {
     "Edge-banding and finishing"
   ],
 
-  formTitle: "Already have a material code or drawing?",
-  formDescription:
-    "Send us your details and we'll check stock and provide a quick quote.",
-  formZalo: "Contact via Zalo: 0909 259 160",
-  formCall: "Call for consultation: 0909 259 160",
-  formHeading: "Submit a Quote Request",
-  formSubheading:
-    "The more detail you provide, the faster and more accurate the quote.",
-  formName: "Full name *",
-  formNamePlaceholder: "John Doe",
-  formPhone: "Phone number *",
-  formPhonePlaceholder: "0909 259 160",
-  formNeed: "Requirement",
-  formNeedPlaceholder: "Select requirement",
-  formNeedMaterial: "Purchase materials",
-  formNeedCNC: "CNC machining",
-  formNeedBoth: "Both materials & CNC",
-  formQuantity: "Quantity / Specifications",
-  formQuantityPlaceholder: "e.g. 20 panels, 18 mm",
-  formMessage: "Quote details",
-  formMessagePlaceholder:
-    "Material code, dimensions, quantity, or machining requirements...",
-  formFileUpload: "Upload DXF, DWG, PDF, AI/CDR file or sketch",
-  formSubmit: "Send Quote Request",
+  contactEyebrow: "CONTACT TUNG PHAT",
+  contactTitle: "Looking for a reliable material supply or CNC machining partner?",
+  contactDescription:
+    "Speak directly with Tùng Phát for advice on material codes, specifications, and machining options that fit your real project needs.",
+  contactCta: "Discuss a partnership",
 
   footerDescription:
     "Wood materials and CNC machining solutions for workshops, carpenters, architects, and business clients.",
