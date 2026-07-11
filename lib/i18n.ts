@@ -251,11 +251,10 @@ export const vi = {
   footerTerms: "Điều khoản sử dụng",
   footerCopyright: "© 2026 Công ty TNHH TMDV Gỗ Tùng Phát",
   footerBranchesEyebrow: "HỆ THỐNG CHI NHÁNH",
-  footerBranchesTitle: "Tìm Tùng Phát trên Google Maps",
-  footerBranchesDescription: "Xem vị trí chi nhánh và chọn điểm đến phù hợp với bạn.",
+  footerBranchesTitle: "Tìm Tùng Phát gần bạn",
+  footerBranchesDescription: "Xem vị trí hai chi nhánh Tùng Phát tại phường Hiệp Bình, TP. Hồ Chí Minh.",
   footerBranch1Name: "Tùng Phát – Chi nhánh 1",
   footerBranch2Name: "Tùng Phát – Chi nhánh 2",
-  footerOpenGoogleMaps: "Mở trên Google Maps",
 
   /* ── Floating CTAs ── */
   floatingQuote: "Nhận báo giá",
@@ -683,11 +682,10 @@ export const en: typeof vi = {
   footerTerms: "Terms of Use",
   footerCopyright: "© 2026 Tùng Phát Wood Trading & Service Co., Ltd.",
   footerBranchesEyebrow: "BRANCH LOCATIONS",
-  footerBranchesTitle: "Find Tùng Phát on Google Maps",
-  footerBranchesDescription: "View our branch locations and choose the most convenient destination.",
+  footerBranchesTitle: "Find Tùng Phát near you",
+  footerBranchesDescription: "View our two branch locations in Hiep Binh Ward, Ho Chi Minh City.",
   footerBranch1Name: "Tùng Phát – Branch 1",
   footerBranch2Name: "Tùng Phát – Branch 2",
-  footerOpenGoogleMaps: "Open in Google Maps",
 
   floatingQuote: "Get a Quote",
 
