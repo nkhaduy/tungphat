@@ -250,6 +250,12 @@ export const vi = {
   footerPrivacy: "Chính sách bảo mật",
   footerTerms: "Điều khoản sử dụng",
   footerCopyright: "© 2026 Công ty TNHH TMDV Gỗ Tùng Phát",
+  footerBranchesEyebrow: "HỆ THỐNG CHI NHÁNH",
+  footerBranchesTitle: "Tìm Tùng Phát trên Google Maps",
+  footerBranchesDescription: "Xem vị trí chi nhánh và chọn điểm đến phù hợp với bạn.",
+  footerBranch1Name: "Tùng Phát – Chi nhánh 1",
+  footerBranch2Name: "Tùng Phát – Chi nhánh 2",
+  footerOpenGoogleMaps: "Mở trên Google Maps",
 
   /* ── Floating CTAs ── */
   floatingQuote: "Nhận báo giá",
@@ -676,6 +682,12 @@ export const en: typeof vi = {
   footerPrivacy: "Privacy Policy",
   footerTerms: "Terms of Use",
   footerCopyright: "© 2026 Tùng Phát Wood Trading & Service Co., Ltd.",
+  footerBranchesEyebrow: "BRANCH LOCATIONS",
+  footerBranchesTitle: "Find Tùng Phát on Google Maps",
+  footerBranchesDescription: "View our branch locations and choose the most convenient destination.",
+  footerBranch1Name: "Tùng Phát – Branch 1",
+  footerBranch2Name: "Tùng Phát – Branch 2",
+  footerOpenGoogleMaps: "Open in Google Maps",
 
   floatingQuote: "Get a Quote",
 
