@@ -26,7 +26,7 @@ export const vi = {
   callLabel: "Gọi 0909 259 160",
 
   /* ── Hero ── */
-  heroCompany: "Công ty TNHH TM Dịch vụ Gỗ Tùng Phát",
+  heroCompany: "Công ty TNHH TMDV Gỗ Tùng Phát",
   heroTitle1: "Vật liệu",
   heroTitle2: "gỗ ghép",
   heroTitle3: "Gia công",
