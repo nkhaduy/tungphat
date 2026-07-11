@@ -14,15 +14,15 @@ import { ReviewSection } from "@/components/ReviewSection";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
 
-const categoryPositions = [
-  "10% center",
-  "26% center",
-  "42% center",
-  "58% center",
-  "72% center",
-  "88% center",
-  "34% center",
-  "64% center"
+const categoryImages = [
+  "/wood/mdfmfc.png",
+  "/wood/vanchongam.png",
+  "/wood/plywood.png",
+  "/wood/melamine.png",
+  "/wood/laminate.png",
+  "/wood/arcrylic.png",
+  "/wood/veneer.png",
+  "/wood/tamtrangtri.png",
 ];
 
 export default function Home() {
@@ -46,7 +46,7 @@ export default function Home() {
             {t.categories.map(([name, text]: string[], index: number) => (
               <Reveal key={name} delay={index * .035}>
                 <article className="group relative min-h-[370px] overflow-hidden bg-forest-950 text-white">
-                  <Image src="/images/wood-panels.png" alt={`Bề mặt ${name}`} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" quality={95} className="object-cover" style={{ objectPosition: categoryPositions[index] || "center" }} />
+                  <Image src={categoryImages[index]} alt={`Bề mặt ${name}`} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" quality={95} className="object-cover" />
                   <div className="absolute inset-0 card-gradient-overlay" />
                   <div className="absolute inset-x-0 bottom-0 p-6">
                     <span className="text-xs font-bold text-orange-300">{String(index + 1).padStart(2, "0")}</span>
