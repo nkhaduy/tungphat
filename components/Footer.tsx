@@ -24,6 +24,7 @@ export function Footer() {
                 width={1326}
                 height={1099}
                 quality={95}
+                loading="eager"
                 className="h-auto w-[142px] sm:w-[158px]"
               />
             </div>
