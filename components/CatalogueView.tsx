@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, FileText, ImageIcon, MessageCircle } from "lucide-react";
+import { FileText, MessageCircle } from "lucide-react";
 import type { Brand } from "@/lib/brands";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
