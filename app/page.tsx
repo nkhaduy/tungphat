@@ -110,7 +110,7 @@ export default function Home() {
       {/* Contact CTA */}
       <section id="bao-gia" className="bg-white py-20 lg:py-28">
         <div className="container-shell">
-          <div className="relative min-h-[420px] overflow-hidden bg-forest-950 px-6 py-14 text-white sm:min-h-[460px] sm:px-10 lg:px-14 lg:py-16">
+          <div className="relative min-h-[420px] overflow-hidden border border-forest-900/15 bg-forest-950 px-6 py-14 text-white shadow-[0_1px_0_rgba(255,255,255,0.08)_inset] sm:min-h-[460px] sm:px-10 lg:px-14 lg:py-16">
             <Image
               src="/images/hero-workshop2.png"
               alt="Vân gỗ và máy CNC tại Tùng Phát"
