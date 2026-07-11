@@ -132,7 +132,6 @@ export default function Home() {
           <SectionTitle
             eyebrow={t.footerBranchesEyebrow}
             title={t.footerBranchesTitle}
-            description={t.footerBranchesDescription}
             centered
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
