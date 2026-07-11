@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, Boxes, Check, FileUp, Layers3, MessageCircle, Phone, Ruler, ShieldCheck } from "lucide-react";
+import { ArrowRight, Boxes, Check, Layers3, MessageCircle, Phone, Ruler, ShieldCheck } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
-import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
 import { SectionTitle } from "@/components/SectionTitle";
@@ -25,6 +24,8 @@ const categoryImages = [
   "/wood/tamtrangtri.png",
 ];
 
+const zaloUrl = "https://zalo.me/0909259160";
+
 export default function Home() {
   const { lang } = useLang();
   const t = translations[lang];
@@ -38,9 +39,9 @@ export default function Home() {
       {/* Product categories */}
       <section id="san-pham" className="bg-[#f6f7f5] py-20 lg:py-28">
         <div className="container-shell">
-          <div className="flex flex-col justify-between gap-7 lg:flex-row lg:items-end">
-            <SectionTitle eyebrow={t.categoryEyebrow} title={t.categoryTitle} description={t.categoryDescription} />
-            <a href="#bao-gia" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-900">{t.categoryCtaCheck} <ArrowRight size={17} className="text-wood-600" /></a>
+          <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+            <SectionTitle eyebrow={t.categoryEyebrow} title={t.categoryTitle} />
+            <a href={zaloUrl} target="_blank" rel="noopener noreferrer" aria-label={t.categoryCtaCheck} className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-900">{t.categoryCtaCheck} <MessageCircle size={17} className="text-wood-600" /></a>
           </div>
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {t.categories.map(([name, text]: string[], index: number) => (
@@ -52,7 +53,7 @@ export default function Home() {
                     <span className="text-xs font-bold text-orange-300">{String(index + 1).padStart(2, "0")}</span>
                     <h3 className="mt-2 text-xl font-extrabold">{name}</h3>
                     <p className="mt-3 text-sm leading-6 text-white/72">{text}</p>
-                    <a href="#bao-gia" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-bold">{t.categoryCtaRequest} <ArrowRight size={16} /></a>
+                    <a href={zaloUrl} target="_blank" rel="noopener noreferrer" aria-label={t.categoryCtaRequest} className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-bold">{t.categoryCtaRequest} <ArrowRight size={16} /></a>
                   </div>
                 </article>
               </Reveal>
@@ -78,8 +79,7 @@ export default function Home() {
                   <div key={item} className="flex min-h-12 items-center gap-3 border-b border-white/15 text-sm font-bold text-white/85"><Check size={17} className="text-wood-500" />{item}</div>
                 ))}
               </div>
-              <a href="#bao-gia" className="mt-8 inline-flex min-h-14 items-center gap-2 bg-wood-500 px-7 text-sm font-bold"><FileUp size={18} /> {t.cncCta}</a>
-              <p className="mt-4 text-xs text-white/60">{t.cncFormats}</p>
+              <a href={zaloUrl} target="_blank" rel="noopener noreferrer" aria-label={t.cncCta} className="mt-8 inline-flex min-h-14 items-center gap-2 bg-wood-500 px-7 text-sm font-bold transition hover:-translate-y-0.5 hover:bg-wood-600"><MessageCircle size={18} /> {t.cncCta}</a>
             </div>
           </Reveal>
         </div>
@@ -107,24 +107,26 @@ export default function Home() {
 
       <ReviewSection />
 
-      {/* Contact form */}
+      {/* Contact CTA */}
       <section id="bao-gia" className="bg-white py-20 lg:py-28">
-        <div className="container-shell grid overflow-hidden border border-forest-900/15 lg:grid-cols-[.8fr_1.2fr]">
-          <div className="relative min-h-[390px] bg-forest-950 p-8 text-white sm:p-12">
-            <Image src="/images/hero-workshop2.png" alt="Vân gỗ và máy CNC tại Tùng Phát" fill sizes="(max-width: 1024px) 100vw, 40vw" quality={95} className="object-cover opacity-45" />
-            <div className="relative">
-              <h2 className="text-balance text-3xl font-extrabold leading-tight sm:text-4xl">{t.formTitle}</h2>
-              <p className="mt-5 max-w-md text-sm leading-7 text-white/75">{t.formDescription}</p>
-              <div className="mt-8 space-y-3">
-                <a href="https://zalo.me/0909259160" target="_blank" rel="noreferrer" className="flex min-h-12 items-center gap-3 font-bold"><MessageCircle className="text-wood-500" /> {t.formZalo}</a>
-                <a href="tel:0909259160" className="flex min-h-12 items-center gap-3 font-bold"><Phone className="text-wood-500" /> {t.formCall}</a>
+        <div className="container-shell">
+          <div className="relative min-h-[420px] overflow-hidden bg-forest-950 px-6 py-14 text-white sm:min-h-[460px] sm:px-10 lg:px-14 lg:py-16">
+            <Image src="/images/hero-workshop2.png" alt="Vân gỗ và máy CNC tại Tùng Phát" fill sizes="100vw" quality={95} className="object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-forest-950/92 via-forest-950/72 to-forest-900/38" />
+            <div className="absolute inset-0 bg-forest-950/18" />
+            <div className="relative flex min-h-[300px] max-w-3xl flex-col justify-center sm:min-h-[330px]">
+              <span className="eyebrow text-orange-300">{t.contactEyebrow}</span>
+              <h2 className="text-balance mt-5 font-display text-3xl font-extrabold leading-tight tracking-[-0.035em] sm:text-4xl lg:text-[3.1rem] lg:leading-[1.22]">{t.contactTitle}</h2>
+              <p className="text-pretty mt-5 max-w-2xl text-sm leading-7 text-white/78 sm:text-base">{t.contactDescription}</p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <a href={zaloUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contactCta} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-7 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-wood-600">
+                  <MessageCircle size={18} /> {t.contactCta}
+                </a>
+                <a href="tel:0909259160" className="inline-flex min-h-12 items-center gap-2 text-sm font-bold text-white/90 transition hover:text-white">
+                  <Phone size={17} className="text-wood-500" /> 0909 259 160
+                </a>
               </div>
             </div>
-          </div>
-          <div className="p-7 sm:p-10 lg:p-12">
-            <h3 className="text-2xl font-extrabold text-forest-950">{t.formHeading}</h3>
-            <p className="mb-7 mt-2 text-sm text-slate-600">{t.formSubheading}</p>
-            <ContactForm />
           </div>
         </div>
       </section>
@@ -134,7 +136,7 @@ export default function Home() {
         <a
           href="https://zalo.me/0909259160"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           aria-label="Mở Zalo Tùng Phát"
           className="grid h-[54px] w-[54px] place-items-center rounded-full bg-[#0068ff] text-[14px] font-extrabold text-white shadow-[0_6px_20px_rgba(0,0,0,0.22)] transition-transform hover:scale-[1.06] sm:h-[58px] sm:w-[58px] lg:h-[62px] lg:w-[62px] lg:text-[15px]"
         >
