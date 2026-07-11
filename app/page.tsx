@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, Boxes, Check, Layers3, MessageCircle, Phone, Ruler, ShieldCheck } from "lucide-react";
+import { ArrowRight, Boxes, Check, Layers3, MapPin, MessageCircle, Phone, Ruler, ShieldCheck } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Footer } from "@/components/Footer";
@@ -25,6 +25,25 @@ const categoryImages = [
 ];
 
 const zaloUrl = "https://zalo.me/0909259160";
+
+const branchMaps = [
+  {
+    id: "CN1",
+    nameKey: "footerBranch1Name",
+    address: "14 Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
+    embedSrc:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.5370572533293!2d106.7289773!3d10.8466962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527a60336dce9%3A0xe397be298b9a97af!2zQ-G7rWEgSMOgbmcgR-G7lyBHaMOpcCBUw7luZyBQaMOhdA!5e0!3m2!1svi!2s!4v1783761448496!5m2!1svi!2s",
+    iframeTitle: "Google Maps – Tùng Phát CN1"
+  },
+  {
+    id: "CN2",
+    nameKey: "footerBranch2Name",
+    address: "81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
+    embedSrc:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4493770330487!2d106.7307288!3d10.8533852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527295201638d%3A0x96d9f4e833b55234!2zTURGIC0gQ05DIFTDmU5HIFBIw4FU!5e0!3m2!1svi!2s!4v1783761503530!5m2!1svi!2s",
+    iframeTitle: "Google Maps – Tùng Phát CN2"
+  }
+] as const;
 
 export default function Home() {
   const { lang } = useLang();
@@ -106,6 +125,48 @@ export default function Home() {
       </section>
 
       <ReviewSection />
+
+      {/* Branch maps */}
+      <section className="bg-[#f6f7f5] py-16 lg:py-24">
+        <div className="container-shell">
+          <SectionTitle
+            eyebrow={t.footerBranchesEyebrow}
+            title={t.footerBranchesTitle}
+            description={t.footerBranchesDescription}
+            centered
+          />
+          <div className="mt-10 grid gap-5 lg:grid-cols-2">
+            {branchMaps.map((branch) => (
+              <article
+                key={branch.id}
+                className="overflow-hidden rounded-[20px] border border-forest-900/12 bg-[#fffdf8] text-forest-950 shadow-[0_1px_2px_rgba(10,42,28,.05),0_18px_46px_rgba(10,42,28,.08)]"
+              >
+                <div className="p-5 sm:p-6">
+                  <div className="flex flex-wrap items-start justify-between gap-4">
+                    <div>
+                      <span className="text-xs font-extrabold uppercase tracking-[.18em] text-wood-600">{branch.id}</span>
+                      <h3 className="mt-2 text-lg font-extrabold">{t[branch.nameKey]}</h3>
+                    </div>
+                    <MapPin size={22} className="text-wood-600" aria-hidden="true" />
+                  </div>
+                  <p className="mt-3 text-sm font-semibold leading-6 text-forest-900/86">{branch.address}</p>
+                </div>
+                <div className="h-[230px] border-t border-forest-900/10 bg-forest-950/5 sm:h-[270px] lg:h-[300px]">
+                  <iframe
+                    src={branch.embedSrc}
+                    title={branch.iframeTitle}
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    className="h-full w-full"
+                    style={{ border: 0 }}
+                  />
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Contact CTA */}
       <section id="bao-gia" className="bg-white py-20 lg:py-28">
