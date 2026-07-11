@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, FileUp } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useLang } from "@/lib/i18n-context";
@@ -48,7 +48,7 @@ export function Hero() {
           )}
           <div className="hero-cta mt-7 flex flex-col gap-3 sm:flex-row">
             <a href="#san-pham" className="inline-flex min-h-[52px] items-center justify-center gap-2 bg-wood-500 px-6 text-[15px] font-bold transition hover:bg-wood-600">{t.heroCtaExplore} <ArrowRight size={16} /></a>
-            <a href="#bao-gia" className="inline-flex min-h-[52px] items-center justify-center gap-2 border border-white/55 bg-white/[0.12] px-6 text-[15px] font-bold backdrop-blur-sm transition hover:bg-white hover:text-forest-950"><FileUp size={17} /> {t.heroCtaQuote}</a>
+            <a href="https://zalo.me/0909259160" target="_blank" rel="noopener noreferrer" aria-label={t.heroCtaQuote} className="inline-flex min-h-[52px] items-center justify-center gap-2 border border-white/55 bg-white/[0.12] px-6 text-[15px] font-bold backdrop-blur-sm transition hover:bg-white hover:text-forest-950"><MessageCircle size={17} /> {t.heroCtaQuote}</a>
           </div>
         </motion.div>
       </div>

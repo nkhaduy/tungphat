@@ -8,13 +8,13 @@ import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
 
 const gallery = [
-  ["hero-workshop4.png", "workshopGalleryLabels_0"],
-  ["hero-workshop5.png", "workshopGalleryLabels_1"],
-  ["hero-workshop6.png", "workshopGalleryLabels_2"],
-  ["hero-workshop1.png", "workshopGalleryLabels_3"],
-  ["cnc-service.png", "workshopGalleryLabels_4"],
-  ["wood-panels.png", "workshopGalleryLabels_5"],
-];
+  ["hero-workshop4.png", 0],
+  ["hero-workshop5.png", 1],
+  ["hero-workshop6.png", 2],
+  ["hero-workshop1.png", 3],
+  ["cnc-service.png", 4],
+  ["wood-panels.png", 5],
+] as const;
 
 export function WorkshopMedia() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -47,16 +47,17 @@ export function WorkshopMedia() {
       <div className="container-shell">
         <SectionTitle eyebrow={t.workshopEyebrow} title={t.workshopTitle} description={t.workshopDescription} />
 
-        <div className="mt-12">
-          <p className="mb-5 text-sm font-bold text-slate-600">{t.workshopDisclaimer}</p>
+        <div className="mt-10 lg:mt-12">
           <div className="grid auto-rows-[220px] gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {gallery.map(([src], index) => {
-              const labelKey = gallery[index][1] as keyof typeof t;
-              const label = (t as any)[labelKey] || "";
+            {gallery.map(([src, labelIndex], index) => {
+              const label = t.workshopGalleryLabels[labelIndex];
               return (
                 <figure key={src} className={`group relative overflow-hidden ${index === 0 || index === 4 ? "sm:row-span-2" : ""}`}>
-                  <Image src={`/images/${src}`} alt={label} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" quality={95} className="object-cover" />
-                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest-950/85 to-transparent p-5 pt-16 text-sm font-bold text-white">{label}</figcaption>
+                  <Image src={`/images/${src}`} alt={label} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" quality={95} className="object-cover transition duration-500 ease-out group-hover:scale-[1.025]" />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-forest-950/72 to-transparent" aria-hidden="true" />
+                  <figcaption className="absolute bottom-3 left-3 right-3 w-fit max-w-[calc(100%-1.5rem)] rounded bg-forest-950/58 px-3 py-2 text-xs font-bold leading-snug text-white shadow-sm backdrop-blur-[6px] sm:text-sm">
+                    {label}
+                  </figcaption>
                 </figure>
               );
             })}

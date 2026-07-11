@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, FileText, Menu, Phone, X } from "lucide-react";
+import { ChevronDown, MessageCircle, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
@@ -133,8 +133,8 @@ export function Header() {
           >
             <Phone size={16} /> {t.phoneLabel}
           </a>
-          <a href="/#bao-gia" className="inline-flex min-h-11 items-center gap-2 bg-wood-500 px-4 text-sm font-bold text-white transition hover:bg-wood-600">
-            <FileText size={16} /> {t.ctaGetQuote}
+          <a href="https://zalo.me/0909259160" target="_blank" rel="noopener noreferrer" aria-label={t.ctaGetQuote} className="inline-flex min-h-11 items-center gap-2 bg-wood-500 px-4 text-sm font-bold text-white transition hover:bg-wood-600">
+            <MessageCircle size={16} /> {t.ctaGetQuote}
           </a>
         </div>
 

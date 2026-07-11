@@ -126,7 +126,7 @@ export function Footer() {
       <div className="border-t border-white/[0.07] py-5">
         <div className="container-shell flex flex-col gap-2 text-xs text-white/30 sm:flex-row sm:items-center sm:justify-between">
           <span>{t.footerCopyright}</span>
-          <span className="text-white/20">tungphatwood.vn</span>
+          <a href="https://mdftungphat.com" className="text-white/20 transition hover:text-white/45">mdftungphat.com</a>
         </div>
       </div>
     </footer>
