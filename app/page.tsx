@@ -111,10 +111,10 @@ export default function Home() {
       <section id="bao-gia" className="bg-white py-20 lg:py-28">
         <div className="container-shell">
           <div className="relative min-h-[420px] overflow-hidden bg-forest-950 px-6 py-14 text-white sm:min-h-[460px] sm:px-10 lg:px-14 lg:py-16">
-            <Image src="/images/hero-workshop2.png" alt="Vân gỗ và máy CNC tại Tùng Phát" fill sizes="100vw" quality={95} className="object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-r from-forest-950/92 via-forest-950/72 to-forest-900/38" />
-            <div className="absolute inset-0 bg-forest-950/18" />
-            <div className="relative flex min-h-[300px] max-w-3xl flex-col justify-center sm:min-h-[330px]">
+            <Image src="/images/hero-workshop2.png" alt="Vân gỗ và máy CNC tại Tùng Phát" fill sizes="100vw" quality={95} className="pointer-events-none object-cover" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-forest-950/92 via-forest-950/72 to-forest-900/38" />
+            <div className="pointer-events-none absolute inset-0 bg-forest-950/18" />
+            <div className="relative z-10 flex min-h-[300px] max-w-3xl flex-col justify-center sm:min-h-[330px]">
               <span className="eyebrow text-orange-300">{t.contactEyebrow}</span>
               <h2 className="text-balance mt-5 font-display text-3xl font-extrabold leading-tight tracking-[-0.035em] sm:text-4xl lg:text-[3.1rem] lg:leading-[1.22]">{t.contactTitle}</h2>
               <p className="text-pretty mt-5 max-w-2xl text-sm leading-7 text-white/78 sm:text-base">{t.contactDescription}</p>
