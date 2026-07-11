@@ -17,14 +17,16 @@ export function Footer() {
 
           {/* Brand block */}
           <div>
-            <Image
-              src="/logo-vertical-white.png"
-              alt="Tùng Phát"
-              width={560}
-              height={680}
-              quality={95}
-              className="h-auto w-[140px] sm:w-[156px]"
-            />
+            <div className="inline-flex rounded-md border border-white/20 bg-[#f8f5ef] p-4 shadow-[0_1px_0_rgba(255,255,255,0.08)_inset] sm:p-5">
+              <Image
+                src="/footer-logo-tung-phat.png"
+                alt="Tùng Phát"
+                width={1326}
+                height={1099}
+                quality={95}
+                className="h-auto w-[142px] sm:w-[158px]"
+              />
+            </div>
             <div className="mt-8 space-y-4">
               <p className="text-xs font-bold uppercase tracking-[.12em] text-white/40">
                 {lang === "vi" ? "Về chúng tôi" : "About us"}
