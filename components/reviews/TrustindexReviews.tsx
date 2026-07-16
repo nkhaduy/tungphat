@@ -120,7 +120,7 @@ export function TrustindexReviews() {
       timeoutId = window.setTimeout(handleScriptError, LOAD_TIMEOUT_MS);
     };
 
-    if ("IntersectionObserver" in window) {
+    if (typeof window.IntersectionObserver === "function") {
       intersectionObserver = new IntersectionObserver(
         (entries) => {
           if (entries.some((entry) => entry.isIntersecting)) {
