@@ -177,11 +177,11 @@ export default function Home() {
               fill
               sizes="100vw"
               quality={95}
-              className="pointer-events-none scale-[1.015] object-cover blur-[1.5px] saturate-[.68] contrast-[.88] brightness-[.74]"
+              className="pointer-events-none scale-[1.006] object-cover blur-[0.45px] saturate-[.9] contrast-[1.03] brightness-[.86]"
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-forest-950/95 via-forest-950/78 to-forest-900/46" />
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_46%,rgba(6,43,29,0.86)_0%,rgba(6,43,29,0.58)_34%,rgba(6,43,29,0)_66%)]" />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-forest-950/18 via-transparent to-forest-950/32" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-forest-950/88 via-forest-950/66 to-forest-900/28" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_46%,rgba(6,43,29,0.76)_0%,rgba(6,43,29,0.46)_34%,rgba(6,43,29,0)_66%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-forest-950/10 via-transparent to-forest-950/22" />
             <div className="relative z-10 flex min-h-[300px] max-w-3xl flex-col justify-center sm:min-h-[330px]">
               <span className="eyebrow text-orange-300">{t.contactEyebrow}</span>
               <h2 className="text-balance mt-5 font-display text-3xl font-extrabold leading-tight tracking-[-0.035em] sm:text-4xl lg:text-[3.1rem] lg:leading-[1.22]">{t.contactTitle}</h2>
