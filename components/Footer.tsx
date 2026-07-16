@@ -5,9 +5,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
-import { TrackedLink } from "@/components/TrackedLink";
-import { locations } from "@/lib/locations";
-import { PHONE_DISPLAY, PHONE_HREF, SITE_URL } from "@/lib/seo";
+
+const compactBranchMaps = [
+  {
+    id: "CN1",
+    nameKey: "footerBranch1Name",
+    address: "14 Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
+    embedSrc:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.5370572533293!2d106.7289773!3d10.8466962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527a60336dce9%3A0xe397be298b9a97af!2zQ-G7rWEgSMOgbmcgR-G7lyBHaMOpcCBUw7luZyBQaMOhdA!5e0!3m2!1svi!2s!4v1783761448496!5m2!1svi!2s",
+    iframeTitle: "Google Maps – Tùng Phát CN1"
+  },
+  {
+    id: "CN2",
+    nameKey: "footerBranch2Name",
+    address: "81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
+    embedSrc:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4493770330487!2d106.7307288!3d10.8533852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527295201638d%3A0x96d9f4e833b55234!2zTURGIC0gQ05DIFTDmU5HIFBIw4FU!5e0!3m2!1svi!2s!4v1783761503530!5m2!1svi!2s",
+    iframeTitle: "Google Maps – Tùng Phát CN2"
+  }
+] as const;
 
 export function Footer() {
   const { lang } = useLang();
@@ -27,6 +43,7 @@ export function Footer() {
                 width={1326}
                 height={1099}
                 quality={95}
+                loading="eager"
                 className="h-auto w-[142px] sm:w-[158px]"
               />
             </div>
@@ -39,17 +56,15 @@ export function Footer() {
               </p>
               <div className="h-px w-8 bg-wood-500/60" />
               <div className="space-y-3 text-sm text-white/60">
-                <TrackedLink
-                  href={PHONE_HREF}
-                  eventName="click_phone"
-                  eventProperties={{ location: "footer" }}
-                  className="flex min-h-11 items-center gap-3 font-bold text-white transition-colors hover:text-wood-500"
+                <a
+                  href="tel:0909259160"
+                  className="flex items-center gap-3 font-bold text-white transition-colors hover:text-wood-500"
                 >
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5">
                     <Phone size={12} className="text-wood-500" />
                   </span>
-                  {PHONE_DISPLAY}
-                </TrackedLink>
+                  0909 259 160
+                </a>
                 <p className="flex items-center gap-3">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5">
                     <Hash size={12} className="text-white/40" />
@@ -61,12 +76,14 @@ export function Footer() {
                     <MapPin size={12} className="text-white/40" />
                   </span>
                   <div className="space-y-4">
-                    {locations.map((location) => (
-                      <p key={location.id}>
-                        <span className="mb-1 block text-[.7rem] font-bold uppercase tracking-widest text-wood-500/90">{location.shortId}</span>
-                        <span className="font-semibold leading-6 text-white/92">{location.address}</span>
-                      </p>
-                    ))}
+                    <p>
+                      <span className="mb-1 block text-[.7rem] font-bold uppercase tracking-widest text-wood-500/90">CN1</span>
+                      <span className="font-semibold leading-6 text-white/92">14 Tam Bình, phường Hiệp Bình,<br />TP. Hồ Chí Minh</span>
+                    </p>
+                    <p>
+                      <span className="mb-1 block text-[.7rem] font-bold uppercase tracking-widest text-wood-500/90">CN2</span>
+                      <span className="font-semibold leading-6 text-white/92">81B Tam Bình, phường Hiệp Bình,<br />TP. Hồ Chí Minh</span>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -80,11 +97,11 @@ export function Footer() {
             </p>
             <div className="mt-5 space-y-2.5 text-sm text-white/60">
               {["MDF – MFC", "Plywood", "Melamine", "Laminate", "Acrylic"].map((item) => (
-                <Link key={item} href="/san-pham" className="flex min-h-11 items-center transition-colors hover:text-white">
+                <Link key={item} href="/san-pham" className="block transition-colors hover:text-white">
                   {item}
                 </Link>
               ))}
-              <Link href="/san-pham#catalogue" className="flex min-h-11 items-center transition-colors hover:text-white">
+              <Link href="/san-pham#catalogue" className="block transition-colors hover:text-white">
                 {t.footerCatalogue}
               </Link>
             </div>
@@ -96,13 +113,13 @@ export function Footer() {
               {t.footerServices}
             </p>
             <div className="mt-5 space-y-2.5 text-sm text-white/60">
-              <Link href="/gia-cong-cnc" className="block min-h-11 content-center transition-colors hover:text-white">
+              <a href="/#cnc" className="block transition-colors hover:text-white">
                 {t.footerCNC}
-              </Link>
-              <a href="/#thu-vien" className="block min-h-11 content-center transition-colors hover:text-white">
+              </a>
+              <a href="/#thu-vien" className="block transition-colors hover:text-white">
                 {t.footerLibrary}
               </a>
-              <Link href="/san-pham#catalogue" className="flex min-h-11 items-center transition-colors hover:text-white">
+              <Link href="/san-pham#catalogue" className="block transition-colors hover:text-white">
                 {t.footerCatalogue}
               </Link>
             </div>
@@ -114,15 +131,15 @@ export function Footer() {
               {t.footerLegal}
             </p>
             <div className="mt-5 space-y-2.5 text-sm text-white/60">
-              <Link href="/chinh-sach-bao-mat" className="flex min-h-11 items-center transition-colors hover:text-white">
+              <Link href="/chinh-sach-bao-mat" className="block transition-colors hover:text-white">
                 {t.footerPrivacy}
               </Link>
-              <Link href="/dieu-khoan-su-dung" className="flex min-h-11 items-center transition-colors hover:text-white">
+              <Link href="/dieu-khoan-su-dung" className="block transition-colors hover:text-white">
                 {t.footerTerms}
               </Link>
-              <Link href="/lien-he" className="block min-h-11 content-center transition-colors hover:text-white">
+              <a href="/#bao-gia" className="block transition-colors hover:text-white">
                 {t.footerContact}
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -132,14 +149,22 @@ export function Footer() {
               {t.footerBranchesEyebrow}
             </p>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-              {locations.map((branch) => (
-                <article key={branch.id} className="rounded-xl border border-white/10 bg-white/[0.045]">
+              {compactBranchMaps.map((branch) => (
+                <article key={branch.id} className="overflow-hidden rounded-xl border border-white/10 bg-white/[0.045]">
                   <div className="px-4 py-3">
-                    <span className="text-[.68rem] font-extrabold uppercase tracking-[.16em] text-wood-500">{branch.shortId}</span>
+                    <span className="text-[.68rem] font-extrabold uppercase tracking-[.16em] text-wood-500">{t[branch.nameKey]}</span>
                     <p className="mt-1 text-xs font-semibold leading-5 text-white/88">{branch.address}</p>
-                    <TrackedLink href={branch.directionsUrl} target="_blank" rel="noopener noreferrer" eventName="click_directions" eventProperties={{ location: `footer_${branch.shortId}` }} className="mt-2 inline-flex min-h-11 items-center text-xs font-bold text-white hover:text-wood-500">
-                      {lang === "vi" ? "Xem chỉ đường" : "Get directions"}
-                    </TrackedLink>
+                  </div>
+                  <div className="h-[140px] border-t border-white/10 bg-white/5 sm:h-[150px] lg:h-[145px]">
+                    <iframe
+                      src={branch.embedSrc}
+                      title={branch.iframeTitle}
+                      loading="lazy"
+                      allowFullScreen
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      className="h-full w-full"
+                      style={{ border: 0 }}
+                    />
                   </div>
                 </article>
               ))}
@@ -152,7 +177,7 @@ export function Footer() {
       <div className="border-t border-white/[0.07] py-5">
         <div className="container-shell flex flex-col gap-2 text-xs text-white/30 sm:flex-row sm:items-center sm:justify-between">
           <span>{t.footerCopyright}</span>
-          <a href={SITE_URL} className="min-h-11 content-center text-white/35 transition hover:text-white/60">www.mdftungphat.com</a>
+          <a href="https://mdftungphat.com" className="text-white/20 transition hover:text-white/45">mdftungphat.com</a>
         </div>
       </div>
     </footer>

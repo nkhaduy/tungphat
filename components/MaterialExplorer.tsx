@@ -40,7 +40,7 @@ export function MaterialExplorer() {
           const selected = compared.includes(sample.code);
           return (
             <article key={sample.code} className="group relative min-h-[340px] overflow-hidden bg-forest-950 text-white">
-              <Image src="/images/wood-panels.webp" alt={`Mẫu ${sample.name}, mã ${sample.code}`} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover" style={{ objectPosition: sample.pos }} />
+              <Image src="/images/wood-panels.png" alt={`Mẫu ${sample.name}, mã ${sample.code}`} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" quality={95} className="object-cover" style={{ objectPosition: sample.pos }} />
               <div className="absolute inset-0 card-gradient-overlay" />
               <div className="absolute inset-x-0 bottom-0 p-5">
                 <div className="flex items-end justify-between gap-4">

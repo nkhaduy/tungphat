@@ -2,22 +2,45 @@
 
 import Image from "next/image";
 import { Check } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { SectionTitle } from "@/components/SectionTitle";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
 
 const gallery = [
-  ["hero-workshop4.webp", 0],
-  ["hero-workshop5.webp", 1],
-  ["hero-workshop6.webp", 2],
-  ["hero-workshop1.webp", 3],
-  ["cnc-service.webp", 4],
-  ["wood-panels.webp", 5],
+  ["hero-workshop4.png", 0],
+  ["hero-workshop5.png", 1],
+  ["hero-workshop6.png", 2],
+  ["hero-workshop1.png", 3],
+  ["cnc-service.png", 4],
+  ["wood-panels.png", 5],
 ] as const;
 
 export function WorkshopMedia() {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const { lang } = useLang();
   const t = translations[lang];
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        video.muted = true;
+        void video.play().catch(() => undefined);
+      } else {
+        video.pause();
+      }
+    }, { threshold: 0.35 });
+
+    observer.observe(video);
+    return () => {
+      observer.disconnect();
+      video.pause();
+    };
+  }, []);
 
   return (
     <section id="thu-vien" className="bg-white py-20 lg:py-28">
@@ -43,7 +66,7 @@ export function WorkshopMedia() {
           <div className="mt-16 border-t border-forest-900/10 pt-12 sm:mt-20 sm:pt-16">
             <div className="grid items-center gap-10 md:grid-cols-[minmax(280px,40%)_1fr] md:gap-12 lg:gap-16">
               <div className="mx-auto w-full max-w-[340px] overflow-hidden rounded-lg shadow-sm md:mx-0 md:max-w-[360px]">
-                <video controls playsInline preload="none" poster="/images/cnc-service.webp" className="aspect-[9/16] max-h-[620px] w-full object-cover" aria-label="Video minh họa quy trình gia công CNC">
+                <video ref={videoRef} autoPlay muted loop playsInline preload="metadata" className="aspect-[9/16] max-h-[620px] w-full object-cover" aria-label="Gia công thực tế tại xưởng Tùng Phát">
                   <source src="/0619.mp4" type="video/mp4" />
                   Trình duyệt của bạn không hỗ trợ phát video.
                 </video>

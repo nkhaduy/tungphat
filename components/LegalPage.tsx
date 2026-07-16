@@ -3,19 +3,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronDown, MessageCircle, Phone } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
-import { TrackedLink } from "@/components/TrackedLink";
-import { ZALO_URL } from "@/lib/seo";
 
 const LEGAL_HERO_IMAGES = [
-  "/images/hero-workshop.webp",
-  "/images/hero-workshop4.webp",
-  "/images/hero-workshop5.webp",
-  "/images/hero-workshop6.webp",
+  "/images/hero-workshop.png",
+  "/images/hero-workshop4.png",
+  "/images/hero-workshop5.png",
+  "/images/hero-workshop6.png",
 ];
+
+function getRandomLegalHero(): string {
+  return LEGAL_HERO_IMAGES[Math.floor(Math.random() * LEGAL_HERO_IMAGES.length)];
+}
 
 type LegalPageProps = {
   type: "privacy" | "terms";
@@ -30,7 +32,7 @@ export function LegalPage({ type }: LegalPageProps) {
   const sections = type === "privacy" ? t.privacySections : t.termsSections;
   const showCTA = type === "privacy";
 
-  const heroImage = type === "privacy" ? LEGAL_HERO_IMAGES[0] : LEGAL_HERO_IMAGES[1];
+  const heroImage = useMemo(() => getRandomLegalHero(), []);
 
   const [activeSection, setActiveSection] = useState("");
   const [tocOpen, setTocOpen] = useState(false);
@@ -120,7 +122,7 @@ export function LegalPage({ type }: LegalPageProps) {
                         onClick={() => scrollToSection(section.id)}
                         className={`block w-full rounded-xl px-4 py-2.5 text-left text-sm font-bold transition ${
                           activeSection === section.id
-                            ? "bg-[#eef1ed] text-wood-700"
+                            ? "bg-[#eef1ed] text-wood-600"
                             : "text-forest-900 hover:bg-[#f6f7f5]"
                         }`}
                       >
@@ -146,7 +148,7 @@ export function LegalPage({ type }: LegalPageProps) {
                         onClick={() => scrollToSection(section.id)}
                         className={`block w-full rounded-xl px-4 py-2.5 text-left text-sm font-bold transition ${
                           activeSection === section.id
-                            ? "bg-[#eef1ed] text-wood-700"
+                            ? "bg-[#eef1ed] text-wood-600"
                             : "text-forest-900/80 hover:bg-[#f6f7f5] hover:text-forest-950"
                         }`}
                       >
@@ -201,34 +203,30 @@ export function LegalPage({ type }: LegalPageProps) {
                     <h2 className="text-2xl font-extrabold sm:text-3xl">{t.legalCTAHeading}</h2>
                     <p className="mt-3 max-w-md text-sm leading-7 text-white/72">{t.legalCTAText}</p>
                     <div className="mt-6 flex flex-wrap gap-3">
-                      <TrackedLink
-                        href={ZALO_URL}
+                      <a
+                        href="https://zalo.me/0909259160"
                         target="_blank"
                         rel="noopener noreferrer"
-                        eventName="request_quote"
-                        eventProperties={{ location: "privacy_cta", channel: "zalo" }}
                         aria-label={t.legalCTAQuote}
-                        className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-wood-700 px-6 text-sm font-bold text-white transition hover:bg-wood-800"
+                        className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-wood-500 px-6 text-sm font-bold text-white transition hover:bg-wood-600"
                       >
                         {t.legalCTAQuote}
                         <ArrowRight size={17} />
-                      </TrackedLink>
-                      <TrackedLink
-                        href={ZALO_URL}
+                      </a>
+                      <a
+                        href="https://zalo.me/0909259160"
                         target="_blank"
                         rel="noopener noreferrer"
-                        eventName="click_zalo"
-                        eventProperties={{ location: "privacy_cta" }}
                         className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 text-sm font-bold transition hover:bg-white hover:text-forest-950"
                       >
                         <MessageCircle size={17} />
                         {t.legalCTAZalo}
-                      </TrackedLink>
+                      </a>
                     </div>
                   </div>
                   <div className="relative hidden min-h-[200px] w-[320px] lg:block">
                     <Image
-                      src="/images/cnc-service.webp"
+                      src="/images/cnc-service.png"
                       alt=""
                       fill
                       sizes="320px"

@@ -3,8 +3,6 @@ import Link from "next/link";
 import { ArrowRight, Download, FileText, MessageCircle } from "lucide-react";
 import type { Brand } from "@/lib/brands";
 import { BrandPlaceholder } from "@/components/BrandPlaceholder";
-import { TrackedLink } from "@/components/TrackedLink";
-import { ZALO_URL } from "@/lib/seo";
 
 const filters = ["Loại vật liệu", "Bề mặt", "Màu sắc", "Độ dày", "Kích thước"];
 
@@ -58,7 +56,7 @@ export function BrandPage({ brand }: { brand: Brand }) {
                     <div className="mt-6 flex flex-wrap gap-3">
                       {catalogue.pdfUrl ? (
                         <>
-                          <a href={catalogue.pdfUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 bg-forest-900 px-4 text-sm font-bold text-white">Xem catalogue <ArrowRight size={16} /></a>
+                          <a href={catalogue.pdfUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 bg-forest-900 px-4 text-sm font-bold text-white">Xem catalogue <ArrowRight size={16} /></a>
                           <a href={catalogue.pdfUrl} download className="inline-flex min-h-11 items-center gap-2 border border-forest-900/25 px-4 text-sm font-bold text-forest-950"><Download size={16} /> Tải PDF</a>
                         </>
                       ) : (
@@ -82,7 +80,7 @@ export function BrandPage({ brand }: { brand: Brand }) {
               <h2 className="text-2xl font-extrabold text-forest-950 sm:text-3xl">Sản phẩm {brand.name}</h2>
               <p className="mt-3 text-sm text-slate-600">Thông tin sản phẩm đang được cập nhật.</p>
             </div>
-            <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "brand_page", brand: brand.slug, channel: "zalo" }} aria-label="Yêu cầu báo giá" className="inline-flex min-h-12 w-fit items-center gap-2 bg-wood-700 px-5 text-sm font-bold text-white">Yêu cầu báo giá <MessageCircle size={17} /></TrackedLink>
+            <a href="https://zalo.me/0909259160" target="_blank" rel="noopener noreferrer" aria-label="Yêu cầu báo giá" className="inline-flex min-h-12 w-fit items-center gap-2 bg-wood-500 px-5 text-sm font-bold text-white">Yêu cầu báo giá <MessageCircle size={17} /></a>
           </div>
 
           <fieldset disabled className="mt-8">

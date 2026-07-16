@@ -30,7 +30,7 @@ export const brands: Brand[] = [
     slug: "an-cuong",
     name: "An Cường",
     logo: "",
-    description: "Các dòng vật liệu và bề mặt mang thương hiệu An Cường đang được Tùng Phát giới thiệu theo nhu cầu từng hạng mục.",
+    description: "",
     catalogues: [],
     products: []
   },
@@ -38,7 +38,7 @@ export const brands: Brand[] = [
     slug: "thanh-thuy",
     name: "Thanh Thùy",
     logo: "",
-    description: "Thông tin vật liệu mang thương hiệu Thanh Thùy, phù hợp để tham khảo trước khi kiểm tra quy cách và catalogue.",
+    description: "",
     catalogues: [],
     products: []
   },
@@ -46,7 +46,7 @@ export const brands: Brand[] = [
     slug: "ba-thanh",
     name: "Ba Thanh",
     logo: "",
-    description: "Trang tổng hợp thông tin vật liệu mang thương hiệu Ba Thanh tại Tùng Phát; dữ liệu chi tiết đang được bổ sung.",
+    description: "",
     catalogues: [],
     products: []
   },
@@ -54,7 +54,7 @@ export const brands: Brand[] = [
     slug: "kes",
     name: "KES",
     logo: "",
-    description: "Thông tin các dòng vật liệu mang thương hiệu KES đang được Tùng Phát giới thiệu theo nhu cầu vật liệu và bề mặt.",
+    description: "",
     catalogues: [],
     products: []
   }

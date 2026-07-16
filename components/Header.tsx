@@ -6,8 +6,7 @@ import { ChevronDown, MessageCircle, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
-import { trackEvent } from "@/lib/analytics";
-import { PHONE_HREF, ZALO_URL } from "@/lib/seo";
+import type { Lang } from "@/lib/i18n";
 
 const productSlugs = ["an-cuong", "thanh-thuy", "ba-thanh"] as const;
 
@@ -34,10 +33,10 @@ export function Header() {
   ];
 
   const links: [string, string][] = [
-    [t.navHome, "/"],
-    [t.navCNC, "/gia-cong-cnc"],
+    [t.navHome, "/#trang-chu"],
+    [t.navCNC, "/#cnc"],
     [t.navLibrary, "/#thu-vien"],
-    [t.navContact, "/lien-he"]
+    [t.navContact, "/#bao-gia"]
   ];
 
   const toggleLang = () => setLang(lang === "vi" ? "en" : "vi");
@@ -61,6 +60,7 @@ export function Header() {
             sizes="(min-width: 1280px) 318px, 282px"
             quality={95}
             className={`object-contain object-left transition-opacity duration-300 ${scrolled ? "opacity-0" : "opacity-100"}`}
+            priority
           />
           <Image
             src="/logo-horizontal.png"
@@ -69,6 +69,7 @@ export function Header() {
             sizes="(min-width: 1280px) 318px, 282px"
             quality={95}
             className={`object-contain object-left transition-opacity duration-300 ${scrolled ? "opacity-100" : "opacity-0"}`}
+            priority
           />
         </Link>
 
@@ -83,7 +84,6 @@ export function Header() {
           <div className="group relative flex items-center">
             <a
               href="/san-pham"
-              onClick={() => trackEvent("view_product_category", { location: "header" })}
               className={`py-7 text-[.8125rem] font-bold transition-colors duration-300 hover:text-wood-500 ${scrolled ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
             >
               {t.navProducts}
@@ -98,7 +98,7 @@ export function Header() {
             </button>
             <div className="invisible absolute left-0 top-full w-60 translate-y-2 bg-white p-2 text-forest-950 opacity-0 shadow-lg transition duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
               {productLinks.map(([label, href]) => (
-                <a key={href} href={href} onClick={() => trackEvent("view_product_category", { location: "header_menu", destination: href })} className="flex min-h-11 items-center px-4 text-sm font-bold transition hover:bg-[#eef1ed] focus:bg-[#eef1ed]">
+                <a key={href} href={href} className="flex min-h-11 items-center px-4 text-sm font-bold transition hover:bg-[#eef1ed] focus:bg-[#eef1ed]">
                   {label}
                 </a>
               ))}
@@ -108,7 +108,6 @@ export function Header() {
             <a
               key={href}
               href={href}
-              onClick={() => href === "/gia-cong-cnc" && trackEvent("view_cnc_service", { location: "header" })}
               className={`text-[.8125rem] font-bold transition-colors duration-300 ${scrolled ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
             >
               {label}
@@ -129,13 +128,12 @@ export function Header() {
             <span className={lang === "en" ? "text-wood-500" : ""}>EN</span>
           </button>
           <a
-            href={PHONE_HREF}
-            onClick={() => trackEvent("click_phone", { location: "header" })}
+            href="tel:0909259160"
             className={`inline-flex min-h-11 items-center gap-2 px-3 text-sm font-bold transition-colors duration-300 ${scrolled ? "text-ink hover:text-wood-500" : "text-white/90 hover:text-white"}`}
           >
             <Phone size={16} /> {t.phoneLabel}
           </a>
-          <a href={ZALO_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("request_quote", { location: "header", channel: "zalo" })} aria-label={t.ctaGetQuote} className="inline-flex min-h-11 items-center gap-2 bg-wood-700 px-4 text-sm font-bold text-white transition hover:bg-wood-800">
+          <a href="https://zalo.me/0909259160" target="_blank" rel="noopener noreferrer" aria-label={t.ctaGetQuote} className="inline-flex min-h-11 items-center gap-2 bg-wood-500 px-4 text-sm font-bold text-white transition hover:bg-wood-600">
             <MessageCircle size={16} /> {t.ctaGetQuote}
           </a>
         </div>
@@ -160,7 +158,7 @@ export function Header() {
           </a>
           <div className="border-b border-white/10">
             <div className="flex items-center">
-              <a href="/san-pham" onClick={() => { trackEvent("view_product_category", { location: "mobile_header" }); setOpen(false); }} className="flex min-h-12 flex-1 items-center py-4 text-sm font-bold">
+              <a href="/san-pham" onClick={() => setOpen(false)} className="flex min-h-12 flex-1 items-center py-4 text-sm font-bold">
                 {t.navProducts}
               </a>
               <button
@@ -177,7 +175,7 @@ export function Header() {
             {productsOpen && (
               <div id="mobile-products" className="mb-3 border-l border-white/20 pl-4">
                 {productLinks.map(([label, href]) => (
-                  <a key={href} href={href} onClick={() => { trackEvent("view_product_category", { location: "mobile_header_menu", destination: href }); setOpen(false); }} className="flex min-h-11 items-center text-sm text-white/75">
+                  <a key={href} href={href} onClick={() => setOpen(false)} className="flex min-h-11 items-center text-sm text-white/75">
                     {label}
                   </a>
                 ))}
@@ -185,7 +183,7 @@ export function Header() {
             )}
           </div>
           {links.slice(1).map(([label, href]) => (
-            <a key={href} href={href} onClick={() => { if (href === "/gia-cong-cnc") trackEvent("view_cnc_service", { location: "mobile_header" }); setOpen(false); }} className="block min-h-12 border-b border-white/10 py-4 text-sm font-bold">
+            <a key={href} href={href} onClick={() => setOpen(false)} className="block min-h-12 border-b border-white/10 py-4 text-sm font-bold">
               {label}
             </a>
           ))}
@@ -195,7 +193,7 @@ export function Header() {
               <span className="text-white/40">|</span>
               <span className={lang === "en" ? "text-wood-500" : ""}>EN</span>
             </button>
-            <a href={PHONE_HREF} onClick={() => trackEvent("click_phone", { location: "mobile_header" })} className="flex min-h-12 items-center justify-center gap-2 bg-wood-700 px-4 font-bold text-white">
+            <a href="tel:0909259160" className="flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-4 font-bold text-white">
               <Phone size={17} /> {t.callLabel}
             </a>
           </div>
