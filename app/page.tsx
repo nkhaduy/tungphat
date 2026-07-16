@@ -10,10 +10,11 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { Partners } from "@/components/Partners";
 import { WorkshopMedia } from "@/components/WorkshopMedia";
 import { TrackedLink } from "@/components/TrackedLink";
+import { TrustindexReviews } from "@/components/reviews/TrustindexReviews";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
 import { locations } from "@/lib/locations";
-import { PHONE_DISPLAY, PHONE_HREF, ZALO_URL } from "@/lib/seo";
+import { GOOGLE_REVIEWS_URL, PHONE_DISPLAY, PHONE_HREF, ZALO_URL } from "@/lib/seo";
 
 const categoryImages = [
   "/wood/mdfmfc.webp",
@@ -105,6 +106,33 @@ export default function Home() {
                 </article>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Google reviews */}
+      <section className="bg-white py-20 lg:py-28">
+        <div className="container-shell">
+          <SectionTitle
+            eyebrow="ĐÁNH GIÁ TỪ GOOGLE"
+            title="Khách hàng nói gì về Tùng Phát"
+            description="Những chia sẻ thực tế từ khách hàng đã sử dụng sản phẩm và dịch vụ tại Tùng Phát."
+            centered
+          />
+          <div className="mx-auto mt-12 w-full max-w-5xl min-w-0">
+            <TrustindexReviews />
+          </div>
+          <div className="mt-8 text-center">
+            <TrackedLink
+              href={GOOGLE_REVIEWS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              eventName="click_directions"
+              eventProperties={{ location: "home_reviews" }}
+              className="inline-flex min-h-12 items-center justify-center gap-2 border border-forest-900/20 px-6 text-sm font-bold text-forest-950 transition hover:border-wood-600 hover:text-wood-700"
+            >
+              Xem đánh giá trên Google <ArrowRight size={17} />
+            </TrackedLink>
           </div>
         </div>
       </section>

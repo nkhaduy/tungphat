@@ -7,6 +7,8 @@ export const PHONE_DISPLAY = "0909 259 160";
 export const PHONE_E164 = "+84909259160";
 export const PHONE_HREF = "tel:0909259160";
 export const ZALO_URL = "https://zalo.me/0909259160";
+export const GOOGLE_REVIEWS_URL =
+  "https://www.google.com/maps/search/?api=1&query=C%E1%BB%ADa%20H%C3%A0ng%20G%E1%BB%97%20Gh%C3%A9p%20T%C3%B9ng%20Ph%C3%A1t";
 
 export const DEFAULT_DESCRIPTION =
   "Tùng Phát cung cấp vật liệu gỗ công nghiệp và gia công CNC theo kích thước, bản vẽ cho xưởng nội thất, thợ mộc, đơn vị thiết kế và doanh nghiệp.";
@@ -30,10 +32,11 @@ type PageMetadata = {
 };
 
 export function createPageMetadata({ title, description, path, noIndex = false }: PageMetadata): Metadata {
+  const canonicalUrl = absoluteUrl(path);
   return {
     title,
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: canonicalUrl },
     robots: noIndex
       ? { index: false, follow: false }
       : {
@@ -44,7 +47,7 @@ export function createPageMetadata({ title, description, path, noIndex = false }
     openGraph: {
       title,
       description,
-      url: path,
+      url: canonicalUrl,
       siteName: SITE_NAME,
       locale: "vi_VN",
       type: "website",
