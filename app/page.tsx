@@ -9,7 +9,7 @@ import { Reveal } from "@/components/Reveal";
 import { SectionTitle } from "@/components/SectionTitle";
 import { Partners } from "@/components/Partners";
 import { WorkshopMedia } from "@/components/WorkshopMedia";
-import { ReviewSection } from "@/components/ReviewSection";
+import { TrustindexReviews } from "@/components/reviews/TrustindexReviews";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
 
@@ -25,6 +25,8 @@ const categoryImages = [
 ];
 
 const zaloUrl = "https://zalo.me/0909259160";
+const googleReviewsUrl =
+  "https://www.google.com/maps/search/?api=1&query=C%E1%BB%ADa%20H%C3%A0ng%20G%E1%BB%97%20Gh%C3%A9p%20T%C3%B9ng%20Ph%C3%A1t";
 
 const branchMaps = [
   {
@@ -124,7 +126,30 @@ export default function Home() {
         </div>
       </section>
 
-      <ReviewSection />
+      {/* Google reviews */}
+      <section className="bg-white py-20 lg:py-28">
+        <div className="container-shell">
+          <SectionTitle
+            eyebrow="ĐÁNH GIÁ TỪ GOOGLE"
+            title="Khách hàng nói gì về Tùng Phát"
+            description="Những chia sẻ thực tế từ khách hàng đã sử dụng sản phẩm và dịch vụ tại Tùng Phát."
+            centered
+          />
+          <div className="mx-auto mt-12 w-full max-w-5xl min-w-0">
+            <TrustindexReviews />
+          </div>
+          <div className="mt-8 text-center">
+            <a
+              href={googleReviewsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-12 items-center justify-center gap-2 border border-forest-900/20 px-6 text-sm font-bold text-forest-950 transition hover:border-wood-600 hover:text-wood-700"
+            >
+              Xem đánh giá trên Google <ArrowRight size={17} />
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* Branch maps */}
       <section className="bg-[#f6f7f5] py-16 lg:py-24">
