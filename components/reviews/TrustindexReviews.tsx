@@ -106,10 +106,11 @@ export function TrustindexReviews() {
         script.src = getTrustindexWidgetUrl(widgetId);
         script.async = true;
         script.defer = true;
+        script.addEventListener("error", handleScriptError, { once: true });
         widget.appendChild(script);
+      } else {
+        script.addEventListener("error", handleScriptError, { once: true });
       }
-
-      script.addEventListener("error", handleScriptError, { once: true });
 
       if (hasRenderedWidget()) {
         setLoaded();
@@ -119,16 +120,20 @@ export function TrustindexReviews() {
       timeoutId = window.setTimeout(handleScriptError, LOAD_TIMEOUT_MS);
     };
 
-    intersectionObserver = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          intersectionObserver?.disconnect();
-          loadWidget();
-        }
-      },
-      { rootMargin: "400px 0px" }
-    );
-    intersectionObserver.observe(host);
+    if ("IntersectionObserver" in window) {
+      intersectionObserver = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            intersectionObserver?.disconnect();
+            loadWidget();
+          }
+        },
+        { rootMargin: "400px 0px" }
+      );
+      intersectionObserver.observe(host);
+    } else {
+      loadWidget();
+    }
 
     return () => {
       disposed = true;
