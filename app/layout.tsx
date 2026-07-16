@@ -83,6 +83,7 @@ const siteSchema = {
       logo: "https://mdftungphat.com/icon.png",
       telephone: PHONE_E164,
       taxID: "0319115830",
+      sameAs: ["https://zalo.me/0909259160"],
       department: [
         { "@id": `${SITE_URL}/#chi-nhanh-1` },
         { "@id": `${SITE_URL}/#chi-nhanh-2` }
@@ -123,6 +124,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="vi">
       <head>
+        <link rel="preload" as="image" href="/images/hero-workshop-mobile.webp" media="(max-width: 767px)" fetchPriority="high" />
+        <link rel="preload" as="image" href="/images/hero-workshop.webp" media="(min-width: 768px)" fetchPriority="high" />
         <JsonLd data={siteSchema} />
       </head>
       <body>

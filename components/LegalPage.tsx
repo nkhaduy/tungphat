@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ChevronDown, MessageCircle, Phone } from "lucide-react";
+import { ArrowRight, ChevronDown, MessageCircle } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useLang } from "@/lib/i18n-context";
@@ -113,7 +113,7 @@ export function LegalPage({ type }: LegalPageProps) {
             {tocOpen && (
               <nav className="mt-3 rounded-2xl border border-forest-900/12 bg-white p-4 shadow-sm">
                 <ul className="space-y-1">
-                  {sections.map((section: { id: string; title: string }, idx: number) => (
+                  {sections.map((section: { id: string; title: string }) => (
                     <li key={section.id}>
                       <button
                         type="button"
@@ -139,7 +139,7 @@ export function LegalPage({ type }: LegalPageProps) {
               <div className="rounded-2xl border border-forest-900/10 bg-white p-6 shadow-sm">
                 <h2 className="mb-5 text-xs font-extrabold uppercase tracking-[0.16em] text-slate-500">{t.legalTOC}</h2>
                 <ul className="space-y-1.5">
-                  {sections.map((section: { id: string; title: string }, idx: number) => (
+                  {sections.map((section: { id: string; title: string }) => (
                     <li key={section.id}>
                       <button
                         type="button"

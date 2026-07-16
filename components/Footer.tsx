@@ -7,7 +7,7 @@ import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
 import { TrackedLink } from "@/components/TrackedLink";
 import { locations } from "@/lib/locations";
-import { PHONE_DISPLAY, PHONE_HREF, SITE_URL } from "@/lib/seo";
+import { PHONE_DISPLAY, PHONE_HREF } from "@/lib/seo";
 
 export function Footer() {
   const { lang } = useLang();
@@ -22,7 +22,7 @@ export function Footer() {
           <div>
             <div className="inline-flex rounded-md border border-white/20 bg-[#f8f5ef] p-4 shadow-[0_1px_0_rgba(255,255,255,0.08)_inset] sm:p-5">
               <Image
-                src="/footer-logo-tung-phat.png"
+                src="/footer-logo-tung-phat.webp"
                 alt="Tùng Phát"
                 width={1326}
                 height={1099}
@@ -31,7 +31,7 @@ export function Footer() {
               />
             </div>
             <div className="mt-8 space-y-4">
-              <p className="text-xs font-bold uppercase tracking-[.12em] text-white/40">
+              <p className="text-xs font-bold uppercase tracking-[.12em] text-white/60">
                 {lang === "vi" ? "Về chúng tôi" : "About us"}
               </p>
               <p className="text-[.8125rem] font-bold leading-6 text-white">
@@ -75,15 +75,15 @@ export function Footer() {
 
           {/* Materials */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/40">
+            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/60">
               {t.footerMaterials}
             </p>
             <div className="mt-5 space-y-2.5 text-sm text-white/60">
-              {["MDF – MFC", "Plywood", "Melamine", "Laminate", "Acrylic"].map((item) => (
-                <Link key={item} href="/san-pham" className="flex min-h-11 items-center transition-colors hover:text-white">
-                  {item}
-                </Link>
-              ))}
+              <Link href="/go-ghep" className="flex min-h-11 items-center transition-colors hover:text-white">Gỗ ghép</Link>
+              <Link href="/go-ghep-cao-su" className="flex min-h-11 items-center transition-colors hover:text-white">Gỗ ghép cao su</Link>
+              <Link href="/go-ghep-tram" className="flex min-h-11 items-center transition-colors hover:text-white">Gỗ ghép tràm</Link>
+              <Link href="/van-mdf" className="flex min-h-11 items-center transition-colors hover:text-white">Ván MDF</Link>
+              <Link href="/mdf-chong-am" className="flex min-h-11 items-center transition-colors hover:text-white">MDF chống ẩm</Link>
               <Link href="/san-pham#catalogue" className="flex min-h-11 items-center transition-colors hover:text-white">
                 {t.footerCatalogue}
               </Link>
@@ -92,16 +92,20 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/40">
+            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/60">
               {t.footerServices}
             </p>
             <div className="mt-5 space-y-2.5 text-sm text-white/60">
               <Link href="/gia-cong-cnc" className="block min-h-11 content-center transition-colors hover:text-white">
                 {t.footerCNC}
               </Link>
-              <a href="/#thu-vien" className="block min-h-11 content-center transition-colors hover:text-white">
+              <Link href="/cat-cnc-go" className="block min-h-11 content-center transition-colors hover:text-white">Cắt CNC gỗ</Link>
+              <Link href="/gia-cong-cnc-mdf" className="block min-h-11 content-center transition-colors hover:text-white">CNC MDF</Link>
+              <Link href="/du-an" className="block min-h-11 content-center transition-colors hover:text-white">Dự án</Link>
+              <Link href="/bai-viet" className="block min-h-11 content-center transition-colors hover:text-white">Bài viết</Link>
+              <Link href="/#thu-vien" className="block min-h-11 content-center transition-colors hover:text-white">
                 {t.footerLibrary}
-              </a>
+              </Link>
               <Link href="/san-pham#catalogue" className="flex min-h-11 items-center transition-colors hover:text-white">
                 {t.footerCatalogue}
               </Link>
@@ -110,7 +114,7 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/40">
+            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/60">
               {t.footerLegal}
             </p>
             <div className="mt-5 space-y-2.5 text-sm text-white/60">
@@ -128,7 +132,7 @@ export function Footer() {
 
           {/* Compact maps */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/40">
+            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/60">
               {t.footerBranchesEyebrow}
             </p>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
@@ -150,9 +154,9 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/[0.07] py-5">
-        <div className="container-shell flex flex-col gap-2 text-xs text-white/30 sm:flex-row sm:items-center sm:justify-between">
+        <div className="container-shell flex flex-col gap-2 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <span>{t.footerCopyright}</span>
-          <a href={SITE_URL} className="min-h-11 content-center text-white/35 transition hover:text-white/60">www.mdftungphat.com</a>
+          <Link href="/" className="min-h-11 content-center text-white/60 transition hover:text-white">mdftungphat.com</Link>
         </div>
       </div>
     </footer>

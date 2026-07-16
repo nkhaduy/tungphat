@@ -182,7 +182,7 @@ export const vi = {
       title: "01. Mục đích thu thập thông tin",
       content: [
         "Tùng Phát thu thập thông tin từ khách hàng và đối tác nhằm phục vụ hoạt động tư vấn vật liệu gỗ, gia công CNC và các dịch vụ liên quan. Việc thu thập dữ liệu giúp chúng tôi hiểu rõ nhu cầu, từ đó cung cấp giải pháp chính xác và kịp thời.",
-        "Thông tin được cung cấp khi bạn chủ động liên hệ qua Zalo, điện thoại hoặc trong quá trình trao đổi đơn hàng vật liệu và gia công CNC. Website hiện không có form gửi thông tin hoặc chức năng tải file trực tiếp."
+        "Thông tin được cung cấp khi bạn chủ động gửi form báo giá/liên hệ, liên hệ qua Zalo, điện thoại hoặc trao đổi đơn hàng vật liệu và gia công CNC. Website không có chức năng tải file trực tiếp."
       ]
     },
     {
@@ -198,7 +198,7 @@ export const vi = {
       id: "thoi-gian",
       title: "03. Thời gian lưu trữ thông tin",
       content: [
-        "Thông tin khách hàng được lưu trữ trong thời gian cần thiết để trao đổi, thực hiện giao dịch, đối chiếu và tuân thủ quy định pháp luật.",
+        "Yêu cầu báo giá hoặc liên hệ chưa phát sinh giao dịch được lưu tối đa 24 tháng kể từ lần cập nhật cuối. Dữ liệu liên quan giao dịch có thể được lưu lâu hơn khi pháp luật hoặc nghĩa vụ đối soát yêu cầu.",
         "Khi thông tin không còn cần thiết cho các mục đích đã nêu, Tùng Phát sẽ xóa hoặc ẩn danh dữ liệu một cách an toàn."
       ]
     },
@@ -501,7 +501,7 @@ export const en: typeof vi = {
       title: "01. Purpose of Information Collection",
       content: [
         "Tùng Phát collects information from customers and partners to support wood material consultation, CNC machining services, and related operations. Data collection helps us understand your needs and provide accurate, timely solutions.",
-        "Information is provided when you contact us by Zalo or phone, or during material and CNC order discussions. The website currently has no information form or direct file-upload feature."
+        "Information is provided when you submit a quote/contact form, contact us by Zalo or phone, or discuss material and CNC orders. The website has no direct file-upload feature."
       ]
     },
     {
@@ -517,7 +517,7 @@ export const en: typeof vi = {
       id: "thoi-gian",
       title: "03. Information Retention Period",
       content: [
-        "Customer information is retained for as long as needed for communication, transactions, reconciliation, and legal compliance.",
+        "Quote or contact requests that do not become transactions are retained for up to 24 months after the last update. Transaction-related records may be retained longer when required for legal or reconciliation obligations.",
         "When information is no longer needed for the stated purposes, Tùng Phát will securely delete or anonymize the data."
       ]
     },
@@ -656,6 +656,6 @@ export const en: typeof vi = {
 
 export const translations: Record<Lang, typeof vi> = { vi, en };
 
-export function t(lang: Lang, key: TranslationKey): any {
+export function t<K extends TranslationKey>(lang: Lang, key: K): (typeof vi)[K] {
   return translations[lang][key];
 }

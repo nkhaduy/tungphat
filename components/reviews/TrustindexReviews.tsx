@@ -161,6 +161,7 @@ export function TrustindexReviews() {
       <div
         ref={widgetRef}
         className="min-w-0 max-w-full"
+        role="region"
         aria-label="Đánh giá khách hàng Tùng Phát trên Google"
       />
     </div>

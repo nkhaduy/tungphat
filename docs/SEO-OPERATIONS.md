@@ -2,9 +2,9 @@
 
 ## Domain và index
 
-- Canonical duy nhất trong code: `https://www.mdftungphat.com`.
-- Vercel Domains cần đặt `www.mdftungphat.com` làm primary domain và chuyển hướng apex thẳng sang `www` bằng một lần redirect.
-- Sau khi deploy, xác minh cả hai domain trong Google Search Console và submit `https://www.mdftungphat.com/sitemap.xml`.
+- Canonical duy nhất trong code: `https://mdftungphat.com`.
+- Cloudflare/Vercel phải chuyển `www.mdftungphat.com` về apex bằng một redirect 301/308; không chuyển ngược.
+- Sau khi deploy, xác minh domain property trong Google Search Console và submit `https://mdftungphat.com/sitemap.xml`.
 - Các trang thương hiệu và catalogue đang `noindex` vì chưa có dữ liệu sản phẩm/catalogue đủ giá trị. Chỉ gỡ `noindex` khi đã có nội dung thực, hình ảnh và liên kết catalogue hợp lệ.
 
 ## Metadata và schema
@@ -34,7 +34,7 @@
 
 ## Checklist sau mỗi lần phát hành
 
-1. Chạy `npm run lint`, `npx tsc --noEmit` và `npm run build`.
+1. Chạy `npm run lint`, `npm run typecheck`, `npm test` và `npm run build`.
 2. Kiểm tra `/robots.txt`, `/sitemap.xml`, canonical và JSON-LD trên bản deploy.
 3. Kiểm tra 404, internal link, CTA điện thoại/Zalo và console ở desktop/mobile.
 4. Theo dõi Core Web Vitals và index coverage trong Search Console sau khi Google thu thập dữ liệu mới.

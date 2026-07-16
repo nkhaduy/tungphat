@@ -3,6 +3,10 @@ export type AnalyticsEvent =
   | "click_zalo"
   | "request_quote"
   | "submit_quote_form"
+  | "submit_contact_form"
+  | "view_contact_page"
+  | "view_product"
+  | "view_project"
   | "view_cnc_service"
   | "view_product_category"
   | "click_directions";

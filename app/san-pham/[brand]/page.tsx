@@ -7,14 +7,15 @@ import { JsonLd } from "@/components/JsonLd";
 import { brands, getBrand } from "@/lib/brands";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-type BrandRouteProps = { params: { brand: string } };
+type BrandRouteProps = { params: Promise<{ brand: string }> };
 
 export function generateStaticParams() {
   return brands.map((brand) => ({ brand: brand.slug }));
 }
 
-export function generateMetadata({ params }: BrandRouteProps): Metadata {
-  const brand = getBrand(params.brand);
+export async function generateMetadata({ params }: BrandRouteProps): Promise<Metadata> {
+  const { brand: brandSlug } = await params;
+  const brand = getBrand(brandSlug);
   return brand
     ? createPageMetadata({
         title: `Vật liệu ${brand.name}`,
@@ -25,8 +26,9 @@ export function generateMetadata({ params }: BrandRouteProps): Metadata {
     : {};
 }
 
-export default function BrandRoute({ params }: BrandRouteProps) {
-  const brand = getBrand(params.brand);
+export default async function BrandRoute({ params }: BrandRouteProps) {
+  const { brand: brandSlug } = await params;
+  const brand = getBrand(brandSlug);
   if (!brand) notFound();
 
   return (

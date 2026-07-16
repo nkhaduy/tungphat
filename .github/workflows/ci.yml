@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run validate:content
+      - run: npm run images:check
+      - run: npm audit --omit=dev --audit-level=high
+      - run: npm run build
+      - run: npm run validate:links
+      - uses: actions/upload-artifact@v4
+        with:
+          name: static-export
+          path: out
+          retention-days: 7
+
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - run: printf '%s\n' 'TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA' 'TURNSTILE_TEST_MODE=1' > .dev.vars
+      - run: npm run d1:migrate:local
+      - run: npm run test:e2e

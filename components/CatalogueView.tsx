@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { FileText, MessageCircle } from "lucide-react";
 import type { Brand } from "@/lib/brands";

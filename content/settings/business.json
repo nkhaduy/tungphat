@@ -1,0 +1,17 @@
+{
+  "businessName": "Công ty TNHH TMDV Gỗ Tùng Phát",
+  "displayName": "MDF - CNC TÙNG PHÁT",
+  "taxId": "0319115830",
+  "website": "https://mdftungphat.com",
+  "phoneDisplay": "0909 259 160",
+  "phoneE164": "+84909259160",
+  "zaloUrl": "https://zalo.me/0909259160",
+  "email": "",
+  "openingHours": [],
+  "serviceAreas": ["TP. Hồ Chí Minh"],
+  "locations": [
+    { "name": "Tùng Phát – Chi nhánh 1", "address": "14 Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh" },
+    { "name": "Tùng Phát – Chi nhánh 2", "address": "81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh" }
+  ],
+  "socialLinks": ["https://zalo.me/0909259160"]
+}

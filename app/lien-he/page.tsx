@@ -4,8 +4,11 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { TrackedLink } from "@/components/TrackedLink";
+import { LeadForm } from "@/components/LeadForm";
+import { ViewTracker } from "@/components/ViewTracker";
 import { locations } from "@/lib/locations";
 import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, breadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import staticPages from "@/content/settings/static-pages.json";
 
 export const metadata = createPageMetadata({
   title: "Liên hệ vật liệu gỗ và gia công CNC",
@@ -36,7 +39,7 @@ export default function ContactPage() {
               <span aria-current="page" className="text-white">Liên hệ</span>
             </nav>
             <h1 className="mt-7 text-balance text-4xl font-extrabold sm:text-5xl">Liên hệ Tùng Phát</h1>
-            <p className="mt-5 max-w-3xl leading-8 text-white/80">Trao đổi nhu cầu vật liệu, catalogue hoặc gia công CNC qua điện thoại và Zalo. Website chưa công bố email và giờ làm việc, vì vậy hãy liên hệ trực tiếp trước khi đến.</p>
+            <p className="mt-5 max-w-3xl leading-8 text-white/80">{staticPages.contactIntro}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: "contact_hero" }} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-700 px-7 text-sm font-bold text-white"><Phone size={18} /> Gọi {PHONE_DISPLAY}</TrackedLink>
               <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: "contact_hero" }} className="inline-flex min-h-14 items-center justify-center gap-2 border border-white/35 px-7 text-sm font-bold text-white"><MessageCircle size={18} /> Nhắn Zalo</TrackedLink>
@@ -44,8 +47,13 @@ export default function ContactPage() {
           </div>
         </section>
 
+        <ViewTracker event="view_contact_page" contentType="contact" />
         <section className="py-16 lg:py-24">
           <div className="container-shell">
+            <div className="mb-14 grid gap-9 lg:grid-cols-[.55fr_1fr]">
+              <div><p className="eyebrow">Gửi thông tin</p><h2 className="mt-4 text-3xl font-extrabold text-forest-950">Tùng Phát phản hồi theo nhu cầu thực tế</h2><p className="mt-5 leading-7 text-slate-600">Form liên hệ không nhận file. Nếu cần gửi bản vẽ CNC, hãy mô tả trước rồi trao đổi file qua kênh được xác nhận.</p></div>
+              <LeadForm type="contact" compact />
+            </div>
             <div className="grid gap-5 lg:grid-cols-2">
               {locations.map((location) => (
                 <article id={location.id} key={location.id} className="scroll-mt-28 overflow-hidden rounded-2xl border border-forest-900/10 bg-white shadow-card">

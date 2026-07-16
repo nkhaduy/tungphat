@@ -1,27 +1,42 @@
-# Tùng Phát Landing Page
+# Website Tùng Phát
 
-Landing page preview cho Tùng Phát Wood & CNC Solutions, xây dựng bằng Next.js 14, TypeScript, Tailwind CSS và Framer Motion.
+Website vật liệu gỗ và gia công CNC, xây dựng bằng Next.js 15 App Router, TypeScript và Tailwind. Site static chạy trên Cloudflare Pages; form dùng Pages Functions + D1; nội dung Git/Markdown được quản lý tại `/admin` bằng Decap CMS.
 
 ## Chạy local
 
-Yêu cầu Node.js 18.17 trở lên.
+Yêu cầu Node.js 20.19–26 và npm theo `package-lock.json`.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
 Mở [http://localhost:3000](http://localhost:3000).
 
-## Thay nội dung
+## Quality gate
 
-- Logo ngang màu: `public/logo-horizontal.png`
-- Logo ngang trắng: `public/logo-horizontal-white.png`
-- Logo dọc màu: `public/logo-vertical.png`
-- Logo dọc trắng: `public/logo-vertical-white.png`
-- Icon/favicon: `public/brand-icon.png`, `public/favicon.ico`, `public/favicon-16x16.png`, `public/favicon-32x32.png`
-- Ảnh website: `public/images/`
-- Nội dung trang chủ: `app/page.tsx`
-- Màu sắc và font: `tailwind.config.ts`, `app/globals.css`
+```bash
+npm run lint
+npm run typecheck
+npm test
+npm run build
+npm run validate:links
+```
 
-Form hiện chỉ là giao diện preview và chưa kết nối backend.
+Preview gần production:
+
+```bash
+npm run d1:migrate:local
+npm run cf:preview
+```
+
+## Nội dung và vận hành
+
+- Content: `content/articles`, `content/products`, `content/projects`, `content/pages`.
+- Schema: `lib/content-schema.ts`; validator: `npm run validate:content`.
+- CMS: `/admin`; cấu hình ở `public/admin/config.yml`.
+- Ảnh mới: `public/uploads`; kiểm tra `npm run images:check`, tối ưu `npm run images:optimize`.
+- D1 migrations: `migrations/`; API: `functions/api/contact.ts`, `functions/api/quote.ts`.
+- Canonical: `https://mdftungphat.com` (không `www`).
+
+Đọc trước khi deploy: `docs/PROJECT_AUDIT.md`, `docs/CMS_SETUP.md`, `docs/CLOUDFLARE_DEPLOYMENT.md`, `docs/D1_DATABASE.md` và `docs/ROLLBACK.md`.
