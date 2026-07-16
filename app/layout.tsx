@@ -11,7 +11,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tungphatwood.vn"),
+  metadataBase: new URL("https://www.mdftungphat.com"),
   title: "Tùng Phát | Vật liệu gỗ & Gia công CNC",
   description:
     "Phân phối vật liệu gỗ và gia công CNC theo kích thước, bản vẽ cho xưởng nội thất, thợ mộc, kiến trúc sư và doanh nghiệp.",
@@ -50,8 +50,8 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Công ty TNHH TMDV Gỗ Tùng Phát",
-  url: "https://tungphatwood.vn",
-  logo: "https://tungphatwood.vn/logo-vertical.png",
+  url: "https://www.mdftungphat.com",
+  logo: "https://www.mdftungphat.com/logo-vertical.png",
   telephone: "+84909259160",
   taxID: "0319115830",
   address: [
