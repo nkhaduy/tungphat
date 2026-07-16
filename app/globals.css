@@ -5,6 +5,7 @@
 :root {
   --forest: #073b28;
   --orange: #ed7610;
+  --font-montserrat: "Montserrat", "Segoe UI", Arial, sans-serif;
 }
 
 * {
@@ -52,7 +53,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   display: inline-flex;
   align-items: center;
   gap: .65rem;
-  color: #d96008;
+  color: #b84d00;
   font-size: .72rem;
   font-weight: 700;
   letter-spacing: .18em;
@@ -74,6 +75,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   background: currentColor;
 }
 
+.eyebrow.eyebrow-light {
+  color: #fdba74;
+}
+
 input, textarea, select {
   outline: none;
 }
@@ -85,37 +90,6 @@ input:focus, textarea:focus, select:focus {
 
 .card-gradient-overlay {
   background: linear-gradient(to top, rgba(6,43,29,.88) 0%, rgba(6,43,29,.42) 42%, transparent 68%);
-}
-
-.review-scroll {
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: 1px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(7, 59, 40, .28) transparent;
-}
-
-.review-scroll > * {
-  scroll-snap-align: start;
-}
-
-.review-scroll::-webkit-scrollbar {
-  height: 8px;
-}
-
-.review-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.review-scroll::-webkit-scrollbar-thumb {
-  background: rgba(7, 59, 40, .22);
-  border-radius: 999px;
-}
-
-.review-text {
-  display: -webkit-box;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 /* Hero overlay — nhẹ hơn trên mobile để lộ vân gỗ */

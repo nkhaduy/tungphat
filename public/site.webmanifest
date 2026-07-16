@@ -1,6 +1,8 @@
 {
-  "name": "Tùng Phát Wood & CNC Solutions",
+  "name": "Tùng Phát – Vật liệu gỗ và gia công CNC",
   "short_name": "Tùng Phát",
+  "lang": "vi",
+  "start_url": "/",
   "icons": [
     {
       "src": "/android-chrome-192x192.png?v=20260630-favicon2",

@@ -1,32 +1,15 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
+import { absoluteUrl } from "@/lib/seo";
 
-const baseUrl = 'https://www.mdftungphat.com'
+const indexableRoutes = [
+  "/",
+  "/san-pham",
+  "/gia-cong-cnc",
+  "/lien-he",
+  "/chinh-sach-bao-mat",
+  "/dieu-khoan-su-dung"
+] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: baseUrl,
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    ...[
-      '/catalogue/an-cuong',
-      '/catalogue/thanh-thuy',
-      '/catalogue/ba-thanh',
-      '/san-pham',
-      '/san-pham/an-cuong',
-      '/san-pham/thanh-thuy',
-      '/san-pham/ba-thanh',
-      '/san-pham/kes',
-    ].map((route) => ({
-      url: `${baseUrl}${route}`,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    })),
-    ...['/chinh-sach-bao-mat', '/dieu-khoan-su-dung'].map((route) => ({
-      url: `${baseUrl}${route}`,
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
-    })),
-  ]
+  return indexableRoutes.map((path) => ({ url: absoluteUrl(path) }));
 }

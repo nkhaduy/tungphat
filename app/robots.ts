@@ -1,14 +1,14 @@
-import type { MetadataRoute } from 'next'
-
-const baseUrl = 'https://www.mdftungphat.com'
+import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      userAgent: '*',
-      allow: '/',
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/api/", "/_vercel/"]
     },
-    host: baseUrl,
-    sitemap: `${baseUrl}/sitemap.xml`,
-  }
+    host: SITE_URL,
+    sitemap: `${SITE_URL}/sitemap.xml`
+  };
 }

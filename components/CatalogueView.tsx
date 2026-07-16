@@ -7,6 +7,8 @@ import type { Brand } from "@/lib/brands";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
 import { BrandPlaceholder } from "@/components/BrandPlaceholder";
+import { TrackedLink } from "@/components/TrackedLink";
+import { ZALO_URL } from "@/lib/seo";
 
 const catalogueThumbnails: Record<string, Array<{name: string; description: string}>> = {
   "an-cuong": [
@@ -22,7 +24,7 @@ const catalogueThumbnails: Record<string, Array<{name: string; description: stri
   ],
   "ba-thanh": [
     { name: "Veneer Ba Thanh", description: "Vân gỗ tự nhiên đa dạng chủng loại, phù hợp đồ gỗ nội thất cao cấp." },
-    { name: "Plywood Ba Thanh", description: "Ván ép chất lượng cao cho các hạng mục chịu lực và gia công kết cấu." },
+    { name: "Plywood Ba Thanh", description: "Thông tin dòng ván ép để tham khảo trước khi kiểm tra quy cách và ứng dụng." },
     { name: "Tấm trang trí Ba Thanh", description: "Giải pháp bề mặt cho tường, quầy và không gian trưng bày." }
   ]
 };
@@ -80,9 +82,9 @@ export function CatalogueView({ brand }: { brand: Brand }) {
           <div className="mt-12 rounded-lg border border-forest-900/15 bg-[#f6f7f5] p-8 text-center">
             <h2 className="text-xl font-extrabold text-forest-950">{t.catalogueRequestCta}</h2>
             <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-slate-600">{t.cataloguePlaceholder}</p>
-            <a href="https://zalo.me/0909259160" target="_blank" rel="noopener noreferrer" aria-label={t.ctaGetQuote} className="mt-6 inline-flex min-h-12 items-center gap-2 bg-wood-500 px-6 text-sm font-bold text-white transition hover:bg-wood-600">
+            <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "catalogue_page", brand: brand.slug, channel: "zalo" }} aria-label={t.ctaGetQuote} className="mt-6 inline-flex min-h-12 items-center gap-2 bg-wood-700 px-6 text-sm font-bold text-white transition hover:bg-wood-800">
               {t.ctaGetQuote} <MessageCircle size={17} />
-            </a>
+            </TrackedLink>
           </div>
         </div>
       </section>
