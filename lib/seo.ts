@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-export const SITE_URL = "https://www.mdftungphat.com";
+export const SITE_URL = "https://mdftungphat.com";
 export const SITE_NAME = "Tùng Phát";
 export const BUSINESS_NAME = "Công ty TNHH TMDV Gỗ Tùng Phát";
 export const PHONE_DISPLAY = "0909 259 160";

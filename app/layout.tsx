@@ -28,11 +28,17 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest?v=20260630-favicon2",
   icons: {
     icon: [
-      { url: "/favicon.ico?v=20260630-favicon2", sizes: "any" },
-      { url: "/favicon-16x16.png?v=20260630-favicon2", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png?v=20260630-favicon2", sizes: "32x32", type: "image/png" }
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" }
     ],
-    apple: [{ url: "/apple-touch-icon.png?v=20260630-favicon2", sizes: "180x180", type: "image/png" }]
+    shortcut: "/favicon.ico",
+    apple: [
+      {
+        url: "/apple-icon.png",
+        type: "image/png",
+        sizes: "180x180"
+      }
+    ]
   },
   openGraph: {
     title: "Tùng Phát | Vật liệu gỗ công nghiệp & Gia công CNC",
@@ -74,7 +80,7 @@ const siteSchema = {
       "@id": `${SITE_URL}/#organization`,
       name: BUSINESS_NAME,
       url: `${SITE_URL}/`,
-      logo: absoluteUrl("/logo-vertical.png"),
+      logo: "https://mdftungphat.com/icon.png",
       telephone: PHONE_E164,
       taxID: "0319115830",
       department: [
