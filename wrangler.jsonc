@@ -3,7 +3,9 @@
   "name": "tung-phat",
   "pages_build_output_dir": "./out",
   "compatibility_date": "2026-07-16",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "d1_databases": [
     {
       "binding": "DB",
@@ -23,9 +25,5 @@
         }
       ]
     }
-  },
-  "observability": {
-    "enabled": true,
-    "logs": { "head_sampling_rate": 1 }
   }
 }
