@@ -5,6 +5,7 @@ import { Check } from "lucide-react";
 import { SectionTitle } from "@/components/SectionTitle";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
+import { mediaUrl } from "@/lib/media";
 
 const gallery = [
   ["hero-workshop4.webp", 0],
@@ -18,6 +19,8 @@ const gallery = [
 export function WorkshopMedia() {
   const { lang } = useLang();
   const t = translations[lang];
+  const mediaBaseUrl = process.env.NEXT_PUBLIC_MEDIA_BASE_URL;
+  const processVideoUrl = mediaBaseUrl ? mediaUrl({ key: "videos/legacy/0619.mp4" }, mediaBaseUrl) : null;
 
   return (
     <section id="thu-vien" className="bg-white py-20 lg:py-28">
@@ -44,7 +47,7 @@ export function WorkshopMedia() {
             <div className="grid items-center gap-10 md:grid-cols-[minmax(280px,40%)_1fr] md:gap-12 lg:gap-16">
               <div className="mx-auto w-full max-w-[340px] overflow-hidden rounded-lg shadow-sm md:mx-0 md:max-w-[360px]">
                 <video controls playsInline preload="none" poster="/images/cnc-service.webp" className="aspect-[9/16] max-h-[620px] w-full object-cover" aria-label="Video minh họa quy trình gia công CNC">
-                  <source src="/0619.mp4" type="video/mp4" />
+                  {processVideoUrl ? <source src={processVideoUrl} type="video/mp4" /> : null}
                   Trình duyệt của bạn không hỗ trợ phát video.
                 </video>
               </div>

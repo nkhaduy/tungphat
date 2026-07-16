@@ -7,6 +7,7 @@ import { BrandPlaceholder } from "@/components/BrandPlaceholder";
 import { JsonLd } from "@/components/JsonLd";
 import { brands } from "@/lib/brands";
 import { getProducts } from "@/lib/content";
+import { mediaUrl } from "@/lib/media";
 import { absoluteUrl, breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
@@ -56,7 +57,7 @@ export default function ProductsPage() {
             <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {products.map((product) => (
                 <article key={product.slug} className="overflow-hidden bg-white shadow-sm">
-                  <Link href={`/${product.slug}`} className="relative block aspect-[16/10]"><Image src={product.featuredImage} alt={product.featuredImageAlt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" /></Link>
+                  <Link href={`/${product.slug}`} className="relative block aspect-[16/10]"><Image src={mediaUrl(product.featuredImage)} alt={product.featuredImageAlt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" /></Link>
                   <div className="p-6"><p className="text-xs font-extrabold uppercase tracking-wider text-wood-700">{product.category}</p><h2 className="mt-3 text-xl font-extrabold text-forest-950"><Link href={`/${product.slug}`}>{product.title}</Link></h2><p className="mt-3 text-sm leading-6 text-slate-600">{product.excerpt}</p><Link href={`/${product.slug}`} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-950">Xem chi tiết <ArrowRight size={16} /></Link></div>
                 </article>
               ))}

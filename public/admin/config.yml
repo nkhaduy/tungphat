@@ -50,18 +50,17 @@ collections:
       - { label: Tags, name: tags, widget: list, required: false, field: { label: Tag, name: tag, widget: string } }
       - label: Ảnh đại diện
         name: featuredImage
-        widget: image
-        choose_url: false
-        allow_multiple: false
-        media_folder: /public/uploads/articles
-        public_folder: /uploads/articles
-        media_library: { config: { max_file_size: 1572864 } }
+        widget: r2-media
+        media_kind: image
       - { label: Alt ảnh đại diện, name: featuredImageAlt, widget: string, pattern: ['.{10,180}', 'Alt text cần 10–180 ký tự'] }
       - label: Gallery
         name: gallery
         widget: list
         required: false
-        field: { label: Ảnh, name: image, widget: image, choose_url: false, media_folder: /public/uploads/articles, public_folder: /uploads/articles, media_library: { config: { max_file_size: 1572864 } } }
+        field: { label: Ảnh R2, name: image, widget: r2-media, media_kind: image, with_alt: true }
+      - { label: Video, name: video, widget: r2-media, media_kind: video, required: false }
+      - { label: PDF/catalogue, name: catalogue, widget: r2-media, media_kind: document, required: false }
+      - { label: Ảnh Open Graph, name: ogImage, widget: r2-media, media_kind: image, with_alt: true, required: false }
       - { label: Bản nháp, name: draft, widget: boolean, default: true }
       - { label: Nổi bật, name: featured, widget: boolean, default: false }
       - { label: SEO title, name: seoTitle, widget: string, pattern: ['.{20,65}', 'SEO title cần 20–65 ký tự'] }
@@ -105,14 +104,13 @@ collections:
       - { label: Mô tả ngắn, name: excerpt, widget: text }
       - label: Ảnh đại diện
         name: featuredImage
-        widget: image
-        choose_url: false
-        allow_multiple: false
-        media_folder: /public/uploads/products
-        public_folder: /uploads/products
-        media_library: { config: { max_file_size: 1572864 } }
+        widget: r2-media
+        media_kind: image
       - { label: Alt ảnh, name: featuredImageAlt, widget: string, pattern: ['.{10,180}', 'Alt text cần 10–180 ký tự'] }
-      - { label: Gallery, name: gallery, widget: list, required: false, field: { label: Ảnh, name: image, widget: image, choose_url: false, media_folder: /public/uploads/products, public_folder: /uploads/products, media_library: { config: { max_file_size: 1572864 } } } }
+      - { label: Gallery, name: gallery, widget: list, required: false, field: { label: Ảnh R2, name: image, widget: r2-media, media_kind: image, with_alt: true } }
+      - { label: Video, name: video, widget: r2-media, media_kind: video, required: false }
+      - { label: PDF/catalogue, name: catalogue, widget: r2-media, media_kind: document, required: false }
+      - { label: Ảnh Open Graph, name: ogImage, widget: r2-media, media_kind: image, with_alt: true, required: false }
       - { label: Trạng thái, name: status, widget: select, options: [{ label: Còn cung cấp, value: available }, { label: Ngừng cung cấp, value: discontinued }], default: available }
       - { label: CTA báo giá, name: quoteCta, widget: string }
       - { label: Ngày đăng, name: publishedAt, widget: datetime, format: YYYY-MM-DD, time_format: false }
@@ -145,11 +143,14 @@ collections:
       - { label: Yêu cầu khách hàng, name: customerRequirement, widget: text }
       - { label: Quy trình, name: process, widget: list, field: { label: Bước, name: value, widget: text } }
       - { label: Kết quả, name: result, widget: text }
-      - { label: Ảnh trước, name: beforeImages, widget: list, required: false, field: { label: Ảnh, name: image, widget: image, choose_url: false, media_folder: /public/uploads/projects, public_folder: /uploads/projects, media_library: { config: { max_file_size: 1572864 } } } }
-      - { label: Ảnh sau, name: afterImages, widget: list, required: false, field: { label: Ảnh, name: image, widget: image, choose_url: false, media_folder: /public/uploads/projects, public_folder: /uploads/projects, media_library: { config: { max_file_size: 1572864 } } } }
-      - { label: Gallery, name: gallery, widget: list, required: false, field: { label: Ảnh, name: image, widget: image, choose_url: false, media_folder: /public/uploads/projects, public_folder: /uploads/projects, media_library: { config: { max_file_size: 1572864 } } } }
-      - { label: Ảnh đại diện, name: featuredImage, widget: image, choose_url: false, media_folder: /public/uploads/projects, public_folder: /uploads/projects, media_library: { config: { max_file_size: 1572864 } } }
+      - { label: Ảnh trước, name: beforeImages, widget: list, required: false, field: { label: Ảnh R2, name: image, widget: r2-media, media_kind: image, with_alt: true } }
+      - { label: Ảnh sau, name: afterImages, widget: list, required: false, field: { label: Ảnh R2, name: image, widget: r2-media, media_kind: image, with_alt: true } }
+      - { label: Gallery, name: gallery, widget: list, required: false, field: { label: Ảnh R2, name: image, widget: r2-media, media_kind: image, with_alt: true } }
+      - { label: Ảnh đại diện, name: featuredImage, widget: r2-media, media_kind: image }
       - { label: Alt ảnh, name: featuredImageAlt, widget: string }
+      - { label: Video, name: video, widget: r2-media, media_kind: video, required: false }
+      - { label: PDF/catalogue, name: catalogue, widget: r2-media, media_kind: document, required: false }
+      - { label: Ảnh Open Graph, name: ogImage, widget: r2-media, media_kind: image, with_alt: true, required: false }
       - { label: CTA, name: quoteCta, widget: string }
       - { label: Draft, name: draft, widget: boolean, default: true }
       - { label: Ngày đăng, name: publishedAt, widget: datetime, format: YYYY-MM-DD, time_format: false }
@@ -178,8 +179,11 @@ collections:
       - { label: Hạng mục, name: workItems, widget: list, field: { label: Hạng mục, name: value, widget: string } }
       - { label: Quy trình, name: process, widget: list, field: { label: Bước, name: value, widget: text } }
       - { label: Hướng dẫn file, name: fileGuidance, widget: list, field: { label: Lưu ý, name: value, widget: string } }
-      - { label: Ảnh đại diện, name: featuredImage, widget: image, choose_url: false, media_library: { config: { max_file_size: 1572864 } } }
+      - { label: Ảnh đại diện, name: featuredImage, widget: r2-media, media_kind: image }
       - { label: Alt ảnh, name: featuredImageAlt, widget: string }
+      - { label: Video, name: video, widget: r2-media, media_kind: video, required: false }
+      - { label: PDF/catalogue, name: catalogue, widget: r2-media, media_kind: document, required: false }
+      - { label: Ảnh Open Graph, name: ogImage, widget: r2-media, media_kind: image, with_alt: true, required: false }
       - { label: CTA, name: quoteCta, widget: string }
       - { label: Ngày đăng, name: publishedAt, widget: datetime, format: YYYY-MM-DD, time_format: false }
       - { label: Ngày cập nhật, name: updatedAt, widget: datetime, format: YYYY-MM-DD, time_format: false }
@@ -224,7 +228,7 @@ collections:
           - { label: Tên site, name: siteName, widget: string }
           - { label: Title mặc định, name: defaultTitle, widget: string }
           - { label: Description mặc định, name: defaultDescription, widget: text }
-          - { label: OG image mặc định, name: defaultOgImage, widget: image, choose_url: false, media_library: { config: { max_file_size: 1572864 } } }
+          - { label: OG image mặc định, name: defaultOgImage, widget: r2-media, media_kind: image, with_alt: true }
       - label: Nội dung trang tĩnh
         name: static_pages
         file: content/settings/static-pages.json

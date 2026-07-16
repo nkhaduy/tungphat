@@ -10,6 +10,7 @@ import { FaqList } from "@/components/content/FaqList";
 import { MarkdownContent } from "@/components/content/MarkdownContent";
 import type { ContentEntry } from "@/lib/content";
 import type { ServicePageFrontmatter } from "@/lib/content-schema";
+import { mediaUrl } from "@/lib/media";
 import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, breadcrumbSchema } from "@/lib/seo";
 
 export function ServiceLanding({ page }: { page: ContentEntry<ServicePageFrontmatter> }) {
@@ -48,7 +49,7 @@ export function ServiceLanding({ page }: { page: ContentEntry<ServicePageFrontma
               </div>
             </div>
             <div className="relative aspect-[4/3] overflow-hidden">
-              <Image src={page.featuredImage} alt={page.featuredImageAlt} fill sizes="(max-width: 1024px) 100vw, 45vw" priority className="object-cover" />
+              <Image src={mediaUrl(page.featuredImage)} alt={page.featuredImageAlt} fill sizes="(max-width: 1024px) 100vw, 45vw" priority className="object-cover" />
             </div>
           </div>
         </section>

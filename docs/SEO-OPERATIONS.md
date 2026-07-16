@@ -29,7 +29,7 @@
 ## Asset và hiệu năng
 
 - Ảnh nội dung dùng bản WebP; PNG gốc được giữ làm nguồn.
-- Video `public/0619.mp4` không preload và không autoplay. Nên tạo bản encode web tối ưu sau khi có quy trình kiểm tra chất lượng hình ảnh, đồng thời giữ poster hiện tại.
+- Video xưởng dùng R2 key `videos/legacy/0619.mp4`, `preload="none"` và giữ poster hiện tại. Nén H.264 `faststart` xuống khoảng 5–15 MiB trước khi coi đây là asset production; bản nguồn local không được commit lại.
 - Chỉ ảnh hero trang chủ được tải ưu tiên. Không thêm `priority` cho ảnh dưới màn hình đầu.
 
 ## Checklist sau mỗi lần phát hành

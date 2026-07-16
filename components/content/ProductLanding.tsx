@@ -10,6 +10,7 @@ import { FaqList } from "@/components/content/FaqList";
 import { MarkdownContent } from "@/components/content/MarkdownContent";
 import type { ContentEntry } from "@/lib/content";
 import type { ProductFrontmatter } from "@/lib/content-schema";
+import { absoluteMediaUrl, mediaUrl } from "@/lib/media";
 import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, breadcrumbSchema } from "@/lib/seo";
 
 export function ProductLanding({ product }: { product: ContentEntry<ProductFrontmatter> }) {
@@ -19,7 +20,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
     "@id": `${SITE_URL}/${product.slug}#product`,
     name: product.title,
     description: product.excerpt,
-    image: [`${SITE_URL}${product.featuredImage}`],
+    image: [absoluteMediaUrl(product.featuredImage, SITE_URL)],
     category: product.category,
     material: product.materialType,
     url: `${SITE_URL}/${product.slug}`,
@@ -56,7 +57,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
               </div>
             </div>
             <div className="relative aspect-[4/3] overflow-hidden">
-              <Image src={product.featuredImage} alt={product.featuredImageAlt} fill sizes="(max-width: 1024px) 100vw, 45vw" priority className="object-cover" />
+              <Image src={mediaUrl(product.featuredImage)} alt={product.featuredImageAlt} fill sizes="(max-width: 1024px) 100vw, 45vw" priority className="object-cover" />
             </div>
           </div>
         </section>

@@ -2,7 +2,7 @@
 
 ## Kiến trúc chọn
 
-Cloudflare Pages static export + Pages Functions + D1; OAuth là Worker riêng. Không dùng OpenNext vì project không cần SSR/ISR/Server Actions và mọi route SEO prerender được.
+Cloudflare Pages static export + Pages Functions + D1 + R2; OAuth là Worker riêng. Không dùng OpenNext vì project không cần SSR/ISR/Server Actions và mọi route SEO prerender được.
 
 ## Chuẩn bị
 
@@ -11,6 +11,7 @@ Cloudflare Pages static export + Pages Functions + D1; OAuth là Worker riêng. 
 - Build command: `npm ci && npm run build`; output directory: `out`.
 - Production branch: `main`; preview branch: pull request.
 - Tạo D1 production `tung-phat-leads` và D1 preview `tung-phat-leads-preview`; thay hai UUID placeholder khác nhau trong `wrangler.jsonc`. Preview tuyệt đối không bind database production.
+- Hai bucket R2 đã dùng: production `tung-phat-media`, preview `tung-phat-media-preview`. Binding code luôn là `MEDIA`.
 
 ```bash
 npx wrangler login
@@ -34,8 +35,12 @@ Pages secret/binding:
 
 - `TURNSTILE_SECRET_KEY` — secret, không đặt trong build log/source.
 - D1 binding `DB` → `tung-phat-leads`.
+- R2 binding `MEDIA` → `tung-phat-media` ở production.
+- Function variable `NEXT_PUBLIC_MEDIA_BASE_URL` → `https://media.mdftungphat.com` chỉ sau khi domain media production Active.
 
-Preview dùng Turnstile key/secret riêng và binding `DB` → `tung-phat-leads-preview`. Không đặt `TURNSTILE_TEST_MODE` trên bất kỳ deployment public nào; flag này chỉ dành cho local/CI với key kiểm thử chính thức.
+Preview dùng Turnstile key/secret riêng, `DB` → `tung-phat-leads-preview`, `MEDIA` → `tung-phat-media-preview`, và `NEXT_PUBLIC_MEDIA_BASE_URL` → Public Development URL preview. Không đặt `TURNSTILE_TEST_MODE` hoặc `MEDIA_LOCAL_DEV_BYPASS` trên bất kỳ deployment public nào; các flag này chỉ dành cho local/CI.
+
+Wrangler file là source of truth cho binding Pages. Top-level R2 là production; `env.preview.r2_buckets` thay bằng bucket preview. Mỗi environment có đúng một `MEDIA`; D1 binding hiện có được giữ trong cả hai. `npm run cf:typegen` là validation bắt buộc sau mỗi lần đổi config.
 
 OAuth Worker secrets: `GITHUB_OAUTH_ID`, `GITHUB_OAUTH_SECRET`, `OAUTH_STATE_SECRET`. Vars không bí mật nằm trong worker config. R2 chưa dùng.
 
@@ -50,7 +55,18 @@ npm run build
 npm run validate:links
 npm run d1:migrate:local
 npm run test:e2e
+npm run cf:typegen
+find out -type f -size +24M -print
 ```
+
+## Dashboard bắt buộc cho R2/Access
+
+1. R2 → `tung-phat-media-preview` → Settings → bật Public Development URL; không bật URL production nếu chưa có nhu cầu.
+2. Pages → Settings → Environment variables: đặt **Preview build** `NEXT_PUBLIC_MEDIA_BASE_URL=https://pub-….r2.dev`. Cấu hình cùng variable cho Functions Preview nếu giao diện tách build/runtime.
+3. Zero Trust Access: tạo self-hosted app/policy cho `/api/admin/media*` trên hostname admin/preview thực tế. Chỉ Allow email/group quản trị. Route cần chuyển tiếp `Cf-Access-Jwt-Assertion` và authenticated email header.
+4. Tùy chọn Pages variable `MEDIA_ADMIN_EMAILS` làm allowlist email thứ hai, phân cách dấu phẩy.
+5. Redeploy preview và test list/upload/trash. Không deploy production trong bước này.
+6. Khi chuyển production sau này, kết nối `media.mdftungphat.com` trực tiếp với bucket production, chờ Active, cấu hình cache/CORS cần thiết, đổi production build/runtime variable, rồi tắt `r2.dev` production nếu từng bật. Không đổi DNS trong rollout preview hiện tại.
 
 Deploy preview PR chỉ khi repository variable `CLOUDFLARE_DEPLOY_ENABLED=true` và các Cloudflare secret/ID đã cấu hình. Không bật production workflow trước khi preview đạt và D1 backup được xác minh.
 
@@ -78,4 +94,4 @@ Deploy preview PR chỉ khi repository variable `CLOUDFLARE_DEPLOY_ENABLED=true`
 
 ## Chi phí
 
-Ở lưu lượng hiện tại và dưới quota miễn phí của Pages, Workers, D1 và Turnstile: dự kiến 0 đồng/tháng chi phí hạ tầng cố định. Domain renewal, vượt quota, dịch vụ email hoặc R2 tương lai không nằm trong ước tính; kiểm tra dashboard usage hàng tháng.
+Ở lưu lượng thấp và dưới quota miễn phí của Pages, Workers, D1, Turnstile và R2 Standard có thể chưa phát sinh phí. Đây không phải bảo đảm chi phí: R2 free tier theo tháng (10 GB-month, 1 triệu Class A, 10 triệu Class B), usage vượt quota có thể bị tính phí; đặt billing alert và kiểm tra dashboard hàng tháng.

@@ -41,7 +41,20 @@ Không dùng mật khẩu hard-code. Muốn thêm quản trị viên: thêm emai
 5. Dùng preview; sau duyệt chọn **Publish**. Decap merge thay đổi vào `main`, GitHub Actions build và Pages deploy.
 6. Unpublish/archive bằng editorial workflow hoặc đặt `draft: true`, `noindex: true`; không xóa case study đang cần lưu lịch sử.
 
-Hook admin chặn publish thiếu title/slug/SEO description, slug sai, ảnh không phải định dạng web hoặc thiếu alt. Duplicate slug/content schema/ảnh quá cỡ được CI chặn với thông báo. Upload giới hạn 1,5 MB; chỉ widget ảnh có thể đưa file vào thư mục media. Workflow image tạo WebP khi cần và không tối ưu lại file đạt chuẩn.
+Hook admin chặn publish thiếu title/slug/SEO description, slug sai, ảnh không phải định dạng web hoặc thiếu alt. Duplicate slug/content schema/ảnh quá cỡ được CI chặn với thông báo.
+
+## R2 custom widget
+
+Các field quan trọng dùng widget `r2-media`: ảnh đại diện, gallery, video, PDF/catalogue và Open Graph. Widget gọi Pages Functions cùng origin; binary đi vào R2, còn commit Decap chỉ chứa key/name/MIME/size/alt. Ảnh JPEG/PNG/WebP/AVIF được browser sửa orientation qua decoder, resize cạnh dài tối đa 2.000 px, mã hóa WebP quality 0,84 và loại metadata/EXIF trong quá trình re-encode. WebP giữ transparency; video/PDF không đi qua canvas compressor. UI hiển thị dung lượng trước/sau, tiến độ, lỗi, phân trang và thao tác trash.
+
+Đây là custom widget cho field quan trọng, **không tuyên bố thay thế hoàn toàn media library mặc định của Decap**. Không dùng nút chèn/upload ảnh mặc định trong toolbar Markdown vì nó vẫn theo Git media folder legacy. Muốn chèn ảnh vào body, upload bằng R2 widget rồi dùng URL/key qua field có cấu trúc; giai đoạn tiếp theo có thể viết editor component riêng. Các file cũ trong `/public` vẫn đọc được nhưng upload mới phải dùng `r2-media`.
+
+Trước khi mở `/admin`:
+
+1. Bảo vệ `/api/admin/media*` bằng Cloudflare Access cho cả production hostname và preview hostname được dùng.
+2. Đặt Pages Function variable `NEXT_PUBLIC_MEDIA_BASE_URL` đúng môi trường; tùy chọn `MEDIA_ADMIN_EMAILS=email1,email2` làm allowlist thứ hai.
+3. Đặt Pages build variable `NEXT_PUBLIC_MEDIA_BASE_URL` cho Preview bằng Public Development URL bucket preview.
+4. Không đặt `MEDIA_LOCAL_DEV_BYPASS=1` trên Cloudflare. Chỉ dùng trong `.dev.vars` với localhost khi test local.
 
 ## Draft, preview, expired session và logout
 
