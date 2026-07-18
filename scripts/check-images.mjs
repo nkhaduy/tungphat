@@ -20,6 +20,7 @@ for (const file of walk(root).filter((file) => extensions.test(file))) {
   const name = path.basename(file);
   const metadata = await sharp(file).metadata();
   const issue = `${relative} (${Math.round(stat.size / 1024)}KB, ${metadata.width || "?"}×${metadata.height || "?"})`;
+  if (uploaded && /\.(png|jpe?g)$/i.test(file)) errors.push(`${issue}: ảnh CMS phải được chuyển sang WebP/AVIF`);
   if (/^(IMG[_-]?\d+|DSC[_-]?\d+|image[_-]?\d+)/i.test(name) || /\s/.test(name)) (uploaded ? errors : warnings).push(`${issue}: tên file không có ý nghĩa`);
   if (stat.size > 1_572_864) (uploaded ? errors : warnings).push(`${issue}: vượt 1.5MB`);
   if ((metadata.width || 0) > 2000) (uploaded ? errors : warnings).push(`${issue}: rộng hơn 2000px`);

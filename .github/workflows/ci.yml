@@ -49,6 +49,6 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run build
-      - run: printf '%s\n' 'TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA' 'TURNSTILE_TEST_MODE=1' > .dev.vars
+      - run: printf '%s\n' 'TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA' 'IP_HASH_SALT=ci-only-not-a-production-secret-00000001' 'TURNSTILE_TEST_MODE=1' > .dev.vars
       - run: npm run d1:migrate:local
       - run: npm run test:e2e

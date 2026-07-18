@@ -28,6 +28,62 @@ editor:
   preview: true
 
 collections:
+  - name: products
+    label: Sản phẩm
+    label_singular: Sản phẩm
+    folder: content/products
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.slug}}"
+    preview_path: "{{fields.slug}}"
+    summary: "{{title}} — draft: {{fields.draft}}"
+    fields:
+      - { label: Tên sản phẩm, name: title, widget: string, pattern: ['.{5,120}', 'Tên cần 5–120 ký tự'] }
+      - { label: Slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Chỉ dùng chữ thường, số và dấu gạch ngang'] }
+      - { label: Danh mục, name: category, widget: string }
+      - { label: Mô tả ngắn, name: excerpt, widget: text, pattern: ['.{40,260}', 'Mô tả cần 40–260 ký tự'] }
+      - { label: Ảnh đại diện, name: featuredImage, widget: image, choose_url: false }
+      - { label: Alt ảnh đại diện, name: featuredImageAlt, widget: string, pattern: ['.{10,180}', 'Alt text cần 10–180 ký tự'] }
+      - label: Album ảnh
+        name: gallery
+        widget: list
+        required: false
+        field: { label: Ảnh, name: image, widget: image, choose_url: false }
+      - { label: Loại vật liệu, name: materialType, widget: string }
+      - { label: Độ dày, name: thicknesses, widget: list, required: false, field: { label: Độ dày, name: value, widget: string } }
+      - { label: Kích thước, name: dimensions, widget: list, required: false, field: { label: Kích thước, name: value, widget: string } }
+      - { label: Bề mặt, name: surfaces, widget: list, required: false, field: { label: Bề mặt, name: value, widget: string } }
+      - { label: Thương hiệu / nhà cung cấp, name: supplier, widget: string, required: false, hint: Không ghi đại lý chính thức nếu chưa có bằng chứng. }
+      - { label: Tiêu chuẩn, name: standards, widget: list, required: false, field: { label: Tiêu chuẩn, name: value, widget: string } }
+      - { label: Ứng dụng, name: applications, widget: list, min: 1, field: { label: Ứng dụng, name: value, widget: string } }
+      - { label: Ưu điểm phù hợp, name: advantages, widget: list, min: 1, field: { label: Ưu điểm, name: value, widget: string } }
+      - { label: Lưu ý / giới hạn, name: limitations, widget: list, min: 1, field: { label: Lưu ý, name: value, widget: string } }
+      - { label: Quy trình đặt hàng, name: orderingSteps, widget: list, min: 1, field: { label: Bước, name: value, widget: string } }
+      - { label: Trạng thái cung cấp, name: status, widget: select, options: [{ label: Còn cung cấp, value: available }, { label: Ngừng cung cấp, value: discontinued }], default: available }
+      - { label: CTA báo giá, name: quoteCta, widget: string }
+      - { label: Ngày đăng, name: publishedAt, widget: datetime, format: YYYY-MM-DD, date_format: DD/MM/YYYY, time_format: false }
+      - { label: Ngày cập nhật, name: updatedAt, widget: datetime, format: YYYY-MM-DD, date_format: DD/MM/YYYY, time_format: false }
+      - { label: Bản nháp, name: draft, widget: boolean, default: true }
+      - { label: Sản phẩm nổi bật, name: featured, widget: boolean, default: false }
+      - { label: SEO title, name: seoTitle, widget: string, pattern: ['.{20,65}', 'SEO title cần 20–65 ký tự'] }
+      - { label: SEO description, name: seoDescription, widget: text, pattern: ['.{80,170}', 'SEO description cần 80–170 ký tự'] }
+      - { label: Canonical tùy chỉnh, name: canonical, widget: string, required: false, pattern: ['^$|^https://mdftungphat\\.com(?:/.*)?$', 'Canonical phải thuộc https://mdftungphat.com'] }
+      - { label: Không lập chỉ mục, name: noindex, widget: boolean, default: false }
+      - { label: Ảnh Open Graph, name: ogImage, widget: image, choose_url: false, required: false }
+      - { label: Video, name: video, widget: file, required: false }
+      - { label: PDF / catalogue, name: catalogue, widget: file, required: false }
+      - { label: Bài liên quan, name: relatedArticles, widget: list, required: false, field: { label: Slug, name: slug, widget: string } }
+      - label: FAQ
+        name: faq
+        widget: list
+        required: false
+        fields:
+          - { label: Câu hỏi, name: question, widget: string }
+          - { label: Trả lời, name: answer, widget: text }
+      - { label: Nội dung chi tiết, name: body, widget: markdown }
+
   - name: articles
     label: Bài viết
     label_singular: Bài viết
@@ -38,37 +94,31 @@ collections:
     format: frontmatter
     slug: "{{fields.slug}}"
     preview_path: "bai-viet/{{fields.slug}}"
-    summary: "{{title}} — {{fields.draft}}"
+    summary: "{{title}} — draft: {{fields.draft}}"
     fields:
       - { label: Tiêu đề, name: title, widget: string, pattern: ['.{10,120}', 'Tiêu đề cần 10–120 ký tự'] }
-      - { label: Slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Chỉ dùng chữ thường, số và dấu gạch ngang'] }
+      - { label: Slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Slug không hợp lệ'] }
       - { label: Tóm tắt, name: excerpt, widget: text, pattern: ['.{40,240}', 'Tóm tắt cần 40–240 ký tự'] }
-      - { label: Ngày đăng, name: publishedAt, widget: datetime, format: YYYY-MM-DD, date_format: DD/MM/YYYY, time_format: false }
-      - { label: Ngày cập nhật, name: updatedAt, widget: datetime, format: YYYY-MM-DD, date_format: DD/MM/YYYY, time_format: false }
-      - { label: Tác giả, name: author, widget: string, default: Ban biên tập Tùng Phát }
+      - { label: Nội dung, name: body, widget: markdown }
+      - { label: Ảnh đại diện, name: featuredImage, widget: image, choose_url: false }
+      - { label: Alt ảnh, name: featuredImageAlt, widget: string, pattern: ['.{10,180}', 'Alt text cần 10–180 ký tự'] }
+      - { label: Album ảnh, name: gallery, widget: list, required: false, field: { label: Ảnh, name: image, widget: image, choose_url: false } }
       - { label: Danh mục, name: category, widget: string }
       - { label: Tags, name: tags, widget: list, required: false, field: { label: Tag, name: tag, widget: string } }
-      - label: Ảnh đại diện
-        name: featuredImage
-        widget: r2-media
-        media_kind: image
-      - { label: Alt ảnh đại diện, name: featuredImageAlt, widget: string, pattern: ['.{10,180}', 'Alt text cần 10–180 ký tự'] }
-      - label: Gallery
-        name: gallery
-        widget: list
-        required: false
-        field: { label: Ảnh R2, name: image, widget: r2-media, media_kind: image, with_alt: true }
-      - { label: Video, name: video, widget: r2-media, media_kind: video, required: false }
-      - { label: PDF/catalogue, name: catalogue, widget: r2-media, media_kind: document, required: false }
-      - { label: Ảnh Open Graph, name: ogImage, widget: r2-media, media_kind: image, with_alt: true, required: false }
+      - { label: Tác giả, name: author, widget: string, default: Ban biên tập Tùng Phát }
+      - { label: Ngày đăng, name: publishedAt, widget: datetime, format: YYYY-MM-DD, date_format: DD/MM/YYYY, time_format: false }
+      - { label: Ngày cập nhật, name: updatedAt, widget: datetime, format: YYYY-MM-DD, date_format: DD/MM/YYYY, time_format: false }
       - { label: Bản nháp, name: draft, widget: boolean, default: true }
-      - { label: Nổi bật, name: featured, widget: boolean, default: false }
+      - { label: Bài nổi bật, name: featured, widget: boolean, default: false }
       - { label: SEO title, name: seoTitle, widget: string, pattern: ['.{20,65}', 'SEO title cần 20–65 ký tự'] }
       - { label: SEO description, name: seoDescription, widget: text, pattern: ['.{80,170}', 'SEO description cần 80–170 ký tự'] }
-      - { label: Canonical, name: canonical, widget: string, required: false }
-      - { label: Noindex, name: noindex, widget: boolean, default: true }
+      - { label: Canonical tùy chỉnh, name: canonical, widget: string, required: false, pattern: ['^$|^https://mdftungphat\\.com(?:/.*)?$', 'Canonical phải thuộc https://mdftungphat.com'] }
+      - { label: Không lập chỉ mục, name: noindex, widget: boolean, default: false }
+      - { label: Ảnh Open Graph, name: ogImage, widget: image, choose_url: false, required: false }
+      - { label: Video, name: video, widget: file, required: false }
+      - { label: PDF / catalogue, name: catalogue, widget: file, required: false }
       - { label: Sản phẩm liên quan, name: relatedProducts, widget: list, required: false, field: { label: Slug sản phẩm, name: slug, widget: string } }
-      - { label: Bài viết liên quan, name: relatedArticles, widget: list, required: false, field: { label: Slug bài viết, name: slug, widget: string } }
+      - { label: Bài liên quan, name: relatedArticles, widget: list, required: false, field: { label: Slug bài viết, name: slug, widget: string } }
       - label: FAQ
         name: faq
         widget: list
@@ -76,56 +126,10 @@ collections:
         fields:
           - { label: Câu hỏi, name: question, widget: string }
           - { label: Trả lời, name: answer, widget: text }
-      - { label: Nội dung, name: body, widget: markdown }
-
-  - name: products
-    label: Sản phẩm
-    folder: content/products
-    create: true
-    delete: true
-    extension: md
-    format: frontmatter
-    slug: "{{fields.slug}}"
-    preview_path: "{{fields.slug}}"
-    fields:
-      - { label: Tên sản phẩm, name: title, widget: string }
-      - { label: Slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Slug không hợp lệ'] }
-      - { label: Danh mục, name: category, widget: string }
-      - { label: Loại vật liệu, name: materialType, widget: string }
-      - { label: Thương hiệu/nhà cung cấp, name: supplier, widget: string, required: false, hint: Không ghi đại lý chính thức nếu chưa có bằng chứng. }
-      - { label: Kích thước, name: dimensions, widget: list, required: false, field: { label: Quy cách, name: value, widget: string } }
-      - { label: Độ dày, name: thicknesses, widget: list, required: false, field: { label: Độ dày, name: value, widget: string } }
-      - { label: Bề mặt, name: surfaces, widget: list, required: false, field: { label: Bề mặt, name: value, widget: string } }
-      - { label: Tiêu chuẩn, name: standards, widget: list, required: false, field: { label: Tiêu chuẩn, name: value, widget: string } }
-      - { label: Ứng dụng, name: applications, widget: list, min: 1, max: 20, field: { label: Ứng dụng, name: value, widget: string } }
-      - { label: Ưu điểm phù hợp, name: advantages, widget: list, min: 1, max: 20, field: { label: Ưu điểm, name: value, widget: string } }
-      - { label: Lưu ý/nhược điểm, name: limitations, widget: list, min: 1, max: 20, field: { label: Lưu ý, name: value, widget: string } }
-      - { label: Quy trình đặt hàng, name: orderingSteps, widget: list, min: 1, max: 10, field: { label: Bước, name: value, widget: string } }
-      - { label: Mô tả ngắn, name: excerpt, widget: text }
-      - label: Ảnh đại diện
-        name: featuredImage
-        widget: r2-media
-        media_kind: image
-      - { label: Alt ảnh, name: featuredImageAlt, widget: string, pattern: ['.{10,180}', 'Alt text cần 10–180 ký tự'] }
-      - { label: Gallery, name: gallery, widget: list, required: false, field: { label: Ảnh R2, name: image, widget: r2-media, media_kind: image, with_alt: true } }
-      - { label: Video, name: video, widget: r2-media, media_kind: video, required: false }
-      - { label: PDF/catalogue, name: catalogue, widget: r2-media, media_kind: document, required: false }
-      - { label: Ảnh Open Graph, name: ogImage, widget: r2-media, media_kind: image, with_alt: true, required: false }
-      - { label: Trạng thái, name: status, widget: select, options: [{ label: Còn cung cấp, value: available }, { label: Ngừng cung cấp, value: discontinued }], default: available }
-      - { label: CTA báo giá, name: quoteCta, widget: string }
-      - { label: Ngày đăng, name: publishedAt, widget: datetime, format: YYYY-MM-DD, time_format: false }
-      - { label: Ngày cập nhật, name: updatedAt, widget: datetime, format: YYYY-MM-DD, time_format: false }
-      - { label: Draft, name: draft, widget: boolean, default: true }
-      - { label: SEO title, name: seoTitle, widget: string, pattern: ['.{20,65}', 'SEO title cần 20–65 ký tự'] }
-      - { label: SEO description, name: seoDescription, widget: text, pattern: ['.{80,170}', 'SEO description cần 80–170 ký tự'] }
-      - { label: Canonical, name: canonical, widget: string, required: false }
-      - { label: Noindex, name: noindex, widget: boolean, default: true }
-      - { label: FAQ, name: faq, widget: list, required: false, fields: [{ label: Câu hỏi, name: question, widget: string }, { label: Trả lời, name: answer, widget: text }] }
-      - { label: Bài liên quan, name: relatedArticles, widget: list, required: false, field: { label: Slug, name: slug, widget: string } }
-      - { label: Mô tả chi tiết, name: body, widget: markdown }
 
   - name: projects
     label: Dự án CNC
+    label_singular: Dự án
     folder: content/projects
     create: true
     delete: true
@@ -133,33 +137,36 @@ collections:
     format: frontmatter
     slug: "{{fields.slug}}"
     preview_path: "du-an/{{fields.slug}}"
+    summary: "{{title}} — draft: {{fields.draft}}"
     fields:
       - { label: Tên dự án, name: title, widget: string }
       - { label: Slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Slug không hợp lệ'] }
-      - { label: Ngày thực hiện, name: completedAt, widget: datetime, format: YYYY-MM-DD, time_format: false }
       - { label: Loại vật liệu, name: materialType, widget: string }
+      - { label: Loại gia công, name: processingType, widget: string }
       - { label: Độ dày, name: thickness, widget: string }
-      - { label: Hạng mục gia công, name: workItems, widget: list, field: { label: Hạng mục, name: value, widget: string } }
+      - { label: Khu vực, name: area, widget: string, required: false, hint: Không ghi địa chỉ khách hàng. }
+      - { label: Hạng mục gia công, name: workItems, widget: list, min: 1, field: { label: Hạng mục, name: value, widget: string } }
       - { label: Yêu cầu khách hàng, name: customerRequirement, widget: text }
-      - { label: Quy trình, name: process, widget: list, field: { label: Bước, name: value, widget: text } }
+      - { label: Quy trình, name: process, widget: list, min: 1, field: { label: Bước, name: value, widget: text } }
       - { label: Kết quả, name: result, widget: text }
-      - { label: Ảnh trước, name: beforeImages, widget: list, required: false, field: { label: Ảnh R2, name: image, widget: r2-media, media_kind: image, with_alt: true } }
-      - { label: Ảnh sau, name: afterImages, widget: list, required: false, field: { label: Ảnh R2, name: image, widget: r2-media, media_kind: image, with_alt: true } }
-      - { label: Gallery, name: gallery, widget: list, required: false, field: { label: Ảnh R2, name: image, widget: r2-media, media_kind: image, with_alt: true } }
-      - { label: Ảnh đại diện, name: featuredImage, widget: r2-media, media_kind: image }
+      - { label: Nội dung, name: body, widget: markdown }
+      - { label: Ảnh đại diện, name: featuredImage, widget: image, choose_url: false }
       - { label: Alt ảnh, name: featuredImageAlt, widget: string }
-      - { label: Video, name: video, widget: r2-media, media_kind: video, required: false }
-      - { label: PDF/catalogue, name: catalogue, widget: r2-media, media_kind: document, required: false }
-      - { label: Ảnh Open Graph, name: ogImage, widget: r2-media, media_kind: image, with_alt: true, required: false }
+      - { label: Ảnh trước, name: beforeImages, widget: list, required: false, field: { label: Ảnh, name: image, widget: image, choose_url: false } }
+      - { label: Ảnh sau, name: afterImages, widget: list, required: false, field: { label: Ảnh, name: image, widget: image, choose_url: false } }
+      - { label: Album ảnh, name: gallery, widget: list, required: false, field: { label: Ảnh, name: image, widget: image, choose_url: false } }
+      - { label: Video, name: video, widget: file, required: false }
+      - { label: PDF / catalogue, name: catalogue, widget: file, required: false }
+      - { label: Ngày thực hiện, name: completedAt, widget: datetime, format: YYYY-MM-DD, date_format: DD/MM/YYYY, time_format: false }
+      - { label: Ngày đăng, name: publishedAt, widget: datetime, format: YYYY-MM-DD, date_format: DD/MM/YYYY, time_format: false }
+      - { label: Ngày cập nhật, name: updatedAt, widget: datetime, format: YYYY-MM-DD, date_format: DD/MM/YYYY, time_format: false }
       - { label: CTA, name: quoteCta, widget: string }
-      - { label: Draft, name: draft, widget: boolean, default: true }
-      - { label: Ngày đăng, name: publishedAt, widget: datetime, format: YYYY-MM-DD, time_format: false }
-      - { label: Ngày cập nhật, name: updatedAt, widget: datetime, format: YYYY-MM-DD, time_format: false }
+      - { label: Bản nháp / ẩn, name: draft, widget: boolean, default: true }
       - { label: SEO title, name: seoTitle, widget: string, pattern: ['.{20,65}', 'SEO title cần 20–65 ký tự'] }
       - { label: SEO description, name: seoDescription, widget: text, pattern: ['.{80,170}', 'SEO description cần 80–170 ký tự'] }
-      - { label: Canonical, name: canonical, widget: string, required: false }
-      - { label: Noindex, name: noindex, widget: boolean, default: true }
-      - { label: Nội dung, name: body, widget: markdown }
+      - { label: Canonical tùy chỉnh, name: canonical, widget: string, required: false, pattern: ['^$|^https://mdftungphat\\.com(?:/.*)?$', 'Canonical phải thuộc https://mdftungphat.com'] }
+      - { label: Không lập chỉ mục, name: noindex, widget: boolean, default: false }
+      - { label: Ảnh Open Graph, name: ogImage, widget: image, choose_url: false, required: false }
 
   - name: pages
     label: Trang dịch vụ CNC
@@ -175,64 +182,103 @@ collections:
       - { label: Slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Slug không hợp lệ'] }
       - { label: Nhãn nhỏ, name: eyebrow, widget: string }
       - { label: Mô tả, name: excerpt, widget: text }
-      - { label: Vật liệu, name: materialTypes, widget: list, field: { label: Vật liệu, name: value, widget: string } }
-      - { label: Hạng mục, name: workItems, widget: list, field: { label: Hạng mục, name: value, widget: string } }
-      - { label: Quy trình, name: process, widget: list, field: { label: Bước, name: value, widget: text } }
-      - { label: Hướng dẫn file, name: fileGuidance, widget: list, field: { label: Lưu ý, name: value, widget: string } }
-      - { label: Ảnh đại diện, name: featuredImage, widget: r2-media, media_kind: image }
+      - { label: Vật liệu, name: materialTypes, widget: list, min: 1, field: { label: Vật liệu, name: value, widget: string } }
+      - { label: Hạng mục, name: workItems, widget: list, min: 1, field: { label: Hạng mục, name: value, widget: string } }
+      - { label: Quy trình, name: process, widget: list, min: 1, field: { label: Bước, name: value, widget: text } }
+      - { label: Hướng dẫn file, name: fileGuidance, widget: list, min: 1, field: { label: Lưu ý, name: value, widget: string } }
+      - { label: Ảnh đại diện, name: featuredImage, widget: image, choose_url: false }
       - { label: Alt ảnh, name: featuredImageAlt, widget: string }
-      - { label: Video, name: video, widget: r2-media, media_kind: video, required: false }
-      - { label: PDF/catalogue, name: catalogue, widget: r2-media, media_kind: document, required: false }
-      - { label: Ảnh Open Graph, name: ogImage, widget: r2-media, media_kind: image, with_alt: true, required: false }
+      - { label: Video, name: video, widget: file, required: false }
+      - { label: PDF / catalogue, name: catalogue, widget: file, required: false }
       - { label: CTA, name: quoteCta, widget: string }
       - { label: Ngày đăng, name: publishedAt, widget: datetime, format: YYYY-MM-DD, time_format: false }
       - { label: Ngày cập nhật, name: updatedAt, widget: datetime, format: YYYY-MM-DD, time_format: false }
-      - { label: Draft, name: draft, widget: boolean, default: true }
+      - { label: Bản nháp, name: draft, widget: boolean, default: true }
       - { label: SEO title, name: seoTitle, widget: string, pattern: ['.{20,65}', 'SEO title cần 20–65 ký tự'] }
       - { label: SEO description, name: seoDescription, widget: text, pattern: ['.{80,170}', 'SEO description cần 80–170 ký tự'] }
-      - { label: Canonical, name: canonical, widget: string, required: false }
-      - { label: Noindex, name: noindex, widget: boolean, default: true }
-      - { label: FAQ, name: faq, widget: list, required: false, fields: [{ label: Câu hỏi, name: question, widget: string }, { label: Trả lời, name: answer, widget: text }] }
+      - { label: Canonical tùy chỉnh, name: canonical, widget: string, required: false, pattern: ['^$|^https://mdftungphat\\.com(?:/.*)?$', 'Canonical phải thuộc https://mdftungphat.com'] }
+      - { label: Không lập chỉ mục, name: noindex, widget: boolean, default: false }
+      - { label: Ảnh Open Graph, name: ogImage, widget: image, choose_url: false, required: false }
+      - label: FAQ
+        name: faq
+        widget: list
+        required: false
+        fields:
+          - { label: Câu hỏi, name: question, widget: string }
+          - { label: Trả lời, name: answer, widget: text }
       - { label: Nội dung, name: body, widget: markdown }
 
-  - name: data
-    label: Dữ liệu website
+  - name: settings
+    label: Cấu hình website
     files:
-      - label: Danh mục
-        name: categories
+      - label: Nhóm vật liệu
+        name: material_categories
         file: content/categories/materials.json
         fields:
           - { label: Tiêu đề, name: title, widget: string }
-          - { label: Danh mục, name: items, widget: list, fields: [{ label: Tên, name: name, widget: string }, { label: Slug, name: slug, widget: string }] }
-      - label: Thông tin doanh nghiệp & liên hệ
+          - { label: Danh mục, name: items, widget: list, min: 1, fields: [{ label: Tên, name: name, widget: string }, { label: Slug, name: slug, widget: string }] }
+      - label: Thương hiệu
+        name: brands
+        file: content/categories/brands.json
+        fields:
+          - label: Danh sách thương hiệu
+            name: items
+            widget: list
+            fields:
+              - { label: Slug, name: slug, widget: string }
+              - { label: Tên, name: name, widget: string }
+              - { label: Logo, name: logo, widget: image, choose_url: false, required: false }
+              - { label: Mô tả, name: description, widget: text }
+              - { label: Catalogue, name: catalogues, widget: list, required: false, fields: [{ label: Tên, name: name, widget: string }, { label: Thumbnail, name: thumbnail, widget: image, required: false }, { label: Mô tả, name: description, widget: text, required: false }, { label: PDF, name: pdfUrl, widget: file, required: false }] }
+              - { label: Sản phẩm legacy, name: products, widget: hidden, default: [] }
+      - label: Thông tin doanh nghiệp
         name: business
         file: content/settings/business.json
         fields:
-          - { label: Tên pháp lý, name: businessName, widget: string }
+          - { label: Tên doanh nghiệp, name: businessName, widget: string }
           - { label: Tên hiển thị, name: displayName, widget: string }
           - { label: Mã số thuế, name: taxId, widget: string }
-          - { label: Website, name: website, widget: string }
-          - { label: Điện thoại hiển thị, name: phoneDisplay, widget: string }
-          - { label: Điện thoại E.164, name: phoneE164, widget: string }
+          - { label: Website canonical, name: website, widget: string, pattern: ['^https://mdftungphat\\.com$', 'Bắt buộc https://mdftungphat.com'] }
+          - { label: Hotline hiển thị, name: phoneDisplay, widget: string }
+          - { label: Hotline E.164, name: phoneE164, widget: string, hint: Ví dụ +84909259160 }
           - { label: Zalo, name: zaloUrl, widget: string }
           - { label: Email, name: email, widget: string, required: false }
-          - { label: Giờ làm việc, name: openingHours, widget: list, required: false, field: { label: Khung giờ, name: value, widget: string } }
-          - { label: Khu vực phục vụ, name: serviceAreas, widget: list, field: { label: Khu vực, name: value, widget: string } }
-          - { label: Địa điểm, name: locations, widget: list, fields: [{ label: Tên, name: name, widget: string }, { label: Địa chỉ, name: address, widget: string }] }
+          - { label: Giờ làm việc, name: openingHours, widget: list, required: false, field: { label: Khung giờ Schema.org, name: value, widget: string } }
+          - { label: Khu vực phục vụ, name: serviceAreas, widget: list, min: 1, field: { label: Khu vực, name: value, widget: string } }
+          - label: Địa điểm và Google Maps
+            name: locations
+            widget: list
+            min: 1
+            fields:
+              - { label: ID, name: id, widget: string }
+              - { label: Mã ngắn, name: shortId, widget: string }
+              - { label: Tên, name: name, widget: string }
+              - { label: Địa chỉ hiển thị, name: address, widget: string }
+              - { label: Số nhà / đường, name: streetAddress, widget: string }
+              - { label: Thành phố, name: addressLocality, widget: string }
+              - { label: Tỉnh / thành, name: addressRegion, widget: string }
+              - { label: Mã quốc gia, name: addressCountry, widget: string, default: VN }
+              - { label: URL nhúng Google Maps, name: embedSrc, widget: string }
+              - { label: URL chỉ đường, name: directionsUrl, widget: string }
           - { label: Social links, name: socialLinks, widget: list, required: false, field: { label: URL, name: value, widget: string } }
+          - { label: Nội dung footer, name: footerDescription, widget: text }
+          - { label: Nhãn CTA chính, name: primaryCtaLabel, widget: string }
+          - { label: URL CTA chính, name: primaryCtaUrl, widget: string }
+          - { label: Loại LocalBusiness schema, name: localBusinessType, widget: hidden, default: LocalBusiness }
       - label: SEO mặc định
         name: seo
         file: content/settings/seo.json
         fields:
           - { label: Canonical domain, name: siteUrl, widget: string, pattern: ['^https://mdftungphat\\.com$', 'Canonical bắt buộc là https://mdftungphat.com'] }
           - { label: Tên site, name: siteName, widget: string }
-          - { label: Title mặc định, name: defaultTitle, widget: string }
-          - { label: Description mặc định, name: defaultDescription, widget: text }
-          - { label: OG image mặc định, name: defaultOgImage, widget: r2-media, media_kind: image, with_alt: true }
+          - { label: Title mặc định, name: defaultTitle, widget: string, pattern: ['.{20,65}', 'Title cần 20–65 ký tự'] }
+          - { label: Description mặc định, name: defaultDescription, widget: text, pattern: ['.{80,170}', 'Description cần 80–170 ký tự'] }
+          - { label: OG image mặc định, name: defaultOgImage, widget: image, choose_url: false }
       - label: Nội dung trang tĩnh
         name: static_pages
         file: content/settings/static-pages.json
         fields:
+          - { label: Ngày cập nhật, name: updatedAt, widget: datetime, format: YYYY-MM-DD, time_format: false }
           - { label: Mô tả hero trang chủ, name: homeHeroDescription, widget: text, pattern: ['.{80,260}', 'Mô tả cần 80–260 ký tự'] }
           - { label: Giới thiệu trang liên hệ, name: contactIntro, widget: text, pattern: ['.{80,300}', 'Nội dung cần 80–300 ký tự'] }
           - { label: Giới thiệu trang báo giá, name: quoteIntro, widget: text, pattern: ['.{80,300}', 'Nội dung cần 80–300 ký tự'] }

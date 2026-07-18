@@ -8,8 +8,8 @@ import { ViewTracker } from "@/components/ViewTracker";
 import { MarkdownContent } from "@/components/content/MarkdownContent";
 import { getProject, getProjects } from "@/lib/content";
 import { createContentMetadata } from "@/lib/content-metadata";
-import { mediaUrl } from "@/lib/media";
-import { breadcrumbSchema } from "@/lib/seo";
+import { absoluteMediaUrl, mediaUrl } from "@/lib/media";
+import { SITE_URL, breadcrumbSchema } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -17,7 +17,7 @@ export const dynamicParams = false;
 
 export function generateStaticParams() {
   const params = getProjects().map((project) => ({ slug: project.slug }));
-  return params.length ? params : [{ slug: "__no-published-projects" }];
+  return params.length ? params : [{ slug: "__empty-collection" }];
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -30,9 +30,22 @@ export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
+  const projectSchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: project.customerRequirement,
+    image: absoluteMediaUrl(project.featuredImage, SITE_URL),
+    dateCreated: project.completedAt,
+    datePublished: project.publishedAt,
+    dateModified: project.updatedAt,
+    about: [project.materialType, project.processingType],
+    locationCreated: project.area || undefined,
+    url: `${SITE_URL}/du-an/${project.slug}`
+  };
   return (
     <>
-      <JsonLd data={breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Dự án", path: "/du-an" }, { name: project.title, path: `/du-an/${project.slug}` }])} />
+      <JsonLd data={[breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Dự án", path: "/du-an" }, { name: project.title, path: `/du-an/${project.slug}` }]), projectSchema]} />
       <Header />
       <main className="bg-white pt-[72px]">
         <ViewTracker event="view_project" contentType={project.slug} />

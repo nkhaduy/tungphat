@@ -39,4 +39,6 @@ npm run cf:preview
 - D1 migrations: `migrations/`; API: `functions/api/contact.ts`, `functions/api/quote.ts`.
 - Canonical: `https://mdftungphat.com` (không `www`).
 
-Đọc trước khi deploy: `docs/PROJECT_AUDIT.md`, `docs/CMS_SETUP.md`, `docs/CLOUDFLARE_DEPLOYMENT.md`, `docs/D1_DATABASE.md` và `docs/ROLLBACK.md`.
+Đọc trước khi vận hành: `docs/PROJECT_AUDIT.md`, `docs/ARCHITECTURE.md`,
+`docs/CLOUDFLARE_DEPLOYMENT.md`, `docs/CMS_GUIDE.md`,
+`docs/D1_OPERATIONS.md` và `docs/BACKUP_AND_RECOVERY.md`.

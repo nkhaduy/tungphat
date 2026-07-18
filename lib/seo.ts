@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
+import business from "@/content/settings/business.json";
+import seo from "@/content/settings/seo.json";
 
-export const SITE_URL = "https://mdftungphat.com";
-export const SITE_NAME = "Tùng Phát";
-export const BUSINESS_NAME = "Công ty TNHH TMDV Gỗ Tùng Phát";
-export const PHONE_DISPLAY = "0909 259 160";
-export const PHONE_E164 = "+84909259160";
-export const PHONE_HREF = "tel:0909259160";
-export const ZALO_URL = "https://zalo.me/0909259160";
+export const SITE_URL = seo.siteUrl;
+export const SITE_NAME = seo.siteName;
+export const BUSINESS_NAME = business.businessName;
+export const TAX_ID = business.taxId;
+export const PHONE_DISPLAY = business.phoneDisplay;
+export const PHONE_E164 = business.phoneE164;
+export const PHONE_HREF = `tel:${business.phoneE164}`;
+export const ZALO_URL = business.zaloUrl;
+export const FOOTER_DESCRIPTION = business.footerDescription;
 export const GOOGLE_REVIEWS_URL =
   "https://www.google.com/maps/search/?api=1&query=C%E1%BB%ADa%20H%C3%A0ng%20G%E1%BB%97%20Gh%C3%A9p%20T%C3%B9ng%20Ph%C3%A1t";
 
-export const DEFAULT_DESCRIPTION =
-  "Tùng Phát cung cấp vật liệu gỗ công nghiệp và gia công CNC theo kích thước, bản vẽ cho xưởng nội thất, thợ mộc, đơn vị thiết kế và doanh nghiệp.";
+export const DEFAULT_DESCRIPTION = seo.defaultDescription;
 
 const OG_IMAGE = {
-  url: "/og-logo.png?v=20260630",
+  url: seo.defaultOgImage,
   width: 899,
   height: 250,
   alt: "Tùng Phát – Vật liệu gỗ và giải pháp gia công CNC"

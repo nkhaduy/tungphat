@@ -262,7 +262,7 @@ export const vi = {
       id: "chap-nhan",
       title: "1. Chấp nhận điều khoản",
       content: [
-        "Bằng việc truy cập website www.mdftungphat.com, bạn xác nhận đã đọc, hiểu và đồng ý với các điều khoản sử dụng này.",
+        "Bằng việc truy cập website mdftungphat.com, bạn xác nhận đã đọc, hiểu và đồng ý với các điều khoản sử dụng này.",
         "Nếu bạn không đồng ý với bất kỳ điều khoản nào, vui lòng ngừng sử dụng website."
       ]
     },
@@ -580,7 +580,7 @@ export const en: typeof vi = {
       id: "chap-nhan",
       title: "1. Acceptance of Terms",
       content: [
-        "By accessing www.mdftungphat.com, you confirm that you have read, understood, and agree to these terms of use.",
+        "By accessing mdftungphat.com, you confirm that you have read, understood, and agree to these terms of use.",
         "If you do not agree with any term, please discontinue use of the website."
       ]
     },

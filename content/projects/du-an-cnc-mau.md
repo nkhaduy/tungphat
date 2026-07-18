@@ -3,7 +3,9 @@ title: "Mẫu nhập dự án CNC – không xuất bản"
 slug: "du-an-cnc-mau"
 completedAt: "2026-07-16"
 materialType: "Cập nhật vật liệu thật"
+processingType: "Cập nhật loại gia công thật"
 thickness: "Cập nhật độ dày thật"
+area: "Cập nhật khu vực được phép công bố"
 workItems: ["Cập nhật hạng mục gia công đã thực hiện"]
 customerRequirement: "Thay phần này bằng yêu cầu thật đã được khách hàng cho phép công bố, không đưa thông tin nhận dạng cá nhân."
 process: ["Mô tả từng bước thực tế sau khi người phụ trách xưởng kiểm tra nội dung."]

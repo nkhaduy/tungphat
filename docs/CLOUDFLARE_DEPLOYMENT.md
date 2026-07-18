@@ -1,50 +1,216 @@
-# Cloudflare deployment
+# Triển khai Cloudflare
 
-## Kiến trúc chọn
+Tài liệu này là checklist thao tác sau khi branch được review và merge. Không có
+bước nào dưới đây đã được chạy trên production trong branch này.
 
-Cloudflare Pages static export + Pages Functions + D1 + R2; OAuth là Worker riêng. Không dùng OpenNext vì project không cần SSR/ISR/Server Actions và mọi route SEO prerender được.
+## 1. Giá trị cố định
 
-## Chuẩn bị
+| Mục | Giá trị |
+|---|---|
+| Pages project | `tung-phat` |
+| Production branch | `main` |
+| Build command | `npm ci && npm run build` |
+| Build output | `out` |
+| Node | `22` |
+| Canonical | `https://mdftungphat.com` |
+| D1 production | `tung-phat-leads` |
+| D1 preview | `tung-phat-leads-preview` |
+| D1 binding | `DB` |
+| OAuth Worker | `tung-phat-cms-oauth` |
+| OAuth hostname | `cms-auth.mdftungphat.com` |
+| OAuth callback | `https://cms-auth.mdftungphat.com/callback` |
 
-- Node 22 LTS khuyến nghị (project hỗ trợ `>=20.19 <27`), npm theo lockfile.
-- Tạo Pages project `tung-phat`, liên kết repo GitHub.
-- Build command: `npm ci && npm run build`; output directory: `out`.
-- Production branch: `main`; preview branch: pull request.
-- Tạo D1 production `tung-phat-leads` và D1 preview `tung-phat-leads-preview`; thay hai UUID placeholder khác nhau trong `wrangler.jsonc`. Preview tuyệt đối không bind database production.
-- Hai bucket R2 đã dùng: production `tung-phat-media`, preview `tung-phat-media-preview`. Binding code luôn là `MEDIA`.
+Kiến trúc dùng static export, không dùng OpenNext: website không có SSR, ISR,
+Server Actions hay route Next động tại runtime. Pages Functions chỉ phục vụ
+`/api/contact` và `/api/quote`.
+
+## 2. GitHub trước khi kết nối Pages
+
+1. Mở repository `nkhaduy/tungphat` → **Settings → Branches**.
+2. Tạo rule cho `main`: bắt buộc pull request, bắt buộc job `verify` và `e2e`,
+   chặn force-push và chặn xóa branch.
+3. Không tạo GitHub Actions deploy khác. Pages Git integration là cơ chế deploy
+   duy nhất để tránh hai deployment cùng một commit.
+4. Merge branch này vào `main` chỉ sau khi CI xanh và người phụ trách nội dung
+   xác nhận dữ liệu doanh nghiệp.
+
+Kiểm tra thành công: pull request không thể merge nếu một quality gate thất bại.
+
+## 3. Tạo hai D1 database
+
+Đăng nhập đúng Cloudflare account, chạy:
 
 ```bash
 npx wrangler login
 npx wrangler d1 create tung-phat-leads
 npx wrangler d1 create tung-phat-leads-preview
-npm run cf:typegen
-npm run d1:migrate:preview
-npm run d1:migrate:remote
-npm run cf:deploy
 ```
 
-## Environment và secrets
+Mỗi lệnh in một `database_id`. Copy UUID của production vào
+`wrangler.jsonc > d1_databases[0].database_id`; copy UUID preview vào
+`wrangler.jsonc > env.preview.d1_databases[0].database_id`. Hai UUID phải khác
+nhau và không còn giá trị toàn số `0` hoặc toàn số `1`.
 
-Build variables trên Pages:
+Sau đó chạy:
 
-- `NEXT_PUBLIC_TURNSTILE_SITE_KEY` — public site key, bắt buộc cho form.
-- `NEXT_PUBLIC_GA_MEASUREMENT_ID` — tùy chọn, dạng `G-...`.
-- `NEXT_PUBLIC_REVIEWS_PROVIDER`/`NEXT_PUBLIC_TRUSTINDEX_WIDGET_ID` — chỉ bật khi dữ liệu review thật đã được xác minh.
+```bash
+npm run cf:typegen
+npm run d1:migrate:local
+npm run d1:migrate:preview
+```
 
-Pages secret/binding:
+Chỉ sau khi backup/preview đã đạt mới chạy:
 
-- `TURNSTILE_SECRET_KEY` — secret, không đặt trong build log/source.
-- D1 binding `DB` → `tung-phat-leads`.
-- R2 binding `MEDIA` → `tung-phat-media` ở production.
-- Function variable `NEXT_PUBLIC_MEDIA_BASE_URL` → `https://media.mdftungphat.com` chỉ sau khi domain media production Active.
+```bash
+npm run d1:migrate:remote
+```
 
-Preview dùng Turnstile key/secret riêng, `DB` → `tung-phat-leads-preview`, `MEDIA` → `tung-phat-media-preview`, và `NEXT_PUBLIC_MEDIA_BASE_URL` → Public Development URL preview. Không đặt `TURNSTILE_TEST_MODE` hoặc `MEDIA_LOCAL_DEV_BYPASS` trên bất kỳ deployment public nào; các flag này chỉ dành cho local/CI.
+Kiểm tra thành công:
 
-Wrangler file là source of truth cho binding Pages. Top-level R2 là production; `env.preview.r2_buckets` thay bằng bucket preview. Mỗi environment có đúng một `MEDIA`; D1 binding hiện có được giữ trong cả hai. `npm run cf:typegen` là validation bắt buộc sau mỗi lần đổi config.
+```bash
+npx wrangler d1 execute tung-phat-leads-preview --remote --command \
+  "SELECT name FROM sqlite_schema WHERE type='table' ORDER BY name"
+```
 
-OAuth Worker secrets: `GITHUB_OAUTH_ID`, `GITHUB_OAUTH_SECRET`, `OAUTH_STATE_SECRET`. Vars không bí mật nằm trong worker config. R2 chưa dùng.
+Kết quả phải có `leads`, `lead_status_history` và `rate_limits`.
 
-## Preview và kiểm thử
+## 4. Tạo Pages project bằng Git integration
+
+1. Cloudflare Dashboard → **Workers & Pages → Create → Pages → Connect to Git**.
+2. Chọn GitHub repository `nkhaduy/tungphat`.
+3. Đặt project name `tung-phat`; production branch `main`.
+4. Framework preset: **Next.js (Static HTML Export)** nếu có; nếu không, chọn
+   **None** rồi nhập build command `npm ci && npm run build`, output `out`.
+5. Thêm build variable `NODE_VERSION=22`.
+6. Preview deployments: bật cho pull request/non-production branches.
+7. Trong **Settings → Bindings**, thêm D1 binding tên chính xác `DB`:
+   production → `tung-phat-leads`, preview → `tung-phat-leads-preview`.
+
+Không chạy `wrangler pages deploy`: project dùng Git integration và deploy từ
+commit được review.
+
+## 5. Turnstile và runtime secrets
+
+Dashboard → **Turnstile → Add widget**:
+
+- Name: `tung-phat-production`
+- Hostname: `mdftungphat.com`
+- Widget mode: Managed
+
+Tạo widget khác cho preview và chỉ allowlist hostname preview thật. Trong Pages
+→ **Settings → Variables and Secrets**, nhập riêng từng environment:
+
+| Tên | Production | Preview | Loại |
+|---|---|---|---|
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | site key production | site key preview | Plain text |
+| `TURNSTILE_SECRET_KEY` | secret production | secret preview | Secret |
+| `IP_HASH_SALT` | chuỗi ngẫu nhiên ≥32 ký tự | chuỗi khác production | Secret |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | `G-...` nếu dùng | để trống nếu không cần | Plain text |
+| `NEXT_PUBLIC_PROCESS_VIDEO_URL` | local path hoặc `https://media.mdftungphat.com/...` | tương tự | Plain text |
+| `NEXT_PUBLIC_TRUSTINDEX_WIDGET_ID` | chỉ khi widget thật đã xác minh | để trống | Plain text |
+| `NEXT_PUBLIC_REVIEWS_PROVIDER` | nhà cung cấp thật nếu dùng | để trống | Plain text |
+
+Tạo salt cục bộ rồi chỉ copy phần output vào ô Secret:
+
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+Không đặt `TURNSTILE_TEST_MODE` trên Preview hoặc Production.
+
+## 6. GitHub OAuth cho Decap CMS
+
+Access không thay OAuth. Access quyết định ai mở được `/admin`; OAuth GitHub cấp
+quyền để Decap đọc/ghi repository.
+
+1. GitHub → avatar → **Settings → Developer settings → OAuth Apps → New OAuth App**.
+2. Nhập:
+   - Application name: `Tung Phat Decap CMS`
+   - Homepage URL: `https://mdftungphat.com/admin/`
+   - Authorization callback URL:
+     `https://cms-auth.mdftungphat.com/callback`
+3. Copy **Client ID**. Generate **Client secret** và lưu trong password manager.
+4. Xác nhận `public/admin/config.yml` dùng đúng repo, branch `main`, `base_url`
+   và `site_domain`.
+5. Đặt secrets cho Worker:
+
+```bash
+npx wrangler secret put GITHUB_OAUTH_ID --config workers/cms-oauth/wrangler.jsonc
+npx wrangler secret put GITHUB_OAUTH_SECRET --config workers/cms-oauth/wrangler.jsonc
+npx wrangler secret put OAUTH_STATE_SECRET --config workers/cms-oauth/wrangler.jsonc
+```
+
+Ở lệnh thứ ba, nhập một giá trị ngẫu nhiên ≥32 bytes, không nhập chuỗi ví dụ.
+Sau khi được phê duyệt triển khai:
+
+```bash
+npm run cms:dry-run
+npm run cms:deploy
+```
+
+Worker custom domain tạo record `cms-auth.mdftungphat.com`; không đặt hostname
+này sau policy Access của `/admin`. Kiểm tra:
+
+```bash
+curl -i https://cms-auth.mdftungphat.com/health
+```
+
+Phải trả `200` và `{"ok":true}`. `/auth` thiếu `site_id` phải trả `403`.
+
+Người đăng bài phải là GitHub collaborator có quyền ghi repository. Để thu hồi:
+GitHub repository → **Settings → Collaborators** → Remove access; đồng thời xóa
+email khỏi Access policy và revoke grant ở GitHub user settings nếu cần.
+
+## 7. Bảo vệ `/admin` bằng Cloudflare Access
+
+Zero Trust → **Access → Applications → Add an application → Self-hosted**:
+
+- Name: `Tung Phat CMS`
+- Domain: `mdftungphat.com`
+- Path: `/admin/*`
+- Session duration: `8 hours`
+
+Tạo policy **Allow** chỉ chứa email hoặc group quản trị cụ thể; không dùng
+`Everyone`. Có thể dùng One-time PIN hoặc GitHub làm identity provider của
+Access. Đây là lớp cổng vào CMS, độc lập với GitHub OAuth bên trong Decap.
+
+Không thêm `cms-auth.mdftungphat.com/callback` vào application này. Kiểm tra ở
+cửa sổ ẩn danh:
+
+1. `/admin/` yêu cầu Access.
+2. Email ngoài allowlist bị từ chối.
+3. Email trong allowlist vào được trang Decap nhưng vẫn phải đăng nhập GitHub.
+4. GitHub account không có quyền repository không thể publish.
+
+## 8. Domain, HTTPS và redirect
+
+Chỉ làm sau khi preview đạt; ghi lại DNS Vercel hiện tại trước khi thay đổi.
+
+1. Pages project → **Custom domains** → thêm `mdftungphat.com` và
+   `www.mdftungphat.com`; chờ cả hai ở trạng thái **Active**.
+2. SSL/TLS → Edge Certificates → bật **Always Use HTTPS**.
+3. Rules → Redirect Rules → Single Redirect:
+   - Name: `www-to-apex`
+   - When: hostname equals `www.mdftungphat.com`
+   - Target URL: dynamic
+     `concat("https://mdftungphat.com", http.request.uri.path)`
+   - Status: `308`
+   - Preserve query string: bật
+4. Không tạo rule ngược apex → www.
+
+Kiểm tra:
+
+```bash
+curl -IL http://mdftungphat.com/
+curl -IL https://www.mdftungphat.com/du-an?src=test
+curl -s https://mdftungphat.com/robots.txt
+curl -s https://mdftungphat.com/sitemap.xml
+```
+
+Mọi URL public cuối cùng phải về `https://mdftungphat.com`, không loop, giữ path
+và query. Sitemap/canonical không được chứa Pages, Workers hoặc Vercel hostname.
+
+## 9. Checklist trước khi cho production nhận traffic
 
 ```bash
 npm ci
@@ -56,42 +222,16 @@ npm run validate:links
 npm run d1:migrate:local
 npm run test:e2e
 npm run cf:typegen
-find out -type f -size +24M -print
+git diff --check
 ```
 
-## Dashboard bắt buộc cho R2/Access
+Sau deploy preview, kiểm thủ công homepage, menu mobile, slideshow tự chuyển,
+trang sản phẩm/bài viết/dự án, 404, `/admin`, hai form, canonical, JSON-LD,
+robots, sitemap và manifest. Không cutover DNS nếu còn một mục lỗi.
 
-1. R2 → `tung-phat-media-preview` → Settings → bật Public Development URL; không bật URL production nếu chưa có nhu cầu.
-2. Pages → Settings → Environment variables: đặt **Preview build** `NEXT_PUBLIC_MEDIA_BASE_URL=https://pub-….r2.dev`. Cấu hình cùng variable cho Functions Preview nếu giao diện tách build/runtime.
-3. Zero Trust Access: tạo self-hosted app/policy cho `/api/admin/media*` trên hostname admin/preview thực tế. Chỉ Allow email/group quản trị. Route cần chuyển tiếp `Cf-Access-Jwt-Assertion` và authenticated email header.
-4. Tùy chọn Pages variable `MEDIA_ADMIN_EMAILS` làm allowlist email thứ hai, phân cách dấu phẩy.
-5. Redeploy preview và test list/upload/trash. Không deploy production trong bước này.
-6. Khi chuyển production sau này, kết nối `media.mdftungphat.com` trực tiếp với bucket production, chờ Active, cấu hình cache/CORS cần thiết, đổi production build/runtime variable, rồi tắt `r2.dev` production nếu từng bật. Không đổi DNS trong rollout preview hiện tại.
+Nguồn giới hạn cần kiểm lại định kỳ:
 
-Deploy preview PR chỉ khi repository variable `CLOUDFLARE_DEPLOY_ENABLED=true` và các Cloudflare secret/ID đã cấu hình. Không bật production workflow trước khi preview đạt và D1 backup được xác minh.
-
-## Domain, redirect và DNS không downtime
-
-1. Thêm `mdftungphat.com` và `www.mdftungphat.com` vào Pages, chờ certificate Active.
-2. Hạ TTL trước cửa sổ chuyển đổi; giữ Vercel deployment và cấu hình nguyên vẹn.
-3. Chuyển apex sang Pages. Kiểm tra homepage/form/canonical/sitemap.
-4. Tạo Cloudflare Redirect Rule 308: hostname `www.mdftungphat.com` → `https://mdftungphat.com${uri}` và giữ query string.
-5. Thêm rule HTTP→HTTPS (thường là Always Use HTTPS). Xác nhận không quá một redirect và không loop.
-6. Preview/production Vercel cũ không được đưa vào sitemap; canonical luôn apex. Chỉ redirect hostname cũ khi chắc chắn không ảnh hưởng preview/rollback.
-
-`public/_redirects` quản lý alias path cũ; `vercel.json` giữ canonical redirect khi Vercel còn phục vụ hostname `www`.
-
-## Access và OAuth
-
-Áp dụng policy trong `CMS_SETUP.md`. `/admin` noindex và cache-control private. Callback OAuth không được đặt sau policy chặn; Worker tự kiểm tra state.
-
-## Rollback
-
-- Pages: chọn deployment trước trong dashboard và **Rollback to this deployment**.
-- D1: export trước migration; migration là forward-only, phục hồi database mới từ export nếu schema/data bị lỗi.
-- DNS: trỏ lại record Vercel đã ghi trước đó; không xóa Vercel project/domain cho đến sau giai đoạn ổn định.
-- OAuth: route/custom domain có thể tắt độc lập, website public vẫn hoạt động.
-
-## Chi phí
-
-Ở lưu lượng thấp và dưới quota miễn phí của Pages, Workers, D1, Turnstile và R2 Standard có thể chưa phát sinh phí. Đây không phải bảo đảm chi phí: R2 free tier theo tháng (10 GB-month, 1 triệu Class A, 10 triệu Class B), usage vượt quota có thể bị tính phí; đặt billing alert và kiểm tra dashboard hàng tháng.
+- <https://developers.cloudflare.com/pages/platform/limits/>
+- <https://developers.cloudflare.com/workers/platform/limits/>
+- <https://developers.cloudflare.com/d1/platform/limits/>
+- <https://www.cloudflare.com/plans/zero-trust-services/>

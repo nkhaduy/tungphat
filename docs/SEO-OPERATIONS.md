@@ -15,7 +15,7 @@
 
 ## GA4
 
-- Biến môi trường tùy chọn trên Vercel: `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
+- Biến build tùy chọn trên Cloudflare Pages: `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
 - Giá trị phải là Measurement ID dạng `G-...`. Khi biến thiếu hoặc sai định dạng, website không tải script Google Analytics.
 - Event hiện có: `click_phone`, `click_zalo`, `request_quote`, `view_cnc_service`, `view_product_category`, `click_directions`.
 - Không gửi tên, số điện thoại, email, nội dung trao đổi hoặc tên file trong event properties.
@@ -29,7 +29,7 @@
 ## Asset và hiệu năng
 
 - Ảnh nội dung dùng bản WebP; PNG gốc được giữ làm nguồn.
-- Video xưởng dùng R2 key `videos/legacy/0619.mp4`, `preload="none"` và giữ poster hiện tại. Nén H.264 `faststart` xuống khoảng 5–15 MiB trước khi coi đây là asset production; bản nguồn local không được commit lại.
+- Video xưởng là tùy chọn qua `NEXT_PUBLIC_PROCESS_VIDEO_URL`, dùng `preload="none"` và giữ poster hiện tại. Nếu chưa có file web đã nén, component hiển thị poster thay vì tải video gốc. Không commit video nguồn dung lượng lớn.
 - Chỉ ảnh hero trang chủ được tải ưu tiên. Không thêm `priority` cho ảnh dưới màn hình đầu.
 
 ## Checklist sau mỗi lần phát hành

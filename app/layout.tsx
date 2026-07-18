@@ -10,12 +10,15 @@ import {
   SITE_URL,
   absoluteUrl
 } from "@/lib/seo";
+import { locations } from "@/lib/locations";
+import business from "@/content/settings/business.json";
+import seo from "@/content/settings/seo.json";
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Tùng Phát | Vật liệu gỗ công nghiệp & Gia công CNC",
+    default: seo.defaultTitle,
     template: "%s | Tùng Phát"
   },
   description: DEFAULT_DESCRIPTION,
@@ -25,7 +28,7 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" }
   },
-  manifest: "/site.webmanifest?v=20260630-favicon2",
+  manifest: "/manifest.webmanifest",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -41,7 +44,7 @@ export const metadata: Metadata = {
     ]
   },
   openGraph: {
-    title: "Tùng Phát | Vật liệu gỗ công nghiệp & Gia công CNC",
+    title: seo.defaultTitle,
     description: DEFAULT_DESCRIPTION,
     url: absoluteUrl("/"),
     siteName: SITE_NAME,
@@ -58,7 +61,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tùng Phát | Vật liệu gỗ công nghiệp & Gia công CNC",
+    title: seo.defaultTitle,
     description: DEFAULT_DESCRIPTION,
     images: ["/og-logo.png?v=20260630"]
   }
@@ -82,41 +85,27 @@ const siteSchema = {
       url: `${SITE_URL}/`,
       logo: "https://mdftungphat.com/icon.png",
       telephone: PHONE_E164,
-      taxID: "0319115830",
-      sameAs: ["https://zalo.me/0909259160"],
-      department: [
-        { "@id": `${SITE_URL}/#chi-nhanh-1` },
-        { "@id": `${SITE_URL}/#chi-nhanh-2` }
-      ]
+      taxID: business.taxId,
+      sameAs: business.socialLinks,
+      department: locations.map((location) => ({ "@id": `${SITE_URL}/#${location.id}` }))
     },
-    {
-      "@type": "LocalBusiness",
-      "@id": `${SITE_URL}/#chi-nhanh-1`,
-      name: "Tùng Phát – Chi nhánh 1",
-      url: `${SITE_URL}/lien-he#chi-nhanh-1`,
+    ...locations.map((location) => ({
+      "@type": business.localBusinessType,
+      "@id": `${SITE_URL}/#${location.id}`,
+      name: location.name,
+      url: `${SITE_URL}/lien-he#${location.id}`,
       telephone: PHONE_E164,
       parentOrganization: { "@id": `${SITE_URL}/#organization` },
+      areaServed: business.serviceAreas,
+      ...(business.openingHours.length ? { openingHours: business.openingHours } : {}),
       address: {
         "@type": "PostalAddress",
-        streetAddress: "14 Tam Bình, phường Hiệp Bình",
-        addressLocality: "TP. Hồ Chí Minh",
-        addressCountry: "VN"
+        streetAddress: location.streetAddress,
+        addressLocality: location.addressLocality,
+        addressRegion: location.addressRegion,
+        addressCountry: location.addressCountry
       }
-    },
-    {
-      "@type": "LocalBusiness",
-      "@id": `${SITE_URL}/#chi-nhanh-2`,
-      name: "Tùng Phát – Chi nhánh 2",
-      url: `${SITE_URL}/lien-he#chi-nhanh-2`,
-      telephone: PHONE_E164,
-      parentOrganization: { "@id": `${SITE_URL}/#organization` },
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "81B Tam Bình, phường Hiệp Bình",
-        addressLocality: "TP. Hồ Chí Minh",
-        addressCountry: "VN"
-      }
-    }
+    }))
   ]
 };
 

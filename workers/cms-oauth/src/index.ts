@@ -34,7 +34,8 @@ async function validState(state: string, cookieState: string, env: Env) {
   for (let index = 0; index < left.length; index += 1) difference |= left[index] ^ right[index];
   if (difference !== 0) return false;
   try {
-    const json = atob(payload.replace(/-/g, "+").replace(/_/g, "/"));
+    const base64 = payload.replace(/-/g, "+").replace(/_/g, "/");
+    const json = atob(base64.padEnd(Math.ceil(base64.length / 4) * 4, "="));
     const parsed: unknown = JSON.parse(json);
     return Boolean(parsed && typeof parsed === "object" && "createdAt" in parsed && typeof parsed.createdAt === "number" && Date.now() - parsed.createdAt < 600_000);
   } catch { return false; }
@@ -46,7 +47,14 @@ function htmlResponse(status: "success" | "error", token: string, origin: string
   return new Response(html, { headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store", "Content-Security-Policy": `default-src 'none'; script-src 'unsafe-inline'; style-src 'none'; img-src 'none'; frame-ancestors 'none'; base-uri 'none'`, "X-Content-Type-Options": "nosniff", "Referrer-Policy": "no-referrer", "X-Robots-Tag": "noindex, nofollow" } });
 }
 
-async function handleAuth(env: Env) {
+async function handleAuth(request: Request, env: Env) {
+  const siteId = new URL(request.url).searchParams.get("site_id");
+  if (siteId !== env.CMS_SITE_ID) {
+    return new Response("Invalid CMS site", {
+      status: 403,
+      headers: { "Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow" }
+    });
+  }
   const state = await createState(env);
   const scope = env.GITHUB_REPO_PRIVATE === "1" ? "repo" : "public_repo";
   const target = new URL("https://github.com/login/oauth/authorize");
@@ -72,7 +80,7 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     try {
-      if (url.pathname === "/auth" && request.method === "GET") return handleAuth(env);
+      if (url.pathname === "/auth" && request.method === "GET") return handleAuth(request, env);
       if (url.pathname === "/callback" && request.method === "GET") return handleCallback(request, env);
       if (url.pathname === "/logout") return new Response(null, { status: 302, headers: { Location: `${env.CMS_ORIGIN}/admin/`, "Set-Cookie": "decap_oauth_state=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0", "Cache-Control": "no-store" } });
       if (url.pathname === "/health") return Response.json({ ok: true }, { headers: { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } });

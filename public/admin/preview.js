@@ -3,8 +3,7 @@
   function mediaSource(value) {
     if (!value) return "";
     if (typeof value === "string") return value;
-    var key = typeof value.get === "function" ? value.get("key") : value.key;
-    return key && window.__R2_MEDIA_BASE_URL__ ? window.__R2_MEDIA_BASE_URL__ + "/" + key : "";
+    return "";
   }
   const Preview = createClass({
     render: function () {

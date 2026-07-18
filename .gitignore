@@ -5,6 +5,7 @@ out/
 .wrangler/
 .dev.vars
 .dev.vars.*
+!.dev.vars.example
 .env
 .env.*
 !.env.example
@@ -13,4 +14,5 @@ test-results/
 coverage/
 backups/
 local-media/
+work/
 *.tsbuildinfo

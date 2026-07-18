@@ -24,7 +24,12 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
     category: product.category,
     material: product.materialType,
     url: `${SITE_URL}/${product.slug}`,
-    brand: product.supplier ? { "@type": "Brand", name: product.supplier } : undefined
+    brand: product.supplier ? { "@type": "Brand", name: product.supplier } : undefined,
+    additionalProperty: [
+      ...product.dimensions.map((value) => ({ "@type": "PropertyValue", name: "Kích thước", value })),
+      ...product.thicknesses.map((value) => ({ "@type": "PropertyValue", name: "Độ dày", value })),
+      ...product.surfaces.map((value) => ({ "@type": "PropertyValue", name: "Bề mặt", value }))
+    ]
   };
 
   const specGroups = [

@@ -52,7 +52,9 @@ test("robots, sitemap, admin noindex và 404 đúng", async ({ page, request }) 
   const xml = await sitemap.text();
   expect(xml).toContain("https://mdftungphat.com/go-ghep");
   expect(xml).not.toContain("/admin");
-  expect(xml).not.toContain("__no-published");
+  expect(xml).not.toContain("__empty-collection");
+  expect(await request.get("/bai-viet/__empty-collection/").then((response) => response.status())).toBe(404);
+  expect(await request.get("/du-an/__empty-collection/").then((response) => response.status())).toBe(404);
   await page.goto("/admin/");
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
   const missing = await page.goto("/khong-ton-tai/");
@@ -77,6 +79,18 @@ test("API validation và rate limit hoạt động", async ({ request }) => {
   const invalid = await request.post("/api/quote", { headers: { Origin: origin }, data: { consent: false } });
   expect(invalid.status()).toBe(400);
   expect(await invalid.json()).toMatchObject({ code: "validation_failed" });
+  const quoteWithoutMaterial = await request.post("/api/quote", {
+    headers: { Origin: origin, "CF-Connecting-IP": `e2e-required-${Date.now()}` },
+    data: apiPayload({ material: "" })
+  });
+  expect(quoteWithoutMaterial.status()).toBe(400);
+  expect(await quoteWithoutMaterial.json()).toMatchObject({ code: "validation_failed", fields: ["material"] });
+  const contactWithoutMessage = await request.post("/api/contact", {
+    headers: { Origin: origin, "CF-Connecting-IP": `e2e-required-contact-${Date.now()}` },
+    data: apiPayload({ message: "" })
+  });
+  expect(contactWithoutMessage.status()).toBe(400);
+  expect(await contactWithoutMessage.json()).toMatchObject({ code: "validation_failed", fields: ["message"] });
 
   const rateIdentity = `e2e-rate-${Date.now()}`;
   const submission = crypto.randomUUID();

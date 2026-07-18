@@ -7,7 +7,7 @@ import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
 import { TrackedLink } from "@/components/TrackedLink";
 import { locations } from "@/lib/locations";
-import { PHONE_DISPLAY, PHONE_HREF } from "@/lib/seo";
+import { BUSINESS_NAME, FOOTER_DESCRIPTION, PHONE_DISPLAY, PHONE_HREF, TAX_ID } from "@/lib/seo";
 
 export function Footer() {
   const { lang } = useLang();
@@ -35,8 +35,9 @@ export function Footer() {
                 {lang === "vi" ? "Về chúng tôi" : "About us"}
               </p>
               <p className="text-[.8125rem] font-bold leading-6 text-white">
-                CÔNG TY TNHH TMDV GỖ TÙNG PHÁT
+                {BUSINESS_NAME.toUpperCase()}
               </p>
+              <p className="text-sm leading-6 text-white/60">{FOOTER_DESCRIPTION}</p>
               <div className="h-px w-8 bg-wood-500/60" />
               <div className="space-y-3 text-sm text-white/60">
                 <TrackedLink
@@ -54,7 +55,7 @@ export function Footer() {
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5">
                     <Hash size={12} className="text-white/40" />
                   </span>
-                  MST: 0319115830
+                  MST: {TAX_ID}
                 </p>
                 <div className="flex items-start gap-3">
                   <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5">

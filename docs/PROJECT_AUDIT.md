@@ -1,87 +1,105 @@
-# Audit project Tùng Phát — 2026-07-16
+# Audit branch `codex/cloudflare-cms-seo-platform-v2`
 
-## Baseline trước thay đổi
+Ngày audit: 2026-07-18.
 
-- Git: `main` tại `9ead740`; chỉ có các thư mục skill untracked của người dùng.
-- Runtime: Node `v26.4.0`, npm `11.17.0`; package manager npm với `package-lock.json`.
-- `npm install`: thành công; audit ban đầu có 5 cảnh báo (1 moderate, 4 high).
-- `npm run lint`: thành công.
-- `npm run typecheck`: thất bại vì chưa có script.
-- `npm test`: thất bại vì chưa có script.
-- `npm run build`: thành công trên Next 14.2.35, 21 route static/SSG.
+## Git và lịch sử
 
-## Kiến trúc ban đầu
+- Repository gốc đang ở local `main` commit `e76c773`, chậm hơn `origin/main` 7 commit và có 10 file sửa cùng nhiều file mới chưa commit.
+- Để không trộn hoặc ghi đè thay đổi đó, branch v3 được tạo trong worktree riêng.
+- Merge-base giữa `origin/main` và v2: `9ead7400e700fa3777bd66d7384858965005187f`.
+- V2 có 4 commit riêng: `c34aeef`, `9abed5e`, `f375cf6`, `68cbeb2`.
+- `origin/main` có 5 commit riêng sau merge-base, bao gồm hai revert SEO/favicon và các sửa Trustindex.
+- Diff ba chấm v2 so với main: 156 file, khoảng 14.227 dòng thêm và 3.371 dòng xóa.
+- Dry-run merge-tree báo conflict lớn ở `.env.example`, `.gitignore`, layout, home, contact, robots, sitemap, header/footer/hero, i18n, Next config, Trustindex và các file modify/delete. Vì vậy không merge/rebase main tự động.
+- Repository đã có sẵn 930 file tracked dưới `work/` (npm cache, log và ảnh kiểm
+  thử), làm Git pack khoảng 283 MiB; blob lớn nhất khoảng 37 MiB. Chúng không đi
+  vào `out` nhưng làm clone nặng. Branch này thêm ignore để không phát sinh thêm,
+  chưa xóa 930 file nhằm tránh trộn một cleanup lịch sử lớn vào PR kiến trúc.
+  Xóa ở commit riêng chỉ làm checkout tương lai gọn hơn; muốn giảm pack cũ phải
+  rewrite history/force-push, việc bị cấm trong phạm vi này.
 
-Next.js App Router + TypeScript + Tailwind + Framer Motion. Nội dung nằm trong `lib/i18n.ts` và component; không có content layer, CMS, form API/database, CI hay cấu hình Cloudflare. Metadata/sitemap/robots có sẵn một phần. Trang chủ, brand và catalogue đều prerender. Vercel là deployment hiện hành; repo không có Server Action, API route, SSR hay ISR bắt buộc.
+## Kiến trúc và rendering
 
-Route ban đầu: `/`, `/san-pham`, `/san-pham/[brand]`, `/catalogue/[brand]`, `/gia-cong-cnc`, `/lien-he`, `/chinh-sach-bao-mat`, `/dieu-khoan-su-dung`, `/robots.txt`, `/sitemap.xml` và 404.
+- Bối cảnh ban đầu nói Next.js 14, nhưng branch thực tế dùng Next.js `15.5.20`, React 19 và TypeScript strict.
+- `output: "export"`; toàn bộ trang SEO là Static/SSG. Không có SSR, ISR, Server Actions hoặc middleware.
+- `fs`, `path`, `gray-matter` và Sharp chỉ chạy lúc build/script, không đi vào Pages Functions.
+- Dynamic routes: brand/catalogue có `generateStaticParams`; article/project chỉ xuất entry published; `dynamicParams=false`.
+- Form là Pages Functions `/api/contact` và `/api/quote`.
+- `next/image` chạy `unoptimized` để phù hợp static export. Ảnh WebP đang được dùng ở runtime; nhiều PNG nguồn legacy lớn vẫn tồn tại nhưng không phải ảnh tải chính.
+- Postbuild loại PNG/JPEG legacy khỏi artifact chỉ khi có WebP cùng tên và không
+  xuất hiện trong HTML/CSS/JS/manifest. File nguồn vẫn được giữ trong repository,
+  tránh redesign hoặc mất asset trong khi giảm kích thước Pages upload.
 
-## Phát hiện
+## Bản đồ nội dung trước khi hoàn thiện
 
-### Build và technical debt
+| Nội dung | Nguồn |
+|---|---|
+| 6 landing sản phẩm | `content/products/*.md` |
+| 3 bài viết draft | `content/articles/*.md` |
+| 1 dự án mẫu draft | `content/projects/*.md` |
+| 2 trang dịch vụ | `content/pages/*.md` |
+| Doanh nghiệp/SEO/trang tĩnh | JSON trong `content/settings` |
+| Thương hiệu/catalogue placeholder | TypeScript object trong `lib/brands.ts` |
+| Địa điểm/Google Maps | TypeScript object trong `lib/locations.ts` |
+| Hero/home categories/nội dung song ngữ | Component + `lib/i18n.ts` |
+| Form submissions | D1 |
 
-- Thiếu typecheck/test script và test automation.
-- `lib/i18n.ts` là module dữ liệu lớn, khó cho biên tập viên và dễ tạo xung đột Git.
-- Content, metadata và route chưa có schema/validation tập trung.
-- Script deploy cũ tự stage/commit và force-push, có rủi ro ghi đè lịch sử; đã thay bằng quality gate không ghi Git.
-- Next/dependency cũ có advisory mức high; đã nâng Next 15.5.20 và dependency liên quan. Residual audit hiện là advisory moderate của PostCSS được bundling trong Next; đường chạy production là static HTML và không xử lý CSS từ người dùng, nhưng cần theo dõi bản Next vá tiếp theo.
+Sau audit, thương hiệu và địa điểm đã chuyển sang JSON; settings doanh nghiệp được nối vào footer, contact maps, CTA/phone constants và LocalBusiness JSON-LD. Text song ngữ và bố cục hero vẫn là presentation content trong source để không redesign.
 
-### SEO
+## Phần v2 giữ lại
 
-- Chưa có landing page độc lập cho các cluster gỗ ghép, MDF và CNC.
-- Canonical vận hành cũ từng ghi `www`, trái với domain chính; đã chuẩn hóa apex.
-- Sitemap không lấy bài viết/sản phẩm/dự án từ content và chưa có lastmod thực.
-- Thiếu Article/Product/Service/FAQ schema theo nội dung thật và breadcrumb tái sử dụng cho money page.
-- Chưa có CMS/editorial review, keyword map, competitor gap hoặc 90-day plan.
-- Brand/catalogue chưa đủ nội dung độc lập; giữ noindex để tránh thin/duplicate page.
+- Static export trên Pages và Pages Functions tách khỏi nội dung.
+- Markdown + frontmatter, Zod, Decap editorial workflow.
+- Canonical `https://mdftungphat.com`, robots/sitemap và metadata helper.
+- Lead form, Turnstile, same-origin, honeypot, idempotency, prepared D1 statements.
+- GitHub OAuth Worker với HMAC state, fixed postMessage origin và secret qua binding.
+- Hero slideshow, ảnh mobile/desktop, preload slide đầu, reduced motion và pause khi hover/focus.
+- CI, Vitest, Playwright/Axe, security headers, `_redirects`.
 
-### Performance và accessibility
+## Prototype hoặc lỗi tìm thấy
 
-- Hero là ảnh tĩnh trong code baseline, trong khi yêu cầu kinh doanh là slideshow; đã khôi phục slideshow tự chuyển, chỉ ưu tiên slide đầu và lazy-load phần sau.
-- Ảnh legacy PNG lớn tồn tại trong repo; runtime đã dùng WebP nhưng nguồn gốc được giữ để tránh xóa dữ liệu.
-- Chưa có pipeline giới hạn kích thước/tên/định dạng ảnh hoặc kiểm tra a11y/E2E.
-- Third-party GA/Trustindex chỉ được tải khi có cấu hình; không gửi PII.
+- R2 được thêm quá sớm dù mục tiêu ưu tiên Git images; tăng binding, API, custom widget, Access rule và backup surface.
+- R2 widget dùng `self.state.csrf` thay vì component state nên upload có thể lỗi runtime.
+- Validator biến R2 object thành chuỗi `[object Object]`, khiến CMS publish R2 sẽ fail build.
+- CMS settings JSON tồn tại nhưng phần lớn website vẫn lấy business name, tax ID, maps, phone và schema từ hard-code.
+- `config.yml` dùng R2 widget cho ảnh trong khi `media_folder` vẫn tồn tại; hai cơ chế media cạnh tranh.
+- V2 có script route sentinel cho collection article/project chưa publish. Build
+  thực tế xác nhận Next.js 15 static export từ chối `generateStaticParams()` trả
+  mảng rỗng. V3 giữ lại cơ chế cần thiết này với tên/giải thích rõ hơn và postbuild
+  xóa exact sentinel khỏi `out`; sitemap/link test cũng chặn URL sentinel.
+- Hai workflow deploy bằng API token tồn tại song song với Pages Git integration, có nguy cơ deploy trùng và tăng secret.
+- D1 chưa lưu product, dimensions, privacy-preserving `ip_hash` và user agent; hash rate-limit không có secret salt.
+- Trang manifest là file public cũ thay vì metadata route; không có global error boundary.
+- `www.mdftungphat.com` còn xuất hiện trong legal copy dù canonical đã là apex.
+- CSP chưa cho Trustindex domain nên widget có thể bị chặn.
+- `validate:links` baseline được gọi trước build trong lần kiểm tra thủ công và fail vì chưa có `out`; cần chạy từng lệnh độc lập.
+- `npm audit` báo 2 moderate qua PostCSS nằm trong Next. `npm audit fix --force` đề xuất downgrade phá vỡ, vì vậy không áp dụng workaround đó.
+- `wrangler.jsonc` còn UUID D1 placeholder có chủ đích; không thể thay bằng UUID
+  thật nếu chưa tạo database trong Cloudflare account. Build/local test không
+  dùng production UUID; deployment phải dừng cho tới khi Dashboard checklist
+  được hoàn tất.
 
-### Security và dữ liệu cá nhân
+## Form và dữ liệu cá nhân
 
-- Baseline chưa có server endpoint nên form chưa thể ghi nhận lead.
-- Chưa có server validation, spam control, consent, retention hoặc backup/export.
-- Chưa có CMS auth flow. Không phát hiện secret được commit trong tracked source.
-- Deploy script cũ là rủi ro supply-chain/operational; đã vô hiệu hóa thao tác Git tự động.
+- Có API thật, server validation, Turnstile, honeypot, same-origin, 20 KB body cap, rate-limit 5 request/10 phút và chống trùng bằng `submission_key`.
+- Không gửi email/notification. Người vận hành xem D1 bằng Dashboard hoặc Wrangler.
+- Không log tên, điện thoại, email, message, token hay IP. IP thô chỉ được dùng trong request để verify Turnstile; D1 lưu hash có salt.
+- Không nhận file CNC; giao diện cảnh báo không gửi dữ liệu nhạy cảm.
 
-## Sau triển khai
+## SEO source audit
 
-- Content: Markdown/JSON + Zod + Decap CMS editorial workflow.
-- Hosting: Next static export trên Pages; Pages Functions cho form; D1 chỉ cho lead.
-- Security: Turnstile server verify, honeypot, same-origin, size/length limits, normalized phone, parameterized SQL, hashed-IP rate limit, idempotency và error không lộ stack.
-- SEO: 8 money/service landing page mới, `/bao-gia`, article/project hubs, canonical apex, sitemap/robots động lúc build, metadata/schema theo loại nội dung.
-- CI: lint, typecheck, unit, content/image/link validation, build, E2E, D1 local migration; deploy workflows được gate bằng repository variable.
-- Analytics: event call/Zalo/contact/quote/view page, không chứa tên, phone, email hoặc message.
+| Nhóm | Kết quả |
+|---|---|
+| Crawlability | Sitemap/robots static, admin/API/draft bị loại; pass |
+| Indexability | Canonical apex; www redirect cần cấu hình dashboard; pass có bước vận hành |
+| Security | HTTPS/HSTS/CSP/headers có cấu hình; Access/DNS chưa triển khai; pending dashboard |
+| URL | URL sạch; hai alias CNC redirect 301; pass |
+| Mobile | Responsive, menu mobile và touch target có E2E; pass |
+| CWV | Hero có preload responsive; cần đo lại sau deployment vì chưa có CrUX |
+| Structured data | WebSite, Organization, LocalBusiness, Product, Article, CreativeWork, BreadcrumbList; không rating/price giả |
+| JS rendering | SEO elements nằm trong HTML prerender, không phụ thuộc client JS |
+| IndexNow | Chưa triển khai; không cần cho lần cutover đầu |
 
-## Cloudflare compatibility
+## Kết luận
 
-Pages static phù hợp: mọi indexable route được prerender; `next/image` dùng unoptimized static assets; form tách Functions. OpenNext Workers cũng khả thi nhưng không cần hiện tại và có nhiều runtime/adapter hơn. Không có tính năng bắt buộc Vercel ngoài deployment hiện tại. Vercel vẫn build static site, dùng `vercel.json` để redirect `www` khi host khớp.
-
-## Rủi ro migration
-
-- DNS/custom domain/certificate và Access/OAuth policy cần thao tác dashboard thật.
-- D1 database ID, Pages project và Turnstile keys chưa thể tạo không có quyền tài khoản.
-- Decap publish cần GitHub OAuth App và collaborator có quyền ghi repo.
-- Ảnh/bài mới có thể làm CI fail có chủ đích nếu thiếu SEO/alt hoặc quá lớn.
-- Route dynamic dùng placeholder build-time rồi xóa khỏi `out`; CI kiểm tra link/output để ngăn placeholder bị phát hành.
-
-## Rollback và chi phí
-
-Không xóa deployment Vercel. Giữ DNS/TTL có kiểm soát, snapshot D1 trước migration và rollback content bằng Git revert/Decap history. Ở quy mô hiện tại, Pages, Workers OAuth, D1, Turnstile, GitHub/Decap có thể nằm trong free tier: chi phí hạ tầng cố định dự kiến 0 đồng/tháng, không gồm phí gia hạn domain và mọi mức vượt quota. Chi tiết: `ROLLBACK.md` và `CLOUDFLARE_DEPLOYMENT.md`.
-
-## Kết quả xác minh cuối
-
-- `npm ci`: pass, 638 packages; 2 advisory moderate residual đã nêu, không có high/critical.
-- `npm run lint`: pass, 0 warning.
-- `npm run typecheck`: pass cho Next và Cloudflare Functions/Worker.
-- `npm test`: 10/10 unit test pass.
-- `npm run build`: pass; 34 route build-time, 27 HTML sau khi xóa 2 placeholder dynamic; internal links pass.
-- D1 local migrations: pass; lead insert, normalization, consent và history trigger đã kiểm tra.
-- Playwright trên `wrangler pages dev`: 10/10 pass, gồm form, Turnstile test mode, rate limit, injection payload, double-submit, slideshow, mobile, SEO/a11y và 404.
-- OAuth Worker `wrangler deploy --dry-run`: pass, 6,07 KiB upload (gzip 2,33 KiB).
-- Lighthouse mobile lab local gần production: Performance 92, Accessibility 100, Best Practices 100, SEO 100; observed LCP 0,83 s, simulated LCP 3,3 s, CLS 0, TBT 60 ms. Đây là lab local, không thay số field CrUX sau deploy thật.
+Không bắt đầu lại. Giữ static Pages/Decap/D1/OAuth của v2, bỏ R2 khỏi critical path, nối content settings thật vào UI/schema, bổ sung validation/privacy/migration và chuẩn hóa tài liệu. Không merge `origin/main` vì conflict lớn; các sửa main cần được port có chủ đích bằng PR riêng sau khi v3 được review.

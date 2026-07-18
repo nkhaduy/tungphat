@@ -2,10 +2,11 @@
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "tung-phat-cms-oauth",
   "main": "src/index.ts",
-  "compatibility_date": "2026-07-16",
+  "compatibility_date": "2026-07-18",
   "compatibility_flags": ["nodejs_compat"],
   "vars": {
     "CMS_ORIGIN": "https://mdftungphat.com",
+    "CMS_SITE_ID": "mdftungphat.com",
     "OAUTH_CALLBACK_URL": "https://cms-auth.mdftungphat.com/callback",
     "GITHUB_REPO_PRIVATE": "0"
   },
