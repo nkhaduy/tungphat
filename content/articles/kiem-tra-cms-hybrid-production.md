@@ -9,7 +9,7 @@ category: Vận hành
 author: Ban biên tập Tùng Phát
 publishedAt: 2026-07-18
 updatedAt: 2026-07-18
-draft: true
+draft: false
 featured: false
 seoTitle: Kiểm tra CMS hybrid production Tùng Phát
 seoDescription: Bài viết thử nghiệm xác minh Decap CMS, GitHub main và Vercel
