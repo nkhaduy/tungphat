@@ -10,7 +10,7 @@
     {
       "binding": "DB",
       "database_name": "tung-phat-leads",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "1af7dea0-3168-446d-be77-828c57d1e370",
       "migrations_dir": "./migrations"
     }
   ],
@@ -20,7 +20,7 @@
         {
           "binding": "DB",
           "database_name": "tung-phat-leads-preview",
-          "database_id": "11111111-1111-1111-1111-111111111111",
+          "database_id": "9ef568b8-dc45-4315-b18d-b98518790ed6",
           "migrations_dir": "./migrations"
         }
       ]
