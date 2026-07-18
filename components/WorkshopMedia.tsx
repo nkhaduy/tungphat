@@ -2,45 +2,32 @@
 
 import Image from "next/image";
 import { Check } from "lucide-react";
-import { useEffect, useRef } from "react";
 import { SectionTitle } from "@/components/SectionTitle";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
 
 const gallery = [
-  ["hero-workshop4.png", 0],
-  ["hero-workshop5.png", 1],
-  ["hero-workshop6.png", 2],
-  ["hero-workshop1.png", 3],
-  ["cnc-service.png", 4],
-  ["wood-panels.png", 5],
+  ["hero-workshop4.webp", 0],
+  ["hero-workshop5.webp", 1],
+  ["hero-workshop6.webp", 2],
+  ["hero-workshop1.webp", 3],
+  ["cnc-service.webp", 4],
+  ["wood-panels.webp", 5],
 ] as const;
 
+function allowedProcessVideo(value: string) {
+  if (value.startsWith("/")) return value;
+  try {
+    return new URL(value).origin === "https://media.mdftungphat.com" ? value : "";
+  } catch {
+    return "";
+  }
+}
+
 export function WorkshopMedia() {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const { lang } = useLang();
   const t = translations[lang];
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.muted = true;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        video.muted = true;
-        void video.play().catch(() => undefined);
-      } else {
-        video.pause();
-      }
-    }, { threshold: 0.35 });
-
-    observer.observe(video);
-    return () => {
-      observer.disconnect();
-      video.pause();
-    };
-  }, []);
+  const processVideoUrl = allowedProcessVideo(process.env.NEXT_PUBLIC_PROCESS_VIDEO_URL?.trim() || "");
 
   return (
     <section id="thu-vien" className="bg-white py-20 lg:py-28">
@@ -65,11 +52,20 @@ export function WorkshopMedia() {
 
           <div className="mt-16 border-t border-forest-900/10 pt-12 sm:mt-20 sm:pt-16">
             <div className="grid items-center gap-10 md:grid-cols-[minmax(280px,40%)_1fr] md:gap-12 lg:gap-16">
-              <div className="mx-auto w-full max-w-[340px] overflow-hidden rounded-lg shadow-sm md:mx-0 md:max-w-[360px]">
-                <video ref={videoRef} autoPlay muted loop playsInline preload="metadata" className="aspect-[9/16] max-h-[620px] w-full object-cover" aria-label="Gia công thực tế tại xưởng Tùng Phát">
-                  <source src="/0619.mp4" type="video/mp4" />
-                  Trình duyệt của bạn không hỗ trợ phát video.
-                </video>
+              <div className="relative mx-auto aspect-[9/16] w-full max-w-[340px] overflow-hidden rounded-lg bg-forest-950 shadow-sm md:mx-0 md:max-w-[360px]">
+                {processVideoUrl ? (
+                  <video controls playsInline preload="none" poster="/images/cnc-service.webp" className="h-full w-full object-cover" aria-label="Video minh họa quy trình gia công CNC">
+                    <source src={processVideoUrl} type="video/mp4" />
+                    Trình duyệt của bạn không hỗ trợ phát video.
+                  </video>
+                ) : (
+                  <>
+                    <Image src="/images/cnc-service.webp" alt="Máy CNC tại khu vực gia công Tùng Phát" fill sizes="360px" className="object-cover" />
+                    <p className="absolute inset-x-4 bottom-4 bg-forest-950/80 px-4 py-3 text-center text-xs font-semibold text-white">
+                      Video quy trình sẽ được bổ sung sau khi có file web dưới 25 MiB hoặc URL media đã xác minh.
+                    </p>
+                  </>
+                )}
               </div>
               <div className="max-w-2xl">
                 <span className="eyebrow">{t.workshopProcessEyebrow}</span>

@@ -1,3 +1,5 @@
+import data from "@/content/categories/brands.json";
+
 export type Product = {
   name: string;
   code: string;
@@ -17,7 +19,7 @@ export type Catalogue = {
 };
 
 export type Brand = {
-  slug: "an-cuong" | "thanh-thuy" | "ba-thanh" | "kes";
+  slug: string;
   name: string;
   logo: string;
   description: string;
@@ -25,40 +27,7 @@ export type Brand = {
   products: Product[];
 };
 
-export const brands: Brand[] = [
-  {
-    slug: "an-cuong",
-    name: "An Cường",
-    logo: "",
-    description: "",
-    catalogues: [],
-    products: []
-  },
-  {
-    slug: "thanh-thuy",
-    name: "Thanh Thùy",
-    logo: "",
-    description: "",
-    catalogues: [],
-    products: []
-  },
-  {
-    slug: "ba-thanh",
-    name: "Ba Thanh",
-    logo: "",
-    description: "",
-    catalogues: [],
-    products: []
-  },
-  {
-    slug: "kes",
-    name: "KES",
-    logo: "",
-    description: "",
-    catalogues: [],
-    products: []
-  }
-];
+export const brands = data.items as Brand[];
 
 export function getBrand(slug: string) {
   return brands.find((brand) => brand.slug === slug);

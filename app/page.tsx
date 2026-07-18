@@ -9,60 +9,41 @@ import { Reveal } from "@/components/Reveal";
 import { SectionTitle } from "@/components/SectionTitle";
 import { Partners } from "@/components/Partners";
 import { WorkshopMedia } from "@/components/WorkshopMedia";
+import { TrackedLink } from "@/components/TrackedLink";
 import { TrustindexReviews } from "@/components/reviews/TrustindexReviews";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
+import { locations } from "@/lib/locations";
+import { GOOGLE_REVIEWS_URL, PHONE_DISPLAY, PHONE_HREF, ZALO_URL } from "@/lib/seo";
 
 const categoryImages = [
-  "/wood/mdfmfc.png",
-  "/wood/vanchongam.png",
-  "/wood/plywood.png",
-  "/wood/melamine.png",
-  "/wood/laminate.png",
-  "/wood/arcrylic.png",
-  "/wood/veneer.png",
-  "/wood/tamtrangtri.png",
+  "/wood/mdfmfc.webp",
+  "/wood/vanchongam.webp",
+  "/wood/plywood.webp",
+  "/wood/melamine.webp",
+  "/wood/laminate.webp",
+  "/wood/arcrylic.webp",
+  "/wood/veneer.webp",
+  "/wood/tamtrangtri.webp",
 ];
-
-const zaloUrl = "https://zalo.me/0909259160";
-const googleReviewsUrl =
-  "https://www.google.com/maps/search/?api=1&query=C%E1%BB%ADa%20H%C3%A0ng%20G%E1%BB%97%20Gh%C3%A9p%20T%C3%B9ng%20Ph%C3%A1t";
-
-const branchMaps = [
-  {
-    id: "CN1",
-    nameKey: "footerBranch1Name",
-    address: "14 Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
-    embedSrc:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.5370572533293!2d106.7289773!3d10.8466962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527a60336dce9%3A0xe397be298b9a97af!2zQ-G7rWEgSMOgbmcgR-G7lyBHaMOpcCBUw7luZyBQaMOhdA!5e0!3m2!1svi!2s!4v1783761448496!5m2!1svi!2s",
-    iframeTitle: "Google Maps – Tùng Phát CN1"
-  },
-  {
-    id: "CN2",
-    nameKey: "footerBranch2Name",
-    address: "81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
-    embedSrc:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4493770330487!2d106.7307288!3d10.8533852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527295201638d%3A0x96d9f4e833b55234!2zTURGIC0gQ05DIFTDmU5HIFBIw4FU!5e0!3m2!1svi!2s!4v1783761503530!5m2!1svi!2s",
-    iframeTitle: "Google Maps – Tùng Phát CN2"
-  }
-] as const;
 
 export default function Home() {
   const { lang } = useLang();
   const t = translations[lang];
 
   return (
-    <main>
+    <>
       <Header />
-      <Hero />
-      <Partners />
+      <main>
+        <Hero />
+        <Partners />
 
       {/* Product categories */}
       <section id="san-pham" className="bg-[#f6f7f5] py-20 lg:py-28">
         <div className="container-shell">
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <SectionTitle eyebrow={t.categoryEyebrow} title={t.categoryTitle} />
-            <a href={zaloUrl} target="_blank" rel="noopener noreferrer" aria-label={t.categoryCtaCheck} className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-900">{t.categoryCtaCheck} <MessageCircle size={17} className="text-wood-600" /></a>
+            <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: "product_categories" }} aria-label={t.categoryCtaCheck} className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-900">{t.categoryCtaCheck} <MessageCircle size={17} className="text-wood-600" /></TrackedLink>
           </div>
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {t.categories.map(([name, text]: string[], index: number) => (
@@ -74,7 +55,7 @@ export default function Home() {
                     <span className="text-xs font-bold text-orange-300">{String(index + 1).padStart(2, "0")}</span>
                     <h3 className="mt-2 text-xl font-extrabold">{name}</h3>
                     <p className="mt-3 text-sm leading-6 text-white/72">{text}</p>
-                    <a href={zaloUrl} target="_blank" rel="noopener noreferrer" aria-label={t.categoryCtaRequest} className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-bold">{t.categoryCtaRequest} <ArrowRight size={16} /></a>
+                    <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "product_card", category: name }} aria-label={t.categoryCtaRequest} className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-bold">{t.categoryCtaRequest} <ArrowRight size={16} /></TrackedLink>
                   </div>
                 </article>
               </Reveal>
@@ -88,8 +69,8 @@ export default function Home() {
         <div className="container-shell grid items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
           <Reveal>
             <div className="relative aspect-[4/3] overflow-hidden">
-              <Image src="/images/cnc-service.png" alt="Máy CNC của Tùng Phát đang gia công ván" fill sizes="(max-width: 1024px) 100vw, 55vw" quality={95} className="object-cover" />
-              <div className="absolute bottom-0 left-0 bg-wood-500 px-5 py-4 text-sm font-bold">{t.cncOverlay}</div>
+              <Image src="/images/cnc-service.webp" alt="Máy CNC đang gia công một tấm ván" fill sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
+              <div className="absolute bottom-0 left-0 bg-wood-700 px-5 py-4 text-sm font-bold">{t.cncOverlay}</div>
             </div>
           </Reveal>
           <Reveal delay={.08}>
@@ -100,7 +81,10 @@ export default function Home() {
                   <div key={item} className="flex min-h-12 items-center gap-3 border-b border-white/15 text-sm font-bold text-white/85"><Check size={17} className="text-wood-500" />{item}</div>
                 ))}
               </div>
-              <a href={zaloUrl} target="_blank" rel="noopener noreferrer" aria-label={t.cncCta} className="mt-8 inline-flex min-h-14 items-center gap-2 bg-wood-500 px-7 text-sm font-bold transition hover:-translate-y-0.5 hover:bg-wood-600"><MessageCircle size={18} /> {t.cncCta}</a>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <TrackedLink href="/gia-cong-cnc" eventName="view_cnc_service" eventProperties={{ location: "home_cnc" }} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-700 px-7 text-sm font-bold transition hover:-translate-y-0.5 hover:bg-wood-800">{lang === "vi" ? "Xem dịch vụ CNC" : "View CNC service"} <ArrowRight size={18} /></TrackedLink>
+                <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_cnc", channel: "zalo" }} aria-label={t.cncCta} className="inline-flex min-h-14 items-center justify-center gap-2 border border-white/35 px-7 text-sm font-bold"><MessageCircle size={18} /> {t.cncCta}</TrackedLink>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -139,14 +123,16 @@ export default function Home() {
             <TrustindexReviews />
           </div>
           <div className="mt-8 text-center">
-            <a
-              href={googleReviewsUrl}
+            <TrackedLink
+              href={GOOGLE_REVIEWS_URL}
               target="_blank"
               rel="noopener noreferrer"
+              eventName="click_directions"
+              eventProperties={{ location: "home_reviews" }}
               className="inline-flex min-h-12 items-center justify-center gap-2 border border-forest-900/20 px-6 text-sm font-bold text-forest-950 transition hover:border-wood-600 hover:text-wood-700"
             >
               Xem đánh giá trên Google <ArrowRight size={17} />
-            </a>
+            </TrackedLink>
           </div>
         </div>
       </section>
@@ -160,25 +146,27 @@ export default function Home() {
             centered
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
-            {branchMaps.map((branch) => (
+            {locations.map((branch) => (
               <article
                 key={branch.id}
+                id={branch.id}
                 className="overflow-hidden rounded-[20px] border border-forest-900/12 bg-[#fffdf8] text-forest-950 shadow-[0_1px_2px_rgba(10,42,28,.05),0_18px_46px_rgba(10,42,28,.08)]"
               >
                 <div className="p-5 sm:p-6">
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
-                      <span className="text-xs font-extrabold uppercase tracking-[.18em] text-wood-600">{branch.id}</span>
-                      <h3 className="mt-2 text-lg font-extrabold">{t[branch.nameKey]}</h3>
+                      <span className="text-xs font-extrabold uppercase tracking-[.18em] text-wood-700">{branch.shortId}</span>
+                      <h3 className="mt-2 text-lg font-extrabold">{branch.name}</h3>
                     </div>
                     <MapPin size={22} className="text-wood-600" aria-hidden="true" />
                   </div>
                   <p className="mt-3 text-sm font-semibold leading-6 text-forest-900/86">{branch.address}</p>
+                  <TrackedLink href={branch.directionsUrl} target="_blank" rel="noopener noreferrer" eventName="click_directions" eventProperties={{ location: `home_${branch.shortId}` }} className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-950">{lang === "vi" ? "Xem chỉ đường" : "Get directions"} <ArrowRight size={16} /></TrackedLink>
                 </div>
                 <div className="h-[230px] border-t border-forest-900/10 bg-forest-950/5 sm:h-[270px] lg:h-[300px]">
                   <iframe
                     src={branch.embedSrc}
-                    title={branch.iframeTitle}
+                    title={`Google Maps – ${branch.name}`}
                     loading="lazy"
                     allowFullScreen
                     referrerPolicy="strict-origin-when-cross-origin"
@@ -197,8 +185,8 @@ export default function Home() {
         <div className="container-shell">
           <div className="relative min-h-[420px] overflow-hidden rounded-[18px] border border-white/20 bg-forest-950 px-6 py-14 text-white shadow-[0_1px_0_rgba(255,255,255,0.12)_inset,0_18px_48px_rgba(6,43,29,0.10)] sm:min-h-[460px] sm:rounded-[24px] sm:px-10 lg:px-14 lg:py-16">
             <Image
-              src="/images/hero-workshop2.png"
-              alt="Vân gỗ và máy CNC tại Tùng Phát"
+              src="/images/hero-workshop2.webp"
+              alt="Không gian nội thất sử dụng bề mặt gỗ"
               fill
               sizes="100vw"
               quality={95}
@@ -208,35 +196,38 @@ export default function Home() {
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_46%,rgba(6,43,29,0.76)_0%,rgba(6,43,29,0.46)_34%,rgba(6,43,29,0)_66%)]" />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-forest-950/10 via-transparent to-forest-950/22" />
             <div className="relative z-10 flex min-h-[300px] max-w-3xl flex-col justify-center sm:min-h-[330px]">
-              <span className="eyebrow text-orange-300">{t.contactEyebrow}</span>
+              <span className="eyebrow eyebrow-light">{t.contactEyebrow}</span>
               <h2 className="text-balance mt-5 font-display text-3xl font-extrabold leading-tight tracking-[-0.035em] sm:text-4xl lg:text-[3.1rem] lg:leading-[1.22]">{t.contactTitle}</h2>
               <p className="text-pretty mt-5 max-w-2xl text-sm leading-7 text-white/78 sm:text-base">{t.contactDescription}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a href={zaloUrl} target="_blank" rel="noopener noreferrer" aria-label={t.contactCta} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-7 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-wood-600">
+                <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_contact", channel: "zalo" }} aria-label={t.contactCta} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-700 px-7 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-wood-800">
                   <MessageCircle size={18} /> {t.contactCta}
-                </a>
-                <a href="tel:0909259160" className="inline-flex min-h-12 items-center gap-2 text-sm font-bold text-white/90 transition hover:text-white">
-                  <Phone size={17} className="text-wood-500" /> 0909 259 160
-                </a>
+                </TrackedLink>
+                <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: "home_contact" }} className="inline-flex min-h-12 items-center gap-2 text-sm font-bold text-white/90 transition hover:text-white">
+                  <Phone size={17} className="text-wood-500" /> {PHONE_DISPLAY}
+                </TrackedLink>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      </main>
       <Footer />
       <div className="fixed bottom-4 right-4 z-40 flex flex-col items-end gap-3">
-        <a
-          href="https://zalo.me/0909259160"
+        <TrackedLink
+          href={ZALO_URL}
           target="_blank"
           rel="noopener noreferrer"
+          eventName="click_zalo"
+          eventProperties={{ location: "floating" }}
           aria-label="Mở Zalo Tùng Phát"
           className="grid h-[54px] w-[54px] place-items-center rounded-full bg-[#0068ff] text-[14px] font-extrabold text-white shadow-[0_6px_20px_rgba(0,0,0,0.22)] transition-transform hover:scale-[1.06] sm:h-[58px] sm:w-[58px] lg:h-[62px] lg:w-[62px] lg:text-[15px]"
         >
           Zalo
-        </a>
-        <a href="tel:0909259160" aria-label="Gọi Tùng Phát" className="grid h-[52px] w-[52px] place-items-center rounded-full bg-wood-500 text-white shadow-md sm:hidden"><Phone size={20} /></a>
+        </TrackedLink>
+        <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: "floating" }} aria-label="Gọi Tùng Phát" className="grid h-[52px] w-[52px] place-items-center rounded-full bg-wood-700 text-white shadow-md sm:hidden"><Phone size={20} /></TrackedLink>
       </div>
-    </main>
+    </>
   );
 }

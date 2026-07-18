@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { CatalogueView } from "@/components/CatalogueView";
 import { brands, getBrand } from "@/lib/brands";
 
-type RouteProps = { params: { brand: string } };
+type RouteProps = { params: Promise<{ brand: string }> };
 
 export function generateStaticParams() {
   return brands
@@ -13,8 +13,9 @@ export function generateStaticParams() {
     .map((brand) => ({ brand: brand.slug }));
 }
 
-export function generateMetadata({ params }: RouteProps): Metadata {
-  const brand = getBrand(params.brand);
+export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
+  const { brand: brandSlug } = await params;
+  const brand = getBrand(brandSlug);
   if (!brand) return {};
   return {
     title: `Catalogue ${brand.name} | Tùng Phát`,
@@ -22,8 +23,9 @@ export function generateMetadata({ params }: RouteProps): Metadata {
   };
 }
 
-export default function CatalogueRoute({ params }: RouteProps) {
-  const brand = getBrand(params.brand);
+export default async function CatalogueRoute({ params }: RouteProps) {
+  const { brand: brandSlug } = await params;
+  const brand = getBrand(brandSlug);
   if (!brand || brand.slug === "kes") notFound();
 
   return (

@@ -27,19 +27,19 @@ export const vi = {
 
   /* ── Hero ── */
   heroCompany: "Công ty TNHH TMDV Gỗ Tùng Phát",
-  heroTitle1: "Vật liệu",
-  heroTitle2: "gỗ ghép",
-  heroTitle3: "Gia công",
-  heroTitle4: "CNC",
+  heroTitle1: "TÙNG PHÁT –",
+  heroTitle2: "Vật liệu gỗ",
+  heroTitle3: "và giải pháp",
+  heroTitle4: "gia công CNC",
   heroDescription:
-    "Phân phối vật liệu gỗ từ các thương hiệu uy tín và gia công CNC theo kích thước, bản vẽ, đáp ứng nhu cầu của xưởng nội thất, thợ mộc, kiến trúc sư và doanh nghiệp.",
+    "Cung cấp MDF, MFC, plywood, laminate và các vật liệu gỗ liên quan; đồng thời nhận gia công CNC theo kích thước hoặc file kỹ thuật cho xưởng nội thất, thợ mộc, đơn vị thiết kế và doanh nghiệp.",
   heroCtaExplore: "Khám phá catalogue",
   heroCtaQuote: "Liên hệ báo giá",
 
   /* ── Partners ── */
-  partnersTitle: "ĐỐI TÁC & THƯƠNG HIỆU PHÂN PHỐI",
+  partnersTitle: "THƯƠNG HIỆU VẬT LIỆU",
   partnersDescription:
-    "Tùng Phát cung cấp các dòng vật liệu gỗ từ những thương hiệu uy tín trên thị trường.",
+    "Tham khảo các dòng vật liệu đang được giới thiệu tại Tùng Phát và trao đổi theo mã, bề mặt hoặc nhu cầu sử dụng.",
 
   /* ── Product categories ── */
   categoryEyebrow: "Danh mục vật liệu",
@@ -84,42 +84,42 @@ export const vi = {
     ["02", "Gửi kích thước / file gia công"],
     ["03", "Xác nhận quy cách và báo giá"],
     ["04", "Cắt CNC, kiểm tra thành phẩm"],
-    ["05", "Nhận hàng hoặc giao hàng"]
+    ["05", "Thống nhất phương thức nhận hàng"]
   ],
   processScope:
-    "Phạm vi dịch vụ: cung cấp vật liệu và gia công tại xưởng. Chưa bao gồm vận chuyển, lắp ráp hoặc lắp đặt tại công trình trừ khi được xác nhận riêng.",
+    "Phạm vi dịch vụ trên website: cung cấp vật liệu và gia công CNC. Không bao gồm thiết kế, thi công hoặc lắp đặt nội thất.",
 
   /* ── Why us ── */
   whyUsEyebrow: "Lý do hợp tác",
   whyUsTitle: "Vì sao chọn Tùng Phát?",
   whyUsItems: [
-    "Vật liệu rõ nguồn gốc",
+    "Tư vấn theo mã vật liệu",
     "Đa dạng mã màu & bề mặt",
-    "Gia công CNC chính xác",
+    "Gia công CNC theo quy cách",
     "Hỗ trợ xưởng, thợ & đơn vị thiết kế"
   ],
 
   /* ── Workshop media ── */
-  workshopEyebrow: "Hình ảnh thực tế",
-  workshopTitle: "Xưởng, vật liệu và thành phẩm Tùng Phát",
+  workshopEyebrow: "Vật liệu và ứng dụng",
+  workshopTitle: "Hình ảnh bề mặt, ứng dụng và gia công CNC",
   workshopDescription:
-    "Tập trung vào năng lực kho/xưởng và chất lượng gia công để bạn đánh giá trước khi đặt hàng.",
+    "Hình ảnh minh họa giúp tham khảo bề mặt, không gian ứng dụng và hạng mục gia công trước khi trao đổi quy cách.",
   workshopGalleryLabels: [
-    "Kho ván và vật liệu",
-    "Máy CNC đang vận hành",
-    "Quá trình gia công tại xưởng",
-    "Mẫu vật liệu thực tế",
-    "Cạnh cắt và chi tiết thành phẩm",
-    "Bộ mẫu bề mặt"
+    "Không gian ứng dụng bề mặt gỗ",
+    "Ứng dụng vân gỗ trong nội thất",
+    "Minh họa không gian sử dụng vật liệu gỗ",
+    "Bề mặt gỗ trong thiết kế nội thất",
+    "Máy CNC gia công tấm ván",
+    "Các tấm vật liệu và bề mặt gỗ"
   ],
-  workshopProcessEyebrow: "Quy trình tại xưởng",
-  workshopProcessTitle: "Gia công thực tế tại xưởng Tùng Phát",
+  workshopProcessEyebrow: "Tham khảo quy trình",
+  workshopProcessTitle: "Trao đổi và gia công theo quy cách đã xác nhận",
   workshopProcessDescription:
-    "Từ triển khai bản vẽ, cắt CNC đến dán chỉ hoàn thiện, từng công đoạn đều được đội ngũ Tùng Phát thực hiện trực tiếp tại xưởng, đảm bảo độ chính xác và chất lượng theo yêu cầu của từng đơn hàng.",
+    "Thông tin vật liệu, kích thước và file kỹ thuật cần được kiểm tra trước khi chạy máy. Video minh họa một phần hoạt động gia công CNC.",
   workshopSteps: [
     "Triển khai và kiểm tra file gia công",
-    "Cắt CNC chính xác theo kích thước",
-    "Dán chỉ và hoàn thiện sản phẩm"
+    "Cắt CNC theo kích thước đã xác nhận",
+    "Kiểm tra chi tiết theo yêu cầu đã thống nhất"
   ],
 
   /* ── Contact CTA ── */
@@ -157,7 +157,7 @@ export const vi = {
 
   /* ── Catalogue pages ── */
   catalogueTitle: "Catalogue",
-  catalogueDescription: "Catalogue sản phẩm chính thức từ",
+  catalogueDescription: "Thông tin catalogue của",
   cataloguePlaceholder: "Catalogue đang được cập nhật. Vui lòng liên hệ để nhận file catalogue mới nhất.",
   catalogueRequestCta: "Yêu cầu catalogue",
   catalogueThumbnails: {
@@ -182,14 +182,14 @@ export const vi = {
       title: "01. Mục đích thu thập thông tin",
       content: [
         "Tùng Phát thu thập thông tin từ khách hàng và đối tác nhằm phục vụ hoạt động tư vấn vật liệu gỗ, gia công CNC và các dịch vụ liên quan. Việc thu thập dữ liệu giúp chúng tôi hiểu rõ nhu cầu, từ đó cung cấp giải pháp chính xác và kịp thời.",
-        "Thông tin được thu thập khi bạn: gửi yêu cầu báo giá qua website, tải file thiết kế CNC (DXF, DWG, PDF, AI/CDR), liên hệ qua Zalo, điện thoại hoặc email, và khi bạn đặt hàng vật liệu hoặc gia công tại Tùng Phát."
+        "Thông tin được cung cấp khi bạn chủ động gửi form báo giá/liên hệ, liên hệ qua Zalo, điện thoại hoặc trao đổi đơn hàng vật liệu và gia công CNC. Website không có chức năng tải file trực tiếp."
       ]
     },
     {
       id: "pham-vi",
       title: "02. Phạm vi sử dụng thông tin",
       content: [
-        "Toàn bộ thông tin khách hàng cung cấp chỉ được sử dụng trong nội bộ Tùng Phát cho các mục đích: kiểm tra tình trạng hàng và mã vật liệu, lập báo giá và xác nhận đơn hàng, tiếp nhận và xử lý file gia công CNC, liên hệ giao nhận và hỗ trợ sau bán hàng.",
+        "Thông tin khách hàng cung cấp được sử dụng để kiểm tra mã vật liệu, lập báo giá, xác nhận quy cách, xử lý file gia công CNC và trao đổi về đơn hàng.",
         "Chúng tôi không sử dụng thông tin khách hàng vào bất kỳ mục đích nào ngoài phạm vi đã nêu, trừ khi có sự đồng ý riêng từ khách hàng hoặc theo yêu cầu của cơ quan nhà nước có thẩm quyền.",
         "Tùng Phát không bán, trao đổi hoặc cho thuê thông tin cá nhân của khách hàng cho bất kỳ bên thứ ba nào."
       ]
@@ -198,7 +198,7 @@ export const vi = {
       id: "thoi-gian",
       title: "03. Thời gian lưu trữ thông tin",
       content: [
-        "Thông tin khách hàng được lưu trữ trong suốt quá trình hợp tác và giao dịch. Đối với các giao dịch đã hoàn tất, dữ liệu được lưu giữ trong thời gian cần thiết để phục vụ công tác bảo hành, đối chiếu và tuân thủ quy định pháp luật.",
+        "Yêu cầu báo giá hoặc liên hệ chưa phát sinh giao dịch được lưu tối đa 24 tháng kể từ lần cập nhật cuối. Dữ liệu liên quan giao dịch có thể được lưu lâu hơn khi pháp luật hoặc nghĩa vụ đối soát yêu cầu.",
         "Khi thông tin không còn cần thiết cho các mục đích đã nêu, Tùng Phát sẽ xóa hoặc ẩn danh dữ liệu một cách an toàn."
       ]
     },
@@ -208,9 +208,9 @@ export const vi = {
       content: [
         "Đơn vị chịu trách nhiệm tiếp nhận và quản lý thông tin khách hàng:",
         "Công ty TNHH Thương mại Dịch vụ Gỗ Tùng Phát",
-        "Địa chỉ: TP.HCM và khu vực lân cận",
+        "Địa chỉ: 14 Tam Bình và 81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
         "Điện thoại: 0909 259 160",
-        "Email: hello@tungphatwood.vn",
+        "Zalo: 0909 259 160",
         "Mọi thắc mắc liên quan đến việc thu thập và xử lý dữ liệu, quý khách vui lòng liên hệ qua các kênh trên."
       ]
     },
@@ -218,7 +218,7 @@ export const vi = {
       id: "cam-ket",
       title: "05. Cam kết bảo mật thông tin",
       content: [
-        "Tùng Phát cam kết áp dụng các biện pháp bảo mật kỹ thuật và tổ chức để bảo vệ dữ liệu khách hàng khỏi truy cập trái phép, thay đổi hoặc tiết lộ. Dữ liệu được lưu trữ trên hệ thống có kiểm soát truy cập.",
+        "Tùng Phát áp dụng các biện pháp phù hợp để hạn chế truy cập, thay đổi hoặc tiết lộ trái phép đối với thông tin khách hàng trong phạm vi hệ thống do doanh nghiệp quản lý.",
         "File thiết kế và bản vẽ CNC do khách hàng cung cấp chỉ được sử dụng cho mục đích báo giá và gia công. Chúng tôi không chia sẻ file của khách hàng với bên thứ ba khi chưa có sự đồng ý.",
         "Trong trường hợp phát sinh sự cố về bảo mật, Tùng Phát sẽ thông báo kịp thời đến khách hàng và thực hiện các biện pháp khắc phục phù hợp."
       ]
@@ -239,7 +239,6 @@ export const vi = {
       content: [
         "Mọi câu hỏi hoặc yêu cầu liên quan đến Chính sách bảo mật, vui lòng liên hệ Tùng Phát qua các kênh:",
         "Điện thoại: 0909 259 160",
-        "Email: hello@tungphatwood.vn",
         "Zalo: 0909 259 160",
         "Chúng tôi sẽ phản hồi trong thời gian sớm nhất."
       ]
@@ -263,7 +262,7 @@ export const vi = {
       id: "chap-nhan",
       title: "1. Chấp nhận điều khoản",
       content: [
-        "Bằng việc truy cập website tungphatwood.vn, bạn xác nhận đã đọc, hiểu và đồng ý với các điều khoản sử dụng này.",
+        "Bằng việc truy cập website mdftungphat.com, bạn xác nhận đã đọc, hiểu và đồng ý với các điều khoản sử dụng này.",
         "Nếu bạn không đồng ý với bất kỳ điều khoản nào, vui lòng ngừng sử dụng website."
       ]
     },
@@ -288,7 +287,7 @@ export const vi = {
       id: "bao-gia",
       title: "4. Báo giá và đơn hàng",
       content: [
-        "Báo giá gửi qua website là báo giá sơ bộ, có thể thay đổi tùy theo quy cách thực tế, số lượng và thời điểm đặt hàng.",
+        "Báo giá trao đổi qua điện thoại hoặc Zalo có thể thay đổi tùy theo quy cách thực tế, số lượng và thời điểm đặt hàng.",
         "Đơn hàng chỉ được xác nhận sau khi hai bên thống nhất quy cách, giá cả và thời gian giao hàng qua văn bản hoặc tin nhắn xác nhận."
       ]
     },
@@ -297,7 +296,7 @@ export const vi = {
       title: "5. File thiết kế và gia công CNC",
       content: [
         "Khi gửi file thiết kế (DXF, DWG, PDF, AI/CDR), bạn đảm bảo mình có quyền sử dụng các file đó và không vi phạm bản quyền của bên thứ ba.",
-        "Tùng Phát cam kết chỉ sử dụng file của bạn cho mục đích báo giá và gia công, không chia sẻ cho bên thứ ba khi chưa có sự đồng ý."
+        "File bạn chủ động gửi được sử dụng để kiểm tra yêu cầu, báo giá và gia công; việc sử dụng cho mục đích khác cần có sự đồng ý của bạn."
       ]
     },
     {
@@ -331,7 +330,7 @@ export const vi = {
         "Mọi thắc mắc về Điều khoản sử dụng, vui lòng liên hệ:",
         "Công ty TNHH TM Dịch vụ Gỗ Tùng Phát",
         "Điện thoại: 0909 259 160",
-        "Email: hello@tungphatwood.vn"
+        "Zalo: 0909 259 160"
       ]
     }
   ]
@@ -368,9 +367,9 @@ export const en: typeof vi = {
   heroCtaExplore: "Explore catalogue",
   heroCtaQuote: "Contact for a quote",
 
-  partnersTitle: "PARTNERS & DISTRIBUTED BRANDS",
+  partnersTitle: "MATERIAL BRANDS",
   partnersDescription:
-    "Tùng Phát supplies wood material lines from reputable brands in the market.",
+    "Browse material lines presented by Tùng Phát and ask about specific codes, surfaces, or applications.",
 
   categoryEyebrow: "Material Categories",
   categoryTitle: "Find the right panel for the right application",
@@ -412,40 +411,40 @@ export const en: typeof vi = {
     ["02", "Send dimensions / machining file"],
     ["03", "Confirm specs and quote"],
     ["04", "CNC cutting, final inspection"],
-    ["05", "Pickup or delivery"]
+    ["05", "Agree on the pickup method"]
   ],
   processScope:
-    "Scope of service: material supply and in-house machining. Transport, assembly, or on-site installation are not included unless confirmed separately.",
+    "Scope shown on this website: material supply and CNC machining. Interior design, construction, and installation are not included.",
 
   whyUsEyebrow: "Why Partner with Us",
   whyUsTitle: "Why choose Tùng Phát?",
   whyUsItems: [
-    "Verified material sources",
+    "Advice by material code",
     "Wide range of colors & surfaces",
-    "Precision CNC machining",
+    "CNC machining to confirmed specs",
     "Support for workshops, carpenters & designers"
   ],
 
-  workshopEyebrow: "Real-World Images",
-  workshopTitle: "Tùng Phát Workshop, Materials & Finished Products",
+  workshopEyebrow: "Materials and Applications",
+  workshopTitle: "Surface, application, and CNC machining images",
   workshopDescription:
-    "Focus on warehouse and workshop capability and machining quality so you can evaluate before ordering.",
+    "Illustrative images for reviewing surfaces, interior applications, and machining scopes before confirming specifications.",
   workshopGalleryLabels: [
-    "Panel and material warehouse",
-    "CNC machine in operation",
-    "Workshop machining process",
-    "Actual material samples",
-    "Cut edges and finished details",
-    "Surface sample collection"
+    "Interior application using wood surfaces",
+    "Woodgrain application in an interior",
+    "Illustrative space using wood materials",
+    "Wood surface in interior design",
+    "CNC machine processing a panel",
+    "Wood material panels and surfaces"
   ],
-  workshopProcessEyebrow: "Workshop Process",
-  workshopProcessTitle: "Real machining at Tùng Phát workshop",
+  workshopProcessEyebrow: "Process Reference",
+  workshopProcessTitle: "Machining to confirmed specifications",
   workshopProcessDescription:
-    "From drawing review and CNC cutting to edge-banding and finishing, every step is performed directly by the Tùng Phát team at our workshop, ensuring accuracy and quality to each order's specifications.",
+    "Material, dimensions, and technical files should be reviewed before machining. The video illustrates part of a CNC process.",
   workshopSteps: [
     "Review and verify machining files",
-    "Precision CNC cutting to specification",
-    "Edge-banding and finishing"
+    "CNC cutting to confirmed dimensions",
+    "Checking details against agreed requirements"
   ],
 
   contactEyebrow: "CONTACT TUNG PHAT",
@@ -502,14 +501,14 @@ export const en: typeof vi = {
       title: "01. Purpose of Information Collection",
       content: [
         "Tùng Phát collects information from customers and partners to support wood material consultation, CNC machining services, and related operations. Data collection helps us understand your needs and provide accurate, timely solutions.",
-        "Information is collected when you: submit a quote request through the website, upload CNC design files (DXF, DWG, PDF, AI/CDR), contact us via Zalo, phone, or email, and when you place material or machining orders with Tùng Phát."
+        "Information is provided when you submit a quote/contact form, contact us by Zalo or phone, or discuss material and CNC orders. The website has no direct file-upload feature."
       ]
     },
     {
       id: "pham-vi",
       title: "02. Scope of Information Use",
       content: [
-        "All customer-provided information is used internally by Tùng Phát for the following purposes: checking stock and material codes, preparing quotes and confirming orders, receiving and processing CNC machining files, and coordinating delivery and after-sales support.",
+        "Customer-provided information is used to check material codes, prepare quotes, confirm specifications, process CNC files, and discuss orders.",
         "We do not use customer information for any purpose beyond the stated scope unless with the customer's explicit consent or as required by competent government authorities.",
         "Tùng Phát does not sell, trade, or rent customer personal information to any third parties."
       ]
@@ -518,7 +517,7 @@ export const en: typeof vi = {
       id: "thoi-gian",
       title: "03. Information Retention Period",
       content: [
-        "Customer information is retained throughout the cooperation and transaction period. For completed transactions, data is kept for as long as necessary to support warranty, reconciliation, and legal compliance.",
+        "Quote or contact requests that do not become transactions are retained for up to 24 months after the last update. Transaction-related records may be retained longer when required for legal or reconciliation obligations.",
         "When information is no longer needed for the stated purposes, Tùng Phát will securely delete or anonymize the data."
       ]
     },
@@ -528,9 +527,9 @@ export const en: typeof vi = {
       content: [
         "The unit responsible for receiving and managing customer information:",
         "Tùng Phát Wood Trading & Service Co., Ltd.",
-        "Address: Ho Chi Minh City and surrounding areas",
+        "Address: 14 Tam Binh and 81B Tam Binh, Hiep Binh Ward, Ho Chi Minh City",
         "Phone: 0909 259 160",
-        "Email: hello@tungphatwood.vn",
+        "Zalo: 0909 259 160",
         "For any inquiries regarding data collection and processing, please contact us through the channels above."
       ]
     },
@@ -538,7 +537,7 @@ export const en: typeof vi = {
       id: "cam-ket",
       title: "05. Information Security Commitment",
       content: [
-        "Tùng Phát is committed to implementing technical and organizational security measures to protect customer data from unauthorized access, alteration, or disclosure. Data is stored on access-controlled systems.",
+        "Tùng Phát applies appropriate measures to limit unauthorized access, alteration, or disclosure of customer information within systems managed by the business.",
         "Design files and CNC drawings provided by customers are used solely for quotation and machining purposes. We do not share customer files with third parties without consent.",
         "In the event of a security incident, Tùng Phát will promptly notify customers and implement appropriate remedial measures."
       ]
@@ -559,7 +558,6 @@ export const en: typeof vi = {
       content: [
         "For any questions or requests regarding this Privacy Policy, please contact Tùng Phát through the following channels:",
         "Phone: 0909 259 160",
-        "Email: hello@tungphatwood.vn",
         "Zalo: 0909 259 160",
         "We will respond as soon as possible."
       ]
@@ -582,7 +580,7 @@ export const en: typeof vi = {
       id: "chap-nhan",
       title: "1. Acceptance of Terms",
       content: [
-        "By accessing the tungphatwood.vn website, you confirm that you have read, understood, and agree to these terms of use.",
+        "By accessing mdftungphat.com, you confirm that you have read, understood, and agree to these terms of use.",
         "If you do not agree with any term, please discontinue use of the website."
       ]
     },
@@ -607,7 +605,7 @@ export const en: typeof vi = {
       id: "bao-gia",
       title: "4. Quotes & Orders",
       content: [
-        "Quotes sent through the website are preliminary and may change depending on actual specifications, quantities, and order timing.",
+        "Quotes discussed by phone or Zalo may change depending on actual specifications, quantities, and order timing.",
         "Orders are only confirmed after both parties agree on specifications, pricing, and delivery timeline via written or message confirmation."
       ]
     },
@@ -650,7 +648,7 @@ export const en: typeof vi = {
         "For any questions regarding these Terms of Use, please contact:",
         "Tùng Phát Wood Trading & Service Co., Ltd.",
         "Phone: 0909 259 160",
-        "Email: hello@tungphatwood.vn"
+        "Zalo: 0909 259 160"
       ]
     }
   ]
@@ -658,6 +656,6 @@ export const en: typeof vi = {
 
 export const translations: Record<Lang, typeof vi> = { vi, en };
 
-export function t(lang: Lang, key: TranslationKey): any {
+export function t<K extends TranslationKey>(lang: Lang, key: K): (typeof vi)[K] {
   return translations[lang][key];
 }

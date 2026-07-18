@@ -1,14 +1,16 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/seo";
 
-const baseUrl = 'https://www.mdftungphat.com'
+export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      userAgent: '*',
-      allow: '/',
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/api/", "/admin/", "/_vercel/", "/preview/", "/*?preview="]
     },
-    host: baseUrl,
-    sitemap: `${baseUrl}/sitemap.xml`,
-  }
+    host: SITE_URL,
+    sitemap: `${SITE_URL}/sitemap.xml`
+  };
 }

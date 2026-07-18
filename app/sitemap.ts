@@ -1,32 +1,22 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
+import { getArticles, getProducts, getProjects, getServicePages } from "@/lib/content";
+import { absoluteUrl } from "@/lib/seo";
+import { isReservedRootSlug } from "@/lib/reserved-slugs";
+import staticPages from "@/content/settings/static-pages.json";
 
-const baseUrl = 'https://www.mdftungphat.com'
+export const dynamic = "force-static";
+
+const staticRoutes = [
+  "/", "/san-pham", "/gia-cong-cnc", "/bao-gia", "/du-an", "/bai-viet", "/lien-he",
+  "/chinh-sach-bao-mat", "/dieu-khoan-su-dung"
+] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: baseUrl,
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    ...[
-      '/catalogue/an-cuong',
-      '/catalogue/thanh-thuy',
-      '/catalogue/ba-thanh',
-      '/san-pham',
-      '/san-pham/an-cuong',
-      '/san-pham/thanh-thuy',
-      '/san-pham/ba-thanh',
-      '/san-pham/kes',
-    ].map((route) => ({
-      url: `${baseUrl}${route}`,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    })),
-    ...['/chinh-sach-bao-mat', '/dieu-khoan-su-dung'].map((route) => ({
-      url: `${baseUrl}${route}`,
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
-    })),
-  ]
+  const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({ url: absoluteUrl(route), lastModified: staticPages.updatedAt, changeFrequency: route === "/" ? "weekly" : "monthly", priority: route === "/" ? 1 : route === "/bao-gia" ? 0.9 : 0.7 }));
+  const rootContent = (slug: string) => !isReservedRootSlug(slug);
+  const products: MetadataRoute.Sitemap = getProducts().filter((entry) => rootContent(entry.slug)).map((entry) => ({ url: absoluteUrl(`/${entry.slug}`), lastModified: entry.updatedAt, changeFrequency: "weekly", priority: 0.9 }));
+  const services: MetadataRoute.Sitemap = getServicePages().filter((entry) => rootContent(entry.slug)).map((entry) => ({ url: absoluteUrl(`/${entry.slug}`), lastModified: entry.updatedAt, changeFrequency: "weekly", priority: 0.9 }));
+  const articles: MetadataRoute.Sitemap = getArticles().map((entry) => ({ url: absoluteUrl(`/bai-viet/${entry.slug}`), lastModified: entry.updatedAt, changeFrequency: "monthly", priority: 0.7 }));
+  const projects: MetadataRoute.Sitemap = getProjects().map((entry) => ({ url: absoluteUrl(`/du-an/${entry.slug}`), lastModified: entry.updatedAt, changeFrequency: "monthly", priority: 0.7 }));
+  return [...staticEntries, ...products, ...services, ...articles, ...projects];
 }

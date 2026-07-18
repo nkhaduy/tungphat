@@ -1,24 +1,12 @@
 @echo off
-:loop
-cls
-echo ====================================================
-echo    DANG CANH THU MUC TUNGPHAT TREN C:\Users\KhaDuy
-echo     Tu dong commit va ghi de code len GitHub (10s)
-echo ====================================================
+setlocal
 
-:: Gom tất cả thay đổi trong thư mục mới
-git add .
+call npm ci || exit /b 1
+call npm run lint || exit /b 1
+call npm run typecheck || exit /b 1
+call npm test || exit /b 1
+call npm run build || exit /b 1
+call npm run validate:links || exit /b 1
 
-:: Commit tự động kèm ngày giờ hiện tại
-set "current_time=%date% %time%"
-git commit -m "Auto sync tu thu muc moi: %current_time%" >nul 2>&1
-
-:: Ép buộc đẩy đè từ thư mục này lên GitHub
-git push origin main --force
-
-echo.
-echo ====================================================
-echo    DA SYNC LEN GITHUB! Dang doi 10s de tiep tuc...
-echo ====================================================
-timeout /t 10 >nul
-goto loop
+echo Kiem tra hoan tat. Hay xem git status va commit co chu dich truoc khi push.
+echo Script khong tu git add, commit hoac force-push.

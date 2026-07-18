@@ -1,89 +1,125 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Analytics } from "@/components/Analytics";
+import { JsonLd } from "@/components/JsonLd";
 import { LanguageProvider } from "@/lib/i18n-context";
+import {
+  BUSINESS_NAME,
+  DEFAULT_DESCRIPTION,
+  PHONE_E164,
+  SITE_NAME,
+  SITE_URL,
+  absoluteUrl
+} from "@/lib/seo";
+import { locations } from "@/lib/locations";
+import business from "@/content/settings/business.json";
+import seo from "@/content/settings/seo.json";
 import "./globals.css";
 
-const montserrat = Montserrat({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "700"],
-  variable: "--font-montserrat",
-  display: "swap"
-});
-
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.mdftungphat.com"),
-  title: "Tùng Phát | Vật liệu gỗ & Gia công CNC",
-  description:
-    "Phân phối vật liệu gỗ và gia công CNC theo kích thước, bản vẽ cho xưởng nội thất, thợ mộc, kiến trúc sư và doanh nghiệp.",
-  alternates: {
-    canonical: "/"
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: seo.defaultTitle,
+    template: "%s | Tùng Phát"
   },
-  manifest: "/site.webmanifest?v=20260630-favicon2",
+  description: DEFAULT_DESCRIPTION,
+  alternates: { canonical: absoluteUrl("/") },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" }
+  },
+  manifest: "/manifest.webmanifest",
   icons: {
     icon: [
-      { url: "/favicon.ico?v=20260630-favicon2", sizes: "any" },
-      { url: "/favicon-16x16.png?v=20260630-favicon2", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png?v=20260630-favicon2", sizes: "32x32", type: "image/png" }
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" }
     ],
-    apple: [{ url: "/apple-touch-icon.png?v=20260630-favicon2", sizes: "180x180", type: "image/png" }]
+    shortcut: "/favicon.ico",
+    apple: [
+      {
+        url: "/apple-icon.png",
+        type: "image/png",
+        sizes: "180x180"
+      }
+    ]
   },
   openGraph: {
-    title: "Tùng Phát | Vật liệu gỗ & Gia công CNC",
-    description:
-      "Phân phối vật liệu gỗ và gia công CNC theo kích thước, bản vẽ cho xưởng nội thất, thợ mộc, kiến trúc sư và doanh nghiệp.",
-    url: "/",
-    siteName: "Tùng Phát",
+    title: seo.defaultTitle,
+    description: DEFAULT_DESCRIPTION,
+    url: absoluteUrl("/"),
+    siteName: SITE_NAME,
     locale: "vi_VN",
     type: "website",
-    images: [{ url: "/og-logo.png?v=20260630", width: 899, height: 250, alt: "Tùng Phát Wood & CNC Solutions" }]
+    images: [
+      {
+        url: "/og-logo.png?v=20260630",
+        width: 899,
+        height: 250,
+        alt: "Tùng Phát – Vật liệu gỗ và giải pháp gia công CNC"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tùng Phát | Vật liệu gỗ & Gia công CNC",
-    description:
-      "Phân phối vật liệu gỗ và gia công CNC theo kích thước, bản vẽ cho xưởng nội thất, thợ mộc, kiến trúc sư và doanh nghiệp.",
+    title: seo.defaultTitle,
+    description: DEFAULT_DESCRIPTION,
     images: ["/og-logo.png?v=20260630"]
   }
 };
 
-const organizationSchema = {
+const siteSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Công ty TNHH TMDV Gỗ Tùng Phát",
-  url: "https://www.mdftungphat.com",
-  logo: "https://www.mdftungphat.com/logo-vertical.png",
-  telephone: "+84909259160",
-  taxID: "0319115830",
-  address: [
+  "@graph": [
     {
-      "@type": "PostalAddress",
-      streetAddress: "14 Tam Bình, Phường Hiệp Bình",
-      addressLocality: "TP. Hồ Chí Minh",
-      addressCountry: "VN"
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: SITE_NAME,
+      inLanguage: "vi-VN",
+      publisher: { "@id": `${SITE_URL}/#organization` }
     },
     {
-      "@type": "PostalAddress",
-      streetAddress: "81B Tam Bình, Phường Hiệp Bình",
-      addressLocality: "TP. Hồ Chí Minh",
-      addressCountry: "VN"
-    }
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: BUSINESS_NAME,
+      url: `${SITE_URL}/`,
+      logo: "https://mdftungphat.com/icon.png",
+      telephone: PHONE_E164,
+      taxID: business.taxId,
+      sameAs: business.socialLinks,
+      department: locations.map((location) => ({ "@id": `${SITE_URL}/#${location.id}` }))
+    },
+    ...locations.map((location) => ({
+      "@type": business.localBusinessType,
+      "@id": `${SITE_URL}/#${location.id}`,
+      name: location.name,
+      url: `${SITE_URL}/lien-he#${location.id}`,
+      telephone: PHONE_E164,
+      parentOrganization: { "@id": `${SITE_URL}/#organization` },
+      areaServed: business.serviceAreas,
+      ...(business.openingHours.length ? { openingHours: business.openingHours } : {}),
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: location.streetAddress,
+        addressLocality: location.addressLocality,
+        addressRegion: location.addressRegion,
+        addressCountry: location.addressCountry
+      }
+    }))
   ]
 };
 
-export default function RootLayout({
-  children
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="vi" className={montserrat.variable}>
+    <html lang="vi">
       <head>
-        <link rel="preload" as="image" href="/images/hero-workshop.png" type="image/png" fetchPriority="high" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
+        <link rel="preload" as="image" href="/images/hero-workshop-mobile.webp" media="(max-width: 767px)" fetchPriority="high" />
+        <link rel="preload" as="image" href="/images/hero-workshop.webp" media="(min-width: 768px)" fetchPriority="high" />
+        <JsonLd data={siteSchema} />
       </head>
       <body>
         <LanguageProvider>{children}</LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );

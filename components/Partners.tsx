@@ -6,9 +6,9 @@ import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
 
 const partners = [
-  { slug: "thanh-thuy", name: "Thanh Thùy", logo: "/partners/thanh-thuy-logo.png", alt: "Logo Thanh Thùy", width: 473, height: 244, className: "max-h-[122px] max-w-[236px]" },
-  { slug: "ba-thanh", name: "Ba Thanh", logo: "/partners/ba-thanh-logo.png", alt: "Logo Ba Thanh", width: 4009, height: 1557, className: "max-h-[108px] max-w-[278px]" },
-  { slug: "an-cuong", name: "An Cường", logo: "/partners/an-cuong-logo.png", alt: "Logo An Cường", width: 500, height: 200, className: "max-h-[104px] max-w-[280px]" }
+  { slug: "thanh-thuy", name: "Thanh Thùy", logo: "/partners/thanh-thuy-logo.webp", alt: "Logo Thanh Thùy", width: 473, height: 244, className: "max-h-[122px] max-w-[236px]" },
+  { slug: "ba-thanh", name: "Ba Thanh", logo: "/partners/ba-thanh-logo.webp", alt: "Logo Ba Thanh", width: 600, height: 233, className: "max-h-[108px] max-w-[278px]" },
+  { slug: "an-cuong", name: "An Cường", logo: "/partners/an-cuong-logo.webp", alt: "Logo An Cường", width: 500, height: 200, className: "max-h-[104px] max-w-[280px]" }
 ];
 
 export function Partners() {

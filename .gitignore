@@ -1,2 +1,19 @@
 node_modules/
 .next/
+.seo-cache/
+out/
+.wrangler/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.env
+.env.*
+!.env.example
+playwright-report/
+test-results/
+coverage/
+backups/
+local-media/
+# Local npm cache, audit logs and screenshots. Never commit runtime artifacts.
+work/
+*.tsbuildinfo
