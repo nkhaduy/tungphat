@@ -15,10 +15,6 @@ logo_url: https://mdftungphat.com/logo-horizontal.webp
 locale: vi
 media_folder: public/uploads
 public_folder: /uploads
-media_library:
-  name: default
-  config:
-    max_file_size: 1572864
 
 slug:
   encoding: ascii

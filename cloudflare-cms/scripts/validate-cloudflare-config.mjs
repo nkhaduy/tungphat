@@ -32,6 +32,7 @@ if (cms.backend?.repo !== "nkhaduy/tungphat" || cms.backend?.branch !== "main") 
 if (cms.backend?.base_url !== "https://cms.mdftungphat.com" || cms.backend?.auth_endpoint !== "auth") errors.push("Decap OAuth phải same-domain /auth.");
 if (cms.publish_mode !== "simple") errors.push("Decap phải dùng publish_mode: simple.");
 if (cms.site_url !== "https://mdftungphat.com" || cms.display_url !== "https://mdftungphat.com") errors.push("CMS site/display URL phải là canonical apex.");
+if (cms.media_library?.name === "default") errors.push("Không khai báo media_library name=default; Decap dùng media library tích hợp khi block này được bỏ.");
 
 if (errors.length) {
   console.error(`Cloudflare CMS preflight thất bại (${errors.length} lỗi):\n- ${errors.join("\n- ")}`);
