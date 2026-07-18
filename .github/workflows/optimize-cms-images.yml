@@ -2,7 +2,7 @@ name: Optimize CMS Images
 
 on:
   push:
-    branches: ["cms/**"]
+    branches: [main]
 
 permissions:
   contents: write
@@ -11,10 +11,12 @@ jobs:
   optimize:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: main
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -22,6 +24,13 @@ jobs:
       - run: npm ci
       - run: npm run images:optimize
       - run: npm run images:check
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - run: npm run validate:links
+      - run: npm run validate:cloudflare-config
+      - run: git diff --check
       - name: Commit optimized images when needed
         run: |
           if [[ -n "$(git status --porcelain -- public/uploads public/uploads-thumbnails content)" ]]; then

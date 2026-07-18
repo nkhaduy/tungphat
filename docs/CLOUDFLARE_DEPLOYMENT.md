@@ -1,7 +1,6 @@
 # Triển khai Cloudflare
 
-Tài liệu này là checklist thao tác sau khi branch được review và merge. Không có
-bước nào dưới đây đã được chạy trên production trong branch này.
+Tài liệu này là checklist vận hành production theo workflow một branch `main`.
 
 ## 1. Giá trị cố định
 
@@ -24,17 +23,16 @@ Kiến trúc dùng static export, không dùng OpenNext: website không có SSR,
 Server Actions hay route Next động tại runtime. Pages Functions chỉ phục vụ
 `/api/contact` và `/api/quote`.
 
-## 2. GitHub trước khi kết nối Pages
+## 2. GitHub và workflow một branch
 
-1. Mở repository `nkhaduy/tungphat` → **Settings → Branches**.
-2. Tạo rule cho `main`: bắt buộc pull request, bắt buộc job `verify` và `e2e`,
-   chặn force-push và chặn xóa branch.
-3. Không tạo GitHub Actions deploy khác. Pages Git integration là cơ chế deploy
-   duy nhất để tránh hai deployment cùng một commit.
-4. Merge branch này vào `main` chỉ sau khi CI xanh và người phụ trách nội dung
-   xác nhận dữ liệu doanh nghiệp.
-
-Kiểm tra thành công: pull request không thể merge nếu một quality gate thất bại.
+1. Branch làm việc và production duy nhất là `main`.
+2. Trước mỗi push, chạy local: lint, typecheck, unit tests, build, link
+   validation, Cloudflare config validation và `git diff --check`.
+3. Commit và push trực tiếp `main`; không force-push và không rewrite history.
+4. Không tạo GitHub Actions deploy khác. Pages Git integration là cơ chế deploy
+   production duy nhất để tránh hai deployment cùng một commit.
+5. Khi deployment lỗi, rollback bằng deployment trước hoặc `git revert` commit
+   mới sau khi chạy lại quality gate.
 
 ## 3. Tạo hai D1 database
 

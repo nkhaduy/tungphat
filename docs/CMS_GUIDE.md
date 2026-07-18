@@ -21,13 +21,8 @@ Access và GitHub là hai bước khác nhau. Nếu vào được `/admin` nhưn
 5. Điền SEO title 20–65 ký tự và description 80–170 ký tự. Thường để trống
    canonical tùy chỉnh để hệ thống tự sinh canonical apex.
 6. Bật **Bản nháp** trong khi soạn; tắt khi nội dung đã được duyệt.
-7. Chọn **Save**. Trong editorial workflow, chuyển lần lượt
-   **Draft → In review → Ready**, rồi **Publish**.
-
-Hiện static export chỉ có route viết sẵn cho sáu slug sản phẩm đang tồn tại.
-Không publish sản phẩm hoặc trang dịch vụ với slug mới cho tới khi code có route
-root động và validator chặn slug reserved; nếu không sitemap có thể trỏ tới URL
-không được export. Đây là blocker kỹ thuật, không phải lỗi nhập liệu CMS.
+7. Chọn **Publish** khi nội dung đã được duyệt. Publish commit trực tiếp vào
+   `main`, kích hoạt quality gate và Cloudflare Pages production build.
 
 ## Đăng bài viết
 
@@ -56,9 +51,8 @@ LocalBusiness schema, nên phải kiểm tra trước khi publish.
 - Khuyến nghị WebP/AVIF, cạnh dài tối đa 2.000 px, mỗi file tối đa 1,5 MiB.
 - Tên file chữ thường không dấu, số và dấu `-`.
 - Không upload SVG, ảnh gốc dung lượng lớn, bản vẽ khách hàng hoặc video qua CMS.
-- Sau khi CMS tạo pull request/commit, workflow tối ưu ảnh sẽ chuyển JPEG/PNG
-  mới sang WebP/AVIF và tạo thumbnail. Nếu workflow sửa ảnh, review commit đó
-  trước khi merge.
+- Sau khi CMS commit vào `main`, workflow tối ưu ảnh sẽ chuyển JPEG/PNG mới
+  sang WebP/AVIF, tạo thumbnail và commit kết quả trở lại `main`.
 
 Kiểm tra local dành cho kỹ thuật:
 
@@ -74,9 +68,7 @@ hoặc binary tiến gần hàng GB, mới đánh giá R2; không tự đổi đ
 ## Draft, preview và publish
 
 - **Draft**: chưa public, không sitemap.
-- **In review**: chờ người có trách nhiệm duyệt tính chính xác.
-- **Ready**: nội dung đã duyệt, có thể publish.
-- **Publish**: merge thay đổi vào `main`; Pages tự build.
+- **Publish**: commit thay đổi trực tiếp vào `main`; Pages tự build production.
 
 Preview trong CMS giúp kiểm bố cục, nhưng URL preview deployment mới là bằng
 chứng cuối cùng. Nếu build báo schema/content lỗi, không bỏ qua; sửa field được
@@ -85,8 +77,8 @@ nêu trong log.
 ## Lịch sử, rollback và quyền
 
 Mỗi lần publish là commit Git. Trong GitHub, mở file → **History** để xem ai sửa
-và diff. Để rollback, tạo branch mới và `git revert` commit lỗi hoặc khôi phục
-riêng file qua pull request; không force-push.
+và diff. Để rollback, chạy quality gate rồi `git revert` commit lỗi trên `main`;
+không force-push.
 
 Thêm quản trị viên:
 
@@ -103,8 +95,8 @@ bị/tài khoản bị lộ, revoke OAuth grant và rotate GitHub OAuth client s
 - `403 Invalid CMS site`: `site_domain`/`CMS_SITE_ID` không khớp.
 - OAuth callback lỗi: callback GitHub App phải chính xác
   `https://cms-auth.mdftungphat.com/callback`.
-- Lưu được draft nhưng publish lỗi: kiểm quyền GitHub, branch protection và CI.
+- Publish lỗi: kiểm quyền GitHub và kết quả CI/build của commit trên `main`.
 - Build báo ảnh thiếu: chọn lại ảnh nằm trong `public/uploads`.
 - Slug trùng: đổi slug; validator không cho hai route public giống nhau.
-- Slug sản phẩm/dịch vụ mới build xanh nhưng URL 404: route root động chưa được
-  nối; không merge nội dung đó và báo đội kỹ thuật.
+- Slug sản phẩm/dịch vụ mới bị từ chối: đổi slug nếu trùng route hệ thống hoặc
+  sửa các field được content validator nêu trong log.

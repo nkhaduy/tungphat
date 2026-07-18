@@ -9,7 +9,7 @@ flowchart LR
   A["Quản trị viên"] -->|"Cloudflare Access"| B["/admin · Decap CMS"]
   B -->|"GitHub OAuth"| C["OAuth Worker"]
   C --> D["GitHub"]
-  B -->|"branch/PR nội dung + ảnh"| D
+  B -->|"commit trực tiếp main"| D
   D -->|"Pages Git integration"| E["Cloudflare Pages · Next.js static export"]
   F["Khách truy cập"] --> E
   F -->|"POST /api/contact hoặc /api/quote"| G["Pages Functions"]
@@ -31,8 +31,8 @@ Không dùng OpenNext: mọi route indexable được prerender và `fs` chỉ c
 |---|---|---|---|
 | Chi phí cố định | 0đ trong free tier; domain trả hằng năm | 0đ trong free tier | Không đạt: Vercel Hobby chỉ cho mục đích cá nhân/phi thương mại; website doanh nghiệp cần Pro |
 | Độ khó | Trung bình, phần khó nhất là OAuth ban đầu | Cao; phải tự xây editor, media, workflow, auth và bảo trì | Trung bình nhưng có chi phí hosting bắt buộc |
-| Chủ cửa hàng sử dụng | Form quản trị có draft/editorial workflow | Có thể tốt nhưng chỉ sau khi đầu tư nhiều code | Tùy CMS |
-| Backup/history | Git commit, branch, PR | Phải tự thiết kế hoặc vẫn dùng Git | Phân tán giữa Vercel và CMS |
+| Chủ cửa hàng sử dụng | Form quản trị có trường draft và publish trực tiếp | Có thể tốt nhưng chỉ sau khi đầu tư nhiều code | Tùy CMS |
+| Backup/history | Git commit trên `main` | Phải tự thiết kế hoặc vẫn dùng Git | Phân tán giữa Vercel và CMS |
 | SEO/hiệu năng | HTML tĩnh tại edge; nội dung build-time | Tương đương nếu làm đúng | Tương đương, nhưng không còn 0đ hợp lệ |
 | Bảo mật | Access bảo vệ UI; GitHub xác thực quyền repo; Worker giữ OAuth secret | Bề mặt tấn công lớn hơn vì auth/editor tự viết | Nhiều vendor và secret hơn |
 | Vendor lock-in | Nội dung Markdown/JSON portable; D1 export SQLite SQL | Admin/API tự viết tạo lock-in nội bộ | Cao hơn do nhiều dịch vụ |

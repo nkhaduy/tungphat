@@ -6,9 +6,29 @@
     <meta name="robots" content="noindex,nofollow,noarchive" />
     <title>Quản trị nội dung | Tùng Phát</title>
     <link rel="icon" href="/favicon.ico" />
+    <style>
+      .publish-notice {
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        z-index: 2147483647;
+        max-width: 360px;
+        border: 1px solid #c8d5cc;
+        border-radius: 8px;
+        background: #f4faf6;
+        box-shadow: 0 8px 28px rgb(14 48 29 / 18%);
+        color: #153b27;
+        font: 600 13px/1.5 Arial, sans-serif;
+        padding: 12px 14px;
+      }
+    </style>
   </head>
   <body>
     <noscript>Bạn cần bật JavaScript để sử dụng trang quản trị.</noscript>
+    <aside class="publish-notice" role="note">
+      Publish sẽ commit trực tiếp vào branch main và đưa thay đổi vào quy trình build production.
+      Chỉ publish khi nội dung đã được kiểm tra đầy đủ.
+    </aside>
     <script src="https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js"></script>
     <script src="/admin/preview.js"></script>
     <script src="/admin/cms-guard.js"></script>

@@ -13,8 +13,8 @@
 - [x] `/admin`, API, draft và preview noindex; dữ liệu lead không vào static HTML.
 - [x] CMS ảnh trong Git có giới hạn file, validator và workflow tối ưu.
 - [x] CI chặn lint/type/test/build/content/image/link và high/critical audit.
-- [x] Không có workflow tự deploy production hoặc force-push. Workflow tối ưu
-  ảnh chỉ auto-commit vào branch `cms/**`; thay đổi vẫn phải được review trong PR.
+- [x] Không có workflow deploy production thứ hai hoặc force-push. Workflow tối
+  ưu ảnh chỉ auto-commit vào `main` sau khi toàn bộ quality gate pass.
 
 ## Dashboard bắt buộc trước production
 
@@ -23,7 +23,7 @@
 - [ ] Tạo GitHub OAuth App đúng callback; secrets bằng `wrangler secret put`.
 - [ ] Access Allow chỉ email/group quản trị cho `/admin/*`; không chặn OAuth
   callback hostname.
-- [ ] GitHub collaborator quyền tối thiểu, 2FA, branch protection và CI bắt buộc.
+- [ ] GitHub collaborator quyền tối thiểu, 2FA; không cho force-push/xóa `main`.
 - [ ] Thay hai D1 UUID placeholder, migrate preview, export rồi mới production.
 - [ ] Kiểm CSP khi bật GA/Trustindex; không thêm wildcard tùy tiện.
 - [ ] Xác minh NAP, giờ mở cửa, email và tuyên bố thương hiệu trước publish.

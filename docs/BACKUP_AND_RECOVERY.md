@@ -30,9 +30,9 @@ test; backup chưa thử restore chưa được coi là hoàn chỉnh.
 1. Xác định commit lỗi trong GitHub/Pages.
 2. Pages Dashboard → deployment tốt gần nhất → **Rollback to this deployment**
    để phục hồi nhanh.
-3. Tạo branch mới từ `main`, chạy `git revert <commit>`, mở pull request.
-4. Chạy toàn bộ CI, merge bình thường; không force-push.
-5. Với một bài, khôi phục riêng file content/ảnh qua pull request.
+3. Trên `main`, chạy `git revert <commit>`.
+4. Chạy toàn bộ quality gate, rồi push `main`; không force-push.
+5. Với một bài, khôi phục riêng file content/ảnh, chạy gate và commit vào `main`.
 
 Kiểm homepage, slideshow, menu mobile, money pages, forms, canonical, sitemap,
 robots, manifest và 404 sau rollback.
@@ -54,12 +54,13 @@ Không trỏ Preview vào production và không commit export.
 
 ## Sự cố CMS/OAuth/Access
 
-- OAuth lỗi không làm website public ngừng chạy; biên tập tạm qua GitHub PR.
+- OAuth lỗi không làm website public ngừng chạy; kỹ thuật có thể sửa nội dung
+  trực tiếp trên `main` sau khi chạy quality gate.
 - Secret lộ: revoke GitHub OAuth client secret, tạo secret mới, rotate
   `GITHUB_OAUTH_SECRET` và `OAUTH_STATE_SECRET`, redeploy Worker, kiểm collaborator.
 - Access khóa nhầm: sửa đúng application `/admin/*`; không bỏ GitHub OAuth.
 - Tài khoản quản trị bị lộ: remove ở GitHub và Access, revoke OAuth grant, kiểm
-  commit bất thường và revert qua PR.
+  commit bất thường và revert trên `main`.
 
 ## Quay lại Vercel
 

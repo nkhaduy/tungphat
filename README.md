@@ -2,6 +2,10 @@
 
 Website vật liệu gỗ và gia công CNC, xây dựng bằng Next.js 15 App Router, TypeScript và Tailwind. Site static chạy trên Cloudflare Pages; form dùng Pages Functions + D1; nội dung Git/Markdown được quản lý tại `/admin` bằng Decap CMS.
 
+Workflow lâu dài chỉ dùng `main`: sửa trực tiếp, chạy quality gate, commit, push
+`main`; Cloudflare Pages Git Integration tự deploy production. Decap cũng
+publish trực tiếp vào `main`.
+
 ## Chạy local
 
 Yêu cầu Node.js 20.19–26 và npm theo `package-lock.json`.
@@ -22,6 +26,7 @@ npm test
 npm run build
 npm run validate:links
 npm run validate:cloudflare-config
+git diff --check
 ```
 
 Preview gần production:
