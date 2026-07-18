@@ -27,7 +27,10 @@ const optionalCanonical = z
     )
   ])
   .default("");
-const date = z.string().date("Ngày phải có định dạng YYYY-MM-DD");
+const date = z.preprocess(
+  (value) => value instanceof Date ? value.toISOString().slice(0, 10) : value,
+  z.string().date("Ngày phải có định dạng YYYY-MM-DD")
+);
 const faqItem = z.object({
   question: z.string().min(10).max(180),
   answer: z.string().min(20).max(1200)

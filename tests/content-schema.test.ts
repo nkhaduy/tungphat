@@ -34,6 +34,18 @@ const product = {
 
 describe("productSchema", () => {
   it("chấp nhận đầy đủ field sản phẩm", () => expect(productSchema.safeParse(product).success).toBe(true));
+  it("chuẩn hóa Date do YAML parser tạo từ ngày Decap", () => {
+    const result = productSchema.safeParse({
+      ...product,
+      publishedAt: new Date("2026-07-16T00:00:00.000Z"),
+      updatedAt: new Date("2026-07-18T00:00:00.000Z")
+    });
+    expect(result.success).toBe(true);
+    if (result.success) {
+      expect(result.data.publishedAt).toBe("2026-07-16");
+      expect(result.data.updatedAt).toBe("2026-07-18");
+    }
+  });
   it("từ chối slug, SEO description và ảnh không hợp lệ", () => {
     expect(productSchema.safeParse({ ...product, slug: "Ván MDF" }).success).toBe(false);
     expect(productSchema.safeParse({ ...product, seoDescription: "quá ngắn" }).success).toBe(false);
