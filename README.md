@@ -21,13 +21,14 @@ npm run typecheck
 npm test
 npm run build
 npm run validate:links
+npm run validate:cloudflare-config
 ```
 
 Preview gần production:
 
 ```bash
 npm run d1:migrate:local
-npm run cf:preview
+npm run cf:preview # chỉ chạy sau khi D1 production/preview thật đã được điền
 ```
 
 ## Nội dung và vận hành

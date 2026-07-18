@@ -9,7 +9,7 @@ bước nào dưới đây đã được chạy trên production trong branch n�
 |---|---|
 | Pages project | `tung-phat` |
 | Production branch | `main` |
-| Build command | `npm ci && npm run build` |
+| Build command | `npm ci && npm run validate:cloudflare-config && npm run build` |
 | Build output | `out` |
 | Node | `22` |
 | Canonical | `https://mdftungphat.com` |
@@ -80,7 +80,7 @@ Kết quả phải có `leads`, `lead_status_history` và `rate_limits`.
 2. Chọn GitHub repository `nkhaduy/tungphat`.
 3. Đặt project name `tung-phat`; production branch `main`.
 4. Framework preset: **Next.js (Static HTML Export)** nếu có; nếu không, chọn
-   **None** rồi nhập build command `npm ci && npm run build`, output `out`.
+   **None** rồi nhập build command `npm ci && npm run validate:cloudflare-config && npm run build`, output `out`.
 5. Thêm build variable `NODE_VERSION=22`.
 6. Preview deployments: bật cho pull request/non-production branches.
 7. `wrangler.jsonc` là source of truth cho D1 binding khi file có
@@ -91,10 +91,16 @@ Kết quả phải có `leads`, `lead_status_history` và `rate_limits`.
    config`, đối chiếu rồi mới thay config đang review; không overwrite trực tiếp.
 
 Không chạy `wrangler pages deploy`: project dùng Git integration và deploy từ
-commit được review. Không push branch khi hai UUID trong `wrangler.jsonc` còn là
-placeholder, vì preview Git integration cũng có thể đọc file cấu hình này.
+commit được review. Build command bắt buộc chạy preflight trước `npm run build`,
+vì preview Git integration cũng đọc `wrangler.jsonc`; với UUID sentinel, build
+Pages dừng trước upload thay vì deploy binding giả.
 
 ## 5. Turnstile và runtime secrets
+
+Trước mọi Pages deployment, chạy `npm run validate:cloudflare-config`. Lệnh này cố ý fail khi
+`wrangler.jsonc` còn D1 UUID sentinel, hai environment dùng chung database, binding khác `DB`,
+hoặc checklist thiếu `TURNSTILE_SECRET_KEY` hay `IP_HASH_SALT`. `npm run build` vẫn độc lập với
+Cloudflare credential; chỉ deployment mới cần D1 UUID thật trong `wrangler.jsonc`.
 
 Dashboard → **Turnstile → Add widget**:
 

@@ -8,8 +8,17 @@ describe("Cloudflare Pages bindings", () => {
     expect(config.pages_build_output_dir).toBe("./out");
     expect(config.r2_buckets).toBeUndefined();
     expect(config.d1_databases[0].database_name).toBe("tung-phat-leads");
+    expect(config.d1_databases[0].binding).toBe("DB");
     expect(config.env.preview.d1_databases[0].database_name).toBe("tung-phat-leads-preview");
+    expect(config.env.preview.d1_databases[0].binding).toBe("DB");
     expect(config.env.preview.d1_databases[0].database_id).not.toBe(config.d1_databases[0].database_id);
+  });
+
+  it("documents the deploy preflight in the Git integration build command", () => {
+    const deploymentGuide = readFileSync("docs/CLOUDFLARE_DEPLOYMENT.md", "utf8");
+    expect(deploymentGuide).toContain("npm run validate:cloudflare-config && npm run build");
+    expect(deploymentGuide).toContain("`TURNSTILE_SECRET_KEY`");
+    expect(deploymentGuide).toContain("`IP_HASH_SALT`");
   });
 
   it("keeps generated DB and required secret types", () => {
