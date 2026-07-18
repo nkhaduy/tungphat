@@ -2,13 +2,14 @@
 
 ## Đăng nhập
 
-1. Mở `https://mdftungphat.com/admin/`.
-2. Xác thực Cloudflare Access bằng email được cấp.
-3. Chọn **Login with GitHub**, đăng nhập đúng GitHub account đã được thêm vào
+1. Mở `https://cms.mdftungphat.com/`. `/admin` trên website cũng redirect tới
+   URL này.
+2. Chọn **Login with GitHub**, đăng nhập đúng GitHub account đã được thêm vào
    repository.
 
-Access và GitHub là hai bước khác nhau. Nếu vào được `/admin` nhưng không lưu
-được, kiểm tra quyền GitHub collaborator.
+Cloudflare Access không được dùng làm security boundary khi nameserver vẫn ở
+TenTen. Quyền publish được bảo vệ bằng GitHub OAuth, email allowlist server-side
+và quyền GitHub collaborator.
 
 ## Đăng sản phẩm
 
@@ -22,7 +23,7 @@ Access và GitHub là hai bước khác nhau. Nếu vào được `/admin` nhưn
    canonical tùy chỉnh để hệ thống tự sinh canonical apex.
 6. Bật **Bản nháp** trong khi soạn; tắt khi nội dung đã được duyệt.
 7. Chọn **Publish** khi nội dung đã được duyệt. Publish commit trực tiếp vào
-   `main`, kích hoạt quality gate và Cloudflare Pages production build.
+   `main`, kích hoạt Vercel production build.
 
 ## Đăng bài viết
 
@@ -68,7 +69,7 @@ hoặc binary tiến gần hàng GB, mới đánh giá R2; không tự đổi đ
 ## Draft, preview và publish
 
 - **Draft**: chưa public, không sitemap.
-- **Publish**: commit thay đổi trực tiếp vào `main`; Pages tự build production.
+- **Publish**: commit thay đổi trực tiếp vào `main`; Vercel tự build production.
 
 Preview trong CMS giúp kiểm bố cục, nhưng URL preview deployment mới là bằng
 chứng cuối cùng. Nếu build báo schema/content lỗi, không bỏ qua; sửa field được
@@ -84,17 +85,18 @@ Thêm quản trị viên:
 
 1. GitHub repository → Settings → Collaborators → Add people, cấp quyền ghi tối
    thiểu cần cho Decap.
-2. Zero Trust Access policy → thêm đúng email vào Allow.
+2. Thêm email vào allowlist OAuth server-side trong Cloudflare Pages và
+   redeploy CMS.
 3. Yêu cầu bật 2FA, rồi test login/publish draft.
 
-Xóa quản trị viên: remove ở cả GitHub Collaborators và Access Allow. Nếu thiết
+Xóa quản trị viên: remove ở GitHub Collaborators và allowlist OAuth. Nếu thiết
 bị/tài khoản bị lộ, revoke OAuth grant và rotate GitHub OAuth client secret.
 
 ## Lỗi thường gặp
 
 - `403 Invalid CMS site`: `site_domain`/`CMS_SITE_ID` không khớp.
 - OAuth callback lỗi: callback GitHub App phải chính xác
-  `https://cms-auth.mdftungphat.com/callback`.
+  `https://cms.mdftungphat.com/callback`.
 - Publish lỗi: kiểm quyền GitHub và kết quả CI/build của commit trên `main`.
 - Build báo ảnh thiếu: chọn lại ảnh nằm trong `public/uploads`.
 - Slug trùng: đổi slug; validator không cho hai route public giống nhau.

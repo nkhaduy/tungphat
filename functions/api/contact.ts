@@ -1,2 +1,2 @@
-import { handleLead } from "../_lib/leads";
+import { handleLead } from "../../cloudflare-cms/src/leads/handler";
 export const onRequest: PagesFunction<CloudflareEnv> = (context) => handleLead(context, "contact");

@@ -1,14 +1,31 @@
 /* global CMS */
+// Client-side guard; the website build remains the final publishing gate.
 (function () {
   const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
   const imagePattern = /^\/[^\s]+\.(avif|webp|png|jpe?g)$/i;
   const guardedCollections = new Set(["articles", "products", "projects", "pages"]);
+  const reservedRootSlugs = new Set(["admin", "api", "bao-gia", "bai-viet", "catalogue", "chinh-sach-bao-mat", "dieu-khoan-su-dung", "du-an", "lien-he", "san-pham"]);
+
+  async function validateRootCollision(collection, slug) {
+    if (collection !== "products" && collection !== "pages") return;
+    if (reservedRootSlugs.has(slug)) throw new Error("Slug này được dành cho route hệ thống và không thể publish.");
+    const opposite = collection === "products" ? "pages" : "products";
+    const response = await fetch(`https://api.github.com/repos/nkhaduy/tungphat/contents/content/${opposite}?ref=main`, {
+      headers: { Accept: "application/vnd.github+json" }
+    });
+    if (!response.ok) throw new Error("Chưa thể kiểm tra xung đột product/service. Vui lòng thử publish lại.");
+    const entries = await response.json();
+    if (Array.isArray(entries) && entries.some((item) => item && item.name === `${slug}.md`)) {
+      throw new Error("Slug đang được dùng bởi product/service ở collection còn lại.");
+    }
+  }
 
   CMS.registerEventListener({
     name: "prePublish",
-    handler: ({ entry }) => {
+    handler: async ({ entry }) => {
       const data = entry.get("data");
-      if (!guardedCollections.has(String(entry.get("collection") || ""))) return data;
+      const collection = String(entry.get("collection") || "");
+      if (!guardedCollections.has(collection)) return data;
       const title = String(data.get("title") || "").trim();
       const slug = String(data.get("slug") || "").trim();
       const description = String(data.get("seoDescription") || "").trim();
@@ -17,6 +34,7 @@
       const canonical = String(data.get("canonical") || "").trim();
       if (!title || !slug || !description) throw new Error("Không thể publish: title, slug và SEO description là bắt buộc.");
       if (!slugPattern.test(slug)) throw new Error("Slug chỉ được dùng chữ thường, số và dấu gạch ngang.");
+      await validateRootCollision(collection, slug);
       if (description.length < 80 || description.length > 170) throw new Error("SEO description phải dài 80–170 ký tự.");
       const draft = data.get("draft") === true;
       const noindex = data.get("noindex") === true;

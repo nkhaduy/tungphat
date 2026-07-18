@@ -1,31 +1,31 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
-describe("Cloudflare Pages bindings", () => {
-  const config = JSON.parse(readFileSync("wrangler.jsonc", "utf8"));
+describe("hybrid Cloudflare CMS bindings", () => {
+  const config = JSON.parse(readFileSync("cloudflare-cms/wrangler.jsonc", "utf8"));
 
-  it("uses static Pages output and separate D1 databases", () => {
-    expect(config.pages_build_output_dir).toBe("./out");
-    expect(config.r2_buckets).toBeUndefined();
+  it("uses a dedicated CMS Pages project and separate D1 databases", () => {
+    expect(config.name).toBe("tungphat-cms");
+    expect(config.pages_build_output_dir).toBe("./public");
     expect(config.d1_databases[0].database_name).toBe("tung-phat-leads");
     expect(config.d1_databases[0].binding).toBe("DB");
     expect(config.env.preview.d1_databases[0].database_name).toBe("tung-phat-leads-preview");
-    expect(config.env.preview.d1_databases[0].binding).toBe("DB");
     expect(config.env.preview.d1_databases[0].database_id).not.toBe(config.d1_databases[0].database_id);
   });
 
-  it("documents the deploy preflight in the Git integration build command", () => {
-    const deploymentGuide = readFileSync("docs/CLOUDFLARE_DEPLOYMENT.md", "utf8");
-    expect(deploymentGuide).toContain("npm run validate:cloudflare-config && npm run build");
-    expect(deploymentGuide).toContain("`TURNSTILE_SECRET_KEY`");
-    expect(deploymentGuide).toContain("`IP_HASH_SALT`");
+  it("keeps production CORS exact and Decap direct publishing", () => {
+    expect(config.vars.CORS_ALLOWED_ORIGINS).toBe("https://mdftungphat.com,https://www.mdftungphat.com");
+    expect(config.vars.CORS_ALLOWED_ORIGINS).not.toContain("*");
+    const cms = readFileSync("cloudflare-cms/public/config.yml", "utf8");
+    expect(cms).toContain("publish_mode: simple");
+    expect(cms).toContain("base_url: https://cms.mdftungphat.com");
+    expect(cms).toContain("branch: main");
   });
 
-  it("keeps generated DB and required secret types", () => {
-    const generated = readFileSync("functions/cloudflare-env.d.ts", "utf8");
-    expect(generated).toContain("DB: D1Database;");
-    expect(generated).not.toContain("MEDIA: R2Bucket;");
-    expect(generated).toContain("TURNSTILE_SECRET_KEY: string;");
-    expect(generated).toContain("IP_HASH_SALT: string;");
+  it("documents every required secret without committing values", () => {
+    const readme = readFileSync("cloudflare-cms/README.md", "utf8");
+    for (const secret of ["TURNSTILE_SECRET_KEY", "IP_HASH_SALT", "GITHUB_OAUTH_ID", "GITHUB_OAUTH_SECRET", "OAUTH_STATE_SECRET"]) {
+      expect(readme).toContain(`\`${secret}\``);
+    }
   });
 });

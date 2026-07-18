@@ -1,0 +1,5 @@
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+IP_HASH_SALT=local-preview-salt-at-least-32-characters-long
+GITHUB_OAUTH_ID=local-oauth-client-id
+GITHUB_OAUTH_SECRET=local-oauth-client-secret
+OAUTH_STATE_SECRET=local-oauth-state-secret-at-least-32-characters

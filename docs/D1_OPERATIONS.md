@@ -21,7 +21,8 @@ gửi tạm cho Turnstile và không được ghi D1.
 Làm theo phần D1 trong `CLOUDFLARE_DEPLOYMENT.md`. Quy trình an toàn cho migration
 mới:
 
-1. Thêm file `migrations/NNNN_description.sql`; không sửa migration đã chạy.
+1. Thêm file `cloudflare-cms/migrations/NNNN_description.sql`; không sửa
+   migration đã chạy.
 2. `npm run d1:migrate:local`.
 3. Chạy test và form smoke test local.
 4. `npm run d1:migrate:preview`; kiểm preview.
@@ -69,7 +70,7 @@ npx wrangler d1 execute tung-phat-leads --remote --command \
 ## Bảo vệ form
 
 - Zod ở server; giới hạn độ dài và chuẩn hóa phone.
-- Chỉ nhận same-origin `POST`, JSON tối đa 20 KB.
+- Chỉ nhận cross-origin `POST` từ allowlist apex/`www`, JSON tối đa 20 KB.
 - Honeypot trả thành công giả để bot không học rule.
 - Turnstile kiểm server-side.
 - Tối đa 5 lần/10 phút cho mỗi IP hash và loại form.
@@ -105,7 +106,7 @@ backup, rồi xóa đúng `id`—không dùng wildcard.
 - `503 verification_unavailable`: Siteverify/Turnstile secret đang không khả
   dụng; retry sau khi kiểm cấu hình.
 - `500 internal_error`: kiểm D1 binding, migration và log theo request ID.
-- `403 origin_rejected`: request không cùng origin hoặc proxy cấu hình sai.
+- `403 origin_rejected`: frontend origin không nằm trong allowlist.
 - `429 rate_limited`: đợi 10 phút; không xóa rate limit để bỏ qua tấn công.
 - `verification_failed`: kiểm hostname/site key/secret Turnstile.
 - Duplicate trả `200`: submission đã được lưu, không tạo bản thứ hai.

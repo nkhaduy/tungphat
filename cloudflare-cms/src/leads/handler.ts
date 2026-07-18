@@ -1,9 +1,25 @@
-import { leadPayloadSchema } from "../../lib/lead-schema";
-import { isSameOrigin, json } from "./http";
+import { leadPayloadSchema } from "../validation/lead-schema";
+import { allowedOrigin, json, preflight } from "./http";
 import { verifyTurnstile } from "./turnstile";
 
-type LeadType = "contact" | "quote";
+export type LeadType = "contact" | "quote";
+export type LeadEnv = {
+  DB: D1Database;
+  ENVIRONMENT: string;
+  CORS_ALLOWED_ORIGINS: string;
+  CORS_ALLOWED_ORIGIN_SUFFIXES?: string;
+  TURNSTILE_ALLOWED_HOSTNAMES: string;
+  TURNSTILE_ALLOWED_HOSTNAME_SUFFIXES?: string;
+  TURNSTILE_EXPECTED_ACTION: string;
+  TURNSTILE_SECRET_KEY: string;
+  IP_HASH_SALT: string;
+};
+
 const MAX_BODY_BYTES = 20_000;
+
+function entries(value: string | undefined) {
+  return (value || "").split(",").map((entry) => entry.trim()).filter(Boolean);
+}
 
 export async function readBoundedText(request: Request, maxBytes = MAX_BODY_BYTES) {
   if (!request.body) return { text: "", tooLarge: false } as const;
@@ -54,62 +70,100 @@ async function checkRateLimit(db: D1Database, request: Request, type: LeadType, 
   return { allowed: Boolean(row && row.hits <= 5), remoteIp: ip, ipHash, now };
 }
 
-function safeSourceUrl(raw: string, requestOrigin: string) {
+function safeSourceUrl(raw: string, frontendOrigin: string) {
   if (!raw) return "";
   try {
     const url = new URL(raw);
-    return url.origin === requestOrigin ? `${url.pathname}${url.search}`.slice(0, 500) : "";
-  } catch { return ""; }
+    return url.origin === frontendOrigin ? `${url.pathname}${url.search}`.slice(0, 500) : "";
+  } catch {
+    return "";
+  }
 }
 
 function safeReferrer(raw: string) {
   if (!raw) return "";
-  try { return new URL(raw).hostname.slice(0, 255); } catch { return ""; }
+  try {
+    return new URL(raw).hostname.slice(0, 255);
+  } catch {
+    return "";
+  }
 }
 
 function errorCode(error: unknown) {
   return error instanceof Error ? error.message : String(error);
 }
 
-export async function handleLead(context: EventContext<CloudflareEnv, string, unknown>, type: LeadType) {
+export async function handleLead(context: EventContext<LeadEnv, string, unknown>, type: LeadType) {
   const { request, env } = context;
   const requestId = crypto.randomUUID();
-  if (request.method !== "POST") return json({ ok: false, code: "method_not_allowed" }, 405, { Allow: "POST" });
-  if (!isSameOrigin(request)) return json({ ok: false, code: "origin_rejected" }, 403);
+
+  if (request.method === "OPTIONS") return preflight(request, env);
+  if (request.method !== "POST") return json({ ok: false, code: "method_not_allowed" }, 405, null, { Allow: "POST, OPTIONS" });
+
+  const origin = allowedOrigin(request, env);
+  if (!origin) return json({ ok: false, code: "origin_rejected" }, 403);
+  if (!request.headers.get("Content-Type")?.toLowerCase().startsWith("application/json")) {
+    return json({ ok: false, code: "unsupported_media_type" }, 415, origin);
+  }
   const contentLength = Number(request.headers.get("Content-Length") || 0);
-  if (contentLength > MAX_BODY_BYTES) return json({ ok: false, code: "payload_too_large" }, 413);
+  if (contentLength > MAX_BODY_BYTES) return json({ ok: false, code: "payload_too_large" }, 413, origin);
 
   try {
     const body = await readBoundedText(request);
-    if (body.tooLarge) return json({ ok: false, code: "payload_too_large" }, 413);
+    if (body.tooLarge) return json({ ok: false, code: "payload_too_large" }, 413, origin);
     let untrusted: unknown;
-    try { untrusted = JSON.parse(body.text); } catch { return json({ ok: false, code: "invalid_json" }, 400); }
+    try {
+      untrusted = JSON.parse(body.text);
+    } catch {
+      return json({ ok: false, code: "invalid_json" }, 400, origin);
+    }
+
     const parsed = leadPayloadSchema.safeParse(untrusted);
-    if (!parsed.success) return json({ ok: false, code: "validation_failed", fields: parsed.error.issues.map((issue) => issue.path[0]).filter(Boolean) }, 400);
-    if (parsed.data.website) return json({ ok: true, id: requestId }, 202);
+    if (!parsed.success) {
+      return json({
+        ok: false,
+        code: "validation_failed",
+        fields: parsed.error.issues.map((issue) => issue.path[0]).filter(Boolean)
+      }, 400, origin);
+    }
+    if (parsed.data.website) return json({ ok: true, id: requestId }, 202, origin);
     if (type === "quote" && !parsed.data.material) {
-      return json({ ok: false, code: "validation_failed", fields: ["material"] }, 400);
+      return json({ ok: false, code: "validation_failed", fields: ["material"] }, 400, origin);
     }
     if (type === "contact" && !parsed.data.message) {
-      return json({ ok: false, code: "validation_failed", fields: ["message"] }, 400);
+      return json({ ok: false, code: "validation_failed", fields: ["message"] }, 400, origin);
     }
 
-    if (!env.IP_HASH_SALT || env.IP_HASH_SALT.length < 32) {
+    if (!env.IP_HASH_SALT || env.IP_HASH_SALT.length < 32 || !env.TURNSTILE_SECRET_KEY) {
       console.error(JSON.stringify({ message: "lead_config_invalid", requestId, type }));
-      return json({ ok: false, code: "service_unavailable" }, 503);
+      return json({ ok: false, code: "service_unavailable" }, 503, origin);
     }
-    const rate = await checkRateLimit(env.DB, request, type, env.IP_HASH_SALT);
-    if (!rate.allowed) return json({ ok: false, code: "rate_limited" }, 429, { "Retry-After": "600" });
 
-    const hostname = new URL(request.url).hostname;
-    const challenge = await verifyTurnstile(parsed.data.turnstile_token, env.TURNSTILE_SECRET_KEY, rate.remoteIp, hostname);
+    const duplicate = await env.DB.prepare("SELECT id FROM leads WHERE submission_key = ?1 AND type = ?2")
+      .bind(parsed.data.submission_id, type)
+      .first<{ id: string }>();
+    if (duplicate) return json({ ok: true, id: duplicate.id, duplicate: true }, 200, origin);
+
+    const rate = await checkRateLimit(env.DB, request, type, env.IP_HASH_SALT);
+    if (!rate.allowed) return json({ ok: false, code: "rate_limited" }, 429, origin, { "Retry-After": "600" });
+
+    const expectedHostname = new URL(origin).hostname;
+    const challenge = await verifyTurnstile({
+      token: parsed.data.turnstile_token,
+      secret: env.TURNSTILE_SECRET_KEY,
+      remoteIp: rate.remoteIp,
+      expectedHostname,
+      expectedAction: env.TURNSTILE_EXPECTED_ACTION,
+      environment: env.ENVIRONMENT,
+      allowedHostnames: entries(env.TURNSTILE_ALLOWED_HOSTNAMES),
+      allowedHostnameSuffixes: entries(env.TURNSTILE_ALLOWED_HOSTNAME_SUFFIXES)
+    });
     if (!challenge.ok) {
       const unavailable = challenge.reason === "unavailable" || challenge.reason === "upstream";
-      return json({ ok: false, code: unavailable ? "verification_unavailable" : "verification_failed" }, unavailable ? 503 : 400);
+      return json({ ok: false, code: unavailable ? "verification_unavailable" : "verification_failed" }, unavailable ? 503 : 400, origin);
     }
 
     const now = new Date().toISOString();
-    const origin = new URL(request.url).origin;
     const data = parsed.data;
     try {
       await env.DB.prepare(`
@@ -129,14 +183,15 @@ export async function handleLead(context: EventContext<CloudflareEnv, string, un
         rate.ipHash, (request.headers.get("User-Agent") || "").slice(0, 500) || null, now
       ).run();
     } catch (error) {
-      if (errorCode(error).includes("UNIQUE")) return json({ ok: true, id: data.submission_id, duplicate: true }, 200);
+      if (errorCode(error).includes("UNIQUE")) return json({ ok: true, id: data.submission_id, duplicate: true }, 200, origin);
       throw error;
     }
+
     context.waitUntil(env.DB.prepare("DELETE FROM rate_limits WHERE expires_at < ?1").bind(rate.now - 86400).run());
     console.log(JSON.stringify({ message: "lead_saved", requestId, type, path: new URL(request.url).pathname }));
-    return json({ ok: true, id: requestId }, 201);
+    return json({ ok: true, id: requestId }, 201, origin);
   } catch (error) {
     console.error(JSON.stringify({ message: "lead_request_failed", requestId, type, error: errorCode(error).slice(0, 160) }));
-    return json({ ok: false, code: "internal_error" }, 500);
+    return json({ ok: false, code: "internal_error" }, 500, origin);
   }
 }

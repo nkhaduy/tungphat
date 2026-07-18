@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { readBoundedText } from "@/functions/_lib/leads";
+import { readBoundedText } from "@/cloudflare-cms/src/leads/handler";
 
 describe("bounded lead request body", () => {
   it("đọc payload trong giới hạn", async () => {

@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { readFileSync } from "node:fs";
 
 const publicRoutes = ["/", "/san-pham/", "/go-ghep/", "/go-ghep-cao-su/", "/go-ghep-tram/", "/van-mdf/", "/mdf-chong-am/", "/van-go-cong-nghiep/", "/gia-cong-cnc/", "/cat-cnc-go/", "/gia-cong-cnc-mdf/", "/bao-gia/", "/du-an/", "/bai-viet/", "/lien-he/"];
 const apiPayload = (overrides: Record<string, unknown> = {}) => ({
@@ -45,7 +46,7 @@ test("menu mobile mở được, không tràn ngang", async ({ page }) => {
   expect(overflow).toBeLessThanOrEqual(1);
 });
 
-test("robots, sitemap, admin noindex và 404 đúng", async ({ page, request }) => {
+test("robots, sitemap, Vercel admin redirect và 404 đúng", async ({ page, request }) => {
   const robots = await request.get("/robots.txt");
   expect(await robots.text()).toContain("Sitemap: https://mdftungphat.com/sitemap.xml");
   const sitemap = await request.get("/sitemap.xml");
@@ -55,8 +56,11 @@ test("robots, sitemap, admin noindex và 404 đúng", async ({ page, request }) 
   expect(xml).not.toContain("__empty-collection");
   expect(await request.get("/bai-viet/__empty-collection/").then((response) => response.status())).toBe(404);
   expect(await request.get("/du-an/__empty-collection/").then((response) => response.status())).toBe(404);
-  await page.goto("/admin/");
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+  const redirects = JSON.parse(readFileSync("vercel.json", "utf8")).redirects;
+  expect(redirects).toEqual(expect.arrayContaining([
+    expect.objectContaining({ source: "/admin", destination: "https://cms.mdftungphat.com", permanent: true }),
+    expect.objectContaining({ source: "/admin/:path*", destination: "https://cms.mdftungphat.com", permanent: true })
+  ]));
   const missing = await page.goto("/khong-ton-tai/");
   expect(missing?.status()).toBe(404);
 });
@@ -72,6 +76,15 @@ test("API từ chối origin khác và không lộ stack trace", async ({ reques
   expect(response.status()).toBe(403);
   const body = await response.text();
   expect(body).not.toMatch(/stack|node_modules|Error:/i);
+});
+
+test("API trả CORS preflight chính xác cho origin được phép", async ({ request }) => {
+  const response = await request.fetch("/api/contact", { method: "OPTIONS", headers: { Origin: "http://127.0.0.1:4173", "Access-Control-Request-Method": "POST" } });
+  expect(response.status()).toBe(204);
+  expect(response.headers()["access-control-allow-origin"]).toBe("http://127.0.0.1:4173");
+  expect(response.headers()["access-control-allow-methods"]).toBe("POST, OPTIONS");
+  expect(response.headers()["vary"]).toContain("Origin");
+  expect(response.headers()["access-control-allow-credentials"]).toBeUndefined();
 });
 
 test("API validation và rate limit hoạt động", async ({ request }) => {
@@ -93,14 +106,24 @@ test("API validation và rate limit hoạt động", async ({ request }) => {
   expect(await contactWithoutMessage.json()).toMatchObject({ code: "validation_failed", fields: ["message"] });
 
   const rateIdentity = `e2e-rate-${Date.now()}`;
-  const submission = crypto.randomUUID();
   for (let attempt = 0; attempt < 5; attempt += 1) {
-    const response = await request.post("/api/quote", { headers: { Origin: origin, "CF-Connecting-IP": rateIdentity }, data: apiPayload({ submission_id: submission }) });
-    expect([200, 201]).toContain(response.status());
+    const response = await request.post("/api/quote", { headers: { Origin: origin, "CF-Connecting-IP": rateIdentity }, data: apiPayload() });
+    expect(response.status()).toBe(201);
   }
-  const limited = await request.post("/api/quote", { headers: { Origin: origin, "CF-Connecting-IP": rateIdentity }, data: apiPayload({ submission_id: submission }) });
+  const limited = await request.post("/api/quote", { headers: { Origin: origin, "CF-Connecting-IP": rateIdentity }, data: apiPayload() });
   expect(limited.status()).toBe(429);
   expect(await limited.json()).toMatchObject({ code: "rate_limited" });
+});
+
+test("API nhận submission idempotent mà không tạo lead lặp", async ({ request }) => {
+  const origin = "http://127.0.0.1:4173";
+  const submissionId = crypto.randomUUID();
+  const headers = { Origin: origin, "CF-Connecting-IP": `e2e-duplicate-${Date.now()}` };
+  const first = await request.post("/api/quote", { headers, data: apiPayload({ submission_id: submissionId }) });
+  expect(first.status()).toBe(201);
+  const second = await request.post("/api/quote", { headers, data: apiPayload({ submission_id: submissionId }) });
+  expect(second.status()).toBe(200);
+  expect(await second.json()).toMatchObject({ ok: true, duplicate: true });
 });
 
 test("payload kiểu SQL injection không làm thay đổi schema", async ({ request }) => {

@@ -2,10 +2,12 @@ backend:
   name: github
   repo: nkhaduy/tungphat
   branch: main
-  base_url: https://cms-auth.mdftungphat.com
-  auth_endpoint: /auth
-  site_domain: mdftungphat.com
+  base_url: https://cms.mdftungphat.com
+  auth_endpoint: auth
+  site_domain: cms.mdftungphat.com
   use_graphql: true
+
+publish_mode: simple
 
 site_url: https://mdftungphat.com
 display_url: https://mdftungphat.com

@@ -1,3 +1,4 @@
+-- Production/preview migration 2: status audit trail.
 CREATE TRIGGER IF NOT EXISTS trg_leads_insert_history
 AFTER INSERT ON leads
 BEGIN

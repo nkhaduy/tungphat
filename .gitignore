@@ -17,3 +17,4 @@ local-media/
 # Local npm cache, audit logs and screenshots. Never commit runtime artifacts.
 work/
 *.tsbuildinfo
+.vercel

@@ -1,0 +1,38 @@
+{
+  "name": "@tungphat/cloudflare-cms",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "build": "node scripts/validate-build.mjs",
+    "validate:cloudflare-config": "node scripts/validate-cloudflare-config.mjs",
+    "cms:dry-run": "wrangler pages functions build functions --outdir .wrangler/cms-dry-run --project-directory . --build-output-directory public",
+    "cf:typegen": "wrangler types worker-configuration.d.ts --env-file .dev.vars.example --env-interface CloudflareCmsEnv --include-runtime false --strict-vars false",
+    "dev": "wrangler pages dev public --env preview --env-file .dev.vars.example --port 4174",
+    "deploy:preview": "wrangler pages deploy public --project-name tungphat-cms --branch preview",
+    "deploy:production": "wrangler pages deploy public --project-name tungphat-cms --branch main",
+    "d1:migrate:preview": "wrangler d1 migrations apply tung-phat-leads-preview --remote --env preview",
+    "d1:migrate:production": "wrangler d1 migrations apply tung-phat-leads --remote",
+    "d1:backup": "wrangler d1 export tung-phat-leads --remote --output ../backups/tung-phat-leads.sql"
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260718.1",
+    "@eslint/js": "^9.39.5",
+    "@types/node": "^22.10.2",
+    "eslint": "^9.39.5",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.0",
+    "vitest": "^4.1.10",
+    "wrangler": "^4.112.0",
+    "yaml": "^2.9.0"
+  },
+  "engines": {
+    "node": ">=20.19 <27"
+  }
+}

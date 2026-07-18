@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FormEvent, useRef, useState } from "react";
 import { Send } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { formsApiUrl } from "@/lib/forms-api";
 
 declare global {
   interface Window { turnstile?: { reset: (element?: HTMLElement | string) => void } }
@@ -49,7 +50,7 @@ export function LeadForm({ type, compact = false }: LeadFormProps) {
     };
     delete (payload as Record<string, unknown>)["cf-turnstile-response"];
     try {
-      const response = await fetch(`/api/${type}`, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(payload) });
+      const response = await fetch(formsApiUrl(type), { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(payload) });
       const result: { ok?: boolean; code?: string } = await response.json();
       if (!response.ok || !result.ok) throw new Error(result.code || "request_failed");
       setStatus("success");
@@ -83,7 +84,7 @@ export function LeadForm({ type, compact = false }: LeadFormProps) {
       <label className="mt-5 block text-sm font-bold text-forest-950">Nội dung cần trao đổi<textarea className={`${inputClass} min-h-32 py-3`} name="message" maxLength={2000} required={type === "contact"} /></label>
       <div className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
       <label className="mt-5 flex items-start gap-3 text-sm leading-6 text-slate-600"><input className="mt-1 h-5 w-5 shrink-0 accent-[#b84d00]" type="checkbox" name="consent" required /> <span>Tôi đồng ý để Tùng Phát lưu và xử lý thông tin nhằm phản hồi yêu cầu này theo <Link href="/chinh-sach-bao-mat" className="font-bold text-forest-950 underline">Chính sách bảo mật</Link>.</span></label>
-      {siteKey ? <div id="lead-turnstile" className="cf-turnstile mt-6" data-sitekey={siteKey} data-action="turnstile-spin-v1" data-response-field-name="cf-turnstile-response" data-retry="auto" data-refresh-expired="auto" /> : <p className="mt-6 border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">Form sẽ hoạt động sau khi cấu hình <code>NEXT_PUBLIC_TURNSTILE_SITE_KEY</code>.</p>}
+      {siteKey ? <div id="lead-turnstile" className="cf-turnstile mt-6" data-sitekey={siteKey} data-action="tung-phat-lead" data-response-field-name="cf-turnstile-response" data-retry="auto" data-refresh-expired="auto" /> : <p className="mt-6 border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900">Form sẽ hoạt động sau khi cấu hình <code>NEXT_PUBLIC_TURNSTILE_SITE_KEY</code>.</p>}
       <button type="submit" disabled={status === "submitting" || !siteKey} className="mt-6 inline-flex min-h-13 w-full items-center justify-center gap-2 bg-wood-700 px-6 py-4 text-sm font-bold text-white transition hover:bg-wood-800 disabled:cursor-not-allowed disabled:opacity-55"><Send size={17} />{status === "submitting" ? "Đang gửi…" : type === "quote" ? "Gửi yêu cầu báo giá" : "Gửi thông tin liên hệ"}</button>
       {message && <p role="status" aria-live="polite" className={`mt-4 text-sm leading-6 ${status === "success" ? "text-forest-800" : "text-red-700"}`}>{message}</p>}
       <p className="mt-4 text-xs leading-5 text-slate-500">Không tải bản vẽ tại đây. Không gửi mật khẩu, thông tin thanh toán hoặc dữ liệu nhạy cảm trong nội dung form.</p>

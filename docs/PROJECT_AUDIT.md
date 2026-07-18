@@ -1,4 +1,8 @@
-# Audit branch `codex/cloudflare-cms-seo-platform-v2`
+# Audit lịch sử branch `codex/cloudflare-cms-seo-platform-v2`
+
+> Tài liệu này ghi lại trạng thái trước migration hybrid ngày 2026-07-18. Kiến
+> trúc production hiện tại được mô tả trong `ARCHITECTURE.md` và
+> `CLOUDFLARE_DEPLOYMENT.md`.
 
 Ngày audit: 2026-07-18.
 

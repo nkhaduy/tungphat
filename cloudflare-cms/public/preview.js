@@ -1,4 +1,5 @@
 /* global CMS, createClass, h */
+// CMS preview intentionally renders content without website-only runtime code.
 (function () {
   function mediaSource(value) {
     if (!value) return "";

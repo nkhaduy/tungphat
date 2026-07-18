@@ -5,11 +5,11 @@
 | Thành phần | Bản chính | Backup/khôi phục |
 |---|---|---|
 | Code/content/ảnh | GitHub `main` | Git history, clone/mirror riêng định kỳ |
-| Pages static | deployment theo commit | rollback deployment hoặc revert commit |
+| Website Vercel | deployment theo commit | rollback deployment hoặc revert commit |
+| Cloudflare CMS | Pages deployment | rollback Pages deployment |
 | D1 leads | D1 production | export mã hóa + D1 Time Travel ngắn hạn |
-| OAuth config | Worker config + secrets | password manager, rotate/redeploy |
-| DNS/Access | Cloudflare account | export/chụp cấu hình trước cutover |
-| Vercel fallback | project hiện tại | giữ hoạt động trong giai đoạn chuyển đổi |
+| OAuth config | Pages Functions + secrets | password manager, rotate/redeploy |
+| DNS | TenTen + Pages custom domain | ghi lại chính xác ba record đang dùng |
 
 ## Backup định kỳ
 
@@ -27,9 +27,9 @@ test; backup chưa thử restore chưa được coi là hoàn chỉnh.
 
 ## Rollback nội dung/code
 
-1. Xác định commit lỗi trong GitHub/Pages.
-2. Pages Dashboard → deployment tốt gần nhất → **Rollback to this deployment**
-   để phục hồi nhanh.
+1. Xác định commit lỗi trong GitHub/Vercel.
+2. Vercel Dashboard → deployment tốt gần nhất → **Promote to Production** để
+   phục hồi nhanh.
 3. Trên `main`, chạy `git revert <commit>`.
 4. Chạy toàn bộ quality gate, rồi push `main`; không force-push.
 5. Với một bài, khôi phục riêng file content/ảnh, chạy gate và commit vào `main`.
@@ -57,40 +57,24 @@ Không trỏ Preview vào production và không commit export.
 - OAuth lỗi không làm website public ngừng chạy; kỹ thuật có thể sửa nội dung
   trực tiếp trên `main` sau khi chạy quality gate.
 - Secret lộ: revoke GitHub OAuth client secret, tạo secret mới, rotate
-  `GITHUB_OAUTH_SECRET` và `OAUTH_STATE_SECRET`, redeploy Worker, kiểm collaborator.
-- Access khóa nhầm: sửa đúng application `/admin/*`; không bỏ GitHub OAuth.
-- Tài khoản quản trị bị lộ: remove ở GitHub và Access, revoke OAuth grant, kiểm
-  commit bất thường và revert trên `main`.
+  `GITHUB_OAUTH_SECRET` và `OAUTH_STATE_SECRET`, redeploy Pages CMS, kiểm
+  collaborator.
+- OAuth/allowlist khóa nhầm: kỹ thuật vẫn có thể sửa trực tiếp trên `main`; sửa
+  Pages secret/variable rồi redeploy CMS.
+- Tài khoản quản trị bị lộ: remove ở GitHub và OAuth allowlist, revoke OAuth
+  grant, kiểm commit bất thường và revert trên `main`.
 
-## Quay lại Vercel
+## Khi Cloudflare CMS/API lỗi
 
-Trước cutover Cloudflare, chụp và lưu:
-
-- record DNS apex/www hiện tại;
-- project/domain Vercel;
-- environment variables;
-- commit deployment cuối đã biết tốt;
-- TTL và thời điểm thay đổi.
-
-Nếu Pages lỗi nghiêm trọng:
-
-1. Thử rollback Pages deployment trước.
-2. Nếu vẫn lỗi, build cùng commit đã biết tốt trên Vercel.
-3. Xác minh Vercel deployment qua URL preview nhưng canonical vẫn là
-   `https://mdftungphat.com`.
-4. Khôi phục DNS chính xác theo bản ghi đã lưu; chờ TTL.
-5. Giữ redirect www → apex, HTTPS và domain canonical.
-6. Kiểm tra site/form/SEO, rồi mới đóng incident.
-
-Vercel Hobby không phù hợp để coi là hosting doanh nghiệp miễn phí lâu dài; đây
-chỉ là đường quay lại tạm thời nếu project hiện tại còn hợp lệ. Nếu cần vận hành
-thương mại dài hạn trên Vercel, phải xem lại plan và chi phí tại thời điểm đó.
+Website public trên Vercel vẫn hoạt động. Rollback Pages CMS deployment trước;
+nếu form API còn lỗi, chuyển CTA tạm sang hotline/Zalo và không đổi DNS
+apex/`www`. Canonical vẫn là `https://mdftungphat.com`.
 
 ## Tiêu chí phục hồi hoàn tất
 
 - Public site trả 200, slideshow và menu hoạt động.
 - Form mới được lưu đúng database, không mất/nhân đôi lead.
-- `/admin` cần Access rồi GitHub OAuth.
+- `/admin` redirect 308 tới CMS; publish cần GitHub OAuth và allowlist email.
 - Canonical/sitemap/robots chỉ dùng `https://mdftungphat.com`.
 - Không có secret/PII trong Git, log hoặc artifact công khai.
 - Incident, commit rollback, thời điểm và người xác nhận được ghi nội bộ.

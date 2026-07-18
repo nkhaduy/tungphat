@@ -1,3 +1,4 @@
+-- Production/preview migration 1: core lead storage.
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE IF NOT EXISTS leads (

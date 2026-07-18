@@ -1,3 +1,4 @@
+-- Production/preview migration 3: complete the 26-column lead schema.
 ALTER TABLE leads ADD COLUMN product TEXT;
 ALTER TABLE leads ADD COLUMN dimensions TEXT;
 ALTER TABLE leads ADD COLUMN ip_hash TEXT;
