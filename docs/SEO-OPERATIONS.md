@@ -22,7 +22,9 @@
 
 ## Dữ liệu doanh nghiệp còn cần bổ sung
 
-- Email công khai, giờ làm việc và khu vực phục vụ chưa được xác minh nên chưa xuất hiện trong metadata/schema.
+- Email công khai và giờ làm việc chưa được xác minh nên đang để trống. `serviceAreas`
+  hiện xuất `TP. Hồ Chí Minh` vào LocalBusiness schema; chủ doanh nghiệp phải xác
+  nhận giá trị này trước production hoặc bỏ khỏi schema.
 - Xác minh tên, địa chỉ, điện thoại trên Google Business Profile và giữ nhất quán với trang `/lien-he`.
 - Chỉ công bố quan hệ đại lý chính thức hoặc chứng nhận khi có bằng chứng có thể kiểm tra.
 

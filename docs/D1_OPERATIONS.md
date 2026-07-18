@@ -101,7 +101,10 @@ backup, rồi xóa đúng `id`—không dùng wildcard.
 
 ## Khi lỗi
 
-- `503 service_unavailable`: kiểm `IP_HASH_SALT`, D1 binding và Turnstile secret.
+- `503 service_unavailable`: kiểm `IP_HASH_SALT`.
+- `503 verification_unavailable`: Siteverify/Turnstile secret đang không khả
+  dụng; retry sau khi kiểm cấu hình.
+- `500 internal_error`: kiểm D1 binding, migration và log theo request ID.
 - `403 origin_rejected`: request không cùng origin hoặc proxy cấu hình sai.
 - `429 rate_limited`: đợi 10 phút; không xóa rate limit để bỏ qua tấn công.
 - `verification_failed`: kiểm hostname/site key/secret Turnstile.

@@ -6,7 +6,7 @@ type TurnstileResult = {
   metadata?: { result_with_testing_key?: boolean };
 };
 
-export async function verifyTurnstile(token: string, secret: string, remoteIp: string, expectedHostname: string, testMode = false) {
+export async function verifyTurnstile(token: string, secret: string, remoteIp: string, expectedHostname: string) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 8000);
   try {
@@ -19,7 +19,8 @@ export async function verifyTurnstile(token: string, secret: string, remoteIp: s
     if (!response.ok) return { ok: false, reason: "upstream" } as const;
     const result: TurnstileResult = await response.json();
     const productionValid = result.success === true && result.hostname === expectedHostname && result.action === "turnstile-spin-v1";
-    const testValid = testMode && result.success === true && result.hostname === "example.com" && result.metadata?.result_with_testing_key === true;
+    const localTestHost = expectedHostname === "localhost" || expectedHostname === "127.0.0.1" || expectedHostname === "[::1]";
+    const testValid = localTestHost && result.success === true && result.hostname === "example.com" && result.metadata?.result_with_testing_key === true;
     const valid = productionValid || testValid;
     return { ok: valid, reason: valid ? "ok" : "invalid" } as const;
   } catch {

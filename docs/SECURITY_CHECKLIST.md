@@ -13,7 +13,8 @@
 - [x] `/admin`, API, draft và preview noindex; dữ liệu lead không vào static HTML.
 - [x] CMS ảnh trong Git có giới hạn file, validator và workflow tối ưu.
 - [x] CI chặn lint/type/test/build/content/image/link và high/critical audit.
-- [x] Không có workflow tự deploy production, auto-commit hay force-push.
+- [x] Không có workflow tự deploy production hoặc force-push. Workflow tối ưu
+  ảnh chỉ auto-commit vào branch `cms/**`; thay đổi vẫn phải được review trong PR.
 
 ## Dashboard bắt buộc trước production
 

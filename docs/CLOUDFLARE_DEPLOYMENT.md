@@ -83,11 +83,16 @@ Kết quả phải có `leads`, `lead_status_history` và `rate_limits`.
    **None** rồi nhập build command `npm ci && npm run build`, output `out`.
 5. Thêm build variable `NODE_VERSION=22`.
 6. Preview deployments: bật cho pull request/non-production branches.
-7. Trong **Settings → Bindings**, thêm D1 binding tên chính xác `DB`:
-   production → `tung-phat-leads`, preview → `tung-phat-leads-preview`.
+7. `wrangler.jsonc` là source of truth cho D1 binding khi file có
+   `pages_build_output_dir`. Không tạo binding Dashboard khác với file. Sau
+   deployment đầu tiên, xác minh binding `DB` hiển thị production →
+   `tung-phat-leads`, preview → `tung-phat-leads-preview`. Với Pages project đã
+   tồn tại, tải config Dashboard vào file tạm bằng `wrangler pages download
+   config`, đối chiếu rồi mới thay config đang review; không overwrite trực tiếp.
 
 Không chạy `wrangler pages deploy`: project dùng Git integration và deploy từ
-commit được review.
+commit được review. Không push branch khi hai UUID trong `wrangler.jsonc` còn là
+placeholder, vì preview Git integration cũng có thể đọc file cấu hình này.
 
 ## 5. Turnstile và runtime secrets
 
@@ -116,7 +121,8 @@ Tạo salt cục bộ rồi chỉ copy phần output vào ô Secret:
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ```
 
-Không đặt `TURNSTILE_TEST_MODE` trên Preview hoặc Production.
+Testing key chỉ được code chấp nhận trên `localhost`, `127.0.0.1` hoặc `::1`.
+Preview và Production phải dùng widget/site key/secret thật của đúng hostname.
 
 ## 6. GitHub OAuth cho Decap CMS
 

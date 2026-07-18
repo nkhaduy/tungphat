@@ -24,7 +24,10 @@ Access và GitHub là hai bước khác nhau. Nếu vào được `/admin` nhưn
 7. Chọn **Save**. Trong editorial workflow, chuyển lần lượt
    **Draft → In review → Ready**, rồi **Publish**.
 
-Sản phẩm publish xuất hiện tại `https://mdftungphat.com/<slug>`.
+Hiện static export chỉ có route viết sẵn cho sáu slug sản phẩm đang tồn tại.
+Không publish sản phẩm hoặc trang dịch vụ với slug mới cho tới khi code có route
+root động và validator chặn slug reserved; nếu không sitemap có thể trỏ tới URL
+không được export. Đây là blocker kỹ thuật, không phải lỗi nhập liệu CMS.
 
 ## Đăng bài viết
 
@@ -103,3 +106,5 @@ bị/tài khoản bị lộ, revoke OAuth grant và rotate GitHub OAuth client s
 - Lưu được draft nhưng publish lỗi: kiểm quyền GitHub, branch protection và CI.
 - Build báo ảnh thiếu: chọn lại ảnh nằm trong `public/uploads`.
 - Slug trùng: đổi slug; validator không cho hai route public giống nhau.
+- Slug sản phẩm/dịch vụ mới build xanh nhưng URL 404: route root động chưa được
+  nối; không merge nội dung đó và báo đội kỹ thuật.

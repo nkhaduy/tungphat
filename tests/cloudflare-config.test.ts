@@ -12,11 +12,11 @@ describe("Cloudflare Pages bindings", () => {
     expect(config.env.preview.d1_databases[0].database_id).not.toBe(config.d1_databases[0].database_id);
   });
 
-  it("keeps generated DB type and privacy secret augmentation", () => {
+  it("keeps generated DB and required secret types", () => {
     const generated = readFileSync("functions/cloudflare-env.d.ts", "utf8");
-    const secrets = readFileSync("functions/secrets.d.ts", "utf8");
     expect(generated).toContain("DB: D1Database;");
     expect(generated).not.toContain("MEDIA: R2Bucket;");
-    expect(secrets).toContain("IP_HASH_SALT: string;");
+    expect(generated).toContain("TURNSTILE_SECRET_KEY: string;");
+    expect(generated).toContain("IP_HASH_SALT: string;");
   });
 });

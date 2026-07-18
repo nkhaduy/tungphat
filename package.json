@@ -18,7 +18,7 @@
     "images:optimize": "node scripts/optimize-images.mjs",
     "media:compress:video": "bash scripts/compress-video-for-web.sh",
     "content:migrate:legacy": "tsx scripts/migrate-legacy-content.ts",
-    "cf:typegen": "wrangler types functions/cloudflare-env.d.ts --config wrangler.jsonc --env-interface CloudflareEnv --include-runtime false --strict-vars false && wrangler types workers/cms-oauth/worker-configuration.d.ts --config workers/cms-oauth/wrangler.jsonc --env-interface Env --include-runtime false --strict-vars false",
+    "cf:typegen": "wrangler types functions/cloudflare-env.d.ts --config wrangler.jsonc --env-file .dev.vars.example --env-interface CloudflareEnv --include-runtime false --strict-vars false && wrangler types workers/cms-oauth/worker-configuration.d.ts --config workers/cms-oauth/wrangler.jsonc --env-interface Env --include-runtime false --strict-vars false",
     "cf:preview": "npm run build && wrangler pages dev out",
     "cf:test-server": "wrangler pages dev out --port 4173",
     "d1:migrate:local": "wrangler d1 migrations apply tung-phat-leads --local",

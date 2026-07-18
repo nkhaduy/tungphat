@@ -18,10 +18,15 @@ describe("verifyTurnstile", () => {
     await expect(verifyTurnstile("token", "secret", "127.0.0.1", "mdftungphat.com")).resolves.toMatchObject({ ok: false, reason: "invalid" });
   });
 
-  it("chỉ chấp nhận metadata test key khi bật test mode", async () => {
+  it("chỉ chấp nhận metadata test key trên localhost", async () => {
     siteverifyResult({ success: true, hostname: "example.com", metadata: { result_with_testing_key: true } });
-    await expect(verifyTurnstile("token", "secret", "127.0.0.1", "localhost", false)).resolves.toMatchObject({ ok: false });
-    await expect(verifyTurnstile("token", "secret", "127.0.0.1", "localhost", true)).resolves.toMatchObject({ ok: true });
+    await expect(verifyTurnstile("token", "secret", "127.0.0.1", "localhost")).resolves.toMatchObject({ ok: true });
+    await expect(verifyTurnstile("token", "secret", "127.0.0.1", "mdftungphat.com")).resolves.toMatchObject({ ok: false });
+  });
+
+  it("phân biệt lỗi upstream để API có thể trả retryable status", async () => {
+    siteverifyResult({}, 502);
+    await expect(verifyTurnstile("token", "secret", "127.0.0.1", "mdftungphat.com")).resolves.toMatchObject({ ok: false, reason: "upstream" });
   });
 
   it("fail closed khi Siteverify không khả dụng", async () => {

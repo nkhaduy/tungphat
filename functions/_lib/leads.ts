@@ -3,6 +3,35 @@ import { isSameOrigin, json } from "./http";
 import { verifyTurnstile } from "./turnstile";
 
 type LeadType = "contact" | "quote";
+const MAX_BODY_BYTES = 20_000;
+
+export async function readBoundedText(request: Request, maxBytes = MAX_BODY_BYTES) {
+  if (!request.body) return { text: "", tooLarge: false } as const;
+  const reader = request.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let total = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      total += value.byteLength;
+      if (total > maxBytes) {
+        await reader.cancel().catch(() => undefined);
+        return { text: "", tooLarge: true } as const;
+      }
+      chunks.push(value);
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  const bytes = new Uint8Array(total);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return { text: new TextDecoder().decode(bytes), tooLarge: false } as const;
+}
 
 async function hashPrivacyValue(value: string, salt: string) {
   const hash = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(`${salt}:${value}`));
@@ -48,13 +77,13 @@ export async function handleLead(context: EventContext<CloudflareEnv, string, un
   if (request.method !== "POST") return json({ ok: false, code: "method_not_allowed" }, 405, { Allow: "POST" });
   if (!isSameOrigin(request)) return json({ ok: false, code: "origin_rejected" }, 403);
   const contentLength = Number(request.headers.get("Content-Length") || 0);
-  if (contentLength > 20_000) return json({ ok: false, code: "payload_too_large" }, 413);
+  if (contentLength > MAX_BODY_BYTES) return json({ ok: false, code: "payload_too_large" }, 413);
 
   try {
-    const raw = await request.text();
-    if (raw.length > 20_000) return json({ ok: false, code: "payload_too_large" }, 413);
+    const body = await readBoundedText(request);
+    if (body.tooLarge) return json({ ok: false, code: "payload_too_large" }, 413);
     let untrusted: unknown;
-    try { untrusted = JSON.parse(raw); } catch { return json({ ok: false, code: "invalid_json" }, 400); }
+    try { untrusted = JSON.parse(body.text); } catch { return json({ ok: false, code: "invalid_json" }, 400); }
     const parsed = leadPayloadSchema.safeParse(untrusted);
     if (!parsed.success) return json({ ok: false, code: "validation_failed", fields: parsed.error.issues.map((issue) => issue.path[0]).filter(Boolean) }, 400);
     if (parsed.data.website) return json({ ok: true, id: requestId }, 202);
@@ -73,8 +102,11 @@ export async function handleLead(context: EventContext<CloudflareEnv, string, un
     if (!rate.allowed) return json({ ok: false, code: "rate_limited" }, 429, { "Retry-After": "600" });
 
     const hostname = new URL(request.url).hostname;
-    const challenge = await verifyTurnstile(parsed.data.turnstile_token, env.TURNSTILE_SECRET_KEY, rate.remoteIp, hostname, env.TURNSTILE_TEST_MODE === "1");
-    if (!challenge.ok) return json({ ok: false, code: challenge.reason === "unavailable" ? "verification_unavailable" : "verification_failed" }, challenge.reason === "unavailable" ? 503 : 400);
+    const challenge = await verifyTurnstile(parsed.data.turnstile_token, env.TURNSTILE_SECRET_KEY, rate.remoteIp, hostname);
+    if (!challenge.ok) {
+      const unavailable = challenge.reason === "unavailable" || challenge.reason === "upstream";
+      return json({ ok: false, code: unavailable ? "verification_unavailable" : "verification_failed" }, unavailable ? 503 : 400);
+    }
 
     const now = new Date().toISOString();
     const origin = new URL(request.url).origin;
