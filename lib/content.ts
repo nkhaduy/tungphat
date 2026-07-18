@@ -42,7 +42,7 @@ export function getArticle(slug: string, options: { includeDrafts?: boolean } = 
 
 export function getProducts(options: { includeDrafts?: boolean } = {}) {
   return readCollection<ProductFrontmatter>("products", productSchema)
-    .filter((entry) => options.includeDrafts || (!entry.draft && !entry.noindex && entry.status === "available"))
+    .filter((entry) => options.includeDrafts || (!entry.draft && !entry.noindex))
     .sort((a, b) => a.title.localeCompare(b.title, "vi"));
 }
 

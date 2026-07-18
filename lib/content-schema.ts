@@ -1,10 +1,11 @@
 import { z } from "zod";
+import { ROOT_SLUG_PATTERN } from "@/lib/reserved-slugs";
 
 const slug = z
   .string()
   .min(2)
   .max(100)
-  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Slug chỉ gồm chữ thường, số và dấu gạch ngang");
+  .regex(ROOT_SLUG_PATTERN, "Slug chỉ gồm chữ thường, số và dấu gạch ngang");
 
 export const imagePathSchema = z
   .string()

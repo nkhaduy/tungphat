@@ -137,9 +137,9 @@ export function Header() {
           >
             <Phone size={16} /> {t.phoneLabel}
           </a>
-          <a href="/bao-gia" onClick={() => trackEvent("request_quote", { location: "header", channel: "form" })} aria-label={t.ctaGetQuote} className="inline-flex min-h-11 items-center gap-2 bg-wood-700 px-4 text-sm font-bold text-white transition hover:bg-wood-800">
+          <Link href="/bao-gia" onClick={() => trackEvent("request_quote", { location: "header", channel: "form" })} aria-label={t.ctaGetQuote} className="inline-flex min-h-11 items-center gap-2 bg-wood-700 px-4 text-sm font-bold text-white transition hover:bg-wood-800">
             <MessageCircle size={16} /> {t.ctaGetQuote}
-          </a>
+          </Link>
         </div>
 
         {/* Mobile menu toggle */}

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ContentEntry } from "@/lib/content";
 import type { ArticleFrontmatter, ProductFrontmatter, ProjectFrontmatter, ServicePageFrontmatter } from "@/lib/content-schema";
 import { mediaUrl } from "@/lib/media";
-import { createPageMetadata } from "@/lib/seo";
+import { absoluteUrl, createPageMetadata } from "@/lib/seo";
 
 type SeoEntry = ContentEntry<ArticleFrontmatter | ProductFrontmatter | ProjectFrontmatter | ServicePageFrontmatter>;
 
@@ -11,7 +11,7 @@ export function createContentMetadata(entry: SeoEntry, path: string): Metadata {
   const image = mediaUrl(entry.ogImage || entry.featuredImage);
   return {
     ...base,
-    alternates: { canonical: entry.canonical || path },
+    alternates: { canonical: entry.canonical || absoluteUrl(path) },
     openGraph: { ...base.openGraph, images: [{ url: image, alt: entry.featuredImageAlt }] },
     twitter: { ...base.twitter, images: [image] }
   };

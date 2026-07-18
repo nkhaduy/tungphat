@@ -12,10 +12,13 @@ import {
   servicePageSchema,
   staticPagesSettingsSchema
 } from "../lib/content-schema";
+import { isReservedRootSlug, validateRootSlug } from "../lib/reserved-slugs";
+import { rootContentSlugCollisions, type RootContentCandidate } from "../lib/root-content-routes";
 
 const root = process.cwd();
 const issues: string[] = [];
 const routes = new Map<string, string>();
+const rootContentEntries: RootContentCandidate[] = [];
 const entries: Array<{ collection: string; relative: string; data: Record<string, unknown> }> = [];
 
 const collections = {
@@ -82,11 +85,21 @@ for (const [collection, schema] of Object.entries(collections)) {
     if (previous) issues.push(`${relative}: URL trùng với ${previous} (${route})`);
     else routes.set(route, relative);
 
+    if (collection === "products" || collection === "pages") {
+      const rootSlugIssue = validateRootSlug(slug);
+      if (rootSlugIssue) issues.push(`${relative}: ${rootSlugIssue} ('${slug}')`);
+      rootContentEntries.push({ slug, collection, source: relative });
+    }
+
     if (data.draft === false && data.noindex === true) {
       issues.push(`${relative}: nội dung published đang bật noindex; hãy đặt draft=true hoặc noindex=false`);
     }
     if (data.draft === false && !parsed.content.trim()) {
       issues.push(`${relative}: nội dung published không có body`);
+    }
+
+    if ((collection === "products" || collection === "pages") && data.draft === false && data.noindex !== true) {
+      if (isReservedRootSlug(slug)) issues.push(`${relative}: nội dung published không có root route xuất ra thực tế (/${slug})`);
     }
 
     for (const media of mediaFields(data)) {
@@ -99,6 +112,10 @@ for (const [collection, schema] of Object.entries(collections)) {
       }
     }
   }
+}
+
+for (const [first, second] of rootContentSlugCollisions(rootContentEntries)) {
+  issues.push(`${second.source}: slug root trùng với ${first.source} (/${second.slug})`);
 }
 
 const productSlugs = new Set(entries.filter((entry) => entry.collection === "products").map((entry) => String(entry.data.slug)));

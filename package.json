@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "npm run validate:content && npm run images:check && node ./node_modules/next/dist/bin/next build",
-    "postbuild": "node scripts/clean-empty-collection-routes.mjs && node scripts/clean-export-image-sources.mjs && node scripts/check-static-output.mjs",
+    "postbuild": "node scripts/clean-empty-collection-routes.mjs && node scripts/clean-export-image-sources.mjs && node scripts/check-static-output.mjs && node scripts/check-sitemap-output.mjs",
     "start": "npx serve out",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.cloudflare.json --noEmit",
@@ -13,7 +13,7 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test --reporter=list",
     "validate:content": "tsx scripts/validate-content.ts",
-    "validate:links": "node scripts/check-internal-links.mjs",
+    "validate:links": "node scripts/check-internal-links.mjs && node scripts/check-sitemap-output.mjs",
     "images:check": "node scripts/check-images.mjs",
     "images:optimize": "node scripts/optimize-images.mjs",
     "media:compress:video": "bash scripts/compress-video-for-web.sh",

@@ -41,7 +41,7 @@ collections:
     summary: "{{title}} — draft: {{fields.draft}}"
     fields:
       - { label: Tên sản phẩm, name: title, widget: string, pattern: ['.{5,120}', 'Tên cần 5–120 ký tự'] }
-      - { label: Slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Chỉ dùng chữ thường, số và dấu gạch ngang'] }
+      - { label: Slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Chỉ dùng chữ thường, số và một dấu gạch ngang giữa các phần; không dùng /, khoảng trắng hoặc --'], hint: 'URL public là /slug. Không dùng slug trang hệ thống như admin, api, bao-gia, bai-viet, du-an, lien-he, san-pham hoặc catalogue; build sẽ từ chối slug trùng.' }
       - { label: Danh mục, name: category, widget: string }
       - { label: Mô tả ngắn, name: excerpt, widget: text, pattern: ['.{40,260}', 'Mô tả cần 40–260 ký tự'] }
       - { label: Ảnh đại diện, name: featuredImage, widget: image, choose_url: false }
@@ -179,7 +179,7 @@ collections:
     preview_path: "{{fields.slug}}"
     fields:
       - { label: Tiêu đề, name: title, widget: string }
-      - { label: Slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Slug không hợp lệ'] }
+      - { label: Slug, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Chỉ dùng chữ thường, số và một dấu gạch ngang giữa các phần; không dùng /, khoảng trắng hoặc --'], hint: 'URL public là /slug. Không dùng slug trang hệ thống như admin, api, bao-gia, bai-viet, du-an, lien-he, san-pham hoặc catalogue; build sẽ từ chối slug trùng.' }
       - { label: Nhãn nhỏ, name: eyebrow, widget: string }
       - { label: Mô tả, name: excerpt, widget: text }
       - { label: Vật liệu, name: materialTypes, widget: list, min: 1, field: { label: Vật liệu, name: value, widget: string } }
