@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
 import { trackEvent } from "@/lib/analytics";
-import { PHONE_HREF } from "@/lib/seo";
+import { PHONE_HREF, ZALO_URL } from "@/lib/seo";
 
 export function Header() {
   const { lang, setLang } = useLang();
@@ -34,10 +34,8 @@ export function Header() {
   ];
 
   const links: [string, string][] = [
-    [t.navHome, "/"],
-    [t.navCNC, "/gia-cong-cnc"],
-    ["Dự án", "/du-an"],
-    ["Bài viết", "/bai-viet"],
+    [t.navHome, "/#trang-chu"],
+    [t.navCNC, "/#cnc"],
     [t.navLibrary, "/#thu-vien"],
     [t.navContact, "/lien-he"]
   ];
@@ -57,20 +55,22 @@ export function Header() {
         {/* Logo — switches between white and color based on scroll */}
         <Link href="/" className="relative h-[52px] w-[232px] shrink-0 sm:w-[282px] xl:h-[56px] xl:w-[318px]">
           <Image
-            src="/logo-horizontal-white.webp"
+            src="/logo-horizontal-white.png"
             alt="Tùng Phát"
             fill
             sizes="(min-width: 1280px) 318px, 282px"
             quality={95}
             className={`object-contain object-left transition-opacity duration-300 ${scrolled ? "opacity-0" : "opacity-100"}`}
+            priority
           />
           <Image
-            src="/logo-horizontal.webp"
+            src="/logo-horizontal.png"
             alt="Tùng Phát"
             fill
             sizes="(min-width: 1280px) 318px, 282px"
             quality={95}
             className={`object-contain object-left transition-opacity duration-300 ${scrolled ? "opacity-100" : "opacity-0"}`}
+            priority
           />
         </Link>
 
@@ -137,9 +137,9 @@ export function Header() {
           >
             <Phone size={16} /> {t.phoneLabel}
           </a>
-          <Link href="/bao-gia" onClick={() => trackEvent("request_quote", { location: "header", channel: "form" })} aria-label={t.ctaGetQuote} className="inline-flex min-h-11 items-center gap-2 bg-wood-700 px-4 text-sm font-bold text-white transition hover:bg-wood-800">
+          <a href={ZALO_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("request_quote", { location: "header", channel: "zalo" })} aria-label={t.ctaGetQuote} className="inline-flex min-h-11 items-center gap-2 bg-wood-500 px-4 text-sm font-bold text-white transition hover:bg-wood-600">
             <MessageCircle size={16} /> {t.ctaGetQuote}
-          </Link>
+          </a>
         </div>
 
         {/* Mobile menu toggle */}
@@ -197,7 +197,7 @@ export function Header() {
               <span className="text-white/40">|</span>
               <span className={lang === "en" ? "text-wood-500" : ""}>EN</span>
             </button>
-            <a href={PHONE_HREF} onClick={() => trackEvent("click_phone", { location: "mobile_header" })} className="flex min-h-12 items-center justify-center gap-2 bg-wood-700 px-4 font-bold text-white">
+            <a href={PHONE_HREF} onClick={() => trackEvent("click_phone", { location: "mobile_header" })} className="flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-4 font-bold text-white">
               <Phone size={17} /> {t.callLabel}
             </a>
           </div>

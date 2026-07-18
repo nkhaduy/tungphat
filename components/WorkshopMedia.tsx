@@ -7,12 +7,12 @@ import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
 
 const gallery = [
-  ["hero-workshop4.webp", 0],
-  ["hero-workshop5.webp", 1],
-  ["hero-workshop6.webp", 2],
-  ["hero-workshop1.webp", 3],
-  ["cnc-service.webp", 4],
-  ["wood-panels.webp", 5],
+  ["hero-workshop4.png", 0],
+  ["hero-workshop5.png", 1],
+  ["hero-workshop6.png", 2],
+  ["hero-workshop1.png", 3],
+  ["cnc-service.png", 4],
+  ["wood-panels.png", 5],
 ] as const;
 
 function allowedProcessVideo(value: string) {
@@ -54,13 +54,13 @@ export function WorkshopMedia() {
             <div className="grid items-center gap-10 md:grid-cols-[minmax(280px,40%)_1fr] md:gap-12 lg:gap-16">
               <div className="relative mx-auto aspect-[9/16] w-full max-w-[340px] overflow-hidden rounded-lg bg-forest-950 shadow-sm md:mx-0 md:max-w-[360px]">
                 {processVideoUrl ? (
-                  <video controls playsInline preload="none" poster="/images/cnc-service.webp" className="h-full w-full object-cover" aria-label="Video minh họa quy trình gia công CNC">
+                  <video controls playsInline preload="none" poster="/images/cnc-service.png" className="h-full w-full object-cover" aria-label="Video minh họa quy trình gia công CNC">
                     <source src={processVideoUrl} type="video/mp4" />
                     Trình duyệt của bạn không hỗ trợ phát video.
                   </video>
                 ) : (
                   <>
-                    <Image src="/images/cnc-service.webp" alt="Máy CNC tại khu vực gia công Tùng Phát" fill sizes="360px" className="object-cover" />
+                    <Image src="/images/cnc-service.png" alt="Máy CNC tại khu vực gia công Tùng Phát" fill sizes="360px" quality={95} className="object-cover" />
                     <p className="absolute inset-x-4 bottom-4 bg-forest-950/80 px-4 py-3 text-center text-xs font-semibold text-white">
                       Video quy trình sẽ được bổ sung sau khi có file web dưới 25 MiB hoặc URL media đã xác minh.
                     </p>

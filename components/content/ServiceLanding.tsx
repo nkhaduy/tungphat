@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, MessageCircle, Phone } from "lucide-react";
+import { Check, MessageCircle, Phone } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
@@ -44,7 +44,7 @@ export function ServiceLanding({ page }: { page: ContentEntry<ServicePageFrontma
               <h1 className="mt-4 text-balance text-4xl font-extrabold leading-tight sm:text-5xl">{page.title}</h1>
               <p className="mt-6 max-w-3xl text-pretty leading-8 text-white/80">{page.excerpt}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <TrackedLink href="/bao-gia" eventName="request_quote" eventProperties={{ location: `${page.slug}_hero` }} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-700 px-7 text-sm font-bold text-white">{page.quoteCta}<ArrowRight size={18} /></TrackedLink>
+                <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: `${page.slug}_hero` }} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-7 text-sm font-bold text-white"><MessageCircle size={18} />{page.quoteCta}</TrackedLink>
                 <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: `${page.slug}_hero` }} className="inline-flex min-h-14 items-center justify-center gap-2 border border-white/35 px-7 text-sm font-bold text-white"><Phone size={18} />Gọi {PHONE_DISPLAY}</TrackedLink>
               </div>
             </div>
@@ -83,7 +83,7 @@ export function ServiceLanding({ page }: { page: ContentEntry<ServicePageFrontma
             <aside className="h-fit bg-forest-950 p-7 text-white">
               <h2 className="text-xl font-extrabold">Checklist file</h2>
               <ul className="mt-5 space-y-3 text-sm leading-6 text-white/78">{page.fileGuidance.map((item) => <li key={item} className="flex gap-3"><Check size={17} className="mt-1 shrink-0 text-orange-300" />{item}</li>)}</ul>
-              <TrackedLink href="/bao-gia" eventName="request_quote" eventProperties={{ location: `${page.slug}_checklist` }} className="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-wood-700 px-5 text-sm font-bold"><MessageCircle size={17} />Gửi mô tả yêu cầu</TrackedLink>
+              <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: `${page.slug}_checklist` }} className="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-wood-500 px-5 text-sm font-bold"><MessageCircle size={17} />Trao đổi qua Zalo</TrackedLink>
               <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: `${page.slug}_checklist` }} className="mt-3 inline-flex min-h-12 w-full items-center justify-center border border-white/30 px-5 text-sm font-bold">Trao đổi file qua Zalo</TrackedLink>
             </aside>
           </div>

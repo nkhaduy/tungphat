@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, MessageCircle, Phone } from "lucide-react";
+import { Check, MessageCircle, Phone } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
@@ -57,7 +57,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
               <h1 className="mt-4 text-balance text-4xl font-extrabold leading-tight sm:text-5xl">{product.title}</h1>
               <p className="mt-6 max-w-3xl text-pretty leading-8 text-white/80">{product.excerpt}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <TrackedLink href="/bao-gia" eventName="request_quote" eventProperties={{ location: `${product.slug}_hero` }} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-700 px-7 text-sm font-bold text-white">{product.quoteCta}<ArrowRight size={18} /></TrackedLink>
+                <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: `${product.slug}_hero` }} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-7 text-sm font-bold text-white"><MessageCircle size={18} />{product.quoteCta}</TrackedLink>
                 <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: `${product.slug}_hero` }} className="inline-flex min-h-14 items-center justify-center gap-2 border border-white/35 px-7 text-sm font-bold text-white"><Phone size={18} />Gọi {PHONE_DISPLAY}</TrackedLink>
               </div>
             </div>
@@ -106,7 +106,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
               <ol className="mt-5 space-y-4 text-sm leading-6 text-white/78">
                 {product.orderingSteps.map((step, index) => <li key={step}><strong className="mr-2 text-orange-300">{String(index + 1).padStart(2, "0")}</strong>{step}</li>)}
               </ol>
-              <TrackedLink href="/bao-gia" eventName="request_quote" eventProperties={{ location: `${product.slug}_specs` }} className="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-wood-700 px-5 text-sm font-bold"><MessageCircle size={17} />Yêu cầu báo giá</TrackedLink>
+              <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: `${product.slug}_specs` }} className="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-wood-500 px-5 text-sm font-bold"><MessageCircle size={17} />Nhắn Zalo</TrackedLink>
               <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: `${product.slug}_specs` }} className="mt-3 inline-flex min-h-12 w-full items-center justify-center gap-2 border border-white/30 px-5 text-sm font-bold">Nhắn Zalo</TrackedLink>
             </aside>
           </div>

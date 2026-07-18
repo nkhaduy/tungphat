@@ -52,6 +52,7 @@ test("robots, sitemap, Vercel admin redirect và 404 đúng", async ({ page, req
   const sitemap = await request.get("/sitemap.xml");
   const xml = await sitemap.text();
   expect(xml).toContain("https://mdftungphat.com/go-ghep");
+  expect(xml).not.toContain("https://mdftungphat.com/bao-gia");
   expect(xml).not.toContain("/admin");
   expect(xml).not.toContain("__empty-collection");
   expect(await request.get("/bai-viet/__empty-collection/").then((response) => response.status())).toBe(404);
@@ -65,7 +66,7 @@ test("robots, sitemap, Vercel admin redirect và 404 đúng", async ({ page, req
   expect(missing?.status()).toBe(404);
 });
 
-test("trang báo giá không có lỗi accessibility nghiêm trọng", async ({ page }) => {
+test("trang liên hệ trực tiếp không có lỗi accessibility nghiêm trọng", async ({ page }) => {
   await page.goto("/bao-gia/");
   const results = await new AxeBuilder({ page }).disableRules(["color-contrast"]).analyze();
   expect(results.violations.filter((violation) => violation.impact === "critical" || violation.impact === "serious")).toEqual([]);
@@ -135,16 +136,20 @@ test("payload kiểu SQL injection không làm thay đổi schema", async ({ req
   expect(after.status()).toBe(201);
 });
 
-test("form báo giá hợp lệ lưu qua Pages Function và chặn submit lặp", async ({ page }) => {
-  await page.goto("/bao-gia/");
-  await page.getByLabel("Họ và tên").fill("Khách kiểm thử");
-  await page.getByLabel("Số điện thoại").fill("0909259160");
-  await page.getByLabel("Vật liệu / nhu cầu").selectOption("Ván MDF");
-  await page.getByLabel(/Tôi đồng ý/).check();
-  await expect.poll(async () => page.locator('input[name="cf-turnstile-response"]').inputValue(), { timeout: 15_000 }).not.toBe("");
-  const submit = page.getByRole("button", { name: "Gửi yêu cầu báo giá" });
-  await submit.dblclick();
-  await expect(page.getByRole("status")).toContainText("đã nhận yêu cầu báo giá", { timeout: 15_000 });
+test("frontend công khai không tải form, Turnstile hoặc Forms API", async ({ page }) => {
+  const unexpectedRequests: string[] = [];
+  page.on("request", (request) => {
+    if (/challenges\.cloudflare\.com\/turnstile|cms\.mdftungphat\.com\/api\/(contact|quote)/i.test(request.url())) {
+      unexpectedRequests.push(request.url());
+    }
+  });
+
+  for (const route of ["/", "/lien-he/", "/bao-gia/", "/go-ghep/", "/cat-cnc-go/"]) {
+    await page.goto(route, { waitUntil: "networkidle" });
+    await expect(page.locator('form, .cf-turnstile, script[src*="turnstile"]')).toHaveCount(0);
+  }
+
+  expect(unexpectedRequests).toEqual([]);
 });
 
 test("ngân sách Web Vitals lab không regression rõ rệt", async ({ page }) => {

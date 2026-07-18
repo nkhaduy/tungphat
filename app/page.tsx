@@ -17,14 +17,14 @@ import { locations } from "@/lib/locations";
 import { GOOGLE_REVIEWS_URL, PHONE_DISPLAY, PHONE_HREF, ZALO_URL } from "@/lib/seo";
 
 const categoryImages = [
-  "/wood/mdfmfc.webp",
-  "/wood/vanchongam.webp",
-  "/wood/plywood.webp",
-  "/wood/melamine.webp",
-  "/wood/laminate.webp",
-  "/wood/arcrylic.webp",
-  "/wood/veneer.webp",
-  "/wood/tamtrangtri.webp",
+  "/wood/mdfmfc.png",
+  "/wood/vanchongam.png",
+  "/wood/plywood.png",
+  "/wood/melamine.png",
+  "/wood/laminate.png",
+  "/wood/arcrylic.png",
+  "/wood/veneer.png",
+  "/wood/tamtrangtri.png",
 ];
 
 export default function Home() {
@@ -69,8 +69,8 @@ export default function Home() {
         <div className="container-shell grid items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
           <Reveal>
             <div className="relative aspect-[4/3] overflow-hidden">
-              <Image src="/images/cnc-service.webp" alt="Máy CNC đang gia công một tấm ván" fill sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
-              <div className="absolute bottom-0 left-0 bg-wood-700 px-5 py-4 text-sm font-bold">{t.cncOverlay}</div>
+              <Image src="/images/cnc-service.png" alt="Máy CNC của Tùng Phát đang gia công ván" fill sizes="(max-width: 1024px) 100vw, 55vw" quality={95} className="object-cover" />
+              <div className="absolute bottom-0 left-0 bg-wood-500 px-5 py-4 text-sm font-bold">{t.cncOverlay}</div>
             </div>
           </Reveal>
           <Reveal delay={.08}>
@@ -81,10 +81,7 @@ export default function Home() {
                   <div key={item} className="flex min-h-12 items-center gap-3 border-b border-white/15 text-sm font-bold text-white/85"><Check size={17} className="text-wood-500" />{item}</div>
                 ))}
               </div>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <TrackedLink href="/gia-cong-cnc" eventName="view_cnc_service" eventProperties={{ location: "home_cnc" }} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-700 px-7 text-sm font-bold transition hover:-translate-y-0.5 hover:bg-wood-800">{lang === "vi" ? "Xem dịch vụ CNC" : "View CNC service"} <ArrowRight size={18} /></TrackedLink>
-                <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_cnc", channel: "zalo" }} aria-label={t.cncCta} className="inline-flex min-h-14 items-center justify-center gap-2 border border-white/35 px-7 text-sm font-bold"><MessageCircle size={18} /> {t.cncCta}</TrackedLink>
-              </div>
+              <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: "home_cnc" }} aria-label={t.cncCta} className="mt-8 inline-flex min-h-14 items-center gap-2 bg-wood-500 px-7 text-sm font-bold transition hover:-translate-y-0.5 hover:bg-wood-600"><MessageCircle size={18} /> {t.cncCta}</TrackedLink>
             </div>
           </Reveal>
         </div>
@@ -155,13 +152,12 @@ export default function Home() {
                 <div className="p-5 sm:p-6">
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
-                      <span className="text-xs font-extrabold uppercase tracking-[.18em] text-wood-700">{branch.shortId}</span>
+                      <span className="text-xs font-extrabold uppercase tracking-[.18em] text-wood-600">{branch.shortId}</span>
                       <h3 className="mt-2 text-lg font-extrabold">{branch.name}</h3>
                     </div>
                     <MapPin size={22} className="text-wood-600" aria-hidden="true" />
                   </div>
                   <p className="mt-3 text-sm font-semibold leading-6 text-forest-900/86">{branch.address}</p>
-                  <TrackedLink href={branch.directionsUrl} target="_blank" rel="noopener noreferrer" eventName="click_directions" eventProperties={{ location: `home_${branch.shortId}` }} className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-950">{lang === "vi" ? "Xem chỉ đường" : "Get directions"} <ArrowRight size={16} /></TrackedLink>
                 </div>
                 <div className="h-[230px] border-t border-forest-900/10 bg-forest-950/5 sm:h-[270px] lg:h-[300px]">
                   <iframe
@@ -185,8 +181,8 @@ export default function Home() {
         <div className="container-shell">
           <div className="relative min-h-[420px] overflow-hidden rounded-[18px] border border-white/20 bg-forest-950 px-6 py-14 text-white shadow-[0_1px_0_rgba(255,255,255,0.12)_inset,0_18px_48px_rgba(6,43,29,0.10)] sm:min-h-[460px] sm:rounded-[24px] sm:px-10 lg:px-14 lg:py-16">
             <Image
-              src="/images/hero-workshop2.webp"
-              alt="Không gian nội thất sử dụng bề mặt gỗ"
+              src="/images/hero-workshop2.png"
+              alt="Vân gỗ và máy CNC tại Tùng Phát"
               fill
               sizes="100vw"
               quality={95}
@@ -196,11 +192,11 @@ export default function Home() {
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_46%,rgba(6,43,29,0.76)_0%,rgba(6,43,29,0.46)_34%,rgba(6,43,29,0)_66%)]" />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-forest-950/10 via-transparent to-forest-950/22" />
             <div className="relative z-10 flex min-h-[300px] max-w-3xl flex-col justify-center sm:min-h-[330px]">
-              <span className="eyebrow eyebrow-light">{t.contactEyebrow}</span>
+              <span className="eyebrow text-orange-300">{t.contactEyebrow}</span>
               <h2 className="text-balance mt-5 font-display text-3xl font-extrabold leading-tight tracking-[-0.035em] sm:text-4xl lg:text-[3.1rem] lg:leading-[1.22]">{t.contactTitle}</h2>
               <p className="text-pretty mt-5 max-w-2xl text-sm leading-7 text-white/78 sm:text-base">{t.contactDescription}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_contact", channel: "zalo" }} aria-label={t.contactCta} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-700 px-7 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-wood-800">
+                <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: "home_contact" }} aria-label={t.contactCta} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-7 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-wood-600">
                   <MessageCircle size={18} /> {t.contactCta}
                 </TrackedLink>
                 <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: "home_contact" }} className="inline-flex min-h-12 items-center gap-2 text-sm font-bold text-white/90 transition hover:text-white">
@@ -226,7 +222,7 @@ export default function Home() {
         >
           Zalo
         </TrackedLink>
-        <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: "floating" }} aria-label="Gọi Tùng Phát" className="grid h-[52px] w-[52px] place-items-center rounded-full bg-wood-700 text-white shadow-md sm:hidden"><Phone size={20} /></TrackedLink>
+        <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: "floating" }} aria-label="Gọi Tùng Phát" className="grid h-[52px] w-[52px] place-items-center rounded-full bg-wood-500 text-white shadow-md sm:hidden"><Phone size={20} /></TrackedLink>
       </div>
     </>
   );

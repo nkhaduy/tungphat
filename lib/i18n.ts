@@ -27,19 +27,19 @@ export const vi = {
 
   /* ── Hero ── */
   heroCompany: "Công ty TNHH TMDV Gỗ Tùng Phát",
-  heroTitle1: "TÙNG PHÁT –",
-  heroTitle2: "Vật liệu gỗ",
-  heroTitle3: "và giải pháp",
-  heroTitle4: "gia công CNC",
+  heroTitle1: "Vật liệu",
+  heroTitle2: "gỗ ghép",
+  heroTitle3: "Gia công",
+  heroTitle4: "CNC",
   heroDescription:
     "Cung cấp MDF, MFC, plywood, laminate và các vật liệu gỗ liên quan; đồng thời nhận gia công CNC theo kích thước hoặc file kỹ thuật cho xưởng nội thất, thợ mộc, đơn vị thiết kế và doanh nghiệp.",
   heroCtaExplore: "Khám phá catalogue",
   heroCtaQuote: "Liên hệ báo giá",
 
   /* ── Partners ── */
-  partnersTitle: "THƯƠNG HIỆU VẬT LIỆU",
+  partnersTitle: "ĐỐI TÁC & THƯƠNG HIỆU PHÂN PHỐI",
   partnersDescription:
-    "Tham khảo các dòng vật liệu đang được giới thiệu tại Tùng Phát và trao đổi theo mã, bề mặt hoặc nhu cầu sử dụng.",
+    "Tùng Phát cung cấp các dòng vật liệu gỗ từ những thương hiệu uy tín trên thị trường.",
 
   /* ── Product categories ── */
   categoryEyebrow: "Danh mục vật liệu",
@@ -93,33 +93,33 @@ export const vi = {
   whyUsEyebrow: "Lý do hợp tác",
   whyUsTitle: "Vì sao chọn Tùng Phát?",
   whyUsItems: [
-    "Tư vấn theo mã vật liệu",
+    "Vật liệu rõ nguồn gốc",
     "Đa dạng mã màu & bề mặt",
-    "Gia công CNC theo quy cách",
+    "Gia công CNC chính xác",
     "Hỗ trợ xưởng, thợ & đơn vị thiết kế"
   ],
 
   /* ── Workshop media ── */
-  workshopEyebrow: "Vật liệu và ứng dụng",
-  workshopTitle: "Hình ảnh bề mặt, ứng dụng và gia công CNC",
+  workshopEyebrow: "Hình ảnh thực tế",
+  workshopTitle: "Xưởng, vật liệu và thành phẩm Tùng Phát",
   workshopDescription:
-    "Hình ảnh minh họa giúp tham khảo bề mặt, không gian ứng dụng và hạng mục gia công trước khi trao đổi quy cách.",
+    "Tập trung vào năng lực kho/xưởng và chất lượng gia công để bạn đánh giá trước khi đặt hàng.",
   workshopGalleryLabels: [
-    "Không gian ứng dụng bề mặt gỗ",
-    "Ứng dụng vân gỗ trong nội thất",
-    "Minh họa không gian sử dụng vật liệu gỗ",
-    "Bề mặt gỗ trong thiết kế nội thất",
-    "Máy CNC gia công tấm ván",
-    "Các tấm vật liệu và bề mặt gỗ"
+    "Kho ván và vật liệu",
+    "Máy CNC đang vận hành",
+    "Quá trình gia công tại xưởng",
+    "Mẫu vật liệu thực tế",
+    "Cạnh cắt và chi tiết thành phẩm",
+    "Bộ mẫu bề mặt"
   ],
-  workshopProcessEyebrow: "Tham khảo quy trình",
-  workshopProcessTitle: "Trao đổi và gia công theo quy cách đã xác nhận",
+  workshopProcessEyebrow: "Quy trình tại xưởng",
+  workshopProcessTitle: "Gia công thực tế tại xưởng Tùng Phát",
   workshopProcessDescription:
-    "Thông tin vật liệu, kích thước và file kỹ thuật cần được kiểm tra trước khi chạy máy. Video minh họa một phần hoạt động gia công CNC.",
+    "Từ triển khai bản vẽ, cắt CNC đến dán chỉ hoàn thiện, từng công đoạn đều được đội ngũ Tùng Phát thực hiện trực tiếp tại xưởng, đảm bảo độ chính xác và chất lượng theo yêu cầu của từng đơn hàng.",
   workshopSteps: [
     "Triển khai và kiểm tra file gia công",
-    "Cắt CNC theo kích thước đã xác nhận",
-    "Kiểm tra chi tiết theo yêu cầu đã thống nhất"
+    "Cắt CNC chính xác theo kích thước",
+    "Dán chỉ và hoàn thiện sản phẩm"
   ],
 
   /* ── Contact CTA ── */
@@ -157,7 +157,7 @@ export const vi = {
 
   /* ── Catalogue pages ── */
   catalogueTitle: "Catalogue",
-  catalogueDescription: "Thông tin catalogue của",
+  catalogueDescription: "Catalogue sản phẩm chính thức từ",
   cataloguePlaceholder: "Catalogue đang được cập nhật. Vui lòng liên hệ để nhận file catalogue mới nhất.",
   catalogueRequestCta: "Yêu cầu catalogue",
   catalogueThumbnails: {
@@ -367,9 +367,9 @@ export const en: typeof vi = {
   heroCtaExplore: "Explore catalogue",
   heroCtaQuote: "Contact for a quote",
 
-  partnersTitle: "MATERIAL BRANDS",
+  partnersTitle: "PARTNERS & DISTRIBUTED BRANDS",
   partnersDescription:
-    "Browse material lines presented by Tùng Phát and ask about specific codes, surfaces, or applications.",
+    "Tùng Phát supplies wood material lines from reputable brands in the market.",
 
   categoryEyebrow: "Material Categories",
   categoryTitle: "Find the right panel for the right application",
@@ -419,32 +419,32 @@ export const en: typeof vi = {
   whyUsEyebrow: "Why Partner with Us",
   whyUsTitle: "Why choose Tùng Phát?",
   whyUsItems: [
-    "Advice by material code",
+    "Verified material sources",
     "Wide range of colors & surfaces",
-    "CNC machining to confirmed specs",
+    "Precision CNC machining",
     "Support for workshops, carpenters & designers"
   ],
 
-  workshopEyebrow: "Materials and Applications",
-  workshopTitle: "Surface, application, and CNC machining images",
+  workshopEyebrow: "Real-World Images",
+  workshopTitle: "Tùng Phát Workshop, Materials & Finished Products",
   workshopDescription:
-    "Illustrative images for reviewing surfaces, interior applications, and machining scopes before confirming specifications.",
+    "Focus on warehouse and workshop capability and machining quality so you can evaluate before ordering.",
   workshopGalleryLabels: [
-    "Interior application using wood surfaces",
-    "Woodgrain application in an interior",
-    "Illustrative space using wood materials",
-    "Wood surface in interior design",
-    "CNC machine processing a panel",
-    "Wood material panels and surfaces"
+    "Panel and material warehouse",
+    "CNC machine in operation",
+    "Workshop machining process",
+    "Actual material samples",
+    "Cut edges and finished details",
+    "Surface sample collection"
   ],
-  workshopProcessEyebrow: "Process Reference",
-  workshopProcessTitle: "Machining to confirmed specifications",
+  workshopProcessEyebrow: "Workshop Process",
+  workshopProcessTitle: "Real machining at Tùng Phát workshop",
   workshopProcessDescription:
-    "Material, dimensions, and technical files should be reviewed before machining. The video illustrates part of a CNC process.",
+    "From drawing review and CNC cutting to edge-banding and finishing, every step is performed directly by the Tùng Phát team at our workshop, ensuring accuracy and quality to each order's specifications.",
   workshopSteps: [
     "Review and verify machining files",
-    "CNC cutting to confirmed dimensions",
-    "Checking details against agreed requirements"
+    "Precision CNC cutting to specification",
+    "Edge-banding and finishing"
   ],
 
   contactEyebrow: "CONTACT TUNG PHAT",

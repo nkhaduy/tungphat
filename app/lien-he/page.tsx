@@ -4,7 +4,6 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { TrackedLink } from "@/components/TrackedLink";
-import { LeadForm } from "@/components/LeadForm";
 import { ViewTracker } from "@/components/ViewTracker";
 import { locations } from "@/lib/locations";
 import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, breadcrumbSchema, createPageMetadata } from "@/lib/seo";
@@ -50,10 +49,6 @@ export default function ContactPage() {
         <ViewTracker event="view_contact_page" contentType="contact" />
         <section className="py-16 lg:py-24">
           <div className="container-shell">
-            <div className="mb-14 grid gap-9 lg:grid-cols-[.55fr_1fr]">
-              <div><p className="eyebrow">Gửi thông tin</p><h2 className="mt-4 text-3xl font-extrabold text-forest-950">Tùng Phát phản hồi theo nhu cầu thực tế</h2><p className="mt-5 leading-7 text-slate-600">Form liên hệ không nhận file. Nếu cần gửi bản vẽ CNC, hãy mô tả trước rồi trao đổi file qua kênh được xác nhận.</p></div>
-              <LeadForm type="contact" compact />
-            </div>
             <div className="grid gap-5 lg:grid-cols-2">
               {locations.map((location) => (
                 <article id={location.id} key={location.id} className="scroll-mt-28 overflow-hidden rounded-2xl border border-forest-900/10 bg-white shadow-card">
