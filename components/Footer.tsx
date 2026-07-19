@@ -20,10 +20,10 @@ export function Footer() {
           <div>
             <div className="inline-flex rounded-md border border-white/20 bg-[#f8f5ef] p-4 shadow-[0_1px_0_rgba(255,255,255,0.08)_inset] sm:p-5">
               <Image
-                src="/footer-logo-tung-phat.png"
+                src="/logo-vertical.png"
                 alt="Tùng Phát"
-                width={1326}
-                height={1099}
+                width={512}
+                height={412}
                 quality={95}
                 loading="eager"
                 className="h-auto w-[142px] sm:w-[158px]"

@@ -11,7 +11,7 @@ publish_mode: simple
 
 site_url: https://mdftungphat.com
 display_url: https://mdftungphat.com
-logo_url: https://mdftungphat.com/logo-horizontal.webp
+logo_url: https://mdftungphat.com/logo-horizontal.png
 locale: vi
 media_folder: public/uploads
 public_folder: /uploads

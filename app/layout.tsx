@@ -52,9 +52,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-logo.png?v=20260630",
-        width: 899,
-        height: 250,
+        url: "/og-logo.png?v=20260719",
+        width: 1200,
+        height: 630,
         alt: "Tùng Phát – Vật liệu gỗ và giải pháp gia công CNC"
       }
     ]
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: seo.defaultTitle,
     description: DEFAULT_DESCRIPTION,
-    images: ["/og-logo.png?v=20260630"]
+    images: ["/og-logo.png?v=20260719"]
   }
 };
 
