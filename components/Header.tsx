@@ -9,12 +9,17 @@ import { translations } from "@/lib/i18n";
 import { trackEvent } from "@/lib/analytics";
 import { PHONE_HREF, ZALO_URL } from "@/lib/seo";
 
-export function Header() {
+type HeaderProps = {
+  appearance?: "adaptive" | "light";
+};
+
+export function Header({ appearance = "adaptive" }: HeaderProps) {
   const { lang, setLang } = useLang();
   const t = translations[lang];
   const [open, setOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const lightStyle = appearance === "light" || scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -46,7 +51,7 @@ export function Header() {
     <header
       className={[
         "site-header fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
-        scrolled
+        lightStyle
           ? "border-black/[0.08] bg-white/95 shadow-[0_1px_12px_rgba(0,0,0,0.07)] backdrop-blur-md"
           : "border-transparent bg-transparent"
       ].join(" ")}
@@ -60,7 +65,7 @@ export function Header() {
             fill
             sizes="(min-width: 1280px) 318px, 282px"
             quality={95}
-            className={`object-contain object-left transition-opacity duration-300 ${scrolled ? "opacity-0" : "opacity-100"}`}
+            className={`object-contain object-left transition-opacity duration-300 ${lightStyle ? "opacity-0" : "opacity-100"}`}
             priority
           />
           <Image
@@ -69,7 +74,7 @@ export function Header() {
             fill
             sizes="(min-width: 1280px) 318px, 282px"
             quality={95}
-            className={`object-contain object-left transition-opacity duration-300 ${scrolled ? "opacity-100" : "opacity-0"}`}
+            className={`object-contain object-left transition-opacity duration-300 ${lightStyle ? "opacity-100" : "opacity-0"}`}
             priority
           />
         </Link>
@@ -78,7 +83,7 @@ export function Header() {
         <nav className="hidden items-center gap-6 xl:flex" aria-label="Điều hướng chính">
           <a
             href={links[0][1]}
-            className={`text-[.8125rem] font-bold transition-colors duration-300 hover:text-wood-500 ${scrolled ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
+            className={`text-[.8125rem] font-bold transition-colors duration-300 hover:text-wood-500 ${lightStyle ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
           >
             {links[0][0]}
           </a>
@@ -86,7 +91,7 @@ export function Header() {
             <Link
               href="/san-pham"
               onClick={() => trackEvent("view_product_category", { location: "header" })}
-              className={`py-7 text-[.8125rem] font-bold transition-colors duration-300 hover:text-wood-500 ${scrolled ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
+              className={`py-7 text-[.8125rem] font-bold transition-colors duration-300 hover:text-wood-500 ${lightStyle ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
             >
               {t.navProducts}
             </Link>
@@ -94,7 +99,7 @@ export function Header() {
               type="button"
               aria-label={t.mobileOpenProducts}
               aria-haspopup="true"
-              className={`grid h-11 w-7 place-items-center transition-colors duration-300 ${scrolled ? "text-ink/70" : "text-white/80"}`}
+              className={`grid h-11 w-7 place-items-center transition-colors duration-300 ${lightStyle ? "text-ink/70" : "text-white/80"}`}
             >
               <ChevronDown size={14} />
             </button>
@@ -111,7 +116,7 @@ export function Header() {
               key={href}
               href={href}
               onClick={() => href === "/gia-cong-cnc" && trackEvent("view_cnc_service", { location: "header" })}
-              className={`text-[.8125rem] font-bold transition-colors duration-300 ${scrolled ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
+              className={`text-[.8125rem] font-bold transition-colors duration-300 ${lightStyle ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
             >
               {label}
             </a>
@@ -124,16 +129,16 @@ export function Header() {
             type="button"
             onClick={toggleLang}
             aria-label="Chuyển ngôn ngữ"
-            className={`inline-flex min-h-11 items-center gap-1 px-2 text-xs font-bold transition-colors duration-300 ${scrolled ? "text-ink/60 hover:text-ink" : "text-white/70 hover:text-white"}`}
+            className={`inline-flex min-h-11 items-center gap-1 px-2 text-xs font-bold transition-colors duration-300 ${lightStyle ? "text-ink/60 hover:text-ink" : "text-white/70 hover:text-white"}`}
           >
             <span className={lang === "vi" ? "text-wood-500" : ""}>VI</span>
-            <span className={`${scrolled ? "text-ink/28" : "text-white/40"}`}>|</span>
+            <span className={`${lightStyle ? "text-ink/28" : "text-white/40"}`}>|</span>
             <span className={lang === "en" ? "text-wood-500" : ""}>EN</span>
           </button>
           <a
             href={PHONE_HREF}
             onClick={() => trackEvent("click_phone", { location: "header" })}
-            className={`inline-flex min-h-11 items-center gap-2 px-3 text-sm font-bold transition-colors duration-300 ${scrolled ? "text-ink hover:text-wood-500" : "text-white/90 hover:text-white"}`}
+            className={`inline-flex min-h-11 items-center gap-2 px-3 text-sm font-bold transition-colors duration-300 ${lightStyle ? "text-ink hover:text-wood-500" : "text-white/90 hover:text-white"}`}
           >
             <Phone size={16} /> {t.phoneLabel}
           </a>
@@ -148,7 +153,7 @@ export function Header() {
           onClick={() => setOpen(!open)}
           aria-expanded={open}
           aria-label={open ? t.mobileCloseMenu : t.mobileOpenMenu}
-          className={`grid h-11 w-11 place-items-center border transition-colors duration-300 lg:hidden ${scrolled ? "border-ink/20 text-ink" : "border-white/25 text-white"}`}
+          className={`grid h-11 w-11 place-items-center border transition-colors duration-300 lg:hidden ${lightStyle ? "border-ink/20 text-ink" : "border-white/25 text-white"}`}
         >
           {open ? <X /> : <Menu />}
         </button>
