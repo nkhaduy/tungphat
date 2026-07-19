@@ -26,8 +26,8 @@ const config: Config = {
         ink: "#16211b"
       },
       fontFamily: {
-        sans: ["var(--font-montserrat)"],
-        display: ["var(--font-montserrat)"]
+        sans: ["var(--font-montserrat)", "Arial", "sans-serif"],
+        display: ["var(--font-montserrat)", "Arial", "sans-serif"]
       },
       boxShadow: {
         card: "0 1px 2px rgba(10,42,28,.06), 0 8px 28px rgba(10,42,28,.09)"

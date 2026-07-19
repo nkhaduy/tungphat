@@ -13,6 +13,7 @@ import {
 import { locations } from "@/lib/locations";
 import business from "@/content/settings/business.json";
 import seo from "@/content/settings/seo.json";
+import { montserratVariables } from "@/app/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -111,7 +112,7 @@ const siteSchema = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="vi">
+    <html lang="vi" className={montserratVariables}>
       <head>
         <link rel="preload" as="image" href="/images/hero-workshop-mobile.webp" media="(max-width: 767px)" fetchPriority="high" />
         <link rel="preload" as="image" href="/images/hero-workshop.webp" media="(min-width: 768px)" fetchPriority="high" />
