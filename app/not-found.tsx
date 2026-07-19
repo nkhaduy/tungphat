@@ -1,48 +1,78 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, MessageCircle } from "lucide-react";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import { TrackedLink } from "@/components/TrackedLink";
-import { ZALO_URL } from "@/lib/seo";
+import { ArrowLeft, PanelsTopLeft } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Không tìm thấy trang",
+  title: "ERROR 404 — Trang này không tồn tại",
   robots: { index: false, follow: false }
 };
 
 export default function NotFound() {
   return (
-    <>
-      <div className="fixed inset-x-0 top-0 h-[76px] bg-forest-950" aria-hidden="true" />
-      <Header />
-      <main className="grid min-h-[72vh] place-items-center bg-[#f6f7f5] px-4 pb-20 pt-32 text-center">
-        <div className="max-w-2xl">
-          <p className="text-sm font-extrabold uppercase tracking-[.18em] text-wood-700">Lỗi 404</p>
-          <h1 className="mt-5 text-balance text-4xl font-extrabold text-forest-950 sm:text-5xl">
-            Không tìm thấy trang bạn cần
-          </h1>
-          <p className="mx-auto mt-5 max-w-xl leading-7 text-slate-600">
-            Liên kết có thể đã thay đổi hoặc nội dung đang được cập nhật. Bạn có thể quay về trang chủ, xem danh mục vật liệu hoặc liên hệ Tùng Phát.
-          </p>
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link href="/" className="inline-flex min-h-12 items-center justify-center gap-2 bg-forest-900 px-6 text-sm font-bold text-white">
-              <ArrowLeft size={17} /> Về trang chủ
-            </Link>
-            <TrackedLink
-              href={ZALO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              eventName="click_zalo"
-              eventProperties={{ location: "404" }}
-              className="inline-flex min-h-12 items-center justify-center gap-2 bg-wood-700 px-6 text-sm font-bold text-white"
-            >
-              <MessageCircle size={17} /> Liên hệ qua Zalo
-            </TrackedLink>
-          </div>
+    <main className="relative isolate grid min-h-[100svh] overflow-hidden bg-[#dfe5ef] px-5 py-6 sm:px-8 sm:py-8">
+      <picture className="absolute -inset-5 -z-20">
+        <source media="(max-width: 767px)" srcSet="/images/404-mobile.webp" />
+        <img
+          src="/images/404-desktop.webp"
+          alt=""
+          className="h-full w-full scale-[1.04] object-cover object-center blur-[7px] sm:blur-[9px]"
+        />
+      </picture>
+
+      <div
+        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(245,247,250,.76)_0%,rgba(239,243,247,.68)_48%,rgba(226,233,240,.82)_100%)]"
+        aria-hidden="true"
+      />
+
+      <Link
+        href="/"
+        aria-label="Về trang chủ Tùng Phát"
+        className="relative z-10 h-[46px] w-[210px] self-start sm:h-[54px] sm:w-[250px]"
+      >
+        <Image
+          src="/logo-horizontal.png"
+          alt="Tùng Phát"
+          fill
+          sizes="(min-width: 640px) 250px, 210px"
+          quality={95}
+          className="object-contain object-left"
+          priority
+        />
+      </Link>
+
+      <section className="mx-auto flex w-full max-w-[760px] -translate-y-4 flex-col items-center self-center text-center sm:-translate-y-8">
+        <h1 className="text-balance text-[clamp(3.25rem,10vw,6rem)] font-extrabold leading-[.92] tracking-[-.035em] text-forest-950 drop-shadow-[0_1px_0_rgba(255,255,255,.65)]">
+          ERROR <span className="text-wood-600">404</span>
+        </h1>
+        <p className="mt-6 text-balance text-[clamp(1.35rem,4vw,2rem)] font-bold leading-tight text-forest-950">
+          Trang này không tồn tại...
+        </p>
+        <p className="mt-4 max-w-[590px] text-pretty text-sm font-medium leading-6 text-[#34463d] sm:text-base sm:leading-7">
+          Địa chỉ có thể đã thay đổi hoặc nội dung không còn khả dụng. Hãy quay về trang chủ hoặc tiếp tục xem danh mục vật liệu của Tùng Phát.
+        </p>
+
+        <div className="mt-8 flex w-full max-w-[470px] flex-col justify-center gap-3 sm:flex-row">
+          <Link
+            href="/"
+            className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 bg-forest-900 px-6 text-sm font-bold text-white transition-colors duration-200 hover:bg-forest-800"
+          >
+            <ArrowLeft size={18} aria-hidden="true" />
+            Về trang chủ
+          </Link>
+          <Link
+            href="/san-pham"
+            className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 border border-forest-900 bg-white/55 px-6 text-sm font-bold text-forest-950 transition-colors duration-200 hover:bg-white/85"
+          >
+            <PanelsTopLeft size={18} aria-hidden="true" />
+            Xem vật liệu
+          </Link>
         </div>
-      </main>
-      <Footer />
-    </>
+      </section>
+
+      <p className="self-end text-center text-xs font-semibold text-forest-950/65 sm:text-left">
+        Tùng Phát · Vật liệu gỗ &amp; gia công CNC
+      </p>
+    </main>
   );
 }
