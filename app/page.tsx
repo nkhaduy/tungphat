@@ -115,6 +115,7 @@ export default function Home() {
             title="Khách hàng nói gì về Tùng Phát"
             description="Những chia sẻ thực tế từ khách hàng đã sử dụng sản phẩm và dịch vụ tại Tùng Phát."
             centered
+            wide
           />
           <div className="mx-auto mt-12 w-full max-w-5xl min-w-0">
             <TrustindexReviews />
