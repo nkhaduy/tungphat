@@ -42,7 +42,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
   return (
     <>
       <JsonLd data={[breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Sản phẩm", path: "/san-pham" }, { name: product.title, path: `/${product.slug}` }]), productSchema]} />
-      <Header />
+      <Header appearance="light" />
       <main className="bg-white pt-[72px]">
         <ViewTracker event="view_product" contentType={product.slug} />
         <section className="technical-grid bg-forest-950 py-14 text-white lg:py-20">

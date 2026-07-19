@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <>
-      <Header />
+      <Header appearance="light" />
       <LegalPage type="terms" />
       <Footer />
     </>

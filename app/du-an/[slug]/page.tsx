@@ -46,7 +46,7 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <>
       <JsonLd data={[breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Dự án", path: "/du-an" }, { name: project.title, path: `/du-an/${project.slug}` }]), projectSchema]} />
-      <Header />
+      <Header appearance="light" />
       <main className="bg-white pt-[72px]">
         <ViewTracker event="view_project" contentType={project.slug} />
         <article>

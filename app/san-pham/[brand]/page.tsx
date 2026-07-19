@@ -26,7 +26,7 @@ export default async function BrandRoute({ params }: BrandRouteProps) {
 
   return (
     <>
-      <Header />
+      <Header appearance="light" />
       <BrandPage brand={brand} />
       <Footer />
     </>

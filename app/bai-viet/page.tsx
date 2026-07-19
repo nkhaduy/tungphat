@@ -19,7 +19,7 @@ export default function ArticlesPage() {
   return (
     <>
       <JsonLd data={breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Bài viết", path: "/bai-viet" }])} />
-      <Header />
+      <Header appearance="light" />
       <main className="min-h-[70vh] bg-[#f6f7f5] pt-[72px]">
         <section className="bg-forest-950 py-16 text-white lg:py-20"><div className="container-shell"><h1 className="text-balance text-4xl font-extrabold sm:text-5xl">Kiến thức vật liệu và CNC</h1><p className="mt-5 max-w-3xl leading-8 text-white/80">Chỉ hiển thị nội dung đã được người phụ trách kiểm tra và publish. Bản nháp trong CMS không xuất hiện trên website hoặc sitemap.</p></div></section>
         <section className="py-16 lg:py-24"><div className="container-shell">

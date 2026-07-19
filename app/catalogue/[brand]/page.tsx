@@ -30,7 +30,7 @@ export default async function CatalogueRoute({ params }: RouteProps) {
 
   return (
     <>
-      <Header />
+      <Header appearance="light" />
       <CatalogueView brand={brand} />
       <Footer />
     </>

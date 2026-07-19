@@ -54,7 +54,7 @@ export default function CncServicePage() {
           serviceSchema
         ]}
       />
-      <Header />
+      <Header appearance="light" />
       <main className="bg-white pt-[72px]">
         <section className="technical-grid bg-forest-950 py-14 text-white lg:py-20">
           <div className="container-shell grid items-center gap-10 lg:grid-cols-[1fr_.82fr]">

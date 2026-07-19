@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <Header />
+      <Header appearance="light" />
       <LegalPage type="privacy" />
       <Footer />
     </>

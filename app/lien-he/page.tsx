@@ -28,7 +28,7 @@ export default function ContactPage() {
   return (
     <>
       <JsonLd data={[breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Liên hệ", path: "/lien-he" }]), contactPageSchema]} />
-      <Header />
+      <Header appearance="light" />
       <main className="bg-[#f6f7f5] pt-[72px]">
         <section className="bg-forest-950 py-14 text-white lg:py-20">
           <div className="container-shell">
