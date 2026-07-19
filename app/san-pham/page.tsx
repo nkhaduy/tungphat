@@ -38,7 +38,7 @@ export default function ProductsPage() {
           productListSchema
         ]}
       />
-      <Header appearance="light" />
+      <Header appearance="dark" />
       <main className="bg-[#f6f7f5] pt-[72px]">
         <section className="bg-forest-950 py-16 text-white lg:py-20">
           <div className="container-shell">

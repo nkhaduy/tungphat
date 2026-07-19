@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
+import { secureRandomIndex } from "@/lib/random";
 import { TrackedLink } from "@/components/TrackedLink";
 import { ZALO_URL } from "@/lib/seo";
 
@@ -30,11 +31,14 @@ export function LegalPage({ type }: LegalPageProps) {
   const sections = type === "privacy" ? t.privacySections : t.termsSections;
   const showCTA = type === "privacy";
 
-  const heroImage = type === "privacy" ? LEGAL_HERO_IMAGES[0] : LEGAL_HERO_IMAGES[1];
-
+  const [heroImage, setHeroImage] = useState(LEGAL_HERO_IMAGES[type === "privacy" ? 0 : 1]);
   const [activeSection, setActiveSection] = useState("");
   const [tocOpen, setTocOpen] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    setHeroImage(LEGAL_HERO_IMAGES[secureRandomIndex(LEGAL_HERO_IMAGES.length)]);
+  }, [type]);
 
   useEffect(() => {
     if (observerRef.current) observerRef.current.disconnect();

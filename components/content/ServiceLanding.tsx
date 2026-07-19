@@ -29,7 +29,7 @@ export function ServiceLanding({ page }: { page: ContentEntry<ServicePageFrontma
   return (
     <>
       <JsonLd data={[breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Gia công CNC", path: "/gia-cong-cnc" }, { name: page.title, path: `/${page.slug}` }]), serviceSchema]} />
-      <Header appearance="light" />
+      <Header appearance="dark" />
       <main className="bg-white pt-[72px]">
         <ViewTracker event="view_cnc_service" contentType={page.slug} />
         <section className="technical-grid bg-forest-950 py-14 text-white lg:py-20">

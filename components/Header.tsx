@@ -10,7 +10,7 @@ import { trackEvent } from "@/lib/analytics";
 import { PHONE_HREF, ZALO_URL } from "@/lib/seo";
 
 type HeaderProps = {
-  appearance?: "adaptive" | "light";
+  appearance?: "adaptive" | "dark" | "light";
 };
 
 export function Header({ appearance = "adaptive" }: HeaderProps) {
@@ -20,6 +20,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
   const [productsOpen, setProductsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const lightStyle = appearance === "light" || scrolled;
+  const darkStyle = appearance === "dark" && !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -53,7 +54,9 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
         "site-header fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
         lightStyle
           ? "border-black/[0.08] bg-white/95 shadow-[0_1px_12px_rgba(0,0,0,0.07)] backdrop-blur-md"
-          : "border-transparent bg-transparent"
+          : darkStyle
+            ? "border-white/10 bg-forest-950"
+            : "border-transparent bg-transparent"
       ].join(" ")}
     >
       <div className="container-shell flex h-[76px] items-center justify-between gap-5 xl:h-[78px]">

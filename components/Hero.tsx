@@ -8,6 +8,7 @@ import { TrackedLink } from "@/components/TrackedLink";
 import staticPages from "@/content/settings/static-pages.json";
 import { translations } from "@/lib/i18n";
 import { useLang } from "@/lib/i18n-context";
+import { secureRandomIndex } from "@/lib/random";
 import { ZALO_URL } from "@/lib/seo";
 
 const slides = [
@@ -47,7 +48,14 @@ export function Hero() {
   const { lang } = useLang();
   const t = translations[lang];
   const [active, setActive] = useState(0);
+  const [initialActive, setInitialActive] = useState(0);
   const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const firstSlide = secureRandomIndex(slides.length);
+    setActive(firstSlide);
+    setInitialActive(firstSlide);
+  }, []);
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -75,8 +83,8 @@ export function Hero() {
             fill
             sizes="100vw"
             quality={100}
-            priority={active === 0}
-            fetchPriority={active === 0 ? "high" : "auto"}
+            priority={active === initialActive}
+            fetchPriority={active === initialActive ? "high" : "auto"}
             className="object-cover"
           />
         </motion.picture>

@@ -18,7 +18,7 @@ export default function QuotePage() {
   return (
     <>
       <JsonLd data={breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Liên hệ trực tiếp", path: "/bao-gia" }])} />
-      <Header appearance="light" />
+      <Header appearance="dark" />
       <main className="bg-[#f6f7f5] pt-[72px]">
         <section className="bg-forest-950 py-14 text-white lg:py-20">
           <div className="container-shell">

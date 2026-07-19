@@ -29,12 +29,29 @@ test("các route chính trả về trang có H1, canonical và không có lỗi 
   expect(errors).toEqual([]);
 });
 
-test("hero giữ slideshow tự động và chỉ slide đầu có ưu tiên cao", async ({ page }) => {
+test("hero chọn slide đầu ngẫu nhiên, tiếp tục tự động và chỉ ưu tiên ảnh mở đầu", async ({ page }) => {
+  await page.addInitScript(() => {
+    Crypto.prototype.getRandomValues = function <T extends ArrayBufferView | null>(array: T): T {
+      (array as Uint32Array)[0] = 2;
+      return array;
+    };
+  });
   await page.goto("/");
   const hero = page.locator("#trang-chu");
-  await expect(hero.getByRole("img", { name: /Kho vật liệu/ })).toBeVisible();
+  await expect(hero.getByRole("img", { name: /Không gian ứng dụng vật liệu gỗ/ })).toBeVisible();
   await expect(hero.locator('img[fetchpriority="high"]')).toHaveCount(1);
-  await expect(hero.getByRole("img", { name: /Bề mặt vật liệu/ })).toBeVisible({ timeout: 7_000 });
+  await expect(hero.getByRole("img", { name: /Không gian trưng bày vật liệu gỗ/ })).toBeVisible({ timeout: 7_000 });
+});
+
+test("hero trang pháp lý chọn ảnh ngẫu nhiên khi tải trang", async ({ page }) => {
+  await page.addInitScript(() => {
+    Crypto.prototype.getRandomValues = function <T extends ArrayBufferView | null>(array: T): T {
+      (array as Uint32Array)[0] = 3;
+      return array;
+    };
+  });
+  await page.goto("/chinh-sach-bao-mat/");
+  await expect(page.locator("main section").first().locator('img[src*="hero-workshop6.webp"]')).toBeVisible();
 });
 
 test("menu mobile mở được, không tràn ngang", async ({ page }) => {
@@ -44,6 +61,32 @@ test("menu mobile mở được, không tràn ngang", async ({ page }) => {
   await expect(page.getByRole("banner").getByRole("link", { name: "Liên hệ", exact: true })).toBeVisible();
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(overflow).toBeLessThanOrEqual(1);
+});
+
+test("header tham chiếu đúng bề mặt mở đầu trên toàn bộ nhóm trang", async ({ page }) => {
+  const darkHeaderRoutes = [
+    ...publicRoutes.filter((route) => route !== "/"),
+    "/chinh-sach-bao-mat/",
+    "/dieu-khoan-su-dung/",
+    "/san-pham/an-cuong/",
+    "/catalogue/an-cuong/"
+  ];
+
+  for (const route of darkHeaderRoutes) {
+    await page.goto(route);
+    const header = page.getByRole("banner");
+    await expect(header, route).toHaveClass(/bg-forest-950/);
+    await expect(header.locator('img[src="/logo-horizontal-white.png"]'), route).toHaveClass(/opacity-100/);
+    await expect(header.locator('img[src="/logo-horizontal.png"]'), route).toHaveClass(/opacity-0/);
+  }
+
+  await page.goto("/san-pham/");
+  await page.evaluate(() => window.scrollTo(0, 120));
+  await expect(page.getByRole("banner")).toHaveClass(/bg-white\/95/);
+  await expect(page.getByRole("banner").locator('img[src="/logo-horizontal.png"]')).toHaveClass(/opacity-100/);
+
+  await page.goto("/khong-ton-tai/");
+  await expect(page.getByRole("banner")).toHaveClass(/bg-white\/95/);
 });
 
 test("robots, sitemap, Vercel admin redirect và 404 đúng", async ({ page, request }) => {
