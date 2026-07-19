@@ -15,7 +15,7 @@ export default function NotFound() {
   return (
     <>
       <Header appearance="light" />
-      <main className="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#dfe5ef] px-5 pb-16 pt-[132px] sm:px-8 sm:pb-20 sm:pt-[148px]">
+      <main className="relative isolate flex min-h-[100dvh] items-center justify-center overflow-hidden bg-[#dfe5ef] px-5 pb-16 pt-[132px] sm:px-8 sm:pb-20 sm:pt-[148px]">
         <picture className="absolute -inset-2 -z-20">
           <source media="(max-width: 767px)" srcSet="/images/404-mobile.webp" />
           <img

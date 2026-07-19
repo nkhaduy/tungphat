@@ -66,6 +66,20 @@ test("robots, sitemap, Vercel admin redirect và 404 đúng", async ({ page, req
   expect(missing?.status()).toBe(404);
 });
 
+test("404 chỉ hiện footer sau khi người dùng cuộn trên desktop và mobile", async ({ page }) => {
+  for (const viewport of [{ width: 1280, height: 800 }, { width: 390, height: 844 }]) {
+    await page.setViewportSize(viewport);
+    await page.goto("/khong-ton-tai/");
+
+    const footer = page.getByRole("contentinfo");
+    const footerTop = await footer.evaluate((element) => element.getBoundingClientRect().top);
+    expect(footerTop).toBeGreaterThanOrEqual(viewport.height - 1);
+
+    await footer.scrollIntoViewIfNeeded();
+    await expect(footer).toBeInViewport();
+  }
+});
+
 test("trang liên hệ trực tiếp không có lỗi accessibility nghiêm trọng", async ({ page }) => {
   await page.goto("/bao-gia/");
   const results = await new AxeBuilder({ page }).disableRules(["color-contrast"]).analyze();
