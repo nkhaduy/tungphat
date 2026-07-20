@@ -6,7 +6,7 @@ const requiredFiles = [
   "public/analytics/index.html", "public/analytics/styles.css", "public/analytics/dashboard.js",
   "public/_routes.json",
   "functions/auth.ts", "functions/callback.ts", "functions/health.ts",
-  "functions/analytics/_middleware.ts", "functions/api/contact.ts", "functions/api/quote.ts",
+  "functions/analytics/_middleware.ts", "functions/analytics/login.ts", "functions/api/contact.ts", "functions/api/quote.ts",
   "functions/api/analytics/track.ts", "functions/api/admin/analytics/[[path]].ts"
 ];
 for (const file of requiredFiles) {
