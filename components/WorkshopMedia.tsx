@@ -18,7 +18,10 @@ const gallery = [
 function allowedProcessVideo(value: string) {
   if (value.startsWith("/")) return value;
   try {
-    return new URL(value).origin === "https://media.mdftungphat.com" ? value : "";
+    const url = new URL(value);
+    if (url.origin === "https://media.mdftungphat.com") return value;
+    if (url.origin === "https://cms.mdftungphat.com" && url.pathname.startsWith("/media/videos/")) return value;
+    return "";
   } catch {
     return "";
   }

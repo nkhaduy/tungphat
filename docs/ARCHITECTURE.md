@@ -8,11 +8,13 @@ DNS tiếp tục được quản lý tại TenTen; không cần chuyển nameser
 flowchart LR
   V["Khách truy cập"] --> W["Vercel · mdftungphat.com"]
   W -->|"POST contact/quote"| C["Cloudflare Pages · cms.mdftungphat.com"]
+  W -->|"GET /media/videos/*"| C
   A["Quản trị viên"] -->|"GitHub OAuth"| C
   C -->|"commit trực tiếp main"| G["GitHub · nkhaduy/tungphat"]
   G -->|"Git Integration"| W
   C --> T["Turnstile"]
   C --> D["D1 leads"]
+  C --> R["R2 media private"]
 ```
 
 - Vercel phục vụ website Next.js static export tại apex và `www`.
@@ -20,6 +22,8 @@ flowchart LR
   Pages Functions và form API.
 - GitHub `main` là source of truth cho code, content và ảnh CMS.
 - D1 chỉ lưu contact/quote, trạng thái, lịch sử trạng thái và rate limit.
+- R2 chỉ lưu binary media lớn. Pages Function `/media/videos/*` stream object
+  công khai được allowlist từ bucket private; frontend không nhận R2 credential.
 - Canonical luôn là `https://mdftungphat.com`.
 
 ## DNS
@@ -64,5 +68,6 @@ Nội dung Markdown/JSON và ảnh nằm trong Git nên có history và dễ chu
 D1 production `tung-phat-leads` và preview `tung-phat-leads-preview` dùng UUID
 khác nhau. Migrations nằm tại `cloudflare-cms/migrations`.
 
-R2 chưa phải dependency. Chỉ đánh giá R2 khi binary trong repository làm
-clone/build chậm rõ rệt hoặc cần video lớn.
+R2 production `tung-phat-media` và preview `tung-phat-media-preview` dùng binding
+`MEDIA`. Bucket production không bật public access; video được phục vụ qua
+`https://cms.mdftungphat.com/media/videos/...` với byte-range và cache headers.

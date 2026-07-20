@@ -19,8 +19,19 @@ function database(label, databases) {
   return value;
 }
 
+function mediaBucket(label, buckets, expectedName) {
+  if (!Array.isArray(buckets) || buckets.length !== 1) {
+    errors.push(`${label}: phải khai báo đúng một R2 bucket.`);
+    return;
+  }
+  if (buckets[0].binding !== "MEDIA") errors.push(`${label}: R2 binding bắt buộc là MEDIA.`);
+  if (buckets[0].bucket_name !== expectedName) errors.push(`${label}: R2 bucket name không đúng.`);
+}
+
 const production = database("production", config.d1_databases);
 const preview = database("preview", config.env?.preview?.d1_databases);
+mediaBucket("production", config.r2_buckets, "tung-phat-media");
+mediaBucket("preview", config.env?.preview?.r2_buckets, "tung-phat-media-preview");
 if (production && preview && production.database_id === preview.database_id) errors.push("Production và preview không được dùng chung D1 UUID.");
 if (config.name !== "tungphat-cms") errors.push("Pages project phải có tên tungphat-cms.");
 if (config.pages_build_output_dir !== "./public") errors.push("pages_build_output_dir phải là ./public.");

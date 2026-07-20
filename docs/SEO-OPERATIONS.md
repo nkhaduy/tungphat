@@ -31,7 +31,9 @@
 ## Asset và hiệu năng
 
 - Ảnh nội dung dùng bản WebP; PNG gốc được giữ làm nguồn.
-- Video xưởng là tùy chọn qua `NEXT_PUBLIC_PROCESS_VIDEO_URL`, dùng `preload="none"` và giữ poster hiện tại. Nếu chưa có file web đã nén, component hiển thị poster thay vì tải video gốc. Không commit video nguồn dung lượng lớn.
+- Video xưởng dùng `NEXT_PUBLIC_PROCESS_VIDEO_URL`, `preload="none"` và poster
+  hiện tại. Production stream MP4 đã nén từ R2 private qua
+  `cms.mdftungphat.com/media/videos/*`; không commit video nguồn dung lượng lớn.
 - Chỉ ảnh hero trang chủ được tải ưu tiên. Không thêm `priority` cho ảnh dưới màn hình đầu.
 
 ## Checklist sau mỗi lần phát hành

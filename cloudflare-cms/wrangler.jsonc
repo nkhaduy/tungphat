@@ -12,6 +12,12 @@
       "migrations_dir": "./migrations"
     }
   ],
+  "r2_buckets": [
+    {
+      "binding": "MEDIA",
+      "bucket_name": "tung-phat-media"
+    }
+  ],
   "vars": {
     "ENVIRONMENT": "production",
     "CORS_ALLOWED_ORIGINS": "https://mdftungphat.com,https://www.mdftungphat.com",
@@ -33,6 +39,12 @@
           "database_name": "tung-phat-leads-preview",
           "database_id": "9ef568b8-dc45-4315-b18d-b98518790ed6",
           "migrations_dir": "./migrations"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "MEDIA",
+          "bucket_name": "tung-phat-media-preview"
         }
       ],
       "vars": {

@@ -1,6 +1,9 @@
 # Tùng Phát Cloudflare CMS
 
-Project độc lập cho Decap CMS, GitHub OAuth same-domain và API lead trên Cloudflare Pages. Website công khai vẫn chạy trên Vercel; content và media do CMS commit trực tiếp vào `nkhaduy/tungphat` branch `main`.
+Project độc lập cho Decap CMS, GitHub OAuth same-domain, API lead và media video
+trên Cloudflare Pages. Website công khai vẫn chạy trên Vercel; content và ảnh
+CMS commit trực tiếp vào `nkhaduy/tungphat` branch `main`, còn video lớn nằm
+trong R2 private.
 
 ## Runtime
 
@@ -10,10 +13,16 @@ Project độc lập cho Decap CMS, GitHub OAuth same-domain và API lead trên 
 - API: `POST /api/contact`, `POST /api/quote`
 - OAuth: `GET /auth`, `GET /callback`
 - Health: `GET /health`
+- Media: `GET|HEAD /media/videos/*`
 
 ## Bindings và secrets
 
-D1 binding duy nhất là `DB`. Production dùng `tung-phat-leads`; preview dùng `tung-phat-leads-preview`. Không dùng D1 cho content.
+D1 binding là `DB`. Production dùng `tung-phat-leads`; preview dùng
+`tung-phat-leads-preview`. Không dùng D1 cho content.
+
+R2 binding là `MEDIA`. Production dùng `tung-phat-media`; preview dùng
+`tung-phat-media-preview`. Bucket giữ private; route media chỉ cho phép key dưới
+`videos/`.
 
 Các secret bắt buộc, chỉ đặt trong Cloudflare secret store:
 

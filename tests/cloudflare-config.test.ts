@@ -13,6 +13,11 @@ describe("hybrid Cloudflare CMS bindings", () => {
     expect(config.env.preview.d1_databases[0].database_id).not.toBe(config.d1_databases[0].database_id);
   });
 
+  it("binds private production and preview R2 buckets with the MEDIA name", () => {
+    expect(config.r2_buckets).toEqual([{ binding: "MEDIA", bucket_name: "tung-phat-media" }]);
+    expect(config.env.preview.r2_buckets).toEqual([{ binding: "MEDIA", bucket_name: "tung-phat-media-preview" }]);
+  });
+
   it("keeps production CORS exact and Decap direct publishing", () => {
     expect(config.vars.CORS_ALLOWED_ORIGINS).toBe("https://mdftungphat.com,https://www.mdftungphat.com");
     expect(config.vars.CORS_ALLOWED_ORIGINS).not.toContain("*");

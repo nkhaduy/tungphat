@@ -14,6 +14,10 @@
 | D1 production | `tung-phat-leads` |
 | D1 preview | `tung-phat-leads-preview` |
 | D1 binding | `DB` |
+| R2 production | `tung-phat-media` |
+| R2 preview | `tung-phat-media-preview` |
+| R2 binding | `MEDIA` |
+| Video endpoint | `https://cms.mdftungphat.com/media/videos/...` |
 | Canonical | `https://mdftungphat.com` |
 
 Website tiếp tục dùng Next.js static export trên Vercel. Cloudflare Pages chỉ
@@ -78,7 +82,7 @@ Deploy production:
 npm --prefix cloudflare-cms run deploy:production
 ```
 
-Production và preview phải có binding `DB` riêng. Secret store cần các tên:
+Production và preview phải có binding `DB` và `MEDIA` riêng. Secret store cần các tên:
 
 ```text
 GITHUB_OAUTH_ID
@@ -89,6 +93,13 @@ IP_HASH_SALT
 ```
 
 Không đặt giá trị secret trong Git, log hoặc báo cáo.
+
+## R2 video
+
+Bucket giữ private. Chỉ key dưới `videos/` được Pages Function `/media/videos/*`
+phục vụ bằng `GET`/`HEAD`, có byte-range, CORS và cache immutable. Upload object
+với MIME thật, ví dụ `video/mp4`; không commit video nguồn lớn vào Git và không
+tạo bucket mới nếu hai bucket trên đã tồn tại.
 
 ## GitHub OAuth
 
@@ -126,11 +137,12 @@ mdftungphat.com
 www.mdftungphat.com
 ```
 
-Vercel production có đúng hai biến frontend:
+Vercel production có ba biến frontend:
 
 ```text
 NEXT_PUBLIC_FORMS_API_BASE=https://cms.mdftungphat.com
 NEXT_PUBLIC_TURNSTILE_SITE_KEY=<production site key>
+NEXT_PUBLIC_PROCESS_VIDEO_URL=https://cms.mdftungphat.com/media/videos/legacy/0619.mp4
 ```
 
 API:
