@@ -1,18 +1,32 @@
-import Link from "next/link";
-import { MapPin, MessageCircle, Phone } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
+import {
+  BranchLocation,
+  type ContactPhone,
+} from "@/components/contact/BranchLocation";
+import { ContactHero } from "@/components/contact/ContactHero";
 import { TrackedLink } from "@/components/TrackedLink";
 import { ViewTracker } from "@/components/ViewTracker";
-import { locations } from "@/lib/locations";
-import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, breadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import business from "@/content/settings/business.json";
 import staticPages from "@/content/settings/static-pages.json";
+import { locations } from "@/lib/locations";
+import {
+  BUSINESS_NAME,
+  PHONE_DISPLAY,
+  PHONE_HREF,
+  SITE_URL,
+  TAX_ID,
+  ZALO_URL,
+  breadcrumbSchema,
+  createPageMetadata,
+} from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "Liên hệ vật liệu gỗ và gia công CNC",
-  description: "Gọi điện, nhắn Zalo hoặc xem bản đồ hai địa điểm Tùng Phát tại đường Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh để trao đổi nhu cầu.",
-  path: "/lien-he"
+  title: "Liên hệ",
+  description:
+    "Liên hệ Tùng Phát qua Zalo, email hoặc điện thoại; xem địa chỉ và bản đồ hai chi nhánh tại đường Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh.",
+  path: "/lien-he",
 });
 
 const contactPageSchema = {
@@ -21,53 +35,135 @@ const contactPageSchema = {
   "@id": `${SITE_URL}/lien-he#webpage`,
   url: `${SITE_URL}/lien-he`,
   name: "Liên hệ Tùng Phát",
-  about: { "@id": `${SITE_URL}/#organization` }
+  about: { "@id": `${SITE_URL}/#organization` },
 };
+
+const phones: ContactPhone[] = [
+  { display: PHONE_DISPLAY, href: PHONE_HREF },
+  {
+    display: business.phoneSecondaryDisplay,
+    href: `tel:${business.phoneSecondaryE164}`,
+  },
+];
 
 export default function ContactPage() {
   return (
     <>
-      <JsonLd data={[breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Liên hệ", path: "/lien-he" }]), contactPageSchema]} />
+      <JsonLd
+        data={[
+          breadcrumbSchema([
+            { name: "Trang chủ", path: "/" },
+            { name: "Liên hệ", path: "/lien-he" },
+          ]),
+          contactPageSchema,
+        ]}
+      />
       <Header appearance="dark" />
-      <main className="bg-[#f6f7f5] pt-[72px]">
-        <section className="bg-forest-950 py-14 text-white lg:py-20">
+      <main className="bg-white pt-[72px]">
+        <ContactHero
+          description={staticPages.contactIntro}
+          email={business.email}
+          zaloUrl={ZALO_URL}
+        />
+
+        <ViewTracker event="view_contact_page" contentType="contact" />
+        <section
+          aria-labelledby="contact-details-title"
+          className="bg-white py-16 lg:py-24"
+        >
           <div className="container-shell">
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-white/70">
-              <Link href="/" className="min-h-11 content-center hover:text-white">Trang chủ</Link>
-              <span aria-hidden="true">/</span>
-              <span aria-current="page" className="text-white">Liên hệ</span>
-            </nav>
-            <h1 className="mt-7 text-balance text-4xl font-extrabold sm:text-5xl">Liên hệ Tùng Phát</h1>
-            <p className="mt-5 max-w-3xl leading-8 text-white/80">{staticPages.contactIntro}</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: "contact_hero" }} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-700 px-7 text-sm font-bold text-white"><Phone size={18} /> Gọi {PHONE_DISPLAY}</TrackedLink>
-              <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: "contact_hero" }} className="inline-flex min-h-14 items-center justify-center gap-2 border border-white/35 px-7 text-sm font-bold text-white"><MessageCircle size={18} /> Nhắn Zalo</TrackedLink>
+            <h2
+              id="contact-details-title"
+              className="text-balance text-3xl font-extrabold tracking-[-.02em] text-forest-950 sm:text-4xl"
+            >
+              Thông tin liên hệ
+            </h2>
+
+            <div className="mt-10 grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:gap-16">
+              <div>
+                <p className="text-sm font-bold text-slate-500">Tên công ty</p>
+                <p className="mt-3 max-w-[34rem] text-xl font-extrabold leading-8 text-forest-950">
+                  {BUSINESS_NAME.toUpperCase()}
+                </p>
+                <dl className="mt-7 border-t border-forest-900/12 pt-5">
+                  <div className="grid gap-1 sm:grid-cols-[9rem_1fr] sm:items-baseline">
+                    <dt className="text-sm font-bold text-slate-500">
+                      Mã số thuế
+                    </dt>
+                    <dd className="font-bold tabular-nums text-forest-950">
+                      {TAX_ID}
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+
+              <dl className="divide-y divide-forest-900/12 border-y border-forest-900/12">
+                <div className="grid gap-2 py-5 sm:grid-cols-[9rem_1fr] sm:items-center">
+                  <dt className="text-sm font-bold text-slate-500">
+                    Điện thoại
+                  </dt>
+                  <dd className="flex flex-col items-start gap-1 sm:flex-row sm:flex-wrap sm:gap-x-6">
+                    {phones.map((phone) => (
+                      <TrackedLink
+                        key={phone.href}
+                        href={phone.href}
+                        eventName="click_phone"
+                        eventProperties={{ location: "contact_details" }}
+                        className="inline-flex min-h-11 items-center font-bold tabular-nums text-forest-900 transition-colors hover:text-wood-600"
+                      >
+                        {phone.display}
+                      </TrackedLink>
+                    ))}
+                  </dd>
+                </div>
+                <div className="grid gap-2 py-5 sm:grid-cols-[9rem_1fr] sm:items-center">
+                  <dt className="text-sm font-bold text-slate-500">Email</dt>
+                  <dd>
+                    <a
+                      href={`mailto:${business.email}`}
+                      className="inline-flex min-h-11 items-center font-bold text-forest-900 transition-colors hover:text-wood-600"
+                    >
+                      {business.email}
+                    </a>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+
+            <div className="mt-12 border-t border-forest-900/12 pt-8">
+              <p className="text-sm font-bold text-slate-500">
+                Hệ thống chi nhánh
+              </p>
+              <div className="mt-5 grid gap-5 md:grid-cols-2 md:gap-10">
+                {locations.map((location) => (
+                  <a
+                    key={location.id}
+                    href={`#${location.id}`}
+                    className="group block border-b border-forest-900/12 pb-5"
+                  >
+                    <span className="text-sm font-extrabold text-forest-950 transition-colors group-hover:text-wood-600">
+                      {location.name}
+                    </span>
+                    <span className="mt-2 block text-sm font-medium leading-6 text-slate-600">
+                      {location.address}
+                    </span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        <ViewTracker event="view_contact_page" contentType="contact" />
-        <section className="py-16 lg:py-24">
-          <div className="container-shell">
-            <div className="grid gap-5 lg:grid-cols-2">
-              {locations.map((location) => (
-                <article id={location.id} key={location.id} className="scroll-mt-28 overflow-hidden rounded-2xl border border-forest-900/10 bg-white shadow-card">
-                  <div className="p-6 sm:p-7">
-                    <span className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-700">{location.shortId}</span>
-                    <h2 className="mt-2 text-2xl font-extrabold text-forest-950">{location.name}</h2>
-                    <p className="mt-3 flex items-start gap-2 text-sm font-semibold leading-6 text-slate-600"><MapPin size={18} className="mt-0.5 shrink-0 text-wood-600" />{location.address}</p>
-                    <TrackedLink href={location.directionsUrl} target="_blank" rel="noopener noreferrer" eventName="click_directions" eventProperties={{ location: location.shortId }} className="mt-5 inline-flex min-h-12 items-center justify-center gap-2 bg-forest-900 px-5 text-sm font-bold text-white">Xem chỉ đường <MapPin size={17} /></TrackedLink>
-                  </div>
-                  <div className="h-[300px] border-t border-forest-900/10 sm:h-[340px]">
-                    <iframe src={location.embedSrc} title={`Bản đồ ${location.name}`} loading="lazy" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" className="h-full w-full" style={{ border: 0 }} />
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        {locations.map((location) => (
+          <BranchLocation
+            key={location.id}
+            location={location}
+            phones={phones}
+            email={business.email}
+          />
+        ))}
       </main>
-      <Footer />
+      <Footer showBranchMapEmbeds={false} />
     </>
   );
 }
