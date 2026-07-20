@@ -196,8 +196,6 @@ export const businessSettingsSchema = z.object({
   website: z.literal("https://mdftungphat.com"),
   phoneDisplay: z.string().min(8).max(30),
   phoneE164: z.string().regex(/^\+[1-9]\d{7,14}$/),
-  phoneSecondaryDisplay: z.string().min(8).max(30),
-  phoneSecondaryE164: z.string().regex(/^\+[1-9]\d{7,14}$/),
   zaloUrl: z.string().url(),
   email: z.union([z.literal(""), z.string().email()]),
   openingHours: z.array(z.string().min(5).max(80)).default([]),

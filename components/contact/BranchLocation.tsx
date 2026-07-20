@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ExternalLink, Mail, MapPin, Phone } from "lucide-react";
+import { ExternalLink, MapPin, Phone } from "lucide-react";
 import { TrackedLink } from "@/components/TrackedLink";
 
 export type ContactPhone = {
@@ -20,14 +20,9 @@ export type BranchLocationData = {
 type BranchLocationProps = {
   location: BranchLocationData;
   phones: ContactPhone[];
-  email: string;
 };
 
-export function BranchLocation({
-  location,
-  phones,
-  email,
-}: BranchLocationProps) {
+export function BranchLocation({ location, phones }: BranchLocationProps) {
   const branchNumber = location.shortId.replace(/\D/g, "");
 
   return (
@@ -67,13 +62,6 @@ export function BranchLocation({
                     {phone.display}
                   </TrackedLink>
                 ))}
-                <a
-                  href={`mailto:${email}`}
-                  className="inline-flex min-h-11 items-center gap-2 font-bold text-forest-900 transition-colors hover:text-wood-600"
-                >
-                  <Mail size={17} aria-hidden="true" />
-                  {email}
-                </a>
               </div>
             </address>
           </div>

@@ -39,11 +39,7 @@ const contactPageSchema = {
 };
 
 const phones: ContactPhone[] = [
-  { display: PHONE_DISPLAY, href: PHONE_HREF },
-  {
-    display: business.phoneSecondaryDisplay,
-    href: `tel:${business.phoneSecondaryE164}`,
-  },
+  { display: `${PHONE_DISPLAY} (Mr. Tùng)`, href: PHONE_HREF },
 ];
 
 export default function ContactPage() {
@@ -58,11 +54,10 @@ export default function ContactPage() {
           contactPageSchema,
         ]}
       />
-      <Header appearance="dark" />
-      <main className="bg-white pt-[72px]">
+      <Header />
+      <main className="bg-white">
         <ContactHero
           description={staticPages.contactIntro}
-          email={business.email}
           zaloUrl={ZALO_URL}
         />
 
@@ -130,7 +125,10 @@ export default function ContactPage() {
               </dl>
             </div>
 
-            <div className="mt-12 border-t border-forest-900/12 pt-8">
+            <div
+              id="branch-locations"
+              className="mt-12 scroll-mt-24 border-t border-forest-900/12 pt-8"
+            >
               <p className="text-sm font-bold text-slate-500">
                 Hệ thống chi nhánh
               </p>
@@ -159,7 +157,6 @@ export default function ContactPage() {
             key={location.id}
             location={location}
             phones={phones}
-            email={business.email}
           />
         ))}
       </main>

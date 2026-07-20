@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, MessageCircle } from "lucide-react";
+import { MapPin, MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { TrackedLink } from "@/components/TrackedLink";
 import { secureRandomIndex } from "@/lib/random";
@@ -36,11 +36,10 @@ const heroImages = [
 
 type ContactHeroProps = {
   description: string;
-  email: string;
   zaloUrl: string;
 };
 
-export function ContactHero({ description, email, zaloUrl }: ContactHeroProps) {
+export function ContactHero({ description, zaloUrl }: ContactHeroProps) {
   const [activeImage, setActiveImage] = useState<string | null>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -54,7 +53,7 @@ export function ContactHero({ description, email, zaloUrl }: ContactHeroProps) {
   }, []);
 
   return (
-    <section className="relative isolate overflow-hidden bg-forest-950 py-14 text-white sm:py-16 lg:py-20">
+    <section className="relative isolate min-h-[100svh] overflow-hidden bg-forest-950 pb-14 pt-[132px] text-white sm:pb-16 sm:pt-[140px] lg:pb-20 lg:pt-[148px]">
       {activeImage ? (
         <Image
           src={activeImage}
@@ -69,12 +68,12 @@ export function ContactHero({ description, email, zaloUrl }: ContactHeroProps) {
           onLoad={() => setImageLoaded(true)}
         />
       ) : null}
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(6,43,29,.97)_0%,rgba(6,43,29,.91)_52%,rgba(6,43,29,.76)_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(6,43,29,.74)_0%,rgba(6,43,29,.52)_55%,rgba(6,43,29,.26)_100%)] sm:bg-[linear-gradient(90deg,rgba(6,43,29,.78)_0%,rgba(6,43,29,.58)_52%,rgba(6,43,29,.28)_100%)]" />
 
       <div className="container-shell">
         <nav
           aria-label="Breadcrumb"
-          className="flex items-center gap-2 text-sm text-white/72"
+          className="flex items-center gap-2 text-sm text-white/80"
         >
           <Link
             href="/"
@@ -83,20 +82,16 @@ export function ContactHero({ description, email, zaloUrl }: ContactHeroProps) {
             Trang chủ
           </Link>
           <span aria-hidden="true">/</span>
-          <span aria-current="page" className="text-white">
+          <span aria-current="page" className="font-bold text-white">
             Liên hệ
           </span>
         </nav>
 
         <div className="mt-7 max-w-[760px]">
-          <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[.14em] text-wood-500">
-            <span className="h-0.5 w-9 bg-wood-500" aria-hidden="true" />
-            Tùng Phát
-          </p>
-          <h1 className="mt-5 text-balance text-[clamp(2.35rem,6vw,4.25rem)] font-extrabold leading-[1.08] tracking-[-.025em]">
-            Liên hệ Tùng Phát
+          <h1 className="text-balance text-[clamp(2.35rem,6vw,4.25rem)] font-extrabold leading-[1.08] tracking-[-.025em]">
+            Liên hệ <span className="text-wood-500">Tùng Phát</span>
           </h1>
-          <p className="mt-5 max-w-[58ch] text-pretty text-base font-medium leading-8 text-white/86 sm:text-[1.0625rem]">
+          <p className="mt-5 max-w-[68ch] text-pretty text-base font-medium leading-7 text-white/90 sm:text-[1.0625rem] sm:leading-8">
             {description}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -112,11 +107,11 @@ export function ContactHero({ description, email, zaloUrl }: ContactHeroProps) {
               Liên hệ Zalo
             </TrackedLink>
             <a
-              href={`mailto:${email}`}
+              href="#branch-locations"
               className="inline-flex min-h-[52px] items-center justify-center gap-2 border border-white/45 bg-white/[0.08] px-6 text-[.8125rem] font-bold text-white transition-colors hover:border-white hover:bg-white hover:text-forest-950 sm:text-sm"
             >
-              <Mail size={18} aria-hidden="true" />
-              Gửi email: {email}
+              <MapPin size={18} aria-hidden="true" />
+              Hệ thống chi nhánh Tùng Phát
             </a>
           </div>
         </div>
