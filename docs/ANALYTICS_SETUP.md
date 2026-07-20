@@ -78,7 +78,9 @@ npm --prefix cloudflare-cms test
 npm run build
 npm --prefix cloudflare-cms run build
 npm --prefix cloudflare-cms run cms:dry-run
+npm run analytics:maintenance:dry-run
 npm --prefix cloudflare-cms run deploy:preview
+npm run analytics:maintenance:preview
 ```
 
 Preview checklist:
@@ -95,6 +97,15 @@ Preview checklist:
 
 Sau khi pass, deploy production CMS và để Vercel deploy website từ commit đã
 merge. Không deploy production trước migration production.
+
+Deploy scheduled cleanup sau migration production:
+
+```bash
+npm run analytics:maintenance:deploy
+```
+
+Cron `15 18 * * *` chạy lúc 01:15 theo giờ Việt Nam. Kiểm tra trigger trong
+Cloudflare Workers → `tungphat-analytics-maintenance` → Triggers.
 
 Kiểm tra `https://mdftungphat.com/admin/analytics` chuyển tới
 `https://cms.mdftungphat.com/analytics/`; request chưa đăng nhập sau đó phải
