@@ -9,5 +9,9 @@
     "skipLibCheck": true,
     "types": ["@cloudflare/workers-types"]
   },
-  "include": ["functions/**/*.ts", "cloudflare-cms/src/**/*.ts"]
+  "include": [
+    "functions/**/*.ts",
+    "cloudflare-cms/src/**/*.ts",
+    "workers/analytics-maintenance/src/**/*.ts"
+  ]
 }
