@@ -65,7 +65,7 @@ test("menu mobile mở được, không tràn ngang", async ({ page }) => {
 
 test("header tham chiếu đúng bề mặt mở đầu trên toàn bộ nhóm trang", async ({ page }) => {
   const darkHeaderRoutes = [
-    ...publicRoutes.filter((route) => route !== "/"),
+    ...publicRoutes.filter((route) => route !== "/" && route !== "/lien-he/"),
     "/chinh-sach-bao-mat/",
     "/dieu-khoan-su-dung/",
     "/san-pham/an-cuong/",
@@ -79,6 +79,12 @@ test("header tham chiếu đúng bề mặt mở đầu trên toàn bộ nhóm t
     await expect(header.locator('img[src="/logo-horizontal-white.png"]'), route).toHaveClass(/opacity-100/);
     await expect(header.locator('img[src="/logo-horizontal.png"]'), route).toHaveClass(/opacity-0/);
   }
+
+  await page.goto("/lien-he/");
+  const contactHeader = page.getByRole("banner");
+  await expect(contactHeader).toHaveClass(/bg-transparent/);
+  await expect(contactHeader.locator('img[src="/logo-horizontal-white.png"]')).toHaveClass(/opacity-100/);
+  await expect(contactHeader.locator('img[src="/logo-horizontal.png"]')).toHaveClass(/opacity-0/);
 
   await page.goto("/san-pham/");
   await page.evaluate(() => window.scrollTo(0, 120));
