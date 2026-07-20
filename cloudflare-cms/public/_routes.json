@@ -1,5 +1,14 @@
 {
   "version": 1,
-  "include": ["/auth", "/callback", "/health", "/logout", "/api/*", "/media/*"],
+  "include": [
+    "/api/*",
+    "/auth",
+    "/callback",
+    "/health",
+    "/logout",
+    "/media/*",
+    "/analytics",
+    "/analytics/*"
+  ],
   "exclude": []
 }

@@ -224,8 +224,17 @@ export const vi = {
       ]
     },
     {
+      id: "analytics",
+      title: "06. Đo lường website ẩn danh",
+      content: [
+        "Website sử dụng mã khách và mã phiên ngẫu nhiên để đếm lượt truy cập, lượt xem nội dung và các hành động như bấm gọi, mở Zalo, email, Google Maps hoặc catalogue. Dữ liệu này giúp Tùng Phát cải thiện nội dung và đo hiệu quả các kênh liên hệ.",
+        "Hệ thống analytics không lưu địa chỉ IP thô, không tạo dấu vân tay trình duyệt hoặc thiết bị, không quay màn hình, không ghi phím bấm và không thu thập nội dung bạn nhập trước khi gửi form. Dữ liệu sự kiện và phiên chi tiết được giữ tối đa 90 ngày; số liệu tổng hợp có thể được giữ tối đa 25 tháng.",
+        "Bạn có thể tắt đo lường trên thiết bị bằng cookie tp_analytics_opt_out. Việc tắt analytics không ảnh hưởng đến khả năng xem website hoặc liên hệ Tùng Phát."
+      ]
+    },
+    {
       id: "quyen",
-      title: "06. Quyền của khách hàng",
+      title: "07. Quyền của khách hàng",
       content: [
         "Khách hàng có quyền yêu cầu Tùng Phát cung cấp thông tin về dữ liệu cá nhân đang được lưu trữ.",
         "Khách hàng có quyền yêu cầu chỉnh sửa, bổ sung hoặc xóa thông tin cá nhân khi phát hiện sai sót hoặc không còn nhu cầu sử dụng dịch vụ.",
@@ -235,7 +244,7 @@ export const vi = {
     },
     {
       id: "lien-he",
-      title: "07. Liên hệ",
+      title: "08. Liên hệ",
       content: [
         "Mọi câu hỏi hoặc yêu cầu liên quan đến Chính sách bảo mật, vui lòng liên hệ Tùng Phát qua các kênh:",
         "Điện thoại: 0909 259 160",
@@ -543,8 +552,17 @@ export const en: typeof vi = {
       ]
     },
     {
+      id: "analytics",
+      title: "06. Anonymous Website Measurement",
+      content: [
+        "The website uses random visitor and session identifiers to count visits, content views, and actions such as phone, Zalo, email, Google Maps, or catalogue clicks. This data helps Tùng Phát improve content and measure contact-channel effectiveness.",
+        "The analytics system does not store raw IP addresses, create browser or device fingerprints, record screens or keystrokes, or collect form content before submission. Detailed events and sessions are retained for up to 90 days; aggregate metrics may be retained for up to 25 months.",
+        "You can disable measurement on a device using the tp_analytics_opt_out cookie. Disabling analytics does not affect browsing or contacting Tùng Phát."
+      ]
+    },
+    {
       id: "quyen",
-      title: "06. Customer Rights",
+      title: "07. Customer Rights",
       content: [
         "Customers have the right to request Tùng Phát to provide information about stored personal data.",
         "Customers have the right to request correction, supplementation, or deletion of personal information upon discovering errors or when services are no longer needed.",
@@ -554,7 +572,7 @@ export const en: typeof vi = {
     },
     {
       id: "lien-he",
-      title: "07. Contact",
+      title: "08. Contact",
       content: [
         "For any questions or requests regarding this Privacy Policy, please contact Tùng Phát through the following channels:",
         "Phone: 0909 259 160",

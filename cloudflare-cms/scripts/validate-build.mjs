@@ -3,8 +3,11 @@ import { parse } from "yaml";
 
 const requiredFiles = [
   "public/index.html", "public/config.yml", "public/cms-guard.js", "public/preview.js",
+  "public/analytics/index.html", "public/analytics/styles.css", "public/analytics/dashboard.js",
+  "public/_routes.json",
   "functions/auth.ts", "functions/callback.ts", "functions/health.ts",
-  "functions/api/contact.ts", "functions/api/quote.ts"
+  "functions/analytics/_middleware.ts", "functions/api/contact.ts", "functions/api/quote.ts",
+  "functions/api/analytics/track.ts", "functions/api/admin/analytics/[[path]].ts"
 ];
 for (const file of requiredFiles) {
   if (!existsSync(new URL(`../${file}`, import.meta.url))) throw new Error(`Thiếu CMS build input: ${file}`);
