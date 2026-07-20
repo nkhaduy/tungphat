@@ -27,12 +27,12 @@ function json(data: unknown, status = 200) {
   });
 }
 
-function dateInVietnam(offsetDays = 0) {
-  const now = new Date(Date.now() + 7 * 3600_000 + offsetDays * 86400_000);
+export function dateInVietnam(timestamp = Date.now(), offsetDays = 0) {
+  const now = new Date(timestamp + 7 * 3600_000 + offsetDays * 86400_000);
   return now.toISOString().slice(0, 10);
 }
 
-function dateRange(url: URL): DateRange | null {
+export function dateRange(url: URL): DateRange | null {
   const from = url.searchParams.get("from") || dateInVietnam();
   const to = url.searchParams.get("to") || from;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(from) || !/^\d{4}-\d{2}-\d{2}$/.test(to) || from > to) return null;
