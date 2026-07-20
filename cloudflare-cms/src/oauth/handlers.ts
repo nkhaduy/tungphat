@@ -13,7 +13,12 @@ export type OAuthEnv = {
   OAUTH_STATE_SECRET: string;
 };
 
-type StatePayload = { createdAt: number; nonce: string; origin: string };
+type StatePayload = {
+  createdAt: number;
+  nonce: string;
+  origin: string;
+  purpose: "cms" | "analytics";
+};
 const STATE_COOKIE = "decap_oauth_state";
 const STATE_MAX_AGE_SECONDS = 600;
 
@@ -50,8 +55,13 @@ async function sign(value: string, secret: string) {
   return Array.from(new Uint8Array(signature)).map((byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
-async function createState(origin: string, env: OAuthEnv) {
-  const payload = base64Url(JSON.stringify({ createdAt: Date.now(), nonce: crypto.randomUUID(), origin } satisfies StatePayload));
+async function createState(origin: string, purpose: StatePayload["purpose"], env: OAuthEnv) {
+  const payload = base64Url(JSON.stringify({
+    createdAt: Date.now(),
+    nonce: crypto.randomUUID(),
+    origin,
+    purpose,
+  } satisfies StatePayload));
   return `${payload}.${await sign(payload, env.OAUTH_STATE_SECRET)}`;
 }
 
@@ -74,6 +84,7 @@ async function readValidState(state: string, cookieState: string, env: OAuthEnv)
     if (!parsed || typeof parsed !== "object") return null;
     const candidate = parsed as Partial<StatePayload>;
     if (typeof candidate.createdAt !== "number" || typeof candidate.nonce !== "string" || typeof candidate.origin !== "string") return null;
+    if (candidate.purpose !== "cms" && candidate.purpose !== "analytics") return null;
     if (Date.now() - candidate.createdAt >= STATE_MAX_AGE_SECONDS * 1000) return null;
     if (!entries(env.CMS_ALLOWED_ORIGINS).includes(candidate.origin)) return null;
     return candidate as StatePayload;
@@ -105,6 +116,28 @@ function htmlResponse(status: "success" | "error", token: string, origin: string
   return new Response(html, { headers });
 }
 
+function analyticsResponse(origin: string, adminCookie: string) {
+  const headers = new Headers(responseHeaders({
+    Location: new URL("/analytics/", origin).toString(),
+  }));
+  headers.append("Set-Cookie", `${STATE_COOKIE}=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0`);
+  headers.append("Set-Cookie", adminCookie);
+  return new Response(null, { status: 302, headers });
+}
+
+function analyticsError(origin: string, code: string) {
+  const retry = new URL("/analytics/login", origin).toString();
+  const cms = new URL("/", origin).toString();
+  const html = `<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>Không thể mở Thống kê</title></head><body><main><h1>Chưa thể mở Thống kê</h1><p>Mã lỗi: ${code}</p><p><a href="${retry}">Đăng nhập lại</a> · <a href="${cms}">Quay về quản lý nội dung</a></p></main></body></html>`;
+  return new Response(html, {
+    status: 401,
+    headers: responseHeaders({
+      "Content-Type": "text/html; charset=utf-8",
+      "Content-Security-Policy": "default-src 'none'; frame-ancestors 'none'; base-uri 'none'",
+    }),
+  });
+}
+
 function requestOrigin(request: Request, env: OAuthEnv) {
   const origin = new URL(request.url).origin;
   return entries(env.CMS_ALLOWED_ORIGINS).includes(origin) ? origin : null;
@@ -128,15 +161,17 @@ async function accountAllowed(accessToken: string, env: OAuthEnv) {
 
 export async function handleAuth(request: Request, env: OAuthEnv) {
   if (request.method !== "GET") return new Response("Method not allowed", { status: 405, headers: responseHeaders({ Allow: "GET" }) });
+  const url = new URL(request.url);
+  const purpose: StatePayload["purpose"] = url.pathname === "/analytics/login" ? "analytics" : "cms";
   const origin = requestOrigin(request, env);
-  const siteId = new URL(request.url).searchParams.get("site_id") || "";
+  const siteId = purpose === "analytics" ? url.hostname : url.searchParams.get("site_id") || "";
   if (!origin || !entries(env.CMS_SITE_IDS).includes(siteId)) {
     return new Response("Invalid CMS site", { status: 403, headers: responseHeaders() });
   }
   if (!env.OAUTH_STATE_SECRET || env.OAUTH_STATE_SECRET.length < 32 || !env.GITHUB_OAUTH_ID) {
     return new Response("OAuth unavailable", { status: 503, headers: responseHeaders() });
   }
-  const state = await createState(origin, env);
+  const state = await createState(origin, purpose, env);
   const scope = env.GITHUB_REPO_PRIVATE === "1" ? "repo,user:email" : "public_repo,user:email";
   const target = new URL("https://github.com/login/oauth/authorize");
   target.search = new URLSearchParams({
@@ -162,7 +197,10 @@ export async function handleCallback(request: Request, env: OAuthEnv) {
   const code = url.searchParams.get("code") || "";
   const state = url.searchParams.get("state") || "";
   const statePayload = await readValidState(state, readCookie(request, STATE_COOKIE), env);
-  if (!code || !statePayload || statePayload.origin !== origin) return htmlResponse("error", "invalid_oauth_state", origin, true);
+  if (!code || !statePayload || statePayload.origin !== origin) {
+    if (statePayload?.purpose === "analytics") return analyticsError(origin, "invalid_oauth_state");
+    return htmlResponse("error", "invalid_oauth_state", origin, true);
+  }
 
   const response = await fetch("https://github.com/login/oauth/access_token", {
     method: "POST",
@@ -177,13 +215,17 @@ export async function handleCallback(request: Request, env: OAuthEnv) {
   const result: OAuthTokenResponse = await response.json();
   if (!response.ok || !result.access_token) {
     console.error(JSON.stringify({ message: "oauth_exchange_failed", error: result.error || response.status }));
+    if (statePayload.purpose === "analytics") return analyticsError(origin, "oauth_exchange_failed");
     return htmlResponse("error", "oauth_exchange_failed", origin, true);
   }
   if (!(await accountAllowed(result.access_token, env))) {
     console.warn(JSON.stringify({ message: "oauth_account_rejected" }));
+    if (statePayload.purpose === "analytics") return analyticsError(origin, "unauthorized_account");
     return htmlResponse("error", "unauthorized_account", origin, true);
   }
-  return htmlResponse("success", result.access_token, origin, true, await createAdminSessionCookie(env.OAUTH_STATE_SECRET));
+  const adminCookie = await createAdminSessionCookie(env.OAUTH_STATE_SECRET);
+  if (statePayload.purpose === "analytics") return analyticsResponse(origin, adminCookie);
+  return htmlResponse("success", result.access_token, origin, true, adminCookie);
 }
 
 export function handleHealth(request: Request) {

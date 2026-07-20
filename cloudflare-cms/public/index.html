@@ -23,11 +23,25 @@
       }
       .analytics-link {
         display: inline-flex;
-        margin-top: 8px;
         min-height: 36px;
         align-items: center;
         background: #153b27;
         color: #fff;
+        padding: 0 12px;
+        text-decoration: none;
+      }
+      .admin-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .content-link {
+        display: inline-flex;
+        min-height: 36px;
+        align-items: center;
+        border: 1px solid #153b27;
+        color: #153b27;
         padding: 0 12px;
         text-decoration: none;
       }
@@ -38,8 +52,10 @@
     <aside class="publish-notice" role="note">
       Publish sẽ commit trực tiếp vào branch main và đưa thay đổi vào quy trình build production.
       Chỉ publish khi nội dung đã được kiểm tra đầy đủ.
-      <br />
-      <a class="analytics-link" href="/analytics/">Mở Thống kê</a>
+      <nav class="admin-links" aria-label="Khu vực quản trị">
+        <a class="content-link" href="/">Quản lý nội dung</a>
+        <a class="analytics-link" href="/analytics/">Thống kê</a>
+      </nav>
     </aside>
     <script src="https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js"></script>
     <script src="/preview.js"></script>

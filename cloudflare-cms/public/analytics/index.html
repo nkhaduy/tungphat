@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex,nofollow,noarchive" />
-    <title>Thống kê kinh doanh | Tùng Phát CMS</title>
+    <title>Thống kê website | Tùng Phát CMS</title>
     <link rel="icon" href="https://mdftungphat.com/favicon.ico" />
     <link rel="stylesheet" href="/analytics/styles.css" />
   </head>
@@ -12,7 +12,8 @@
     <header class="topbar">
       <div>
         <p class="eyebrow">Tùng Phát CMS</p>
-        <h1>Thống kê kinh doanh</h1>
+        <h1>Thống kê website</h1>
+        <p class="subtitle">Theo dõi lượt truy cập và hành động liên hệ</p>
       </div>
       <nav aria-label="Quản trị">
         <a href="/">Quản lý nội dung</a>
@@ -36,7 +37,11 @@
           <label>Đến ngày <input type="date" id="date-to" /></label>
           <button id="apply-range">Áp dụng</button>
         </div>
-        <p id="freshness">Đang cập nhật…</p>
+        <div class="freshness">
+          <strong id="range-status">Dữ liệu hôm nay</strong>
+          <span id="freshness">Đang cập nhật…</span>
+        </div>
+        <button class="action primary" id="refresh-dashboard" type="button">Làm mới</button>
       </section>
 
       <nav class="tabs" aria-label="Báo cáo">
@@ -50,6 +55,10 @@
       </nav>
 
       <section id="status-message" class="message" hidden></section>
+      <section id="optout-warning" class="message warning" hidden>
+        <span>Thiết bị này đang tắt theo dõi website.</span>
+        <button class="action" id="reenable-tracking" type="button">Bật lại theo dõi</button>
+      </section>
       <section id="panel" aria-live="polite">
         <div class="skeleton-grid">
           <div></div><div></div><div></div><div></div>
