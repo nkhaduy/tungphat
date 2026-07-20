@@ -1,0 +1,54 @@
+const VISITOR_COOKIE = "tp_vid";
+const SESSION_COOKIE = "tp_sid";
+const OPT_OUT_COOKIE = "tp_analytics_opt_out";
+export const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
+
+function cookie(name: string) {
+  if (typeof document === "undefined") return "";
+  return document.cookie.split(";").map((part) => part.trim())
+    .find((part) => part.startsWith(`${name}=`))?.slice(name.length + 1) || "";
+}
+
+function validUuid(value: string) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+}
+
+function setCookie(name: string, value: string, maxAge: number) {
+  const secure = location.protocol === "https:" ? "; Secure" : "";
+  document.cookie = `${name}=${value}; Path=/; Max-Age=${maxAge}; SameSite=Lax${secure}`;
+}
+
+export function analyticsOptedOut() {
+  return cookie(OPT_OUT_COOKIE) === "1";
+}
+
+export function generateAnonymousId() {
+  return crypto.randomUUID();
+}
+
+export function getAnalyticsIdentity(now = Date.now()) {
+  let visitorId = cookie(VISITOR_COOKIE);
+  if (!validUuid(visitorId)) {
+    visitorId = generateAnonymousId();
+    setCookie(VISITOR_COOKIE, visitorId, 365 * 24 * 60 * 60);
+  }
+
+  const lastActivity = Number(sessionStorage.getItem("tp_session_last_activity") || 0);
+  let sessionId = cookie(SESSION_COOKIE);
+  const expired = !lastActivity || now - lastActivity > SESSION_TIMEOUT_MS;
+  if (!validUuid(sessionId) || expired) {
+    sessionId = generateAnonymousId();
+    sessionStorage.removeItem("tp_session_attribution");
+  }
+  setCookie(SESSION_COOKIE, sessionId, 30 * 60);
+  sessionStorage.setItem("tp_session_last_activity", String(now));
+  return { visitorId, sessionId, isNewSession: expired };
+}
+
+export function clearAnalyticsIdentity() {
+  const secure = location.protocol === "https:" ? "; Secure" : "";
+  document.cookie = `${VISITOR_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax${secure}`;
+  document.cookie = `${SESSION_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax${secure}`;
+  sessionStorage.removeItem("tp_session_last_activity");
+  sessionStorage.removeItem("tp_session_attribution");
+}

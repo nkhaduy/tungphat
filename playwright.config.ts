@@ -21,7 +21,8 @@ export default defineConfig({
     timeout: 180_000,
     env: {
       NEXT_PUBLIC_TURNSTILE_SITE_KEY: "1x00000000000000000000AA",
-      NEXT_PUBLIC_FORMS_API_BASE: ""
+      NEXT_PUBLIC_FORMS_API_BASE: "",
+      NEXT_PUBLIC_ANALYTICS_TEST_MODE: "1"
     }
   }
 });

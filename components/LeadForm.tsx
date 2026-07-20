@@ -55,7 +55,7 @@ export function LeadForm({ type, compact = false }: LeadFormProps) {
       if (!response.ok || !result.ok) throw new Error(result.code || "request_failed");
       setStatus("success");
       setMessage(type === "quote" ? "Tùng Phát đã nhận yêu cầu báo giá và sẽ liên hệ theo thông tin bạn cung cấp." : "Tùng Phát đã nhận thông tin liên hệ của bạn.");
-      trackEvent(type === "quote" ? "submit_quote_form" : "submit_contact_form", { form_type: type });
+      trackEvent("form_submit", { form_type: type, location: type === "quote" ? "contact_page" : "contact_page" });
       formRef.current?.reset();
       setSubmissionId(crypto.randomUUID());
       window.turnstile?.reset("#lead-turnstile");

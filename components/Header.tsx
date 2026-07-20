@@ -140,12 +140,15 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
           </button>
           <a
             href={PHONE_HREF}
+            data-analytics-handled="1"
+            data-track-event="click_phone"
+            data-track-location="header"
             onClick={() => trackEvent("click_phone", { location: "header" })}
             className={`inline-flex min-h-11 items-center gap-2 px-3 text-sm font-bold transition-colors duration-300 ${lightStyle ? "text-ink hover:text-wood-500" : "text-white/90 hover:text-white"}`}
           >
             <Phone size={16} /> {t.phoneLabel}
           </a>
-          <a href={ZALO_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("request_quote", { location: "header", channel: "zalo" })} aria-label={t.ctaGetQuote} className="inline-flex min-h-11 items-center gap-2 bg-wood-500 px-4 text-sm font-bold text-white transition hover:bg-wood-600">
+          <a href={ZALO_URL} target="_blank" rel="noopener noreferrer" data-analytics-handled="1" data-track-event="click_quote" data-track-location="header" onClick={() => trackEvent("request_quote", { location: "header", channel: "zalo" })} aria-label={t.ctaGetQuote} className="inline-flex min-h-11 items-center gap-2 bg-wood-500 px-4 text-sm font-bold text-white transition hover:bg-wood-600">
             <MessageCircle size={16} /> {t.ctaGetQuote}
           </a>
         </div>
@@ -205,7 +208,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
               <span className="text-white/40">|</span>
               <span className={lang === "en" ? "text-wood-500" : ""}>EN</span>
             </button>
-            <a href={PHONE_HREF} onClick={() => trackEvent("click_phone", { location: "mobile_header" })} className="flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-4 font-bold text-white">
+            <a href={PHONE_HREF} data-analytics-handled="1" data-track-event="click_phone" data-track-location="mobile_bottom_bar" onClick={() => trackEvent("click_phone", { location: "mobile_header" })} className="flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-4 font-bold text-white">
               <Phone size={17} /> {t.callLabel}
             </a>
           </div>

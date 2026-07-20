@@ -11,11 +11,12 @@
     "validate:cloudflare-config": "node scripts/validate-cloudflare-config.mjs",
     "cms:dry-run": "wrangler pages functions build functions --outdir .wrangler/cms-dry-run --project-directory . --build-output-directory public",
     "cf:typegen": "wrangler types worker-configuration.d.ts --env-file .dev.vars.example --env-interface CloudflareCmsEnv --include-runtime false --strict-vars false",
-    "dev": "wrangler pages dev public --env preview --env-file .dev.vars.example --port 4174",
+    "dev": "npm run d1:migrate:local && wrangler pages dev public --port 4174",
     "deploy:preview": "wrangler pages deploy public --project-name tungphat-cms --branch preview",
     "deploy:production": "wrangler pages deploy public --project-name tungphat-cms --branch main",
     "d1:migrate:preview": "wrangler d1 migrations apply tung-phat-leads-preview --remote --env preview",
     "d1:migrate:production": "wrangler d1 migrations apply tung-phat-leads --remote",
+    "d1:migrate:local": "wrangler d1 migrations apply tung-phat-leads --local",
     "d1:backup": "wrangler d1 export tung-phat-leads --remote --output ../backups/tung-phat-leads.sql"
   },
   "dependencies": {
