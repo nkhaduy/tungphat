@@ -28,7 +28,10 @@
     "d1:backup": "npm run validate:cloudflare-config && npm --prefix cloudflare-cms run d1:backup",
     "cms:dev": "npm --prefix cloudflare-cms run dev",
     "cms:dry-run": "npm --prefix cloudflare-cms run cms:dry-run",
-    "cms:deploy": "npm --prefix cloudflare-cms run deploy:production"
+    "cms:deploy": "npm --prefix cloudflare-cms run deploy:production",
+    "analytics:maintenance:dry-run": "wrangler deploy --dry-run --env=\"\" --config workers/analytics-maintenance/wrangler.jsonc",
+    "analytics:maintenance:preview": "wrangler deploy --env preview --config workers/analytics-maintenance/wrangler.jsonc",
+    "analytics:maintenance:deploy": "wrangler deploy --env=\"\" --config workers/analytics-maintenance/wrangler.jsonc"
   },
   "dependencies": {
     "framer-motion": "^12.42.2",
