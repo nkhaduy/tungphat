@@ -122,20 +122,6 @@ export default function RootLayout({
   return (
     <html lang="vi" className={montserratVariables}>
       <head>
-        <link
-          rel="preload"
-          as="image"
-          href="/images/hero-workshop-mobile.webp"
-          media="(max-width: 767px)"
-          fetchPriority="high"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/images/hero-workshop.webp"
-          media="(min-width: 768px)"
-          fetchPriority="high"
-        />
         <JsonLd data={siteSchema} />
       </head>
       <body>

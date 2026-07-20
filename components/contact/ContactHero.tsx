@@ -41,33 +41,33 @@ type ContactHeroProps = {
 };
 
 export function ContactHero({ description, email, zaloUrl }: ContactHeroProps) {
-  const [activeImage, setActiveImage] = useState<number | null>(null);
+  const [activeImage, setActiveImage] = useState<string | null>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
-    setActiveImage(secureRandomIndex(heroImages.length));
+    const image = heroImages[secureRandomIndex(heroImages.length)];
+    setActiveImage(
+      window.matchMedia("(max-width: 767px)").matches
+        ? image.mobile
+        : image.desktop,
+    );
   }, []);
-
-  const image = activeImage === null ? null : heroImages[activeImage];
 
   return (
     <section className="relative isolate overflow-hidden bg-forest-950 py-14 text-white sm:py-16 lg:py-20">
-      {image ? (
-        <picture
-          className={`absolute inset-0 -z-20 block transition-opacity duration-500 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
-        >
-          <source media="(max-width: 767px)" srcSet={image.mobile} />
-          <Image
-            src={image.desktop}
-            alt=""
-            fill
-            sizes="100vw"
-            priority
-            fetchPriority="high"
-            className="object-cover"
-            onLoad={() => setImageLoaded(true)}
-          />
-        </picture>
+      {activeImage ? (
+        <Image
+          src={activeImage}
+          alt=""
+          fill
+          sizes="100vw"
+          priority
+          fetchPriority="high"
+          className={`-z-20 object-cover transition-opacity duration-500 ${
+            imageLoaded ? "opacity-100" : "opacity-0"
+          }`}
+          onLoad={() => setImageLoaded(true)}
+        />
       ) : null}
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(6,43,29,.97)_0%,rgba(6,43,29,.91)_52%,rgba(6,43,29,.76)_100%)]" />
 
