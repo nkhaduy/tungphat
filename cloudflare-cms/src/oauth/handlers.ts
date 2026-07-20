@@ -1,5 +1,6 @@
 type OAuthTokenResponse = { access_token?: string; error?: string; error_description?: string };
 type GitHubEmail = { email?: string; primary?: boolean; verified?: boolean };
+import { clearAdminSessionCookie, createAdminSessionCookie } from "./admin-session";
 
 export type OAuthEnv = {
   CMS_ALLOWED_ORIGINS: string;
@@ -91,17 +92,17 @@ function responseHeaders(extra: HeadersInit = {}) {
   };
 }
 
-function htmlResponse(status: "success" | "error", token: string, origin: string, clearCookie = false) {
+function htmlResponse(status: "success" | "error", token: string, origin: string, clearCookie = false, adminCookie?: string) {
   const message = `authorization:github:${status}:${JSON.stringify({ token })}`;
   const nonce = base64Url(crypto.randomUUID());
   const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>Decap OAuth</title></head><body><p>Đang hoàn tất đăng nhập…</p><script nonce="${nonce}">const origin=${JSON.stringify(origin)};const message=${JSON.stringify(message)};function receive(){window.opener.postMessage(message,origin);window.removeEventListener('message',receive);window.close()}window.addEventListener('message',receive);window.opener.postMessage('authorizing:github',origin);setTimeout(receive,800);</script></body></html>`;
-  return new Response(html, {
-    headers: responseHeaders({
-      "Content-Type": "text/html; charset=utf-8",
-      "Content-Security-Policy": `default-src 'none'; script-src 'nonce-${nonce}'; style-src 'none'; img-src 'none'; frame-ancestors 'none'; base-uri 'none'`,
-      ...(clearCookie ? { "Set-Cookie": `${STATE_COOKIE}=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0` } : {})
-    })
-  });
+  const headers = new Headers(responseHeaders({
+    "Content-Type": "text/html; charset=utf-8",
+    "Content-Security-Policy": `default-src 'none'; script-src 'nonce-${nonce}'; style-src 'none'; img-src 'none'; frame-ancestors 'none'; base-uri 'none'`,
+  }));
+  if (clearCookie) headers.append("Set-Cookie", `${STATE_COOKIE}=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0`);
+  if (adminCookie) headers.append("Set-Cookie", adminCookie);
+  return new Response(html, { headers });
 }
 
 function requestOrigin(request: Request, env: OAuthEnv) {
@@ -182,7 +183,7 @@ export async function handleCallback(request: Request, env: OAuthEnv) {
     console.warn(JSON.stringify({ message: "oauth_account_rejected" }));
     return htmlResponse("error", "unauthorized_account", origin, true);
   }
-  return htmlResponse("success", result.access_token, origin, true);
+  return htmlResponse("success", result.access_token, origin, true, await createAdminSessionCookie(env.OAUTH_STATE_SECRET));
 }
 
 export function handleHealth(request: Request) {
@@ -193,11 +194,13 @@ export function handleHealth(request: Request) {
 export function handleLogout(request: Request, env: OAuthEnv) {
   const origin = requestOrigin(request, env);
   if (!origin) return new Response("Invalid CMS origin", { status: 403, headers: responseHeaders() });
+  const headers = new Headers(responseHeaders({
+    Location: `${origin}/`,
+  }));
+  headers.append("Set-Cookie", `${STATE_COOKIE}=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0`);
+  headers.append("Set-Cookie", clearAdminSessionCookie());
   return new Response(null, {
     status: 302,
-    headers: responseHeaders({
-      Location: `${origin}/`,
-      "Set-Cookie": `${STATE_COOKIE}=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0`
-    })
+    headers,
   });
 }

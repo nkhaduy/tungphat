@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@/components/Analytics";
+import { AnalyticsProvider } from "@/components/analytics/AnalyticsProvider";
 import { JsonLd } from "@/components/JsonLd";
 import { LanguageProvider } from "@/lib/i18n-context";
 import {
@@ -127,6 +128,7 @@ export default function RootLayout({
       <body>
         <LanguageProvider>{children}</LanguageProvider>
         <Analytics />
+        <AnalyticsProvider />
       </body>
     </html>
   );

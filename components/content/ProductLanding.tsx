@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { TrackedLink } from "@/components/TrackedLink";
-import { ViewTracker } from "@/components/ViewTracker";
+import { ContentEngagementTracker } from "@/components/analytics/ContentEngagementTracker";
 import { FaqList } from "@/components/content/FaqList";
 import { MarkdownContent } from "@/components/content/MarkdownContent";
 import type { ContentEntry } from "@/lib/content";
@@ -44,7 +44,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
       <JsonLd data={[breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Sản phẩm", path: "/san-pham" }, { name: product.title, path: `/${product.slug}` }]), productSchema]} />
       <Header appearance="dark" />
       <main className="bg-white pt-[72px]">
-        <ViewTracker event="view_product" contentType={product.slug} />
+        <ContentEngagementTracker contentType="product" contentId={product.slug} contentTitle={product.title} contentCategory={product.category} />
         <section className="technical-grid bg-forest-950 py-14 text-white lg:py-20">
           <div className="container-shell grid items-center gap-10 lg:grid-cols-[1fr_.82fr]">
             <div>
@@ -67,7 +67,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
           </div>
         </section>
 
-        <section className="py-16 lg:py-24">
+        <section data-analytics-content className="py-16 lg:py-24">
           <div className="container-shell grid gap-12 lg:grid-cols-[.88fr_1.12fr]">
             <div>
               <p className="eyebrow">Thông tin vật liệu</p>
