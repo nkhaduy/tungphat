@@ -48,8 +48,10 @@ hạn. Không có code analytics trong server rendering hoặc critical path.
 ## Aggregation và retention
 
 Migration tạo daily aggregate để sẵn sàng cho dữ liệu dài hạn; báo cáo 90 ngày
-hiện dùng raw events qua composite indexes. Nút **Làm mới dữ liệu** chạy
-maintenance idempotent:
+hiện dùng raw events qua composite indexes. Worker
+`tungphat-analytics-maintenance` chạy lúc 01:15 `Asia/Ho_Chi_Minh` mỗi ngày để
+ghi aggregate ngày vừa kết thúc và chạy maintenance idempotent. Nút **Làm mới
+dữ liệu** cho admin vẫn có thể chạy cleanup theo yêu cầu:
 
 - raw events/session: 90 ngày;
 - test events: 7 ngày;
@@ -57,8 +59,8 @@ maintenance idempotent:
 - cache GSC: xóa theo TTL;
 - aggregate: có thể giữ 25 tháng.
 
-Journey luôn phân trang và giới hạn 100 dòng/request. Khi lưu lượng tăng, có thể
-đưa cùng routine maintenance vào Cloudflare Cron mà không đổi schema/API.
+Journey luôn phân trang và giới hạn 100 dòng/request. Cron chạy theo UTC với
+biểu thức `15 18 * * *`; preview Worker cố ý không gắn lịch.
 
 ## Deployment
 
