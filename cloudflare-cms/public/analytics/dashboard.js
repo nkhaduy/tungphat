@@ -1,8 +1,11 @@
+/* global document, fetch, location, URLSearchParams */
 (() => {
   "use strict";
   const panel = document.querySelector("#panel");
   const message = document.querySelector("#status-message");
   const freshness = document.querySelector("#freshness");
+  const rangeStatus = document.querySelector("#range-status");
+  const optOutWarning = document.querySelector("#optout-warning");
   const dialog = document.querySelector("#detail-dialog");
   const detail = document.querySelector("#detail-content");
   const state = { tab: "overview", from: vietnamDate(), to: vietnamDate() };
@@ -37,7 +40,7 @@
       headers: { Accept: "application/json", ...(options?.headers || {}) },
       ...options,
     });
-    if (response.status === 401) { location.href = "/?analytics=login"; throw new Error("Phiên đăng nhập đã hết hạn."); }
+    if (response.status === 401) { location.href = "/analytics/login"; throw new Error("Phiên đăng nhập đã hết hạn."); }
     const data = await response.json();
     if (!response.ok) throw new Error(data.code || "Không thể tải dữ liệu.");
     return data;
@@ -46,7 +49,12 @@
     message.hidden = true;
     panel.innerHTML = '<div class="skeleton-grid"><div></div><div></div><div></div><div></div></div>';
   }
-  function empty(text = "Chưa có dữ liệu trong khoảng thời gian này.") { return `<div class="empty">${escapeHtml(text)}</div>`; }
+  function empty(text) {
+    const content = text
+      ? escapeHtml(text)
+      : "Chưa ghi nhận dữ liệu trong khoảng thời gian này.<br>Hãy mở website trong một tab khác để tạo lượt truy cập thử.";
+    return `<div class="empty">${content}</div>`;
+  }
   function table(headers, rows) {
     if (!rows.length) return empty();
     return `<div class="table-wrap"><table><thead><tr>${headers.map(item => `<th>${escapeHtml(item)}</th>`).join("")}</tr></thead><tbody>${rows.join("")}</tbody></table></div>`;
@@ -69,12 +77,12 @@
       ${metric("Người truy cập", number(m.visitors), c.visitors, "Số mã khách ẩn danh riêng biệt trong kỳ.")}
       ${metric("Phiên truy cập", number(m.sessions), c.sessions, "Phiên kết thúc sau 30 phút không hoạt động.")}
       ${metric("Lượt xem trang", number(m.pageviews), c.pageviews)}
-      ${metric("Hoạt động gần đây", number(m.active), 0, overview.activeDefinition)}
       ${metric("Lượt mở Zalo", number(m.zalo), c.zalo, "Website biết người dùng đã mở Zalo, không biết họ có gửi tin nhắn.")}
       ${metric("Lượt bấm gọi", number(m.phone), c.phone, "Website biết người dùng đã bấm link gọi, không biết cuộc gọi có hoàn tất.")}
       ${metric("Khách tiềm năng", number(m.leads), c.leads, "Số phiên riêng biệt có ít nhất một hành động liên hệ.")}
       ${metric("Tỷ lệ chuyển đổi", percent(m.conversionRate), c.conversionRate, "Khách tiềm năng chia cho tổng số phiên.")}
     </div>
+    <p class="note">${escapeHtml(overview.activeDefinition)}: <strong>${number(m.active)}</strong></p>
     <div class="grid-2"><section class="panel"><h2>Lưu lượng theo ${series.granularity === "hour" ? "giờ" : "ngày"}</h2>${chart(series.rows)}</section>
     <section class="panel"><h2>Trang đích hiệu quả</h2>${table(["Trang","Phiên","Khách tiềm năng"], landing.rows.slice(0,8).map(row => `<tr><td>${escapeHtml(row.title || row.path)}</td><td>${number(row.sessions)}</td><td>${number(row.leads)}</td></tr>`))}</section></div>`;
     freshness.textContent = `Cập nhật ${timestamp(overview.updatedAt)} · Múi giờ Asia/Ho_Chi_Minh`;
@@ -134,10 +142,15 @@
     dialog.showModal();
   }
   function optOutStatus() { return document.cookie.split(";").some(item => item.trim() === "tp_analytics_opt_out=1"); }
+  function updateOptOutWarning() {
+    optOutWarning.hidden = !optOutStatus();
+  }
   function setOptOut(enabled) {
     const domain = location.hostname.endsWith("mdftungphat.com") ? "; Domain=mdftungphat.com" : "";
     document.cookie = `tp_analytics_opt_out=${enabled ? "1" : ""}; Path=/; Max-Age=${enabled ? 31536000 : 0}; SameSite=Lax; Secure${domain}`;
-    renderSettings();
+    if (!enabled) document.cookie = "tp_analytics_opt_out=; Path=/; Max-Age=0; SameSite=Lax; Secure";
+    updateOptOutWarning();
+    if (state.tab === "settings") renderSettings();
   }
   async function renderSettings() {
     const data = await api("status");
@@ -173,6 +186,10 @@
   }
   async function render() {
     loading();
+    rangeStatus.textContent = state.from === vietnamDate() && state.to === vietnamDate()
+      ? "Dữ liệu hôm nay"
+      : state.from === state.to ? `Dữ liệu ngày ${state.from}` : `Dữ liệu ${state.from} – ${state.to}`;
+    updateOptOutWarning();
     try {
       await ({ overview: renderOverview, sources: renderSources, seo: renderSeo, content: renderContent, conversions: renderConversions, journeys: renderJourneys, settings: renderSettings }[state.tab])();
     } catch (error) { showError(error); }
@@ -198,6 +215,8 @@
     }
     state.from = from; state.to = to; render();
   });
+  document.querySelector("#refresh-dashboard").addEventListener("click", () => render());
+  document.querySelector("#reenable-tracking").addEventListener("click", () => setOptOut(false));
   document.querySelector(".dialog-close").onclick = () => dialog.close();
   render();
 })();
