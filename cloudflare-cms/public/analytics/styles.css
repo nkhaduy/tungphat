@@ -18,6 +18,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
 .topbar h1 { margin: 4px 0 0; font-size: clamp(1.25rem, 3vw, 1.8rem); }
+.subtitle { margin: 6px 0 0; color: #c8d7ce; font-size: .86rem; }
 .eyebrow { margin: 0; color: #f1a56f; font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
 .topbar nav { display: flex; flex-wrap: wrap; gap: 6px; }
 .topbar a { color: #d9e2dc; text-decoration: none; padding: 10px 12px; font-size: .85rem; font-weight: 700; }
@@ -33,7 +34,9 @@ main { width: min(1480px, calc(100% - 32px)); margin: 24px auto 60px; }
 .custom-range { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
 .custom-range label { color: var(--muted); font-size: .82rem; }
 .custom-range input { min-height: 40px; border: 1px solid var(--line); padding: 0 8px; }
-#freshness { margin: 0 0 0 auto; color: var(--muted); font-size: .8rem; }
+.freshness { margin-left: auto; display: grid; gap: 3px; }
+.freshness strong { color: var(--forest); font-size: .82rem; }
+#freshness { color: var(--muted); font-size: .76rem; }
 .tabs { margin-top: 16px; border-bottom: 1px solid var(--line); }
 .tabs button { border: 0; border-bottom: 3px solid transparent; background: transparent; }
 .tabs button.active { color: var(--forest); border-bottom-color: var(--wood); background: white; }
@@ -60,6 +63,8 @@ td:first-child { white-space: normal; min-width: 190px; }
 tbody tr[data-session] { cursor: pointer; }
 tbody tr:hover { background: #f8faf8; }
 .message { margin-top: 16px; padding: 13px 15px; border: 1px solid #e1bfbf; color: var(--danger); background: #fff7f7; }
+.message.warning { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-color: #ead09c; color: #6f4b05; background: #fffaf0; }
+.message.warning[hidden] { display: none; }
 .empty { padding: 42px 18px; text-align: center; color: var(--muted); border: 1px dashed #bdc9c1; background: white; }
 .connection { display: inline-flex; align-items: center; gap: 7px; font-size: .8rem; font-weight: 700; }
 .dot { width: 9px; height: 9px; border-radius: 50%; background: #b3bcb6; }
@@ -81,5 +86,6 @@ dialog::backdrop { background: rgb(2 18 12 / 62%); }
   main { width: min(100% - 20px, 1480px); margin-top: 12px; }
   .metric-grid, .skeleton-grid { grid-template-columns: 1fr; }
   .metric { min-height: 110px; }
-  #freshness { width: 100%; margin-left: 0; }
+  .freshness { width: 100%; margin-left: 0; }
+  .message.warning { align-items: flex-start; flex-direction: column; }
 }

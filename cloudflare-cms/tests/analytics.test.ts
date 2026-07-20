@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { createAdminSessionCookie, hasValidAdminSession } from "../src/oauth/admin-session";
+import { dateInVietnam, dateRange } from "../src/analytics/admin-handler";
 import { analyticsPayloadSchema, attribution, isBot, parseDevice, sanitizePath } from "../src/analytics/validation";
 
 const validPayload = {
@@ -56,5 +57,18 @@ describe("CMS admin session", () => {
     });
     expect(await hasValidAdminSession(request, secret)).toBe(true);
     expect(await hasValidAdminSession(request, `${secret}-wrong`)).toBe(false);
+  });
+});
+
+describe("Vietnam analytics date range", () => {
+  it("changes today at midnight Asia/Ho_Chi_Minh, not UTC midnight", () => {
+    expect(dateInVietnam(Date.parse("2026-07-19T16:59:59.000Z"))).toBe("2026-07-19");
+    expect(dateInVietnam(Date.parse("2026-07-19T17:00:00.000Z"))).toBe("2026-07-20");
+  });
+
+  it("creates exact inclusive Vietnam-day boundaries", () => {
+    const range = dateRange(new URL("https://cms.mdftungphat.com/api/admin/analytics/overview?from=2026-07-20&to=2026-07-20"));
+    expect(new Date((range?.start || 0) * 1000).toISOString()).toBe("2026-07-19T17:00:00.000Z");
+    expect(new Date((range?.end || 0) * 1000).toISOString()).toBe("2026-07-20T17:00:00.000Z");
   });
 });

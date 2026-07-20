@@ -27,6 +27,12 @@ describe("hybrid Cloudflare CMS bindings", () => {
     expect(cms).toContain("branch: main");
   });
 
+  it("keeps CMS content and analytics navigation visible", () => {
+    const index = readFileSync("cloudflare-cms/public/index.html", "utf8");
+    expect(index).toContain(">Quản lý nội dung</a>");
+    expect(index).toContain('href="/analytics/">Thống kê</a>');
+  });
+
   it("documents every required secret without committing values", () => {
     const readme = readFileSync("cloudflare-cms/README.md", "utf8");
     for (const secret of ["TURNSTILE_SECRET_KEY", "IP_HASH_SALT", "GITHUB_OAUTH_ID", "GITHUB_OAUTH_SECRET", "OAUTH_STATE_SECRET"]) {
