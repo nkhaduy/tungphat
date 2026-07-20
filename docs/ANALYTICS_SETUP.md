@@ -95,3 +95,7 @@ Preview checklist:
 
 Sau khi pass, deploy production CMS và để Vercel deploy website từ commit đã
 merge. Không deploy production trước migration production.
+
+Kiểm tra `https://mdftungphat.com/admin/analytics` chuyển tới
+`https://cms.mdftungphat.com/analytics/`; request chưa đăng nhập sau đó phải
+được chuyển về màn hình đăng nhập CMS.
