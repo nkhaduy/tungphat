@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/admin/analytics",
+      "destination": "https://cms.mdftungphat.com/analytics/",
+      "permanent": false
+    },
+    {
       "source": "/admin",
       "destination": "https://cms.mdftungphat.com",
       "permanent": true

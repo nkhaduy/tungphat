@@ -29,6 +29,11 @@ GitHub OAuth callback đã xác minh email
 - **CMS dashboard:** static route-split bundle, bảy tab tiếng Việt, API tính
   server-side và không chuyển raw dataset hàng loạt xuống browser.
 
+URL chuẩn từ website là `https://mdftungphat.com/admin/analytics`; route này
+chuyển sang dashboard được bảo vệ tại
+`https://cms.mdftungphat.com/analytics/`. Alias `/admin/analytics` trên chính
+CMS cũng chuyển tới cùng dashboard.
+
 ## Authentication và failure modes
 
 OAuth callback chỉ phát session sau khi GitHub trả token hợp lệ và email đã
