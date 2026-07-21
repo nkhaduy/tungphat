@@ -54,6 +54,7 @@ async function metrics(db: D1Database, start: number, end: number) {
       COUNT(DISTINCT session_id) AS sessions,
       SUM(CASE WHEN event_name='page_view' THEN 1 ELSE 0 END) AS pageviews,
       SUM(CASE WHEN event_name='click_zalo' THEN 1 ELSE 0 END) AS zalo,
+      SUM(CASE WHEN event_name='click_maps' THEN 1 ELSE 0 END) AS maps,
       SUM(CASE WHEN event_name='click_phone' THEN 1 ELSE 0 END) AS phone,
       COUNT(DISTINCT CASE WHEN event_name IN (${LEAD_EVENTS}) THEN session_id END) AS leads
     FROM analytics_events
@@ -66,6 +67,7 @@ async function metrics(db: D1Database, start: number, end: number) {
     sessions,
     pageviews: Number(row?.pageviews || 0),
     zalo: Number(row?.zalo || 0),
+    maps: Number(row?.maps || 0),
     phone: Number(row?.phone || 0),
     leads,
     conversionRate: sessions ? leads / sessions : 0,
@@ -121,6 +123,7 @@ async function sources(env: AnalyticsEnv, range: DateRange) {
       SUM(CASE WHEN e.event_name='page_view' THEN 1 ELSE 0 END) AS pageviews,
       COUNT(DISTINCT CASE WHEN e.event_name IN ('article_engaged','engagement_time') THEN e.session_id END) AS engaged_sessions,
       SUM(CASE WHEN e.event_name='click_zalo' THEN 1 ELSE 0 END) AS zalo,
+      SUM(CASE WHEN e.event_name='click_maps' THEN 1 ELSE 0 END) AS maps,
       SUM(CASE WHEN e.event_name='click_phone' THEN 1 ELSE 0 END) AS phone,
       COUNT(DISTINCT CASE WHEN e.event_name IN (${LEAD_EVENTS}) THEN e.session_id END) AS leads
     FROM analytics_events e JOIN analytics_sessions s ON s.session_id=e.session_id
