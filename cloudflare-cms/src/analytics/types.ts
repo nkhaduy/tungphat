@@ -18,7 +18,7 @@ export type AnalyticsEnv = {
   IP_HASH_SALT: string;
   ANALYTICS_HASH_SALT?: string;
   CMS_ALLOWED_ORIGINS: string;
-  OAUTH_STATE_SECRET: string;
+  CMS_SESSION_SECRET: string;
   GA4_PROPERTY_ID?: string;
   GOOGLE_SERVICE_ACCOUNT_EMAIL?: string;
   GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?: string;

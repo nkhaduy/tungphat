@@ -18,7 +18,7 @@ export default defineConfig({
     command: "npm run d1:migrate:local && npm run build && npm run cf:test-server",
     url: "http://127.0.0.1:4173",
     reuseExistingServer: !process.env.CI,
-    timeout: 180_000,
+    timeout: 300_000,
     env: {
       NEXT_PUBLIC_TURNSTILE_SITE_KEY: "1x00000000000000000000AA",
       NEXT_PUBLIC_FORMS_API_BASE: "",

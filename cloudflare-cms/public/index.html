@@ -4,61 +4,97 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex,nofollow,noarchive" />
-    <title>Quản trị nội dung | Tùng Phát</title>
+    <title>Tùng Phát CMS</title>
     <link rel="icon" href="https://mdftungphat.com/favicon.ico" />
-    <style>
-      .publish-notice {
-        position: fixed;
-        right: 16px;
-        bottom: 16px;
-        z-index: 2147483647;
-        max-width: 360px;
-        border: 1px solid #c8d5cc;
-        border-radius: 8px;
-        background: #f4faf6;
-        box-shadow: 0 8px 28px rgb(14 48 29 / 18%);
-        color: #153b27;
-        font: 600 13px/1.5 Arial, sans-serif;
-        padding: 12px 14px;
-      }
-      .analytics-link {
-        display: inline-flex;
-        min-height: 36px;
-        align-items: center;
-        background: #153b27;
-        color: #fff;
-        padding: 0 12px;
-        text-decoration: none;
-      }
-      .admin-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 10px;
-      }
-      .content-link {
-        display: inline-flex;
-        min-height: 36px;
-        align-items: center;
-        border: 1px solid #153b27;
-        color: #153b27;
-        padding: 0 12px;
-        text-decoration: none;
-      }
-    </style>
+    <link rel="stylesheet" href="/admin-shell.css" />
+    <link rel="stylesheet" href="/analytics/styles.css" />
+    <script src="/admin-bootstrap.js"></script>
+    <script src="https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js" integrity="sha384-K+E/B3QG3FJrtRXoyUjME4ilx71pYGyrvAVxYvd/p0zCPuXsc3eoEuSzUW3Ke63V" crossorigin="anonymous" defer></script>
+    <script src="/preview.js" defer></script>
+    <script src="/cms-guard.js" defer></script>
+    <script src="/analytics/dashboard.js" defer></script>
+    <script src="/admin-shell.js" defer></script>
   </head>
   <body>
-    <noscript>Bạn cần bật JavaScript để sử dụng trang quản trị.</noscript>
-    <aside class="publish-notice" role="note">
-      Publish sẽ commit trực tiếp vào branch main và đưa thay đổi vào quy trình build production.
-      Chỉ publish khi nội dung đã được kiểm tra đầy đủ.
-      <nav class="admin-links" aria-label="Khu vực quản trị">
-        <a class="content-link" href="/">Quản lý nội dung</a>
-        <a class="analytics-link" href="/analytics/">Thống kê</a>
-      </nav>
-    </aside>
-    <script src="https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js"></script>
-    <script src="/preview.js"></script>
-    <script src="/cms-guard.js"></script>
+    <noscript><p class="noscript">Bạn cần bật JavaScript để sử dụng Tùng Phát CMS.</p></noscript>
+
+    <main id="login-view" class="login-view" aria-labelledby="login-title">
+      <section class="login-card">
+        <p class="brand-mark">Tùng Phát CMS</p>
+        <h1 id="login-title">Đăng nhập quản trị</h1>
+        <p class="login-help">Dùng tài khoản quản trị Tùng Phát để quản lý nội dung và xem thống kê.</p>
+        <form id="login-form" autocomplete="on">
+          <label for="username">Tên đăng nhập</label>
+          <input id="username" name="username" type="text" autocomplete="username" maxlength="128" required />
+          <label for="password">Mật khẩu</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" maxlength="1024" required />
+          <p id="login-error" class="login-error" role="alert" hidden></p>
+          <button id="login-submit" type="submit">Đăng nhập</button>
+        </form>
+      </section>
+    </main>
+
+    <div id="admin-app" class="admin-app" hidden>
+      <header class="admin-header">
+        <a class="admin-brand" href="/?view=content" aria-label="Tùng Phát CMS — Quản lý nội dung">Tùng Phát CMS</a>
+        <nav class="admin-nav" aria-label="Khu vực quản trị">
+          <button id="content-tab" type="button" data-view="content">Quản lý nội dung</button>
+          <button id="analytics-tab" type="button" data-view="analytics">Thống kê</button>
+        </nav>
+        <button id="logout-button" class="logout-button" type="button">Đăng xuất</button>
+      </header>
+
+      <section id="content-view" class="admin-view" aria-label="Quản lý nội dung">
+        <div id="nc-root"></div>
+      </section>
+
+      <section id="analytics-view" class="admin-view" aria-label="Thống kê" hidden>
+        <div class="analytics-main">
+          <section class="toolbar" aria-label="Bộ lọc thời gian">
+            <div class="preset-list" id="presets">
+              <button data-range="today" class="active">Hôm nay</button>
+              <button data-range="yesterday">Hôm qua</button>
+              <button data-range="7">7 ngày</button>
+              <button data-range="28">28 ngày</button>
+              <button data-range="90">3 tháng</button>
+              <button data-range="custom">Tùy chỉnh</button>
+            </div>
+            <div id="custom-range" class="custom-range" hidden>
+              <label>Từ ngày <input type="date" id="date-from" /></label>
+              <label>Đến ngày <input type="date" id="date-to" /></label>
+              <button id="apply-range">Áp dụng</button>
+            </div>
+            <div class="freshness">
+              <strong id="range-status">Dữ liệu hôm nay</strong>
+              <span id="freshness">Đang cập nhật…</span>
+            </div>
+            <button class="action primary" id="refresh-dashboard" type="button">Làm mới</button>
+          </section>
+
+          <nav class="tabs" aria-label="Báo cáo">
+            <button data-tab="overview" class="active">Tổng quan</button>
+            <button data-tab="sources">Nguồn truy cập</button>
+            <button data-tab="seo">SEO và từ khóa</button>
+            <button data-tab="content">Nội dung</button>
+            <button data-tab="conversions">Chuyển đổi</button>
+            <button data-tab="journeys">Hành trình</button>
+            <button data-tab="settings">Cấu hình</button>
+          </nav>
+
+          <section id="status-message" class="message" hidden></section>
+          <section id="optout-warning" class="message warning" hidden>
+            <span>Thiết bị này đang tắt theo dõi website.</span>
+            <button class="action" id="reenable-tracking" type="button">Bật lại theo dõi</button>
+          </section>
+          <section id="panel" aria-live="polite">
+            <div class="skeleton-grid"><div></div><div></div><div></div><div></div></div>
+          </section>
+        </div>
+        <dialog id="detail-dialog">
+          <button class="dialog-close" aria-label="Đóng">×</button>
+          <div id="detail-content"></div>
+        </dialog>
+      </section>
+    </div>
   </body>
 </html>

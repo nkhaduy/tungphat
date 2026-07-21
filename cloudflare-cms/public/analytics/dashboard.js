@@ -1,4 +1,4 @@
-/* global document, fetch, location, URLSearchParams */
+/* global document, fetch, location, URLSearchParams, window */
 (() => {
   "use strict";
   const panel = document.querySelector("#panel");
@@ -8,6 +8,8 @@
   const optOutWarning = document.querySelector("#optout-warning");
   const dialog = document.querySelector("#detail-dialog");
   const detail = document.querySelector("#detail-content");
+  if (!panel || !message || !freshness || !rangeStatus || !optOutWarning || !dialog || !detail) return;
+  let initialized = false;
   const state = { tab: "overview", from: vietnamDate(), to: vietnamDate() };
   const eventLabels = {
     page_view: "Mở trang", article_view: "Mở bài viết", article_engaged: "Đọc bài thực sự",
@@ -35,12 +37,18 @@
     return new Intl.DateTimeFormat("vi-VN", { timeZone: "Asia/Ho_Chi_Minh", dateStyle: "short", timeStyle: "short" }).format(new Date(Number(value) * 1000));
   }
   async function api(route, options) {
+    const mutationHeaders = options?.method && options.method !== "GET"
+      ? { "X-CSRF-Token": window.TPCMS?.csrf?.() || "" }
+      : {};
     const response = await fetch(`/api/admin/analytics/${route}?${rangeQuery()}`, {
       credentials: "same-origin",
-      headers: { Accept: "application/json", ...(options?.headers || {}) },
+      headers: { Accept: "application/json", ...mutationHeaders, ...(options?.headers || {}) },
       ...options,
     });
-    if (response.status === 401) { location.href = "/analytics/login"; throw new Error("Phiên đăng nhập đã hết hạn."); }
+    if (response.status === 401) {
+      window.TPCMS?.requireLogin?.();
+      throw new Error("Phiên đăng nhập đã hết hạn.");
+    }
     const data = await response.json();
     if (!response.ok) throw new Error(data.code || "Không thể tải dữ liệu.");
     return data;
@@ -134,6 +142,10 @@
   }
   async function showJourney(sessionId) {
     const response = await fetch(`/api/admin/analytics/journeys/${encodeURIComponent(sessionId)}?${rangeQuery()}`, { credentials: "same-origin" });
+    if (response.status === 401) {
+      window.TPCMS?.requireLogin?.();
+      return;
+    }
     const data = await response.json();
     if (!response.ok) return;
     detail.innerHTML = `<h2>Phiên ${escapeHtml(sessionId.slice(0,4).toUpperCase())}…${escapeHtml(sessionId.slice(-4).toUpperCase())}</h2>
@@ -156,6 +168,7 @@
     const data = await api("status");
     panel.innerHTML = `<div class="grid-2"><section class="panel"><h2>Trạng thái kết nối</h2><div class="settings-list">
       ${setting("First-party analytics", data.firstParty)}${setting("Database", data.database)}${setting("GA4", data.ga4)}${setting("Search Console", data.searchConsole)}
+      <div class="settings-row"><span>GA4 active users</span><strong>${data.ga4ActiveUsers == null ? "Chưa có" : number(data.ga4ActiveUsers)}</strong></div>
       <div class="settings-row"><span>Sự kiện gần nhất</span><strong>${timestamp(data.latestEvent)}</strong></div>
       <div class="settings-row"><span>Lưu dữ liệu raw</span><strong>${number(data.retention.rawDays)} ngày</strong></div>
       <div class="settings-row"><span>Opt-out thiết bị hiện tại</span><strong>${optOutStatus() ? "Đang tắt theo dõi" : "Đang bật theo dõi"}</strong></div>
@@ -218,5 +231,10 @@
   document.querySelector("#refresh-dashboard").addEventListener("click", () => render());
   document.querySelector("#reenable-tracking").addEventListener("click", () => setOptOut(false));
   document.querySelector(".dialog-close").onclick = () => dialog.close();
-  render();
+  function initialize() {
+    if (initialized) return;
+    initialized = true;
+    render();
+  }
+  window.addEventListener("tpcms:analytics-ready", initialize);
 })();
