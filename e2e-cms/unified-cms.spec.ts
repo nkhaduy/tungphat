@@ -59,7 +59,7 @@ test("login, Decap, Analytics, tab persistence and shared logout", async ({ page
     expect(route.request().headers().cookie || "").not.toContain("tp_cms_admin");
     const path = new URL(route.request().url()).pathname;
     if (path.endsWith("/overview")) {
-      await route.fulfill({ json: { metrics: { visitors: 1, sessions: 1, pageviews: 1, zalo: 0, phone: 0, leads: 0, conversionRate: 0, active: 1 }, comparison: { visitors: 0, sessions: 0, pageviews: 0, zalo: 0, phone: 0, leads: 0, conversionRate: 0 }, activeDefinition: "Hoạt động trong 30 phút gần nhất", updatedAt: 1_800_000_000 } });
+      await route.fulfill({ json: { metrics: { visitors: 1, sessions: 1, pageviews: 1, zalo: 0, maps: 0, phone: 0, leads: 0, conversionRate: 0, active: 1 }, comparison: { visitors: 0, sessions: 0, pageviews: 0, zalo: 0, maps: 0, phone: 0, leads: 0, conversionRate: 0 }, activeDefinition: "Hoạt động trong 30 phút gần nhất", updatedAt: 1_800_000_000 } });
     } else if (path.endsWith("/timeseries")) {
       await route.fulfill({ json: { granularity: "hour", rows: [] } });
     } else if (path.endsWith("/landing-pages")) {
@@ -70,13 +70,17 @@ test("login, Decap, Analytics, tab persistence and shared logout", async ({ page
   });
 
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: "Đăng nhập quản trị" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Tùng Phát CMS" })).toBeVisible();
+  await expect(page.getByAltText("Tùng Phát — Wood & CNC Solutions")).toHaveAttribute("src", "https://mdftungphat.com/logo-horizontal.png");
   await expect(page.getByText("Login with GitHub")).toHaveCount(0);
   await page.getByLabel("Tên đăng nhập").fill("nkhaduy");
-  await page.getByLabel("Mật khẩu").fill(enteredPassword);
+  await page.getByLabel("Mật khẩu", { exact: true }).fill(enteredPassword);
+  await page.getByRole("button", { name: "Hiển thị mật khẩu" }).click();
+  await expect(page.getByLabel("Mật khẩu", { exact: true })).toHaveAttribute("type", "text");
+  await page.getByRole("button", { name: "Ẩn mật khẩu" }).click();
   await page.getByRole("button", { name: "Đăng nhập" }).click();
 
-  await expect(page.getByRole("banner").getByText("Tùng Phát CMS")).toBeVisible();
+  await expect(page.getByRole("banner").getByRole("link", { name: "Tùng Phát CMS — Quản lý nội dung" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Quản lý nội dung" })).toHaveClass(/active/);
   await expect(page.locator("#nc-root")).not.toBeEmpty();
   const decapNodeCount = await page.locator("#nc-root *").count();
@@ -84,8 +88,11 @@ test("login, Decap, Analytics, tab persistence and shared logout", async ({ page
 
   await page.getByRole("button", { name: "Thống kê" }).click();
   await expect(page).toHaveURL(/view=analytics/);
-  await expect(page.getByRole("button", { name: "Tổng quan" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Thống kê" })).toBeVisible();
+  await expect(page.getByRole("tab", { name: "Tổng quan" })).toBeVisible();
   await expect(page.getByText("Người truy cập")).toBeVisible();
+  await expect(page.getByText("Lượt nhấn chỉ đường")).toBeVisible();
+  await expect(page.getByRole("tab", { name: "Tổng quan" })).toHaveAttribute("aria-selected", "true");
   await expect(page.locator("#analytics-view iframe")).toHaveCount(0);
   await expect(page.locator("#analytics-view")).toBeVisible();
   await expect(page.locator("#nc-root")).toBeAttached();
@@ -93,7 +100,7 @@ test("login, Decap, Analytics, tab persistence and shared logout", async ({ page
   await page.getByRole("button", { name: "Quản lý nội dung" }).click();
   expect(await page.locator("#nc-root *").count()).toBeGreaterThanOrEqual(decapNodeCount);
   await page.getByRole("button", { name: "Đăng xuất" }).click();
-  await expect(page.getByRole("heading", { name: "Đăng nhập quản trị" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Tùng Phát CMS" })).toBeVisible();
   await expect(page.locator("#content-view")).toBeHidden();
   await expect(page.locator("#analytics-view")).toBeHidden();
   expect(externalAuthRequests).toEqual([]);
