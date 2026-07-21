@@ -1,38 +1,65 @@
 # Tùng Phát Cloudflare CMS
 
-Project độc lập cho Decap CMS, GitHub OAuth same-domain, API lead và media video
-trên Cloudflare Pages. Website công khai vẫn chạy trên Vercel; content và ảnh
-CMS commit trực tiếp vào `nkhaduy/tungphat` branch `main`, còn video lớn nằm
-trong R2 private.
+Ứng dụng quản trị thống nhất cho Decap CMS và Analytics trên Cloudflare Pages.
+Website công khai tiếp tục chạy trên Vercel. Content và ảnh CMS được commit vào
+repository cố định `nkhaduy/tungphat`, branch `main`, qua GitHub App phía server;
+trình duyệt không nhận GitHub credential. Video lớn hiện có tiếp tục nằm trong R2
+private.
 
 ## Runtime
 
 - Production: `https://cms.mdftungphat.com`
 - Fallback: `https://tungphat-cms.pages.dev`
-- Preview branch alias: `https://preview.tungphat-cms.pages.dev`
-- API: `POST /api/contact`, `POST /api/quote`
-- OAuth: `GET /auth`, `GET /callback`
+- Preview: `https://preview.tungphat-cms.pages.dev`
+- Session auth: `/api/auth/*`
+- Decap Git gateway: `/git-gateway/github/*`
+- Analytics admin API: `/api/admin/analytics/*`
+- Lead API: `POST /api/contact`, `POST /api/quote`
 - Health: `GET /health`
-- Media: `GET|HEAD /media/videos/*`
+- R2 media: `GET|HEAD /media/videos/*`
 
 ## Bindings và secrets
 
-D1 binding là `DB`. Production dùng `tung-phat-leads`; preview dùng
-`tung-phat-leads-preview`. Không dùng D1 cho content.
+D1 binding `DB` dùng `tung-phat-leads` ở production và
+`tung-phat-leads-preview` ở preview. Ngoài lead/analytics, D1 lưu session hash,
+CSRF hash và rate-limit key đã HMAC; không lưu raw IP hoặc password.
 
-R2 binding là `MEDIA`. Production dùng `tung-phat-media`; preview dùng
-`tung-phat-media-preview`. Bucket giữ private; route media chỉ cho phép key dưới
-`videos/`.
+R2 binding `MEDIA` dùng `tung-phat-media` ở production và
+`tung-phat-media-preview` ở preview. Bucket giữ private; route media chỉ cho phép
+key dưới `videos/`.
 
-Các secret bắt buộc, chỉ đặt trong Cloudflare secret store:
+Các secret bắt buộc, chỉ đặt trong Cloudflare encrypted secret store:
 
 - `TURNSTILE_SECRET_KEY`
 - `IP_HASH_SALT`
-- `GITHUB_OAUTH_ID`
-- `GITHUB_OAUTH_SECRET`
-- `OAUTH_STATE_SECRET`
+- `ANALYTICS_HASH_SALT`
+- `CMS_ADMIN_USERNAME`
+- `CMS_ADMIN_PASSWORD_HASH`
+- `CMS_SESSION_SECRET`
+- `GITHUB_APP_ID`
+- `GITHUB_INSTALLATION_ID`
+- `GITHUB_APP_PRIVATE_KEY`
+- `GA4_PROPERTY_ID`
+- `GOOGLE_SERVICE_ACCOUNT_EMAIL`
+- `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY`
+- `SEARCH_CONSOLE_SITE_URL`
 
-Production và preview phải dùng Turnstile secret/salt khác nhau. `OAUTH_ALLOWED_EMAIL` là server-side Pages variable và đang giới hạn `nkhaduy@gmail.com`.
+`GITHUB_FINE_GRAINED_TOKEN` chỉ là fallback nếu tài khoản không cho tạo GitHub
+App; không cấu hình đồng thời khi GitHub App hoạt động.
+
+Sau khi production E2E xác nhận gateway mới có thể publish, các secret OAuth cũ
+`GITHUB_OAUTH_ID`, `GITHUB_OAUTH_SECRET`, `OAUTH_STATE_SECRET` có thể xóa. Không
+xóa GitHub integration dùng cho CI/CD hoặc Vercel/Cloudflare deployment.
+
+## Security model
+
+- Password: PBKDF2-HMAC-SHA256, salt riêng, 600.000 iterations.
+- Cookie: `tp_cms_session`, HttpOnly, Secure, SameSite=Strict, host-only, 12 giờ.
+- Session có state thu hồi trong D1 và rotate ở mỗi lần login.
+- Mutation yêu cầu Origin allowlist và CSRF token.
+- Login dùng lỗi chung, payload 8 KiB, rate limit và lockout tạm thời.
+- Git gateway cố định repository/branch, allowlist method/route và path.
+- Admin/Analytics dùng `no-store`, `noindex`, CSP và `frame-ancestors 'none'`.
 
 ## Quality gate
 
@@ -48,12 +75,8 @@ npm run cms:dry-run
 
 ## Deploy order
 
-1. `npm run d1:migrate:preview`
-2. `npm run deploy:preview`
-3. Test OAuth/API ở preview alias.
-4. Export backup production nếu database có dữ liệu.
-5. `npm run d1:migrate:production`
-6. `npm run deploy:production`
-7. Add Pages custom domain `cms.mdftungphat.com`, sau đó tạo đúng một CNAME tại TenTen trỏ tới target do Pages trả về.
-
-Không đổi nameserver, apex hoặc record `www` trong quy trình này.
+1. Apply migration preview và deploy preview.
+2. Test login, Decap read/publish/media, Analytics, tab switching và logout.
+3. Apply migration production và deploy production.
+4. Chạy production E2E và kiểm tra browser network không chứa credential.
+5. Chỉ sau khi pass mới vô hiệu hóa/xóa GitHub OAuth cũ.

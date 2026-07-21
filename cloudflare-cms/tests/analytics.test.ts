@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { createAdminSessionCookie, hasValidAdminSession } from "../src/oauth/admin-session";
 import { dateInVietnam, dateRange } from "../src/analytics/admin-handler";
 import { analyticsPayloadSchema, attribution, isBot, parseDevice, sanitizePath } from "../src/analytics/validation";
 
@@ -44,19 +43,6 @@ describe("collector validation", () => {
   it("does not let a mid-session referrer override UTM attribution", () => {
     expect(attribution({ utm_source: "newsletter", utm_medium: "email", referrer_host: "google.com" }))
       .toMatchObject({ source: "newsletter", medium: "email" });
-  });
-});
-
-describe("CMS admin session", () => {
-  it("creates an HttpOnly session accepted by server-side auth", async () => {
-    const secret = "test-secret-that-is-at-least-thirty-two-characters";
-    const cookie = await createAdminSessionCookie(secret);
-    expect(cookie).toContain("HttpOnly");
-    const request = new Request("https://cms.mdftungphat.com/api/admin/analytics/status", {
-      headers: { Cookie: cookie.split(";")[0] },
-    });
-    expect(await hasValidAdminSession(request, secret)).toBe(true);
-    expect(await hasValidAdminSession(request, `${secret}-wrong`)).toBe(false);
   });
 });
 

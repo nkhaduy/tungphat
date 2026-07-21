@@ -2,6 +2,7 @@
   "version": 1,
   "include": [
     "/api/*",
+    "/git-gateway/*",
     "/auth",
     "/callback",
     "/health",

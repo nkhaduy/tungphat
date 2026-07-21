@@ -1,4 +1,4 @@
-import { hasValidAdminSession } from "../oauth/admin-session";
+import { validMutation, verifySession } from "../auth/session";
 import { ga4Realtime, googleConfigured, searchConsoleRows } from "./google";
 import type { AnalyticsEnv } from "./types";
 
@@ -273,16 +273,30 @@ async function searchConsole(env: AnalyticsEnv, range: DateRange, dimensions: st
 async function status(env: AnalyticsEnv) {
   let database = "connected";
   let latestEvent: number | null = null;
+  let ga4 = env.GA4_PROPERTY_ID && googleConfigured(env) ? "configured" : "not_configured";
+  let ga4ActiveUsers: number | null = null;
   try {
     latestEvent = Number((await env.DB.prepare("SELECT MAX(occurred_at) AS value FROM analytics_events WHERE is_test=0").first<{ value: number }>())?.value || 0) || null;
   } catch { database = "error"; }
   const sync = await env.DB.prepare("SELECT provider,status,last_succeeded_at,last_error_safe FROM analytics_sync_status").all().catch(() => ({ results: [] }));
+  if (ga4 === "configured") {
+    try {
+      ga4ActiveUsers = await ga4Realtime(env);
+      ga4 = "connected";
+    } catch {
+      ga4 = "error";
+    }
+  }
+  const searchConsoleSync = (sync.results as Array<{ provider?: string; status?: string }>).find((item) => item.provider === "search_console");
   return {
     firstParty: database === "connected" ? "connected" : "error",
     database,
     latestEvent,
-    ga4: env.GA4_PROPERTY_ID && googleConfigured(env) ? "configured" : "not_configured",
-    searchConsole: env.SEARCH_CONSOLE_SITE_URL && googleConfigured(env) ? "configured" : "not_configured",
+    ga4,
+    ga4ActiveUsers,
+    searchConsole: searchConsoleSync?.status === "connected"
+      ? "connected"
+      : env.SEARCH_CONSOLE_SITE_URL && googleConfigured(env) ? "configured" : "not_configured",
     sync: sync.results,
     retention: { rawDays: 90, aggregateMonths: 25, testDays: 7 },
   };
@@ -327,13 +341,16 @@ function validAdminOrigin(request: Request, env: AnalyticsEnv) {
 
 export async function handleAdminAnalytics(context: EventContext<AnalyticsEnv, string, unknown>) {
   const { request, env } = context;
-  if (!(await hasValidAdminSession(request, env.OAUTH_STATE_SECRET))) return json({ ok: false, code: "unauthorized" }, 401);
+  const session = await verifySession(request, env);
+  if (!session) return json({ ok: false, code: "unauthorized" }, 401);
   const url = new URL(request.url);
   const route = url.pathname.replace(/^\/api\/admin\/analytics\/?/, "").replace(/\/$/, "");
   const range = dateRange(url);
   if (!range) return json({ ok: false, code: "invalid_date_range" }, 400);
   const isPost = request.method === "POST";
-  if (isPost && !validAdminOrigin(request, env)) return json({ ok: false, code: "origin_rejected" }, 403);
+  if (isPost && (!(await validMutation(request, env, session)) || !validAdminOrigin(request, env))) {
+    return json({ ok: false, code: "request_rejected" }, 403);
+  }
   if (!["GET", "POST"].includes(request.method)) return json({ ok: false, code: "method_not_allowed" }, 405);
 
   try {

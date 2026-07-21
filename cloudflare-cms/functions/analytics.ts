@@ -1,8 +1,4 @@
-export const onRequest: PagesFunction<CloudflareCmsEnv> = async ({ request, next }) => {
-  const pathname = new URL(request.url).pathname;
-  if (pathname !== "/analytics" && pathname !== "/analytics/" && pathname !== "/analytics/login") {
-    return next();
-  }
+export const onRequest: PagesFunction<CloudflareCmsEnv> = async ({ request }) => {
   if (request.method !== "GET" && request.method !== "HEAD") {
     return Response.json({ ok: false, code: "method_not_allowed" }, {
       status: 405,
