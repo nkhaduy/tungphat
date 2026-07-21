@@ -23,6 +23,26 @@ async function stubDecap(page: Page) {
   await page.route("https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js", route => route.abort());
 }
 
+async function stubWideDecapEditor(page: Page) {
+  await page.addInitScript(() => {
+    const browserWindow = window as unknown as Window & { CMS: Record<string, unknown> };
+    browserWindow.CMS = {
+      init() {
+        const root = document.querySelector("#nc-root");
+        const node = document.createElement("div");
+        node.dataset.testid = "wide-decap-editor";
+        node.style.cssText = "position:absolute;width:800px;height:700px";
+        node.textContent = "Decap editor";
+        root?.appendChild(node);
+      },
+      registerEventListener() {},
+      registerPreviewStyle() {},
+      registerPreviewTemplate() {},
+    };
+  });
+  await page.route("https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js", route => route.abort());
+}
+
 test("login remains readable and contained at required breakpoints", async ({ page }) => {
   await stubDecap(page);
   await page.route("**/api/auth/session", route => route.fulfill({ status: 401, json: { authenticated: false } }));
@@ -125,4 +145,21 @@ test("analytics tabs, states, tables and journey detail stay usable", async ({ p
   }
   const accessibility = await new AxeBuilder({ page }).include(".admin-header").include("#analytics-view").withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
   expect(accessibility.violations, accessibility.violations.map(item => `${item.id}: ${item.help}`).join("\n")).toEqual([]);
+});
+
+test("wide Decap editor scrolls inside its shell instead of widening mobile page", async ({ page }) => {
+  await stubWideDecapEditor(page);
+  await page.route("**/api/auth/session", route => route.fulfill({ json: { authenticated: true, user: { username: "nkhaduy" }, csrf, expiresAt: 1_900_000_000 } }));
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/?view=content");
+  await expect(page.getByTestId("wide-decap-editor")).toBeVisible();
+  const layout = await page.evaluate(() => ({
+    viewport: window.innerWidth,
+    documentWidth: document.documentElement.scrollWidth,
+    shellClientWidth: document.querySelector("#content-view")?.clientWidth || 0,
+    shellScrollWidth: document.querySelector("#content-view")?.scrollWidth || 0,
+  }));
+  expect(layout.documentWidth).toBe(layout.viewport);
+  expect(layout.shellClientWidth).toBe(layout.viewport);
+  expect(layout.shellScrollWidth).toBeGreaterThanOrEqual(800);
 });
