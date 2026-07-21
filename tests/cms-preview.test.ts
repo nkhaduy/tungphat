@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs";
+import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { MarkdownContent } from "@/components/content/MarkdownContent";
@@ -34,6 +35,15 @@ describe("CMS preview security and shell", () => {
     expect(headers).toContain("frame-src 'self' blob: https://mdftungphat.com");
   });
 
+  it("applies no-store and noindex to the exact trailing-slash preview route", () => {
+    const config = JSON.parse(readFileSync("vercel.json", "utf8"));
+    const exact = config.headers.find((rule: { source: string }) => rule.source === "/cms-preview/");
+    expect(exact?.headers).toEqual(expect.arrayContaining([
+      { key: "Cache-Control", value: "private, no-store, max-age=0" },
+      { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+    ]));
+  });
+
   it("validates, allowlists, limits and sanitizes in-memory drafts", () => {
     const draft = sanitizeCmsPreviewDraft({
       collection: "articles",
@@ -58,7 +68,7 @@ describe("CMS preview security and shell", () => {
     const normalized = previewEntry(draft!);
     expect(normalized.collection).toBe("articles");
     if (normalized.collection !== "articles") throw new Error("unexpected collection");
-    const html = renderToStaticMarkup(<MarkdownContent>{normalized.entry.body}</MarkdownContent>);
+    const html = renderToStaticMarkup(createElement(MarkdownContent, null, normalized.entry.body));
     expect(html).toContain("<h1>Tiêu đề</h1>");
     expect(html).toContain("<blockquote>");
     expect(html).not.toContain("<script");
