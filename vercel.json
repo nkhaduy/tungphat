@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/admin/analytics",
-      "destination": "https://cms.mdftungphat.com/analytics/",
+      "destination": "https://cms.mdftungphat.com/?view=analytics",
       "permanent": false
     },
     {

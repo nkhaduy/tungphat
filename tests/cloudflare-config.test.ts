@@ -18,24 +18,30 @@ describe("hybrid Cloudflare CMS bindings", () => {
     expect(config.env.preview.r2_buckets).toEqual([{ binding: "MEDIA", bucket_name: "tung-phat-media-preview" }]);
   });
 
-  it("keeps production CORS exact and Decap direct publishing", () => {
+  it("keeps production CORS exact and Decap direct publishing through the server gateway", () => {
     expect(config.vars.CORS_ALLOWED_ORIGINS).toBe("https://mdftungphat.com,https://www.mdftungphat.com");
     expect(config.vars.CORS_ALLOWED_ORIGINS).not.toContain("*");
     const cms = readFileSync("cloudflare-cms/public/config.yml", "utf8");
     expect(cms).toContain("publish_mode: simple");
-    expect(cms).toContain("base_url: https://cms.mdftungphat.com");
+    expect(cms).toContain("name: git-gateway");
+    expect(cms).toContain("gateway_url: /git-gateway/github");
     expect(cms).toContain("branch: main");
+    expect(cms).not.toContain("auth_endpoint:");
   });
 
-  it("keeps CMS content and analytics navigation visible", () => {
+  it("keeps content and Analytics in one shell without an iframe or OAuth link", () => {
     const index = readFileSync("cloudflare-cms/public/index.html", "utf8");
-    expect(index).toContain(">Quản lý nội dung</a>");
-    expect(index).toContain('href="/analytics/">Thống kê</a>');
+    expect(index).toContain('data-view="content">Quản lý nội dung</button>');
+    expect(index).toContain('data-view="analytics">Thống kê</button>');
+    expect(index).toContain('id="nc-root"');
+    expect(index).toContain('id="analytics-view"');
+    expect(index).not.toContain("<iframe");
+    expect(index).not.toContain("Login with GitHub");
   });
 
   it("documents every required secret without committing values", () => {
     const readme = readFileSync("cloudflare-cms/README.md", "utf8");
-    for (const secret of ["TURNSTILE_SECRET_KEY", "IP_HASH_SALT", "GITHUB_OAUTH_ID", "GITHUB_OAUTH_SECRET", "OAUTH_STATE_SECRET"]) {
+    for (const secret of ["TURNSTILE_SECRET_KEY", "IP_HASH_SALT", "CMS_ADMIN_USERNAME", "CMS_ADMIN_PASSWORD_HASH", "CMS_SESSION_SECRET", "GITHUB_APP_ID", "GITHUB_INSTALLATION_ID", "GITHUB_APP_PRIVATE_KEY"]) {
       expect(readme).toContain(`\`${secret}\``);
     }
   });

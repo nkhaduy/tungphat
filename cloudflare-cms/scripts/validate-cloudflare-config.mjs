@@ -36,11 +36,12 @@ if (production && preview && production.database_id === preview.database_id) err
 if (config.name !== "tungphat-cms") errors.push("Pages project phải có tên tungphat-cms.");
 if (config.pages_build_output_dir !== "./public") errors.push("pages_build_output_dir phải là ./public.");
 if (!config.compatibility_flags?.includes("nodejs_compat")) errors.push("Thiếu nodejs_compat.");
-if (migrations.join(",") !== "0001_create_leads.sql,0002_lead_status_history_triggers.sql,0003_add_request_context.sql,0004_create_analytics.sql") errors.push("Danh sách migrations production không đúng.");
+if (migrations.join(",") !== "0001_create_leads.sql,0002_lead_status_history_triggers.sql,0003_add_request_context.sql,0004_create_analytics.sql,0005_create_cms_auth.sql,0006_create_cms_git_objects.sql") errors.push("Danh sách migrations production không đúng.");
 if (config.vars.CORS_ALLOWED_ORIGINS.includes("*")) errors.push("Production CORS không được dùng wildcard.");
 if (config.vars.CORS_ALLOWED_ORIGINS !== "https://mdftungphat.com,https://www.mdftungphat.com") errors.push("Production CORS allowlist không đúng.");
-if (cms.backend?.repo !== "nkhaduy/tungphat" || cms.backend?.branch !== "main") errors.push("Decap backend phải commit nkhaduy/tungphat main.");
-if (cms.backend?.base_url !== "https://cms.mdftungphat.com" || cms.backend?.auth_endpoint !== "auth") errors.push("Decap OAuth phải same-domain /auth.");
+if (cms.backend?.name !== "git-gateway" || cms.backend?.branch !== "main") errors.push("Decap backend phải dùng Git Gateway trên branch main.");
+if (cms.backend?.gateway_url !== "/git-gateway/github" || cms.backend?.status_endpoint !== "/api/gateway/status") errors.push("Decap Git Gateway phải dùng endpoint nội bộ cố định.");
+if ("repo" in cms.backend || "auth_endpoint" in cms.backend || "base_url" in cms.backend) errors.push("Decap config không được chứa GitHub OAuth client config.");
 if (cms.publish_mode !== "simple") errors.push("Decap phải dùng publish_mode: simple.");
 if (cms.site_url !== "https://mdftungphat.com" || cms.display_url !== "https://mdftungphat.com") errors.push("CMS site/display URL phải là canonical apex.");
 if (cms.media_library?.name === "default") errors.push("Không khai báo media_library name=default; Decap dùng media library tích hợp khi block này được bỏ.");
@@ -49,4 +50,4 @@ if (errors.length) {
   console.error(`Cloudflare CMS preflight thất bại (${errors.length} lỗi):\n- ${errors.join("\n- ")}`);
   process.exit(1);
 }
-console.log("Cloudflare CMS preflight pass: Pages, D1, CORS, OAuth và Decap config hợp lệ.");
+console.log("Cloudflare CMS preflight pass: Pages, D1, R2, session auth và Decap Git Gateway hợp lệ.");
