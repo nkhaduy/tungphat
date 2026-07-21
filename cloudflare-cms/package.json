@@ -20,6 +20,7 @@
     "d1:backup": "wrangler d1 export tung-phat-leads --remote --output ../backups/tung-phat-leads.sql"
   },
   "dependencies": {
+    "@noble/hashes": "^2.2.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {

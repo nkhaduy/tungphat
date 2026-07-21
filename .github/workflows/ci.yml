@@ -21,9 +21,15 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm ci --prefix cloudflare-cms
       - run: npm run lint
       - run: npm run typecheck
       - run: npm test
+      - run: npm --prefix cloudflare-cms run lint
+      - run: npm --prefix cloudflare-cms run typecheck
+      - run: npm --prefix cloudflare-cms test
+      - run: npm --prefix cloudflare-cms run build
+      - run: npm --prefix cloudflare-cms run cms:dry-run
       - run: npm run validate:content
       - run: npm run images:check
       - run: npm audit --omit=dev --audit-level=high

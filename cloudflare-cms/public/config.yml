@@ -1,11 +1,8 @@
 backend:
-  name: github
-  repo: nkhaduy/tungphat
+  name: git-gateway
   branch: main
-  base_url: https://cms.mdftungphat.com
-  auth_endpoint: auth
-  site_domain: cms.mdftungphat.com
-  use_graphql: true
+  gateway_url: /git-gateway/github
+  status_endpoint: /api/gateway/status
 
 publish_mode: simple
 

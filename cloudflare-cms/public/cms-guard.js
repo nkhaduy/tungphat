@@ -10,12 +10,13 @@
     if (collection !== "products" && collection !== "pages") return;
     if (reservedRootSlugs.has(slug)) throw new Error("Slug này được dành cho route hệ thống và không thể publish.");
     const opposite = collection === "products" ? "pages" : "products";
-    const response = await fetch(`https://api.github.com/repos/nkhaduy/tungphat/contents/content/${opposite}?ref=main`, {
+    const response = await fetch(`/git-gateway/github/git/trees/main:content/${opposite}`, {
+      credentials: "same-origin",
       headers: { Accept: "application/vnd.github+json" }
     });
     if (!response.ok) throw new Error("Chưa thể kiểm tra xung đột product/service. Vui lòng thử publish lại.");
     const entries = await response.json();
-    if (Array.isArray(entries) && entries.some((item) => item && item.name === `${slug}.md`)) {
+    if (Array.isArray(entries.tree) && entries.tree.some((item) => item && item.path === `${slug}.md`)) {
       throw new Error("Slug đang được dùng bởi product/service ở collection còn lại.");
     }
   }
