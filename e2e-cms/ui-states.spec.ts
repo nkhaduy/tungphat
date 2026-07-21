@@ -50,7 +50,7 @@ test("login remains readable and contained at required breakpoints", async ({ pa
   for (const width of [375, 430, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: width < 600 ? 812 : 900 });
     await page.goto("/");
-    await expect(page.getByRole("heading", { name: "Tùng Phát CMS" })).toBeVisible();
+    await expect(page.locator("#login-form")).toBeVisible();
     await expect(page.getByAltText("Tùng Phát — Wood & CNC Solutions")).toBeVisible();
     const layout = await page.evaluate(() => ({
       viewport: window.innerWidth,

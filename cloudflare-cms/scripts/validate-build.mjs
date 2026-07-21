@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { parse } from "yaml";
 
 const requiredFiles = [
-  "public/index.html", "public/admin-bootstrap.js", "public/admin-shell.js", "public/admin-shell.css",
+  "public/index.html", "public/admin-bootstrap.js", "public/cms-backend.js", "public/admin-shell.js", "public/admin-shell.css",
   "public/config.yml", "public/cms-guard.js", "public/preview.js",
   "public/analytics/styles.css", "public/analytics/dashboard.js",
   "public/_routes.json",
