@@ -39,7 +39,7 @@ if (!config.compatibility_flags?.includes("nodejs_compat")) errors.push("Thiếu
 if (migrations.join(",") !== "0001_create_leads.sql,0002_lead_status_history_triggers.sql,0003_add_request_context.sql,0004_create_analytics.sql,0005_create_cms_auth.sql,0006_create_cms_git_objects.sql") errors.push("Danh sách migrations production không đúng.");
 if (config.vars.CORS_ALLOWED_ORIGINS.includes("*")) errors.push("Production CORS không được dùng wildcard.");
 if (config.vars.CORS_ALLOWED_ORIGINS !== "https://mdftungphat.com,https://www.mdftungphat.com") errors.push("Production CORS allowlist không đúng.");
-if (cms.backend?.name !== "git-gateway" || cms.backend?.branch !== "main") errors.push("Decap backend phải dùng Git Gateway trên branch main.");
+if (cms.backend?.name !== "tungphat-gateway" || cms.backend?.branch !== "main") errors.push("Decap backend phải dùng custom Tùng Phát gateway trên branch main.");
 if (cms.backend?.gateway_url !== "/git-gateway/github" || cms.backend?.status_endpoint !== "/api/gateway/status") errors.push("Decap Git Gateway phải dùng endpoint nội bộ cố định.");
 if ("repo" in cms.backend || "auth_endpoint" in cms.backend || "base_url" in cms.backend) errors.push("Decap config không được chứa GitHub OAuth client config.");
 if (cms.publish_mode !== "simple") errors.push("Decap phải dùng publish_mode: simple.");

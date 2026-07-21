@@ -4,12 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex,nofollow,noarchive" />
-    <title>Tùng Phát CMS</title>
+    <title>Quản trị nội dung Tùng Phát</title>
     <link rel="icon" href="https://mdftungphat.com/favicon.ico" />
     <link rel="stylesheet" href="/admin-shell.css" />
     <link rel="stylesheet" href="/analytics/styles.css" />
     <script src="/admin-bootstrap.js"></script>
     <script src="https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js" integrity="sha384-K+E/B3QG3FJrtRXoyUjME4ilx71pYGyrvAVxYvd/p0zCPuXsc3eoEuSzUW3Ke63V" crossorigin="anonymous" defer></script>
+    <script src="/cms-backend.js" defer></script>
     <script src="/preview.js" defer></script>
     <script src="/cms-guard.js" defer></script>
     <script src="/analytics/dashboard.js" defer></script>
@@ -18,8 +19,8 @@
   <body>
     <noscript><p class="noscript">Bạn cần bật JavaScript để sử dụng Tùng Phát CMS.</p></noscript>
 
-    <main id="login-view" class="login-view" aria-labelledby="login-title">
-      <section class="login-card">
+    <main id="login-view" class="login-view" aria-label="Đăng nhập quản trị">
+      <section class="login-panel">
         <img
           class="login-logo"
           src="https://mdftungphat.com/logo-horizontal.png"
@@ -27,17 +28,12 @@
           height="240"
           alt="Tùng Phát — Wood &amp; CNC Solutions"
         />
-        <h1 id="login-title">Tùng Phát CMS</h1>
-        <p class="login-help">Quản lý nội dung và theo dõi hoạt động website.</p>
-        <form id="login-form" autocomplete="on">
-          <label for="username">Tên đăng nhập</label>
+        <form id="login-form" class="login-card" autocomplete="on">
+          <label for="username">Tài khoản</label>
           <input id="username" name="username" type="text" autocomplete="username" maxlength="128" aria-describedby="login-error" required />
           <label for="password">Mật khẩu</label>
-          <div class="password-field">
-            <input id="password" name="password" type="password" autocomplete="current-password" maxlength="1024" aria-describedby="login-error" required />
-            <button id="password-toggle" class="password-toggle" type="button" aria-pressed="false" aria-label="Hiển thị mật khẩu">Hiện</button>
-          </div>
-          <p id="login-error" class="login-error" role="alert" hidden></p>
+          <input id="password" name="password" type="password" autocomplete="current-password" maxlength="1024" aria-describedby="login-error" required />
+          <p id="login-error" class="login-error" role="alert" aria-live="polite" hidden></p>
           <button id="login-submit" type="submit">Đăng nhập</button>
         </form>
       </section>
@@ -51,6 +47,7 @@
         </a>
         <nav class="admin-nav" aria-label="Khu vực quản trị">
           <button id="content-tab" type="button" data-view="content">Quản lý nội dung</button>
+          <button id="preview-tab" type="button" data-view="preview">Xem trước</button>
           <button id="analytics-tab" type="button" data-view="analytics">Thống kê</button>
         </nav>
         <button id="logout-button" class="logout-button" type="button">Đăng xuất</button>
@@ -58,6 +55,28 @@
 
       <section id="content-view" class="admin-view" aria-label="Quản lý nội dung">
         <div id="nc-root"></div>
+      </section>
+
+      <section id="preview-view" class="admin-view preview-view" aria-label="Xem trước nội dung" hidden>
+        <div class="preview-toolbar">
+          <div class="preview-summary">
+            <strong id="preview-title">Chưa có nội dung đang xem</strong>
+            <span><span id="preview-collection">—</span> · <span id="preview-status">Mở một entry trong trình biên tập</span></span>
+          </div>
+          <div class="preview-actions" aria-label="Điều khiển bản xem trước">
+            <div class="viewport-switcher" role="group" aria-label="Kích thước màn hình">
+              <button type="button" data-preview-width="1440" class="active" aria-pressed="true">Desktop</button>
+              <button type="button" data-preview-width="768" aria-pressed="false">Tablet</button>
+              <button type="button" data-preview-width="390" aria-pressed="false">Mobile</button>
+            </div>
+            <button id="refresh-preview" type="button">Làm mới</button>
+            <button id="back-to-editor" type="button">Quay lại chỉnh sửa</button>
+            <a id="open-published" href="https://mdftungphat.com/" target="_blank" rel="noopener noreferrer" hidden>Mở trang thật</a>
+          </div>
+        </div>
+        <div id="preview-stage" class="preview-stage" data-width="1440">
+          <iframe id="preview-frame" title="Bản xem trước website" src="https://mdftungphat.com/cms-preview/" sandbox="allow-scripts allow-same-origin" referrerpolicy="strict-origin"></iframe>
+        </div>
       </section>
 
       <section id="analytics-view" class="admin-view" aria-label="Thống kê" hidden>

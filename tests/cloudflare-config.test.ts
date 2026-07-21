@@ -23,7 +23,7 @@ describe("hybrid Cloudflare CMS bindings", () => {
     expect(config.vars.CORS_ALLOWED_ORIGINS).not.toContain("*");
     const cms = readFileSync("cloudflare-cms/public/config.yml", "utf8");
     expect(cms).toContain("publish_mode: simple");
-    expect(cms).toContain("name: git-gateway");
+    expect(cms).toContain("name: tungphat-gateway");
     expect(cms).toContain("gateway_url: /git-gateway/github");
     expect(cms).toContain("branch: main");
     expect(cms).not.toContain("auth_endpoint:");
@@ -35,7 +35,7 @@ describe("hybrid Cloudflare CMS bindings", () => {
     expect(index).toContain('data-view="analytics">Thống kê</button>');
     expect(index).toContain('id="nc-root"');
     expect(index).toContain('id="analytics-view"');
-    expect(index).not.toContain("<iframe");
+    expect(index).not.toMatch(/id="analytics-view"[\s\S]*?<iframe/);
     expect(index).not.toContain("Login with GitHub");
   });
 

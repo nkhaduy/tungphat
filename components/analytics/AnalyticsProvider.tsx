@@ -36,12 +36,13 @@ export function AnalyticsProvider() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!pathname || pathname === lastPagePath) return;
+    if (!pathname || pathname.startsWith("/cms-preview") || pathname === lastPagePath) return;
     lastPagePath = pathname;
     sendAnalyticsEvent("page_view", { path: pathname, page_title: document.title });
   }, [pathname]);
 
   useEffect(() => {
+    if (pathname?.startsWith("/cms-preview")) return;
     const startedForms = new WeakSet<HTMLFormElement>();
     const onClick = (event: MouseEvent) => {
       const anchor = event.target instanceof Element ? event.target.closest("a") : null;
@@ -72,7 +73,7 @@ export function AnalyticsProvider() {
       document.removeEventListener("click", onClick, true);
       document.removeEventListener("focusin", onFocus, true);
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

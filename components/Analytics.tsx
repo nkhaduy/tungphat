@@ -1,8 +1,12 @@
+"use client";
+
 import Script from "next/script";
+import { usePathname } from "next/navigation";
 
 export function Analytics() {
+  const pathname = usePathname();
   const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-  if (!measurementId || !/^G-[A-Z0-9]{6,}$/i.test(measurementId)) return null;
+  if (pathname?.startsWith("/cms-preview") || !measurementId || !/^G-[A-Z0-9]{6,}$/i.test(measurementId)) return null;
 
   return (
     <>
