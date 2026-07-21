@@ -215,6 +215,18 @@ test("frontend công khai không tải form, Turnstile hoặc Forms API", async 
   expect(unexpectedRequests).toEqual([]);
 });
 
+test("preview shell không tự gửi Analytics và không render draft ngoài CMS tin cậy", async ({ page }) => {
+  const analyticsRequests: string[] = [];
+  page.on("request", request => {
+    if (/\/api\/analytics\/track|google-analytics\.com|googletagmanager\.com/i.test(request.url())) analyticsRequests.push(request.url());
+  });
+  const response = await page.goto("/cms-preview/", { waitUntil: "networkidle" });
+  expect(response?.status()).toBe(200);
+  await expect(page.getByText("Mở một nội dung trong CMS để xem bản nháp.")).toBeVisible();
+  await expect(page.locator("[data-cms-preview='true']")).toHaveCount(0);
+  expect(analyticsRequests).toEqual([]);
+});
+
 test("ngân sách Web Vitals lab không regression rõ rệt", async ({ page }) => {
   await page.addInitScript(() => {
     const store = { lcp: 0, cls: 0 };

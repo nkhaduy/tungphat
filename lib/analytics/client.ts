@@ -10,6 +10,7 @@ declare global {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
     __TP_ANALYTICS_TEST_MODE__?: boolean;
+    __TP_PREVIEW__?: boolean;
   }
 }
 
@@ -28,7 +29,7 @@ function sessionAttribution() {
 
 function buildPayload(eventName: FirstPartyAnalyticsEvent, properties: AnalyticsProperties): AnalyticsPayload | null {
   const testMode = TEST_BUILD && window.__TP_ANALYTICS_TEST_MODE__ === true;
-  if (analyticsOptedOut() || (!testMode && (navigator.webdriver || !shouldTrackLocation(location.hostname, location.pathname)))) return null;
+  if (window.__TP_PREVIEW__ === true || location.pathname.startsWith("/cms-preview") || analyticsOptedOut() || (!testMode && (navigator.webdriver || !shouldTrackLocation(location.hostname, location.pathname)))) return null;
   const { visitorId, sessionId } = getAnalyticsIdentity();
   return {
     event_id: crypto.randomUUID(),

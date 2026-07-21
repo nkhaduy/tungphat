@@ -1,24 +1,45 @@
-/* global CMS, createClass, h */
-// CMS preview intentionally renders content without website-only runtime code.
-(function () {
-  function mediaSource(value) {
-    if (!value) return "";
-    if (typeof value === "string") return value;
-    return "";
-  }
+/* global CMS, createClass, h, window */
+(() => {
+  "use strict";
+  const PREVIEW_ORIGIN = "https://mdftungphat.com";
+
   const Preview = createClass({
-    render: function () {
+    getInitialState() { return { ready: false }; },
+    componentDidMount() {
+      this.onMessage = (event) => {
+        if (event.origin !== PREVIEW_ORIGIN || event.source !== this.frame?.contentWindow || event.data?.type !== "tp-preview-ready") return;
+        this.setState({ ready: true }, this.publishDraft);
+      };
+      window.addEventListener("message", this.onMessage);
+      this.publishDraft();
+    },
+    componentDidUpdate() { this.publishDraft(); },
+    componentWillUnmount() { window.removeEventListener("message", this.onMessage); },
+    initializeFrame() {
+      this.frame?.contentWindow?.postMessage({ type: "tp-preview-init" }, PREVIEW_ORIGIN);
+    },
+    draft() {
       const entry = this.props.entry;
-      const data = entry.get("data");
-      const widgets = this.props.widgetFor("body");
-      return h("main", { style: { fontFamily: "Arial, sans-serif", maxWidth: "860px", margin: "0 auto", padding: "32px", color: "#16211b" } },
-        h("p", { style: { color: "#b84d00", fontWeight: 700, textTransform: "uppercase" } }, data.get("category") || data.get("eyebrow") || "Tùng Phát"),
-        h("h1", { style: { fontSize: "42px", lineHeight: 1.15 } }, data.get("title") || "Chưa có tiêu đề"),
-        h("p", { style: { fontSize: "18px", lineHeight: 1.7, color: "#52615a" } }, data.get("excerpt") || ""),
-        mediaSource(data.get("featuredImage")) ? h("img", { src: mediaSource(data.get("featuredImage")), alt: data.get("featuredImageAlt") || "", style: { width: "100%", maxHeight: "480px", objectFit: "cover", margin: "24px 0" } }) : null,
-        h("article", { style: { fontSize: "17px", lineHeight: 1.8 } }, widgets)
-      );
-    }
+      const collection = this.props.collection?.get?.("name") || entry.getIn?.(["collection", "name"]) || entry.get?.("collection");
+      return { collection: String(collection || ""), data: entry.get("data")?.toJS?.() || {}, updatedAt: Date.now() };
+    },
+    publishDraft() {
+      const draft = this.draft();
+      window.TPCMS?.receiveDraft(draft);
+      if (this.state.ready && this.frame?.contentWindow) this.frame.contentWindow.postMessage({ type: "tp-preview-draft", payload: draft }, PREVIEW_ORIGIN);
+    },
+    render() {
+      return h("iframe", {
+        ref: (node) => { this.frame = node; },
+        src: `${PREVIEW_ORIGIN}/cms-preview/`,
+        title: "Bản xem trước website Tùng Phát",
+        sandbox: "allow-scripts allow-same-origin",
+        referrerPolicy: "strict-origin",
+        onLoad: this.initializeFrame,
+        style: { width: "100%", minHeight: "100vh", border: 0, background: "#fff" },
+      });
+    },
   });
+
   ["articles", "products", "projects", "pages"].forEach((collection) => CMS.registerPreviewTemplate(collection, Preview));
 })();
