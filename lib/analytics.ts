@@ -43,7 +43,7 @@ function propertiesFor(event: FirstPartyAnalyticsEvent, properties: LegacyEventP
 }
 
 export function trackEvent(event: AnalyticsEvent, properties: LegacyEventProperties = {}) {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined" || window.__TP_PREVIEW__ === true || window.location.pathname.startsWith("/cms-preview")) return;
   if (directEvents.has(event as FirstPartyAnalyticsEvent)) {
     const direct = event as FirstPartyAnalyticsEvent;
     sendAnalyticsEvent(direct, propertiesFor(direct, properties));

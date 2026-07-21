@@ -1,5 +1,5 @@
 backend:
-  name: git-gateway
+  name: tungphat-gateway
   branch: main
   gateway_url: /git-gateway/github
   status_endpoint: /api/gateway/status
