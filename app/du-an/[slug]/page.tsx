@@ -9,7 +9,7 @@ type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  const params = getProjects().map((project) => ({ slug: project.slug }));
+  const params = getProjects({ includeDrafts: true }).map((project) => ({ slug: project.slug }));
   return params.length ? params : [{ slug: "__empty-collection" }];
 }
 

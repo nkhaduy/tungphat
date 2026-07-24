@@ -15,11 +15,12 @@ import {
   BUSINESS_NAME,
   PHONE_DISPLAY,
   PHONE_HREF,
-  SITE_URL,
   TAX_ID,
   ZALO_URL,
+  absolutePageUrl,
   breadcrumbSchema,
   createPageMetadata,
+  schemaPageId,
 } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
@@ -32,10 +33,10 @@ export const metadata = createPageMetadata({
 const contactPageSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
-  "@id": `${SITE_URL}/lien-he#webpage`,
-  url: `${SITE_URL}/lien-he`,
+  "@id": schemaPageId("/lien-he", "webpage"),
+  url: absolutePageUrl("/lien-he"),
   name: "Liên hệ Tùng Phát",
-  about: { "@id": `${SITE_URL}/#organization` },
+  about: { "@id": schemaPageId("/", "organization") },
 };
 
 const phones: ContactPhone[] = [

@@ -4,6 +4,7 @@ import { BrandPage } from "@/components/BrandPage";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { brands, getBrand } from "@/lib/brands";
+import { createPageMetadata } from "@/lib/seo";
 
 type BrandRouteProps = { params: Promise<{ brand: string }> };
 
@@ -15,7 +16,13 @@ export async function generateMetadata({ params }: BrandRouteProps): Promise<Met
   const { brand: brandSlug } = await params;
   const brand = getBrand(brandSlug);
   return brand
-    ? { title: `${brand.name} | Sản phẩm Tùng Phát`, description: `Sản phẩm và catalogue ${brand.name} tại Tùng Phát.` }
+    ? createPageMetadata({
+        title: `${brand.name} | Sản phẩm`,
+        description: `Sản phẩm và catalogue ${brand.name} tại Tùng Phát.`,
+        path: `/san-pham/${brand.slug}/`,
+        noIndex: true,
+        followWhenNoIndex: true,
+      })
     : {};
 }
 

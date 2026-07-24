@@ -4,8 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, MessageCircle, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useLang } from "@/lib/i18n-context";
-import { translations } from "@/lib/i18n";
+import { vi as t } from "@/lib/i18n";
 import { trackEvent } from "@/lib/analytics";
 import { PHONE_HREF, ZALO_URL } from "@/lib/seo";
 
@@ -14,8 +13,6 @@ type HeaderProps = {
 };
 
 export function Header({ appearance = "adaptive" }: HeaderProps) {
-  const { lang, setLang } = useLang();
-  const t = translations[lang];
   const [open, setOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -30,23 +27,21 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
   }, []);
 
   const productLinks: [string, string][] = [
-    [t.navAllProducts, "/san-pham"],
-    ["Gỗ ghép", "/go-ghep"],
-    ["Gỗ ghép cao su", "/go-ghep-cao-su"],
-    ["Gỗ ghép tràm", "/go-ghep-tram"],
-    ["Ván MDF", "/van-mdf"],
-    ["MDF chống ẩm", "/mdf-chong-am"],
-    [t.navCatalogues, "/san-pham#catalogue"]
+    [t.navAllProducts, "/san-pham/"],
+    ["Gỗ ghép", "/go-ghep/"],
+    ["Gỗ ghép cao su", "/go-ghep-cao-su/"],
+    ["Gỗ ghép tràm", "/go-ghep-tram/"],
+    ["Ván MDF", "/van-mdf/"],
+    ["MDF chống ẩm", "/mdf-chong-am/"],
+    [t.navCatalogues, "/san-pham/#catalogue"]
   ];
 
   const links: [string, string][] = [
     [t.navHome, "/#trang-chu"],
     [t.navCNC, "/#cnc"],
     [t.navLibrary, "/#thu-vien"],
-    [t.navContact, "/lien-he"]
+    [t.navContact, "/lien-he/"]
   ];
-
-  const toggleLang = () => setLang(lang === "vi" ? "en" : "vi");
 
   return (
     <header
@@ -128,16 +123,6 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
 
         {/* Desktop actions */}
         <div className="hidden items-center gap-2 lg:flex">
-          <button
-            type="button"
-            onClick={toggleLang}
-            aria-label="Chuyển ngôn ngữ"
-            className={`inline-flex min-h-11 items-center gap-1 px-2 text-xs font-bold transition-colors duration-300 ${lightStyle ? "text-ink/60 hover:text-ink" : "text-white/70 hover:text-white"}`}
-          >
-            <span className={lang === "vi" ? "text-wood-500" : ""}>VI</span>
-            <span className={`${lightStyle ? "text-ink/28" : "text-white/40"}`}>|</span>
-            <span className={lang === "en" ? "text-wood-500" : ""}>EN</span>
-          </button>
           <a
             href={PHONE_HREF}
             data-analytics-handled="1"
@@ -202,12 +187,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
               {label}
             </a>
           ))}
-          <div className="mt-4 flex items-center justify-between">
-            <button type="button" onClick={toggleLang} aria-label="Chuyển ngôn ngữ" className="inline-flex min-h-12 items-center gap-1 px-3 text-sm font-bold text-white/75">
-              <span className={lang === "vi" ? "text-wood-500" : ""}>VI</span>
-              <span className="text-white/40">|</span>
-              <span className={lang === "en" ? "text-wood-500" : ""}>EN</span>
-            </button>
+          <div className="mt-4 flex justify-end">
             <a href={PHONE_HREF} data-analytics-handled="1" data-track-event="click_phone" data-track-location="mobile_bottom_bar" onClick={() => trackEvent("click_phone", { location: "mobile_header" })} className="flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-4 font-bold text-white">
               <Phone size={17} /> {t.callLabel}
             </a>

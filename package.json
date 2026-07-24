@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "npm run validate:content && npm run images:check && node ./node_modules/next/dist/bin/next build",
-    "postbuild": "node scripts/clean-empty-collection-routes.mjs && node scripts/clean-export-image-sources.mjs && node scripts/check-static-output.mjs && node scripts/check-sitemap-output.mjs",
+    "postbuild": "node scripts/clean-empty-collection-routes.mjs && node scripts/clean-export-image-sources.mjs && node scripts/check-static-output.mjs && node scripts/check-sitemap-output.mjs && node scripts/check-metadata-output.mjs",
     "start": "npx serve out",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.cloudflare.json --noEmit",
@@ -15,6 +15,8 @@
     "test:e2e:cms": "playwright test --config=playwright.cms.config.ts",
     "validate:content": "tsx scripts/validate-content.ts",
     "validate:links": "node scripts/check-internal-links.mjs && node scripts/check-sitemap-output.mjs",
+    "validate:legacy-redirects": "node scripts/check-legacy-redirects.mjs",
+    "validate:homepage-images": "node scripts/check-homepage-images.mjs",
     "validate:cloudflare-config": "node cloudflare-cms/scripts/validate-cloudflare-config.mjs",
     "images:check": "node scripts/check-images.mjs",
     "images:optimize": "node scripts/optimize-images.mjs",
@@ -38,7 +40,7 @@
     "framer-motion": "^12.42.2",
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.24.0",
-    "next": "15.5.20",
+    "next": "15.5.21",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-markdown": "^10.1.0",
@@ -57,7 +59,7 @@
     "@vitest/coverage-v8": "^4.1.10",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.39.5",
-    "eslint-config-next": "^15.5.20",
+    "eslint-config-next": "15.5.21",
     "postcss": "^8.5.20",
     "prettier": "^3.9.5",
     "serve": "^14.2.6",
@@ -73,6 +75,7 @@
     "node": ">=20.19 <27"
   },
   "overrides": {
-    "postcss": "$postcss"
+    "postcss": "$postcss",
+    "sharp": "$sharp"
   }
 }

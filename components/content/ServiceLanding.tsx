@@ -11,19 +11,19 @@ import { MarkdownContent } from "@/components/content/MarkdownContent";
 import type { ContentEntry } from "@/lib/content";
 import type { ServicePageFrontmatter } from "@/lib/content-schema";
 import { mediaUrl } from "@/lib/media";
-import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, breadcrumbSchema } from "@/lib/seo";
+import { PHONE_DISPLAY, PHONE_HREF, ZALO_URL, absolutePageUrl, breadcrumbSchema, schemaPageId } from "@/lib/seo";
 
 export function ServiceLanding({ page }: { page: ContentEntry<ServicePageFrontmatter> }) {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `${SITE_URL}/${page.slug}#service`,
+    "@id": schemaPageId(`/${page.slug}`, "service"),
     name: page.title,
     description: page.excerpt,
     serviceType: "Gia công CNC ván gỗ",
-    url: `${SITE_URL}/${page.slug}`,
+    url: absolutePageUrl(`/${page.slug}`),
     areaServed: { "@type": "City", name: "TP. Hồ Chí Minh" },
-    provider: { "@id": `${SITE_URL}/#organization` }
+    provider: { "@id": schemaPageId("/", "organization") }
   };
 
   return (
@@ -79,7 +79,7 @@ export function ServiceLanding({ page }: { page: ContentEntry<ServicePageFrontma
 
         <section className="py-16 lg:py-24">
           <div className="container-shell grid gap-12 lg:grid-cols-[1fr_.48fr]">
-            <MarkdownContent>{page.body}</MarkdownContent>
+            <MarkdownContent className="min-w-0" scrollableTables>{page.body}</MarkdownContent>
             <aside className="h-fit bg-forest-950 p-7 text-white">
               <h2 className="text-xl font-extrabold">Checklist file</h2>
               <ul className="mt-5 space-y-3 text-sm leading-6 text-white/78">{page.fileGuidance.map((item) => <li key={item} className="flex gap-3"><Check size={17} className="mt-1 shrink-0 text-orange-300" />{item}</li>)}</ul>
