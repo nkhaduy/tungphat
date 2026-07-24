@@ -1,6 +1,26 @@
 {
   "redirects": [
     {
+      "source": "/gia-cong-cnc-go",
+      "destination": "/cat-cnc-go/",
+      "permanent": true
+    },
+    {
+      "source": "/gia-cong-cnc-go/",
+      "destination": "/cat-cnc-go/",
+      "permanent": true
+    },
+    {
+      "source": "/cnc-mdf",
+      "destination": "/gia-cong-cnc-mdf/",
+      "permanent": true
+    },
+    {
+      "source": "/cnc-mdf/",
+      "destination": "/gia-cong-cnc-mdf/",
+      "permanent": true
+    },
+    {
       "source": "/admin/analytics",
       "destination": "https://cms.mdftungphat.com/?view=analytics",
       "permanent": false
