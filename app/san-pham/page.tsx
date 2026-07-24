@@ -8,7 +8,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { brands } from "@/lib/brands";
 import { getProducts } from "@/lib/content";
 import { mediaUrl } from "@/lib/media";
-import { absoluteUrl, breadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import { absolutePageUrl, breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
   title: "Vật liệu gỗ công nghiệp MDF, MFC, plywood",
@@ -24,7 +24,7 @@ const productListSchema = {
     "@type": "ListItem",
     position: index + 1,
     name: brand.name,
-    url: absoluteUrl(`/san-pham/${brand.slug}`)
+    url: absolutePageUrl(`/san-pham/${brand.slug}`)
   }))
 };
 

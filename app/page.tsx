@@ -11,26 +11,22 @@ import { Partners } from "@/components/Partners";
 import { WorkshopMedia } from "@/components/WorkshopMedia";
 import { TrackedLink } from "@/components/TrackedLink";
 import { TrustindexReviews } from "@/components/reviews/TrustindexReviews";
-import { useLang } from "@/lib/i18n-context";
-import { translations } from "@/lib/i18n";
+import { vi as t } from "@/lib/i18n";
 import { locations } from "@/lib/locations";
 import { GOOGLE_REVIEWS_URL, PHONE_DISPLAY, PHONE_HREF, ZALO_URL } from "@/lib/seo";
 
 const categoryImages = [
-  "/wood/mdfmfc.png",
-  "/wood/vanchongam.png",
-  "/wood/plywood.png",
-  "/wood/melamine.png",
-  "/wood/laminate.png",
-  "/wood/arcrylic.png",
-  "/wood/veneer.png",
-  "/wood/tamtrangtri.png",
+  "/wood/mdfmfc.webp",
+  "/wood/vanchongam.webp",
+  "/wood/plywood.webp",
+  "/wood/melamine.webp",
+  "/wood/laminate.webp",
+  "/wood/arcrylic.webp",
+  "/wood/veneer.webp",
+  "/wood/tamtrangtri.webp",
 ];
 
 export default function Home() {
-  const { lang } = useLang();
-  const t = translations[lang];
-
   return (
     <>
       <Header />
@@ -69,7 +65,7 @@ export default function Home() {
         <div className="container-shell grid items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
           <Reveal>
             <div className="relative aspect-[4/3] overflow-hidden">
-              <Image src="/images/cnc-service.png" alt="Máy CNC của Tùng Phát đang gia công ván" fill sizes="(max-width: 1024px) 100vw, 55vw" quality={95} className="object-cover" />
+              <Image src="/images/cnc-service.webp" alt="Máy CNC của Tùng Phát đang gia công ván" fill sizes="(max-width: 1024px) 100vw, 55vw" quality={95} className="object-cover" />
               <div className="absolute bottom-0 left-0 bg-wood-500 px-5 py-4 text-sm font-bold">{t.cncOverlay}</div>
             </div>
           </Reveal>
@@ -182,7 +178,7 @@ export default function Home() {
         <div className="container-shell">
           <div className="relative min-h-[420px] overflow-hidden rounded-[18px] border border-white/20 bg-forest-950 px-6 py-14 text-white shadow-[0_1px_0_rgba(255,255,255,0.12)_inset,0_18px_48px_rgba(6,43,29,0.10)] sm:min-h-[460px] sm:rounded-[24px] sm:px-10 lg:px-14 lg:py-16">
             <Image
-              src="/images/hero-workshop2.png"
+              src="/images/hero-workshop2.webp"
               alt="Vân gỗ và máy CNC tại Tùng Phát"
               fill
               sizes="100vw"

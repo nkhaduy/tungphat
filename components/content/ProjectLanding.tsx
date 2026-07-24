@@ -7,7 +7,7 @@ import { MarkdownContent } from "@/components/content/MarkdownContent";
 import type { ContentEntry } from "@/lib/content";
 import type { ProjectFrontmatter } from "@/lib/content-schema";
 import { absoluteMediaUrl, mediaUrl } from "@/lib/media";
-import { SITE_URL, breadcrumbSchema } from "@/lib/seo";
+import { SITE_URL, absolutePageUrl, breadcrumbSchema } from "@/lib/seo";
 
 export function ProjectLanding({ project }: { project: ContentEntry<ProjectFrontmatter> }) {
   const projectSchema = {
@@ -21,7 +21,7 @@ export function ProjectLanding({ project }: { project: ContentEntry<ProjectFront
     dateModified: project.updatedAt,
     about: [project.materialType, project.processingType],
     locationCreated: project.area || undefined,
-    url: `${SITE_URL}/du-an/${project.slug}`,
+    url: absolutePageUrl(`/du-an/${project.slug}`),
   };
 
   return (

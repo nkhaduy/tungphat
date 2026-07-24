@@ -124,7 +124,7 @@ export const productSchema = chronological(
     video: optionalVideo,
     catalogue: optionalPdf,
     ogImage: optionalImage,
-    status: z.enum(["available", "discontinued"]),
+    status: z.enum(["available", "discontinued", "guide"]),
     quoteCta: z.string().min(5).max(100),
     publishedAt: date,
     updatedAt: date,
