@@ -11,19 +11,32 @@ import { MarkdownContent } from "@/components/content/MarkdownContent";
 import type { ContentEntry } from "@/lib/content";
 import type { ProductFrontmatter } from "@/lib/content-schema";
 import { absoluteMediaUrl, mediaUrl } from "@/lib/media";
-import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, breadcrumbSchema } from "@/lib/seo";
+import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, absolutePageUrl, breadcrumbSchema, schemaPageId } from "@/lib/seo";
+
+const detailedWoodProductSlugs = new Set(["go-ghep-cao-su", "go-ghep-tram"]);
 
 export function ProductLanding({ product }: { product: ContentEntry<ProductFrontmatter> }) {
-  const productSchema = {
+  const scrollableTables = product.status === "guide" || detailedWoodProductSlugs.has(product.slug);
+  const productSchema = product.status === "guide" ? {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": schemaPageId(`/${product.slug}`, "category-guide"),
+    name: product.title,
+    description: product.excerpt,
+    image: [absoluteMediaUrl(product.featuredImage, SITE_URL)],
+    url: absolutePageUrl(`/${product.slug}`),
+    inLanguage: "vi-VN",
+    isPartOf: { "@id": schemaPageId("/", "website") }
+  } : {
     "@context": "https://schema.org",
     "@type": "Product",
-    "@id": `${SITE_URL}/${product.slug}#product`,
+    "@id": schemaPageId(`/${product.slug}`, "product"),
     name: product.title,
     description: product.excerpt,
     image: [absoluteMediaUrl(product.featuredImage, SITE_URL)],
     category: product.category,
     material: product.materialType,
-    url: `${SITE_URL}/${product.slug}`,
+    url: absolutePageUrl(`/${product.slug}`),
     brand: product.supplier ? { "@type": "Brand", name: product.supplier } : undefined,
     additionalProperty: [
       ...product.dimensions.map((value) => ({ "@type": "PropertyValue", name: "Kích thước", value })),
@@ -100,7 +113,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
 
         <section className="py-16 lg:py-24">
           <div className="container-shell grid gap-12 lg:grid-cols-[1fr_.42fr]">
-            <MarkdownContent>{product.body}</MarkdownContent>
+            <MarkdownContent className={scrollableTables ? "min-w-0" : ""} scrollableTables={scrollableTables}>{product.body}</MarkdownContent>
             <aside className="h-fit bg-forest-950 p-7 text-white lg:sticky lg:top-28">
               <h2 className="text-xl font-extrabold">Quy trình đặt hàng</h2>
               <ol className="mt-5 space-y-4 text-sm leading-6 text-white/78">

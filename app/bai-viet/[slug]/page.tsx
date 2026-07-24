@@ -7,7 +7,7 @@ import { createContentMetadata } from "@/lib/content-metadata";
 type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 export function generateStaticParams() {
-  const params = getArticles().map((article) => ({ slug: article.slug }));
+  const params = getArticles({ includeDrafts: true }).map((article) => ({ slug: article.slug }));
   return params.length ? params : [{ slug: "__empty-collection" }];
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> { const { slug } = await params; const article = getArticle(slug); return article ? createContentMetadata(article, `/bai-viet/${slug}`) : {}; }

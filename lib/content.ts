@@ -12,6 +12,7 @@ import {
   type ProjectFrontmatter,
   type ServicePageFrontmatter
 } from "@/lib/content-schema";
+import { filterPublishedContent } from "@/lib/listing-indexability";
 
 export type ContentEntry<T> = T & { body: string; sourcePath: string };
 
@@ -31,9 +32,13 @@ function readCollection<T>(folder: string, schema: { parse: (value: unknown) => 
 }
 
 export function getArticles(options: { includeDrafts?: boolean } = {}) {
-  return readCollection<ArticleFrontmatter>("articles", articleSchema)
-    .filter((entry) => options.includeDrafts || (!entry.draft && !entry.noindex))
+  const entries = readCollection<ArticleFrontmatter>("articles", articleSchema);
+  return (options.includeDrafts ? entries : filterPublishedContent(entries))
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+}
+
+export function getPublishedArticles() {
+  return getArticles();
 }
 
 export function getArticle(slug: string, options: { includeDrafts?: boolean } = {}) {
@@ -51,9 +56,13 @@ export function getProduct(slug: string, options: { includeDrafts?: boolean } = 
 }
 
 export function getProjects(options: { includeDrafts?: boolean } = {}) {
-  return readCollection<ProjectFrontmatter>("projects", projectSchema)
-    .filter((entry) => options.includeDrafts || (!entry.draft && !entry.noindex))
+  const entries = readCollection<ProjectFrontmatter>("projects", projectSchema);
+  return (options.includeDrafts ? entries : filterPublishedContent(entries))
     .sort((a, b) => b.completedAt.localeCompare(a.completedAt));
+}
+
+export function getPublishedProjects() {
+  return getProjects();
 }
 
 export function getProject(slug: string, options: { includeDrafts?: boolean } = {}) {

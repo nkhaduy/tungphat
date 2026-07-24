@@ -4,8 +4,7 @@ import { ExternalLink, Hash, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { TrackedLink } from "@/components/TrackedLink";
-import { translations } from "@/lib/i18n";
-import { useLang } from "@/lib/i18n-context";
+import { vi as t } from "@/lib/i18n";
 import { locations } from "@/lib/locations";
 import { BUSINESS_NAME, PHONE_DISPLAY, PHONE_HREF, TAX_ID } from "@/lib/seo";
 
@@ -14,9 +13,6 @@ type FooterProps = {
 };
 
 export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
-  const { lang } = useLang();
-  const t = translations[lang];
-
   return (
     <footer className="bg-[#071f18] text-white">
       <div className="container-shell py-16 lg:py-20">
@@ -29,13 +25,13 @@ export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
                 width={512}
                 height={412}
                 quality={95}
-                loading="eager"
+                loading="lazy"
                 className="h-auto w-[142px] sm:w-[158px]"
               />
             </div>
             <div className="mt-8 space-y-4">
               <p className="text-xs font-bold uppercase tracking-[.12em] text-white/40">
-                {lang === "vi" ? "Về chúng tôi" : "About us"}
+                Về chúng tôi
               </p>
               <p className="text-[.8125rem] font-bold leading-6 text-white">
                 {BUSINESS_NAME.toUpperCase()}

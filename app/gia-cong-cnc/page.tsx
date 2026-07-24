@@ -8,10 +8,11 @@ import { TrackedLink } from "@/components/TrackedLink";
 import {
   PHONE_DISPLAY,
   PHONE_HREF,
-  SITE_URL,
   ZALO_URL,
+  absolutePageUrl,
   breadcrumbSchema,
-  createPageMetadata
+  createPageMetadata,
+  schemaPageId
 } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
@@ -23,12 +24,12 @@ export const metadata = createPageMetadata({
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "@id": `${SITE_URL}/gia-cong-cnc#service`,
+  "@id": schemaPageId("/gia-cong-cnc", "service"),
   name: "Gia công CNC gỗ theo yêu cầu",
   serviceType: "Gia công CNC ván gỗ",
   description: "Cắt, khoan, soi rãnh và gia công chi tiết ván gỗ theo kích thước hoặc file kỹ thuật.",
-  url: `${SITE_URL}/gia-cong-cnc`,
-  provider: { "@id": `${SITE_URL}/#organization` }
+  url: absolutePageUrl("/gia-cong-cnc"),
+  provider: { "@id": schemaPageId("/", "organization") }
 };
 
 const capabilities = [

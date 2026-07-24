@@ -2,15 +2,19 @@ import type { Metadata } from "next";
 import { Analytics } from "@/components/Analytics";
 import { AnalyticsProvider } from "@/components/analytics/AnalyticsProvider";
 import { JsonLd } from "@/components/JsonLd";
-import { LanguageProvider } from "@/lib/i18n-context";
+import { OPEN_GRAPH_LOCALE, SCHEMA_LANGUAGE, SITE_LANGUAGE } from "@/lib/locale";
 import {
   BUSINESS_NAME,
   DEFAULT_DESCRIPTION,
+  DEFAULT_SOCIAL_IMAGE,
   PHONE_E164,
   SITE_NAME,
   SITE_URL,
+  absolutePageUrl,
   absoluteUrl,
+  schemaPageId,
 } from "@/lib/seo";
+import { twitterSocialImage } from "@/lib/social-images";
 import { locations } from "@/lib/locations";
 import business from "@/content/settings/business.json";
 import seo from "@/content/settings/seo.json";
@@ -50,22 +54,15 @@ export const metadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
     url: absoluteUrl("/"),
     siteName: SITE_NAME,
-    locale: "vi_VN",
+    locale: OPEN_GRAPH_LOCALE,
     type: "website",
-    images: [
-      {
-        url: "/og-logo.png?v=20260719",
-        width: 1200,
-        height: 630,
-        alt: "Tùng Phát – Vật liệu gỗ và giải pháp gia công CNC",
-      },
-    ],
+    images: [DEFAULT_SOCIAL_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: seo.defaultTitle,
     description: DEFAULT_DESCRIPTION,
-    images: ["/og-logo.png?v=20260719"],
+    images: [twitterSocialImage(DEFAULT_SOCIAL_IMAGE)],
   },
 };
 
@@ -74,34 +71,34 @@ const siteSchema = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": `${SITE_URL}/#website`,
-      url: `${SITE_URL}/`,
+      "@id": schemaPageId("/", "website"),
+      url: absolutePageUrl("/"),
       name: SITE_NAME,
-      inLanguage: "vi-VN",
-      publisher: { "@id": `${SITE_URL}/#organization` },
+      inLanguage: SCHEMA_LANGUAGE,
+      publisher: { "@id": schemaPageId("/", "organization") },
     },
     {
       "@type": "Organization",
-      "@id": `${SITE_URL}/#organization`,
+      "@id": schemaPageId("/", "organization"),
       name: BUSINESS_NAME,
-      url: `${SITE_URL}/`,
+      url: absolutePageUrl("/"),
       logo: "https://mdftungphat.com/icon.png",
       telephone: PHONE_E164,
       email: business.email,
       taxID: business.taxId,
       sameAs: business.socialLinks,
       department: locations.map((location) => ({
-        "@id": `${SITE_URL}/#${location.id}`,
+        "@id": schemaPageId("/", location.id),
       })),
     },
     ...locations.map((location) => ({
       "@type": business.localBusinessType,
-      "@id": `${SITE_URL}/#${location.id}`,
+      "@id": schemaPageId("/", location.id),
       name: location.name,
-      url: `${SITE_URL}/lien-he#${location.id}`,
+      url: schemaPageId("/lien-he", location.id),
       telephone: PHONE_E164,
       email: business.email,
-      parentOrganization: { "@id": `${SITE_URL}/#organization` },
+      parentOrganization: { "@id": schemaPageId("/", "organization") },
       areaServed: business.serviceAreas,
       ...(business.openingHours.length
         ? { openingHours: business.openingHours }
@@ -121,12 +118,12 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="vi" className={montserratVariables}>
+    <html lang={SITE_LANGUAGE} className={montserratVariables}>
       <head>
         <JsonLd data={siteSchema} />
       </head>
       <body>
-        <LanguageProvider>{children}</LanguageProvider>
+        {children}
         <Analytics />
         <AnalyticsProvider />
       </body>

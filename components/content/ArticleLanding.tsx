@@ -9,7 +9,7 @@ import { MarkdownContent } from "@/components/content/MarkdownContent";
 import type { ContentEntry } from "@/lib/content";
 import type { ArticleFrontmatter } from "@/lib/content-schema";
 import { absoluteMediaUrl, mediaUrl } from "@/lib/media";
-import { SITE_URL, breadcrumbSchema } from "@/lib/seo";
+import { SITE_URL, absolutePageUrl, breadcrumbSchema, schemaPageId } from "@/lib/seo";
 
 export function ArticleLanding({ article }: { article: ContentEntry<ArticleFrontmatter> }) {
   const articleSchema = {
@@ -20,9 +20,9 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
     image: absoluteMediaUrl(article.featuredImage, SITE_URL),
     datePublished: article.publishedAt,
     dateModified: article.updatedAt,
-    author: { "@type": "Organization", name: article.author, url: SITE_URL },
-    publisher: { "@id": `${SITE_URL}/#organization` },
-    mainEntityOfPage: `${SITE_URL}/bai-viet/${article.slug}`,
+    author: { "@type": "Organization", name: article.author, url: absolutePageUrl("/") },
+    publisher: { "@id": schemaPageId("/", "organization") },
+    mainEntityOfPage: absolutePageUrl(`/bai-viet/${article.slug}`),
   };
 
   return (

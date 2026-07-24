@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { FileText, MessageCircle } from "lucide-react";
 import type { Brand } from "@/lib/brands";
-import { useLang } from "@/lib/i18n-context";
-import { translations } from "@/lib/i18n";
+import { vi as t } from "@/lib/i18n";
 import { BrandPlaceholder } from "@/components/BrandPlaceholder";
 
 const catalogueThumbnails: Record<string, Array<{name: string; description: string}>> = {
@@ -27,8 +26,6 @@ const catalogueThumbnails: Record<string, Array<{name: string; description: stri
 };
 
 export function CatalogueView({ brand }: { brand: Brand }) {
-  const { lang } = useLang();
-  const t = translations[lang];
   const items = catalogueThumbnails[brand.slug] || [];
 
   return (

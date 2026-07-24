@@ -5,8 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ChevronDown, MessageCircle } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { useLang } from "@/lib/i18n-context";
-import { translations } from "@/lib/i18n";
+import { vi as t } from "@/lib/i18n";
 import { secureRandomIndex } from "@/lib/random";
 import { TrackedLink } from "@/components/TrackedLink";
 import { ZALO_URL } from "@/lib/seo";
@@ -23,9 +22,6 @@ type LegalPageProps = {
 };
 
 export function LegalPage({ type }: LegalPageProps) {
-  const { lang } = useLang();
-  const t = translations[lang];
-
   const title = type === "privacy" ? t.privacyTitle : t.termsTitle;
   const subtitle = type === "privacy" ? t.privacySubtitle : t.termsIntro;
   const sections = type === "privacy" ? t.privacySections : t.termsSections;
