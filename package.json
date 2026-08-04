@@ -45,7 +45,20 @@
     "cms:deploy": "npm --prefix cloudflare-cms run deploy:production",
     "analytics:maintenance:dry-run": "wrangler deploy --dry-run --env=\"\" --config workers/analytics-maintenance/wrangler.jsonc",
     "analytics:maintenance:preview": "wrangler deploy --env preview --config workers/analytics-maintenance/wrangler.jsonc",
-    "analytics:maintenance:deploy": "wrangler deploy --env=\"\" --config workers/analytics-maintenance/wrangler.jsonc"
+    "analytics:maintenance:deploy": "wrangler deploy --env=\"\" --config workers/analytics-maintenance/wrangler.jsonc",
+    "catalog:ancuong:discover": "tsx scripts/ancuong/cli.ts discover",
+    "catalog:ancuong:crawl:listings": "tsx scripts/ancuong/cli.ts crawl:listings",
+    "catalog:ancuong:crawl:details": "tsx scripts/ancuong/cli.ts crawl:details",
+    "catalog:ancuong:crawl:relations": "tsx scripts/ancuong/cli.ts crawl:relations",
+    "catalog:ancuong:media": "tsx scripts/ancuong/cli.ts media",
+    "catalog:ancuong:normalize": "tsx scripts/ancuong/cli.ts normalize",
+    "catalog:ancuong:validate": "tsx scripts/ancuong/cli.ts validate",
+    "catalog:ancuong:diff": "tsx scripts/ancuong/cli.ts diff",
+    "catalog:ancuong:export": "tsx scripts/ancuong/cli.ts export",
+    "catalog:ancuong:report": "tsx scripts/ancuong/cli.ts report",
+    "catalog:ancuong:sample": "tsx scripts/ancuong/cli.ts sample",
+    "catalog:ancuong:all": "tsx scripts/ancuong/cli.ts all",
+    "catalog:ancuong:test:live": "tsx scripts/ancuong/cli.ts test:live"
   },
   "dependencies": {
     "framer-motion": "^12.42.2",
