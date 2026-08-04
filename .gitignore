@@ -21,3 +21,10 @@ local-media/
 work/
 *.tsbuildinfo
 .vercel
+
+# An Cuong crawler runtime data. Review fixtures, manifests and exports are force-added explicitly.
+data/imports/ancuong/raw/
+data/imports/ancuong/state/
+data/imports/ancuong/media/
+data/imports/ancuong/cache/
+data/imports/ancuong/logs/
