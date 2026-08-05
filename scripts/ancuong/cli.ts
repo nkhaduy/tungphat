@@ -69,19 +69,19 @@ const stepModules: Partial<Record<AnCuongCommand, string>> = {
   report: "./report"
 };
 
+export const PIPELINE_STEPS = [
+  "discover", "crawl:listings", "crawl:details", "crawl:relations", "normalize", "media", "validate", "diff", "export", "report"
+] as const;
+
 export async function runCommand(command: AnCuongCommand, options: CliOptions): Promise<void> {
   if (command === "sample") {
-    await runCommand("discover", { ...options, limit: options.limit ?? 5 });
-    await runCommand("crawl:listings", { ...options, limit: options.limit ?? 5 });
-    await runCommand("crawl:details", { ...options, limit: options.limit ?? 5 });
-    await runCommand("crawl:relations", { ...options, limit: options.limit ?? 5 });
-    await runCommand("normalize", options);
-    await runCommand("validate", options);
-    await runCommand("export", options);
+    const runnerModule = (await import("./sample")) as StepModule;
+    if (typeof runnerModule.run !== "function") throw new Error("Runner ./sample must export run(options)");
+    await runnerModule.run(options);
     return;
   }
   if (command === "all") {
-    for (const step of ["discover", "crawl:listings", "crawl:details", "crawl:relations", "media", "normalize", "validate", "diff", "export", "report"] as const) {
+    for (const step of PIPELINE_STEPS) {
       await runCommand(step, options);
     }
     return;
@@ -92,9 +92,9 @@ export async function runCommand(command: AnCuongCommand, options: CliOptions): 
   }
   const modulePath = stepModules[command];
   if (!modulePath) throw new Error(`No runner configured for ${command}`);
-  const module = (await import(modulePath)) as StepModule;
-  if (typeof module.run !== "function") throw new Error(`Runner ${modulePath} must export run(options)`);
-  await module.run(options);
+  const runnerModule = (await import(modulePath)) as StepModule;
+  if (typeof runnerModule.run !== "function") throw new Error(`Runner ${modulePath} must export run(options)`);
+  await runnerModule.run(options);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
