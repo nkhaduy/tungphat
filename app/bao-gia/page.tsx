@@ -45,7 +45,7 @@ export default function QuotePage() {
               <h2 className="text-2xl font-extrabold text-forest-950">Liên hệ Tùng Phát</h2>
               <p className="mt-4 leading-7 text-slate-600">Website không còn nhận form báo giá. Vui lòng gọi điện hoặc nhắn Zalo để trao đổi trực tiếp.</p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: "legacy_quote_page" }} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-7 text-sm font-bold text-white hover:bg-wood-600">
+                <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: "legacy_quote_page" }} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-700 px-7 text-sm font-bold text-white hover:bg-wood-800">
                   <Phone size={18} /> Gọi {PHONE_DISPLAY}
                 </TrackedLink>
                 <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: "legacy_quote_page" }} className="inline-flex min-h-14 items-center justify-center gap-2 border border-forest-900/25 px-7 text-sm font-bold text-forest-950">

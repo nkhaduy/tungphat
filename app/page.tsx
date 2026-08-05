@@ -149,7 +149,7 @@ export default function Home() {
                 <div className="p-5 sm:p-6">
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
-                      <span className="text-xs font-extrabold uppercase tracking-[.18em] text-wood-600">{branch.shortId}</span>
+                      <span className="text-xs font-extrabold uppercase tracking-[.18em] text-wood-700">{branch.shortId}</span>
                       <h3 className="mt-2 text-lg font-extrabold">{branch.name}</h3>
                     </div>
                     <MapPin size={22} className="text-wood-600" aria-hidden="true" />
@@ -189,11 +189,11 @@ export default function Home() {
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_46%,rgba(6,43,29,0.76)_0%,rgba(6,43,29,0.46)_34%,rgba(6,43,29,0)_66%)]" />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-forest-950/10 via-transparent to-forest-950/22" />
             <div className="relative z-10 flex min-h-[300px] max-w-3xl flex-col justify-center sm:min-h-[330px]">
-              <span className="eyebrow text-orange-300">{t.contactEyebrow}</span>
+              <span className="eyebrow eyebrow-on-dark">{t.contactEyebrow}</span>
               <h2 className="text-balance mt-5 font-display text-3xl font-extrabold leading-tight tracking-[-0.035em] sm:text-4xl lg:text-[3.1rem] lg:leading-[1.22]">{t.contactTitle}</h2>
               <p className="text-pretty mt-5 max-w-2xl text-sm leading-7 text-white/78 sm:text-base">{t.contactDescription}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: "home_contact" }} aria-label={t.contactCta} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-7 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-wood-600">
+                <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: "home_contact" }} aria-label={t.contactCta} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-700 px-7 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-wood-800">
                   <MessageCircle size={18} /> {t.contactCta}
                 </TrackedLink>
                 <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: "home_contact" }} className="inline-flex min-h-12 items-center gap-2 text-sm font-bold text-white/90 transition hover:text-white">
@@ -219,7 +219,7 @@ export default function Home() {
         >
           Zalo
         </TrackedLink>
-        <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: "floating" }} aria-label="Gọi Tùng Phát" className="grid h-[52px] w-[52px] place-items-center rounded-full bg-wood-500 text-white shadow-md sm:hidden"><Phone size={20} /></TrackedLink>
+        <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: "floating" }} aria-label="Gọi Tùng Phát" className="grid h-[52px] w-[52px] place-items-center rounded-full bg-wood-700 text-white shadow-md sm:hidden"><Phone size={20} aria-hidden="true" /></TrackedLink>
       </div>
     </>
   );

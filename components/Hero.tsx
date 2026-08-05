@@ -110,7 +110,7 @@ export function Hero() {
             {staticPages.homeHeroDescription}
           </p>
           <div className="hero-cta mt-7 flex flex-col gap-3 sm:flex-row">
-            <TrackedLink href="#san-pham" eventName="view_product_category" eventProperties={{ location: "hero" }} className="inline-flex min-h-[52px] items-center justify-center gap-2 bg-wood-500 px-6 text-[15px] font-bold transition hover:bg-wood-600">{t.heroCtaExplore} <ArrowRight size={16} /></TrackedLink>
+            <TrackedLink href="#san-pham" eventName="view_product_category" eventProperties={{ location: "hero" }} className="inline-flex min-h-[52px] items-center justify-center gap-2 bg-wood-700 px-6 text-[15px] font-bold transition hover:bg-wood-800">{t.heroCtaExplore} <ArrowRight size={16} /></TrackedLink>
             <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: "hero" }} aria-label={t.heroCtaQuote} className="inline-flex min-h-[52px] items-center justify-center gap-2 border border-white/55 bg-white/[0.12] px-6 text-[15px] font-bold backdrop-blur-sm transition hover:bg-white hover:text-forest-950"><MessageCircle size={17} /> {t.heroCtaQuote}</TrackedLink>
           </div>
         </motion.div>

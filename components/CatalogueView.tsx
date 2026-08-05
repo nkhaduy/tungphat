@@ -56,11 +56,11 @@ export function CatalogueView({ brand }: { brand: Brand }) {
                     <BrandPlaceholder label={item.name} className="absolute inset-0" />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-lg font-extrabold text-forest-950">{item.name}</h3>
+                    <h2 className="text-lg font-extrabold text-forest-950">{item.name}</h2>
                     <p className="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
                     <div className="mt-6 flex flex-wrap gap-3">
                       <button type="button" disabled className="inline-flex min-h-11 cursor-not-allowed items-center gap-2 bg-slate-200 px-4 text-sm font-bold text-slate-600">
-                        <FileText size={16} /> {t.cataloguePlaceholder.substring(0, 30)}...
+                        <FileText size={16} aria-hidden="true" /> {t.cataloguePlaceholder.substring(0, 30)}…
                       </button>
                     </div>
                   </div>
@@ -76,8 +76,8 @@ export function CatalogueView({ brand }: { brand: Brand }) {
           <div className="mt-12 rounded-lg border border-forest-900/15 bg-[#f6f7f5] p-8 text-center">
             <h2 className="text-xl font-extrabold text-forest-950">{t.catalogueRequestCta}</h2>
             <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-slate-600">{t.cataloguePlaceholder}</p>
-            <a href="https://zalo.me/0909259160" target="_blank" rel="noopener noreferrer" aria-label={t.ctaGetQuote} className="mt-6 inline-flex min-h-12 items-center gap-2 bg-wood-500 px-6 text-sm font-bold text-white transition hover:bg-wood-600">
-              {t.ctaGetQuote} <MessageCircle size={17} />
+            <a href="https://zalo.me/0909259160" target="_blank" rel="noopener noreferrer" aria-label={t.ctaGetQuote} className="mt-6 inline-flex min-h-12 items-center gap-2 bg-wood-700 px-6 text-sm font-bold text-white transition hover:bg-wood-800">
+              {t.ctaGetQuote} <MessageCircle size={17} aria-hidden="true" />
             </a>
           </div>
         </div>

@@ -32,7 +32,7 @@ export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
               />
             </div>
             <div className="mt-8 space-y-4">
-              <p className="text-xs font-bold uppercase tracking-[.12em] text-white/40">
+              <p className="text-xs font-bold uppercase tracking-[.12em] text-white/60">
                 Về chúng tôi
               </p>
               <p className="text-[.8125rem] font-bold leading-6 text-white">
@@ -53,13 +53,13 @@ export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
                 </TrackedLink>
                 <p className="flex items-center gap-3">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5">
-                    <Hash size={12} className="text-white/40" />
+                    <Hash size={12} className="text-white/60" aria-hidden="true" />
                   </span>
                   MST: {TAX_ID}
                 </p>
                 <div className="flex items-start gap-3">
                   <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5">
-                    <MapPin size={12} className="text-white/40" />
+                    <MapPin size={12} className="text-white/60" aria-hidden="true" />
                   </span>
                   <div className="space-y-4">
                     {locations.map((location) => (
