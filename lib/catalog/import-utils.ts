@@ -63,6 +63,10 @@ export function mergeCatalogRecords(
       report.created += 1;
       continue;
     }
+    if (current.published && current.seoStatus === "READY_TO_INDEX" && (!record.published || record.seoStatus !== "READY_TO_INDEX")) {
+      report.skipped += 1;
+      continue;
+    }
     if (comparableSource(current) === comparableSource(record)) {
       report.unchanged += 1;
       continue;

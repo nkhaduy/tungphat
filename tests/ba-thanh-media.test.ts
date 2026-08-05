@@ -14,4 +14,10 @@ describe("Ba Thanh responsive catalogue media", () => {
       localPath: "/catalog/ba-thanh/ba-thanh-melamine-bt-111-application.webp",
     });
   });
+
+  it("uses distinct local paths when a record has multiple images of the same type", () => {
+    expect(buildCatalogMediaPaths("bt-111", "other", 1).localPath).not.toBe(
+      buildCatalogMediaPaths("bt-111", "other", 2).localPath,
+    );
+  });
 });

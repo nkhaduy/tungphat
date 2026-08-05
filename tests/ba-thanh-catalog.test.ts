@@ -2,8 +2,10 @@ import { describe, expect, it } from "vitest";
 import { normalizeSupplierCode } from "@/lib/catalog/normalize-code";
 import { extractBaThanhIndex, recognizeBaThanhDetail, reconcileBaThanhCode } from "@/lib/catalog/ba-thanh-source";
 import { isAllowedBaThanhUrl } from "@/lib/catalog/source-security";
+import { isUrlAllowedByRobots } from "@/lib/catalog/robots-policy";
 import { buildZaloInquiryUrl, mergeCatalogRecords } from "@/lib/catalog/import-utils";
 import type { SupplierColorCode } from "@/lib/catalog/types";
+import { buildSourceChecksum } from "@/scripts/ba-thanh/import";
 
 describe("normalizeSupplierCode", () => {
   it.each([
@@ -129,6 +131,17 @@ describe("extractBaThanhIndex", () => {
       "https://bathanh.com.vn/sc028",
     ]);
   });
+
+  it("rejects non-HTTPS detail and image URLs during discovery", () => {
+    const source = `
+      <a href="#wood"><span class="vc_tta-title-text">MÀU VÂN GỖ</span></a>
+      <div class="vc_tta-panel" id="wood">
+        <a href="http://bathanh.com.vn/bt111"><img src="http://bathanh.com.vn/BT111.jpg"></a>
+      </div>
+    `;
+
+    expect(extractBaThanhIndex(source, "https://bathanh.com.vn/map-ma-melamine").items).toEqual([]);
+  });
 });
 
 describe("recognizeBaThanhDetail", () => {
@@ -167,6 +180,15 @@ describe("recognizeBaThanhDetail", () => {
     expect(detail.accepted).toBe(false);
   });
 
+  it("rejects a Melamine detail heading for a different code", () => {
+    const detail = recognizeBaThanhDetail("<main><h1>MELAMINE BA THANH – BT 143</h1></main>", {
+      expectedCode: "BT111",
+      sourceUrl: "https://bathanh.com.vn/bt-111-wood-grains",
+    });
+
+    expect(detail.accepted).toBe(false);
+  });
+
   it("uses the detail heading to preserve suffix variants missed by the index image", () => {
     const detail = recognizeBaThanhDetail("<main><h1>MELAMINE BA THANH – SC 018MW</h1><img src='/SC018MW.jpg'></main>", {
       expectedCode: "SC018",
@@ -176,6 +198,16 @@ describe("recognizeBaThanhDetail", () => {
     expect(detail.verifiedCodeRaw).toBe("SC018MW");
   });
 
+  it("reconciles legacy BTSC index codes with verified SC detail variants", () => {
+    const detail = recognizeBaThanhDetail("<main><h1>MELAMINE BA THANH – SC 003MW</h1></main>", {
+      expectedCode: "BTSC003",
+      sourceUrl: "https://bathanh.com.vn/sc-003mw-solid-color",
+    });
+
+    expect(detail.accepted).toBe(true);
+    expect(detail.verifiedCodeRaw).toBe("SC003MW");
+  });
+
   it("recognizes Ba Thanh stone codes whose heading inserts the S collection marker", () => {
     const detail = recognizeBaThanhDetail("<main><h1>MELAMINE BA THANH – BT S14G</h1><img src='/S14.jpg'></main>", {
       expectedCode: "S14",
@@ -183,6 +215,16 @@ describe("recognizeBaThanhDetail", () => {
     });
     expect(detail.accepted).toBe(true);
     expect(detail.verifiedCodeRaw).toBe("BTS14G");
+  });
+
+  it("reconciles an S code that already carries the G suffix", () => {
+    const detail = recognizeBaThanhDetail("<main><h1>MELAMINE BA THANH – BT S11G</h1></main>", {
+      expectedCode: "S11G",
+      sourceUrl: "https://bathanh.com.vn/bts11",
+    });
+
+    expect(detail.accepted).toBe(true);
+    expect(detail.verifiedCodeRaw).toBe("BTS11G");
   });
 
   it("keeps named solid-color source codes when the heading uses a localized color name", () => {
@@ -234,6 +276,29 @@ describe("source URL safety", () => {
     expect(isAllowedBaThanhUrl("https://evil.example/?next=https://bathanh.com.vn/bt111")).toBe(false);
     expect(isAllowedBaThanhUrl("https://bathanh.com.vn.evil.example/bt111")).toBe(false);
   });
+
+  it("honors the longest matching Allow and Disallow rule for the catalogue bot", () => {
+    const robots = `
+      User-agent: *
+      Disallow: /private/
+      Allow: /private/catalogue/
+
+      User-agent: TungPhatCatalogueBot
+      Disallow: /blocked/
+    `;
+
+    expect(isUrlAllowedByRobots(robots, "TungPhatCatalogueBot/1.0", "https://bathanh.com.vn/map-ma-melamine")).toBe(true);
+    expect(isUrlAllowedByRobots(robots, "TungPhatCatalogueBot/1.0", "https://bathanh.com.vn/blocked/code")).toBe(false);
+  });
+
+  it("fails closed when a non-empty robots policy has no parseable user-agent group", () => {
+    expect(isUrlAllowedByRobots("Disallow /private", "TungPhatCatalogueBot/1.0", "https://bathanh.com.vn/map-ma-melamine")).toBe(false);
+  });
+
+  it("enforces robots wildcard and end-anchor patterns", () => {
+    const robots = "User-agent: *\nDisallow: /*?preview=$";
+    expect(isUrlAllowedByRobots(robots, "TungPhatCatalogueBot/1.0", "https://bathanh.com.vn/bt111?preview=")).toBe(false);
+  });
 });
 
 describe("catalogue import merge", () => {
@@ -271,6 +336,43 @@ describe("catalogue import merge", () => {
     const result = mergeCatalogRecords([], [record, { ...record, sourceUrl: "https://bathanh.com.vn/bt111" }]);
     expect(result.report.duplicates).toBe(1);
     expect(result.records).toHaveLength(1);
+  });
+
+  it("keeps the last valid published snapshot when a repeat import is incomplete", () => {
+    const published = { ...record, seoStatus: "READY_TO_INDEX" as const, published: true, images: [{
+      type: "swatch" as const,
+      src: "/catalog/ba-thanh/bt-111.webp",
+      alt: "Mẫu màu Melamine Ba Thanh mã BT 111",
+    }] };
+    const incomplete = { ...record, sourceChecksum: "source-b", seoStatus: "MEDIA_MISSING" as const, published: false, images: [] };
+
+    const result = mergeCatalogRecords([published], [incomplete]);
+
+    expect(result.report).toEqual({ created: 0, updated: 0, unchanged: 0, skipped: 1, duplicates: 0 });
+    expect(result.records[0]).toEqual(published);
+  });
+});
+
+describe("catalogue source checksum", () => {
+  it("ignores dynamic raw-page checksum changes when parsed source facts are unchanged", () => {
+    const source = {
+      sourceUrl: "https://bathanh.com.vn/bt111",
+      sourceImageUrl: "https://bathanh.com.vn/BT111.jpg",
+      category: "van-go",
+      sourceCategoryLabel: "MÀU VÂN GỖ",
+      codeRaw: "BT111",
+      codeNormalized: "BT111",
+      displayName: "BT 111",
+      slug: "bt-111",
+      confident: true,
+      heading: "BT 111 – WOOD GRAINS",
+      text: "MFC - BT 111 Size: 1220mm x 2440mm",
+      images: ["https://bathanh.com.vn/BT111-detail.jpg"],
+    };
+
+    expect(buildSourceChecksum({ ...source, pageChecksum: "dynamic-a" })).toBe(
+      buildSourceChecksum({ ...source, pageChecksum: "dynamic-b" }),
+    );
   });
 });
 

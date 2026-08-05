@@ -3,12 +3,17 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { extractBaThanhIndex } from "@/lib/catalog/ba-thanh-source";
 import { normalizeSupplierCode } from "@/lib/catalog/normalize-code";
-import { SOURCE_INDEX_URL, SOURCE_ROBOTS_URL, IMPORT_DIR } from "./config";
+import { assertRobotsAllowed } from "@/lib/catalog/robots-policy";
+import { SOURCE_INDEX_URL, SOURCE_ROBOTS_URL, IMPORT_DIR, USER_AGENT } from "./config";
 import { fetchText } from "./http";
 
-export async function discoverBaThanh() {
-  const robots = await fetchText(SOURCE_ROBOTS_URL);
-  const html = await fetchText(SOURCE_INDEX_URL);
+export async function discoverBaThanh(options: { refresh?: boolean } = {}) {
+  const robots = await fetchText(SOURCE_ROBOTS_URL, { refresh: options.refresh });
+  assertRobotsAllowed(robots, USER_AGENT, SOURCE_INDEX_URL);
+  const html = await fetchText(SOURCE_INDEX_URL, {
+    refresh: options.refresh,
+    validateUrl: (url) => assertRobotsAllowed(robots, USER_AGENT, url),
+  });
   const parsed = extractBaThanhIndex(html, SOURCE_INDEX_URL);
   const crawledAt = new Date().toISOString();
   const sourceChecksum = crypto.createHash("sha256").update(html).digest("hex");
@@ -66,7 +71,7 @@ export async function discoverBaThanh() {
 }
 
 if (process.argv[1]?.endsWith("discover.ts")) {
-  discoverBaThanh().then(({ manifest }) => {
+  discoverBaThanh({ refresh: process.argv.includes("--refresh") }).then(({ manifest }) => {
     console.log(JSON.stringify({ command: "discover", ...manifest.counts }, null, 2));
   }).catch((error) => {
     console.error(error instanceof Error ? error.message : error);

@@ -1,4 +1,5 @@
 import { normalizeSupplierCode } from "@/lib/catalog/normalize-code";
+import { isAllowedBaThanhUrl } from "@/lib/catalog/source-security";
 import type { CatalogCategory } from "@/lib/catalog/types";
 
 export type DiscoveredSourceItem = {
@@ -91,6 +92,17 @@ function sourceCode(url: string, imageUrl: string) {
   return "";
 }
 
+function detailCodeMatchesExpected(expected: string, verified: string) {
+  if (expected === verified) return true;
+  if (/^SC\d+$/.test(expected) && new RegExp(`^${expected}(?:M|MW|G)$`).test(verified)) return true;
+  if (/^S\d+$/.test(expected) && new RegExp(`^BT${expected}G?$`).test(verified)) return true;
+  const legacySolid = expected.match(/^BTSC(\d+)$/);
+  if (legacySolid && new RegExp(`^SC${legacySolid[1]}(?:M|MW)$`).test(verified)) return true;
+  const stoneWithSuffix = expected.match(/^S(\d+)G$/);
+  if (stoneWithSuffix && verified === `BTS${stoneWithSuffix[1]}G`) return true;
+  return false;
+}
+
 export function extractBaThanhIndex(html: string, indexUrl: string): BaThanhIndexResult {
   const tabMatches = [...html.matchAll(/<a\b[^>]*href=["']#([^"']+)["'][^>]*>[\s\S]*?<span\b[^>]*class=["'][^"']*vc_tta-title-text[^"']*["'][^>]*>([\s\S]*?)<\/span>[\s\S]*?<\/a>/gi)];
   const categoryMap = new Map<string, { id: string; sourceLabel: string; slug: string }>();
@@ -127,7 +139,7 @@ export function extractBaThanhIndex(html: string, indexUrl: string): BaThanhInde
       if (!href || !src) continue;
       const sourceUrl = new URL(href, indexUrl);
       const sourceImageUrl = new URL(src, indexUrl);
-      if (sourceUrl.hostname !== "bathanh.com.vn" || sourceImageUrl.hostname !== "bathanh.com.vn") continue;
+      if (!isAllowedBaThanhUrl(sourceUrl.toString()) || !isAllowedBaThanhUrl(sourceImageUrl.toString())) continue;
       const codeRaw = sourceCode(sourceUrl.toString(), sourceImageUrl.toString());
       if (!codeRaw) continue;
       items.push({
@@ -176,6 +188,7 @@ export function recognizeBaThanhDetail(
     /SOLID\s*COLOR|MELAMINE/.test(headingAscii) || expectedTokens.some((token) => headingAscii.includes(token))
   );
   const verifiedCodeRaw = headingCodes[0] || (namedMatch ? input.expectedCode : "");
+  const verified = verifiedCodeRaw ? normalizeSupplierCode(verifiedCodeRaw).normalized : "";
   const images = [...detailContent.matchAll(/<img\b([^>]*)>/gi)]
     .map((match) => attribute(match[1], "src"))
     .filter(Boolean)
@@ -184,7 +197,7 @@ export function recognizeBaThanhDetail(
     .filter((src) => !/(?:logo|icon|background|cropped-)/i.test(src));
 
   return {
-    accepted: Boolean(heading && verifiedCodeRaw && isMelamine),
+    accepted: Boolean(heading && verifiedCodeRaw && isMelamine && (namedMatch || detailCodeMatchesExpected(expected, verified))),
     verifiedCodeRaw,
     heading,
     text: stripTags(detailContent),

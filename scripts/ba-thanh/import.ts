@@ -3,8 +3,9 @@ import path from "node:path";
 import crypto from "node:crypto";
 import { normalizeSupplierCode } from "@/lib/catalog/normalize-code";
 import { mergeCatalogRecords } from "@/lib/catalog/import-utils";
+import { assertRobotsAllowed } from "@/lib/catalog/robots-policy";
 import type { CatalogImage, SupplierColorCode } from "@/lib/catalog/types";
-import { COLOR_DISCLAIMER, CATALOG_PATH, IMPORT_DIR, MEDIA_DIR, READY_EDITORIAL, SOURCE_INDEX_URL } from "./config";
+import { COLOR_DISCLAIMER, CATALOG_PATH, IMPORT_DIR, MEDIA_DIR, READY_EDITORIAL, SOURCE_INDEX_URL, USER_AGENT } from "./config";
 import { downloadCatalogImage } from "./download-media";
 
 type SourceItem = {
@@ -41,11 +42,14 @@ function classifyDetailImage(url: string): CatalogImage["type"] {
   return "other";
 }
 
-function sourceChecksum(item: SourceItem) {
+export function buildSourceChecksum(item: SourceItem) {
   return crypto.createHash("sha256").update(JSON.stringify({
     sourceUrl: item.sourceUrl,
     sourceImageUrl: item.sourceImageUrl,
-    pageChecksum: item.pageChecksum || "",
+    codeNormalized: item.codeNormalized,
+    category: item.category,
+    heading: item.heading || "",
+    text: item.text || "",
     images: item.images || [],
   })).digest("hex");
 }
@@ -58,8 +62,10 @@ async function readExisting() {
   }
 }
 
-export async function importBaThanhCatalog(options: { dryRun?: boolean } = {}) {
+export async function importBaThanhCatalog(options: { dryRun?: boolean; refresh?: boolean } = {}) {
   const source = JSON.parse(await fs.readFile(path.join(IMPORT_DIR, "discovered-codes.json"), "utf8")) as SourceItem[];
+  const manifest = JSON.parse(await fs.readFile(path.join(IMPORT_DIR, "source-manifest.json"), "utf8"));
+  const robots = String(manifest.robots || "");
   const existing = await readExisting();
   const incoming: SupplierColorCode[] = [];
   let missingMedia = 0;
@@ -71,12 +77,24 @@ export async function importBaThanhCatalog(options: { dryRun?: boolean } = {}) {
     const editorial = READY_EDITORIAL[normalized.normalized];
     const localExisting = existing.find((record) => record.id === `ba-thanh:${normalized.normalized}`);
     const images: CatalogImage[] = [];
+    const typeCounts = new Map<CatalogImage["type"], number>();
     const mediaSourceUrls: string[] = [item.sourceImageUrl, ...(detailAccepted ? item.images || [] : [])];
     const uniqueMediaUrls = [...new Set(mediaSourceUrls)].slice(0, editorial ? 3 : 1);
     for (const [index, url] of uniqueMediaUrls.entries()) {
       const type = index === 0 ? "swatch" : classifyDetailImage(url);
-      const previous = localExisting?.images.find((image) => image.type === type);
-      const result = await downloadCatalogImage({ url, slug: normalized.slug, type, dryRun: options.dryRun, existing: previous });
+      const ordinal = (typeCounts.get(type) || 0) + 1;
+      typeCounts.set(type, ordinal);
+      const previous = localExisting?.images.filter((image) => image.type === type)[ordinal - 1];
+      const result = await downloadCatalogImage({
+        url,
+        slug: normalized.slug,
+        type,
+        ordinal,
+        dryRun: options.dryRun,
+        refresh: options.refresh,
+        validateUrl: (mediaUrl) => assertRobotsAllowed(robots, USER_AGENT, mediaUrl),
+        existing: previous,
+      });
       if ("error" in result) {
         if (type === "swatch") missingMedia += 1;
         continue;
@@ -113,7 +131,7 @@ export async function importBaThanhCatalog(options: { dryRun?: boolean } = {}) {
       sourceUrl: item.sourceUrl,
       sourceIndexUrl: SOURCE_INDEX_URL,
       sourceImportedAt: new Date().toISOString(),
-      sourceChecksum: sourceChecksum(item),
+      sourceChecksum: buildSourceChecksum(item),
       sourceData: {
         sourceCategoryLabel: item.sourceCategoryLabel,
         sourceImageUrl: item.sourceImageUrl,
@@ -155,7 +173,8 @@ export async function importBaThanhCatalog(options: { dryRun?: boolean } = {}) {
 
 if (process.argv[1]?.endsWith("import.ts")) {
   const dryRun = process.argv.includes("--dry-run");
-  importBaThanhCatalog({ dryRun }).then(({ report }) => {
+  const refresh = process.argv.includes("--refresh");
+  importBaThanhCatalog({ dryRun, refresh }).then(({ report }) => {
     console.log(JSON.stringify({ command: "import", ...report }, null, 2));
   }).catch((error) => {
     console.error(error instanceof Error ? error.message : error);

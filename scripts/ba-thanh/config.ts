@@ -6,6 +6,7 @@ export const SOURCE_HOST = "bathanh.com.vn";
 export const USER_AGENT = "TungPhatCatalogueBot/1.0 (+https://mdftungphat.com)";
 export const REQUEST_TIMEOUT_MS = 30_000;
 export const MAX_RETRIES = 3;
+export const CACHE_MAX_AGE_MS = 6 * 60 * 60 * 1000;
 export const CONCURRENCY = 3;
 export const REQUEST_GAP_MS = 120;
 export const CACHE_DIR = path.join(process.cwd(), ".cache", "ba-thanh");

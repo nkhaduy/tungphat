@@ -21,8 +21,9 @@ const MEDIA_VARIANT = "webp-1200-q92-thumb480-q92-v2";
 const MAX_IMAGE_DIMENSION = 1200;
 const THUMBNAIL_WIDTH = 480;
 
-export function buildCatalogMediaPaths(slug: string, type: "swatch" | "real-photo" | "application" | "other") {
-  const filename = `ba-thanh-melamine-${slug}-${type}.webp`;
+export function buildCatalogMediaPaths(slug: string, type: "swatch" | "real-photo" | "application" | "other", ordinal = 1) {
+  const suffix = ordinal > 1 ? `-${ordinal}` : "";
+  const filename = `ba-thanh-melamine-${slug}-${type}${suffix}.webp`;
   const localPath = `/catalog/ba-thanh/${filename}`;
   if (type !== "swatch") return { localPath };
   return {
@@ -44,11 +45,14 @@ export async function downloadCatalogImage(input: {
   url: string;
   slug: string;
   type: "swatch" | "real-photo" | "application" | "other";
+  ordinal?: number;
   dryRun?: boolean;
+  refresh?: boolean;
+  validateUrl?: (url: string) => void;
   existing?: { checksum?: string; localPath?: string; variant?: string };
 }): Promise<DownloadedMedia | { error: string }> {
   try {
-    const source = await fetchBytes(input.url);
+    const source = await fetchBytes(input.url, { refresh: input.refresh, validateUrl: input.validateUrl });
     const checksum = crypto.createHash("sha256").update(source).digest("hex");
     const image = sharp(source, { failOn: "error" });
     const metadata = await image.metadata();
@@ -58,7 +62,7 @@ export async function downloadCatalogImage(input: {
     if (!metadata.width || !metadata.height || metadata.width < 100 || metadata.height < 60) {
       throw new Error("Ảnh quá nhỏ hoặc thiếu kích thước");
     }
-    const paths = buildCatalogMediaPaths(input.slug, input.type);
+    const paths = buildCatalogMediaPaths(input.slug, input.type, input.ordinal);
     const localPath = paths.localPath;
     const target = path.join(MEDIA_DIR, path.basename(localPath));
     const thumbnailTarget = paths.thumbnailLocalPath
