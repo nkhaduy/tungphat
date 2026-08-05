@@ -1,4 +1,5 @@
 import type { SupplierColorCode } from "@/lib/catalog/types";
+import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
 
 type ImportReport = {
   created: number;
@@ -27,7 +28,10 @@ function comparableSource(record: SupplierColorCode) {
   return JSON.stringify(copy);
 }
 
-function preserveEditorial(incoming: SupplierColorCode, existing?: SupplierColorCode) {
+function preserveEditorial(
+  incoming: SupplierColorCode,
+  existing?: SupplierColorCode,
+) {
   if (!existing) return incoming;
   const merged = { ...incoming };
   for (const field of EDITORIAL_FIELDS) {
@@ -43,8 +47,16 @@ export function mergeCatalogRecords(
   existingRecords: SupplierColorCode[],
   incomingRecords: SupplierColorCode[],
 ): { records: SupplierColorCode[]; report: ImportReport } {
-  const report: ImportReport = { created: 0, updated: 0, unchanged: 0, skipped: 0, duplicates: 0 };
-  const existing = new Map(existingRecords.map((record) => [recordKey(record), record]));
+  const report: ImportReport = {
+    created: 0,
+    updated: 0,
+    unchanged: 0,
+    skipped: 0,
+    duplicates: 0,
+  };
+  const existing = new Map(
+    existingRecords.map((record) => [recordKey(record), record]),
+  );
   const incoming = new Map<string, SupplierColorCode>();
 
   for (const record of incomingRecords) {
@@ -63,7 +75,11 @@ export function mergeCatalogRecords(
       report.created += 1;
       continue;
     }
-    if (current.published && current.seoStatus === "READY_TO_INDEX" && (!record.published || record.seoStatus !== "READY_TO_INDEX")) {
+    if (
+      current.published &&
+      current.seoStatus === "READY_TO_INDEX" &&
+      (!record.published || record.seoStatus !== "READY_TO_INDEX")
+    ) {
       report.skipped += 1;
       continue;
     }
@@ -76,13 +92,13 @@ export function mergeCatalogRecords(
   }
 
   return {
-    records: [...existing.values()].sort((a, b) => a.codeNormalized.localeCompare(b.codeNormalized, "en")),
+    records: [...existing.values()].sort((a, b) =>
+      a.codeNormalized.localeCompare(b.codeNormalized, "en"),
+    ),
     report,
   };
 }
 
 export function buildZaloInquiryUrl(baseUrl: string, displayCode: string) {
-  const message = `Tôi cần kiểm tra mã Melamine Ba Thanh ${displayCode} tại Tùng Phát. Vui lòng tư vấn loại ván, quy cách và tình trạng hàng.`;
-  const separator = baseUrl.includes("?") ? "&" : "?";
-  return `${baseUrl}${separator}text=${encodeURIComponent(message)}`;
+  return buildSupplierZaloInquiryUrl(baseUrl, "Ba Thanh", displayCode);
 }

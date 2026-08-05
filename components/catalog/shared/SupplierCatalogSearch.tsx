@@ -2,10 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Search } from "lucide-react";
-import { useDeferredValue, useMemo, useState } from "react";
+import { ArrowRight, Search } from "lucide-react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { searchSupplierCatalog } from "@/lib/catalog/core/search";
+import { supplierDefinitions } from "@/lib/catalog/core/registry";
 import type { CatalogSearchEntry, SupplierId } from "@/lib/catalog/core/types";
+import {
+  findExactCatalogCodeMatch,
+  findExactSupplierMatch,
+  humanizeCatalogLabel,
+} from "@/lib/catalog/ui";
 
 const kindLabels: Record<CatalogSearchEntry["kind"], string> = {
   product: "Sản phẩm",
@@ -13,11 +19,11 @@ const kindLabels: Record<CatalogSearchEntry["kind"], string> = {
   "catalogue-item": "Mục catalogue",
 };
 
-const supplierOptions: Array<{ value: SupplierId; label: string }> = [
-  { value: "thanh-thuy", label: "Thanh Thuỳ" },
-  { value: "ba-thanh", label: "Ba Thanh" },
-  { value: "an-cuong", label: "An Cường" },
-];
+const supplierOptions: Array<{ value: SupplierId; label: string }> =
+  supplierDefinitions.map((supplier) => ({
+    value: supplier.id,
+    label: supplier.displayName,
+  }));
 
 export function SupplierCatalogSearch({
   entries,
@@ -28,6 +34,48 @@ export function SupplierCatalogSearch({
   const [supplierId, setSupplierId] = useState<SupplierId | "">("");
   const [category, setCategory] = useState("");
   const deferredQuery = useDeferredValue(query);
+
+  useEffect(() => {
+    const restoreFromUrl = () => {
+      const parameters = new URLSearchParams(window.location.search);
+      const nextSupplier = parameters.get("supplier") as SupplierId | null;
+      setQuery(parameters.get("q") ?? "");
+      setSupplierId(
+        supplierOptions.some((option) => option.value === nextSupplier)
+          ? nextSupplier!
+          : "",
+      );
+      setCategory(parameters.get("category") ?? "");
+    };
+    restoreFromUrl();
+    window.addEventListener("popstate", restoreFromUrl);
+    return () => window.removeEventListener("popstate", restoreFromUrl);
+  }, []);
+
+  function updateUrl(next: {
+    query?: string;
+    supplierId?: SupplierId | "";
+    category?: string;
+  }) {
+    const parameters = new URLSearchParams(window.location.search);
+    const values = {
+      query: next.query ?? query,
+      supplierId: next.supplierId ?? supplierId,
+      category: next.category ?? category,
+    };
+    if (values.query.trim()) parameters.set("q", values.query);
+    else parameters.delete("q");
+    if (values.supplierId) parameters.set("supplier", values.supplierId);
+    else parameters.delete("supplier");
+    if (values.category) parameters.set("category", values.category);
+    else parameters.delete("category");
+    const search = parameters.toString();
+    window.history.replaceState(
+      window.history.state,
+      "",
+      `${window.location.pathname}${search ? `?${search}` : ""}${window.location.hash}`,
+    );
+  }
   const categories = useMemo(
     () =>
       [
@@ -48,7 +96,36 @@ export function SupplierCatalogSearch({
       }),
     [category, deferredQuery, entries, supplierId],
   );
-  const visibleResults = results.slice(0, 48);
+  const hasIntent = Boolean(query.trim() || supplierId || category);
+  const supplierMatch = findExactSupplierMatch(supplierDefinitions, query);
+  const exactSupplier =
+    supplierMatch && (!supplierId || supplierMatch.id === supplierId)
+      ? supplierMatch
+      : undefined;
+  const visibleResults =
+    hasIntent && !exactSupplier ? results.slice(0, 48) : [];
+
+  function updateQuery(value: string) {
+    setQuery(value);
+    updateUrl({ query: value });
+  }
+
+  function handleSearchKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      updateQuery("");
+      return;
+    }
+    if (event.key !== "Enter") return;
+    const currentResults = searchSupplierCatalog(entries, query, {
+      supplierId: supplierId || undefined,
+      category: category || undefined,
+    });
+    const exact = findExactCatalogCodeMatch(currentResults, query);
+    if (!exact) return;
+    event.preventDefault();
+    window.location.assign(exact.canonicalRoute);
+  }
 
   return (
     <section aria-labelledby="supplier-search-title">
@@ -73,10 +150,11 @@ export function SupplierCatalogSearch({
             />
             <input
               value={query}
-              onChange={(event) => setQuery(event.target.value)}
+              onChange={(event) => updateQuery(event.target.value)}
+              onKeyDown={handleSearchKeyDown}
               type="search"
               autoComplete="off"
-              placeholder="Ví dụ: BT 111, LP 101, MFC - MS 01012 T"
+              placeholder="Tìm theo mã, tên sản phẩm hoặc thương hiệu"
               className="min-h-12 w-full border border-forest-900/20 bg-[#f7f5ef] py-3 pl-11 pr-4 text-sm text-forest-950 outline-none transition focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
             />
           </label>
@@ -85,8 +163,10 @@ export function SupplierCatalogSearch({
             <select
               value={supplierId}
               onChange={(event) => {
-                setSupplierId(event.target.value as SupplierId | "");
+                const value = event.target.value as SupplierId | "";
+                setSupplierId(value);
                 setCategory("");
+                updateUrl({ supplierId: value, category: "" });
               }}
               className="min-h-12 w-full border border-forest-900/20 bg-white px-4 text-sm font-bold text-forest-950 outline-none focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
             >
@@ -102,13 +182,16 @@ export function SupplierCatalogSearch({
             <span className="sr-only">Lọc theo danh mục</span>
             <select
               value={category}
-              onChange={(event) => setCategory(event.target.value)}
+              onChange={(event) => {
+                setCategory(event.target.value);
+                updateUrl({ category: event.target.value });
+              }}
               className="min-h-12 w-full border border-forest-900/20 bg-white px-4 text-sm font-bold text-forest-950 outline-none focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
             >
               <option value="">Tất cả danh mục</option>
               {categories.map((item) => (
                 <option key={item} value={item}>
-                  {item}
+                  {humanizeCatalogLabel(item)}
                 </option>
               ))}
             </select>
@@ -116,26 +199,51 @@ export function SupplierCatalogSearch({
         </div>
       </div>
 
-      <div className="mt-8 flex items-end justify-between gap-4">
-        <div>
-          <p className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">
-            Kết quả tra cứu
-          </p>
-          <p className="mt-1 text-sm text-slate-600" aria-live="polite">
-            {results.length} mục phù hợp
-            {results.length > visibleResults.length
-              ? `, đang hiển thị ${visibleResults.length}`
-              : ""}
-          </p>
+      {exactSupplier ? (
+        <Link
+          href={exactSupplier.cataloguePath}
+          aria-label={`Khớp chính xác, nhà cung cấp ${exactSupplier.displayName}, mở catalogue`}
+          className="group mt-8 flex min-h-36 flex-col justify-between border border-wood-500/45 bg-[#fff8ee] p-5 transition-[border-color,box-shadow] hover:border-wood-600 hover:shadow-[0_14px_34px_rgba(7,31,24,.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wood-600 sm:flex-row sm:items-center sm:gap-8 sm:p-6"
+        >
+          <div>
+            <p className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-700">
+              Khớp chính xác · Nhà cung cấp
+            </p>
+            <h3 className="mt-2 font-display text-2xl font-extrabold text-forest-950">
+              {exactSupplier.displayName}
+            </h3>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
+              Mở trang catalogue riêng để xem phạm vi dữ liệu, nhóm vật liệu và
+              cách gửi mã đúng cho Tùng Phát.
+            </p>
+          </div>
+          <span className="mt-5 inline-flex min-h-11 shrink-0 items-center gap-2 text-sm font-extrabold text-forest-950 underline decoration-wood-500 decoration-2 underline-offset-4 sm:mt-0">
+            Mở catalogue <ArrowRight size={16} aria-hidden="true" />
+          </span>
+        </Link>
+      ) : hasIntent ? (
+        <div className="mt-8 flex items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">
+              Kết quả tra cứu
+            </p>
+            <p className="mt-1 text-sm text-slate-600" aria-live="polite">
+              {results.length} mục phù hợp
+              {results.length > visibleResults.length
+                ? `, đang hiển thị ${visibleResults.length}`
+                : ""}
+            </p>
+          </div>
         </div>
-      </div>
+      ) : null}
 
-      {visibleResults.length ? (
+      {exactSupplier ? null : visibleResults.length ? (
         <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {visibleResults.map((entry, index) => (
             <Link
               key={`${entry.supplierId}:${entry.code}:${index}`}
               href={entry.canonicalRoute}
+              aria-label={`${entry.supplierName}, mã ${entry.code}, xem ${kindLabels[entry.kind].toLowerCase()}`}
               className="group grid min-h-[152px] grid-cols-[112px_1fr] overflow-hidden border border-forest-900/12 bg-white transition hover:-translate-y-0.5 hover:border-wood-500/55 hover:shadow-[0_16px_36px_rgba(7,31,24,0.10)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wood-500"
             >
               <div className="relative bg-[#eef1ed]">
@@ -169,16 +277,45 @@ export function SupplierCatalogSearch({
                 <p className="mt-auto truncate pt-3 text-xs text-slate-500">
                   {[entry.category, entry.series, entry.group]
                     .filter(Boolean)
+                    .map((value) => humanizeCatalogLabel(value!))
                     .join(" · ")}
                 </p>
               </div>
             </Link>
           ))}
         </div>
-      ) : (
+      ) : hasIntent ? (
         <div className="mt-5 border border-dashed border-forest-900/20 bg-white px-6 py-12 text-center text-sm text-slate-600">
-          Không tìm thấy mã phù hợp. Hãy thử bỏ dấu cách, dấu gạch hoặc chọn lại
-          nhà cung cấp.
+          <p className="font-extrabold text-forest-950">
+            Chưa tìm thấy mã phù hợp
+          </p>
+          <p className="mx-auto mt-2 max-w-xl leading-6">
+            Hãy thử nhập mã không có khoảng trắng hoặc chọn một nhóm vật liệu
+            khác. Bạn cũng có thể gửi mã cho Tùng Phát để được kiểm tra thêm.
+          </p>
+        </div>
+      ) : (
+        <div className="mt-6 grid gap-3 border border-forest-900/12 bg-[#f7f5ef] p-5 sm:grid-cols-3 sm:p-6">
+          {["Nhập mã đã có", "Chọn nhà cung cấp", "Mở kết quả phù hợp"].map(
+            (step, index) => (
+              <div
+                key={step}
+                className="flex items-center gap-3 text-sm font-bold text-forest-950"
+              >
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-forest-950 text-xs text-white">
+                  {index + 1}
+                </span>
+                <span>{step}</span>
+                {index < 2 ? (
+                  <ArrowRight
+                    className="ml-auto hidden text-wood-600 sm:block"
+                    size={16}
+                    aria-hidden="true"
+                  />
+                ) : null}
+              </div>
+            ),
+          )}
         </div>
       )}
     </section>

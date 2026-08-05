@@ -81,7 +81,9 @@ export function ThanhThuyExplorer({
       <div className="container-shell">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <span className="eyebrow eyebrow-on-light">MÃ MÀU &amp; VẬT LIỆU</span>
+            <span className="eyebrow eyebrow-on-light">
+              MÃ MÀU &amp; VẬT LIỆU
+            </span>
             <h2
               id="thanh-thuy-explorer-title"
               className="mt-3 font-display text-3xl font-extrabold tracking-[-.03em] text-forest-950 sm:text-4xl"
@@ -182,7 +184,7 @@ export function ThanhThuyExplorer({
                       </div>
                       <div className="p-4">
                         <p className="text-[11px] font-extrabold uppercase tracking-[.16em] text-forest-700">
-                          {item.categoryName}
+                          Thanh Thuỳ · {item.categoryName}
                         </p>
                         <h3 className="mt-2 min-h-12 text-base font-extrabold leading-6 text-forest-950">
                           {item.name}
@@ -203,10 +205,10 @@ export function ThanhThuyExplorer({
                           type="button"
                           onClick={() => copyCode(item.code)}
                           className="inline-flex min-h-9 touch-manipulation items-center gap-1.5 px-2 text-xs font-bold text-forest-700 transition-colors hover:bg-wood-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wood-600 focus-visible:ring-offset-2 active:scale-[.97]"
-                          aria-label={`Copy mã ${item.code}`}
+                          aria-label={`Sao chép mã ${item.code}`}
                         >
                           <Copy aria-hidden="true" size={14} />
-                          {copied === item.code ? "Đã copy" : "Copy mã"}
+                          {copied === item.code ? "Đã sao chép" : "Sao chép mã"}
                         </button>
                       ) : null}
                     </div>

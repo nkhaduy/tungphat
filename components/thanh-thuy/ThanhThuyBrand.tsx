@@ -78,8 +78,8 @@ export function ThanhThuyBrandPage({
               Catalogue Thanh Thuỳ tại Tùng Phát
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-8 text-white/78">
-              Tùng Phát phân phối các dòng bề mặt Thanh Thuỳ để khách hàng tra
-              cứu mã màu, đối chiếu mẫu và chọn vật liệu cho tủ, bàn, vách, quầy
+              Tùng Phát tiếp nhận tư vấn và cung cấp vật liệu theo mã Thanh Thuỳ
+              để khách hàng đối chiếu mẫu, chọn bề mặt cho tủ, bàn, vách, quầy
               hoặc hạng mục nội thất theo thiết kế.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -100,8 +100,19 @@ export function ThanhThuyBrandPage({
             </div>
           </div>
         </section>
+        <ThanhThuyExplorer items={items} categories={categories} />
         <section className="bg-white py-14 lg:py-20">
           <div className="container-shell">
+            <div className="mb-8 max-w-2xl">
+              <span className="eyebrow eyebrow-on-light">DUYỆT THEO NHÓM</span>
+              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-[-.03em] text-forest-950">
+                Chưa có mã? Bắt đầu từ loại bề mặt.
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-slate-600">
+                Bề mặt tạo màu và vân; cốt MDF, MDF chống ẩm hoặc vật liệu nền
+                cần được chọn riêng theo hạng mục sử dụng.
+              </p>
+            </div>
             <div className="grid gap-4 md:grid-cols-3">
               {topCategories.map((category, index) => (
                 <Link
@@ -131,7 +142,6 @@ export function ThanhThuyBrandPage({
             </div>
           </div>
         </section>
-        <ThanhThuyExplorer items={items} categories={categories} />
         <section className="bg-forest-950 py-16 text-white lg:py-20">
           <div className="container-shell grid gap-10 lg:grid-cols-[1fr_1fr]">
             <div>
