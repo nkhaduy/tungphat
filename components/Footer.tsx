@@ -53,13 +53,21 @@ export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
                 </TrackedLink>
                 <p className="flex items-center gap-3">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5">
-                    <Hash size={12} className="text-white/60" aria-hidden="true" />
+                    <Hash
+                      size={12}
+                      className="text-white/60"
+                      aria-hidden="true"
+                    />
                   </span>
                   MST: {TAX_ID}
                 </p>
                 <div className="flex items-start gap-3">
                   <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5">
-                    <MapPin size={12} className="text-white/60" aria-hidden="true" />
+                    <MapPin
+                      size={12}
+                      className="text-white/60"
+                      aria-hidden="true"
+                    />
                   </span>
                   <div className="space-y-4">
                     {locations.map((location) => (
@@ -117,7 +125,7 @@ export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
                 href="/san-pham#catalogue"
                 className="block transition-colors hover:text-white"
               >
-                {t.footerCatalogue}
+                Tất cả sản phẩm
               </Link>
               <SupplierLinkList
                 links={supplierNavigation.catalogue}
@@ -154,12 +162,6 @@ export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
                 className="block transition-colors hover:text-white"
               >
                 {t.footerLibrary}
-              </Link>
-              <Link
-                href="/san-pham#catalogue"
-                className="block transition-colors hover:text-white"
-              >
-                {t.footerCatalogue}
               </Link>
             </div>
           </div>
