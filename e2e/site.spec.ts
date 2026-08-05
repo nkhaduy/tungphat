@@ -29,18 +29,67 @@ test("các route chính trả về trang có H1, canonical và không có lỗi 
   expect(errors).toEqual([]);
 });
 
-test("hero chọn slide đầu ngẫu nhiên, tiếp tục tự động và chỉ ưu tiên ảnh mở đầu", async ({ page }) => {
-  await page.addInitScript(() => {
-    Crypto.prototype.getRandomValues = function <T extends ArrayBufferView | null>(array: T): T {
-      (array as Uint32Array)[0] = 2;
-      return array;
-    };
-  });
+test("homepage có hero tĩnh sáng, CTA chính và chỉ ưu tiên ảnh CNC mở đầu", async ({ page }) => {
   await page.goto("/");
   const hero = page.locator("#trang-chu");
-  await expect(hero.getByRole("img", { name: /Không gian ứng dụng vật liệu gỗ/ })).toBeVisible();
+  await expect(hero.getByRole("heading", { level: 1, name: "Ván gỗ công nghiệp & gia công CNC tại TP.HCM" })).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Gửi quy cách nhận báo giá" })).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Xem catalogue" })).toBeVisible();
+  await expect(hero.getByRole("img", { name: /Máy CNC/ })).toBeVisible();
   await expect(hero.locator('img[fetchpriority="high"]')).toHaveCount(1);
-  await expect(hero.getByRole("img", { name: /Không gian trưng bày vật liệu gỗ/ })).toBeVisible({ timeout: 7_000 });
+  await expect(hero.locator("picture")).toHaveCount(0);
+});
+
+test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
+  for (const heading of [
+    "Bạn đang cần gì?",
+    "Danh mục vật liệu chính",
+    "Năng lực gia công CNC",
+    "Gửi file và quy cách để nhận báo giá",
+    "Quy cách vật liệu thường được hỏi",
+    "Chọn vật liệu theo nhu cầu",
+    "Đơn hàng và thành phẩm thực tế tại Tùng Phát",
+    "Các thương hiệu vật liệu Tùng Phát đang cung cấp",
+    "Hệ thống hai chi nhánh tại TP.HCM"
+  ]) {
+    await expect(page.getByRole("heading", { level: 2, name: heading })).toBeVisible();
+  }
+  await expect(page.locator('iframe[src*="google.com/maps"]')).toHaveCount(0);
+});
+
+test("CTA báo giá vật liệu có accessible name khớp nhãn hiển thị", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("link", { name: "Kiểm tra hàng / báo giá Ván MDF", exact: true })).toBeVisible();
+});
+
+test("requirement finder tạo nội dung có cấu trúc mà không gọi Forms API", async ({ page }) => {
+  const formRequests: string[] = [];
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, "clipboard", {
+      configurable: true,
+      value: { writeText: async () => undefined }
+    });
+    window.open = () => null;
+  });
+  page.on("request", (request) => {
+    if (/\/api\/(quote|contact)|cms\.mdftungphat\.com\/api\/(quote|contact)/i.test(request.url())) formRequests.push(request.url());
+  });
+
+  await page.goto("/");
+  const finder = page.locator("#requirement-finder");
+  await expect(finder.getByRole("heading", { level: 2, name: "Tìm đúng vật liệu hoặc dịch vụ trong 30 giây" })).toBeVisible();
+  await finder.getByRole("button", { name: "Gia công CNC theo file" }).click();
+  await finder.getByRole("button", { name: "MDF chống ẩm" }).click();
+  await finder.getByLabel("Độ dày").fill("18 mm");
+  await finder.getByLabel("Kích thước").fill("600 x 1200 mm");
+  await finder.getByLabel("Số lượng").fill("12 chi tiết");
+  await finder.getByLabel("Nội dung yêu cầu").fill("Soi rãnh theo file DXF");
+  await finder.getByLabel("Số điện thoại hoặc Zalo").fill("0909259160");
+  await finder.getByRole("button", { name: "Chuẩn bị nội dung và mở Zalo" }).click();
+  await expect(finder.getByRole("status")).toContainText("Đã chuẩn bị nội dung");
+  expect(formRequests).toEqual([]);
 });
 
 test("hero trang pháp lý chọn ảnh ngẫu nhiên khi tải trang", async ({ page }) => {
@@ -57,10 +106,33 @@ test("hero trang pháp lý chọn ảnh ngẫu nhiên khi tải trang", async ({
 test("menu mobile mở được, không tràn ngang", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
-  await page.getByRole("button", { name: "Mở menu" }).click();
+  await page.locator("summary").filter({ hasText: "Mở hoặc đóng menu" }).click();
   await expect(page.getByRole("banner").getByRole("link", { name: "Liên hệ", exact: true })).toBeVisible();
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(overflow).toBeLessThanOrEqual(1);
+});
+
+test("thanh hành động mobile có nền trắng rõ ràng", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  const backgroundColor = await page.getByRole("navigation", { name: "Liên hệ nhanh" }).evaluate((element) => getComputedStyle(element).backgroundColor);
+  expect(backgroundColor).toBe("rgba(255, 255, 255, 0.95)");
+});
+
+test("homepage không tràn ngang trên các viewport acceptance", async ({ page }) => {
+  for (const viewport of [
+    { width: 375, height: 812 },
+    { width: 390, height: 844 },
+    { width: 768, height: 1024 },
+    { width: 1280, height: 800 },
+    { width: 1440, height: 900 },
+    { width: 1920, height: 1080 }
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto("/");
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(overflow, `${viewport.width}x${viewport.height}`).toBeLessThanOrEqual(1);
+  }
 });
 
 test("header tham chiếu đúng bề mặt mở đầu trên toàn bộ nhóm trang", async ({ page }) => {
@@ -135,6 +207,12 @@ test("trang liên hệ trực tiếp không có lỗi accessibility nghiêm tr�
   expect(results.violations.filter((violation) => violation.impact === "critical" || violation.impact === "serious")).toEqual([]);
 });
 
+test("homepage không có lỗi accessibility nghiêm trọng", async ({ page }) => {
+  await page.goto("/");
+  const results = await new AxeBuilder({ page }).analyze();
+  expect(results.violations.filter((violation) => violation.impact === "critical" || violation.impact === "serious")).toEqual([]);
+});
+
 test("API từ chối origin khác và không lộ stack trace", async ({ request }) => {
   const response = await request.post("/api/quote", { headers: { Origin: "https://attacker.example", "Content-Type": "application/json" }, data: {} });
   expect(response.status()).toBe(403);
@@ -199,7 +277,7 @@ test("payload kiểu SQL injection không làm thay đổi schema", async ({ req
   expect(after.status()).toBe(201);
 });
 
-test("frontend công khai không tải form, Turnstile hoặc Forms API", async ({ page }) => {
+test("frontend công khai không tải Turnstile hoặc Forms API", async ({ page }) => {
   const unexpectedRequests: string[] = [];
   page.on("request", (request) => {
     if (/challenges\.cloudflare\.com\/turnstile|cms\.mdftungphat\.com\/api\/(contact|quote)/i.test(request.url())) {
@@ -209,7 +287,8 @@ test("frontend công khai không tải form, Turnstile hoặc Forms API", async 
 
   for (const route of ["/", "/lien-he/", "/bao-gia/", "/go-ghep/", "/cat-cnc-go/"]) {
     await page.goto(route, { waitUntil: "networkidle" });
-    await expect(page.locator('form, .cf-turnstile, script[src*="turnstile"]')).toHaveCount(0);
+    await expect(page.locator('.cf-turnstile, script[src*="turnstile"]')).toHaveCount(0);
+    if (route !== "/") await expect(page.locator("form")).toHaveCount(0);
   }
 
   expect(unexpectedRequests).toEqual([]);
