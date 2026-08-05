@@ -10,6 +10,8 @@ import { getProducts } from "@/lib/content";
 import { mediaUrl } from "@/lib/media";
 import { absolutePageUrl, breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
+const brandPath = (slug: string) => slug === "thanh-thuy" ? "/thuong-hieu/thanh-thuy/" : `/san-pham/${slug}/`;
+
 export const metadata = createPageMetadata({
   title: "Vật liệu gỗ công nghiệp MDF, MFC, plywood",
   description: "Xem nhóm ván MDF, MFC, plywood, laminate, bề mặt trang trí và các thương hiệu vật liệu đang được giới thiệu tại Tùng Phát.",
@@ -24,7 +26,7 @@ const productListSchema = {
     "@type": "ListItem",
     position: index + 1,
     name: brand.name,
-    url: absolutePageUrl(`/san-pham/${brand.slug}`)
+    url: absolutePageUrl(brandPath(brand.slug))
   }))
 };
 
@@ -74,8 +76,8 @@ export default function ProductsPage() {
                   <h2 className="text-xl font-extrabold text-forest-950">{brand.name}</h2>
                   <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">{brand.description || "Thông tin sản phẩm đang được cập nhật."}</p>
                   <div className="mt-6 grid gap-2">
-                    <Link href={`/san-pham/${brand.slug}`} className="inline-flex min-h-11 items-center justify-between bg-forest-900 px-4 text-sm font-bold text-white">Xem sản phẩm <ArrowRight size={16} /></Link>
-                    <Link href={`/san-pham/${brand.slug}#catalogue`} className="inline-flex min-h-11 items-center justify-between border border-forest-900/25 px-4 text-sm font-bold text-forest-950">Xem catalogue <BookOpen size={16} /></Link>
+                    <Link href={brandPath(brand.slug)} className="inline-flex min-h-11 items-center justify-between bg-forest-900 px-4 text-sm font-bold text-white">Xem sản phẩm <ArrowRight size={16} /></Link>
+                    <Link href={`${brandPath(brand.slug)}#catalogue`} className="inline-flex min-h-11 items-center justify-between border border-forest-900/25 px-4 text-sm font-bold text-forest-950">Xem catalogue <BookOpen size={16} /></Link>
                   </div>
                 </div>
               </article>

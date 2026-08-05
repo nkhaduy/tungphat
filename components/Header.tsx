@@ -33,6 +33,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
     ["Gỗ ghép tràm", "/go-ghep-tram/"],
     ["Ván MDF", "/van-mdf/"],
     ["MDF chống ẩm", "/mdf-chong-am/"],
+    ["Mã màu Thanh Thuỳ", "/thuong-hieu/thanh-thuy/"],
     [t.navCatalogues, "/san-pham/#catalogue"]
   ];
 
@@ -133,8 +134,8 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
           >
             <Phone size={16} /> {t.phoneLabel}
           </a>
-          <a href={ZALO_URL} target="_blank" rel="noopener noreferrer" data-analytics-handled="1" data-track-event="click_quote" data-track-location="header" onClick={() => trackEvent("request_quote", { location: "header", channel: "zalo" })} aria-label={t.ctaGetQuote} className="inline-flex min-h-11 items-center gap-2 bg-wood-500 px-4 text-sm font-bold text-white transition hover:bg-wood-600">
-            <MessageCircle size={16} /> {t.ctaGetQuote}
+          <a href={ZALO_URL} target="_blank" rel="noopener noreferrer" data-analytics-handled="1" data-track-event="click_quote" data-track-location="header" onClick={() => trackEvent("request_quote", { location: "header", channel: "zalo" })} aria-label={t.ctaGetQuote} className="inline-flex min-h-11 items-center gap-2 bg-[#b84f05] px-4 text-sm font-bold text-white transition-colors hover:bg-[#963f04]">
+            <MessageCircle aria-hidden="true" size={16} /> {t.ctaGetQuote}
           </a>
         </div>
 

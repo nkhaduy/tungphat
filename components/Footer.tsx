@@ -77,7 +77,7 @@ export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
           </div>
 
           <div>
-            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/40">
+            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/60">
               {t.footerMaterials}
             </p>
             <div className="mt-5 space-y-2.5 text-sm text-white/60">
@@ -117,11 +117,17 @@ export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
               >
                 {t.footerCatalogue}
               </Link>
+              <Link
+                href="/thuong-hieu/thanh-thuy/"
+                className="block transition-colors hover:text-white"
+              >
+                Mã màu Thanh Thuỳ
+              </Link>
             </div>
           </div>
 
           <div>
-            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/40">
+            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/60">
               {t.footerServices}
             </p>
             <div className="mt-5 space-y-2.5 text-sm text-white/60">
@@ -159,7 +165,7 @@ export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
           </div>
 
           <div>
-            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/40">
+            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/60">
               {t.footerLegal}
             </p>
             <div className="mt-5 space-y-2.5 text-sm text-white/60">
@@ -185,7 +191,7 @@ export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
           </div>
 
           <div className="sm:col-span-2 lg:col-span-1">
-            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/40">
+            <p className="text-xs font-bold uppercase tracking-[.12em] text-white/60">
               {t.footerBranchesEyebrow}
             </p>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
@@ -233,11 +239,11 @@ export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
       </div>
 
       <div className="border-t border-white/[0.07] py-5">
-        <div className="container-shell flex flex-col gap-2 text-xs text-white/30 sm:flex-row sm:items-center sm:justify-between">
+        <div className="container-shell flex flex-col gap-2 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <span>{t.footerCopyright}</span>
           <Link
             href="/"
-            className="text-white/20 transition hover:text-white/45"
+            className="text-white/60 transition-colors hover:text-white"
           >
             mdftungphat.com
           </Link>

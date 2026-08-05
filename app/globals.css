@@ -61,6 +61,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   text-transform: uppercase;
 }
 
+.eyebrow.eyebrow-on-light { color: #0b4d34; }
+.eyebrow.eyebrow-on-dark { color: #f7b77d; }
+
 .text-balance { text-wrap: balance; }
 .text-pretty { text-wrap: pretty; }
 
