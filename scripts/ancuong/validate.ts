@@ -90,7 +90,7 @@ export function validateCatalogue(input: ValidationInput): ValidationResult {
     if (!relation.relationType || !RELATION_TYPES.has(relation.relationType)) issue(issues, "RELATION_TYPE_INVALID", "relation type is not recognized", `relations[${index}].relationType`);
     if (relation.sourceId && relation.targetSourceId && relation.sourceId === relation.targetSourceId) issue(issues, "SELF_RELATION", "relation cannot point to itself", `relations[${index}]`);
     const targetsProduct = relation.relationType === "same-color" || relation.relationType === "edge-band" || relation.relationType === "related";
-    if (targetsProduct && relation.targetSourceId && !productIds.has(relation.targetSourceId)) issue(issues, "RELATION_UNRESOLVED", "relation target does not exist in the discovered catalogue", `relations[${index}].targetSourceId`);
+    if (targetsProduct && relation.targetSourceId && !productIds.has(relation.targetSourceId)) issue(issues, "RELATION_UNRESOLVED", "source-declared relation target does not exist in the discovered catalogue", `relations[${index}].targetSourceId`, "warning");
     const relationTarget = relation.targetSourceId ?? relation.targetSourceUrl ?? relation.targetProductCode ?? relation.targetName ?? "";
     const relationKey = `${relation.relationType ?? ""}|${relation.sourceId ?? relation.sourceUrl ?? ""}|${relationTarget}`;
     if (relationKeys.has(relationKey)) issue(issues, "DUPLICATE_RELATION", "relation occurs more than once", `relations[${index}]`);

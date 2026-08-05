@@ -13,6 +13,7 @@ describe("An Cuong CLI", () => {
       "--limit=5",
       "--concurrency=2",
       "--changed-only",
+      "--manifest-only",
       "--skip-media",
       "--verbose"
     ]);
@@ -27,10 +28,15 @@ describe("An Cuong CLI", () => {
         limit: 5,
         concurrency: 2,
         changedOnly: true,
+        manifestOnly: true,
         skipMedia: true,
         verbose: true
       }
     });
+  });
+
+  it("defaults catalogue requests to concurrency two", () => {
+    expect(parseCliArgs(["discover"]).options.concurrency).toBe(2);
   });
 
   it("rejects unsafe concurrency and unknown options", () => {

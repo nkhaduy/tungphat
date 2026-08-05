@@ -27,7 +27,21 @@ describe("An Cuong export contract", () => {
       sourceAuditReference: "docs/catalog/ancuong/ANCUONG_SOURCE_AUDIT.md",
       validationStatus: "passed",
     });
-    await writeExportBundle(outputDir, bundle);
+    await writeExportBundle(outputDir, bundle, {
+      discoveryCount: 2,
+      productCount: 2,
+      validCount: 2,
+      invalidCount: 0,
+      categoryCount: 1,
+      relationCount: 0,
+      mediaReferenceCount: 0,
+      uniqueMediaCount: 0,
+      fullCrawl: true,
+      fullCrawlStatus: "complete",
+      mediaComplete: false,
+      mediaCrawlStatus: "discovery-only",
+      knownLimitations: ["Binary media download is pending the storage gate."],
+    });
 
     expect((await readdir(outputDir)).sort()).toEqual([
       "catalogue.json",
@@ -41,6 +55,14 @@ describe("An Cuong export contract", () => {
     expect(manifest.exports).toHaveLength(5);
     expect(manifest.exports.every((entry: { checksum: string }) => /^[a-f0-9]{64}$/.test(entry.checksum))).toBe(true);
     expect(manifest.exports.find((entry: { file: string }) => entry.file === "catalogue.json").recordCount).toBe(2);
+    expect(manifest).toEqual(expect.objectContaining({
+      discoveryCount: 2,
+      productCount: 2,
+      fullCrawl: true,
+      mediaComplete: false,
+      mediaCrawlStatus: "discovery-only",
+    }));
+    expect(manifest.datasetChecksum).toMatch(/^[a-f0-9]{64}$/);
     expect(await readdir(outputDir)).not.toContain(expect.stringMatching(/\.tmp/));
   });
 

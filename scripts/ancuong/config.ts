@@ -19,7 +19,7 @@ export const crawlerConfig = {
   maxRetries: 3,
   minDelayMs: 300,
   maxDelayMs: 1_000,
-  defaultConcurrency: 3,
+  defaultConcurrency: 2,
   allowedHosts: new Set(["ancuong.com", "www.ancuong.com", "acshopping.ancuong.com", "catalogue.ancuong.com", "view.publitas.com"]),
   blockedPathParts: [
     "/tin-tuc/",

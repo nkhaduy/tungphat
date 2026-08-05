@@ -3,6 +3,8 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  buildMediaDiscoveryManifest,
+  buildMediaInputs,
   downloadMedia,
   inspectImageBytes,
   type MediaDownloadInput,
@@ -15,6 +17,26 @@ const PNG_1X1 = Buffer.from(
 );
 
 describe("An Cuong media pipeline", () => {
+  it("builds a manifest-only inventory without downloading product media", () => {
+    const inputs = buildMediaInputs([{
+      sourceId: "303000078",
+      sourceUrl: "https://ancuong.com/melamine/303000078.html",
+      productCode: "MFC - MS 106 SH",
+      name: "Milky White",
+      categorySlug: "melamine",
+      primaryImage: { sourceUrl: "https://ancuong.com/products/products-full/303000078.jpg" },
+      gallery: [
+        { sourceUrl: "https://ancuong.com/products/products-full/303000078.jpg" },
+        { sourceUrl: "https://acshopping.ancuong.com/Upload/MaterialApp/303000078-0-0-1.jpg" },
+      ],
+    }]);
+
+    expect(inputs.map((item) => item.role)).toEqual(["primary", "gallery", "application"]);
+    const manifest = buildMediaDiscoveryManifest(inputs);
+    expect(manifest.summary).toEqual(expect.objectContaining({ total: 3, discovered: 3, totalBytes: 0 }));
+    expect(manifest.records.every((record) => record.status === "discovered")).toBe(true);
+  });
+
   it("detects MIME from bytes and rejects an HTML challenge", () => {
     expect(inspectImageBytes(PNG_1X1, "image/jpeg")).toEqual({
       mimeType: "image/png",

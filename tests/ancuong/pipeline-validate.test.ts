@@ -75,6 +75,27 @@ describe("An Cuong validation", () => {
     expect(result.valid).toBe(true);
   });
 
+  it("reports a source-declared product target outside discovery as a warning", () => {
+    const result = validateCatalogue({
+      products: [validProduct],
+      knownProductIds: ["103"],
+      relations: [{
+        relationType: "same-color",
+        sourceId: "103",
+        sourceUrl: validProduct.sourceUrl,
+        targetSourceId: "303002267",
+        targetSourceUrl: "https://ancuong.com/eco-veneer/303002267.html",
+      }],
+    });
+
+    expect(result.valid).toBe(true);
+    expect(result.summary).toEqual(expect.objectContaining({ errors: 0, warnings: 1 }));
+    expect(result.issues).toContainEqual(expect.objectContaining({
+      code: "RELATION_UNRESOLVED",
+      level: "warning",
+    }));
+  });
+
   it("rejects out-of-scope URLs, HTML/script leakage and secrets", () => {
     const result = validateCatalogue({
       products: [{
