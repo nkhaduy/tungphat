@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { validateCatalogue } from "../../scripts/ancuong/validate";
+import { productIdsFromDiscoveryManifest, validateCatalogue } from "../../scripts/ancuong/validate";
 
 const validProduct = {
   source: "ancuong",
@@ -36,6 +36,16 @@ const validProduct = {
 };
 
 describe("An Cuong validation", () => {
+  it("derives discovered product IDs from committed manifest URLs", () => {
+    expect(productIdsFromDiscoveryManifest({
+      productUrls: [
+        "https://ancuong.com/melamine/303000812.html",
+        "https://ancuong.com/chi-dan-canh-pvc/303000218.html",
+        "https://ancuong.com/melamine/not-a-product.html",
+      ],
+    })).toEqual(["303000812", "303000218"]);
+  });
+
   it("rejects an empty normalized catalogue", () => {
     const result = validateCatalogue({ products: [] });
     expect(result.valid).toBe(false);

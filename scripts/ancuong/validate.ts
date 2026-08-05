@@ -63,6 +63,20 @@ function isAllowedMaterialUrl(value: string, requireProductId = false): boolean 
   }
 }
 
+export function productIdsFromDiscoveryManifest(value: unknown): string[] {
+  if (!value || typeof value !== "object") return [];
+  const productUrls = (value as { productUrls?: unknown }).productUrls;
+  if (!Array.isArray(productUrls)) return [];
+
+  const ids = new Set<string>();
+  for (const productUrl of productUrls) {
+    if (typeof productUrl !== "string" || !isAllowedMaterialUrl(productUrl, true)) continue;
+    const sourceId = new URL(productUrl).pathname.match(/\/(\d+)\.html$/i)?.[1];
+    if (sourceId) ids.add(sourceId);
+  }
+  return [...ids];
+}
+
 export function validateCatalogue(input: ValidationInput): ValidationResult {
   const issues: ValidationIssue[] = [];
   if (input.products.length === 0) issue(issues, "PRODUCTS_EMPTY", "normalized catalogue contains no products");
@@ -120,7 +134,11 @@ export async function run(options: CliOptions): Promise<ValidationResult> {
   const media = recordsFrom(await readJsonIfExists(path.join(paths.normalized, "media-manifest.json"))) as ValidationMedia[];
   const relations = recordsFrom(await readJsonIfExists(path.join(paths.normalized, "relations.json"))) as ValidationRelation[];
   const listings = recordsFrom(await readJsonIfExists(path.join(paths.raw, "listings.json"))) as Array<{ sourceId?: string }>;
-  const knownProductIds = listings.map((listing) => listing.sourceId).filter((value): value is string => typeof value === "string" && value.length > 0);
+  const discoveryManifest = await readJsonIfExists(path.join(paths.reports, "discovery-manifest.json"));
+  const knownProductIds = [
+    ...listings.map((listing) => listing.sourceId).filter((value): value is string => typeof value === "string" && value.length > 0),
+    ...productIdsFromDiscoveryManifest(discoveryManifest),
+  ];
   const result = validateCatalogue({ products, media, relations, knownProductIds });
   if (!options.dryRun) await atomicWriteJson(path.join(paths.reports, "validation-report.json"), result);
   if (!result.valid) throw new Error(`An Cuong validation failed with ${result.summary.errors} error(s)`);
