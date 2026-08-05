@@ -236,6 +236,15 @@ describe("recognizeBaThanhDetail", () => {
     expect(detail.verifiedCodeRaw).toBe("BT-XANH-BIEN");
   });
 
+  it("rejects a named solid-color page whose heading identifies a different color", () => {
+    const detail = recognizeBaThanhDetail("<main><h1>MELAMINE BA THANH – ĐEN ASH</h1></main>", {
+      expectedCode: "BT-XANH-BIEN",
+      sourceUrl: "https://bathanh.com.vn/bt-xanh-bien-solid-color",
+    });
+
+    expect(detail.accepted).toBe(false);
+  });
+
   it("recognizes an alphanumeric Ba Thanh solid-color code", () => {
     const detail = recognizeBaThanhDetail("<main><h1>BT A150 – SOLID COLOR</h1></main>", {
       expectedCode: "BT-A150",
