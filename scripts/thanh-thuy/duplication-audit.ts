@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { parseCliArgs, writeJsonAtomic } from "./lib";
+import { isValidProductRecordUrl, parseCliArgs, writeJsonAtomic } from "./lib";
 
 export type DuplicationStatus = "TOO_SIMILAR" | "ORIGINAL_ENOUGH" | "SOURCE_EMPTY";
 
@@ -70,8 +70,12 @@ export function auditCachedSource(
     link?: string;
     content?: { rendered?: string };
   }>;
-  return records
-    .filter((record) => record.link)
+  const productsByUrl = new Map(
+    records
+      .filter((record) => record.link && isValidProductRecordUrl(record.link))
+      .map((record) => [record.link as string, record]),
+  );
+  return [...productsByUrl.values()]
     .map((record) => {
       const source = htmlToText(record.content?.rendered || "");
       const generated = generatedBySourceUrl.get(record.link as string) || "";

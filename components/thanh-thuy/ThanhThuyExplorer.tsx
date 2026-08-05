@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Copy, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { MaterialSwatchImage } from "@/components/thanh-thuy/MaterialSwatchImage";
+import { normalizeThanhThuySearchText } from "@/lib/thanh-thuy-search";
 
 export type ThanhThuyExplorerItem = {
   slug: string;
@@ -42,22 +43,22 @@ export function ThanhThuyExplorer({
   const [copied, setCopied] = useState("");
   const [visibleCount, setVisibleCount] = useState(48);
   const filtered = useMemo(() => {
-    const needle = query.trim().toLocaleLowerCase("vi");
+    const needle = normalizeThanhThuySearchText(query);
     return items.filter((item) => {
       const matchesQuery =
         !needle ||
-        [
-          item.name,
-          item.code,
-          item.categoryName,
-          item.seriesName,
-          item.color,
-          item.pattern,
-        ]
-          .filter(Boolean)
-          .join(" ")
-          .toLocaleLowerCase("vi")
-          .includes(needle);
+        normalizeThanhThuySearchText(
+          [
+            item.name,
+            item.code,
+            item.categoryName,
+            item.seriesName,
+            item.color,
+            item.pattern,
+          ]
+            .filter(Boolean)
+            .join(" "),
+        ).includes(needle);
       return matchesQuery && (!category || item.categorySlug === category);
     });
   }, [category, items, query]);

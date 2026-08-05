@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import {
+  auditCachedSource,
   classifyDuplication,
   shingleSimilarity,
 } from "@/scripts/thanh-thuy/duplication-audit";
@@ -29,5 +33,29 @@ describe("Thanh Thuy duplicate-content audit", () => {
     expect(classifyDuplication("", "Nội dung do Tùng Phát biên soạn.")).toBe(
       "SOURCE_EMPTY",
     );
+  });
+
+  it("deduplicates product cache layers and excludes category records", () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), "thanh-thuy-duplication-"));
+    const product = {
+      link: "https://www.gothanhthuy.com/product/melamine/142-roman-oak/",
+      content: { rendered: "<p>Mã 142.</p>" },
+    };
+    fs.writeFileSync(path.join(directory, "products-1.json"), JSON.stringify([product]));
+    fs.writeFileSync(path.join(directory, "source-products.json"), JSON.stringify([product]));
+    fs.writeFileSync(path.join(directory, "categories.json"), JSON.stringify([
+      { link: "https://www.gothanhthuy.com/products/melamine/" },
+    ]));
+
+    try {
+      const results = auditCachedSource(
+        directory,
+        new Map([[product.link, "Tùng Phát hỗ trợ kiểm tra mẫu thực tế."]]),
+      );
+      expect(results).toHaveLength(1);
+      expect(results[0].sourceUrl).toBe(product.link);
+    } finally {
+      fs.rmSync(directory, { recursive: true, force: true });
+    }
   });
 });

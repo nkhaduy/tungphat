@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { absoluteUrl, createPageMetadata } from "@/lib/seo";
+import { absoluteUrl, createPageMetadata, ZALO_URL } from "@/lib/seo";
 import type { ThanhThuyCategory } from "@/lib/thanh-thuy";
 
 export type ThanhThuySeoRecord = {
@@ -122,10 +122,13 @@ export function createThanhThuyBrandMetadata(): Metadata {
   });
 }
 
-export function thanhThuyZaloUrl(code?: string): string {
-  const base = "https://zalo.me/0909259160";
+export function buildThanhThuyZaloUrl(baseUrl: string, code?: string): string {
   const message = code
     ? `Tôi cần kiểm tra sản phẩm Thanh Thuỳ mã ${code} tại Tùng Phát.`
     : "Tôi cần tra cứu sản phẩm Thanh Thuỳ tại Tùng Phát.";
-  return `${base}?text=${encodeURIComponent(message)}`;
+  return `${baseUrl}?text=${encodeURIComponent(message)}`;
+}
+
+export function thanhThuyZaloUrl(code?: string): string {
+  return buildThanhThuyZaloUrl(ZALO_URL, code);
 }

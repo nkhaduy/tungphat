@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLang } from "@/lib/i18n-context";
 import { translations } from "@/lib/i18n";
+import { cataloguePath } from "@/lib/brands";
 
 const partners = [
   { slug: "thanh-thuy", name: "Thanh Thùy", logo: "/partners/thanh-thuy-logo.png", alt: "Logo Thanh Thùy", width: 473, height: 244, className: "max-h-[122px] max-w-[236px]" },
@@ -30,7 +31,7 @@ export function Partners() {
         <ul className="mx-auto mt-9 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-11 lg:grid-cols-3">
           {partners.map((partner, index) => (
             <li key={partner.slug} className={index === 2 ? "sm:col-span-2 lg:col-span-1" : ""}>
-              <Link href={`/catalogue/${partner.slug}`} className="group mx-auto flex h-[190px] w-full max-w-md items-center justify-center rounded-lg bg-white px-7 py-8 shadow-card transition duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_4px_16px_rgba(7,59,40,0.14)] sm:h-[210px]">
+              <Link href={cataloguePath(partner.slug)} className="group mx-auto flex h-[190px] w-full max-w-md items-center justify-center rounded-lg bg-white px-7 py-8 shadow-card transition duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_4px_16px_rgba(7,59,40,0.14)] sm:h-[210px]">
                 <Image
                   src={partner.logo}
                   alt={partner.alt}

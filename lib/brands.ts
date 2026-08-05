@@ -29,6 +29,18 @@ export type Brand = {
 
 export const brands = data.items as Brand[];
 
+export function cataloguePath(slug: string): string {
+  return slug === "thanh-thuy"
+    ? "/thuong-hieu/thanh-thuy/"
+    : `/catalogue/${slug}/`;
+}
+
+export function catalogueStaticParams(): Array<{ brand: string }> {
+  return brands
+    .filter((brand) => brand.slug !== "kes" && brand.slug !== "thanh-thuy")
+    .map((brand) => ({ brand: brand.slug }));
+}
+
 export function getBrand(slug: string) {
   return brands.find((brand) => brand.slug === slug);
 }

@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/catalogue/thanh-thuy",
+      "destination": "/thuong-hieu/thanh-thuy/",
+      "permanent": true
+    },
+    {
       "source": "/admin/analytics",
       "destination": "https://cms.mdftungphat.com/?view=analytics",
       "permanent": false

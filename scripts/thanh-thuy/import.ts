@@ -243,6 +243,22 @@ function readExistingCatalog(file: string): ThanhThuyCatalog | null {
   return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, "utf8")) as ThanhThuyCatalog : null;
 }
 
+export function assertCompleteSourceSnapshot(
+  existing: ThanhThuyCatalog | null,
+  sourceProducts: SourceProduct[],
+): void {
+  if (!existing?.products.length) return;
+  const sourceIds = new Set(sourceProducts.map((product) => product.id));
+  const missing = existing.products
+    .map((product) => product.sourceId)
+    .filter((sourceId) => !sourceIds.has(sourceId));
+  if (missing.length) {
+    throw new Error(
+      `Crawl nguồn thiếu ${missing.length} sản phẩm hiện có (sourceId ${missing.slice(0, 10).join(", ")}); giữ nguyên catalogue hiện tại.`,
+    );
+  }
+}
+
 export async function runImport(options: {
   root?: string;
   sourceDirectory?: string;
@@ -261,8 +277,9 @@ export async function runImport(options: {
   const backupDirectory = path.join(cacheDirectory, "backups");
   const source = await crawlSource({ root, sourceDirectory: options.sourceDirectory, cacheDirectory: path.join(cacheDirectory, "raw"), resume });
   if (source.products.length < 1 || source.categories.length < 1) throw new Error("Crawl không đầy đủ; giữ nguyên catalogue hiện tại.");
-  const media = await loadMedia(source.products, { root, cacheDirectory, dryRun, resume });
   const existing = readExistingCatalog(catalogFile);
+  assertCompleteSourceSnapshot(existing, source.products);
+  const media = await loadMedia(source.products, { root, cacheDirectory, dryRun, resume });
   const normalized = normalizeSourceProducts(source.products, { categories: source.categories, importedAt: now, localImageById: media.byId });
   const previousById = new Map(existing?.products.map((product) => [product.id, product]) ?? []);
   let created = 0;

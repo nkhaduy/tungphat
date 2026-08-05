@@ -3,15 +3,15 @@ import { notFound } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CatalogueView } from "@/components/CatalogueView";
-import { brands, getBrand } from "@/lib/brands";
+import { catalogueStaticParams, getBrand } from "@/lib/brands";
 
 type RouteProps = { params: Promise<{ brand: string }> };
 
 export function generateStaticParams() {
-  return brands
-    .filter((b) => b.slug !== "kes")
-    .map((brand) => ({ brand: brand.slug }));
+  return catalogueStaticParams();
 }
+
+export const dynamicParams = false;
 
 export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
   const { brand: brandSlug } = await params;

@@ -49,7 +49,7 @@ for (const route of indexableRoutes) {
   }
 }
 
-for (const product of noindex.slice(0, 20)) {
+for (const product of noindex) {
   const route = routeForProduct(product);
   const html = htmlFor(route);
   if (!/noindex/i.test(meta(html, "robots"))) errors.push(`Trang enrichment thiếu noindex: ${route}`);
@@ -68,7 +68,7 @@ if (/1900633668|2827\/3A Quốc Lộ/i.test(catalogueHtml)) errors.push("Phát h
 
 const sitemap = fs.readFileSync(path.join(out, "sitemap.xml"), "utf8");
 for (const route of indexableRoutes) if (!sitemap.includes(`https://mdftungphat.com${route}`)) errors.push(`Sitemap thiếu: ${route}`);
-for (const product of noindex.slice(0, 20)) if (sitemap.includes(`https://mdftungphat.com${routeForProduct(product)}`)) errors.push(`Sitemap chứa noindex: ${product.slug}`);
+for (const product of noindex) if (sitemap.includes(`https://mdftungphat.com${routeForProduct(product)}`)) errors.push(`Sitemap chứa noindex: ${product.slug}`);
 if (/<loc>[^<]*\?|<loc>[^<]*gothanhthuy\.com/i.test(sitemap)) errors.push("Sitemap chứa query/source URL.");
 
 const robots = fs.readFileSync(path.join(out, "robots.txt"), "utf8");
