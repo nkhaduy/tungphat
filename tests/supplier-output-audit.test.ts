@@ -26,7 +26,7 @@ function page(input: {
         brand: { "@type": "Brand", name: input.brand },
         url: canonical,
       })}</script>
-    </head><body><h1>${input.title}</h1></body></html>`,
+    </head><body><h1>${input.title.replace(/ \| Tùng Phát$/, "")}</h1></body></html>`,
   };
 }
 
@@ -110,5 +110,50 @@ describe("supplier static output audit", () => {
     expect(result.errors.join("\n")).toMatch(/canonical mismatch/i);
     expect(result.errors.join("\n")).toMatch(/brand mismatch/i);
     expect(result.errors.join("\n")).toMatch(/no matching page/i);
+  });
+
+  it("enforces the pinned An Cuong catalogue title and H1", () => {
+    const anCuong = page({
+      route: "/catalogue/an-cuong/",
+      supplierId: "an-cuong",
+      brand: "An Cường",
+      title: "Catalogue vật liệu An Cường | Tùng Phát",
+      description: "Catalogue An Cường tại Tùng Phát.",
+      indexable: false,
+    });
+
+    const result = auditSupplierPages([anCuong], []);
+
+    expect(result.errors.join("\n")).toMatch(/required title/i);
+    expect(result.errors.join("\n")).toMatch(/required H1/i);
+  });
+
+  it("reports duplicate descriptions on noindex pages without treating them as cannibalization errors", () => {
+    const first = page({
+      route: "/catalogue/ba-thanh/",
+      supplierId: "ba-thanh",
+      brand: "Ba Thanh",
+      title: "Catalogue Ba Thanh | Tùng Phát",
+      description: "Nội dung placeholder đang được cập nhật.",
+      indexable: false,
+    });
+    const second = page({
+      route: "/san-pham/ba-thanh/",
+      supplierId: "ba-thanh",
+      brand: "Ba Thanh",
+      title: "Sản phẩm Ba Thanh | Tùng Phát",
+      description: "Nội dung placeholder đang được cập nhật.",
+      indexable: false,
+    });
+
+    const result = auditSupplierPages([first, second], []);
+
+    expect(result.errors).toEqual([]);
+    expect(result.findings.duplicateNoindexDescriptions).toEqual([
+      {
+        value: "Nội dung placeholder đang được cập nhật.",
+        routes: ["/catalogue/ba-thanh/", "/san-pham/ba-thanh/"],
+      },
+    ]);
   });
 });

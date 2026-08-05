@@ -1,0 +1,39 @@
+{
+  "errors": [],
+  "findings": {
+    "duplicateIndexableTitles": [],
+    "duplicateIndexableDescriptions": [],
+    "duplicateNoindexTitles": [],
+    "duplicateNoindexDescriptions": [
+      {
+        "value": "Tham khảo Chỉ nẹp nhựa Thanh Thùy tại Tùng Phát. Liên hệ kiểm tra mẫu thực tế, quy cách, tồn kho và phương án gia công trước khi đặt.",
+        "routes": [
+          "/san-pham/chi-nep-nhua/thanh-thuy-chi-nep-den/",
+          "/san-pham/chi-nep-nhua/thanh-thuy-chi-nep-trang/",
+          "/san-pham/chi-nep-nhua/thanh-thuy-chi-nep-van-go-1/",
+          "/san-pham/chi-nep-nhua/thanh-thuy-chi-nep-van-go-2/",
+          "/san-pham/chi-nep-nhua/thanh-thuy-chi-nep-van-go-3/"
+        ]
+      },
+      {
+        "value": "Tham khảo Tấm Veneer Thanh Thùy tại Tùng Phát. Liên hệ kiểm tra mẫu thực tế, quy cách, tồn kho và phương án gia công trước khi đặt.",
+        "routes": [
+          "/san-pham/veneer/thanh-thuy-veneer-cheery/",
+          "/san-pham/veneer/thanh-thuy-veneer-oak/",
+          "/san-pham/veneer/thanh-thuy-veneer-walnut/"
+        ]
+      }
+    ]
+  },
+  "summary": {
+    "pages": 595,
+    "indexable": 20,
+    "noindex": 575,
+    "uniqueTitles": 595,
+    "uniqueDescriptions": 589,
+    "canonicalsChecked": 595,
+    "invalidJsonLd": 0,
+    "brandMismatches": 0,
+    "orphanIndexablePages": 0
+  }
+}

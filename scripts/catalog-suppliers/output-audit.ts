@@ -159,6 +159,16 @@ export function auditSupplierPages(
     if (/\|\s*Tùng Phát\s*\|\s*Tùng Phát/i.test(metadata.title)) {
       errors.push(`${route}: duplicate terminal title suffix`);
     }
+    if (route === "/catalogue/an-cuong/") {
+      if (metadata.title !== "Catalogue An Cường | Tùng Phát") {
+        errors.push(
+          `${route}: required title is "Catalogue An Cường | Tùng Phát"`,
+        );
+      }
+      if (metadata.h1 !== "Catalogue An Cường") {
+        errors.push(`${route}: required H1 is "Catalogue An Cường"`);
+      }
+    }
     const isNoindex = /(?:^|[,\s])noindex(?:[,\s]|$)/i.test(metadata.robots);
     if (page.indexable && isNoindex)
       errors.push(`${route}: indexable route is noindex`);
@@ -184,18 +194,31 @@ export function auditSupplierPages(
     }
   }
 
-  for (const [title, routes] of duplicates(
+  const duplicateIndexableTitles = duplicates(
     parsed
       .filter((page) => page.indexable)
       .map((page) => ({ value: page.metadata.title, route: page.route })),
-  )) {
-    errors.push(`Duplicate title "${title}": ${routes.join(", ")}`);
-  }
-  for (const [description, routes] of duplicates(
+  );
+  const duplicateIndexableDescriptions = duplicates(
     parsed
       .filter((page) => page.indexable)
       .map((page) => ({ value: page.metadata.description, route: page.route })),
-  )) {
+  );
+  const duplicateNoindexTitles = duplicates(
+    parsed
+      .filter((page) => !page.indexable)
+      .map((page) => ({ value: page.metadata.title, route: page.route })),
+  );
+  const duplicateNoindexDescriptions = duplicates(
+    parsed
+      .filter((page) => !page.indexable)
+      .map((page) => ({ value: page.metadata.description, route: page.route })),
+  );
+
+  for (const [title, routes] of duplicateIndexableTitles) {
+    errors.push(`Duplicate title "${title}": ${routes.join(", ")}`);
+  }
+  for (const [description, routes] of duplicateIndexableDescriptions) {
     errors.push(`Duplicate description "${description}": ${routes.join(", ")}`);
   }
   for (const sitemapPath of sitemap) {
@@ -206,6 +229,21 @@ export function auditSupplierPages(
 
   return {
     errors,
+    findings: {
+      duplicateIndexableTitles: duplicateIndexableTitles.map(
+        ([value, routes]) => ({ value, routes }),
+      ),
+      duplicateIndexableDescriptions: duplicateIndexableDescriptions.map(
+        ([value, routes]) => ({ value, routes }),
+      ),
+      duplicateNoindexTitles: duplicateNoindexTitles.map(([value, routes]) => ({
+        value,
+        routes,
+      })),
+      duplicateNoindexDescriptions: duplicateNoindexDescriptions.map(
+        ([value, routes]) => ({ value, routes }),
+      ),
+    },
     summary: {
       pages: pages.length,
       indexable: pages.filter((page) => page.indexable).length,

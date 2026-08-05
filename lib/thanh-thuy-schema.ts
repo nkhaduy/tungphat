@@ -36,7 +36,7 @@ export function createThanhThuyProductSchema(
     "@type": "Product",
     name: product.name,
     url: absoluteUrl(path),
-    brand: { "@type": "Brand", name: "Thanh Thùy" },
+    brand: { "@type": "Brand", name: "Thanh Thuỳ" },
   };
   if (product.code) schema.sku = product.code;
   if (product.categoryName) schema.category = product.categoryName;
@@ -86,7 +86,9 @@ export function createThanhThuyItemListSchema(
     name,
     numberOfItems: items.length,
     itemListElement: items.map((item, index) => {
-      const path = item.path || item.url ||
+      const path =
+        item.path ||
+        item.url ||
         (item.categorySlug && item.slug
           ? `/san-pham/${item.categorySlug}/${item.slug}/`
           : "/thuong-hieu/thanh-thuy/");

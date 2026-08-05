@@ -65,6 +65,7 @@ describe("Thanh Thuy JSON-LD", () => {
     expect(schema.url).toBe(
       "https://mdftungphat.com/san-pham/melamine/lp-101-104g/",
     );
+    expect(schema.brand).toEqual({ "@type": "Brand", name: "Thanh Thuỳ" });
     expect(schema).not.toHaveProperty("offers");
   });
 
@@ -73,14 +74,21 @@ describe("Thanh Thuy JSON-LD", () => {
       { name: "Trang chủ", path: "/" },
       { name: "Melamine", path: "/san-pham/melamine/" },
     ]) as Record<string, unknown>;
-    const breadcrumbItems = breadcrumbs.itemListElement as Array<Record<string, unknown>>;
+    const breadcrumbItems = breadcrumbs.itemListElement as Array<
+      Record<string, unknown>
+    >;
     expect(breadcrumbItems[1].item).toBe(
       "https://mdftungphat.com/san-pham/melamine/",
     );
 
-    const itemList = createThanhThuyItemListSchema([record], "Melamine Thanh Thùy") as Record<string, unknown>;
+    const itemList = createThanhThuyItemListSchema(
+      [record],
+      "Melamine Thanh Thùy",
+    ) as Record<string, unknown>;
     expect(itemList["@type"]).toBe("ItemList");
-    const listItems = itemList.itemListElement as Array<Record<string, unknown>>;
+    const listItems = itemList.itemListElement as Array<
+      Record<string, unknown>
+    >;
     expect(listItems[0].url).toContain("mdftungphat.com/san-pham/melamine/");
   });
 });
