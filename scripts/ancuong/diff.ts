@@ -22,6 +22,10 @@ export interface CatalogueDiff {
   summary: Record<DiffClassification, number>;
 }
 
+export function buildDiffReport(result: CatalogueDiff): Pick<CatalogueDiff, "entries" | "summary"> {
+  return { entries: result.entries, summary: result.summary };
+}
+
 const CLASSIFICATION_ORDER: DiffClassification[] = ["INVALID", "NEW", "UPDATED", "MEDIA_CHANGED", "RELATION_CHANGED", "DUPLICATE", "MISSING_FROM_SOURCE", "UNCHANGED"];
 
 function canonicalUrl(url: string): string {
@@ -138,6 +142,6 @@ export async function run(options: CliOptions): Promise<CatalogueDiff> {
   const current = recordsFrom(await readJsonIfExists(path.join(paths.normalized, "catalogue.json")));
   const previous = recordsFrom(await readJsonIfExists(path.join(paths.export, "catalogue.json")));
   const result = diffCatalogues(previous, current);
-  if (!options.dryRun) await atomicWriteJson(path.join(paths.reports, "latest-diff.json"), result);
+  if (!options.dryRun) await atomicWriteJson(path.join(paths.reports, "latest-diff.json"), buildDiffReport(result));
   return result;
 }
