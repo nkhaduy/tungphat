@@ -31,7 +31,12 @@ describe("Thanh Thuy metadata", () => {
     expect(metadata.alternates?.canonical).toBe(
       "https://mdftungphat.com/san-pham/melamine/lp-101-104g/",
     );
-    expect(metadata.title).toContain("LP 101/104G");
+    expect(metadata.title).toMatchObject({
+      absolute: expect.stringContaining("LP 101/104G"),
+    });
+    expect(metadata.title).toMatchObject({
+      absolute: expect.not.stringContaining("Tùng Phát | Tùng Phát"),
+    });
     expect(metadata.description).toContain("Melamine");
     expect(metadata.robots).toMatchObject({ index: true, follow: true });
   });
