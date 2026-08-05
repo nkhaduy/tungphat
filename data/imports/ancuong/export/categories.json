@@ -1,5 +1,5 @@
 {
-  "exportTime": "2026-08-05T02:29:15.646Z",
+  "exportTime": "2026-08-05T14:17:04.510Z",
   "parserVersion": "1.0.0",
   "records": [
     {
@@ -235,9 +235,7 @@
       "sourceUrl": "https://ancuong.com/tam-wall-ceiling.html"
     },
     {
-      "catalogueUrls": [
-        "https://catalogue.ancuong.com/veneer/"
-      ],
+      "catalogueUrls": ["https://catalogue.ancuong.com/veneer/"],
       "name": "Veneer",
       "productCount": 108,
       "slug": "veneer",
