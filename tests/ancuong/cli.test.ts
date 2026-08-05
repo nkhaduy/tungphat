@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseCliArgs } from "@/scripts/ancuong/cli";
+import { PIPELINE_STEPS, parseCliArgs } from "@/scripts/ancuong/cli";
 
 describe("An Cuong CLI", () => {
   it("parses every supported shared option", () => {
@@ -36,5 +36,11 @@ describe("An Cuong CLI", () => {
   it("rejects unsafe concurrency and unknown options", () => {
     expect(() => parseCliArgs(["discover", "--concurrency=0"])).toThrow(/concurrency/i);
     expect(() => parseCliArgs(["discover", "--unknown"])).toThrow(/unknown/i);
+  });
+
+  it("orders normalization before media so media receives normalized image URLs", () => {
+    expect(PIPELINE_STEPS).toEqual([
+      "discover", "crawl:listings", "crawl:details", "crawl:relations", "normalize", "media", "validate", "diff", "export", "report"
+    ]);
   });
 });
