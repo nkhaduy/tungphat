@@ -1,7 +1,9 @@
 # An Cuong Data Dictionary
 
-Schema version: `1.0.0`  
-Parser version: `1.0.0`  
+Schema version: `1.0.0`
+
+Parser version: `1.0.0`
+
 Machine schema: `schemas/ancuong-catalogue.schema.json`
 
 ## Identity
@@ -50,4 +52,3 @@ Machine schema: `schemas/ancuong-catalogue.schema.json`
 - `discoveredAt`, `fetchedAt`, `sourceUpdatedAt`: source lifecycle timestamps.
 - `status`: `active`, `changed`, `missing`, `invalid`, `duplicate`, or `source-unavailable`.
 - `parserVersion`: parser contract version used to create the record.
-

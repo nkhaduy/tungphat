@@ -38,4 +38,3 @@ This branch contains only the An Cuong crawler and import data contract. It does
 - Integration contract: `data/imports/ancuong/export/`
 
 Large raw/state/media/cache/log paths are ignored by Git. Reviewable fixtures, manifests, reports, schemas, and sample exports are retained.
-
