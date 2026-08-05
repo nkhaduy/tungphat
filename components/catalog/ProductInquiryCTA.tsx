@@ -13,7 +13,7 @@ export function ProductInquiryCTA({ code }: { code?: string }) {
         rel="noopener noreferrer"
         eventName="request_quote"
         eventProperties={{ location: "ba_thanh_catalogue", channel: "zalo" }}
-        className="group inline-flex min-h-12 touch-manipulation items-center justify-center gap-2 bg-wood-500 px-4 text-sm font-extrabold text-white transition-[transform,background-color] duration-[180ms] ease-out hover:-translate-y-0.5 hover:bg-wood-600 focus-visible:ring-2 focus-visible:ring-wood-500 focus-visible:ring-offset-2 active:scale-[.97] motion-reduce:transform-none motion-reduce:transition-none"
+        className="group inline-flex min-h-12 touch-manipulation items-center justify-center gap-2 bg-wood-700 px-4 text-sm font-extrabold text-white transition-[transform,background-color] duration-[180ms] ease-out hover:-translate-y-0.5 hover:bg-wood-800 focus-visible:ring-2 focus-visible:ring-wood-700 focus-visible:ring-offset-2 active:scale-[.97] motion-reduce:transform-none motion-reduce:transition-none"
       >
         <MessageCircle size={17} aria-hidden="true" /> Gửi mã qua Zalo
       </TrackedLink>

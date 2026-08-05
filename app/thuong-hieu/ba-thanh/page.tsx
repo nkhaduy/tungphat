@@ -46,11 +46,11 @@ export default function BaThanhBrandPage() {
               <Link href="/" className="min-h-11 content-center hover:text-white">Trang chủ</Link><span aria-hidden="true">/</span><span className="text-white" aria-current="page">Thương hiệu Ba Thanh</span>
             </nav>
             <div className="mt-12 max-w-4xl">
-              <p className="eyebrow text-wood-300">NHÓM VẬT LIỆU TẠI TÙNG PHÁT</p>
+              <p className="eyebrow eyebrow-on-dark">NHÓM VẬT LIỆU TẠI TÙNG PHÁT</p>
               <h1 className="mt-5 max-w-3xl text-balance font-display text-4xl font-extrabold leading-[1.1] tracking-[-.04em] sm:text-5xl lg:text-7xl">Ba Thanh, tra đúng mã để làm đúng hạng mục.</h1>
               <p className="mt-6 max-w-2xl text-pretty text-base leading-8 text-white/72 sm:text-lg">Tùng Phát cung cấp và nhận kiểm tra các dòng ván, bề mặt và mã Melamine Ba Thanh theo nhu cầu thực tế. Gửi mã, quy cách và file gia công để đội ngũ tư vấn sát với đơn hàng.</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <Link href="/ma-mau-melamine/ba-thanh/" className="inline-flex min-h-13 items-center justify-center gap-2 bg-wood-500 px-6 text-sm font-extrabold text-white transition-[transform,background-color] duration-[180ms] ease-out hover:-translate-y-0.5 hover:bg-wood-600 active:scale-[.97]">Mở bảng mã Melamine <ArrowRight size={17} aria-hidden="true" /></Link>
+                <Link href="/ma-mau-melamine/ba-thanh/" className="inline-flex min-h-13 items-center justify-center gap-2 bg-wood-700 px-6 text-sm font-extrabold text-white transition-[transform,background-color] duration-[180ms] ease-out hover:-translate-y-0.5 hover:bg-wood-800 active:scale-[.97]">Mở bảng mã Melamine <ArrowRight size={17} aria-hidden="true" /></Link>
                 <Link href="/lien-he/" className="inline-flex min-h-13 items-center justify-center border border-white/25 px-6 text-sm font-extrabold text-white transition-colors hover:border-white">Trao đổi nhu cầu</Link>
               </div>
             </div>
@@ -80,7 +80,7 @@ export default function BaThanhBrandPage() {
 
         <section className="bg-forest-950 py-16 text-white lg:py-24">
           <div className="container-shell grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-start">
-            <div><p className="eyebrow text-wood-300">CÁCH ĐẶT HÀNG THEO MÃ</p><h2 className="mt-4 font-display text-3xl font-extrabold tracking-[-.035em] sm:text-5xl">Một tin nhắn đủ dữ liệu sẽ tiết kiệm nhiều vòng hỏi lại.</h2><p className="mt-5 leading-7 text-white/70">Gửi mã hiển thị, loại cốt ván mong muốn, kích thước cắt, độ dày, số lượng và file CNC nếu có. Tùng Phát sẽ kiểm tra lại mã và quy cách trước khi báo giá.</p></div>
+            <div><p className="eyebrow eyebrow-on-dark">CÁCH ĐẶT HÀNG THEO MÃ</p><h2 className="mt-4 font-display text-3xl font-extrabold tracking-[-.035em] sm:text-5xl">Một tin nhắn đủ dữ liệu sẽ tiết kiệm nhiều vòng hỏi lại.</h2><p className="mt-5 leading-7 text-white/70">Gửi mã hiển thị, loại cốt ván mong muốn, kích thước cắt, độ dày, số lượng và file CNC nếu có. Tùng Phát sẽ kiểm tra lại mã và quy cách trước khi báo giá.</p></div>
             <ol className="grid gap-3 sm:grid-cols-2">
               {["Chọn mã trong bảng màu", "Nêu MDF, MDF chống ẩm hoặc MFC", "Gửi kích thước và số lượng", "Xác nhận cắt, dán cạnh hoặc CNC"].map((step, index) => <li key={step} className="flex gap-4 border border-white/12 bg-white/[.04] p-5"><span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-wood-500 text-sm font-extrabold">{index + 1}</span><span className="pt-1 text-sm font-bold leading-6 text-white/85">{step}</span></li>)}
             </ol>

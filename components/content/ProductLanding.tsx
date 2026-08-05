@@ -70,7 +70,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
               <h1 className="mt-4 text-balance text-4xl font-extrabold leading-tight sm:text-5xl">{product.title}</h1>
               <p className="mt-6 max-w-3xl text-pretty leading-8 text-white/80">{product.excerpt}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: `${product.slug}_hero` }} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-7 text-sm font-bold text-white"><MessageCircle size={18} />{product.quoteCta}</TrackedLink>
+                <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: `${product.slug}_hero` }} className="inline-flex min-h-14 items-center justify-center gap-2 bg-wood-700 px-7 text-sm font-bold text-white"><MessageCircle size={18} />{product.quoteCta}</TrackedLink>
                 <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: `${product.slug}_hero` }} className="inline-flex min-h-14 items-center justify-center gap-2 border border-white/35 px-7 text-sm font-bold text-white"><Phone size={18} />Gọi {PHONE_DISPLAY}</TrackedLink>
               </div>
             </div>

@@ -101,7 +101,7 @@ export function ContactHero({ description, zaloUrl }: ContactHeroProps) {
               rel="noopener noreferrer"
               eventName="click_zalo"
               eventProperties={{ location: "contact_hero" }}
-              className="inline-flex min-h-[52px] items-center justify-center gap-2 bg-wood-500 px-6 text-sm font-bold text-white transition-colors hover:bg-wood-600"
+              className="inline-flex min-h-[52px] items-center justify-center gap-2 bg-wood-700 px-6 text-sm font-bold text-white transition-colors hover:bg-wood-800"
             >
               <MessageCircle size={18} aria-hidden="true" />
               Liên hệ Zalo

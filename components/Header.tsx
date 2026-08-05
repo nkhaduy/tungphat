@@ -387,7 +387,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
               onClick={() =>
                 trackEvent("click_phone", { location: "mobile_header" })
               }
-              className="flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-4 font-bold text-white"
+              className="flex min-h-12 items-center justify-center gap-2 bg-wood-700 px-4 font-bold text-white"
             >
               <Phone size={17} /> {t.callLabel}
             </a>

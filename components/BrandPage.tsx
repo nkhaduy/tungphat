@@ -80,7 +80,7 @@ export function BrandPage({ brand }: { brand: Brand }) {
               <h2 className="text-2xl font-extrabold text-forest-950 sm:text-3xl">Sản phẩm {brand.name}</h2>
               <p className="mt-3 text-sm text-slate-600">Thông tin sản phẩm đang được cập nhật.</p>
             </div>
-            <a href="https://zalo.me/0909259160" target="_blank" rel="noopener noreferrer" aria-label="Yêu cầu báo giá" className="inline-flex min-h-12 w-fit items-center gap-2 bg-wood-500 px-5 text-sm font-bold text-white">Yêu cầu báo giá <MessageCircle size={17} /></a>
+            <a href="https://zalo.me/0909259160" target="_blank" rel="noopener noreferrer" aria-label="Yêu cầu báo giá" className="inline-flex min-h-12 w-fit items-center gap-2 bg-wood-700 px-5 text-sm font-bold text-white">Yêu cầu báo giá <MessageCircle size={17} /></a>
           </div>
 
           <fieldset disabled className="mt-8">
