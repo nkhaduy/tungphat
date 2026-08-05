@@ -1,18 +1,28 @@
-# An Cuong Media Report
+# An Cuong Full Media Report
 
-Representative live sample results:
+## Discovery
 
-- Media records: 20.
-- Locally stored checksum owners: 10.
-- Duplicate records by checksum: 10.
-- Invalid: 0.
-- Missing: 0.
-- Failed: 0.
-- Downloaded owner bytes: 41,928,893.
-- MIME types observed: JPEG.
-- Hosts observed: `ancuong.com` and `acshopping.ancuong.com`.
+- Product media references: 7,267.
+- Unique URLs: 4,584.
+- Duplicate URL references: 2,683.
+- Primary: 2,682.
+- Gallery: 2,682.
+- Application: 1,903.
+- Invalid URLs: 0.
+- External domains: 0.
+- URLs shared across multiple products: 1.
 
-The downloader verifies magic bytes rather than trusting the declared MIME, reads dimensions without upscaling or colour changes, rejects HTML challenges and corrupt payloads, hashes SHA-256, writes atomically, and stores source URL plus local path. Media files are ignored by Git; `data/imports/ancuong/normalized/media-manifest.json` is the reproducible review artifact.
+UI icons, navigation images, tracking pixels, generic logos, social images, cookie assets, analytics, and challenge content are not included. Application images are classified from An Cuong's `Upload/MaterialApp` source path rather than mixed into generic gallery records.
 
-No image was processed by AI, upscaled, recoloured, or converted. No source image is intended to be hotlinked by the later website integration.
+## Binary status
 
+Full binary download was not started because the filesystem failed the required 20% post-download free-space reserve before download. Existing ignored seven-product sample files remain untouched.
+
+- Downloaded during full run: 0.
+- Full-run checksum owners: not available until binary download.
+- Estimated low: 9.38 GB (8.73 GiB).
+- Estimated middle: 19.22 GB (17.90 GiB).
+- Estimated conservative: 30.47 GB (28.38 GiB).
+- Completion status: `discovery-only`; `mediaComplete: false`.
+
+The manifest is complete for URL discovery and retains the checksum-deduplication strategy for a future storage-approved download.

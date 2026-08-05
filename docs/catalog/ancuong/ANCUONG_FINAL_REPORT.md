@@ -1,43 +1,21 @@
 # An Cuong Crawler Final Report
 
-## Git Isolation
+## Completed scope
 
-- Base branch: `origin/main`.
-- Base commit: `ed07a2ad86c8971a5bd3831f96c83fd38c2900f4`.
-- Working branch: `codex/ancuong-catalog-crawler`.
-- Started: 2026-08-04 16:38:46 +07:00.
-- Original dirty workspace was preserved; this work used a separate worktree.
-- No merge, push, production mutation, or deployment was performed.
+- Full discovery: 33 categories, 16 facets, 2,682 unique product URLs.
+- Full detail crawl: 2,682 fetched/parsed/normalized/validated; zero missing or failed.
+- Taxonomy: 33 categories, 11 currently/listing empty, 222 facet values, zero slug collisions.
+- Factual relationship graph: 26,158 edges; 178 unresolved source targets retained as warnings.
+- Full media discovery: 7,267 references and 4,584 unique URLs.
+- Full binary media download: not performed because the storage reserve failed.
+- Second cache-only run: 2,682 unchanged, all change/error classes zero, canonical checksum diff none.
 
-## Delivered
+## Export contract
 
-- HTTP-first SSR discovery, listing, detail, relation, media, normalization, validation, diff, export, and reporting pipeline.
-- Atomic checkpoint/resume support, retry and pacing, URL allowlist, challenge stop behavior, stable hashes, deduplication, and idempotent exports.
-- TypeScript contracts and JSON Schema for the integration branch.
-- Offline parser, retry, state, atomic-write, media, validation, diff, export, normalization, and fixture integration tests.
-- Complete discovery of 33 categories and 2,682 unique product URLs.
-- Representative live sample of 7 products covering required material groups and facets.
+`export-manifest.json` records schema/parser versions, source root, discovery/product/category/relation/media counts, validation status, dataset/file checksums, `fullCrawl: true`, `mediaComplete: false`, and known limitations. Dataset checksum: `9c2268e805d3655f2804dc2278c372abdb676223915d717ae01988a7a43c0203`.
 
-## Live Sample
+## Safety and limitations
 
-- Products fetched and parsed: 7.
-- Explicit relations: 65 (`same-color` 7, `same-line` 52, `application` 6).
-- Media records: 20; invalid/missing/failed: 0.
-- Validation errors: 0.
-- Second-run diff: 7 unchanged, all other classes 0.
+The run used HTTP-first SSR access, concurrency 2, jitter, bounded retries, atomic checkpoints, and no CAPTCHA/rate-limit bypass. No production data was mutated, no deployment or merge was performed, and large raw/runtime/media binary paths remain ignored.
 
-## Operational Limit
-
-The full 2,682-detail and complete media crawl was not run during this implementation session. The source did not require CAPTCHA bypass or browser automation; the limitation is the intentionally conservative request volume and media size. The pipeline is complete and resumable using commands in `ANCUONG_CRAWLER_RUNBOOK.md`. This report does not claim a completed full detail/media crawl.
-
-## Integration Contract
-
-- `data/imports/ancuong/export/catalogue.json`
-- `data/imports/ancuong/export/categories.json`
-- `data/imports/ancuong/export/taxonomy.json`
-- `data/imports/ancuong/export/relations.json`
-- `data/imports/ancuong/export/media.json`
-- `data/imports/ancuong/export/export-manifest.json`
-
-Recommended next branch: `codex/ancuong-catalog-seo-integration`. Its scope should consume only validated factual/technical fields and local media references, rewrite any public copy, and independently verify commercial relationship claims.
-
+The only integration limitation is full binary media availability. The complete URL manifest and checksum-deduplication strategy allow a later consumer to fetch selected media on demand while accurately retaining `mediaComplete: false`.

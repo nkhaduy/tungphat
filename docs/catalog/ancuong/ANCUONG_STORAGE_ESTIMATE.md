@@ -54,3 +54,13 @@ Additional free capacity required before download, including the 20% post-downlo
 - Conservative scenario: 56.77 GiB
 
 The existing sample files may remain in the ignored media directory. No personal files or repository data will be deleted to create space. Final reports must state `mediaComplete: false` unless a later storage measurement passes this gate and all discovered media reach a terminal status.
+
+## Post-discovery revision
+
+Full detail parsing discovered 7,267 product media references and 4,584 unique URLs. Applying the sample size evidence to the URL-level inventory gives:
+
+- Low: 9.38 GB (8.73 GiB).
+- Middle: 19.22 GB (17.90 GiB).
+- Conservative: 30.47 GB (28.38 GiB).
+
+The post-discovery filesystem measurement reported 20.61 GiB available, still below the 45.65 GiB 20% reserve before downloading anything. Approximate additional free capacity required while retaining the reserve is 33.77 GiB (low), 42.94 GiB (middle), or 53.42 GiB (conservative). The no-download decision remains unchanged.

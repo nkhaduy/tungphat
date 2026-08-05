@@ -10,7 +10,7 @@
 
 ## Global Constraints
 
-- Work only in `/Users/khaduy/Downloads/tungphat-release-20260718-ancuong` on `codex/ancuong-catalog-crawler`.
+- Work only in the dedicated linked worktree on `codex/ancuong-catalog-crawler`.
 - Use HTTP-first crawling with concurrency `2`, jitter, at most three retries, `Retry-After` compliance, and no CAPTCHA/rate-limit bypass.
 - Keep at least 20% filesystem capacity and 10 GiB free after any media download estimate.
 - Do not merge, deploy, mutate production, rotate proxies, or create the SEO integration branch.
