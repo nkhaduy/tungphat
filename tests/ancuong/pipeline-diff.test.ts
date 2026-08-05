@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { diffCatalogues } from "../../scripts/ancuong/diff";
+import { buildDiffReport, diffCatalogues } from "../../scripts/ancuong/diff";
 
 function product(overrides: Record<string, unknown> = {}) {
   return {
@@ -23,6 +23,13 @@ function product(overrides: Record<string, unknown> = {}) {
 }
 
 describe("An Cuong catalogue diff", () => {
+  it("writes a compact report without duplicating the full catalogue", () => {
+    const result = diffCatalogues([], [product()]);
+    const report = buildDiffReport(result);
+    expect(report).toEqual({ entries: result.entries, summary: result.summary });
+    expect(report).not.toHaveProperty("catalogue");
+  });
+
   it("classifies content, relation and media changes independently", () => {
     const previous = [
       product(),
