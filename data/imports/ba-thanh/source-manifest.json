@@ -1,7 +1,7 @@
 {
   "indexUrl": "https://bathanh.com.vn/map-ma-melamine",
   "robotsUrl": "https://bathanh.com.vn/robots.txt",
-  "crawledAt": "2026-08-05T08:56:41.072Z",
+  "crawledAt": "2026-08-05T09:59:30.756Z",
   "httpStatus": {
     "robots": 200,
     "index": 200
@@ -5062,7 +5062,7 @@
       "images": [
         "https://bathanh.com.vn/wp-content/uploads/2024/03/SC-015-e1710320030779.jpg"
       ],
-      "indexCodeRaw": "BTSC015"
+      "indexCodeRaw": "SC015M"
     },
     {
       "url": "https://bathanh.com.vn/sc016",
@@ -5174,7 +5174,7 @@
       "images": [
         "https://bathanh.com.vn/wp-content/uploads/2024/03/SC-013-e1710320078496.jpg"
       ],
-      "indexCodeRaw": "BTSC013"
+      "indexCodeRaw": "SC013M"
     },
     {
       "url": "https://bathanh.com.vn/btsc014",
@@ -5202,7 +5202,7 @@
       "images": [
         "https://bathanh.com.vn/wp-content/uploads/2024/03/SC-014-e1710320054476.jpg"
       ],
-      "indexCodeRaw": "BTSC014"
+      "indexCodeRaw": "SC014M"
     },
     {
       "url": "https://bathanh.com.vn/sc011mw",
@@ -5286,7 +5286,7 @@
       "images": [
         "https://bathanh.com.vn/wp-content/uploads/2024/03/SC-011-e1710320125471.jpg"
       ],
-      "indexCodeRaw": "BTSC011"
+      "indexCodeRaw": "SC011M"
     },
     {
       "url": "https://bathanh.com.vn/btsc012",
@@ -5314,7 +5314,7 @@
       "images": [
         "https://bathanh.com.vn/wp-content/uploads/2024/03/SC-012-e1710320103647.jpg"
       ],
-      "indexCodeRaw": "BTSC012"
+      "indexCodeRaw": "SC012M"
     },
     {
       "url": "https://bathanh.com.vn/sc009mw",
@@ -5398,7 +5398,7 @@
       "images": [
         "https://bathanh.com.vn/wp-content/uploads/2024/03/SC-009-e1710320168943.jpg"
       ],
-      "indexCodeRaw": "BTSC009"
+      "indexCodeRaw": "SC009M"
     },
     {
       "url": "https://bathanh.com.vn/btsc010",
@@ -5426,7 +5426,7 @@
       "images": [
         "https://bathanh.com.vn/wp-content/uploads/2024/03/SC-010-e1710320147995.jpg"
       ],
-      "indexCodeRaw": "BTSC010"
+      "indexCodeRaw": "SC010M"
     },
     {
       "url": "https://bathanh.com.vn/sc-007mw-solid-color",
@@ -5687,7 +5687,7 @@
         "https://bathanh.com.vn/wp-content/uploads/2022/04/SC-003.jpg",
         "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-003-MW-MAU-THUC-TE-MELAMINE.jpg"
       ],
-      "indexCodeRaw": "BTSC003"
+      "indexCodeRaw": "SC003MW"
     },
     {
       "url": "https://bathanh.com.vn/sc-004mw-solid-color",
@@ -5716,7 +5716,7 @@
         "https://bathanh.com.vn/wp-content/uploads/2022/04/SC-004.jpg",
         "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-004-MW-MAU-THUC-TE-MELAMINE.jpg"
       ],
-      "indexCodeRaw": "BTSC004"
+      "indexCodeRaw": "SC004MW"
     },
     {
       "url": "https://bathanh.com.vn/sc-003m-solid-color",
@@ -5747,7 +5747,7 @@
         "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-003-02-1.jpg",
         "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-003-M-MAU-THUC-TE-MELAMINE.jpg"
       ],
-      "indexCodeRaw": "BTSC003"
+      "indexCodeRaw": "SC003M"
     },
     {
       "url": "https://bathanh.com.vn/sc-004m-solid-color",
@@ -5778,7 +5778,7 @@
         "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-004-02-1.jpg",
         "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-004-M-MAU-THUC-TE-MELAMINE.jpg"
       ],
-      "indexCodeRaw": "BTSC004"
+      "indexCodeRaw": "SC004M"
     },
     {
       "url": "https://bathanh.com.vn/bt-sc001mw-solid-color",
@@ -5806,7 +5806,7 @@
       "images": [
         "https://bathanh.com.vn/wp-content/uploads/2022/04/SC-001.jpg"
       ],
-      "indexCodeRaw": "BTSC001"
+      "indexCodeRaw": "SC001MW"
     },
     {
       "url": "https://bathanh.com.vn/sc-002mw-solid-color",
@@ -5835,7 +5835,7 @@
         "https://bathanh.com.vn/wp-content/uploads/2022/04/SC-002MW.jpg",
         "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-002-MW-MAU-THUC-TE-MELAMINE.jpg"
       ],
-      "indexCodeRaw": "BTSC002"
+      "indexCodeRaw": "SC002MW"
     },
     {
       "url": "https://bathanh.com.vn/sc-001m-solid-color",
@@ -5865,7 +5865,7 @@
         "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-001-01-1.jpg",
         "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-001-02-1.jpg"
       ],
-      "indexCodeRaw": "BTSC001"
+      "indexCodeRaw": "SC001M"
     },
     {
       "url": "https://bathanh.com.vn/sc-002m-solid-color",
@@ -5895,7 +5895,7 @@
         "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-002-01-1.jpg",
         "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-002-02-1.jpg"
       ],
-      "indexCodeRaw": "BTSC002"
+      "indexCodeRaw": "SC002M"
     },
     {
       "url": "https://bathanh.com.vn/bt-xam-solid-color",
@@ -6482,7 +6482,7 @@
       "images": [
         "https://bathanh.com.vn/wp-content/uploads/2025/07/S11G-e1751620410607.jpg"
       ],
-      "indexCodeRaw": "S11G"
+      "indexCodeRaw": "BTS11G"
     },
     {
       "url": "https://bathanh.com.vn/bts12",
@@ -6510,7 +6510,7 @@
       "images": [
         "https://bathanh.com.vn/wp-content/uploads/2025/07/S12G-e1751620443638.jpg"
       ],
-      "indexCodeRaw": "S12G"
+      "indexCodeRaw": "BTS12G"
     },
     {
       "url": "https://bathanh.com.vn/bt-s8-stone",

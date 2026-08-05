@@ -180,13 +180,13 @@ export function recognizeBaThanhDetail(
     ...headingText.matchAll(/\bBT[-_ ]?\d{1,4}[A-Z]?\b/g),
   ].map((match) => normalizeSupplierCode(match[0]).normalized);
   const isMelamine = /MELAMINE|WOOD\s*GRAINS?|SOLID\s*COLOR|STONE|VAN\s*(?:GO|DA|VAI)|DON\s*SAC/i.test(asciiFold(`${heading} ${stripTags(detailContent).slice(0, 800)}`));
-  const expectedDisplay = normalizeSupplierCode(input.expectedCode).display;
-  const expectedTokens = asciiFold(expectedDisplay).split(/\s+/).filter((token) => token !== "BT" && token.length > 1);
   const headingAscii = asciiFold(heading);
+  const headingCompact = headingAscii.replace(/[^A-Z0-9]/g, "");
   const namedExpected = !/\d/.test(expected);
-  const namedMatch = namedExpected && isMelamine && (
-    /SOLID\s*COLOR|MELAMINE/.test(headingAscii) || expectedTokens.some((token) => headingAscii.includes(token))
-  );
+  const expectedName = expected.replace(/^BT/, "");
+  const namedAliases: Record<string, string[]> = { BTXANHBIEN: ["XANHDUONG"] };
+  const namedMatch = namedExpected && isMelamine && [expectedName, ...(namedAliases[expected] || [])]
+    .some((candidate) => candidate.length > 1 && headingCompact.includes(candidate));
   const verifiedCodeRaw = headingCodes[0] || (namedMatch ? input.expectedCode : "");
   const verified = verifiedCodeRaw ? normalizeSupplierCode(verifiedCodeRaw).normalized : "";
   const images = [...detailContent.matchAll(/<img\b([^>]*)>/gi)]
