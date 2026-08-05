@@ -1,0 +1,62 @@
+{
+  "branch": "codex/ancuong-catalog-crawler",
+  "completedAt": "2026-08-05T06:05:49Z",
+  "headAtStart": "167b9f9653f018d561c498e54e868012b011aa86",
+  "commands": [
+    {
+      "command": "npm run catalog:ancuong:sample",
+      "durationSeconds": 27.33,
+      "exitCode": 0,
+      "status": "passed"
+    },
+    {
+      "command": "npm run catalog:ancuong:validate",
+      "durationSeconds": 0.59,
+      "exitCode": 0,
+      "status": "passed"
+    },
+    {
+      "command": "npm test",
+      "durationSeconds": 2.57,
+      "exitCode": 0,
+      "status": "passed",
+      "testFiles": 30,
+      "tests": 154
+    },
+    {
+      "command": "npm run typecheck",
+      "durationSeconds": 3.88,
+      "exitCode": 0,
+      "status": "passed"
+    },
+    {
+      "command": "npm run lint",
+      "durationSeconds": 5.34,
+      "exitCode": 0,
+      "status": "passed"
+    },
+    {
+      "command": "npm run build",
+      "durationSeconds": 13.55,
+      "exitCode": 0,
+      "status": "passed"
+    }
+  ],
+  "discovery": {
+    "categories": 33,
+    "facets": 16,
+    "productUrls": 2682
+  },
+  "sample": {
+    "details": 7,
+    "mediaReferences": 20,
+    "relations": 65
+  },
+  "validation": {
+    "errors": 0,
+    "warnings": 0,
+    "status": "passed"
+  },
+  "canonicalDiffAfterRepeatSample": "none",
+  "fullDetailCrawlAuthorized": true
+}
