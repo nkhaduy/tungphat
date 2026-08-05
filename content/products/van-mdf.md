@@ -129,3 +129,7 @@ Các thông tin trên giúp kiểm tra mã, quy cách, tình trạng cung cấp 
 Một yêu cầu rõ nên có số tấm nguyên hoặc danh sách chi tiết, độ dày, bề mặt, yêu cầu dán cạnh và các thao tác CNC. Không gửi thông tin cá nhân hoặc file thiết kế vào analytics; file kỹ thuật hiện được trao đổi qua kênh đã xác nhận với Tùng Phát.
 
 Nếu hạng mục dùng bề mặt trang trí, có thể [tra cứu mã Melamine Thanh Thuỳ](/san-pham/melamine/) và gửi kèm mã màu để Tùng Phát kiểm tra khả năng phối với cốt MDF, chỉ nẹp và quy cách gia công.
+
+## MDF phủ Melamine theo mã
+
+Khi cần MDF phủ bề mặt Ba Thanh, hãy tra [mã Melamine Ba Thanh](/ma-mau-melamine/ba-thanh/) rồi gửi kèm loại MDF, độ dày, số lượng và kích thước. Mã màu không thay thế bước xác nhận cốt ván và quy cách thực tế.

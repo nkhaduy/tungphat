@@ -6,6 +6,7 @@ import { isReservedRootSlug } from "@/lib/reserved-slugs";
 import staticPages from "@/content/settings/static-pages.json";
 import { getThanhThuyCatalog } from "@/lib/thanh-thuy";
 import { buildThanhThuySitemapEntries } from "@/lib/thanh-thuy-sitemap";
+import { getBaThanhSitemapPaths } from "@/lib/catalog/ba-thanh-seo";
 
 export const dynamic = "force-static";
 
@@ -31,5 +32,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const articleEntries: MetadataRoute.Sitemap = articles.map((entry) => ({ url: absoluteUrl(`/bai-viet/${entry.slug}/`), lastModified: entry.updatedAt, changeFrequency: "monthly", priority: 0.7 }));
   const projectEntries: MetadataRoute.Sitemap = projects.map((entry) => ({ url: absoluteUrl(`/du-an/${entry.slug}/`), lastModified: entry.updatedAt, changeFrequency: "monthly", priority: 0.7 }));
   const thanhThuy = buildThanhThuySitemapEntries(getThanhThuyCatalog(), staticPages.updatedAt);
-  return [...staticEntries, ...products, ...services, ...articleEntries, ...projectEntries, ...thanhThuy];
+  const baThanhEntries: MetadataRoute.Sitemap = getBaThanhSitemapPaths().map((route, index) => ({
+    url: absoluteUrl(route),
+    lastModified: staticPages.updatedAt,
+    changeFrequency: index < 2 ? "weekly" : "monthly",
+    priority: index < 2 ? 0.8 : 0.65,
+  }));
+  return [...staticEntries, ...products, ...services, ...articleEntries, ...projectEntries, ...thanhThuy, ...baThanhEntries];
 }

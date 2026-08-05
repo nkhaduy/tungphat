@@ -192,3 +192,7 @@ Khách hàng có thể xem [thông tin liên hệ Tùng Phát](/lien-he/) để 
 Tùng Phát chỉ xác nhận báo giá sau khi xem vật liệu, độ dày, khối lượng và độ phức tạp. Các trường giá được để cho người quản trị cập nhật khi có dữ liệu thật, không tự sinh từ nội dung mẫu.
 
 Khi MDF được phủ Melamine, Laminate hoặc Acrylic, hãy gửi thêm mã bề mặt. Có thể bắt đầu từ [nhóm sản phẩm Thanh Thuỳ](/thuong-hieu/thanh-thuy/) rồi xác nhận mẫu thực tế trước khi chốt file CNC.
+
+## Gia công theo mã Melamine
+
+Với chi tiết đã chọn bề mặt Ba Thanh, hãy gửi [mã Melamine Ba Thanh](/ma-mau-melamine/ba-thanh/) cùng hướng vân, kích thước và file CNC. Màu trên màn hình chỉ để tham khảo; mẫu thực tế cần được xác nhận trước khi chạy số lượng.

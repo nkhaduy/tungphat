@@ -137,3 +137,7 @@ Các thông tin này giúp kiểm tra mã hàng, quy cách và báo giá thực 
 Cho biết vị trí sử dụng, độ dày, kích thước, bề mặt và số lượng. Nếu cần cắt CNC, hãy bổ sung định dạng file và yêu cầu cạnh để Tùng Phát kiểm tra cùng vật liệu.
 
 Với hạng mục cần phủ bề mặt, khách hàng có thể [xem catalogue mã màu Thanh Thuỳ](/thuong-hieu/thanh-thuy/) rồi gửi mã đã chọn để đối chiếu mẫu, nền ván và cạnh hoàn thiện.
+
+## Kết hợp cốt chống ẩm và mã bề mặt
+
+Nếu hạng mục dùng bề mặt Ba Thanh, có thể tra [bảng màu Melamine Ba Thanh](/ma-mau-melamine/ba-thanh/) và gửi mã cùng yêu cầu cốt chống ẩm. Tùng Phát sẽ kiểm tra hai phần riêng biệt, không suy ra khả năng chống ẩm từ màu bề mặt.

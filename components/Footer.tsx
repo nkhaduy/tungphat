@@ -62,7 +62,7 @@ export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
                   <div className="space-y-4">
                     {locations.map((location) => (
                       <p key={location.id}>
-                        <span className="mb-1 block text-[.7rem] font-bold uppercase tracking-widest text-wood-500/90">
+                        <span className="mb-1 block text-[.7rem] font-bold uppercase tracking-widest text-[#f0a66f]">
                           {location.shortId}
                         </span>
                         <span className="font-semibold leading-6 text-white/92">
@@ -122,6 +122,12 @@ export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
                 className="block transition-colors hover:text-white"
               >
                 Mã màu Thanh Thuỳ
+              </Link>
+              <Link
+                href="/ma-mau-melamine/ba-thanh/"
+                className="block transition-colors hover:text-white"
+              >
+                Mã Melamine Ba Thanh
               </Link>
             </div>
           </div>
@@ -201,7 +207,7 @@ export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
                   className="overflow-hidden rounded-xl border border-white/10 bg-white/[0.045]"
                 >
                   <div className="px-4 py-3">
-                    <span className="text-[.68rem] font-extrabold uppercase tracking-[.16em] text-wood-500">
+                    <span className="text-[.68rem] font-extrabold uppercase tracking-[.16em] text-[#f0a66f]">
                       {location.name}
                     </span>
                     <p className="mt-1 text-xs font-semibold leading-5 text-white/88">
