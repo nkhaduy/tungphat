@@ -208,7 +208,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
           </DesktopDropdown>
           <DesktopDropdown
             label="Catalogue"
-            href="/san-pham/#catalogue"
+            href="/catalogue/"
             lightStyle={lightStyle}
           >
             <SupplierLinkList
@@ -324,7 +324,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
           <MobileSection
             id="mobile-catalogues"
             label="Catalogue"
-            href="/san-pham/#catalogue"
+            href="/catalogue/"
             expanded={mobileSection === "catalogue"}
             onToggle={() => toggleMobileSection("catalogue")}
             onNavigate={closeMobileMenu}
