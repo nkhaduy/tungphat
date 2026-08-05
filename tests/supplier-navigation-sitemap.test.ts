@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import { supplierNavigation } from "../lib/catalog/core/navigation";
 import { createRouteOwnershipIndex } from "../lib/catalog/core/routes";
 import { getSupplierSitemapEntries } from "../lib/catalog/suppliers/sitemap";
+import { getSupplierSearchEntries } from "../lib/catalog/suppliers/search";
+import { searchSupplierCatalog } from "../lib/catalog/core/search";
 import {
   anCuongAdapter,
   baThanhAdapter,
@@ -32,6 +34,25 @@ describe("supplier catalogue navigation", () => {
     );
 
     expect(() => createRouteOwnershipIndex(claims)).not.toThrow();
+  });
+
+  it("builds a route-safe cross-supplier search index without global imports", () => {
+    const entries = getSupplierSearchEntries();
+    const claims = [thanhThuyAdapter, baThanhAdapter, anCuongAdapter].flatMap(
+      (adapter) => adapter.getRouteClaims(),
+    );
+    const owners = createRouteOwnershipIndex(claims);
+
+    expect(entries).toHaveLength(588);
+    expect(searchSupplierCatalog(entries, "BT-111")[0]).toMatchObject({
+      supplierId: "ba-thanh",
+      code: "BT 111",
+    });
+    expect(
+      entries.every(
+        (entry) => owners.get(entry.canonicalRoute) === entry.supplierId,
+      ),
+    ).toBe(true);
   });
 });
 

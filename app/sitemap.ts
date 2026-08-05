@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRouteRules = [
     { route: "/", include: true },
     { route: "/san-pham/", include: true },
+    { route: "/catalogue/", include: true },
     { route: "/gia-cong-cnc/", include: true },
     {
       route: "/du-an/",
