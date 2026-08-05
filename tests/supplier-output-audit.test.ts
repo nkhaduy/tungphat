@@ -1,0 +1,114 @@
+import { describe, expect, it } from "vitest";
+import { auditSupplierPages } from "../scripts/catalog-suppliers/output-audit";
+
+function page(input: {
+  route: string;
+  supplierId: "thanh-thuy" | "ba-thanh" | "an-cuong";
+  brand: string;
+  title: string;
+  description: string;
+  indexable?: boolean;
+}) {
+  const canonical = `https://mdftungphat.com${input.route}`;
+  return {
+    route: input.route,
+    supplierId: input.supplierId,
+    indexable: input.indexable ?? true,
+    html: `<!doctype html><html><head>
+      <title>${input.title}</title>
+      <meta name="description" content="${input.description}">
+      <meta name="robots" content="${input.indexable === false ? "noindex, follow" : "index, follow"}">
+      <link rel="canonical" href="${canonical}">
+      <script type="application/ld+json">${JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: input.title,
+        brand: { "@type": "Brand", name: input.brand },
+        url: canonical,
+      })}</script>
+    </head><body><h1>${input.title}</h1></body></html>`,
+  };
+}
+
+describe("supplier static output audit", () => {
+  it("accepts unique canonical pages with supplier-isolated brands", () => {
+    const pages = [
+      page({
+        route: "/san-pham/laminate/thanh-thuy-lp-101/",
+        supplierId: "thanh-thuy",
+        brand: "Thanh Thuỳ",
+        title: "Thanh Thuỳ LP 101 | Tùng Phát",
+        description: "Tra cứu Laminate Thanh Thuỳ LP 101 tại Tùng Phát.",
+      }),
+      page({
+        route: "/ma-mau-melamine/ba-thanh/bt-111/",
+        supplierId: "ba-thanh",
+        brand: "Ba Thanh",
+        title: "Mã Melamine Ba Thanh BT 111 | Tùng Phát",
+        description: "Tra cứu mã Melamine Ba Thanh BT 111 tại Tùng Phát.",
+      }),
+      page({
+        route: "/catalogue/an-cuong/",
+        supplierId: "an-cuong",
+        brand: "An Cường",
+        title: "Catalogue An Cường | Tùng Phát",
+        description: "Catalogue An Cường tại Tùng Phát.",
+        indexable: false,
+      }),
+    ];
+
+    const result = auditSupplierPages(pages, [
+      "/san-pham/laminate/thanh-thuy-lp-101/",
+      "/ma-mau-melamine/ba-thanh/bt-111/",
+    ]);
+
+    expect(result.errors).toEqual([]);
+    expect(result.summary).toMatchObject({
+      pages: 3,
+      indexable: 2,
+      noindex: 1,
+      uniqueTitles: 3,
+      uniqueDescriptions: 3,
+      canonicalsChecked: 3,
+      invalidJsonLd: 0,
+      brandMismatches: 0,
+      orphanIndexablePages: 0,
+    });
+  });
+
+  it("detects duplicate metadata, canonical, sitemap and brand isolation failures", () => {
+    const first = page({
+      route: "/thuong-hieu/thanh-thuy/",
+      supplierId: "thanh-thuy",
+      brand: "Ba Thanh",
+      title: "Catalogue trùng | Tùng Phát",
+      description: "Mô tả trùng cho hai trang indexable.",
+    });
+    const second = page({
+      route: "/ma-mau-melamine/ba-thanh/",
+      supplierId: "ba-thanh",
+      brand: "Ba Thanh",
+      title: "Catalogue trùng | Tùng Phát",
+      description: "Mô tả trùng cho hai trang indexable.",
+    });
+    second.html = second.html.replace(
+      "https://mdftungphat.com/ma-mau-melamine/ba-thanh/",
+      "https://mdftungphat.com/thuong-hieu/thanh-thuy/",
+    );
+
+    const result = auditSupplierPages(
+      [first, second],
+      [
+        "/thuong-hieu/thanh-thuy/",
+        "/ma-mau-melamine/ba-thanh/",
+        "/catalogue/an-cuong/",
+      ],
+    );
+
+    expect(result.errors.join("\n")).toMatch(/duplicate title/i);
+    expect(result.errors.join("\n")).toMatch(/duplicate description/i);
+    expect(result.errors.join("\n")).toMatch(/canonical mismatch/i);
+    expect(result.errors.join("\n")).toMatch(/brand mismatch/i);
+    expect(result.errors.join("\n")).toMatch(/no matching page/i);
+  });
+});
