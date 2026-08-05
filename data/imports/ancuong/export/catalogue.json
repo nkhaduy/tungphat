@@ -1,5 +1,5 @@
 {
-  "exportTime": "2026-08-05T02:29:15.646Z",
+  "exportTime": "2026-08-05T14:17:04.510Z",
   "parserVersion": "1.0.0",
   "records": [
     {
@@ -15,131 +15,70 @@
       "category": "Melamine",
       "categorySlug": "melamine",
       "collections": [],
-      "colors": [
-        "Đen"
-      ],
+      "colors": ["Đen"],
       "contentUsageStatus": "technical-data",
       "descriptions": {},
-      "dimensions": [
-        "1220*2440"
-      ],
+      "dimensions": ["1220*2440"],
       "dimensionThicknessMatrix": [
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "12",
-            "15",
-            "18",
-            "25"
-          ]
+          "thicknesses": ["9", "12", "15", "18", "25"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "12",
-            "18",
-            "25"
-          ]
+          "thicknesses": ["12", "18", "25"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "16",
-            "18"
-          ]
+          "thicknesses": ["9", "16", "18"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "18"
-          ]
+          "thicknesses": ["18"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "12",
-            "17",
-            "25"
-          ]
+          "thicknesses": ["9", "12", "17", "25"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "17"
-          ]
+          "thicknesses": ["17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "3",
-            "6",
-            "9",
-            "12",
-            "15",
-            "17",
-            "25"
-          ]
+          "thicknesses": ["3", "6", "9", "12", "15", "17", "25"]
         },
         {
           "dimension": "1220x2745",
-          "thicknesses": [
-            "9",
-            "17"
-          ]
+          "thicknesses": ["9", "17"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "17"
-          ]
+          "thicknesses": ["17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "12",
-            "17"
-          ]
+          "thicknesses": ["9", "12", "17"]
         },
         {
           "dimension": "1220x2745",
-          "thicknesses": [
-            "12"
-          ]
+          "thicknesses": ["12"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "12",
-            "17"
-          ]
+          "thicknesses": ["12", "17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "18"
-          ]
+          "thicknesses": ["9", "18"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "6",
-            "8",
-            "10",
-            "12",
-            "15",
-            "17"
-          ]
+          "thicknesses": ["6", "8", "10", "12", "15", "17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "18"
-          ]
+          "thicknesses": ["18"]
         }
       ],
       "discoveredAt": "2026-08-05T02:15:17.847Z",
@@ -236,9 +175,7 @@
           "sourceUrl": "https://ancuong.com/chi-dan-canh-pvc/303000812.html"
         }
       ],
-      "solutions": [
-        "Giải Pháp Chỉ Đồng Màu"
-      ],
+      "solutions": ["Giải Pháp Chỉ Đồng Màu"],
       "source": "ancuong",
       "sourceContent": [
         {
@@ -358,37 +295,18 @@
         }
       ],
       "sourceFacets": {
-        "Giải Pháp": [
-          "Giải Pháp Chỉ Đồng Màu"
-        ],
-        "Kích Thước (mm)": [
-          "1220*2440"
-        ],
-        "Loại Sản Phẩm": [
-          "Melamine"
-        ],
-        "Loại Vân": [
-          "Vân Gỗ"
-        ],
-        "Màu Sắc": [
-          "Đen"
-        ],
-        "Nhóm Giá": [
-          "B"
-        ]
+        "Giải Pháp": ["Giải Pháp Chỉ Đồng Màu"],
+        "Kích Thước (mm)": ["1220*2440"],
+        "Loại Sản Phẩm": ["Melamine"],
+        "Loại Vân": ["Vân Gỗ"],
+        "Màu Sắc": ["Đen"],
+        "Nhóm Giá": ["B"]
       },
       "sourceHash": "b662d585919c2fe789df4980013af2e4b9ead3c59ef17dc7a7d5846216f69fb2",
       "sourceId": "303000054",
       "sourceUrl": "https://ancuong.com/melamine/303000054.html",
       "specialFeatures": [],
-      "standards": [
-        "E0",
-        "E1",
-        "ENF",
-        "EPA",
-        "F4S",
-        "Super E0"
-      ],
+      "standards": ["E0", "E1", "ENF", "EPA", "F4S", "Super E0"],
       "status": "active",
       "supplierSource": "An Cường",
       "surfaceEffects": [],
@@ -424,163 +342,82 @@
       "category": "Laminate",
       "categorySlug": "laminate",
       "collections": [],
-      "colors": [
-        "Xám"
-      ],
+      "colors": ["Xám"],
       "contentUsageStatus": "technical-data",
       "descriptions": {},
-      "dimensions": [
-        "1220*2440, 1525*3660"
-      ],
+      "dimensions": ["1220*2440, 1525*3660"],
       "dimensionThicknessMatrix": [
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "12",
-            "15",
-            "18",
-            "19",
-            "25"
-          ]
+          "thicknesses": ["9", "12", "15", "18", "19", "25"]
         },
         {
           "dimension": "1230x2465",
-          "thicknesses": [
-            "12",
-            "15",
-            "16",
-            "18",
-            "25"
-          ]
+          "thicknesses": ["12", "15", "16", "18", "25"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "12",
-            "18",
-            "25"
-          ]
+          "thicknesses": ["12", "18", "25"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "16",
-            "18"
-          ]
+          "thicknesses": ["9", "16", "18"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "18"
-          ]
+          "thicknesses": ["18"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "6",
-            "9",
-            "12",
-            "15",
-            "17",
-            "18",
-            "25"
-          ]
+          "thicknesses": ["6", "9", "12", "15", "17", "18", "25"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "17"
-          ]
+          "thicknesses": ["17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "3",
-            "6",
-            "9",
-            "12",
-            "15",
-            "17",
-            "21",
-            "25"
-          ]
+          "thicknesses": ["3", "6", "9", "12", "15", "17", "21", "25"]
         },
         {
           "dimension": "1220x2745",
-          "thicknesses": [
-            "9",
-            "17"
-          ]
+          "thicknesses": ["9", "17"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "17"
-          ]
+          "thicknesses": ["17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "12",
-            "17"
-          ]
+          "thicknesses": ["9", "12", "17"]
         },
         {
           "dimension": "1220x2745",
-          "thicknesses": [
-            "12"
-          ]
+          "thicknesses": ["12"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "12",
-            "17"
-          ]
+          "thicknesses": ["12", "17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "5",
-            "9",
-            "12",
-            "16",
-            "17",
-            "18"
-          ]
+          "thicknesses": ["5", "9", "12", "16", "17", "18"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "6",
-            "8",
-            "10",
-            "12",
-            "15",
-            "17"
-          ]
+          "thicknesses": ["6", "8", "10", "12", "15", "17"]
         },
         {
           "dimension": "1220x3050",
-          "thicknesses": [
-            "8",
-            "17"
-          ]
+          "thicknesses": ["8", "17"]
         },
         {
           "dimension": "1220x3660",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "18"
-          ]
+          "thicknesses": ["18"]
         }
       ],
       "discoveredAt": "2026-08-05T02:15:19.110Z",
@@ -810,42 +647,22 @@
         }
       ],
       "sourceFacets": {
-        "Bề Mặt": [
-          "Uốn Cong"
-        ],
-        "Kích Thước (mm)": [
-          "1220*2440, 1525*3660"
-        ],
-        "Loại Sản Phẩm": [
-          "Laminate Kingdom"
-        ],
-        "Loại Vân": [
-          "Đơn Sắc"
-        ],
-        "Màu Sắc": [
-          "Xám"
-        ],
-        "Nhóm Giá": [
-          "S"
-        ]
+        "Bề Mặt": ["Uốn Cong"],
+        "Kích Thước (mm)": ["1220*2440, 1525*3660"],
+        "Loại Sản Phẩm": ["Laminate Kingdom"],
+        "Loại Vân": ["Đơn Sắc"],
+        "Màu Sắc": ["Xám"],
+        "Nhóm Giá": ["S"]
       },
       "sourceHash": "a5a557d22b2aa3c3cf2b95658d5ecca51b72f09c7efde3fcfe07eb89a94a9565",
       "sourceId": "303000332",
       "sourceUrl": "https://ancuong.com/laminate/303000332.html",
       "specialFeatures": [],
-      "standards": [
-        "E0",
-        "E1",
-        "ENF",
-        "EPA",
-        "F4S"
-      ],
+      "standards": ["E0", "E1", "ENF", "EPA", "F4S"],
       "status": "active",
       "supplierSource": "An Cường",
       "surfaceEffects": [],
-      "surfaces": [
-        "Uốn Cong"
-      ],
+      "surfaces": ["Uốn Cong"],
       "technicalWarnings": [
         "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1).",
         "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
@@ -879,166 +696,83 @@
       "brand": "An Cường",
       "category": "Laminate",
       "categorySlug": "laminate",
-      "collections": [
-        "Laminate-MFC Same Color Collection 2"
-      ],
-      "colors": [
-        "Cam"
-      ],
+      "collections": ["Laminate-MFC Same Color Collection 2"],
+      "colors": ["Cam"],
       "contentUsageStatus": "technical-data",
       "descriptions": {},
-      "dimensions": [
-        "1220*2440"
-      ],
+      "dimensions": ["1220*2440"],
       "dimensionThicknessMatrix": [
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "12",
-            "15",
-            "18",
-            "19",
-            "25"
-          ]
+          "thicknesses": ["9", "12", "15", "18", "19", "25"]
         },
         {
           "dimension": "1230x2465",
-          "thicknesses": [
-            "12",
-            "15",
-            "16",
-            "18",
-            "25"
-          ]
+          "thicknesses": ["12", "15", "16", "18", "25"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "12",
-            "18",
-            "25"
-          ]
+          "thicknesses": ["12", "18", "25"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "16",
-            "18"
-          ]
+          "thicknesses": ["9", "16", "18"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "18"
-          ]
+          "thicknesses": ["18"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "6",
-            "9",
-            "12",
-            "15",
-            "17",
-            "18",
-            "25"
-          ]
+          "thicknesses": ["6", "9", "12", "15", "17", "18", "25"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "17"
-          ]
+          "thicknesses": ["17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "3",
-            "6",
-            "9",
-            "12",
-            "15",
-            "17",
-            "21",
-            "25"
-          ]
+          "thicknesses": ["3", "6", "9", "12", "15", "17", "21", "25"]
         },
         {
           "dimension": "1220x2745",
-          "thicknesses": [
-            "9",
-            "17"
-          ]
+          "thicknesses": ["9", "17"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "17"
-          ]
+          "thicknesses": ["17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "12",
-            "17"
-          ]
+          "thicknesses": ["9", "12", "17"]
         },
         {
           "dimension": "1220x2745",
-          "thicknesses": [
-            "12"
-          ]
+          "thicknesses": ["12"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "12",
-            "17"
-          ]
+          "thicknesses": ["12", "17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "5",
-            "9",
-            "12",
-            "16",
-            "17",
-            "18"
-          ]
+          "thicknesses": ["5", "9", "12", "16", "17", "18"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "6",
-            "8",
-            "10",
-            "12",
-            "15",
-            "17"
-          ]
+          "thicknesses": ["6", "8", "10", "12", "15", "17"]
         },
         {
           "dimension": "1220x3050",
-          "thicknesses": [
-            "8",
-            "17"
-          ]
+          "thicknesses": ["8", "17"]
         },
         {
           "dimension": "1220x3660",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "18"
-          ]
+          "thicknesses": ["18"]
         }
       ],
       "discoveredAt": "2026-08-05T02:15:24.555Z",
@@ -1148,9 +882,7 @@
           "sourceUrl": "https://ancuong.com/chi-dan-canh-pvc/303001017.html"
         }
       ],
-      "solutions": [
-        "Giải Pháp Chỉ Đồng Màu, Giải Pháp Laminate-MFC Đồng Màu"
-      ],
+      "solutions": ["Giải Pháp Chỉ Đồng Màu, Giải Pháp Laminate-MFC Đồng Màu"],
       "source": "ancuong",
       "sourceContent": [
         {
@@ -1285,39 +1017,21 @@
         }
       ],
       "sourceFacets": {
-        "Bộ Sưu Tập": [
-          "Laminate-MFC Same Color Collection 2"
-        ],
+        "Bộ Sưu Tập": ["Laminate-MFC Same Color Collection 2"],
         "Giải Pháp": [
           "Giải Pháp Chỉ Đồng Màu, Giải Pháp Laminate-MFC Đồng Màu"
         ],
-        "Kích Thước (mm)": [
-          "1220*2440"
-        ],
-        "Loại Sản Phẩm": [
-          "Laminate Kingdom"
-        ],
-        "Loại Vân": [
-          "Vân Gỗ"
-        ],
-        "Màu Sắc": [
-          "Cam"
-        ],
-        "Nhóm Giá": [
-          "A"
-        ]
+        "Kích Thước (mm)": ["1220*2440"],
+        "Loại Sản Phẩm": ["Laminate Kingdom"],
+        "Loại Vân": ["Vân Gỗ"],
+        "Màu Sắc": ["Cam"],
+        "Nhóm Giá": ["A"]
       },
       "sourceHash": "c79e5caec010231965e9e7cba5c8b7c9c96e77056116836bf983a9adeb5a9240",
       "sourceId": "303000495",
       "sourceUrl": "https://ancuong.com/laminate/303000495.html",
       "specialFeatures": [],
-      "standards": [
-        "E0",
-        "E1",
-        "ENF",
-        "EPA",
-        "F4S"
-      ],
+      "standards": ["E0", "E1", "ENF", "EPA", "F4S"],
       "status": "active",
       "supplierSource": "An Cường",
       "surfaceEffects": [],
@@ -1356,79 +1070,38 @@
       "category": "Acrylic",
       "categorySlug": "acrylic",
       "collections": [],
-      "colors": [
-        "Trắng"
-      ],
+      "colors": ["Trắng"],
       "contentUsageStatus": "technical-data",
       "descriptions": {},
-      "dimensions": [
-        "1220*2440"
-      ],
+      "dimensions": ["1220*2440"],
       "dimensionThicknessMatrix": [
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "6",
-            "9",
-            "12",
-            "15",
-            "17",
-            "18",
-            "25"
-          ]
+          "thicknesses": ["6", "9", "12", "15", "17", "18", "25"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "3",
-            "6",
-            "9",
-            "12",
-            "15",
-            "17",
-            "25"
-          ]
+          "thicknesses": ["3", "6", "9", "12", "15", "17", "25"]
         },
         {
           "dimension": "1220x2745",
-          "thicknesses": [
-            "17"
-          ]
+          "thicknesses": ["17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "12",
-            "17"
-          ]
+          "thicknesses": ["9", "12", "17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "12",
-            "17"
-          ]
+          "thicknesses": ["12", "17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "12",
-            "15",
-            "17"
-          ]
+          "thicknesses": ["9", "12", "15", "17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "6",
-            "8",
-            "10",
-            "12",
-            "15",
-            "17"
-          ]
+          "thicknesses": ["6", "8", "10", "12", "15", "17"]
         }
       ],
       "discoveredAt": "2026-08-05T02:15:20.100Z",
@@ -1514,9 +1187,7 @@
           "sourceUrl": "https://ancuong.com/chi-abs/303001219.html"
         }
       ],
-      "solutions": [
-        "Giải Pháp Chỉ Đồng Màu"
-      ],
+      "solutions": ["Giải Pháp Chỉ Đồng Màu"],
       "source": "ancuong",
       "sourceContent": [
         {
@@ -1611,61 +1282,28 @@
         }
       ],
       "sourceFacets": {
-        "Bề Mặt": [
-          "Bóng Gương"
-        ],
-        "Giải Pháp": [
-          "Giải Pháp Chỉ Đồng Màu"
-        ],
-        "Kích Thước (mm)": [
-          "1220*2440"
-        ],
-        "Loại Sản Phẩm": [
-          "High Gloss Acrylic"
-        ],
-        "Loại Vân": [
-          "Đơn Sắc"
-        ],
-        "Màu Sắc": [
-          "Trắng"
-        ],
-        "Nhóm Giá": [
-          "A"
-        ]
+        "Bề Mặt": ["Bóng Gương"],
+        "Giải Pháp": ["Giải Pháp Chỉ Đồng Màu"],
+        "Kích Thước (mm)": ["1220*2440"],
+        "Loại Sản Phẩm": ["High Gloss Acrylic"],
+        "Loại Vân": ["Đơn Sắc"],
+        "Màu Sắc": ["Trắng"],
+        "Nhóm Giá": ["A"]
       },
       "sourceHash": "794e49b723c2f91c3c7f7a682d6e9f1a519829b876666fda612e0c097e810e4c",
       "sourceId": "303000667",
       "sourceUrl": "https://ancuong.com/acrylic/303000667.html",
       "specialFeatures": [],
-      "standards": [
-        "E0",
-        "E1",
-        "ENF",
-        "EPA",
-        "F4S"
-      ],
+      "standards": ["E0", "E1", "ENF", "EPA", "F4S"],
       "status": "active",
       "supplierSource": "An Cường",
       "surfaceEffects": [],
-      "surfaces": [
-        "Bóng Gương"
-      ],
+      "surfaces": ["Bóng Gương"],
       "technicalWarnings": [
         "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1).",
         "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
       ],
-      "thicknesses": [
-        "10",
-        "12",
-        "15",
-        "17",
-        "18",
-        "25",
-        "3",
-        "6",
-        "8",
-        "9"
-      ]
+      "thicknesses": ["10", "12", "15", "17", "18", "25", "3", "6", "8", "9"]
     },
     {
       "applicationProducts": [],
@@ -1673,43 +1311,27 @@
       "category": "Chỉ ABS",
       "categorySlug": "chi-abs",
       "collections": [],
-      "colors": [
-        "Trắng"
-      ],
+      "colors": ["Trắng"],
       "contentUsageStatus": "technical-data",
       "descriptions": {},
-      "dimensions": [
-        "23*0.8"
-      ],
+      "dimensions": ["23*0.8"],
       "dimensionThicknessMatrix": [
         {
           "dimension": "21",
-          "thicknesses": [
-            "0.8",
-            "1"
-          ]
+          "thicknesses": ["0.8", "1"]
         },
         {
           "dimension": "22",
-          "thicknesses": [
-            "0.8",
-            "1"
-          ]
+          "thicknesses": ["0.8", "1"]
         },
         {
           "dimension": "23",
-          "thicknesses": [
-            "0.8",
-            "1"
-          ]
+          "thicknesses": ["0.8", "1"]
         }
       ],
       "discoveredAt": "2026-08-05T02:15:21.331Z",
       "edgeBandingTypes": [],
-      "features": [
-        "Dễ thi công",
-        "Thân thiện môi trường"
-      ],
+      "features": ["Dễ thi công", "Thân thiện môi trường"],
       "fetchedAt": "2026-08-05T02:15:21.331Z",
       "gallery": [
         {
@@ -1762,24 +1384,12 @@
         }
       ],
       "sourceFacets": {
-        "Bề Mặt": [
-          "Bóng Gương"
-        ],
-        "Kích Thước (mm)": [
-          "23*0.8"
-        ],
-        "Loại Sản Phẩm": [
-          "Chỉ ABS"
-        ],
-        "Loại Vân": [
-          "Đơn Sắc"
-        ],
-        "Màu Sắc": [
-          "Trắng"
-        ],
-        "Nhóm Giá": [
-          "B"
-        ]
+        "Bề Mặt": ["Bóng Gương"],
+        "Kích Thước (mm)": ["23*0.8"],
+        "Loại Sản Phẩm": ["Chỉ ABS"],
+        "Loại Vân": ["Đơn Sắc"],
+        "Màu Sắc": ["Trắng"],
+        "Nhóm Giá": ["B"]
       },
       "sourceHash": "14ec099a7bee80faffaeac66f7d4a2c44095ca371cb25105711ab3bcbd93462b",
       "sourceId": "303001219",
@@ -1789,16 +1399,11 @@
       "status": "active",
       "supplierSource": "An Cường",
       "surfaceEffects": [],
-      "surfaces": [
-        "Bóng Gương"
-      ],
+      "surfaces": ["Bóng Gương"],
       "technicalWarnings": [
         "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
       ],
-      "thicknesses": [
-        "0.8",
-        "1"
-      ]
+      "thicknesses": ["0.8", "1"]
     },
     {
       "applicationProducts": [
@@ -1813,163 +1418,82 @@
       "category": "Laminate",
       "categorySlug": "laminate",
       "collections": [],
-      "colors": [
-        "Be"
-      ],
+      "colors": ["Be"],
       "contentUsageStatus": "technical-data",
       "descriptions": {},
-      "dimensions": [
-        "1220*2440"
-      ],
+      "dimensions": ["1220*2440"],
       "dimensionThicknessMatrix": [
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "12",
-            "15",
-            "18",
-            "19",
-            "25"
-          ]
+          "thicknesses": ["9", "12", "15", "18", "19", "25"]
         },
         {
           "dimension": "1230x2465",
-          "thicknesses": [
-            "12",
-            "15",
-            "16",
-            "18",
-            "25"
-          ]
+          "thicknesses": ["12", "15", "16", "18", "25"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "12",
-            "18",
-            "25"
-          ]
+          "thicknesses": ["12", "18", "25"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "16",
-            "18"
-          ]
+          "thicknesses": ["9", "16", "18"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "18"
-          ]
+          "thicknesses": ["18"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "6",
-            "9",
-            "12",
-            "15",
-            "17",
-            "18",
-            "25"
-          ]
+          "thicknesses": ["6", "9", "12", "15", "17", "18", "25"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "17"
-          ]
+          "thicknesses": ["17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "3",
-            "6",
-            "9",
-            "12",
-            "15",
-            "17",
-            "21",
-            "25"
-          ]
+          "thicknesses": ["3", "6", "9", "12", "15", "17", "21", "25"]
         },
         {
           "dimension": "1220x2745",
-          "thicknesses": [
-            "9",
-            "17"
-          ]
+          "thicknesses": ["9", "17"]
         },
         {
           "dimension": "1830x2440",
-          "thicknesses": [
-            "17"
-          ]
+          "thicknesses": ["17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "9",
-            "12",
-            "17"
-          ]
+          "thicknesses": ["9", "12", "17"]
         },
         {
           "dimension": "1220x2745",
-          "thicknesses": [
-            "12"
-          ]
+          "thicknesses": ["12"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "12",
-            "17"
-          ]
+          "thicknesses": ["12", "17"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "5",
-            "9",
-            "12",
-            "16",
-            "17",
-            "18"
-          ]
+          "thicknesses": ["5", "9", "12", "16", "17", "18"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "6",
-            "8",
-            "10",
-            "12",
-            "15",
-            "17"
-          ]
+          "thicknesses": ["6", "8", "10", "12", "15", "17"]
         },
         {
           "dimension": "1220x3050",
-          "thicknesses": [
-            "8",
-            "17"
-          ]
+          "thicknesses": ["8", "17"]
         },
         {
           "dimension": "1220x3660",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "18"
-          ]
+          "thicknesses": ["18"]
         }
       ],
       "discoveredAt": "2026-08-05T02:15:25.805Z",
@@ -2199,41 +1723,21 @@
         }
       ],
       "sourceFacets": {
-        "Hiệu Ứng Bề Mặt": [
-          "Synchronized"
-        ],
-        "Kích Thước (mm)": [
-          "1220*2440"
-        ],
-        "Loại Sản Phẩm": [
-          "Laminate Kingdom"
-        ],
-        "Loại Vân": [
-          "Vân Gỗ"
-        ],
-        "Màu Sắc": [
-          "Be"
-        ],
-        "Nhóm Giá": [
-          "H"
-        ]
+        "Hiệu Ứng Bề Mặt": ["Synchronized"],
+        "Kích Thước (mm)": ["1220*2440"],
+        "Loại Sản Phẩm": ["Laminate Kingdom"],
+        "Loại Vân": ["Vân Gỗ"],
+        "Màu Sắc": ["Be"],
+        "Nhóm Giá": ["H"]
       },
       "sourceHash": "3d2039f9b85d3c9b333b02bf9b118abe520534e3bcfc7c37230d25bc783cd17b",
       "sourceId": "303003838",
       "sourceUrl": "https://ancuong.com/laminate/303003838.html",
       "specialFeatures": [],
-      "standards": [
-        "E0",
-        "E1",
-        "ENF",
-        "EPA",
-        "F4S"
-      ],
+      "standards": ["E0", "E1", "ENF", "EPA", "F4S"],
       "status": "active",
       "supplierSource": "An Cường",
-      "surfaceEffects": [
-        "Synchronized"
-      ],
+      "surfaceEffects": ["Synchronized"],
       "surfaces": [],
       "technicalWarnings": [
         "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1).",
@@ -2269,152 +1773,95 @@
       "category": "Tấm 3D Embossed",
       "categorySlug": "3d-embossed",
       "collections": [],
-      "colors": [
-        "Be"
-      ],
+      "colors": ["Be"],
       "contentUsageStatus": "technical-data",
       "descriptions": {},
-      "dimensions": [
-        "1220*2440, 1220*3050, 1220*3660, 1220*4270"
-      ],
+      "dimensions": ["1220*2440, 1220*3050, 1220*3660, 1220*4270"],
       "dimensionThicknessMatrix": [
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "2",
-            "3",
-            "8"
-          ]
+          "thicknesses": ["2", "3", "8"]
         },
         {
           "dimension": "1220x3050",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x3660",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x4270",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "2",
-            "3",
-            "8"
-          ]
+          "thicknesses": ["2", "3", "8"]
         },
         {
           "dimension": "1220x3050",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x3660",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x4270",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "2",
-            "3",
-            "8"
-          ]
+          "thicknesses": ["2", "3", "8"]
         },
         {
           "dimension": "1220x3050",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x3660",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x4270",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "2",
-            "3",
-            "8"
-          ]
+          "thicknesses": ["2", "3", "8"]
         },
         {
           "dimension": "1220x3050",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x3660",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x4270",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x2440",
-          "thicknesses": [
-            "2",
-            "3",
-            "8"
-          ]
+          "thicknesses": ["2", "3", "8"]
         },
         {
           "dimension": "1220x3050",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x3660",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         },
         {
           "dimension": "1220x4270",
-          "thicknesses": [
-            "8"
-          ]
+          "thicknesses": ["8"]
         }
       ],
       "discoveredAt": "2026-08-05T02:15:23.160Z",
       "edgeBandingTypes": [],
-      "features": [
-        "Dễ thi công",
-        "Tối ưu hóa chi phí"
-      ],
+      "features": ["Dễ thi công", "Tối ưu hóa chi phí"],
       "fetchedAt": "2026-08-05T02:15:23.160Z",
       "gallery": [
         {
@@ -2439,9 +1886,7 @@
       "productCode": "3DE 02 LL 2500",
       "productLine": "Tấm 3DE 02 Embossed Biên Dạng Nan Gỗ Hiện Đại",
       "productType": "3D Embossed Lacquered Laminate Inox Plus",
-      "profiles": [
-        "3DE 02 (Nan Gỗ Hiện Đại)"
-      ],
+      "profiles": ["3DE 02 (Nan Gỗ Hiện Đại)"],
       "relatedProducts": [
         {
           "name": "Tấm 3DE 02 Embossed Biên Dạng Nan Gỗ Hiện Đại",
@@ -2540,32 +1985,18 @@
         }
       ],
       "sourceFacets": {
-        "Biên Dạng": [
-          "3DE 02 (Nan Gỗ Hiện Đại)"
-        ],
-        "Kích Thước (mm)": [
-          "1220*2440, 1220*3050, 1220*3660, 1220*4270"
-        ],
-        "Loại Sản Phẩm": [
-          "3D Embossed Lacquered Laminate Inox Plus"
-        ],
-        "Loại Vân": [
-          "Vân Đá & Vật Liệu Công Nghiệp"
-        ],
-        "Màu Sắc": [
-          "Be"
-        ],
-        "Nhóm Giá": [
-          "B"
-        ]
+        "Biên Dạng": ["3DE 02 (Nan Gỗ Hiện Đại)"],
+        "Kích Thước (mm)": ["1220*2440, 1220*3050, 1220*3660, 1220*4270"],
+        "Loại Sản Phẩm": ["3D Embossed Lacquered Laminate Inox Plus"],
+        "Loại Vân": ["Vân Đá & Vật Liệu Công Nghiệp"],
+        "Màu Sắc": ["Be"],
+        "Nhóm Giá": ["B"]
       },
       "sourceHash": "9624c6d12ecf7a0aa4f1ee0a72e466dd5084aab5925ff981b8d47309ce56a666",
       "sourceId": "303016500",
       "sourceUrl": "https://ancuong.com/3d-embossed/303016500.html",
       "specialFeatures": [],
-      "standards": [
-        "E0"
-      ],
+      "standards": ["E0"],
       "status": "active",
       "supplierSource": "An Cường",
       "surfaceEffects": [],
@@ -2573,11 +2004,7 @@
       "technicalWarnings": [
         "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
       ],
-      "thicknesses": [
-        "2",
-        "3",
-        "8"
-      ]
+      "thicknesses": ["2", "3", "8"]
     }
   ],
   "schemaVersion": "1.0.0",
