@@ -235,7 +235,9 @@
       "sourceUrl": "https://ancuong.com/tam-wall-ceiling.html"
     },
     {
-      "catalogueUrls": ["https://catalogue.ancuong.com/veneer/"],
+      "catalogueUrls": [
+        "https://catalogue.ancuong.com/veneer/"
+      ],
       "name": "Veneer",
       "productCount": 108,
       "slug": "veneer",
