@@ -4,6 +4,8 @@ import { ExternalLink, Hash, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { TrackedLink } from "@/components/TrackedLink";
+import { SupplierLinkList } from "@/components/catalog/shared/SupplierLinkList";
+import { supplierNavigation } from "@/lib/catalog/core/navigation";
 import { vi as t } from "@/lib/i18n";
 import { locations } from "@/lib/locations";
 import { BUSINESS_NAME, PHONE_DISPLAY, PHONE_HREF, TAX_ID } from "@/lib/seo";
@@ -117,18 +119,10 @@ export function Footer({ showBranchMapEmbeds = true }: FooterProps) {
               >
                 {t.footerCatalogue}
               </Link>
-              <Link
-                href="/thuong-hieu/thanh-thuy/"
+              <SupplierLinkList
+                links={supplierNavigation.catalogue}
                 className="block transition-colors hover:text-white"
-              >
-                Mã màu Thanh Thuỳ
-              </Link>
-              <Link
-                href="/ma-mau-melamine/ba-thanh/"
-                className="block transition-colors hover:text-white"
-              >
-                Mã Melamine Ba Thanh
-              </Link>
+              />
             </div>
           </div>
 
