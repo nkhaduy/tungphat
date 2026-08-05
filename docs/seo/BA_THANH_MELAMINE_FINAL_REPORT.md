@@ -54,7 +54,7 @@
 ## QUALITY
 
 - Format: `git diff --check` pass; no repository format script exists
-- Lint: Ba Thanh/Header/Footer scoped ESLint pass; full repo lint is blocked by 710 warnings in unrelated generated `light-cms/dist/assets/*.js`
+- Lint: Ba Thanh/Header/Footer scoped ESLint pass; full repo lint reports 1 error and 1001 warnings in unrelated generated `light-cms` output and the concurrent `tungphat-catalog-watcher` subproject
 - Typecheck: `npm run typecheck` pass
 - Unit tests: `npm test` pass, 18 files and 110 tests
 - Integration tests: import, validation, static build and internal-link checks pass
@@ -86,7 +86,7 @@
 - 227 codes intentionally remain thin/noindex until reviewed editorial value is added.
 - Mobile hub Lighthouse performance is limited by the initial 36-card catalogue and shared site shell; dedicated 480px thumbnails reduced the major image waste, but further pagination/viewport rendering can be considered later.
 - Image reuse rights should be confirmed by the business/legal owner before any production deployment.
-- Full repository lint remains noisy because unrelated generated Light CMS artifacts are included by the existing lint command.
+- Full repository lint remains blocked because unrelated generated Light CMS artifacts and the concurrent catalogue-watcher subproject are included by the existing lint command.
 - Concurrent local subprojects and CMS/homepage work keep the overall checkout dirty; they were not reverted, stashed or committed with this feature.
 
 ## DEPLOYMENT
