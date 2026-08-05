@@ -1,89 +1,32 @@
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, BookOpen } from "lucide-react";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import Link from "next/link";
+import { ArrowRight, BookOpen, MessageCircle } from "lucide-react";
 import { BrandPlaceholder } from "@/components/BrandPlaceholder";
 import { JsonLd } from "@/components/JsonLd";
+import { SiteShell } from "@/components/site/SiteShell";
+import { ContactCTA } from "@/components/ui/ContactCTA";
+import { PageHero } from "@/components/ui/PageHero";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { brands } from "@/lib/brands";
 import { getProducts } from "@/lib/content";
 import { mediaUrl } from "@/lib/media";
-import { absoluteUrl, breadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import { ZALO_URL, absoluteUrl, breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-export const metadata = createPageMetadata({
-  title: "Vật liệu gỗ công nghiệp MDF, MFC, plywood",
-  description: "Xem nhóm ván MDF, MFC, plywood, laminate, bề mặt trang trí và các thương hiệu vật liệu đang được giới thiệu tại Tùng Phát.",
-  path: "/san-pham"
-});
-
-const productListSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "Thương hiệu vật liệu tại Tùng Phát",
-  itemListElement: brands.map((brand, index) => ({
-    "@type": "ListItem",
-    position: index + 1,
-    name: brand.name,
-    url: absoluteUrl(`/san-pham/${brand.slug}`)
-  }))
-};
+export const metadata = createPageMetadata({ title: "Vật liệu gỗ công nghiệp MDF, MFC, plywood", description: "Xem nhóm ván MDF, MFC, plywood, laminate, bề mặt trang trí và các thương hiệu vật liệu đang được giới thiệu tại Tùng Phát.", path: "/san-pham" });
+const productListSchema = { "@context": "https://schema.org", "@type": "ItemList", name: "Thương hiệu vật liệu tại Tùng Phát", itemListElement: brands.map((brand, index) => ({ "@type": "ListItem", position: index + 1, name: brand.name, url: absoluteUrl(`/san-pham/${brand.slug}`) })) };
 
 export default function ProductsPage() {
   const products = getProducts();
   return (
     <>
-      <JsonLd
-        data={[
-          breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Vật liệu gỗ công nghiệp", path: "/san-pham" }]),
-          productListSchema
-        ]}
-      />
-      <Header appearance="dark" />
-      <main className="bg-[#f6f7f5] pt-[72px]">
-        <section className="bg-forest-950 py-16 text-white lg:py-20">
-          <div className="container-shell">
-            <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-sm text-white/70">
-              <Link href="/" className="min-h-11 content-center hover:text-white">Trang chủ</Link>
-              <span aria-hidden="true">/</span>
-              <span aria-current="page" className="text-white">Sản phẩm</span>
-            </nav>
-            <h1 className="text-balance text-3xl font-extrabold sm:text-4xl lg:text-5xl">Danh mục vật liệu gỗ</h1>
-            <p className="mt-5 max-w-3xl text-pretty leading-7 text-white/80">Tìm hiểu các nhóm vật liệu gỗ công nghiệp, bề mặt trang trí và thương hiệu đang được Tùng Phát giới thiệu để chuẩn bị thông tin trước khi yêu cầu báo giá.</p>
-          </div>
-        </section>
-        <section className="py-16 lg:py-24">
-          <div className="container-shell">
-            <h2 className="text-3xl font-extrabold text-forest-950 sm:text-4xl">Nhóm vật liệu đang giới thiệu</h2>
-            <div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-              {products.map((product) => (
-                <article key={product.slug} className="overflow-hidden bg-white shadow-sm">
-                  <Link href={`/${product.slug}`} className="relative block aspect-[16/10]"><Image src={mediaUrl(product.featuredImage)} alt={product.featuredImageAlt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" /></Link>
-                  <div className="p-6"><p className="text-xs font-extrabold uppercase tracking-wider text-wood-700">{product.category}</p><h2 className="mt-3 text-xl font-extrabold text-forest-950"><Link href={`/${product.slug}`}>{product.title}</Link></h2><p className="mt-3 text-sm leading-6 text-slate-600">{product.excerpt}</p><Link href={`/${product.slug}`} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-950">Xem chi tiết <ArrowRight size={16} /></Link></div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-        <section id="catalogue" className="scroll-mt-24 border-t border-forest-900/10 py-16 lg:py-24">
-          <div className="container-shell mb-9"><h2 className="text-3xl font-extrabold text-forest-950">Thương hiệu và catalogue tham khảo</h2><p className="mt-3 max-w-3xl text-slate-600">Việc hiển thị thương hiệu không phải tuyên bố đại lý chính thức. Hãy kiểm tra nguồn hàng và mã sản phẩm trên báo giá thực tế.</p></div>
-          <div className="container-shell grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {brands.map((brand) => (
-              <article key={brand.slug} className="flex flex-col overflow-hidden bg-white transition-transform duration-300 hover:-translate-y-1">
-                <BrandPlaceholder label={brand.name} className="aspect-[4/3]" />
-                <div className="flex flex-1 flex-col p-6">
-                  <h2 className="text-xl font-extrabold text-forest-950">{brand.name}</h2>
-                  <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">{brand.description || "Thông tin sản phẩm đang được cập nhật."}</p>
-                  <div className="mt-6 grid gap-2">
-                    <Link href={`/san-pham/${brand.slug}`} className="inline-flex min-h-11 items-center justify-between bg-forest-900 px-4 text-sm font-bold text-white">Xem sản phẩm <ArrowRight size={16} /></Link>
-                    <Link href={`/san-pham/${brand.slug}#catalogue`} className="inline-flex min-h-11 items-center justify-between border border-forest-900/25 px-4 text-sm font-bold text-forest-950">Xem catalogue <BookOpen size={16} /></Link>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-      </main>
-      <Footer />
+      <JsonLd data={[breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Vật liệu gỗ công nghiệp", path: "/san-pham" }]), productListSchema]} />
+      <SiteShell>
+        <PageHero compact breadcrumbs={[{ label: "Trang chủ", href: "/" }, { label: "Vật liệu" }]} eyebrow="Danh mục vật liệu" title="Vật liệu gỗ cho nội thất và gia công CNC" description="Tìm hiểu các nhóm MDF, ván gỗ công nghiệp, gỗ ghép và bề mặt đang được giới thiệu. Giá, quy cách, mã hàng và tình trạng cung cấp chỉ được xác nhận theo dữ liệu thực tế khi trao đổi." actions={<a href={ZALO_URL} target="_blank" rel="noopener noreferrer" className="pressable inline-flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-6 text-sm font-extrabold text-white"><MessageCircle size={18} aria-hidden="true" />Gửi quy cách cần tìm</a>} />
+        <section className="section-space bg-white"><div className="container-shell"><SectionHeader eyebrow="Nhóm đang giới thiệu" title="Chọn vật liệu theo nhu cầu sử dụng" description="Mỗi card dẫn tới một landing page có nội dung riêng. Không dùng filter khi số lượng dữ liệu chưa đủ để tạo lựa chọn có ý nghĩa." /><div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-3">{products.map((product) => <article key={product.slug} className="group overflow-hidden border border-forest-900/10 bg-white shadow-[0_8px_24px_rgba(7,59,40,.045)]"><Link href={`/${product.slug}`} className="relative block aspect-[16/10] overflow-hidden bg-[#eef1ed]"><Image src={mediaUrl(product.featuredImage)} alt={product.featuredImageAlt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.02]" /></Link><div className="p-6"><p className="text-xs font-extrabold uppercase tracking-wider text-wood-600">{product.category}</p><h2 className="mt-3 text-xl font-extrabold text-forest-950"><Link href={`/${product.slug}`}>{product.title}</Link></h2><p className="mt-3 text-sm leading-7 text-slate-700">{product.excerpt}</p><Link href={`/${product.slug}`} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-extrabold text-wood-600">Xem chi tiết <ArrowRight size={16} aria-hidden="true" /></Link></div></article>)}</div></div></section>
+        <section className="section-space bg-[#f7f8f5]"><div className="container-shell grid gap-8 lg:grid-cols-[.75fr_1.25fr]"><SectionHeader eyebrow="Cách chọn ban đầu" title="Bốn thông tin giúp kiểm tra nhanh hơn" description="Nếu chưa biết tên sản phẩm chính xác, hãy bắt đầu bằng mục đích sử dụng, môi trường, quy cách và yêu cầu gia công." /><ol className="grid gap-3 sm:grid-cols-2">{[["01", "Hạng mục", "Nêu chi tiết cần làm hoặc không gian sử dụng."], ["02", "Môi trường", "Cho biết điều kiện khô, có độ ẩm hoặc yêu cầu bề mặt."], ["03", "Quy cách", "Gửi độ dày, kích thước và số lượng dự kiến."], ["04", "Gia công", "Nêu nhu cầu cắt, khoan, soi rãnh, dán cạnh hoặc CNC."]].map(([number, title, text]) => <li key={number} className="border border-forest-900/10 bg-white p-5"><span className="text-xs font-extrabold text-wood-600">{number}</span><h3 className="mt-3 font-extrabold text-forest-950">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-700">{text}</p></li>)}</ol></div></section>
+        <section id="thuong-hieu" className="section-space scroll-mt-32 bg-white"><div id="catalogue" className="container-shell scroll-mt-32"><SectionHeader eyebrow="Thương hiệu và catalogue" title="Tham khảo theo thương hiệu" description="Việc hiển thị thương hiệu không phải tuyên bố đại lý hoặc nhà phân phối chính thức. Hãy gửi mã màu và kiểm tra nguồn hàng trên báo giá thực tế." /><div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-4">{brands.map((brand) => <article key={brand.slug} className="flex flex-col overflow-hidden border border-forest-900/10 bg-white shadow-sm">{brand.logo ? <div className="relative aspect-[4/3] bg-[#f7f8f5]"><Image src={brand.logo} alt={`Logo ${brand.name}`} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-contain p-8" /></div> : <BrandPlaceholder label={brand.name} className="aspect-[4/3]" />}<div className="flex flex-1 flex-col p-6"><h2 className="text-xl font-extrabold text-forest-950">{brand.name}</h2><p className="mt-3 flex-1 text-sm leading-7 text-slate-700">{brand.description}</p><div className="mt-6 grid gap-2"><Link href={`/san-pham/${brand.slug}`} className="pressable inline-flex min-h-12 items-center justify-between bg-forest-900 px-4 text-sm font-extrabold text-white">Xem thương hiệu <ArrowRight size={16} aria-hidden="true" /></Link>{brand.slug !== "kes" ? <Link href={`/catalogue/${brand.slug}`} className="pressable inline-flex min-h-12 items-center justify-between border border-forest-900/20 px-4 text-sm font-extrabold text-forest-950">Xem catalogue <BookOpen size={16} aria-hidden="true" /></Link> : null}</div></div></article>)}</div></div></section>
+        <ContactCTA title="Chưa xác định đúng nhóm vật liệu?" description="Gửi ảnh mẫu, mã màu, kích thước, độ dày, số lượng và hạng mục sử dụng. Tùng Phát sẽ đối chiếu các nhóm đang có trước khi báo giá." />
+      </SiteShell>
     </>
   );
 }
