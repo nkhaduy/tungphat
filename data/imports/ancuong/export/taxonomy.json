@@ -1,0 +1,403 @@
+{
+  "exportTime": "2026-08-05T02:29:15.646Z",
+  "parserVersion": "1.0.0",
+  "records": {
+    "facets": [
+      {
+        "facet": "Loại Sản Phẩm",
+        "unknownProductCount": 0,
+        "values": [
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "3d-embossed-lacquered-laminate-inox-plus",
+            "sourceKeys": [
+              "303016500"
+            ],
+            "value": "3D Embossed Lacquered Laminate Inox Plus"
+          },
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "chi-abs",
+            "sourceKeys": [
+              "303001219"
+            ],
+            "value": "Chỉ ABS"
+          },
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "high-gloss-acrylic",
+            "sourceKeys": [
+              "303000667"
+            ],
+            "value": "High Gloss Acrylic"
+          },
+          {
+            "collision": false,
+            "productCount": 3,
+            "proposedSlug": "laminate-kingdom",
+            "sourceKeys": [
+              "303000332",
+              "303000495",
+              "303003838"
+            ],
+            "value": "Laminate Kingdom"
+          },
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "melamine",
+            "sourceKeys": [
+              "303000054"
+            ],
+            "value": "Melamine"
+          }
+        ]
+      },
+      {
+        "facet": "Kích Thước",
+        "unknownProductCount": 0,
+        "values": [
+          {
+            "collision": false,
+            "productCount": 4,
+            "proposedSlug": "1220-2440",
+            "sourceKeys": [
+              "303000054",
+              "303000495",
+              "303000667",
+              "303003838"
+            ],
+            "value": "1220*2440"
+          },
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "1220-2440-1220-3050-1220-3660-1220-4270",
+            "sourceKeys": [
+              "303016500"
+            ],
+            "value": "1220*2440, 1220*3050, 1220*3660, 1220*4270"
+          },
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "1220-2440-1525-3660",
+            "sourceKeys": [
+              "303000332"
+            ],
+            "value": "1220*2440, 1525*3660"
+          },
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "23-0-8",
+            "sourceKeys": [
+              "303001219"
+            ],
+            "value": "23*0.8"
+          }
+        ]
+      },
+      {
+        "facet": "Vật Liệu",
+        "unknownProductCount": 0,
+        "values": [
+          {
+            "collision": false,
+            "productCount": 3,
+            "proposedSlug": "don-sac",
+            "sourceKeys": [
+              "303000332",
+              "303000667",
+              "303001219"
+            ],
+            "value": "Đơn Sắc"
+          },
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "van-da-vat-lieu-cong-nghiep",
+            "sourceKeys": [
+              "303016500"
+            ],
+            "value": "Vân Đá & Vật Liệu Công Nghiệp"
+          },
+          {
+            "collision": false,
+            "productCount": 3,
+            "proposedSlug": "van-go",
+            "sourceKeys": [
+              "303000054",
+              "303000495",
+              "303003838"
+            ],
+            "value": "Vân Gỗ"
+          }
+        ]
+      },
+      {
+        "facet": "Loại Vân",
+        "unknownProductCount": 0,
+        "values": [
+          {
+            "collision": false,
+            "productCount": 3,
+            "proposedSlug": "don-sac",
+            "sourceKeys": [
+              "303000332",
+              "303000667",
+              "303001219"
+            ],
+            "value": "Đơn Sắc"
+          },
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "van-da-vat-lieu-cong-nghiep",
+            "sourceKeys": [
+              "303016500"
+            ],
+            "value": "Vân Đá & Vật Liệu Công Nghiệp"
+          },
+          {
+            "collision": false,
+            "productCount": 3,
+            "proposedSlug": "van-go",
+            "sourceKeys": [
+              "303000054",
+              "303000495",
+              "303003838"
+            ],
+            "value": "Vân Gỗ"
+          }
+        ]
+      },
+      {
+        "facet": "Loại Vân Gỗ",
+        "unknownProductCount": 7,
+        "values": []
+      },
+      {
+        "facet": "Loại Vân Vải, Da, Mây",
+        "unknownProductCount": 7,
+        "values": []
+      },
+      {
+        "facet": "Loại Vân Đá",
+        "unknownProductCount": 7,
+        "values": []
+      },
+      {
+        "facet": "Hiệu Ứng Bề Mặt",
+        "unknownProductCount": 6,
+        "values": [
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "synchronized",
+            "sourceKeys": [
+              "303003838"
+            ],
+            "value": "Synchronized"
+          }
+        ]
+      },
+      {
+        "facet": "Màu Sắc",
+        "unknownProductCount": 0,
+        "values": [
+          {
+            "collision": false,
+            "productCount": 2,
+            "proposedSlug": "be",
+            "sourceKeys": [
+              "303003838",
+              "303016500"
+            ],
+            "value": "Be"
+          },
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "cam",
+            "sourceKeys": [
+              "303000495"
+            ],
+            "value": "Cam"
+          },
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "den",
+            "sourceKeys": [
+              "303000054"
+            ],
+            "value": "Đen"
+          },
+          {
+            "collision": false,
+            "productCount": 2,
+            "proposedSlug": "trang",
+            "sourceKeys": [
+              "303000667",
+              "303001219"
+            ],
+            "value": "Trắng"
+          },
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "xam",
+            "sourceKeys": [
+              "303000332"
+            ],
+            "value": "Xám"
+          }
+        ]
+      },
+      {
+        "facet": "Bề Mặt",
+        "unknownProductCount": 4,
+        "values": [
+          {
+            "collision": false,
+            "productCount": 2,
+            "proposedSlug": "bong-guong",
+            "sourceKeys": [
+              "303000667",
+              "303001219"
+            ],
+            "value": "Bóng Gương"
+          },
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "uon-cong",
+            "sourceKeys": [
+              "303000332"
+            ],
+            "value": "Uốn Cong"
+          }
+        ]
+      },
+      {
+        "facet": "Tính Năng Đặc Biệt",
+        "unknownProductCount": 7,
+        "values": []
+      },
+      {
+        "facet": "Bộ Sưu Tập",
+        "unknownProductCount": 6,
+        "values": [
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "laminate-mfc-same-color-collection-2",
+            "sourceKeys": [
+              "303000495"
+            ],
+            "value": "Laminate-MFC Same Color Collection 2"
+          }
+        ]
+      },
+      {
+        "facet": "Giải Pháp",
+        "unknownProductCount": 4,
+        "values": [
+          {
+            "collision": false,
+            "productCount": 2,
+            "proposedSlug": "giai-phap-chi-dong-mau",
+            "sourceKeys": [
+              "303000054",
+              "303000667"
+            ],
+            "value": "Giải Pháp Chỉ Đồng Màu"
+          },
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "giai-phap-chi-dong-mau-giai-phap-laminate-mfc-dong-mau",
+            "sourceKeys": [
+              "303000495"
+            ],
+            "value": "Giải Pháp Chỉ Đồng Màu, Giải Pháp Laminate-MFC Đồng Màu"
+          }
+        ]
+      },
+      {
+        "facet": "Chỉ Dán Cạnh",
+        "unknownProductCount": 7,
+        "values": []
+      },
+      {
+        "facet": "Biên Dạng",
+        "unknownProductCount": 6,
+        "values": [
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "3de-02-nan-go-hien-dai",
+            "sourceKeys": [
+              "303016500"
+            ],
+            "value": "3DE 02 (Nan Gỗ Hiện Đại)"
+          }
+        ]
+      },
+      {
+        "facet": "Nhóm Giá",
+        "unknownProductCount": 0,
+        "values": [
+          {
+            "collision": false,
+            "productCount": 2,
+            "proposedSlug": "a",
+            "sourceKeys": [
+              "303000495",
+              "303000667"
+            ],
+            "value": "A"
+          },
+          {
+            "collision": false,
+            "productCount": 3,
+            "proposedSlug": "b",
+            "sourceKeys": [
+              "303000054",
+              "303001219",
+              "303016500"
+            ],
+            "value": "B"
+          },
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "h",
+            "sourceKeys": [
+              "303003838"
+            ],
+            "value": "H"
+          },
+          {
+            "collision": false,
+            "productCount": 1,
+            "proposedSlug": "s",
+            "sourceKeys": [
+              "303000332"
+            ],
+            "value": "S"
+          }
+        ]
+      }
+    ],
+    "parserVersion": "1.0.0"
+  },
+  "schemaVersion": "1.0.0",
+  "sourceAuditReference": "docs/catalog/ancuong/ANCUONG_SOURCE_AUDIT.md",
+  "sourceRoot": "https://ancuong.com/online-catalogue/catalogue-vat-lieu.html",
+  "validationStatus": "passed"
+}
