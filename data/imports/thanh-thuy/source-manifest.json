@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "discoveredAt": "2026-08-04T15:03:13.561Z",
+  "robotsUrl": "https://www.gothanhthuy.com/robots.txt",
+  "sitemapIndexUrl": "https://www.gothanhthuy.com/sitemap_index.xml",
+  "productSitemaps": [
+    "https://www.gothanhthuy.com/product-sitemap1.xml",
+    "https://www.gothanhthuy.com/product-sitemap2.xml"
+  ],
+  "categorySitemap": "https://www.gothanhthuy.com/product_cat-sitemap.xml",
+  "productApi": "https://www.gothanhthuy.com/wp-json/wp/v2/product",
+  "categoryApi": "https://www.gothanhthuy.com/wp-json/wp/v2/product_cat",
+  "productCount": 348,
+  "categoryUrls": [
+    "https://www.gothanhthuy.com/products/acrylic/",
+    "https://www.gothanhthuy.com/products/acrylic/glass-series/",
+    "https://www.gothanhthuy.com/products/acrylic/ultra-series/",
+    "https://www.gothanhthuy.com/products/chi-nep-nhua/",
+    "https://www.gothanhthuy.com/products/laminate/",
+    "https://www.gothanhthuy.com/products/laminate/laminate-le-don-sac/",
+    "https://www.gothanhthuy.com/products/laminate/laminate-le-van-go/",
+    "https://www.gothanhthuy.com/products/laminate/laminate-lp-don-sac/",
+    "https://www.gothanhthuy.com/products/laminate/laminate-lp-van-da-van-vai/",
+    "https://www.gothanhthuy.com/products/laminate/laminate-lp-van-go/",
+    "https://www.gothanhthuy.com/products/melamine/",
+    "https://www.gothanhthuy.com/products/melamine/melamine-van-da-vai/",
+    "https://www.gothanhthuy.com/products/melamine/melamine-van-don-sac/",
+    "https://www.gothanhthuy.com/products/melamine/melamine-van-go/",
+    "https://www.gothanhthuy.com/products/melamine/melamine-van-go/melamine-van-beech/",
+    "https://www.gothanhthuy.com/products/melamine/melamine-van-go/melamine-van-cherry/",
+    "https://www.gothanhthuy.com/products/melamine/melamine-van-go/melamine-van-elm/",
+    "https://www.gothanhthuy.com/products/melamine/melamine-van-go/melamine-van-maple/",
+    "https://www.gothanhthuy.com/products/melamine/melamine-van-go/melamine-van-oak/",
+    "https://www.gothanhthuy.com/products/melamine/melamine-van-go/melamine-van-walnut/",
+    "https://www.gothanhthuy.com/products/pvc-film/",
+    "https://www.gothanhthuy.com/products/pvc-film/mang-pet-bong/",
+    "https://www.gothanhthuy.com/products/pvc-film/pvc-film-don-sac/",
+    "https://www.gothanhthuy.com/products/pvc-film/pvc-film-van-da-vai/",
+    "https://www.gothanhthuy.com/products/pvc-film/pvc-film-van-go/",
+    "https://www.gothanhthuy.com/products/veneer/"
+  ],
+  "checksum": "bf919e879b10b721f22cadf7078fcceb4b48dc291ebd69226a8bcf842dace3d1"
+}
