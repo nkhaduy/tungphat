@@ -6,12 +6,35 @@ import { run as runDiscover } from "@/scripts/ancuong/discover";
 import { run as runListings } from "@/scripts/ancuong/crawl-listings";
 import { run as runDetails } from "@/scripts/ancuong/crawl-details";
 import { run as runRelations } from "@/scripts/ancuong/crawl-relations";
+import { HttpStatusError, SourceBlockedError } from "@/scripts/ancuong/http-client";
 import type { CliOptions } from "@/scripts/ancuong/types";
 
 const fixture = (name: string) => readFile(join(process.cwd(), "tests/fixtures/ancuong", name), "utf8");
 const options: CliOptions = { dryRun: false, resume: false, force: false, concurrency: 2, changedOnly: false, skipMedia: false, verbose: false };
 
 describe("An Cuong parser runners", () => {
+  it("preserves discovery generatedAt when the fetched category contract is unchanged", async () => {
+    const directory = await mkdtemp(join(tmpdir(), "ancuong-discovery-stable-"));
+    const outputPath = join(directory, "discovery-manifest.json");
+    const rootHtml = await fixture("catalogue-root.html");
+
+    await runDiscover(options, {
+      outputPath,
+      fetchText: async () => ({ body: rootHtml, contentHash: "1".repeat(64) }),
+      now: () => "2026-08-04T00:00:00.000Z"
+    });
+    const firstBytes = await readFile(outputPath, "utf8");
+
+    const second = await runDiscover(options, {
+      outputPath,
+      fetchText: async () => ({ body: rootHtml, contentHash: "1".repeat(64) }),
+      now: () => "2026-08-05T00:00:00.000Z"
+    });
+
+    expect(second.generatedAt).toBe("2026-08-04T00:00:00.000Z");
+    expect(await readFile(outputPath, "utf8")).toBe(firstBytes);
+  });
+
   it("writes discovery, listing, detail and explicit relation contracts from cached SSR HTML", async () => {
     const directory = await mkdtemp(join(tmpdir(), "ancuong-parser-runners-"));
     const discoveryPath = join(directory, "reports", "discovery-manifest.json");
@@ -80,5 +103,67 @@ describe("An Cuong parser runners", () => {
     });
     expect(fetched).toEqual([listing.sourceUrl]);
     expect(details).toHaveLength(1);
+  });
+
+  it("persists each parsed detail before a later URL fails", async () => {
+    const directory = await mkdtemp(join(tmpdir(), "ancuong-detail-durable-"));
+    const listingsPath = join(directory, "listings.json");
+    const outputPath = join(directory, "details.json");
+    const statePath = join(directory, "state.json");
+    const firstUrl = "https://ancuong.com/melamine/303000078.html";
+    const secondUrl = "https://ancuong.com/melamine/303003551.html";
+    const listing = {
+      sourceId: "303000078", sourceUrl: firstUrl, category: "Melamine", categorySlug: "melamine", productCode: "MFC - MS 106 SH", name: "Milky White", facetKeys: {}
+    };
+    await writeFile(listingsPath, `${JSON.stringify([listing, { ...listing, sourceId: "303003551", sourceUrl: secondUrl }])}\n`);
+
+    await expect(runDetails({ ...options, concurrency: 1 }, {
+      listingsPath,
+      outputPath,
+      statePath,
+      fetchText: async (url) => {
+        if (url === secondUrl) throw new SourceBlockedError(url, 403, "simulated source challenge");
+        return { body: await fixture("melamine-detail.html"), contentHash: "5".repeat(64) };
+      },
+      now: () => "2026-08-04T00:04:00.000Z"
+    })).rejects.toThrow("simulated source challenge");
+
+    const persisted = JSON.parse(await readFile(outputPath, "utf8"));
+    expect(persisted).toHaveLength(1);
+    expect(persisted[0].sourceUrl).toBe(firstUrl);
+    const checkpoint = JSON.parse(await readFile(statePath, "utf8"));
+    expect(checkpoint[firstUrl].status).toBe("parsed");
+    expect(checkpoint[secondUrl].status).toBe("failed-retryable");
+  });
+
+  it("marks a missing detail final and continues with the remaining URLs", async () => {
+    const directory = await mkdtemp(join(tmpdir(), "ancuong-detail-missing-"));
+    const listingsPath = join(directory, "listings.json");
+    const outputPath = join(directory, "details.json");
+    const statePath = join(directory, "state.json");
+    const missingUrl = "https://ancuong.com/melamine/303000078.html";
+    const validUrl = "https://ancuong.com/melamine/303003551.html";
+    const listing = {
+      sourceId: "303000078", sourceUrl: missingUrl, category: "Melamine", categorySlug: "melamine", productCode: "MFC - MS 106 SH", name: "Milky White", facetKeys: {}
+    };
+    await writeFile(listingsPath, `${JSON.stringify([listing, { ...listing, sourceId: "303003551", sourceUrl: validUrl }])}\n`);
+
+    const details = await runDetails({ ...options, concurrency: 1 }, {
+      listingsPath,
+      outputPath,
+      statePath,
+      fetchText: async (url) => {
+        if (url === missingUrl) throw new HttpStatusError(url, 404);
+        return { body: await fixture("melamine-detail.html"), contentHash: "6".repeat(64) };
+      },
+      now: () => "2026-08-04T00:05:00.000Z"
+    });
+
+    expect(details).toHaveLength(1);
+    expect(details[0].sourceUrl).toBe(validUrl);
+    const checkpoint = JSON.parse(await readFile(statePath, "utf8"));
+    expect(checkpoint[missingUrl].status).toBe("failed-final");
+    expect(checkpoint[missingUrl].error).toContain("HTTP 404");
+    expect(checkpoint[validUrl].status).toBe("parsed");
   });
 });
