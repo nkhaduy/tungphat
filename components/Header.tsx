@@ -4,17 +4,126 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, MessageCircle, Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { vi as t } from "@/lib/i18n";
+import { SupplierLinkList } from "@/components/catalog/shared/SupplierLinkList";
 import { trackEvent } from "@/lib/analytics";
+import { supplierNavigation } from "@/lib/catalog/core/navigation";
+import { vi as t } from "@/lib/i18n";
 import { PHONE_HREF, ZALO_URL } from "@/lib/seo";
 
 type HeaderProps = {
   appearance?: "adaptive" | "dark" | "light";
 };
 
+type NavigationLink = {
+  label: string;
+  href: string;
+};
+
+const productLinks: NavigationLink[] = [
+  { label: t.navAllProducts, href: "/san-pham/" },
+  { label: "Gỗ ghép", href: "/go-ghep/" },
+  { label: "Gỗ ghép cao su", href: "/go-ghep-cao-su/" },
+  { label: "Gỗ ghép tràm", href: "/go-ghep-tram/" },
+  { label: "Ván MDF", href: "/van-mdf/" },
+  { label: "MDF chống ẩm", href: "/mdf-chong-am/" },
+];
+
+function desktopLinkClass(lightStyle: boolean) {
+  return `py-7 text-[.8125rem] font-bold transition-colors duration-300 hover:text-wood-500 ${
+    lightStyle ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"
+  }`;
+}
+
+type DesktopDropdownProps = {
+  label: string;
+  href: string;
+  lightStyle: boolean;
+  children: React.ReactNode;
+};
+
+function DesktopDropdown({
+  label,
+  href,
+  lightStyle,
+  children,
+}: DesktopDropdownProps) {
+  return (
+    <div className="group relative flex items-center">
+      <Link href={href} className={desktopLinkClass(lightStyle)}>
+        {label}
+      </Link>
+      <button
+        type="button"
+        aria-label={`Mở menu ${label}`}
+        aria-haspopup="true"
+        className={`grid h-11 w-7 place-items-center transition-colors duration-300 ${
+          lightStyle ? "text-ink/70" : "text-white/80"
+        }`}
+      >
+        <ChevronDown size={14} />
+      </button>
+      <div className="invisible absolute left-0 top-full w-64 translate-y-2 bg-white p-2 text-forest-950 opacity-0 shadow-lg transition duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+type MobileSectionProps = {
+  id: string;
+  label: string;
+  href: string;
+  expanded: boolean;
+  onToggle: () => void;
+  onNavigate: () => void;
+  children: React.ReactNode;
+};
+
+function MobileSection({
+  id,
+  label,
+  href,
+  expanded,
+  onToggle,
+  onNavigate,
+  children,
+}: MobileSectionProps) {
+  return (
+    <div className="border-b border-white/10">
+      <div className="flex items-center">
+        <Link
+          href={href}
+          onClick={onNavigate}
+          className="flex min-h-12 flex-1 items-center py-4 text-sm font-bold"
+        >
+          {label}
+        </Link>
+        <button
+          type="button"
+          onClick={onToggle}
+          aria-expanded={expanded}
+          aria-controls={id}
+          aria-label={`${expanded ? "Đóng" : "Mở"} menu ${label}`}
+          className="grid h-12 w-12 place-items-center"
+        >
+          <ChevronDown
+            size={18}
+            className={`transition-transform ${expanded ? "rotate-180" : ""}`}
+          />
+        </button>
+      </div>
+      {expanded ? (
+        <div id={id} className="mb-3 border-l border-white/20 pl-4">
+          {children}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 export function Header({ appearance = "adaptive" }: HeaderProps) {
   const [open, setOpen] = useState(false);
-  const [productsOpen, setProductsOpen] = useState(false);
+  const [mobileSection, setMobileSection] = useState<string>();
   const [scrolled, setScrolled] = useState(false);
   const lightStyle = appearance === "light" || scrolled;
   const darkStyle = appearance === "dark" && !scrolled;
@@ -26,24 +135,15 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const productLinks: [string, string][] = [
-    [t.navAllProducts, "/san-pham/"],
-    ["Gỗ ghép", "/go-ghep/"],
-    ["Gỗ ghép cao su", "/go-ghep-cao-su/"],
-    ["Gỗ ghép tràm", "/go-ghep-tram/"],
-    ["Ván MDF", "/van-mdf/"],
-    ["MDF chống ẩm", "/mdf-chong-am/"],
-    ["Mã màu Thanh Thuỳ", "/thuong-hieu/thanh-thuy/"],
-    ["Mã Melamine Ba Thanh", "/ma-mau-melamine/ba-thanh/"],
-    [t.navCatalogues, "/san-pham/#catalogue"]
-  ];
+  const closeMobileMenu = () => setOpen(false);
+  const toggleMobileSection = (section: string) => {
+    setMobileSection((current) => (current === section ? undefined : section));
+  };
 
-  const links: [string, string][] = [
-    [t.navHome, "/#trang-chu"],
-    [t.navCNC, "/#cnc"],
-    [t.navLibrary, "/#thu-vien"],
-    [t.navContact, "/lien-he/"]
-  ];
+  const supplierDesktopClass =
+    "flex min-h-11 items-center px-4 text-sm font-bold transition hover:bg-[#eef1ed] focus:bg-[#eef1ed]";
+  const supplierMobileClass =
+    "flex min-h-11 items-center text-sm text-white/75";
 
   return (
     <header
@@ -53,17 +153,19 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
           ? "border-black/[0.08] bg-white/95 shadow-[0_1px_12px_rgba(0,0,0,0.07)] backdrop-blur-md"
           : darkStyle
             ? "border-white/10 bg-forest-950"
-            : "border-transparent bg-transparent"
+            : "border-transparent bg-transparent",
       ].join(" ")}
     >
-      <div className="container-shell flex h-[76px] items-center justify-between gap-5 xl:h-[78px]">
-        {/* Logo — switches between white and color based on scroll */}
-        <Link href="/" className="relative h-[52px] w-[232px] shrink-0 sm:w-[282px] xl:h-[56px] xl:w-[318px]">
+      <div className="container-shell flex h-[76px] items-center justify-between gap-4 xl:h-[78px]">
+        <Link
+          href="/"
+          className="relative h-[52px] w-[232px] shrink-0 sm:w-[282px] xl:h-[56px] xl:w-[286px]"
+        >
           <Image
             src="/logo-horizontal-white.png"
             alt="Tùng Phát"
             fill
-            sizes="(min-width: 1280px) 318px, 282px"
+            sizes="(min-width: 1280px) 286px, 282px"
             quality={95}
             className={`object-contain object-left transition-opacity duration-300 ${lightStyle ? "opacity-0" : "opacity-100"}`}
             priority
@@ -72,130 +174,226 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
             src="/logo-horizontal.png"
             alt="Tùng Phát"
             fill
-            sizes="(min-width: 1280px) 318px, 282px"
+            sizes="(min-width: 1280px) 286px, 282px"
             quality={95}
             className={`object-contain object-left transition-opacity duration-300 ${lightStyle ? "opacity-100" : "opacity-0"}`}
             priority
           />
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-6 xl:flex" aria-label="Điều hướng chính">
-          <a
-            href={links[0][1]}
-            className={`text-[.8125rem] font-bold transition-colors duration-300 hover:text-wood-500 ${lightStyle ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
+        <nav
+          className="hidden items-center gap-4 xl:flex"
+          aria-label="Điều hướng chính"
+        >
+          <DesktopDropdown
+            label={t.navProducts}
+            href="/san-pham/"
+            lightStyle={lightStyle}
           >
-            {links[0][0]}
-          </a>
-          <div className="group relative flex items-center">
-            <Link
-              href="/san-pham"
-              onClick={() => trackEvent("view_product_category", { location: "header" })}
-              className={`py-7 text-[.8125rem] font-bold transition-colors duration-300 hover:text-wood-500 ${lightStyle ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
-            >
-              {t.navProducts}
-            </Link>
-            <button
-              type="button"
-              aria-label={t.mobileOpenProducts}
-              aria-haspopup="true"
-              className={`grid h-11 w-7 place-items-center transition-colors duration-300 ${lightStyle ? "text-ink/70" : "text-white/80"}`}
-            >
-              <ChevronDown size={14} />
-            </button>
-            <div className="invisible absolute left-0 top-full w-60 translate-y-2 bg-white p-2 text-forest-950 opacity-0 shadow-lg transition duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-              {productLinks.map(([label, href]) => (
-                <a key={href} href={href} onClick={() => trackEvent("view_product_category", { location: "header_menu", destination: href })} className="flex min-h-11 items-center px-4 text-sm font-bold transition hover:bg-[#eef1ed] focus:bg-[#eef1ed]">
-                  {label}
-                </a>
-              ))}
-            </div>
-          </div>
-          {links.slice(1).map(([label, href]) => (
-            <a
-              key={href}
-              href={href}
-              onClick={() => href === "/gia-cong-cnc" && trackEvent("view_cnc_service", { location: "header" })}
-              className={`text-[.8125rem] font-bold transition-colors duration-300 ${lightStyle ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"}`}
-            >
-              {label}
-            </a>
-          ))}
+            {productLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() =>
+                  trackEvent("view_product_category", {
+                    location: "header_menu",
+                    destination: link.href,
+                  })
+                }
+                className={supplierDesktopClass}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </DesktopDropdown>
+          <DesktopDropdown
+            label="Catalogue"
+            href="/san-pham/#catalogue"
+            lightStyle={lightStyle}
+          >
+            <SupplierLinkList
+              links={supplierNavigation.catalogue}
+              className={supplierDesktopClass}
+              onNavigate={(href) =>
+                trackEvent("click_catalogue", {
+                  location: "header_menu",
+                  destination: href,
+                })
+              }
+            />
+          </DesktopDropdown>
+          <DesktopDropdown
+            label="Thương hiệu"
+            href="/san-pham/#catalogue"
+            lightStyle={lightStyle}
+          >
+            <SupplierLinkList
+              links={supplierNavigation.brands}
+              className={supplierDesktopClass}
+              onNavigate={(href) =>
+                trackEvent("view_product_category", {
+                  location: "header_brand_menu",
+                  destination: href,
+                })
+              }
+            />
+          </DesktopDropdown>
+          <Link
+            href="/gia-cong-cnc/"
+            onClick={() =>
+              trackEvent("view_cnc_service", { location: "header" })
+            }
+            className={desktopLinkClass(lightStyle)}
+          >
+            {t.navCNC}
+          </Link>
+          <Link href="/lien-he/" className={desktopLinkClass(lightStyle)}>
+            {t.navContact}
+          </Link>
         </nav>
 
-        {/* Desktop actions */}
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden items-center gap-1 xl:flex">
           <a
             href={PHONE_HREF}
             data-analytics-handled="1"
             data-track-event="click_phone"
             data-track-location="header"
             onClick={() => trackEvent("click_phone", { location: "header" })}
-            className={`inline-flex min-h-11 items-center gap-2 px-3 text-sm font-bold transition-colors duration-300 ${lightStyle ? "text-ink hover:text-wood-500" : "text-white/90 hover:text-white"}`}
+            className={`inline-flex min-h-11 items-center gap-2 px-2 text-sm font-bold transition-colors duration-300 ${lightStyle ? "text-ink hover:text-wood-500" : "text-white/90 hover:text-white"}`}
           >
             <Phone size={16} /> {t.phoneLabel}
           </a>
-          <a href={ZALO_URL} target="_blank" rel="noopener noreferrer" data-analytics-handled="1" data-track-event="click_quote" data-track-location="header" onClick={() => trackEvent("request_quote", { location: "header", channel: "zalo" })} aria-label={t.ctaGetQuote} className="inline-flex min-h-11 items-center gap-2 bg-[#b84f05] px-4 text-sm font-bold text-white transition-colors hover:bg-[#963f04]">
+          <a
+            href={ZALO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics-handled="1"
+            data-track-event="click_quote"
+            data-track-location="header"
+            onClick={() =>
+              trackEvent("request_quote", {
+                location: "header",
+                channel: "zalo",
+              })
+            }
+            aria-label={t.ctaGetQuote}
+            className="inline-flex min-h-11 items-center gap-2 bg-[#b84f05] px-3 text-sm font-bold text-white transition-colors hover:bg-[#963f04]"
+          >
             <MessageCircle aria-hidden="true" size={16} /> {t.ctaGetQuote}
           </a>
         </div>
 
-        {/* Mobile menu toggle */}
         <button
           type="button"
-          onClick={() => setOpen(!open)}
+          onClick={() => setOpen((current) => !current)}
           aria-expanded={open}
           aria-label={open ? t.mobileCloseMenu : t.mobileOpenMenu}
-          className={`grid h-11 w-11 place-items-center border transition-colors duration-300 lg:hidden ${lightStyle ? "border-ink/20 text-ink" : "border-white/25 text-white"}`}
+          className={`grid h-11 w-11 place-items-center border transition-colors duration-300 xl:hidden ${lightStyle ? "border-ink/20 text-ink" : "border-white/25 text-white"}`}
         >
           {open ? <X /> : <Menu />}
         </button>
       </div>
 
-      {/* Mobile drawer — always dark */}
-      {open && (
-        <div className="border-t border-white/10 bg-forest-950 px-4 pb-5 text-white lg:hidden">
-          <a href={links[0][1]} onClick={() => setOpen(false)} className="block min-h-12 border-b border-white/10 py-4 text-sm font-bold">
-            {links[0][0]}
-          </a>
-          <div className="border-b border-white/10">
-            <div className="flex items-center">
-              <Link href="/san-pham" onClick={() => { trackEvent("view_product_category", { location: "mobile_header" }); setOpen(false); }} className="flex min-h-12 flex-1 items-center py-4 text-sm font-bold">
-                {t.navProducts}
-              </Link>
-              <button
-                type="button"
-                onClick={() => setProductsOpen(!productsOpen)}
-                aria-expanded={productsOpen}
-                aria-controls="mobile-products"
-                aria-label={productsOpen ? t.mobileCloseProducts : t.mobileOpenProducts}
-                className="grid h-12 w-12 place-items-center"
+      {open ? (
+        <div className="border-t border-white/10 bg-forest-950 px-4 pb-5 text-white xl:hidden">
+          <MobileSection
+            id="mobile-products"
+            label={t.navProducts}
+            href="/san-pham/"
+            expanded={mobileSection === "products"}
+            onToggle={() => toggleMobileSection("products")}
+            onNavigate={closeMobileMenu}
+          >
+            {productLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => {
+                  trackEvent("view_product_category", {
+                    location: "mobile_header_menu",
+                    destination: link.href,
+                  });
+                  closeMobileMenu();
+                }}
+                className={supplierMobileClass}
               >
-                <ChevronDown size={18} className={`transition-transform ${productsOpen ? "rotate-180" : ""}`} />
-              </button>
-            </div>
-            {productsOpen && (
-              <div id="mobile-products" className="mb-3 border-l border-white/20 pl-4">
-                {productLinks.map(([label, href]) => (
-                  <a key={href} href={href} onClick={() => { trackEvent("view_product_category", { location: "mobile_header_menu", destination: href }); setOpen(false); }} className="flex min-h-11 items-center text-sm text-white/75">
-                    {label}
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
-          {links.slice(1).map(([label, href]) => (
-            <a key={href} href={href} onClick={() => { if (href === "/gia-cong-cnc") trackEvent("view_cnc_service", { location: "mobile_header" }); setOpen(false); }} className="block min-h-12 border-b border-white/10 py-4 text-sm font-bold">
-              {label}
-            </a>
-          ))}
+                {link.label}
+              </Link>
+            ))}
+          </MobileSection>
+          <MobileSection
+            id="mobile-catalogues"
+            label="Catalogue"
+            href="/san-pham/#catalogue"
+            expanded={mobileSection === "catalogue"}
+            onToggle={() => toggleMobileSection("catalogue")}
+            onNavigate={closeMobileMenu}
+          >
+            <SupplierLinkList
+              links={supplierNavigation.catalogue}
+              className={supplierMobileClass}
+              onNavigate={(href) => {
+                trackEvent("click_catalogue", {
+                  location: "mobile_header_menu",
+                  destination: href,
+                });
+                closeMobileMenu();
+              }}
+            />
+          </MobileSection>
+          <MobileSection
+            id="mobile-brands"
+            label="Thương hiệu"
+            href="/san-pham/#catalogue"
+            expanded={mobileSection === "brands"}
+            onToggle={() => toggleMobileSection("brands")}
+            onNavigate={closeMobileMenu}
+          >
+            <SupplierLinkList
+              links={supplierNavigation.brands}
+              className={supplierMobileClass}
+              onNavigate={(href) => {
+                trackEvent("view_product_category", {
+                  location: "mobile_header_brand_menu",
+                  destination: href,
+                });
+                closeMobileMenu();
+              }}
+            />
+          </MobileSection>
+          <Link
+            href="/gia-cong-cnc/"
+            onClick={() => {
+              trackEvent("view_cnc_service", { location: "mobile_header" });
+              closeMobileMenu();
+            }}
+            className="block min-h-12 border-b border-white/10 py-4 text-sm font-bold"
+          >
+            {t.navCNC}
+          </Link>
+          <Link
+            href="/lien-he/"
+            onClick={closeMobileMenu}
+            className="block min-h-12 border-b border-white/10 py-4 text-sm font-bold"
+          >
+            {t.navContact}
+          </Link>
           <div className="mt-4 flex justify-end">
-            <a href={PHONE_HREF} data-analytics-handled="1" data-track-event="click_phone" data-track-location="mobile_bottom_bar" onClick={() => trackEvent("click_phone", { location: "mobile_header" })} className="flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-4 font-bold text-white">
+            <a
+              href={PHONE_HREF}
+              data-analytics-handled="1"
+              data-track-event="click_phone"
+              data-track-location="mobile_bottom_bar"
+              onClick={() =>
+                trackEvent("click_phone", { location: "mobile_header" })
+              }
+              className="flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-4 font-bold text-white"
+            >
               <Phone size={17} /> {t.callLabel}
             </a>
           </div>
         </div>
-      )}
+      ) : null}
     </header>
   );
 }

@@ -58,7 +58,10 @@
     "catalog:ancuong:report": "tsx scripts/ancuong/cli.ts report",
     "catalog:ancuong:sample": "tsx scripts/ancuong/cli.ts sample",
     "catalog:ancuong:all": "tsx scripts/ancuong/cli.ts all",
-    "catalog:ancuong:test:live": "tsx scripts/ancuong/cli.ts test:live"
+    "catalog:ancuong:test:live": "tsx scripts/ancuong/cli.ts test:live",
+    "catalog:suppliers:validate": "npm run catalog:thanh-thuy:validate && npm run catalog:ba-thanh:validate && npm run catalog:ancuong:validate",
+    "catalog:suppliers:test": "vitest run supplier thanh-thuy ba-thanh ancuong",
+    "catalog:suppliers:audit": "npm run catalog:thanh-thuy:audit-duplication && npm run catalog:ba-thanh:audit && npm run catalog:ancuong:report"
   },
   "dependencies": {
     "framer-motion": "^12.42.2",
