@@ -12,9 +12,12 @@ type CheckpointData = Record<string, CheckpointRecord>;
 
 export async function createCheckpointStore(path: string) {
   let data = (await readJsonIfExists<CheckpointData>(path)) ?? {};
+  let persistQueue = Promise.resolve();
 
   async function persist() {
-    await atomicWriteJson(path, data);
+    const snapshot = structuredClone(data);
+    persistQueue = persistQueue.then(() => atomicWriteJson(path, snapshot));
+    await persistQueue;
   }
 
   return {
