@@ -8,7 +8,7 @@ Base commit: `ca939b0dcfe5abb7e3361c6370b64531e66f8e9a`
 
 The audit follows six customer personas through the homepage, catalogue hub, supplier hubs, category pages, detail pages, search, filters, contact paths, mobile navigation, and related service pages. The local production export was operated through the Codex in-app browser at 1440x900, 1280x800, 768x1024, 390x844, 375x667, and 360x800.
 
-Evidence is retained in `docs/uiux/catalogue/before/`. Screenshots show representative states only; route behavior and keyboard interactions are verified separately in browser and automated tests.
+Evidence is retained in `docs/uiux/catalogue/before/` and `docs/uiux/catalogue/after/`. Screenshots show representative states only; route behavior and keyboard interactions are verified separately in browser and automated tests.
 
 ## Findings
 
@@ -144,11 +144,47 @@ Evidence is retained in `docs/uiux/catalogue/before/`. Screenshots show represen
 - Fix: Generate UUID v4 identifiers using `crypto.getRandomValues()` when `randomUUID()` is unavailable, and use the same helper for event IDs.
 - Verification: Regression unit test and a rendered LAN production build.
 
+### CAT-UX-12 - Exact supplier searches still return a product result wall
+
+- Severity: P2
+- Route: `/catalogue/`
+- Device: All
+- Persona: A, C, E
+- Observed problem: Queries such as `Thanh Thuy`, `Ba Thanh`, and `An Cuong` match the supplier name but still render up to 48 product or code cards.
+- User impact: A customer looking for a supplier hub must distinguish the intended brand entry from records that happen to contain the same supplier metadata.
+- Evidence: Browser search with `An Cuong` and `ba-thanh-search-result.png` as the comparable result layout.
+- Fix: Detect an unambiguous normalized supplier-name match and show one prominent supplier-hub result. Accent-free and hyphenated input remains supported.
+- Verification: Unit coverage for normalized supplier matching and Playwright assertions that exact supplier queries suppress product results.
+
+### CAT-UX-13 - Ba Thanh query and filter state disappears on return
+
+- Severity: P2
+- Route: `/ma-mau-melamine/ba-thanh/`
+- Device: Desktop and mobile
+- Persona: B, C, F
+- Observed problem: The Ba Thanh search and group filter are component-only state, so detail navigation, browser back, and reload can reset a carefully narrowed result set.
+- User impact: A designer comparing several swatches must repeat the query and filter after each detail view.
+- Evidence: Before/after browser history interaction and `mobile-search-filter.png`.
+- Fix: Store `q` and `category` in the URL, preserve existing history state, and restore the controls on load and `popstate`.
+- Verification: Playwright covers search, filter, detail navigation, back, and reload restoration.
+
+### CAT-UX-14 - Legacy noindex supplier routes look disconnected from live data
+
+- Severity: P2
+- Route: `/catalogue/ba-thanh/`, `/catalogue/thanh-thuy/`
+- Device: All
+- Persona: D, E
+- Observed problem: Older noindex catalogue routes use placeholder-style cards even though the live canonical supplier hubs already contain searchable data.
+- User impact: Bookmarks and internal links can make a complete catalogue appear unfinished or unavailable.
+- Evidence: Browser inspection of `/catalogue/ba-thanh/` before and after the handoff copy change.
+- Fix: Keep the noindex policy and route, but present the live record count and a direct, clearly named link to the canonical catalogue.
+- Verification: Metadata and Playwright assertions confirm `noindex`, the canonical handoff URL, and removal of stale “đang cập nhật/bổ sung” language.
+
 ## Priorities
 
 - P0: 1 found, fixed first.
 - P1: 6 findings covering discovery, first-use comprehension, mobile search, detail conversion, and An Cuong trust.
-- P2: 4 findings covering taxonomy, navigation, supplier clarity, messages, and accessibility labels.
+- P2: 7 findings covering taxonomy, navigation, supplier clarity, messages, state restoration, legacy-route handoff, and accessibility labels.
 - P3: Visual polish will be recorded only where it improves scanability or consistency; no standalone decorative redesign is planned.
 
 ## Guardrails

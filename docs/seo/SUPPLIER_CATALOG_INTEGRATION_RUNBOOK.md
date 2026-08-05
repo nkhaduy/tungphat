@@ -76,6 +76,22 @@ npm test
 
 The build must retain 35 canonical sitemap URLs, including eight Thanh Thuy URLs and 12 Ba Thanh URLs. An Cuong remains out of the sitemap while its pinned route is noindex.
 
+## Validate catalogue UI/UX
+
+Run the production export locally and use the customer-journey suite against it:
+
+```bash
+npm run build
+npm run start -- --listen 127.0.0.1 --port 4173
+PLAYWRIGHT_BASE_URL=http://127.0.0.1:4173 npm run test:e2e
+```
+
+The supplier journey coverage must verify catalogue discovery, exact-code normalization, supplier distinction, URL-restored filters, copy-code feedback, encoded Zalo messages, mobile navigation, breadcrumbs, noindex-page usability, An Cuong scope copy, JavaScript-disabled content, reduced motion, 200% zoom, rotation, and the requested viewport matrix.
+
+Use the Codex in-app browser for visual confirmation of representative desktop and mobile routes. Keep only reviewable evidence in `docs/uiux/catalogue/before/` and `docs/uiux/catalogue/after/`; do not add bulk or flaky screenshot snapshots.
+
+For performance comparison, run Lighthouse sequentially against the integration static export and the candidate static export on the same machine and browser version. Do not compare CPU-contended parallel runs or change An Cuong's `noindex` policy to increase its SEO score. Record Performance, Accessibility, Best Practices, SEO, LCP, CLS, TBT, and meaningful script-asset changes.
+
 ## Audit routes, sitemap and metadata
 
 ```bash
@@ -99,6 +115,8 @@ npm run catalog:ancuong:validate
 ```
 
 Keep media under supplier namespaces. Do not hotlink, bulk rename stable paths or move An Cuong runtime binaries into the deployable public bundle without an explicit product decision and usage-right confirmation.
+
+Production deployment blocked pending media usage confirmation.
 
 ## Roll back one supplier import
 
