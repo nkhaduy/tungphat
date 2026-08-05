@@ -1,0 +1,29 @@
+{
+  "binaryDownload": {
+    "bytesDownloadedThisRun": 0,
+    "completed": false,
+    "reason": "filesystem below required 20% free-space reserve"
+  },
+  "duplicateUrlReferences": 2683,
+  "estimatedBytes": {
+    "conservative": 30469726543,
+    "low": 9378442977,
+    "middle": 19220204551
+  },
+  "externalDomains": [],
+  "invalidUrls": 0,
+  "references": 7267,
+  "referencesByRole": {
+    "application": 1903,
+    "catalogue": 0,
+    "gallery": 2682,
+    "irrelevant": 0,
+    "logo": 0,
+    "primary": 2682,
+    "swatch": 0,
+    "technical": 0,
+    "unknown": 0
+  },
+  "sharedUrlsAcrossProducts": 1,
+  "uniqueUrls": 4584
+}
