@@ -135,6 +135,20 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
   const closeMobileMenu = () => setOpen(false);
   const toggleMobileSection = (section: string) => {
     setMobileSection((current) => (current === section ? undefined : section));
@@ -172,7 +186,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
           />
           <Image
             src="/logo-horizontal.png"
-            alt="Tùng Phát"
+            alt=""
             fill
             sizes="(min-width: 1280px) 286px, 282px"
             quality={95}
@@ -207,7 +221,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
             ))}
           </DesktopDropdown>
           <DesktopDropdown
-            label="Catalogue"
+            label="Catalogue nhà cung cấp"
             href="/catalogue/"
             lightStyle={lightStyle}
           >
@@ -217,22 +231,6 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
               onNavigate={(href) =>
                 trackEvent("click_catalogue", {
                   location: "header_menu",
-                  destination: href,
-                })
-              }
-            />
-          </DesktopDropdown>
-          <DesktopDropdown
-            label="Thương hiệu"
-            href="/san-pham/#catalogue"
-            lightStyle={lightStyle}
-          >
-            <SupplierLinkList
-              links={supplierNavigation.brands}
-              className={supplierDesktopClass}
-              onNavigate={(href) =>
-                trackEvent("view_product_category", {
-                  location: "header_brand_menu",
                   destination: href,
                 })
               }
@@ -323,7 +321,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
           </MobileSection>
           <MobileSection
             id="mobile-catalogues"
-            label="Catalogue"
+            label="Catalogue nhà cung cấp"
             href="/catalogue/"
             expanded={mobileSection === "catalogue"}
             onToggle={() => toggleMobileSection("catalogue")}
@@ -335,26 +333,6 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
               onNavigate={(href) => {
                 trackEvent("click_catalogue", {
                   location: "mobile_header_menu",
-                  destination: href,
-                });
-                closeMobileMenu();
-              }}
-            />
-          </MobileSection>
-          <MobileSection
-            id="mobile-brands"
-            label="Thương hiệu"
-            href="/san-pham/#catalogue"
-            expanded={mobileSection === "brands"}
-            onToggle={() => toggleMobileSection("brands")}
-            onNavigate={closeMobileMenu}
-          >
-            <SupplierLinkList
-              links={supplierNavigation.brands}
-              className={supplierMobileClass}
-              onNavigate={(href) => {
-                trackEvent("view_product_category", {
-                  location: "mobile_header_brand_menu",
                   destination: href,
                 });
                 closeMobileMenu();
