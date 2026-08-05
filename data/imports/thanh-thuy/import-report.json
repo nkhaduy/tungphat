@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "importedAt": "2026-08-05T02:43:50.325Z",
+  "importedAt": "2026-08-05T14:38:13.329Z",
   "dryRun": false,
   "sourceProducts": 348,
   "catalogProducts": 348,
@@ -19,5 +19,5 @@
     "SOURCE_UNAVAILABLE": 0
   },
   "catalogChecksum": "e44907478b33c0db25c1f95a5cc3dc25487d69b91efa038af752d9b664703ced",
-  "backup": ".cache/thanh-thuy/backups/2026-08-05T02-43-50-325Z-catalog.json"
+  "backup": ".cache/thanh-thuy/backups/2026-08-05T14-38-13-329Z-catalog.json"
 }
