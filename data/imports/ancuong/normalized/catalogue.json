@@ -1,0 +1,2579 @@
+[
+  {
+    "applicationProducts": [
+      {
+        "name": "Sản Phẩm Ứng Dụng",
+        "relationType": "application",
+        "sourceId": "5370",
+        "sourceUrl": "https://ancuong.com/album-product/5370"
+      }
+    ],
+    "brand": "An Cường",
+    "category": "Tấm 3D Embossed",
+    "categorySlug": "3d-embossed",
+    "collections": [],
+    "colors": [
+      "Be"
+    ],
+    "contentUsageStatus": "technical-data",
+    "descriptions": {},
+    "dimensions": [
+      "1220*2440, 1220*3050, 1220*3660, 1220*4270"
+    ],
+    "dimensionThicknessMatrix": [
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "2",
+          "3",
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x3050",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x3660",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x4270",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "2",
+          "3",
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x3050",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x3660",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x4270",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "2",
+          "3",
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x3050",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x3660",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x4270",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "2",
+          "3",
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x3050",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x3660",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x4270",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "2",
+          "3",
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x3050",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x3660",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x4270",
+        "thicknesses": [
+          "8"
+        ]
+      }
+    ],
+    "discoveredAt": "2026-08-05T02:15:23.160Z",
+    "edgeBandingTypes": [],
+    "features": [
+      "Dễ thi công",
+      "Tối ưu hóa chi phí"
+    ],
+    "fetchedAt": "2026-08-05T02:15:23.160Z",
+    "gallery": [
+      {
+        "alt": "Copper Gold",
+        "sourceUrl": "https://ancuong.com/products/products-full/30301650005402704000.jpg"
+      },
+      {
+        "alt": "Copper Gold",
+        "sourceUrl": "https://acshopping.ancuong.com/Upload/MaterialApp/303016500-0-0-1.jpg"
+      }
+    ],
+    "materialPattern": "Vân Đá & Vật Liệu Công Nghiệp",
+    "name": "Copper Gold",
+    "normalizedHash": "fa23fd025e0f88a4f1c16674b3db3dfb03fcac97012c5e26f892fe57992ab509",
+    "normalizedProductCode": "3DE 02 LL 2500",
+    "parserVersion": "1.0.0",
+    "priceGroup": "B",
+    "primaryImage": {
+      "alt": "Copper Gold",
+      "sourceUrl": "https://ancuong.com/products/products-full/30301650005402704000.jpg"
+    },
+    "productCode": "3DE 02 LL 2500",
+    "productLine": "Tấm 3DE 02 Embossed Biên Dạng Nan Gỗ Hiện Đại",
+    "productType": "3D Embossed Lacquered Laminate Inox Plus",
+    "profiles": [
+      "3DE 02 (Nan Gỗ Hiện Đại)"
+    ],
+    "relatedProducts": [
+      {
+        "name": "Tấm 3DE 02 Embossed Biên Dạng Nan Gỗ Hiện Đại",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/3d-embossed/tam-3de-02-embossed-bien-dang-nan-go-hien-dai.html"
+      },
+      {
+        "name": "Tấm 3DE 03 Embossed Biên Dạng Họa Tiết",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/3d-embossed/tam-3de-03-embossed-bien-dang-hoa-tiet.html"
+      },
+      {
+        "name": "Tấm 3DE 04 Embossed Biên Dạng Sọc Nhỏ",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/3d-embossed/tam-3de-04-embossed-bien-dang-soc-nho.html"
+      },
+      {
+        "name": "Tấm 3DE 05 Embossed Biên Dạng Sóng Lượn",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/3d-embossed/tam-3de-05-embossed-bien-dang-song-luon.html"
+      },
+      {
+        "name": "Tấm 3DE 06 Embossed Biên Dạng Gợn Sóng",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/3d-embossed/tam-3de-06-embossed-bien-dang-gon-song.html"
+      }
+    ],
+    "sameColorProducts": [
+      {
+        "name": "Copper Gold",
+        "productCode": "LL 2500",
+        "relationType": "same-color",
+        "sourceId": "303004243",
+        "sourceUrl": "https://ancuong.com/laminate/303004243.html"
+      },
+      {
+        "name": "U - Edge Banding",
+        "productCode": "NẸP NHÔM U INOX PLUS LL 2500",
+        "relationType": "same-color",
+        "sourceId": "303017507",
+        "sourceUrl": "https://ancuong.com/nep-nhom-u/303017507.html"
+      }
+    ],
+    "solutions": [],
+    "source": "ancuong",
+    "sourceContent": [
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Tấm 3DE 02 Embossed Biên Dạng Nan Gỗ Hiện Đại sử dụng lõi nhựa WPB có bề mặt định hình sâu, chống nước tốt và mang lại độ bền cao. Thiết kế dạng nan thẳng đều đặn, mang phong cách kiến trúc hiện đại, phù hợp cho các không gian sang trọng, tối giản."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Tấm 3DE 03 Embossed Biên Dạng Họa Tiết sử dụng lõi nhựa WPB có bề mặt định hình sâu, chống nước tốt, mang lại độ bền cao - Biên dạng trang trí với hoa văn nổi tinh xảo, tạo điểm nhấn nghệ thuật và tăng giá trị thẩm mỹ cho bề mặt sử dụng."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Tấm 3DE 04 Embossed Biên Dạng Sọc Nhỏ sử dụng lõi nhựa WPB có bề mặt định hình sâu, chống nước tốt và mang lại độ bền cao. Với thiết kế các đường sọc mảnh, liên tục giúp không gian trở nên thanh thoát, gọn gàng và có hiệu ứng thị giác cao."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Tấm 3DE 05 Embossed Biên Dạng Sóng Lượn sử dụng lõi nhựa WPB có bề mặt định hình sâu, chống nước tốt và mang lại độ bền cao. Thiết kế đường nét uốn lượn mềm mại, mang lại cảm giác chuyển động nhẹ nhàng, phù hợp với không gian sáng tạo và hiện đại."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Tấm 3DE 06 Embossed Biên Dạng Gợn Sóng sử dụng lõi WPB có bề mặt định hình sâu, chống nước tốt và độ bền cao. Thiết kế gợn sóng tinh tế tạo hiệu ứng chiều sâu và điểm nhấn thẩm mỹ cho không gian hiện đại, sang trọng."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      }
+    ],
+    "sourceFacets": {
+      "Biên Dạng": [
+        "3DE 02 (Nan Gỗ Hiện Đại)"
+      ],
+      "Kích Thước (mm)": [
+        "1220*2440, 1220*3050, 1220*3660, 1220*4270"
+      ],
+      "Loại Sản Phẩm": [
+        "3D Embossed Lacquered Laminate Inox Plus"
+      ],
+      "Loại Vân": [
+        "Vân Đá & Vật Liệu Công Nghiệp"
+      ],
+      "Màu Sắc": [
+        "Be"
+      ],
+      "Nhóm Giá": [
+        "B"
+      ]
+    },
+    "sourceHash": "9624c6d12ecf7a0aa4f1ee0a72e466dd5084aab5925ff981b8d47309ce56a666",
+    "sourceId": "303016500",
+    "sourceUrl": "https://ancuong.com/3d-embossed/303016500.html",
+    "specialFeatures": [],
+    "standards": [
+      "E0"
+    ],
+    "status": "active",
+    "supplierSource": "An Cường",
+    "surfaceEffects": [],
+    "surfaces": [],
+    "technicalWarnings": [
+      "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+    ],
+    "thicknesses": [
+      "2",
+      "3",
+      "8"
+    ]
+  },
+  {
+    "applicationProducts": [
+      {
+        "name": "Sản Phẩm Ứng Dụng",
+        "relationType": "application",
+        "sourceId": "3713",
+        "sourceUrl": "https://ancuong.com/album-product/3713"
+      }
+    ],
+    "brand": "An Cường",
+    "category": "Acrylic",
+    "categorySlug": "acrylic",
+    "collections": [],
+    "colors": [
+      "Trắng"
+    ],
+    "contentUsageStatus": "technical-data",
+    "descriptions": {},
+    "dimensions": [
+      "1220*2440"
+    ],
+    "dimensionThicknessMatrix": [
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "6",
+          "9",
+          "12",
+          "15",
+          "17",
+          "18",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "3",
+          "6",
+          "9",
+          "12",
+          "15",
+          "17",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1220x2745",
+        "thicknesses": [
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "12",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "12",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "12",
+          "15",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "6",
+          "8",
+          "10",
+          "12",
+          "15",
+          "17"
+        ]
+      }
+    ],
+    "discoveredAt": "2026-08-05T02:15:20.100Z",
+    "edgeBandingTypes": [],
+    "features": [
+      "Chống mối mọt",
+      "Chống nước",
+      "Dán cạnh noline",
+      "Độ bền bề mặt cao",
+      "Độ bóng bề mặt cao",
+      "Độ chịu ẩm cao",
+      "Độ chịu nước cao",
+      "Thân thiện môi trường"
+    ],
+    "fetchedAt": "2026-08-05T02:15:20.100Z",
+    "gallery": [
+      {
+        "alt": "White",
+        "sourceUrl": "https://ancuong.com/products/products-full/30300066700501372000.jpg"
+      },
+      {
+        "alt": "White",
+        "sourceUrl": "https://acshopping.ancuong.com/Upload/MaterialApp/303000667-hinhthuctetaishowroomancuong-takenatancuong_sshowroom-2.jpg"
+      }
+    ],
+    "materialPattern": "Đơn Sắc",
+    "name": "White",
+    "normalizedHash": "f23673a81b72b78d7bea5e9cd833cceda986aacc5bf036d5e2e49635830ae003",
+    "normalizedProductCode": "ACRYLIC PARC 01",
+    "parserVersion": "1.0.0",
+    "priceGroup": "A",
+    "primaryImage": {
+      "alt": "White",
+      "sourceUrl": "https://ancuong.com/products/products-full/30300066700501372000.jpg"
+    },
+    "productCode": "ACRYLIC PARC 01",
+    "productLine": "Tấm High Gloss Acrylic",
+    "productType": "High Gloss Acrylic",
+    "profiles": [],
+    "relatedProducts": [
+      {
+        "name": "Tấm High Gloss Acrylic",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/acrylic/tam-high-gloss-acrylic.html"
+      },
+      {
+        "name": "Ván MDF Phủ Acrylic",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/acrylic/van-mdf-phu-acrylic.html"
+      },
+      {
+        "name": "Ván MDF Chống Ẩm Phủ Acrylic",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/acrylic/van-mdf-chong-am-phu-acrylic.html"
+      },
+      {
+        "name": "Ván HDF Phủ Acrylic",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/acrylic/van-hdf-phu-acrylic.html"
+      },
+      {
+        "name": "Ván CDF (Black HDF) Phủ Acrylic",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/acrylic/van-hdf-loi-den-phu-acrylic.html"
+      },
+      {
+        "name": "Ván Plywood Phủ Acrylic",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/acrylic/van-plywood-phu-acrylic.html"
+      },
+      {
+        "name": "Ván WPB Phủ Acrylic",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/acrylic/van-wpb-phu-acrylic.html"
+      }
+    ],
+    "sameColorProducts": [
+      {
+        "name": "Glossy edge",
+        "productCode": "PVC PARC 01",
+        "relationType": "same-color",
+        "sourceId": "303001219",
+        "sourceUrl": "https://ancuong.com/chi-abs/303001219.html"
+      }
+    ],
+    "solutions": [
+      "Giải Pháp Chỉ Đồng Màu"
+    ],
+    "source": "ancuong",
+    "sourceContent": [
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Foil Acrylic được sử dụng cho cửa tủ và trang trí bề mặt nội thất cần hiệu ứng phản chiếu sáng và màu sắc nổi bật."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván MDF phủ Acrylic bóng gương, phẳng mịn giúp không gian sang trọng, đẳng cấp và hiện đại."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "Ván MDF Chống Ẩm phủ Acrylic bề mặt bóng gương, phẳng mịn giúp không gian sang trọng, đẳng cấp và hiện đại, ứng dụng cho cả những khu vực có độ ẩm cao. Ngoài dòng MDF Chống Ẩm tiêu chuẩn, An Cường còn cung cấp dòng MDF Chống Ẩm đạt tiêu chuẩn V313 với khả năng chịu ẩm cao hơn, đáp ứng các yêu cầu kỹ thuật và độ bền khắt khe của nhiều công trình."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván HDF phủ Acrylic bề mặt bóng gương, phẳng mịn tạo hiệu ứng không gian sang trọng, đẳng cấp và hiện đại, ứng dụng cho cả những khu vực có độ ẩm cao."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván CDF (Black HDF) phủ Acrylic bề mặt bóng gương, phẳng mịn tạo hiệu ứng sang trọng, đẳng cấp và hiện đại, ứng dụng cho cả những khu vực có độ ẩm cao."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Plywood phủ Acrylic bề mặt bóng gương được sử dụng cho các khu vực có độ ẩm cao."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván WPB phủ Acrylic bề mặt bóng gương, phẳng mịn. Được sử dụng cho các khu vực có độ ẩm, rò rỉ nước cao."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      }
+    ],
+    "sourceFacets": {
+      "Bề Mặt": [
+        "Bóng Gương"
+      ],
+      "Giải Pháp": [
+        "Giải Pháp Chỉ Đồng Màu"
+      ],
+      "Kích Thước (mm)": [
+        "1220*2440"
+      ],
+      "Loại Sản Phẩm": [
+        "High Gloss Acrylic"
+      ],
+      "Loại Vân": [
+        "Đơn Sắc"
+      ],
+      "Màu Sắc": [
+        "Trắng"
+      ],
+      "Nhóm Giá": [
+        "A"
+      ]
+    },
+    "sourceHash": "794e49b723c2f91c3c7f7a682d6e9f1a519829b876666fda612e0c097e810e4c",
+    "sourceId": "303000667",
+    "sourceUrl": "https://ancuong.com/acrylic/303000667.html",
+    "specialFeatures": [],
+    "standards": [
+      "E0",
+      "E1",
+      "ENF",
+      "EPA",
+      "F4S"
+    ],
+    "status": "active",
+    "supplierSource": "An Cường",
+    "surfaceEffects": [],
+    "surfaces": [
+      "Bóng Gương"
+    ],
+    "technicalWarnings": [
+      "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1).",
+      "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+    ],
+    "thicknesses": [
+      "10",
+      "12",
+      "15",
+      "17",
+      "18",
+      "25",
+      "3",
+      "6",
+      "8",
+      "9"
+    ]
+  },
+  {
+    "applicationProducts": [],
+    "brand": "An Cường",
+    "category": "Chỉ ABS",
+    "categorySlug": "chi-abs",
+    "collections": [],
+    "colors": [
+      "Trắng"
+    ],
+    "contentUsageStatus": "technical-data",
+    "descriptions": {},
+    "dimensions": [
+      "23*0.8"
+    ],
+    "dimensionThicknessMatrix": [
+      {
+        "dimension": "21",
+        "thicknesses": [
+          "0.8",
+          "1"
+        ]
+      },
+      {
+        "dimension": "22",
+        "thicknesses": [
+          "0.8",
+          "1"
+        ]
+      },
+      {
+        "dimension": "23",
+        "thicknesses": [
+          "0.8",
+          "1"
+        ]
+      }
+    ],
+    "discoveredAt": "2026-08-05T02:15:21.331Z",
+    "edgeBandingTypes": [],
+    "features": [
+      "Dễ thi công",
+      "Thân thiện môi trường"
+    ],
+    "fetchedAt": "2026-08-05T02:15:21.331Z",
+    "gallery": [
+      {
+        "alt": "Glossy edge",
+        "sourceUrl": "https://ancuong.com/products/products-full/30300121901101372000.jpg"
+      }
+    ],
+    "materialPattern": "Đơn Sắc",
+    "name": "Glossy edge",
+    "normalizedHash": "439706c8b9ab19fd53a0206925d77ce3a16772bb356e094d61d86ba441d1afe4",
+    "normalizedProductCode": "PVC PARC 01",
+    "parserVersion": "1.0.0",
+    "priceGroup": "B",
+    "primaryImage": {
+      "alt": "Glossy edge",
+      "sourceUrl": "https://ancuong.com/products/products-full/30300121901101372000.jpg"
+    },
+    "productCode": "PVC PARC 01",
+    "productLine": "Chỉ ABS",
+    "productType": "Chỉ ABS",
+    "profiles": [],
+    "relatedProducts": [
+      {
+        "name": "Chỉ ABS",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/chi-abs/chi-abs.html"
+      }
+    ],
+    "sameColorProducts": [
+      {
+        "name": "White",
+        "productCode": "ACRYLIC PARC 01",
+        "relationType": "same-color",
+        "sourceId": "303000667",
+        "sourceUrl": "https://ancuong.com/acrylic/303000667.html"
+      }
+    ],
+    "solutions": [],
+    "source": "ancuong",
+    "sourceContent": [
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Chỉ Dán Cạnh ABS là lựa chọn thân thiện với môi trường hơn PVC, đáp ứng yêu cầu an toàn và thẩm mỹ cho các công trình hiện đại. Sản phẩm có khả năng bền màu cao, duy trì vẻ đẹp lâu dài."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      }
+    ],
+    "sourceFacets": {
+      "Bề Mặt": [
+        "Bóng Gương"
+      ],
+      "Kích Thước (mm)": [
+        "23*0.8"
+      ],
+      "Loại Sản Phẩm": [
+        "Chỉ ABS"
+      ],
+      "Loại Vân": [
+        "Đơn Sắc"
+      ],
+      "Màu Sắc": [
+        "Trắng"
+      ],
+      "Nhóm Giá": [
+        "B"
+      ]
+    },
+    "sourceHash": "14ec099a7bee80faffaeac66f7d4a2c44095ca371cb25105711ab3bcbd93462b",
+    "sourceId": "303001219",
+    "sourceUrl": "https://ancuong.com/chi-abs/303001219.html",
+    "specialFeatures": [],
+    "standards": [],
+    "status": "active",
+    "supplierSource": "An Cường",
+    "surfaceEffects": [],
+    "surfaces": [
+      "Bóng Gương"
+    ],
+    "technicalWarnings": [
+      "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+    ],
+    "thicknesses": [
+      "0.8",
+      "1"
+    ]
+  },
+  {
+    "applicationProducts": [
+      {
+        "name": "Sản Phẩm Ứng Dụng",
+        "relationType": "application",
+        "sourceId": "2718",
+        "sourceUrl": "https://ancuong.com/album-product/2718"
+      }
+    ],
+    "brand": "An Cường",
+    "category": "Laminate",
+    "categorySlug": "laminate",
+    "collections": [
+      "Laminate-MFC Same Color Collection 2"
+    ],
+    "colors": [
+      "Cam"
+    ],
+    "contentUsageStatus": "technical-data",
+    "descriptions": {},
+    "dimensions": [
+      "1220*2440"
+    ],
+    "dimensionThicknessMatrix": [
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "12",
+          "15",
+          "18",
+          "19",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1230x2465",
+        "thicknesses": [
+          "12",
+          "15",
+          "16",
+          "18",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "12",
+          "18",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "16",
+          "18"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "18"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "6",
+          "9",
+          "12",
+          "15",
+          "17",
+          "18",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "3",
+          "6",
+          "9",
+          "12",
+          "15",
+          "17",
+          "21",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1220x2745",
+        "thicknesses": [
+          "9",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "12",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2745",
+        "thicknesses": [
+          "12"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "12",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "5",
+          "9",
+          "12",
+          "16",
+          "17",
+          "18"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "6",
+          "8",
+          "10",
+          "12",
+          "15",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x3050",
+        "thicknesses": [
+          "8",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x3660",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "18"
+        ]
+      }
+    ],
+    "discoveredAt": "2026-08-05T02:15:24.555Z",
+    "edgeBandingTypes": [],
+    "features": [
+      "Bề mặt chịu nhiệt",
+      "Chống mối mọt",
+      "Chống nước",
+      "Chống trầy xước cao",
+      "Độ bền bề mặt cao",
+      "Độ chịu ẩm cao",
+      "Độ chịu nước cao",
+      "Kháng hóa chất",
+      "Thân thiện môi trường",
+      "Tối ưu hóa chi phí"
+    ],
+    "fetchedAt": "2026-08-05T02:15:24.555Z",
+    "gallery": [
+      {
+        "alt": "Neo American Cherry",
+        "sourceUrl": "https://ancuong.com/products/products-full/30300049500200560002.jpg"
+      },
+      {
+        "alt": "Neo American Cherry",
+        "sourceUrl": "https://acshopping.ancuong.com/Upload/MaterialApp/303000495-0-0-20.jpg"
+      }
+    ],
+    "materialPattern": "Vân Gỗ",
+    "name": "Neo American Cherry",
+    "normalizedHash": "819ca5c95333e753c037a4587ae63efe58d85870d8585582c53611aeb9a32523",
+    "normalizedProductCode": "LK 4439 A",
+    "parserVersion": "1.0.0",
+    "priceGroup": "A",
+    "primaryImage": {
+      "alt": "Neo American Cherry",
+      "sourceUrl": "https://ancuong.com/products/products-full/30300049500200560002.jpg"
+    },
+    "productCode": "LK 4439 A",
+    "productLine": "Tấm Laminate Kingdom",
+    "productType": "Laminate Kingdom",
+    "profiles": [],
+    "relatedProducts": [
+      {
+        "name": "Tấm Laminate Kingdom",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/tam-laminate-kingdom.html"
+      },
+      {
+        "name": "Ván Dăm Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-dam-phu-laminate.html"
+      },
+      {
+        "name": "Ván Dăm Chống Ẩm Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-dam-chong-am-phu-laminate.html"
+      },
+      {
+        "name": "Ván MDF Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-mdf-phu-laminate.html"
+      },
+      {
+        "name": "Ván MDF Chống Ẩm Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-mdf-chong-am-phu-laminate.html"
+      },
+      {
+        "name": "Ván HDF Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-hdf-phu-laminate.html"
+      },
+      {
+        "name": "Ván CDF (Black HDF) Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-cdf-black-hdf-phu-laminate.html"
+      },
+      {
+        "name": "Ván Plywood Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-plywood-phu-laminate.html"
+      },
+      {
+        "name": "Ván WPB Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-wpb-phu-laminate.html"
+      },
+      {
+        "name": "Ván Gỗ Ghép Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-go-ghep-phu-laminate.html"
+      }
+    ],
+    "sameColorProducts": [
+      {
+        "name": "Neo American Cherry",
+        "productCode": "MFC - MS 604 RM",
+        "relationType": "same-color",
+        "sourceId": "303000218",
+        "sourceUrl": "https://ancuong.com/melamine/303000218.html"
+      },
+      {
+        "name": "Woodgrain edge",
+        "productCode": "PVC 604/LK4439",
+        "relationType": "same-color",
+        "sourceId": "303001017",
+        "sourceUrl": "https://ancuong.com/chi-dan-canh-pvc/303001017.html"
+      }
+    ],
+    "solutions": [
+      "Giải Pháp Chỉ Đồng Màu, Giải Pháp Laminate-MFC Đồng Màu"
+    ],
+    "source": "ancuong",
+    "sourceContent": [
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Laminate Kingdom (HPL Laminate) có khả năng chịu trầy xước cao, chịu nhiệt tốt và độ bền hàng chục năm – thích hợp cho mặt bàn, tủ bếp trong không gian nội thất gia đình lẫn thương mại."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Dăm phủ Laminate mang đến giải pháp hiệu quả về chi phí, đồng thời đảm bảo tính thẩm mỹ và khả năng ứng dụng linh hoạt trong nhiều không gian nội thất."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Dăm Chống Ẩm phủ Laminate phù hợp cho các không gian nội thất có độ ẩm cao."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván MDF phủ Laminate có bề mặt ổn định, tạo độ đồng nhất và độ bền cao."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "Ván MDF Chống Ẩm phủ Laminate có bề mặt ổn định, đảm bảo tính thẩm mỹ và độ bền khi sử dụng trong môi trường có độ ẩm cao. Ngoài dòng MDF Chống Ẩm tiêu chuẩn, An Cường còn cung cấp dòng MDF Chống Ẩm đạt tiêu chuẩn V313 với khả năng chịu ẩm cao hơn, đáp ứng các yêu cầu kỹ thuật và độ bền khắt khe của nhiều công trình."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván HDF phủ Laminate kết hợp lõi ván mật độ cao với bề mặt Laminate chịu trầy xước, mang lại độ bền vượt trội và tính ổn định cao, phù hợp cho các ứng dụng nội thất hiện đại yêu cầu chất lượng lâu dài."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván CDF (Black HDF) phủ Laminate có độ nén cao và khả năng chịu va đập tốt, phù hợp cho các ứng dụng như tủ khóa, vách ngăn hoặc quầy hàng."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Plywood phủ Laminate sở hữu lõi gỗ nhiều lớp chắc chắn kết hợp bề mặt Laminate hoàn thiện bền đẹp, mang lại độ cứng và độ ổn định cao cho các ứng dụng nội thất."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván WPB phủ Laminate sử dụng lõi nhựa WPB có khả năng chống nước vượt trội và chống mối mọt hiệu quả, phù hợp cho các khu vực ẩm ướt như nhà tắm, bếp và khu giặt."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Gỗ Ghép phủ Laminate được cấu tạo từ các thanh gỗ ghép, phù hợp cho các ứng dụng nội thất yêu cầu tính thẩm mỹ và độ cứng cao."
+      }
+    ],
+    "sourceFacets": {
+      "Bộ Sưu Tập": [
+        "Laminate-MFC Same Color Collection 2"
+      ],
+      "Giải Pháp": [
+        "Giải Pháp Chỉ Đồng Màu, Giải Pháp Laminate-MFC Đồng Màu"
+      ],
+      "Kích Thước (mm)": [
+        "1220*2440"
+      ],
+      "Loại Sản Phẩm": [
+        "Laminate Kingdom"
+      ],
+      "Loại Vân": [
+        "Vân Gỗ"
+      ],
+      "Màu Sắc": [
+        "Cam"
+      ],
+      "Nhóm Giá": [
+        "A"
+      ]
+    },
+    "sourceHash": "c79e5caec010231965e9e7cba5c8b7c9c96e77056116836bf983a9adeb5a9240",
+    "sourceId": "303000495",
+    "sourceUrl": "https://ancuong.com/laminate/303000495.html",
+    "specialFeatures": [],
+    "standards": [
+      "E0",
+      "E1",
+      "ENF",
+      "EPA",
+      "F4S"
+    ],
+    "status": "active",
+    "supplierSource": "An Cường",
+    "surfaceEffects": [],
+    "surfaces": [],
+    "technicalWarnings": [
+      "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1).",
+      "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+    ],
+    "thicknesses": [
+      "10",
+      "12",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "21",
+      "25",
+      "3",
+      "5",
+      "6",
+      "8",
+      "9"
+    ]
+  },
+  {
+    "applicationProducts": [
+      {
+        "name": "Sản Phẩm Ứng Dụng",
+        "relationType": "application",
+        "sourceId": "2878",
+        "sourceUrl": "https://ancuong.com/album-product/2878"
+      }
+    ],
+    "brand": "An Cường",
+    "category": "Laminate",
+    "categorySlug": "laminate",
+    "collections": [],
+    "colors": [
+      "Be"
+    ],
+    "contentUsageStatus": "technical-data",
+    "descriptions": {},
+    "dimensions": [
+      "1220*2440"
+    ],
+    "dimensionThicknessMatrix": [
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "12",
+          "15",
+          "18",
+          "19",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1230x2465",
+        "thicknesses": [
+          "12",
+          "15",
+          "16",
+          "18",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "12",
+          "18",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "16",
+          "18"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "18"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "6",
+          "9",
+          "12",
+          "15",
+          "17",
+          "18",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "3",
+          "6",
+          "9",
+          "12",
+          "15",
+          "17",
+          "21",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1220x2745",
+        "thicknesses": [
+          "9",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "12",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2745",
+        "thicknesses": [
+          "12"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "12",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "5",
+          "9",
+          "12",
+          "16",
+          "17",
+          "18"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "6",
+          "8",
+          "10",
+          "12",
+          "15",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x3050",
+        "thicknesses": [
+          "8",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x3660",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "18"
+        ]
+      }
+    ],
+    "discoveredAt": "2026-08-05T02:15:25.805Z",
+    "edgeBandingTypes": [],
+    "features": [
+      "Bề mặt chịu nhiệt",
+      "Chống mối mọt",
+      "Chống nước",
+      "Chống trầy xước cao",
+      "Độ bền bề mặt cao",
+      "Độ chịu ẩm cao",
+      "Độ chịu nước cao",
+      "Kháng hóa chất",
+      "Thân thiện môi trường",
+      "Tối ưu hóa chi phí"
+    ],
+    "fetchedAt": "2026-08-05T02:15:25.805Z",
+    "gallery": [
+      {
+        "alt": "Narava Ash",
+        "sourceUrl": "https://ancuong.com/products/products-full/30300383800200915014.jpg"
+      },
+      {
+        "alt": "Narava Ash",
+        "sourceUrl": "https://acshopping.ancuong.com/Upload/MaterialApp/303003838-0-0-21.jpg"
+      }
+    ],
+    "materialPattern": "Vân Gỗ",
+    "name": "Narava Ash",
+    "normalizedHash": "1ea526c1c3c085721ca56be07eb9735ee6b996ed6f4719ea3d85c52891b74e98",
+    "normalizedProductCode": "LK 9908 H",
+    "parserVersion": "1.0.0",
+    "priceGroup": "H",
+    "primaryImage": {
+      "alt": "Narava Ash",
+      "sourceUrl": "https://ancuong.com/products/products-full/30300383800200915014.jpg"
+    },
+    "productCode": "LK 9908 H",
+    "productLine": "Tấm Laminate Kingdom",
+    "productType": "Laminate Kingdom",
+    "profiles": [],
+    "relatedProducts": [
+      {
+        "name": "Tấm Laminate Kingdom",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/tam-laminate-kingdom.html"
+      },
+      {
+        "name": "Ván Dăm Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-dam-phu-laminate.html"
+      },
+      {
+        "name": "Ván Dăm Chống Ẩm Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-dam-chong-am-phu-laminate.html"
+      },
+      {
+        "name": "Ván MDF Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-mdf-phu-laminate.html"
+      },
+      {
+        "name": "Ván MDF Chống Ẩm Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-mdf-chong-am-phu-laminate.html"
+      },
+      {
+        "name": "Ván HDF Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-hdf-phu-laminate.html"
+      },
+      {
+        "name": "Ván CDF (Black HDF) Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-cdf-black-hdf-phu-laminate.html"
+      },
+      {
+        "name": "Ván Plywood Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-plywood-phu-laminate.html"
+      },
+      {
+        "name": "Ván WPB Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-wpb-phu-laminate.html"
+      },
+      {
+        "name": "Ván Gỗ Ghép Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-go-ghep-phu-laminate.html"
+      }
+    ],
+    "sameColorProducts": [],
+    "solutions": [],
+    "source": "ancuong",
+    "sourceContent": [
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Laminate Kingdom (HPL Laminate) có khả năng chịu trầy xước cao, chịu nhiệt tốt và độ bền hàng chục năm – thích hợp cho mặt bàn, tủ bếp trong không gian nội thất gia đình lẫn thương mại."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Dăm phủ Laminate mang đến giải pháp hiệu quả về chi phí, đồng thời đảm bảo tính thẩm mỹ và khả năng ứng dụng linh hoạt trong nhiều không gian nội thất."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Dăm Chống Ẩm phủ Laminate phù hợp cho các không gian nội thất có độ ẩm cao."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván MDF phủ Laminate có bề mặt ổn định, tạo độ đồng nhất và độ bền cao."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "Ván MDF Chống Ẩm phủ Laminate có bề mặt ổn định, đảm bảo tính thẩm mỹ và độ bền khi sử dụng trong môi trường có độ ẩm cao. Ngoài dòng MDF Chống Ẩm tiêu chuẩn, An Cường còn cung cấp dòng MDF Chống Ẩm đạt tiêu chuẩn V313 với khả năng chịu ẩm cao hơn, đáp ứng các yêu cầu kỹ thuật và độ bền khắt khe của nhiều công trình."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván HDF phủ Laminate kết hợp lõi ván mật độ cao với bề mặt Laminate chịu trầy xước, mang lại độ bền vượt trội và tính ổn định cao, phù hợp cho các ứng dụng nội thất hiện đại yêu cầu chất lượng lâu dài."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván CDF (Black HDF) phủ Laminate có độ nén cao và khả năng chịu va đập tốt, phù hợp cho các ứng dụng như tủ khóa, vách ngăn hoặc quầy hàng."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Plywood phủ Laminate sở hữu lõi gỗ nhiều lớp chắc chắn kết hợp bề mặt Laminate hoàn thiện bền đẹp, mang lại độ cứng và độ ổn định cao cho các ứng dụng nội thất."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván WPB phủ Laminate sử dụng lõi nhựa WPB có khả năng chống nước vượt trội và chống mối mọt hiệu quả, phù hợp cho các khu vực ẩm ướt như nhà tắm, bếp và khu giặt."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Gỗ Ghép phủ Laminate được cấu tạo từ các thanh gỗ ghép, phù hợp cho các ứng dụng nội thất yêu cầu tính thẩm mỹ và độ cứng cao."
+      }
+    ],
+    "sourceFacets": {
+      "Hiệu Ứng Bề Mặt": [
+        "Synchronized"
+      ],
+      "Kích Thước (mm)": [
+        "1220*2440"
+      ],
+      "Loại Sản Phẩm": [
+        "Laminate Kingdom"
+      ],
+      "Loại Vân": [
+        "Vân Gỗ"
+      ],
+      "Màu Sắc": [
+        "Be"
+      ],
+      "Nhóm Giá": [
+        "H"
+      ]
+    },
+    "sourceHash": "3d2039f9b85d3c9b333b02bf9b118abe520534e3bcfc7c37230d25bc783cd17b",
+    "sourceId": "303003838",
+    "sourceUrl": "https://ancuong.com/laminate/303003838.html",
+    "specialFeatures": [],
+    "standards": [
+      "E0",
+      "E1",
+      "ENF",
+      "EPA",
+      "F4S"
+    ],
+    "status": "active",
+    "supplierSource": "An Cường",
+    "surfaceEffects": [
+      "Synchronized"
+    ],
+    "surfaces": [],
+    "technicalWarnings": [
+      "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1).",
+      "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+    ],
+    "thicknesses": [
+      "10",
+      "12",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "21",
+      "25",
+      "3",
+      "5",
+      "6",
+      "8",
+      "9"
+    ]
+  },
+  {
+    "applicationProducts": [
+      {
+        "name": "Sản Phẩm Ứng Dụng",
+        "relationType": "application",
+        "sourceId": "2572",
+        "sourceUrl": "https://ancuong.com/album-product/2572"
+      }
+    ],
+    "brand": "An Cường",
+    "category": "Laminate",
+    "categorySlug": "laminate",
+    "collections": [],
+    "colors": [
+      "Xám"
+    ],
+    "contentUsageStatus": "technical-data",
+    "descriptions": {},
+    "dimensions": [
+      "1220*2440, 1525*3660"
+    ],
+    "dimensionThicknessMatrix": [
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "12",
+          "15",
+          "18",
+          "19",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1230x2465",
+        "thicknesses": [
+          "12",
+          "15",
+          "16",
+          "18",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "12",
+          "18",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "16",
+          "18"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "18"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "6",
+          "9",
+          "12",
+          "15",
+          "17",
+          "18",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "3",
+          "6",
+          "9",
+          "12",
+          "15",
+          "17",
+          "21",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1220x2745",
+        "thicknesses": [
+          "9",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "12",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2745",
+        "thicknesses": [
+          "12"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "12",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "5",
+          "9",
+          "12",
+          "16",
+          "17",
+          "18"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "6",
+          "8",
+          "10",
+          "12",
+          "15",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x3050",
+        "thicknesses": [
+          "8",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x3660",
+        "thicknesses": [
+          "8"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "18"
+        ]
+      }
+    ],
+    "discoveredAt": "2026-08-05T02:15:19.110Z",
+    "edgeBandingTypes": [],
+    "features": [
+      "Bề mặt chịu nhiệt",
+      "Chống mối mọt",
+      "Chống nước",
+      "Chống trầy xước cao",
+      "Độ bền bề mặt cao",
+      "Độ chịu ẩm cao",
+      "Độ chịu nước cao",
+      "Kháng hóa chất",
+      "Thân thiện môi trường",
+      "Tối ưu hóa chi phí"
+    ],
+    "fetchedAt": "2026-08-05T02:15:19.110Z",
+    "gallery": [
+      {
+        "alt": "Silver Grey",
+        "sourceUrl": "https://ancuong.com/products/products-full/30300033200200003045.jpg"
+      },
+      {
+        "alt": "Silver Grey",
+        "sourceUrl": "https://acshopping.ancuong.com/Upload/MaterialApp/303000332-0-0-21.jpg"
+      }
+    ],
+    "materialPattern": "Đơn Sắc",
+    "name": "Silver Grey",
+    "normalizedHash": "f2d3685eebe64b2efaada16bd3fb050b4955e6a311211d1d1b09a257e0b327ec",
+    "normalizedProductCode": "LK PF002 S",
+    "parserVersion": "1.0.0",
+    "priceGroup": "S",
+    "primaryImage": {
+      "alt": "Silver Grey",
+      "sourceUrl": "https://ancuong.com/products/products-full/30300033200200003045.jpg"
+    },
+    "productCode": "LK PF002 S",
+    "productLine": "Tấm Laminate Kingdom",
+    "productType": "Laminate Kingdom",
+    "profiles": [],
+    "relatedProducts": [
+      {
+        "name": "Tấm Laminate Kingdom",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/tam-laminate-kingdom.html"
+      },
+      {
+        "name": "Ván Dăm Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-dam-phu-laminate.html"
+      },
+      {
+        "name": "Ván Dăm Chống Ẩm Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-dam-chong-am-phu-laminate.html"
+      },
+      {
+        "name": "Ván MDF Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-mdf-phu-laminate.html"
+      },
+      {
+        "name": "Ván MDF Chống Ẩm Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-mdf-chong-am-phu-laminate.html"
+      },
+      {
+        "name": "Ván HDF Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-hdf-phu-laminate.html"
+      },
+      {
+        "name": "Ván CDF (Black HDF) Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-cdf-black-hdf-phu-laminate.html"
+      },
+      {
+        "name": "Ván Plywood Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-plywood-phu-laminate.html"
+      },
+      {
+        "name": "Ván WPB Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-wpb-phu-laminate.html"
+      },
+      {
+        "name": "Ván Gỗ Ghép Phủ Laminate",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/laminate/van-go-ghep-phu-laminate.html"
+      }
+    ],
+    "sameColorProducts": [],
+    "solutions": [],
+    "source": "ancuong",
+    "sourceContent": [
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Laminate Kingdom (HPL Laminate) có khả năng chịu trầy xước cao, chịu nhiệt tốt và độ bền hàng chục năm – thích hợp cho mặt bàn, tủ bếp trong không gian nội thất gia đình lẫn thương mại."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Dăm phủ Laminate mang đến giải pháp hiệu quả về chi phí, đồng thời đảm bảo tính thẩm mỹ và khả năng ứng dụng linh hoạt trong nhiều không gian nội thất."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Dăm Chống Ẩm phủ Laminate phù hợp cho các không gian nội thất có độ ẩm cao."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván MDF phủ Laminate có bề mặt ổn định, tạo độ đồng nhất và độ bền cao."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "Ván MDF Chống Ẩm phủ Laminate có bề mặt ổn định, đảm bảo tính thẩm mỹ và độ bền khi sử dụng trong môi trường có độ ẩm cao. Ngoài dòng MDF Chống Ẩm tiêu chuẩn, An Cường còn cung cấp dòng MDF Chống Ẩm đạt tiêu chuẩn V313 với khả năng chịu ẩm cao hơn, đáp ứng các yêu cầu kỹ thuật và độ bền khắt khe của nhiều công trình."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván HDF phủ Laminate kết hợp lõi ván mật độ cao với bề mặt Laminate chịu trầy xước, mang lại độ bền vượt trội và tính ổn định cao, phù hợp cho các ứng dụng nội thất hiện đại yêu cầu chất lượng lâu dài."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván CDF (Black HDF) phủ Laminate có độ nén cao và khả năng chịu va đập tốt, phù hợp cho các ứng dụng như tủ khóa, vách ngăn hoặc quầy hàng."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Plywood phủ Laminate sở hữu lõi gỗ nhiều lớp chắc chắn kết hợp bề mặt Laminate hoàn thiện bền đẹp, mang lại độ cứng và độ ổn định cao cho các ứng dụng nội thất."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván WPB phủ Laminate sử dụng lõi nhựa WPB có khả năng chống nước vượt trội và chống mối mọt hiệu quả, phù hợp cho các khu vực ẩm ướt như nhà tắm, bếp và khu giặt."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Gỗ Ghép phủ Laminate được cấu tạo từ các thanh gỗ ghép, phù hợp cho các ứng dụng nội thất yêu cầu tính thẩm mỹ và độ cứng cao."
+      }
+    ],
+    "sourceFacets": {
+      "Bề Mặt": [
+        "Uốn Cong"
+      ],
+      "Kích Thước (mm)": [
+        "1220*2440, 1525*3660"
+      ],
+      "Loại Sản Phẩm": [
+        "Laminate Kingdom"
+      ],
+      "Loại Vân": [
+        "Đơn Sắc"
+      ],
+      "Màu Sắc": [
+        "Xám"
+      ],
+      "Nhóm Giá": [
+        "S"
+      ]
+    },
+    "sourceHash": "a5a557d22b2aa3c3cf2b95658d5ecca51b72f09c7efde3fcfe07eb89a94a9565",
+    "sourceId": "303000332",
+    "sourceUrl": "https://ancuong.com/laminate/303000332.html",
+    "specialFeatures": [],
+    "standards": [
+      "E0",
+      "E1",
+      "ENF",
+      "EPA",
+      "F4S"
+    ],
+    "status": "active",
+    "supplierSource": "An Cường",
+    "surfaceEffects": [],
+    "surfaces": [
+      "Uốn Cong"
+    ],
+    "technicalWarnings": [
+      "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1).",
+      "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+    ],
+    "thicknesses": [
+      "10",
+      "12",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "21",
+      "25",
+      "3",
+      "5",
+      "6",
+      "8",
+      "9"
+    ]
+  },
+  {
+    "applicationProducts": [
+      {
+        "name": "Sản Phẩm Ứng Dụng",
+        "relationType": "application",
+        "sourceId": "2556",
+        "sourceUrl": "https://ancuong.com/album-product/2556"
+      }
+    ],
+    "brand": "An Cường",
+    "category": "Melamine",
+    "categorySlug": "melamine",
+    "collections": [],
+    "colors": [
+      "Đen"
+    ],
+    "contentUsageStatus": "technical-data",
+    "descriptions": {},
+    "dimensions": [
+      "1220*2440"
+    ],
+    "dimensionThicknessMatrix": [
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "12",
+          "15",
+          "18",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "12",
+          "18",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "16",
+          "18"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "18"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "12",
+          "17",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "3",
+          "6",
+          "9",
+          "12",
+          "15",
+          "17",
+          "25"
+        ]
+      },
+      {
+        "dimension": "1220x2745",
+        "thicknesses": [
+          "9",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1830x2440",
+        "thicknesses": [
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "12",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2745",
+        "thicknesses": [
+          "12"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "12",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "9",
+          "18"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "6",
+          "8",
+          "10",
+          "12",
+          "15",
+          "17"
+        ]
+      },
+      {
+        "dimension": "1220x2440",
+        "thicknesses": [
+          "18"
+        ]
+      }
+    ],
+    "discoveredAt": "2026-08-05T02:15:17.847Z",
+    "edgeBandingTypes": [],
+    "features": [
+      "Chống mối mọt",
+      "Chống nước",
+      "Dễ bảo quản",
+      "Dễ thi công",
+      "Độ bền bề mặt cao",
+      "Độ chịu ẩm cao",
+      "Độ chịu nước cao",
+      "Thân thiện môi trường",
+      "Tối ưu hóa chi phí"
+    ],
+    "fetchedAt": "2026-08-05T02:15:17.847Z",
+    "gallery": [
+      {
+        "alt": "Laricio Pine",
+        "sourceUrl": "https://ancuong.com/products/products-full/30300005400100361053.jpg"
+      },
+      {
+        "alt": "Laricio Pine",
+        "sourceUrl": "https://acshopping.ancuong.com/Upload/MaterialApp/303000054-0-0-21.jpg"
+      }
+    ],
+    "materialPattern": "Vân Gỗ",
+    "name": "Laricio Pine",
+    "normalizedHash": "6cc51e7f3510f85e088e1b23d2b1c60581b99d8544e41b978d3ea6cc196a5636",
+    "normalizedProductCode": "MFC - MS 01012 T",
+    "parserVersion": "1.0.0",
+    "priceGroup": "B",
+    "primaryImage": {
+      "alt": "Laricio Pine",
+      "sourceUrl": "https://ancuong.com/products/products-full/30300005400100361053.jpg"
+    },
+    "productCode": "MFC - MS 01012 T",
+    "productLine": "Ván Dăm Phủ Melamine",
+    "productType": "Melamine",
+    "profiles": [],
+    "relatedProducts": [
+      {
+        "name": "Ván Dăm Phủ Melamine",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/melamine/van-dam-phu-melamine.html"
+      },
+      {
+        "name": "Ván Dăm Chống Ẩm Phủ Melamine",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/melamine/van-dam-chong-am-phu-melamine.html"
+      },
+      {
+        "name": "Ván MDF Phủ Melamine",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/melamine/van-mdf-phu-melamine.html"
+      },
+      {
+        "name": "Ván MDF Chống Ẩm Phủ Melamine",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/melamine/van-mdf-chong-am-phu-melamine.html"
+      },
+      {
+        "name": "Ván HDF Phủ Melamine",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/melamine/van-hdf-phu-melamine.html"
+      },
+      {
+        "name": "Ván CDF (Black HDF) Phủ Melamine",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/melamine/van-hdf-loi-den-phu-melamine.html"
+      },
+      {
+        "name": "EcoSmooth (Ván Plywood Phủ Melamine)",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/melamine/van-plywood-phu-melamine.html"
+      },
+      {
+        "name": "Ván WPB Phủ Melamine",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/melamine/van-wpb-phu-melamine.html"
+      },
+      {
+        "name": "Ván Gỗ Ghép Phủ Melamine",
+        "relationType": "same-line",
+        "sourceUrl": "https://ancuong.com/melamine/van-go-ghep-phu-melamine.html"
+      }
+    ],
+    "sameColorProducts": [
+      {
+        "name": "Woodgrain edge",
+        "productCode": "PVC 01012",
+        "relationType": "same-color",
+        "sourceId": "303000812",
+        "sourceUrl": "https://ancuong.com/chi-dan-canh-pvc/303000812.html"
+      }
+    ],
+    "solutions": [
+      "Giải Pháp Chỉ Đồng Màu"
+    ],
+    "source": "ancuong",
+    "sourceContent": [
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Dăm phủ Melamine là vật liệu cơ bản phổ biến trong lĩnh vực nội thất và thiết kế không gian."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Dăm Chống Ẩm phủ Melamine – giải pháp tối ưu cho những không gian nội thất có độ ẩm cao."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván MDF phủ Melamine với bề mặt phẳng mịn, phù hợp cho đồ nội thất hiện đại và các ứng dụng thiết kế đa dạng."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "Ván MDF Chống Ẩm phủ Melamine thích hợp cho những khu vực ẩm ướt cần khả năng chống ẩm cao như tủ bếp, tủ toilet, đồng thời được ứng dụng đa dạng trong thiết kế nội thất. Ngoài dòng MDF Chống Ẩm tiêu chuẩn, An Cường còn cung cấp dòng MDF Chống Ẩm đạt tiêu chuẩn V313 với khả năng chịu ẩm cao hơn, đáp ứng các yêu cầu kỹ thuật và độ bền khắt khe của nhiều công trình."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván HDF phủ Melamine có lõi ván tỷ trọng cao, cứng chắc và ít cong vênh, được ứng dụng rộng rãi trong thiết kế nội thất, đặc biệt ở những vị trí cần khả năng chịu lực."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván CDF (Black HDF) phủ Melamine có độ nén cao, chống ẩm tốt và khả năng chịu va đập tốt, chuyên dùng cho ốp vách trang trí và các chi tiết trang trí định hình."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1)."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Plywood phủ Melamine (EcoSmooth) kết hợp độ chắc chắn của plywood với bề mặt hoàn thiện, phù hợp với mọi không gian nội thất, đặc biệt là những khu vực có độ ẩm cao và cần chịu lực tốt."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván WPB phủ Melamine sử dụng lõi nhựa WPB chống nước, lý tưởng cho những không gian có độ ẩm cao như khu vực bếp và nhà vệ sinh."
+      },
+      {
+        "classification": "TECHNICAL_DATA",
+        "contentUsageStatus": "technical-data",
+        "value": "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+      },
+      {
+        "classification": "SOURCE_MARKETING_COPY",
+        "contentUsageStatus": "requires-rewrite",
+        "value": "Ván Gỗ Ghép phủ Melamine kết hợp giữa gỗ ghép thanh và lớp phủ Melamine, mang lại bề mặt trang trí đẹp mắt cùng kết cấu bền và ổn định."
+      }
+    ],
+    "sourceFacets": {
+      "Giải Pháp": [
+        "Giải Pháp Chỉ Đồng Màu"
+      ],
+      "Kích Thước (mm)": [
+        "1220*2440"
+      ],
+      "Loại Sản Phẩm": [
+        "Melamine"
+      ],
+      "Loại Vân": [
+        "Vân Gỗ"
+      ],
+      "Màu Sắc": [
+        "Đen"
+      ],
+      "Nhóm Giá": [
+        "B"
+      ]
+    },
+    "sourceHash": "b662d585919c2fe789df4980013af2e4b9ead3c59ef17dc7a7d5846216f69fb2",
+    "sourceId": "303000054",
+    "sourceUrl": "https://ancuong.com/melamine/303000054.html",
+    "specialFeatures": [],
+    "standards": [
+      "E0",
+      "E1",
+      "ENF",
+      "EPA",
+      "F4S",
+      "Super E0"
+    ],
+    "status": "active",
+    "supplierSource": "An Cường",
+    "surfaceEffects": [],
+    "surfaces": [],
+    "technicalWarnings": [
+      "* Sản phẩm đạt tiêu chuẩn tối thiểu E1 (SGS Test/ ISO 12460-1).",
+      "* Tuỳ theo mã sản phẩm sẽ có kích thước khác nhau."
+    ],
+    "thicknesses": [
+      "10",
+      "12",
+      "15",
+      "16",
+      "17",
+      "18",
+      "25",
+      "3",
+      "6",
+      "8",
+      "9"
+    ]
+  }
+]
