@@ -51,12 +51,13 @@ export function HomeHero() {
             <div className="absolute -left-4 -top-4 h-28 w-28 rounded-tl-[34px] border-l-2 border-t-2 border-wood-500/70 sm:-left-6 sm:-top-6" aria-hidden="true" />
             <div className="relative aspect-[5/4] overflow-hidden rounded-[18px] border border-forest-900/10 bg-white shadow-[0_28px_80px_rgba(7,59,40,.16)] sm:rounded-[24px]">
               <Image
-                src="/images/cnc-service.webp"
+                src="/images/cnc-service-home.webp"
                 alt="Máy CNC tại Tùng Phát đang gia công một tấm ván"
                 fill
                 sizes="(max-width: 1024px) calc(100vw - 32px), 50vw"
                 priority
                 fetchPriority="high"
+                decoding="sync"
                 className="object-cover"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest-950/90 via-forest-950/50 to-transparent px-5 pb-5 pt-16 text-white sm:px-7 sm:pb-7">

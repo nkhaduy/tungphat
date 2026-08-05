@@ -10,6 +10,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        brand: {
+          DEFAULT: "var(--color-brand)",
+          strong: "var(--color-brand-strong)",
+          soft: "var(--color-brand-soft)"
+        },
+        accent: {
+          DEFAULT: "var(--color-accent)",
+          hover: "var(--color-accent-hover)"
+        },
+        surface: {
+          DEFAULT: "var(--color-surface)",
+          muted: "var(--color-surface-muted)",
+          warm: "var(--color-surface-warm)"
+        },
+        copy: {
+          DEFAULT: "var(--color-text)",
+          muted: "var(--color-text-muted)"
+        },
         forest: {
           950: "#062b1d",
           900: "#073b28",
@@ -30,7 +48,8 @@ const config: Config = {
         display: ["var(--font-montserrat)", "Arial", "sans-serif"]
       },
       boxShadow: {
-        card: "0 1px 2px rgba(10,42,28,.06), 0 8px 28px rgba(10,42,28,.09)"
+        card: "var(--shadow-card)",
+        header: "var(--shadow-header)"
       }
     }
   },

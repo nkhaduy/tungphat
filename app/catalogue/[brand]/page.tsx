@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { CatalogueView } from "@/components/CatalogueView";
+import { JsonLd } from "@/components/JsonLd";
+import { SiteShell } from "@/components/site/SiteShell";
 import { brands, getBrand } from "@/lib/brands";
+import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
 type RouteProps = { params: Promise<{ brand: string }> };
 
@@ -17,10 +18,7 @@ export async function generateMetadata({ params }: RouteProps): Promise<Metadata
   const { brand: brandSlug } = await params;
   const brand = getBrand(brandSlug);
   if (!brand) return {};
-  return {
-    title: `Catalogue ${brand.name} | Tùng Phát`,
-    description: `Catalogue sản phẩm chính thức ${brand.name} tại Tùng Phát. Tải file PDF hoặc liên hệ nhận catalogue mới nhất.`
-  };
+  return createPageMetadata({ title: `Catalogue ${brand.name}`, description: `Catalogue ${brand.name} tại Tùng Phát. Xem file đã được publish hoặc gửi mã màu để nhận catalogue phù hợp.`, path: `/catalogue/${brand.slug}` });
 }
 
 export default async function CatalogueRoute({ params }: RouteProps) {
@@ -29,10 +27,9 @@ export default async function CatalogueRoute({ params }: RouteProps) {
   if (!brand || brand.slug === "kes") notFound();
 
   return (
-    <>
-      <Header appearance="dark" />
+    <SiteShell>
+      <JsonLd data={breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Catalogue", path: "/san-pham" }, { name: brand.name, path: `/catalogue/${brand.slug}` }])} />
       <CatalogueView brand={brand} />
-      <Footer />
-    </>
+    </SiteShell>
   );
 }

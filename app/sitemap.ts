@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { getArticles, getProducts, getProjects, getServicePages } from "@/lib/content";
 import { absoluteUrl } from "@/lib/seo";
 import { isReservedRootSlug } from "@/lib/reserved-slugs";
+import brands from "@/content/categories/brands.json";
 import staticPages from "@/content/settings/static-pages.json";
 
 export const dynamic = "force-static";
@@ -18,5 +19,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const services: MetadataRoute.Sitemap = getServicePages().filter((entry) => rootContent(entry.slug)).map((entry) => ({ url: absoluteUrl(`/${entry.slug}`), lastModified: entry.updatedAt, changeFrequency: "weekly", priority: 0.9 }));
   const articles: MetadataRoute.Sitemap = getArticles().map((entry) => ({ url: absoluteUrl(`/bai-viet/${entry.slug}`), lastModified: entry.updatedAt, changeFrequency: "monthly", priority: 0.7 }));
   const projects: MetadataRoute.Sitemap = getProjects().map((entry) => ({ url: absoluteUrl(`/du-an/${entry.slug}`), lastModified: entry.updatedAt, changeFrequency: "monthly", priority: 0.7 }));
-  return [...staticEntries, ...products, ...services, ...articles, ...projects];
+  const brandEntries: MetadataRoute.Sitemap = brands.items.flatMap((brand) => [
+    { url: absoluteUrl(`/san-pham/${brand.slug}`), lastModified: staticPages.updatedAt, changeFrequency: "monthly" as const, priority: 0.7 },
+    ...(brand.slug === "kes" ? [] : [{ url: absoluteUrl(`/catalogue/${brand.slug}`), lastModified: staticPages.updatedAt, changeFrequency: "monthly" as const, priority: 0.6 }]),
+  ]);
+  return [...staticEntries, ...products, ...services, ...brandEntries, ...articles, ...projects];
 }
