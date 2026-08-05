@@ -4,8 +4,56 @@ import { createHttpClient, assertAllowedUrl, SourceBlockedError } from "@/script
 describe("An Cuong HTTP client", () => {
   it("rejects non-catalogue hosts and editorial paths", () => {
     expect(() => assertAllowedUrl("https://example.com/material.html")).toThrow(/host/i);
+    expect(() => assertAllowedUrl("http://ancuong.com/material.html")).toThrow(/https/i);
     expect(() => assertAllowedUrl("https://ancuong.com/tin-tuc/example.html")).toThrow(/scope/i);
     expect(() => assertAllowedUrl("https://ancuong.com/melamine/303003307.html")).not.toThrow();
+  });
+
+  it("rejects a redirect before requesting a host outside the allowlist", async () => {
+    const requested: string[] = [];
+    const client = createHttpClient({
+      minDelayMs: 0,
+      maxDelayMs: 0,
+      fetchImpl: async (input) => {
+        requested.push(input.toString());
+        return new Response(null, {
+          status: 302,
+          headers: { location: "http://127.0.0.1/internal" },
+        });
+      },
+    });
+
+    await expect(
+      client.fetchText("https://ancuong.com/melamine.html"),
+    ).rejects.toThrow(/host|https/i);
+    expect(requested).toEqual(["https://ancuong.com/melamine.html"]);
+  });
+
+  it("follows an allowlisted HTTPS redirect manually", async () => {
+    const requested: string[] = [];
+    const client = createHttpClient({
+      minDelayMs: 0,
+      maxDelayMs: 0,
+      fetchImpl: async (input) => {
+        const url = input.toString();
+        requested.push(url);
+        if (url === "https://ancuong.com/melamine.html") {
+          return new Response(null, {
+            status: 302,
+            headers: { location: "https://www.ancuong.com/melamine.html" },
+          });
+        }
+        return new Response("ok", { status: 200 });
+      },
+    });
+
+    await expect(
+      client.fetchText("https://ancuong.com/melamine.html"),
+    ).resolves.toMatchObject({ body: "ok", status: 200 });
+    expect(requested).toEqual([
+      "https://ancuong.com/melamine.html",
+      "https://www.ancuong.com/melamine.html",
+    ]);
   });
 
   it("retries retryable responses and returns the successful body", async () => {
