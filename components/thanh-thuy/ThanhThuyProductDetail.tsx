@@ -8,7 +8,6 @@ import {
   createThanhThuyProductSchema,
 } from "@/lib/thanh-thuy-schema";
 import { thanhThuyPath, type ThanhThuyProduct } from "@/lib/thanh-thuy";
-import { thanhThuyZaloUrl } from "@/lib/thanh-thuy-seo";
 
 type ThanhThuyProductDetailProps = {
   product: ThanhThuyProduct;
@@ -81,7 +80,7 @@ export function ThanhThuyProductDetail({
               </div>
               <div>
                 <span className="text-xs font-extrabold uppercase tracking-[.18em] text-forest-700">
-                  {product.categoryName}
+                  Thanh Thuỳ · {product.categoryName}
                   {product.seriesName ? ` · ${product.seriesName}` : ""}
                 </span>
                 <h1 className="mt-4 font-display text-4xl font-extrabold tracking-[-.04em] text-forest-950 sm:text-5xl">
@@ -112,10 +111,7 @@ export function ThanhThuyProductDetail({
                 </div>
                 {product.code ? (
                   <div className="mt-7">
-                    <ProductCodeActions
-                      code={product.code}
-                      zaloUrl={thanhThuyZaloUrl(product.code)}
-                    />
+                    <ProductCodeActions code={product.code} />
                   </div>
                 ) : null}
               </div>

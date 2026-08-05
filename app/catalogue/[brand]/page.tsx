@@ -14,13 +14,15 @@ export function generateStaticParams() {
     .map((brand) => ({ brand: brand.slug }));
 }
 
-export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: RouteProps): Promise<Metadata> {
   const { brand: brandSlug } = await params;
   const brand = getBrand(brandSlug);
   if (!brand) return {};
   return createPageMetadata({
     title: `Catalogue ${brand.name}`,
-    description: `Catalogue sản phẩm chính thức ${brand.name} tại Tùng Phát. Tải file PDF hoặc liên hệ nhận catalogue mới nhất.`,
+    description: `Dữ liệu catalogue ${brand.name} hiện có tại Tùng Phát. Liên hệ để kiểm tra mã, quy cách, tình trạng hàng và phạm vi catalogue phù hợp.`,
     path: `/catalogue/${brand.slug}/`,
     noIndex: true,
     followWhenNoIndex: true,
