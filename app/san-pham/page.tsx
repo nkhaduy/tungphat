@@ -10,7 +10,16 @@ import { getProducts } from "@/lib/content";
 import { mediaUrl } from "@/lib/media";
 import { absolutePageUrl, breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-const brandPath = (slug: string) => slug === "thanh-thuy" ? "/thuong-hieu/thanh-thuy/" : `/san-pham/${slug}/`;
+const brandProductPath = (slug: string) => {
+  if (slug === "thanh-thuy") return "/thuong-hieu/thanh-thuy/";
+  if (slug === "ba-thanh") return "/thuong-hieu/ba-thanh/";
+  return `/san-pham/${slug}/`;
+};
+
+const brandCataloguePath = (slug: string) => {
+  if (slug === "ba-thanh") return "/ma-mau-melamine/ba-thanh/";
+  return `${brandProductPath(slug)}#catalogue`;
+};
 
 export const metadata = createPageMetadata({
   title: "Vật liệu gỗ công nghiệp MDF, MFC, plywood",
@@ -26,7 +35,7 @@ const productListSchema = {
     "@type": "ListItem",
     position: index + 1,
     name: brand.name,
-    url: absolutePageUrl(brandPath(brand.slug))
+    url: absolutePageUrl(brandProductPath(brand.slug))
   }))
 };
 
@@ -76,8 +85,8 @@ export default function ProductsPage() {
                   <h2 className="text-xl font-extrabold text-forest-950">{brand.name}</h2>
                   <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">{brand.description || "Thông tin sản phẩm đang được cập nhật."}</p>
                   <div className="mt-6 grid gap-2">
-                    <Link href={brandPath(brand.slug)} className="inline-flex min-h-11 items-center justify-between bg-forest-900 px-4 text-sm font-bold text-white">Xem sản phẩm <ArrowRight size={16} /></Link>
-                    <Link href={`${brandPath(brand.slug)}#catalogue`} className="inline-flex min-h-11 items-center justify-between border border-forest-900/25 px-4 text-sm font-bold text-forest-950">Xem catalogue <BookOpen size={16} /></Link>
+                    <Link href={brandProductPath(brand.slug)} className="inline-flex min-h-11 items-center justify-between bg-forest-900 px-4 text-sm font-bold text-white">Xem sản phẩm <ArrowRight size={16} /></Link>
+                    <Link href={brandCataloguePath(brand.slug)} className="inline-flex min-h-11 items-center justify-between border border-forest-900/25 px-4 text-sm font-bold text-forest-950">Xem catalogue <BookOpen size={16} /></Link>
                   </div>
                 </div>
               </article>

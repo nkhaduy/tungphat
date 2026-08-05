@@ -34,6 +34,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
     ["Ván MDF", "/van-mdf/"],
     ["MDF chống ẩm", "/mdf-chong-am/"],
     ["Mã màu Thanh Thuỳ", "/thuong-hieu/thanh-thuy/"],
+    ["Mã Melamine Ba Thanh", "/ma-mau-melamine/ba-thanh/"],
     [t.navCatalogues, "/san-pham/#catalogue"]
   ];
 
