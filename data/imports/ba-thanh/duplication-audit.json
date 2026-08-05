@@ -1,0 +1,2571 @@
+{
+  "auditedAt": "2026-08-05T05:38:26.504Z",
+  "total": 233,
+  "highOverlap": 0,
+  "needsEnrichment": 227,
+  "findings": [
+    {
+      "id": "ba-thanh:BT01",
+      "code": "BT 01",
+      "sourceFactsAllowed": [
+        "BT01",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT02",
+      "code": "BT 02",
+      "sourceFactsAllowed": [
+        "BT02",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT04",
+      "code": "BT 04",
+      "sourceFactsAllowed": [
+        "BT04",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT05",
+      "code": "BT 05",
+      "sourceFactsAllowed": [
+        "BT05",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT06",
+      "code": "BT 06",
+      "sourceFactsAllowed": [
+        "BT06",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT07",
+      "code": "BT 07",
+      "sourceFactsAllowed": [
+        "BT07",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT08",
+      "code": "BT 08",
+      "sourceFactsAllowed": [
+        "BT08",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT09",
+      "code": "BT 09",
+      "sourceFactsAllowed": [
+        "BT09",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT10",
+      "code": "BT 10",
+      "sourceFactsAllowed": [
+        "BT10",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT100",
+      "code": "BT 100",
+      "sourceFactsAllowed": [
+        "BT100",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT103",
+      "code": "BT 103",
+      "sourceFactsAllowed": [
+        "BT103",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT11",
+      "code": "BT 11",
+      "sourceFactsAllowed": [
+        "BT11",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT111",
+      "code": "BT 111",
+      "sourceFactsAllowed": [
+        "BT111",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": true,
+      "sourceTextOverlap": 0.261,
+      "status": "OK"
+    },
+    {
+      "id": "ba-thanh:BT112",
+      "code": "BT 112",
+      "sourceFactsAllowed": [
+        "BT112",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT113",
+      "code": "BT 113",
+      "sourceFactsAllowed": [
+        "BT113",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT114",
+      "code": "BT 114",
+      "sourceFactsAllowed": [
+        "BT114",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT115",
+      "code": "BT 115",
+      "sourceFactsAllowed": [
+        "BT115",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT116",
+      "code": "BT 116",
+      "sourceFactsAllowed": [
+        "BT116",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT117",
+      "code": "BT 117",
+      "sourceFactsAllowed": [
+        "BT117",
+        "MÀU VÂN VẢI"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT118",
+      "code": "BT 118",
+      "sourceFactsAllowed": [
+        "BT118",
+        "MÀU VÂN VẢI"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT119",
+      "code": "BT 119",
+      "sourceFactsAllowed": [
+        "BT119",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT12",
+      "code": "BT 12",
+      "sourceFactsAllowed": [
+        "BT12",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT120",
+      "code": "BT 120",
+      "sourceFactsAllowed": [
+        "BT120",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT122",
+      "code": "BT 122",
+      "sourceFactsAllowed": [
+        "BT122",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT123",
+      "code": "BT 123",
+      "sourceFactsAllowed": [
+        "BT123",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT124",
+      "code": "BT 124",
+      "sourceFactsAllowed": [
+        "BT124",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT125",
+      "code": "BT 125",
+      "sourceFactsAllowed": [
+        "BT125",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT126",
+      "code": "BT 126",
+      "sourceFactsAllowed": [
+        "BT126",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT127",
+      "code": "BT 127",
+      "sourceFactsAllowed": [
+        "BT127",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT128",
+      "code": "BT 128",
+      "sourceFactsAllowed": [
+        "BT128",
+        "MÀU VÂN ĐÁ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT129",
+      "code": "BT 129",
+      "sourceFactsAllowed": [
+        "BT129",
+        "MÀU VÂN ĐÁ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT13",
+      "code": "BT 13",
+      "sourceFactsAllowed": [
+        "BT13",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT130",
+      "code": "BT 130",
+      "sourceFactsAllowed": [
+        "BT130",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT131",
+      "code": "BT 131",
+      "sourceFactsAllowed": [
+        "BT131",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT132",
+      "code": "BT 132",
+      "sourceFactsAllowed": [
+        "BT132",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT133",
+      "code": "BT 133",
+      "sourceFactsAllowed": [
+        "BT133",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT134",
+      "code": "BT 134",
+      "sourceFactsAllowed": [
+        "BT134",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT135",
+      "code": "BT 135",
+      "sourceFactsAllowed": [
+        "BT135",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT136",
+      "code": "BT 136",
+      "sourceFactsAllowed": [
+        "BT136",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT137",
+      "code": "BT 137",
+      "sourceFactsAllowed": [
+        "BT137",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT138",
+      "code": "BT 138",
+      "sourceFactsAllowed": [
+        "BT138",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT139",
+      "code": "BT 139",
+      "sourceFactsAllowed": [
+        "BT139",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT14",
+      "code": "BT 14",
+      "sourceFactsAllowed": [
+        "BT14",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT140",
+      "code": "BT 140",
+      "sourceFactsAllowed": [
+        "BT140",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT141",
+      "code": "BT 141",
+      "sourceFactsAllowed": [
+        "BT141",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT142",
+      "code": "BT 142",
+      "sourceFactsAllowed": [
+        "BT142",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT143",
+      "code": "BT 143",
+      "sourceFactsAllowed": [
+        "BT143",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": true,
+      "sourceTextOverlap": 0.217,
+      "status": "OK"
+    },
+    {
+      "id": "ba-thanh:BT144",
+      "code": "BT 144",
+      "sourceFactsAllowed": [
+        "BT144",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT145",
+      "code": "BT 145",
+      "sourceFactsAllowed": [
+        "BT145",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT146",
+      "code": "BT 146",
+      "sourceFactsAllowed": [
+        "BT146",
+        "MÀU VÂN VẢI"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT147",
+      "code": "BT 147",
+      "sourceFactsAllowed": [
+        "BT147",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT148",
+      "code": "BT 148",
+      "sourceFactsAllowed": [
+        "BT148",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT15",
+      "code": "BT 15",
+      "sourceFactsAllowed": [
+        "BT15",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT151",
+      "code": "BT 151",
+      "sourceFactsAllowed": [
+        "BT151",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT152",
+      "code": "BT 152",
+      "sourceFactsAllowed": [
+        "BT152",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT154",
+      "code": "BT 154",
+      "sourceFactsAllowed": [
+        "BT154",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT155",
+      "code": "BT 155",
+      "sourceFactsAllowed": [
+        "BT155",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT156",
+      "code": "BT 156",
+      "sourceFactsAllowed": [
+        "BT156",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT157",
+      "code": "BT 157",
+      "sourceFactsAllowed": [
+        "BT157",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT158",
+      "code": "BT 158",
+      "sourceFactsAllowed": [
+        "BT158",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT159",
+      "code": "BT 159",
+      "sourceFactsAllowed": [
+        "BT159",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT16",
+      "code": "BT 16",
+      "sourceFactsAllowed": [
+        "BT16",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT160",
+      "code": "BT 160",
+      "sourceFactsAllowed": [
+        "BT160",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT161",
+      "code": "BT 161",
+      "sourceFactsAllowed": [
+        "BT161",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT162",
+      "code": "BT 162",
+      "sourceFactsAllowed": [
+        "BT162",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT163",
+      "code": "BT 163",
+      "sourceFactsAllowed": [
+        "BT163",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT164",
+      "code": "BT 164",
+      "sourceFactsAllowed": [
+        "BT164",
+        "MÀU VÂN ĐÁ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT165",
+      "code": "BT 165",
+      "sourceFactsAllowed": [
+        "BT165",
+        "MÀU VÂN ĐÁ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT166",
+      "code": "BT 166",
+      "sourceFactsAllowed": [
+        "BT166",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT167",
+      "code": "BT 167",
+      "sourceFactsAllowed": [
+        "BT167",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT168",
+      "code": "BT 168",
+      "sourceFactsAllowed": [
+        "BT168",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT169",
+      "code": "BT 169",
+      "sourceFactsAllowed": [
+        "BT169",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT17",
+      "code": "BT 17",
+      "sourceFactsAllowed": [
+        "BT17",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT170",
+      "code": "BT 170",
+      "sourceFactsAllowed": [
+        "BT170",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT171",
+      "code": "BT 171",
+      "sourceFactsAllowed": [
+        "BT171",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT172",
+      "code": "BT 172",
+      "sourceFactsAllowed": [
+        "BT172",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT173",
+      "code": "BT 173",
+      "sourceFactsAllowed": [
+        "BT173",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT174",
+      "code": "BT 174",
+      "sourceFactsAllowed": [
+        "BT174",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT175",
+      "code": "BT 175",
+      "sourceFactsAllowed": [
+        "BT175",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT176",
+      "code": "BT 176",
+      "sourceFactsAllowed": [
+        "BT176",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT177",
+      "code": "BT 177",
+      "sourceFactsAllowed": [
+        "BT177",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT178",
+      "code": "BT 178",
+      "sourceFactsAllowed": [
+        "BT178",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT179",
+      "code": "BT 179",
+      "sourceFactsAllowed": [
+        "BT179",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT18",
+      "code": "BT 18",
+      "sourceFactsAllowed": [
+        "BT18",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT180",
+      "code": "BT 180",
+      "sourceFactsAllowed": [
+        "BT180",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT181",
+      "code": "BT 181",
+      "sourceFactsAllowed": [
+        "BT181",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT182",
+      "code": "BT 182",
+      "sourceFactsAllowed": [
+        "BT182",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT183",
+      "code": "BT 183",
+      "sourceFactsAllowed": [
+        "BT183",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT184",
+      "code": "BT 184",
+      "sourceFactsAllowed": [
+        "BT184",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": true,
+      "sourceTextOverlap": 0.143,
+      "status": "OK"
+    },
+    {
+      "id": "ba-thanh:BT185",
+      "code": "BT 185",
+      "sourceFactsAllowed": [
+        "BT185",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT19",
+      "code": "BT 19",
+      "sourceFactsAllowed": [
+        "BT19",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT20",
+      "code": "BT 20",
+      "sourceFactsAllowed": [
+        "BT20",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT22",
+      "code": "BT 22",
+      "sourceFactsAllowed": [
+        "BT22",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT23",
+      "code": "BT 23",
+      "sourceFactsAllowed": [
+        "BT23",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT24",
+      "code": "BT 24",
+      "sourceFactsAllowed": [
+        "BT24",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT25",
+      "code": "BT 25",
+      "sourceFactsAllowed": [
+        "BT25",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT26",
+      "code": "BT 26",
+      "sourceFactsAllowed": [
+        "BT26",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT27",
+      "code": "BT 27",
+      "sourceFactsAllowed": [
+        "BT27",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT28",
+      "code": "BT 28",
+      "sourceFactsAllowed": [
+        "BT28",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT29",
+      "code": "BT 29",
+      "sourceFactsAllowed": [
+        "BT29",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT30",
+      "code": "BT 30",
+      "sourceFactsAllowed": [
+        "BT30",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT31",
+      "code": "BT 31",
+      "sourceFactsAllowed": [
+        "BT31",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT32",
+      "code": "BT 32",
+      "sourceFactsAllowed": [
+        "BT32",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT33",
+      "code": "BT 33",
+      "sourceFactsAllowed": [
+        "BT33",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT34",
+      "code": "BT 34",
+      "sourceFactsAllowed": [
+        "BT34",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT35",
+      "code": "BT 35",
+      "sourceFactsAllowed": [
+        "BT35",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT36",
+      "code": "BT 36",
+      "sourceFactsAllowed": [
+        "BT36",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT37",
+      "code": "BT 37",
+      "sourceFactsAllowed": [
+        "BT37",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT38",
+      "code": "BT 38",
+      "sourceFactsAllowed": [
+        "BT38",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT40",
+      "code": "BT 40",
+      "sourceFactsAllowed": [
+        "BT40",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT41",
+      "code": "BT 41",
+      "sourceFactsAllowed": [
+        "BT41",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT42",
+      "code": "BT 42",
+      "sourceFactsAllowed": [
+        "BT42",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT43",
+      "code": "BT 43",
+      "sourceFactsAllowed": [
+        "BT43",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT44",
+      "code": "BT 44",
+      "sourceFactsAllowed": [
+        "BT44",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT45",
+      "code": "BT 45",
+      "sourceFactsAllowed": [
+        "BT45",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT46",
+      "code": "BT 46",
+      "sourceFactsAllowed": [
+        "BT46",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT47",
+      "code": "BT 47",
+      "sourceFactsAllowed": [
+        "BT47",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT48",
+      "code": "BT 48",
+      "sourceFactsAllowed": [
+        "BT48",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT50",
+      "code": "BT 50",
+      "sourceFactsAllowed": [
+        "BT50",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT51",
+      "code": "BT 51",
+      "sourceFactsAllowed": [
+        "BT51",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT52",
+      "code": "BT 52",
+      "sourceFactsAllowed": [
+        "BT52",
+        "MÀU VÂN VẢI"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT53",
+      "code": "BT 53",
+      "sourceFactsAllowed": [
+        "BT53",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT54",
+      "code": "BT 54",
+      "sourceFactsAllowed": [
+        "BT54",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT56",
+      "code": "BT 56",
+      "sourceFactsAllowed": [
+        "BT56",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT57",
+      "code": "BT 57",
+      "sourceFactsAllowed": [
+        "BT57",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT58",
+      "code": "BT 58",
+      "sourceFactsAllowed": [
+        "BT58",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT59",
+      "code": "BT 59",
+      "sourceFactsAllowed": [
+        "BT59",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT60",
+      "code": "BT 60",
+      "sourceFactsAllowed": [
+        "BT60",
+        "MÀU VÂN ĐÁ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT61",
+      "code": "BT 61",
+      "sourceFactsAllowed": [
+        "BT61",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT62",
+      "code": "BT 62",
+      "sourceFactsAllowed": [
+        "BT62",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT63",
+      "code": "BT 63",
+      "sourceFactsAllowed": [
+        "BT63",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT64",
+      "code": "BT 64",
+      "sourceFactsAllowed": [
+        "BT64",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT65",
+      "code": "BT 65",
+      "sourceFactsAllowed": [
+        "BT65",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT66",
+      "code": "BT 66",
+      "sourceFactsAllowed": [
+        "BT66",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT67",
+      "code": "BT 67",
+      "sourceFactsAllowed": [
+        "BT67",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT68",
+      "code": "BT 68",
+      "sourceFactsAllowed": [
+        "BT68",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT69",
+      "code": "BT 69",
+      "sourceFactsAllowed": [
+        "BT69",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT70",
+      "code": "BT 70",
+      "sourceFactsAllowed": [
+        "BT70",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT71",
+      "code": "BT 71",
+      "sourceFactsAllowed": [
+        "BT71",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT72",
+      "code": "BT 72",
+      "sourceFactsAllowed": [
+        "BT72",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT73",
+      "code": "BT 73",
+      "sourceFactsAllowed": [
+        "BT73",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT74",
+      "code": "BT 74",
+      "sourceFactsAllowed": [
+        "BT74",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT75",
+      "code": "BT 75",
+      "sourceFactsAllowed": [
+        "BT75",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT76",
+      "code": "BT 76",
+      "sourceFactsAllowed": [
+        "BT76",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT77",
+      "code": "BT 77",
+      "sourceFactsAllowed": [
+        "BT77",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT78",
+      "code": "BT 78",
+      "sourceFactsAllowed": [
+        "BT78",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT79",
+      "code": "BT 79",
+      "sourceFactsAllowed": [
+        "BT79",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT80",
+      "code": "BT 80",
+      "sourceFactsAllowed": [
+        "BT80",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT81",
+      "code": "BT 81",
+      "sourceFactsAllowed": [
+        "BT81",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT82",
+      "code": "BT 82",
+      "sourceFactsAllowed": [
+        "BT82",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT83",
+      "code": "BT 83",
+      "sourceFactsAllowed": [
+        "BT83",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT84",
+      "code": "BT 84",
+      "sourceFactsAllowed": [
+        "BT84",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT85",
+      "code": "BT 85",
+      "sourceFactsAllowed": [
+        "BT85",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT86",
+      "code": "BT 86",
+      "sourceFactsAllowed": [
+        "BT86",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT87",
+      "code": "BT 87",
+      "sourceFactsAllowed": [
+        "BT87",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT88",
+      "code": "BT 88",
+      "sourceFactsAllowed": [
+        "BT88",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT89",
+      "code": "BT 89",
+      "sourceFactsAllowed": [
+        "BT89",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT90",
+      "code": "BT 90",
+      "sourceFactsAllowed": [
+        "BT90",
+        "MÀU VÂN VẢI"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT92",
+      "code": "BT 92",
+      "sourceFactsAllowed": [
+        "BT92",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT93",
+      "code": "BT 93",
+      "sourceFactsAllowed": [
+        "BT93",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT94",
+      "code": "BT 94",
+      "sourceFactsAllowed": [
+        "BT94",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT95",
+      "code": "BT 95",
+      "sourceFactsAllowed": [
+        "BT95",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT96",
+      "code": "BT 96",
+      "sourceFactsAllowed": [
+        "BT96",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT97",
+      "code": "BT 97",
+      "sourceFactsAllowed": [
+        "BT97",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT98",
+      "code": "BT 98",
+      "sourceFactsAllowed": [
+        "BT98",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BT99",
+      "code": "BT 99",
+      "sourceFactsAllowed": [
+        "BT99",
+        "MÀU VÂN GỖ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTA150",
+      "code": "BTA 150",
+      "sourceFactsAllowed": [
+        "BTA150",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTCAM",
+      "code": "BTCAM",
+      "sourceFactsAllowed": [
+        "BTCAM",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTDEN",
+      "code": "BTDEN",
+      "sourceFactsAllowed": [
+        "BTDEN",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTDENASH",
+      "code": "BTDENASH",
+      "sourceFactsAllowed": [
+        "BTDENASH",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTHONG",
+      "code": "BTHONG",
+      "sourceFactsAllowed": [
+        "BTHONG",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTS11G",
+      "code": "BTS 11G",
+      "sourceFactsAllowed": [
+        "BTS11G",
+        "MÀU VÂN ĐÁ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTS12G",
+      "code": "BTS 12G",
+      "sourceFactsAllowed": [
+        "BTS12G",
+        "MÀU VÂN ĐÁ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTS14G",
+      "code": "BTS 14G",
+      "sourceFactsAllowed": [
+        "BTS14G",
+        "MÀU VÂN ĐÁ"
+      ],
+      "editorialPresent": true,
+      "sourceTextOverlap": 0.12,
+      "status": "OK"
+    },
+    {
+      "id": "ba-thanh:BTS15G",
+      "code": "BTS 15G",
+      "sourceFactsAllowed": [
+        "BTS15G",
+        "MÀU VÂN ĐÁ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTS6",
+      "code": "BTS 6",
+      "sourceFactsAllowed": [
+        "BTS6",
+        "MÀU VÂN ĐÁ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTS7",
+      "code": "BTS 7",
+      "sourceFactsAllowed": [
+        "BTS7",
+        "MÀU VÂN ĐÁ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTS8",
+      "code": "BTS 8",
+      "sourceFactsAllowed": [
+        "BTS8",
+        "MÀU VÂN ĐÁ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTS9",
+      "code": "BTS 9",
+      "sourceFactsAllowed": [
+        "BTS9",
+        "MÀU VÂN ĐÁ"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTTRANGASH",
+      "code": "BTTRANGASH",
+      "sourceFactsAllowed": [
+        "BTTRANGASH",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTVANG",
+      "code": "BTVANG",
+      "sourceFactsAllowed": [
+        "BTVANG",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTXAM",
+      "code": "BTXAM",
+      "sourceFactsAllowed": [
+        "BTXAM",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTXAMCHI",
+      "code": "BTXAMCHI",
+      "sourceFactsAllowed": [
+        "BTXAMCHI",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTXANHBIEN",
+      "code": "BTXANHBIEN",
+      "sourceFactsAllowed": [
+        "BTXANHBIEN",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTXANHCHUOI",
+      "code": "BTXANHCHUOI",
+      "sourceFactsAllowed": [
+        "BTXANHCHUOI",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:BTXANHCOBAN",
+      "code": "BTXANHCOBAN",
+      "sourceFactsAllowed": [
+        "BTXANHCOBAN",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC001M",
+      "code": "SC 001M",
+      "sourceFactsAllowed": [
+        "SC001M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC001MW",
+      "code": "SC 001MW",
+      "sourceFactsAllowed": [
+        "SC001MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC002M",
+      "code": "SC 002M",
+      "sourceFactsAllowed": [
+        "SC002M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC002MW",
+      "code": "SC 002MW",
+      "sourceFactsAllowed": [
+        "SC002MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC003M",
+      "code": "SC 003M",
+      "sourceFactsAllowed": [
+        "SC003M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC003MW",
+      "code": "SC 003MW",
+      "sourceFactsAllowed": [
+        "SC003MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC004M",
+      "code": "SC 004M",
+      "sourceFactsAllowed": [
+        "SC004M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC004MW",
+      "code": "SC 004MW",
+      "sourceFactsAllowed": [
+        "SC004MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC005M",
+      "code": "SC 005M",
+      "sourceFactsAllowed": [
+        "SC005M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC005MW",
+      "code": "SC 005MW",
+      "sourceFactsAllowed": [
+        "SC005MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC006M",
+      "code": "SC 006M",
+      "sourceFactsAllowed": [
+        "SC006M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC006MW",
+      "code": "SC 006MW",
+      "sourceFactsAllowed": [
+        "SC006MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC007M",
+      "code": "SC 007M",
+      "sourceFactsAllowed": [
+        "SC007M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC007MW",
+      "code": "SC 007MW",
+      "sourceFactsAllowed": [
+        "SC007MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC008M",
+      "code": "SC 008M",
+      "sourceFactsAllowed": [
+        "SC008M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC008MW",
+      "code": "SC 008MW",
+      "sourceFactsAllowed": [
+        "SC008MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC009M",
+      "code": "SC 009M",
+      "sourceFactsAllowed": [
+        "SC009M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC009MW",
+      "code": "SC 009MW",
+      "sourceFactsAllowed": [
+        "SC009MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC010M",
+      "code": "SC 010M",
+      "sourceFactsAllowed": [
+        "SC010M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC010MW",
+      "code": "SC 010MW",
+      "sourceFactsAllowed": [
+        "SC010MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC011M",
+      "code": "SC 011M",
+      "sourceFactsAllowed": [
+        "SC011M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC011MW",
+      "code": "SC 011MW",
+      "sourceFactsAllowed": [
+        "SC011MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC012M",
+      "code": "SC 012M",
+      "sourceFactsAllowed": [
+        "SC012M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC012MW",
+      "code": "SC 012MW",
+      "sourceFactsAllowed": [
+        "SC012MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC013M",
+      "code": "SC 013M",
+      "sourceFactsAllowed": [
+        "SC013M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC013MW",
+      "code": "SC 013MW",
+      "sourceFactsAllowed": [
+        "SC013MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC014M",
+      "code": "SC 014M",
+      "sourceFactsAllowed": [
+        "SC014M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC014MW",
+      "code": "SC 014MW",
+      "sourceFactsAllowed": [
+        "SC014MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC015M",
+      "code": "SC 015M",
+      "sourceFactsAllowed": [
+        "SC015M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC015MW",
+      "code": "SC 015MW",
+      "sourceFactsAllowed": [
+        "SC015MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC016M",
+      "code": "SC 016M",
+      "sourceFactsAllowed": [
+        "SC016M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC016MW",
+      "code": "SC 016MW",
+      "sourceFactsAllowed": [
+        "SC016MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC017M",
+      "code": "SC 017M",
+      "sourceFactsAllowed": [
+        "SC017M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC017MW",
+      "code": "SC 017MW",
+      "sourceFactsAllowed": [
+        "SC017MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC018M",
+      "code": "SC 018M",
+      "sourceFactsAllowed": [
+        "SC018M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC018MW",
+      "code": "SC 018MW",
+      "sourceFactsAllowed": [
+        "SC018MW",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC019M",
+      "code": "SC 019M",
+      "sourceFactsAllowed": [
+        "SC019M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC020M",
+      "code": "SC 020M",
+      "sourceFactsAllowed": [
+        "SC020M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC021M",
+      "code": "SC 021M",
+      "sourceFactsAllowed": [
+        "SC021M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC022M",
+      "code": "SC 022M",
+      "sourceFactsAllowed": [
+        "SC022M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC024M",
+      "code": "SC 024M",
+      "sourceFactsAllowed": [
+        "SC024M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC025M",
+      "code": "SC 025M",
+      "sourceFactsAllowed": [
+        "SC025M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC026M",
+      "code": "SC 026M",
+      "sourceFactsAllowed": [
+        "SC026M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC027M",
+      "code": "SC 027M",
+      "sourceFactsAllowed": [
+        "SC027M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    },
+    {
+      "id": "ba-thanh:SC028M",
+      "code": "SC 028M",
+      "sourceFactsAllowed": [
+        "SC028M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": true,
+      "sourceTextOverlap": 0.192,
+      "status": "OK"
+    },
+    {
+      "id": "ba-thanh:SC029M",
+      "code": "SC 029M",
+      "sourceFactsAllowed": [
+        "SC029M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": true,
+      "sourceTextOverlap": 0.154,
+      "status": "OK"
+    },
+    {
+      "id": "ba-thanh:SC030M",
+      "code": "SC 030M",
+      "sourceFactsAllowed": [
+        "SC030M",
+        "MÀU ĐƠN SẮC"
+      ],
+      "editorialPresent": false,
+      "sourceTextOverlap": 0,
+      "status": "NEEDS_ENRICHMENT"
+    }
+  ]
+}
