@@ -15,6 +15,13 @@ export class HttpStatusError extends Error {
   }
 }
 
+export class UnsafeUrlError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "UnsafeUrlError";
+  }
+}
+
 export interface FetchTextResult {
   body: string;
   status: number;
@@ -37,6 +44,7 @@ interface HttpClientOptions {
   maxRetries?: number;
   minDelayMs?: number;
   maxDelayMs?: number;
+  maxRedirects?: number;
   timeoutMs?: number;
   userAgent?: string;
   sleepImpl?: (milliseconds: number) => Promise<void>;
@@ -44,9 +52,10 @@ interface HttpClientOptions {
 
 export function assertAllowedUrl(input: string): URL {
   const url = new URL(input);
-  if (!crawlerConfig.allowedHosts.has(url.hostname)) throw new Error(`URL host is outside An Cuong scope: ${input}`);
+  if (url.protocol !== "https:") throw new UnsafeUrlError(`An Cuong source URL must use HTTPS: ${input}`);
+  if (!crawlerConfig.allowedHosts.has(url.hostname)) throw new UnsafeUrlError(`URL host is outside An Cuong scope: ${input}`);
   if (crawlerConfig.blockedPathParts.some((part) => url.pathname.toLocaleLowerCase().includes(part))) {
-    throw new Error(`URL path is outside catalogue scope: ${input}`);
+    throw new UnsafeUrlError(`URL path is outside catalogue scope: ${input}`);
   }
   return url;
 }
@@ -70,11 +79,42 @@ export function createHttpClient(options: HttpClientOptions = {}) {
   const maxRetries = options.maxRetries ?? crawlerConfig.maxRetries;
   const minDelayMs = options.minDelayMs ?? crawlerConfig.minDelayMs;
   const maxDelayMs = options.maxDelayMs ?? crawlerConfig.maxDelayMs;
+  const maxRedirects = options.maxRedirects ?? 5;
   const timeoutMs = options.timeoutMs ?? crawlerConfig.timeoutMs;
   const userAgent = options.userAgent ?? crawlerConfig.userAgent;
   const sleep = options.sleepImpl ?? wait;
   let hasRequested = false;
   let requestGate = Promise.resolve();
+
+  async function fetchAllowed(
+    initialUrl: URL,
+    init: RequestInit,
+  ): Promise<{ response: Response; finalUrl: URL }> {
+    let currentUrl = initialUrl;
+    const visited = new Set([currentUrl.toString()]);
+    for (let redirectCount = 0; ; redirectCount += 1) {
+      const response = await fetchImpl(currentUrl, {
+        ...init,
+        redirect: "manual",
+      });
+      if (![301, 302, 303, 307, 308].includes(response.status)) {
+        return { response, finalUrl: currentUrl };
+      }
+      const location = response.headers.get("location");
+      if (!location) {
+        throw new UnsafeUrlError(`An Cuong redirect is missing Location: ${currentUrl}`);
+      }
+      if (redirectCount >= maxRedirects) {
+        throw new UnsafeUrlError(`An Cuong redirect limit exceeded: ${initialUrl}`);
+      }
+      const redirected = assertAllowedUrl(new URL(location, currentUrl).toString());
+      if (visited.has(redirected.toString())) {
+        throw new UnsafeUrlError(`An Cuong redirect cycle detected: ${redirected}`);
+      }
+      visited.add(redirected.toString());
+      currentUrl = redirected;
+    }
+  }
 
   async function paceRequest(): Promise<void> {
     const previousGate = requestGate;
@@ -95,9 +135,8 @@ export function createHttpClient(options: HttpClientOptions = {}) {
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), timeoutMs);
       try {
-        const response = await fetchImpl(url, {
+        const { response, finalUrl } = await fetchAllowed(url, {
           method: "GET",
-          redirect: "follow",
           signal: controller.signal,
           headers: {
             accept: "text/html,application/json,text/plain;q=0.9,*/*;q=0.1",
@@ -107,7 +146,7 @@ export function createHttpClient(options: HttpClientOptions = {}) {
           }
         });
         const body = await response.text();
-        if (isChallenge(response.status, body)) throw new SourceBlockedError(url.toString(), response.status, "An Cuong returned an anti-bot challenge; stopping safely");
+        if (isChallenge(response.status, body)) throw new SourceBlockedError(finalUrl.toString(), response.status, "An Cuong returned an anti-bot challenge; stopping safely");
         if (response.status === 304) {
           return { body: "", status: 304, contentType: response.headers.get("content-type") ?? undefined, etag: response.headers.get("etag") ?? undefined, lastModified: response.headers.get("last-modified") ?? undefined, contentHash: "" };
         }
@@ -121,14 +160,14 @@ export function createHttpClient(options: HttpClientOptions = {}) {
             contentHash: createHash("sha256").update(body).digest("hex")
           };
         }
-        if (response.status === 403) throw new SourceBlockedError(url.toString(), response.status, "An Cuong returned HTTP 403; stopping safely");
-        if (![408, 425, 429, 500, 502, 503, 504].includes(response.status)) throw new HttpStatusError(url.toString(), response.status);
-        if (attempt >= maxRetries) throw new HttpStatusError(url.toString(), response.status);
+        if (response.status === 403) throw new SourceBlockedError(finalUrl.toString(), response.status, "An Cuong returned HTTP 403; stopping safely");
+        if (![408, 425, 429, 500, 502, 503, 504].includes(response.status)) throw new HttpStatusError(finalUrl.toString(), response.status);
+        if (attempt >= maxRetries) throw new HttpStatusError(finalUrl.toString(), response.status);
         const retryAfter = Number(response.headers.get("retry-after"));
         if (Number.isFinite(retryAfter) && retryAfter > 0) await sleep(Math.min(retryAfter * 1000, 30_000));
       } catch (error) {
         lastError = error;
-        if (error instanceof SourceBlockedError || error instanceof HttpStatusError && ![408, 425, 429, 500, 502, 503, 504].includes(error.status)) throw error;
+        if (error instanceof SourceBlockedError || error instanceof UnsafeUrlError || error instanceof HttpStatusError && ![408, 425, 429, 500, 502, 503, 504].includes(error.status)) throw error;
         if (attempt >= maxRetries) throw error;
       } finally {
         clearTimeout(timer);
@@ -146,9 +185,8 @@ export function createHttpClient(options: HttpClientOptions = {}) {
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), timeoutMs);
       try {
-        const response = await fetchImpl(url, {
+        const { response, finalUrl } = await fetchAllowed(url, {
           method: "GET",
-          redirect: "follow",
           signal: controller.signal,
           headers: {
             accept: "image/avif,image/webp,image/png,image/jpeg,image/gif",
@@ -159,17 +197,17 @@ export function createHttpClient(options: HttpClientOptions = {}) {
         });
         const body = new Uint8Array(await response.arrayBuffer());
         const prefix = new TextDecoder().decode(body.subarray(0, 512));
-        if (isChallenge(response.status, prefix)) throw new SourceBlockedError(url.toString(), response.status, "An Cuong returned an anti-bot challenge; stopping safely");
+        if (isChallenge(response.status, prefix)) throw new SourceBlockedError(finalUrl.toString(), response.status, "An Cuong returned an anti-bot challenge; stopping safely");
         if (response.status === 304) return { body: new Uint8Array(), status: 304, contentType: response.headers.get("content-type") ?? undefined, etag: response.headers.get("etag") ?? undefined, lastModified: response.headers.get("last-modified") ?? undefined };
         if (response.ok) return { body, status: response.status, contentType: response.headers.get("content-type") ?? undefined, etag: response.headers.get("etag") ?? undefined, lastModified: response.headers.get("last-modified") ?? undefined };
-        if (response.status === 403) throw new SourceBlockedError(url.toString(), response.status, "An Cuong returned HTTP 403; stopping safely");
-        if (![408, 425, 429, 500, 502, 503, 504].includes(response.status)) throw new HttpStatusError(url.toString(), response.status);
-        if (attempt >= maxRetries) throw new HttpStatusError(url.toString(), response.status);
+        if (response.status === 403) throw new SourceBlockedError(finalUrl.toString(), response.status, "An Cuong returned HTTP 403; stopping safely");
+        if (![408, 425, 429, 500, 502, 503, 504].includes(response.status)) throw new HttpStatusError(finalUrl.toString(), response.status);
+        if (attempt >= maxRetries) throw new HttpStatusError(finalUrl.toString(), response.status);
         const retryAfter = Number(response.headers.get("retry-after"));
         if (Number.isFinite(retryAfter) && retryAfter > 0) await sleep(Math.min(retryAfter * 1000, 30_000));
       } catch (error) {
         lastError = error;
-        if (error instanceof SourceBlockedError || error instanceof HttpStatusError && ![408, 425, 429, 500, 502, 503, 504].includes(error.status)) throw error;
+        if (error instanceof SourceBlockedError || error instanceof UnsafeUrlError || error instanceof HttpStatusError && ![408, 425, 429, 500, 502, 503, 504].includes(error.status)) throw error;
         if (attempt >= maxRetries) throw error;
       } finally {
         clearTimeout(timer);
