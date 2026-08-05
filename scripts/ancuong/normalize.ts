@@ -1,7 +1,10 @@
 import { createHash } from "node:crypto";
-import type { AnCuongMedia, AnCuongProduct, RawProductDetail } from "./types";
+import type { AnCuongMedia, AnCuongProduct, CategoryRecord, DiscoveryManifest, ListingProduct, RawProductDetail } from "./types";
 import { ANCUONG_PARSER_VERSION } from "./types";
-import { stableStringify } from "./stable-json";
+import type { CliOptions } from "./types";
+import { paths } from "./config";
+import { atomicWriteJson, readJsonIfExists, stableStringify } from "./stable-json";
+import { join } from "node:path";
 
 export function normalizeProductCode(value: string): string {
   return value
@@ -68,6 +71,8 @@ export function normalizeProduct(detail: RawProductDetail): AnCuongProduct {
     features: unique(detail.productLines.flatMap((line) => line.features)),
     descriptions: {},
     contentUsageStatus: "technical-data",
+    sourceContent: detail.sourceContent,
+    sourceFacets: detail.facets,
     primaryImage: detail.primaryImageUrl ? media(detail.primaryImageUrl, detail.name) : undefined,
     gallery: detail.galleryUrls.map((url) => media(url, detail.name)),
     relatedProducts: detail.relatedProducts,
@@ -80,5 +85,141 @@ export function normalizeProduct(detail: RawProductDetail): AnCuongProduct {
     parserVersion: ANCUONG_PARSER_VERSION,
     status: "active"
   };
-  return { ...product, normalizedHash: sha256(stableStringify(product)) };
+  const volatileFields = new Set(["discoveredAt", "fetchedAt", "sourceHash", "status", "parserVersion"]);
+  const normalizedContent = Object.fromEntries(Object.entries(product).filter(([key]) => !volatileFields.has(key)));
+  return { ...product, normalizedHash: sha256(stableStringify(normalizedContent)) };
+}
+
+function productIdentity(product: AnCuongProduct): string {
+  return product.sourceId ? `id:${product.sourceId}` : `url:${product.sourceUrl}`;
+}
+
+export function stabilizeUnchangedProducts(current: AnCuongProduct[], previous: AnCuongProduct[]): AnCuongProduct[] {
+  const priorByIdentity = new Map(previous.map((product) => [productIdentity(product), product]));
+  return current.map((product) => {
+    const prior = priorByIdentity.get(productIdentity(product));
+    return prior?.normalizedHash === product.normalizedHash ? prior : product;
+  });
+}
+
+export function dedupeProducts(products: AnCuongProduct[]): { products: AnCuongProduct[]; duplicates: AnCuongProduct[] } {
+  const kept = new Map<string, AnCuongProduct>();
+  const duplicates: AnCuongProduct[] = [];
+  for (const product of products) {
+    const key = product.sourceId
+      ? `id:${product.sourceId}`
+      : product.sourceUrl
+        ? `url:${new URL(product.sourceUrl).toString()}`
+        : `code:${product.normalizedProductCode}|category:${product.categorySlug}|hash:${product.sourceHash}`;
+    const previous = kept.get(key);
+    if (!previous) {
+      kept.set(key, product);
+      continue;
+    }
+    const currentWins = product.fetchedAt.localeCompare(previous.fetchedAt) >= 0;
+    duplicates.push(currentWins ? previous : product);
+    if (currentWins) kept.set(key, product);
+  }
+  return {
+    products: [...kept.values()].sort((left, right) => left.categorySlug.localeCompare(right.categorySlug) || left.normalizedProductCode.localeCompare(right.normalizedProductCode) || left.sourceUrl.localeCompare(right.sourceUrl)),
+    duplicates: duplicates.sort((left, right) => left.sourceUrl.localeCompare(right.sourceUrl))
+  };
+}
+
+export function buildNormalizedCategories(categories: CategoryRecord[], listings: ListingProduct[]): CategoryRecord[] {
+  const counts = new Map<string, number>();
+  for (const listing of listings) counts.set(listing.categorySlug, (counts.get(listing.categorySlug) ?? 0) + 1);
+  return categories
+    .map((category) => ({ ...category, productCount: counts.get(category.slug) ?? 0 }))
+    .sort((left, right) => left.slug.localeCompare(right.slug));
+}
+
+function proposedSlug(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .replace(/đ/gi, "d")
+    .toLocaleLowerCase("vi")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function sourceFacet(product: AnCuongProduct, ...labels: string[]): string[] {
+  const wanted = labels.map((label) => label.toLocaleLowerCase("vi"));
+  const values = Object.entries(product.sourceFacets ?? {})
+    .filter(([label]) => wanted.includes(label.toLocaleLowerCase("vi")))
+    .flatMap(([, entries]) => entries);
+  if (values.length > 0) return unique(values);
+  return product.materialPattern ? [product.materialPattern] : [];
+}
+
+const taxonomyFields: Array<[string, (product: AnCuongProduct) => string[]]> = [
+  ["Loại Sản Phẩm", (product) => product.productType ? [product.productType] : []],
+  ["Kích Thước", (product) => product.dimensions],
+  ["Vật Liệu", (product) => sourceFacet(product, "Vật liệu", "Vật Liệu")],
+  ["Loại Vân", (product) => sourceFacet(product, "Loại Vân", "Loai Van")],
+  ["Loại Vân Gỗ", (product) => product.woodPatternType ? [product.woodPatternType] : []],
+  ["Loại Vân Vải, Da, Mây", (product) => product.fabricPatternType ? [product.fabricPatternType] : []],
+  ["Loại Vân Đá", (product) => product.stonePatternType ? [product.stonePatternType] : []],
+  ["Hiệu Ứng Bề Mặt", (product) => product.surfaceEffects],
+  ["Màu Sắc", (product) => product.colors],
+  ["Bề Mặt", (product) => product.surfaces],
+  ["Tính Năng Đặc Biệt", (product) => product.specialFeatures],
+  ["Bộ Sưu Tập", (product) => product.collections],
+  ["Giải Pháp", (product) => product.solutions],
+  ["Chỉ Dán Cạnh", (product) => product.edgeBandingTypes],
+  ["Biên Dạng", (product) => product.profiles],
+  ["Nhóm Giá", (product) => product.priceGroup ? [product.priceGroup] : []]
+];
+
+export function buildTaxonomy(products: AnCuongProduct[]) {
+  const facets = taxonomyFields.map(([facet, extract]) => {
+    const counts = new Map<string, { count: number; sourceKeys: Set<string> }>();
+    for (const product of products) {
+      for (const value of unique(extract(product))) {
+        const item = counts.get(value) ?? { count: 0, sourceKeys: new Set<string>() };
+        item.count += 1;
+        item.sourceKeys.add(product.sourceId ?? product.sourceUrl);
+        counts.set(value, item);
+      }
+    }
+    const slugCounts = new Map<string, number>();
+    for (const value of counts.keys()) {
+      const slug = proposedSlug(value);
+      slugCounts.set(slug, (slugCounts.get(slug) ?? 0) + 1);
+    }
+    return {
+      facet,
+      values: [...counts.entries()]
+        .map(([value, item]) => ({
+          value,
+          productCount: item.count,
+          sourceKeys: [...item.sourceKeys].sort(),
+          proposedSlug: proposedSlug(value),
+          collision: (slugCounts.get(proposedSlug(value)) ?? 0) > 1
+        }))
+        .sort((left, right) => left.value.localeCompare(right.value)),
+      unknownProductCount: products.filter((product) => extract(product).length === 0).length
+    };
+  });
+  return { parserVersion: ANCUONG_PARSER_VERSION, facets };
+}
+
+export async function run(options: CliOptions): Promise<void> {
+  const details = await readJsonIfExists<RawProductDetail[]>(join(paths.raw, "details.json"));
+  if (!details) throw new Error(`Missing raw product details: ${join(paths.raw, "details.json")}`);
+  const discovery = await readJsonIfExists<DiscoveryManifest>(join(paths.reports, "discovery-manifest.json"));
+  const listings = await readJsonIfExists<ListingProduct[]>(join(paths.raw, "listings.json"));
+  const normalized = details.map(normalizeProduct);
+  const deduped = dedupeProducts(normalized);
+  const previous = await readJsonIfExists<AnCuongProduct[]>(join(paths.normalized, "catalogue.json"));
+  const stableProducts = stabilizeUnchangedProducts(deduped.products, previous ?? []);
+  if (options.dryRun) {
+    if (options.verbose) console.log(`Would normalize ${stableProducts.length} products (${deduped.duplicates.length} duplicates)`);
+    return;
+  }
+  await atomicWriteJson(join(paths.normalized, "catalogue.json"), stableProducts);
+  await atomicWriteJson(join(paths.normalized, "categories.json"), buildNormalizedCategories(discovery?.categories ?? [], listings ?? []));
+  await atomicWriteJson(join(paths.normalized, "taxonomy.json"), buildTaxonomy(stableProducts));
+  await atomicWriteJson(join(paths.reports, "duplicate-report.json"), deduped.duplicates);
 }

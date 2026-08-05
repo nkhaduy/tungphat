@@ -24,6 +24,14 @@ export interface FetchTextResult {
   contentHash: string;
 }
 
+export interface FetchBytesResult {
+  body: Uint8Array;
+  status: number;
+  contentType?: string;
+  etag?: string;
+  lastModified?: string;
+}
+
 interface HttpClientOptions {
   fetchImpl?: typeof fetch;
   maxRetries?: number;
@@ -31,6 +39,7 @@ interface HttpClientOptions {
   maxDelayMs?: number;
   timeoutMs?: number;
   userAgent?: string;
+  sleepImpl?: (milliseconds: number) => Promise<void>;
 }
 
 export function assertAllowedUrl(input: string): URL {
@@ -63,12 +72,26 @@ export function createHttpClient(options: HttpClientOptions = {}) {
   const maxDelayMs = options.maxDelayMs ?? crawlerConfig.maxDelayMs;
   const timeoutMs = options.timeoutMs ?? crawlerConfig.timeoutMs;
   const userAgent = options.userAgent ?? crawlerConfig.userAgent;
+  const sleep = options.sleepImpl ?? wait;
+  let hasRequested = false;
+  let requestGate = Promise.resolve();
+
+  async function paceRequest(): Promise<void> {
+    const previousGate = requestGate;
+    let release = () => {};
+    requestGate = new Promise<void>((resolve) => { release = resolve; });
+    await previousGate;
+    if (hasRequested) await sleep(delayFor(minDelayMs, maxDelayMs));
+    hasRequested = true;
+    release();
+  }
 
   async function fetchText(input: string, conditional?: { etag?: string; lastModified?: string }): Promise<FetchTextResult> {
     const url = assertAllowedUrl(input);
     let lastError: unknown;
+    await paceRequest();
     for (let attempt = 0; attempt <= maxRetries; attempt += 1) {
-      if (attempt > 0) await wait(delayFor(minDelayMs, maxDelayMs));
+      if (attempt > 0) await sleep(Math.min(maxDelayMs, minDelayMs * (2 ** (attempt - 1))));
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), timeoutMs);
       try {
@@ -102,7 +125,7 @@ export function createHttpClient(options: HttpClientOptions = {}) {
         if (![408, 425, 429, 500, 502, 503, 504].includes(response.status)) throw new HttpStatusError(url.toString(), response.status);
         if (attempt >= maxRetries) throw new HttpStatusError(url.toString(), response.status);
         const retryAfter = Number(response.headers.get("retry-after"));
-        if (Number.isFinite(retryAfter) && retryAfter > 0) await wait(Math.min(retryAfter * 1000, 30_000));
+        if (Number.isFinite(retryAfter) && retryAfter > 0) await sleep(Math.min(retryAfter * 1000, 30_000));
       } catch (error) {
         lastError = error;
         if (error instanceof SourceBlockedError || error instanceof HttpStatusError && ![408, 425, 429, 500, 502, 503, 504].includes(error.status)) throw error;
@@ -114,5 +137,46 @@ export function createHttpClient(options: HttpClientOptions = {}) {
     throw lastError instanceof Error ? lastError : new Error("An Cuong request failed");
   }
 
-  return { fetchText };
+  async function fetchBytes(input: string, conditional?: { etag?: string; lastModified?: string }): Promise<FetchBytesResult> {
+    const url = assertAllowedUrl(input);
+    let lastError: unknown;
+    await paceRequest();
+    for (let attempt = 0; attempt <= maxRetries; attempt += 1) {
+      if (attempt > 0) await sleep(Math.min(maxDelayMs, minDelayMs * (2 ** (attempt - 1))));
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const response = await fetchImpl(url, {
+          method: "GET",
+          redirect: "follow",
+          signal: controller.signal,
+          headers: {
+            accept: "image/avif,image/webp,image/png,image/jpeg,image/gif",
+            "user-agent": userAgent,
+            ...(conditional?.etag ? { "if-none-match": conditional.etag } : {}),
+            ...(conditional?.lastModified ? { "if-modified-since": conditional.lastModified } : {})
+          }
+        });
+        const body = new Uint8Array(await response.arrayBuffer());
+        const prefix = new TextDecoder().decode(body.subarray(0, 512));
+        if (isChallenge(response.status, prefix)) throw new SourceBlockedError(url.toString(), response.status, "An Cuong returned an anti-bot challenge; stopping safely");
+        if (response.status === 304) return { body: new Uint8Array(), status: 304, contentType: response.headers.get("content-type") ?? undefined, etag: response.headers.get("etag") ?? undefined, lastModified: response.headers.get("last-modified") ?? undefined };
+        if (response.ok) return { body, status: response.status, contentType: response.headers.get("content-type") ?? undefined, etag: response.headers.get("etag") ?? undefined, lastModified: response.headers.get("last-modified") ?? undefined };
+        if (response.status === 403) throw new SourceBlockedError(url.toString(), response.status, "An Cuong returned HTTP 403; stopping safely");
+        if (![408, 425, 429, 500, 502, 503, 504].includes(response.status)) throw new HttpStatusError(url.toString(), response.status);
+        if (attempt >= maxRetries) throw new HttpStatusError(url.toString(), response.status);
+        const retryAfter = Number(response.headers.get("retry-after"));
+        if (Number.isFinite(retryAfter) && retryAfter > 0) await sleep(Math.min(retryAfter * 1000, 30_000));
+      } catch (error) {
+        lastError = error;
+        if (error instanceof SourceBlockedError || error instanceof HttpStatusError && ![408, 425, 429, 500, 502, 503, 504].includes(error.status)) throw error;
+        if (attempt >= maxRetries) throw error;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+    throw lastError instanceof Error ? lastError : new Error("An Cuong request failed");
+  }
+
+  return { fetchText, fetchBytes };
 }
