@@ -57,8 +57,7 @@ The client identifies itself as `TungPhat-AnCuong-Catalogue-Crawler/1.0 (+https:
 
 ## Limits And Risks
 
-- A full 2,682-detail and all-media run was not executed in this review session; doing so is intentionally rate-limited and resumable.
+- The full 2,682-detail run completed with conservative concurrency and resumable checkpoints. Full media URL discovery completed; binary media download remains intentionally blocked by the documented storage reserve gate.
 - Empty discovered categories remain in the category export with `productCount: 0`; they are not silently removed.
 - Product-line dimension tables can describe a line rather than every code. The parser keeps source warnings and does not promote those notes into guaranteed per-code facts.
 - Source markup and catalogue counts can change without notice. Parser versioning, fixtures, hashes, validation, and live smoke tests are the change controls.
-

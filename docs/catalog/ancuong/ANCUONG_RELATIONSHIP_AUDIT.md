@@ -1,26 +1,25 @@
-# An Cuong Relationship Audit
+# An Cuong Full Relationship Audit
 
-Scope: 7-product representative live sample against the complete 2,682-ID listing discovery.
+## Factual graph
 
-## Results
+- Total source-declared edges: 26,158.
+- Same-colour: 5,631.
+- Same-line: 18,624.
+- Application: 1,903.
+- Edge-band: 0.
+- Related: 0.
+- Duplicate edges after normalization: 0.
+- Self-references: 0.
+- Target product-code collisions: 0.
 
-- Same-colour relations: 7.
-- Same-line relations: 52.
-- Application relations: 6.
-- Total relation records: 65.
-- Unresolved product targets against discovery: 0.
-- Duplicate relation records after normalization: 0.
-- Same-colour edges with a reverse edge in the sample: 2.
-- Same-colour one-way edges in the sample: 5. One-way does not imply an error because the target detail may not be part of the sample.
-- Self-relations: 0.
+Among product-ID edges resolvable inside the 2,682-product discovery, 5,326 edges have a matching reverse declaration and 127 are one-way. The factual dataset preserves direction exactly as declared; it does not synthesize reverse edges.
 
-## Evidence Rules
+## Unresolved source targets
 
-- `same-color` is parsed only from the detail page `product-map` section.
-- `same-line` is parsed from source product-line cards and retains the target material-line URL.
-- `application` is parsed from the source application album link.
-- Product target resolution uses the full listing discovery, not only the current detail sample.
-- Album IDs are application resources and are not incorrectly validated as product IDs.
+- Unresolved source-declared edges: 178.
+- Unique unresolved target IDs: 63.
+- Relation type: same-colour only.
 
-Full bidirectional and cycle statistics require the resumable full detail crawl. The runbook command is `npm run catalog:ancuong:crawl:details -- --resume --concurrency=3` followed by relation, validation, and report commands.
+These links point to valid-looking An Cuong detail URLs outside the discovered listing set, including the `eco-veneer` path. They remain in the factual graph as source-declared unresolved references and produce validation warnings rather than destructive removal or invented target products.
 
+No `derived-reverse` or `inferred` edge is included in the public export.
