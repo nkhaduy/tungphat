@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mdftungphat.com/schemas/ancuong-catalogue.schema.json",
+  "title": "An Cuong catalogue product",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["source", "sourceUrl", "name", "productCode", "normalizedProductCode", "category", "categorySlug", "gallery", "relatedProducts", "sameColorProducts", "applicationProducts", "sourceHash", "normalizedHash", "parserVersion", "status"],
+  "properties": {
+    "source": { "const": "ancuong" },
+    "brand": { "const": "An Cường" },
+    "supplierSource": { "const": "An Cường" },
+    "sourceUrl": { "type": "string", "format": "uri" },
+    "sourceId": { "type": "string" },
+    "name": { "type": "string", "minLength": 1 },
+    "productCode": { "type": "string", "minLength": 1 },
+    "normalizedProductCode": { "type": "string", "minLength": 1 },
+    "category": { "type": "string", "minLength": 1 },
+    "categorySlug": { "type": "string", "minLength": 1 },
+    "dimensions": { "type": "array", "items": { "type": "string" } },
+    "thicknesses": { "type": "array", "items": { "type": "string" } },
+    "dimensionThicknessMatrix": { "type": "array", "items": { "type": "object", "required": ["dimension", "thicknesses"], "properties": { "dimension": { "type": "string" }, "thicknesses": { "type": "array", "items": { "type": "string" } } } } },
+    "colors": { "type": "array", "items": { "type": "string" } },
+    "surfaces": { "type": "array", "items": { "type": "string" } },
+    "collections": { "type": "array", "items": { "type": "string" } },
+    "contentUsageStatus": { "enum": ["technical-data", "reference-only", "requires-rewrite", "do-not-publish"] },
+    "gallery": { "type": "array", "items": { "$ref": "#/$defs/media" } },
+    "relatedProducts": { "type": "array", "items": { "$ref": "#/$defs/relation" } },
+    "sameColorProducts": { "type": "array", "items": { "$ref": "#/$defs/relation" } },
+    "applicationProducts": { "type": "array", "items": { "$ref": "#/$defs/relation" } },
+    "sourceHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "normalizedHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "parserVersion": { "type": "string" },
+    "status": { "enum": ["active", "changed", "missing", "invalid", "duplicate", "source-unavailable"] }
+  },
+  "$defs": {
+    "media": { "type": "object", "required": ["sourceUrl"], "properties": { "sourceUrl": { "type": "string", "format": "uri" }, "localPath": { "type": "string" }, "mimeType": { "type": "string" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } } },
+    "relation": { "type": "object", "required": ["relationType"], "properties": { "relationType": { "enum": ["same-color", "same-line", "application", "edge-band", "related"] }, "sourceUrl": { "type": "string", "format": "uri" }, "sourceId": { "type": "string" }, "productCode": { "type": "string" } } }
+  }
+}
