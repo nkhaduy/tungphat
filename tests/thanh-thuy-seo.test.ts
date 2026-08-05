@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   createThanhThuyMetadata,
+  thanhThuyZaloUrl,
   type ThanhThuySeoRecord,
 } from "@/lib/thanh-thuy-seo";
 import {
@@ -49,6 +50,14 @@ describe("Thanh Thuy metadata", () => {
     expect(metadata.robots).toMatchObject({ index: false, follow: false });
     expect(metadata.alternates?.canonical).toBe(
       "https://mdftungphat.com/san-pham/melamine/lp-101-104g/",
+    );
+  });
+});
+
+describe("Thanh Thuy catalogue inquiry", () => {
+  it("includes the supplier, code, stock and fabrication context", () => {
+    expect(new URL(thanhThuyZaloUrl("LP 101")).searchParams.get("text")).toBe(
+      "Tôi cần kiểm tra mã LP 101 của Thanh Thuỳ tại Tùng Phát. Vui lòng tư vấn loại ván, quy cách, tình trạng hàng và dịch vụ gia công phù hợp.",
     );
   });
 });

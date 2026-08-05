@@ -1,9 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { normalizeSupplierCode } from "@/lib/catalog/normalize-code";
-import { extractBaThanhIndex, recognizeBaThanhDetail, reconcileBaThanhCode } from "@/lib/catalog/ba-thanh-source";
+import {
+  extractBaThanhIndex,
+  recognizeBaThanhDetail,
+  reconcileBaThanhCode,
+} from "@/lib/catalog/ba-thanh-source";
 import { isAllowedBaThanhUrl } from "@/lib/catalog/source-security";
 import { isUrlAllowedByRobots } from "@/lib/catalog/robots-policy";
-import { buildZaloInquiryUrl, mergeCatalogRecords } from "@/lib/catalog/import-utils";
+import {
+  buildZaloInquiryUrl,
+  mergeCatalogRecords,
+} from "@/lib/catalog/import-utils";
 import type { SupplierColorCode } from "@/lib/catalog/types";
 import { buildSourceChecksum } from "@/scripts/ba-thanh/import";
 
@@ -17,15 +24,18 @@ describe("normalizeSupplierCode", () => {
     ["SC-020M", "SC 020M", "sc-020m"],
     ["SC017MW", "SC 017MW", "sc-017mw"],
     ["BT-A150", "BT A150", "bt-a150"],
-  ])("normalizes %s without losing meaningful suffixes", (raw, display, slug) => {
-    expect(normalizeSupplierCode(raw)).toEqual({
-      raw,
-      normalized: display.replace(" ", ""),
-      display,
-      slug,
-      confident: true,
-    });
-  });
+  ])(
+    "normalizes %s without losing meaningful suffixes",
+    (raw, display, slug) => {
+      expect(normalizeSupplierCode(raw)).toEqual({
+        raw,
+        normalized: display.replace(" ", ""),
+        display,
+        slug,
+        confident: true,
+      });
+    },
+  );
 
   it("keeps an ambiguous value reviewable instead of inventing a code", () => {
     expect(normalizeSupplierCode("SC 020 MATT")).toEqual({
@@ -69,7 +79,10 @@ describe("extractBaThanhIndex", () => {
   `;
 
   it("discovers categories from the DOM and ignores links outside catalogue panels", () => {
-    const result = extractBaThanhIndex(html, "https://bathanh.com.vn/map-ma-melamine");
+    const result = extractBaThanhIndex(
+      html,
+      "https://bathanh.com.vn/map-ma-melamine",
+    );
 
     expect(result.categories.map((category) => category.sourceLabel)).toEqual([
       "MÀU VÂN GỖ",
@@ -102,7 +115,10 @@ describe("extractBaThanhIndex", () => {
       <a href="#wood"><span class="vc_tta-title-text">MÀU VÂN GỖ</span></a>
       <div class="vc_tta-panel" id="wood"><h4><a href="#wood"><span class="vc_tta-title-text">MÀU VÂN GỖ</span></a></h4><a href="/bt111"><img src="/BT111.jpg"></a></div>
     `;
-    expect(extractBaThanhIndex(duplicated, "https://bathanh.com.vn/map-ma-melamine").categories).toHaveLength(1);
+    expect(
+      extractBaThanhIndex(duplicated, "https://bathanh.com.vn/map-ma-melamine")
+        .categories,
+    ).toHaveLength(1);
   });
 
   it("discovers multi-letter suffixes and named solid-color codes from source URLs", () => {
@@ -113,10 +129,12 @@ describe("extractBaThanhIndex", () => {
         <a href="/bt-xam-chi-solid-color"><img src="/BT-XAM-CHI.jpg"></a>
       </div>
     `;
-    expect(extractBaThanhIndex(source, "https://bathanh.com.vn/map-ma-melamine").items.map((item) => item.codeRaw)).toEqual([
-      "SC017MW",
-      "BT-XAM-CHI",
-    ]);
+    expect(
+      extractBaThanhIndex(
+        source,
+        "https://bathanh.com.vn/map-ma-melamine",
+      ).items.map((item) => item.codeRaw),
+    ).toEqual(["SC017MW", "BT-XAM-CHI"]);
   });
 
   it("does not turn accordion hash anchors into colour-code records", () => {
@@ -127,9 +145,12 @@ describe("extractBaThanhIndex", () => {
         <a href="/sc028"><img src="/SC028M.jpg"></a>
       </div>
     `;
-    expect(extractBaThanhIndex(source, "https://bathanh.com.vn/map-ma-melamine").items.map((item) => item.sourceUrl)).toEqual([
-      "https://bathanh.com.vn/sc028",
-    ]);
+    expect(
+      extractBaThanhIndex(
+        source,
+        "https://bathanh.com.vn/map-ma-melamine",
+      ).items.map((item) => item.sourceUrl),
+    ).toEqual(["https://bathanh.com.vn/sc028"]);
   });
 
   it("rejects non-HTTPS detail and image URLs during discovery", () => {
@@ -140,7 +161,10 @@ describe("extractBaThanhIndex", () => {
       </div>
     `;
 
-    expect(extractBaThanhIndex(source, "https://bathanh.com.vn/map-ma-melamine").items).toEqual([]);
+    expect(
+      extractBaThanhIndex(source, "https://bathanh.com.vn/map-ma-melamine")
+        .items,
+    ).toEqual([]);
   });
 });
 
@@ -181,84 +205,111 @@ describe("recognizeBaThanhDetail", () => {
   });
 
   it("rejects a Melamine detail heading for a different code", () => {
-    const detail = recognizeBaThanhDetail("<main><h1>MELAMINE BA THANH – BT 143</h1></main>", {
-      expectedCode: "BT111",
-      sourceUrl: "https://bathanh.com.vn/bt-111-wood-grains",
-    });
+    const detail = recognizeBaThanhDetail(
+      "<main><h1>MELAMINE BA THANH – BT 143</h1></main>",
+      {
+        expectedCode: "BT111",
+        sourceUrl: "https://bathanh.com.vn/bt-111-wood-grains",
+      },
+    );
 
     expect(detail.accepted).toBe(false);
   });
 
   it("uses the detail heading to preserve suffix variants missed by the index image", () => {
-    const detail = recognizeBaThanhDetail("<main><h1>MELAMINE BA THANH – SC 018MW</h1><img src='/SC018MW.jpg'></main>", {
-      expectedCode: "SC018",
-      sourceUrl: "https://bathanh.com.vn/sc018mw",
-    });
+    const detail = recognizeBaThanhDetail(
+      "<main><h1>MELAMINE BA THANH – SC 018MW</h1><img src='/SC018MW.jpg'></main>",
+      {
+        expectedCode: "SC018",
+        sourceUrl: "https://bathanh.com.vn/sc018mw",
+      },
+    );
     expect(detail.accepted).toBe(true);
     expect(detail.verifiedCodeRaw).toBe("SC018MW");
   });
 
   it("reconciles legacy BTSC index codes with verified SC detail variants", () => {
-    const detail = recognizeBaThanhDetail("<main><h1>MELAMINE BA THANH – SC 003MW</h1></main>", {
-      expectedCode: "BTSC003",
-      sourceUrl: "https://bathanh.com.vn/sc-003mw-solid-color",
-    });
+    const detail = recognizeBaThanhDetail(
+      "<main><h1>MELAMINE BA THANH – SC 003MW</h1></main>",
+      {
+        expectedCode: "BTSC003",
+        sourceUrl: "https://bathanh.com.vn/sc-003mw-solid-color",
+      },
+    );
 
     expect(detail.accepted).toBe(true);
     expect(detail.verifiedCodeRaw).toBe("SC003MW");
   });
 
   it("recognizes Ba Thanh stone codes whose heading inserts the S collection marker", () => {
-    const detail = recognizeBaThanhDetail("<main><h1>MELAMINE BA THANH – BT S14G</h1><img src='/S14.jpg'></main>", {
-      expectedCode: "S14",
-      sourceUrl: "https://bathanh.com.vn/bts14",
-    });
+    const detail = recognizeBaThanhDetail(
+      "<main><h1>MELAMINE BA THANH – BT S14G</h1><img src='/S14.jpg'></main>",
+      {
+        expectedCode: "S14",
+        sourceUrl: "https://bathanh.com.vn/bts14",
+      },
+    );
     expect(detail.accepted).toBe(true);
     expect(detail.verifiedCodeRaw).toBe("BTS14G");
   });
 
   it("reconciles an S code that already carries the G suffix", () => {
-    const detail = recognizeBaThanhDetail("<main><h1>MELAMINE BA THANH – BT S11G</h1></main>", {
-      expectedCode: "S11G",
-      sourceUrl: "https://bathanh.com.vn/bts11",
-    });
+    const detail = recognizeBaThanhDetail(
+      "<main><h1>MELAMINE BA THANH – BT S11G</h1></main>",
+      {
+        expectedCode: "S11G",
+        sourceUrl: "https://bathanh.com.vn/bts11",
+      },
+    );
 
     expect(detail.accepted).toBe(true);
     expect(detail.verifiedCodeRaw).toBe("BTS11G");
   });
 
   it("keeps named solid-color source codes when the heading uses a localized color name", () => {
-    const detail = recognizeBaThanhDetail("<main><h1>MELAMINE BA THANH – XANH DƯƠNG</h1></main>", {
-      expectedCode: "BT-XANH-BIEN",
-      sourceUrl: "https://bathanh.com.vn/bt-xanh-bien-solid-color",
-    });
+    const detail = recognizeBaThanhDetail(
+      "<main><h1>MELAMINE BA THANH – XANH DƯƠNG</h1></main>",
+      {
+        expectedCode: "BT-XANH-BIEN",
+        sourceUrl: "https://bathanh.com.vn/bt-xanh-bien-solid-color",
+      },
+    );
     expect(detail.accepted).toBe(true);
     expect(detail.verifiedCodeRaw).toBe("BT-XANH-BIEN");
   });
 
   it("rejects a named solid-color page whose heading identifies a different color", () => {
-    const detail = recognizeBaThanhDetail("<main><h1>MELAMINE BA THANH – ĐEN ASH</h1></main>", {
-      expectedCode: "BT-XANH-BIEN",
-      sourceUrl: "https://bathanh.com.vn/bt-xanh-bien-solid-color",
-    });
+    const detail = recognizeBaThanhDetail(
+      "<main><h1>MELAMINE BA THANH – ĐEN ASH</h1></main>",
+      {
+        expectedCode: "BT-XANH-BIEN",
+        sourceUrl: "https://bathanh.com.vn/bt-xanh-bien-solid-color",
+      },
+    );
 
     expect(detail.accepted).toBe(false);
   });
 
   it("recognizes an alphanumeric Ba Thanh solid-color code", () => {
-    const detail = recognizeBaThanhDetail("<main><h1>BT A150 – SOLID COLOR</h1></main>", {
-      expectedCode: "BT-A150",
-      sourceUrl: "https://bathanh.com.vn/bt-a150-solid-color",
-    });
+    const detail = recognizeBaThanhDetail(
+      "<main><h1>BT A150 – SOLID COLOR</h1></main>",
+      {
+        expectedCode: "BT-A150",
+        sourceUrl: "https://bathanh.com.vn/bt-a150-solid-color",
+      },
+    );
     expect(detail.accepted).toBe(true);
     expect(detail.verifiedCodeRaw).toBe("BTA150");
   });
 
   it("keeps only detail content after the H1 when the legacy page has no main element", () => {
-    const detail = recognizeBaThanhDetail("<nav>VÁN MDF TIN TỨC</nav><h1>BT 184 – WOOD GRAINS</h1><p>MFC - BT 184 Size: 1220mm x 2440mm</p><footer>source contact</footer>", {
-      expectedCode: "BT184",
-      sourceUrl: "https://bathanh.com.vn/bt184",
-    });
+    const detail = recognizeBaThanhDetail(
+      "<nav>VÁN MDF TIN TỨC</nav><h1>BT 184 – WOOD GRAINS</h1><p>MFC - BT 184 Size: 1220mm x 2440mm</p><footer>source contact</footer>",
+      {
+        expectedCode: "BT184",
+        sourceUrl: "https://bathanh.com.vn/bt184",
+      },
+    );
     expect(detail.text).toContain("1220mm x 2440mm");
     expect(detail.text).not.toContain("TIN TỨC");
     expect(detail.text).not.toContain("source contact");
@@ -282,8 +333,14 @@ describe("source URL safety", () => {
   it("allows only HTTPS URLs on the Ba Thanh host", () => {
     expect(isAllowedBaThanhUrl("https://bathanh.com.vn/bt111")).toBe(true);
     expect(isAllowedBaThanhUrl("http://bathanh.com.vn/bt111")).toBe(false);
-    expect(isAllowedBaThanhUrl("https://evil.example/?next=https://bathanh.com.vn/bt111")).toBe(false);
-    expect(isAllowedBaThanhUrl("https://bathanh.com.vn.evil.example/bt111")).toBe(false);
+    expect(
+      isAllowedBaThanhUrl(
+        "https://evil.example/?next=https://bathanh.com.vn/bt111",
+      ),
+    ).toBe(false);
+    expect(
+      isAllowedBaThanhUrl("https://bathanh.com.vn.evil.example/bt111"),
+    ).toBe(false);
   });
 
   it("honors the longest matching Allow and Disallow rule for the catalogue bot", () => {
@@ -296,17 +353,41 @@ describe("source URL safety", () => {
       Disallow: /blocked/
     `;
 
-    expect(isUrlAllowedByRobots(robots, "TungPhatCatalogueBot/1.0", "https://bathanh.com.vn/map-ma-melamine")).toBe(true);
-    expect(isUrlAllowedByRobots(robots, "TungPhatCatalogueBot/1.0", "https://bathanh.com.vn/blocked/code")).toBe(false);
+    expect(
+      isUrlAllowedByRobots(
+        robots,
+        "TungPhatCatalogueBot/1.0",
+        "https://bathanh.com.vn/map-ma-melamine",
+      ),
+    ).toBe(true);
+    expect(
+      isUrlAllowedByRobots(
+        robots,
+        "TungPhatCatalogueBot/1.0",
+        "https://bathanh.com.vn/blocked/code",
+      ),
+    ).toBe(false);
   });
 
   it("fails closed when a non-empty robots policy has no parseable user-agent group", () => {
-    expect(isUrlAllowedByRobots("Disallow /private", "TungPhatCatalogueBot/1.0", "https://bathanh.com.vn/map-ma-melamine")).toBe(false);
+    expect(
+      isUrlAllowedByRobots(
+        "Disallow /private",
+        "TungPhatCatalogueBot/1.0",
+        "https://bathanh.com.vn/map-ma-melamine",
+      ),
+    ).toBe(false);
   });
 
   it("enforces robots wildcard and end-anchor patterns", () => {
     const robots = "User-agent: *\nDisallow: /*?preview=$";
-    expect(isUrlAllowedByRobots(robots, "TungPhatCatalogueBot/1.0", "https://bathanh.com.vn/bt111?preview=")).toBe(false);
+    expect(
+      isUrlAllowedByRobots(
+        robots,
+        "TungPhatCatalogueBot/1.0",
+        "https://bathanh.com.vn/bt111?preview=",
+      ),
+    ).toBe(false);
   });
 });
 
@@ -334,30 +415,74 @@ describe("catalogue import merge", () => {
   it("preserves editorial fields and reports an unchanged second import", () => {
     const incoming = { ...record, editorialDescription: undefined };
     const first = mergeCatalogRecords([], [incoming]);
-    const second = mergeCatalogRecords([{ ...first.records[0], editorialDescription: record.editorialDescription }], [incoming]);
+    const second = mergeCatalogRecords(
+      [
+        {
+          ...first.records[0],
+          editorialDescription: record.editorialDescription,
+        },
+      ],
+      [incoming],
+    );
 
-    expect(first.report).toEqual({ created: 1, updated: 0, unchanged: 0, skipped: 0, duplicates: 0 });
-    expect(second.report).toEqual({ created: 0, updated: 0, unchanged: 1, skipped: 0, duplicates: 0 });
-    expect(second.records[0].editorialDescription).toBe("Nội dung biên tập của Tùng Phát.");
+    expect(first.report).toEqual({
+      created: 1,
+      updated: 0,
+      unchanged: 0,
+      skipped: 0,
+      duplicates: 0,
+    });
+    expect(second.report).toEqual({
+      created: 0,
+      updated: 0,
+      unchanged: 1,
+      skipped: 0,
+      duplicates: 0,
+    });
+    expect(second.records[0].editorialDescription).toBe(
+      "Nội dung biên tập của Tùng Phát.",
+    );
   });
 
   it("does not create two records for the same supplier and normalized code", () => {
-    const result = mergeCatalogRecords([], [record, { ...record, sourceUrl: "https://bathanh.com.vn/bt111" }]);
+    const result = mergeCatalogRecords(
+      [],
+      [record, { ...record, sourceUrl: "https://bathanh.com.vn/bt111" }],
+    );
     expect(result.report.duplicates).toBe(1);
     expect(result.records).toHaveLength(1);
   });
 
   it("keeps the last valid published snapshot when a repeat import is incomplete", () => {
-    const published = { ...record, seoStatus: "READY_TO_INDEX" as const, published: true, images: [{
-      type: "swatch" as const,
-      src: "/catalog/ba-thanh/bt-111.webp",
-      alt: "Mẫu màu Melamine Ba Thanh mã BT 111",
-    }] };
-    const incomplete = { ...record, sourceChecksum: "source-b", seoStatus: "MEDIA_MISSING" as const, published: false, images: [] };
+    const published = {
+      ...record,
+      seoStatus: "READY_TO_INDEX" as const,
+      published: true,
+      images: [
+        {
+          type: "swatch" as const,
+          src: "/catalog/ba-thanh/bt-111.webp",
+          alt: "Mẫu màu Melamine Ba Thanh mã BT 111",
+        },
+      ],
+    };
+    const incomplete = {
+      ...record,
+      sourceChecksum: "source-b",
+      seoStatus: "MEDIA_MISSING" as const,
+      published: false,
+      images: [],
+    };
 
     const result = mergeCatalogRecords([published], [incomplete]);
 
-    expect(result.report).toEqual({ created: 0, updated: 0, unchanged: 0, skipped: 1, duplicates: 0 });
+    expect(result.report).toEqual({
+      created: 0,
+      updated: 0,
+      unchanged: 0,
+      skipped: 1,
+      duplicates: 0,
+    });
     expect(result.records[0]).toEqual(published);
   });
 });
@@ -388,7 +513,7 @@ describe("catalogue source checksum", () => {
 describe("Zalo inquiry", () => {
   it("encodes the exact code-specific request without changing the business URL", () => {
     expect(buildZaloInquiryUrl("https://zalo.me/0909259160", "SC 020M")).toBe(
-      "https://zalo.me/0909259160?text=T%C3%B4i%20c%E1%BA%A7n%20ki%E1%BB%83m%20tra%20m%C3%A3%20Melamine%20Ba%20Thanh%20SC%20020M%20t%E1%BA%A1i%20T%C3%B9ng%20Ph%C3%A1t.%20Vui%20l%C3%B2ng%20t%C6%B0%20v%E1%BA%A5n%20lo%E1%BA%A1i%20v%C3%A1n%2C%20quy%20c%C3%A1ch%20v%C3%A0%20t%C3%ACnh%20tr%E1%BA%A1ng%20h%C3%A0ng.",
+      "https://zalo.me/0909259160?text=T%C3%B4i+c%E1%BA%A7n+ki%E1%BB%83m+tra+m%C3%A3+SC+020M+c%E1%BB%A7a+Ba+Thanh+t%E1%BA%A1i+T%C3%B9ng+Ph%C3%A1t.+Vui+l%C3%B2ng+t%C6%B0+v%E1%BA%A5n+lo%E1%BA%A1i+v%C3%A1n%2C+quy+c%C3%A1ch%2C+t%C3%ACnh+tr%E1%BA%A1ng+h%C3%A0ng+v%C3%A0+d%E1%BB%8Bch+v%E1%BB%A5+gia+c%C3%B4ng+ph%C3%B9+h%E1%BB%A3p.",
     );
   });
 });
