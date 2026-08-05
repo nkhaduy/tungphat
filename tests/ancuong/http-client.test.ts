@@ -33,4 +33,37 @@ describe("An Cuong HTTP client", () => {
     });
     await expect(client.fetchText("https://ancuong.com/melamine.html")).rejects.toBeInstanceOf(SourceBlockedError);
   });
+
+  it("spaces successful requests from the same client", async () => {
+    const sleeps: number[] = [];
+    const client = createHttpClient({
+      minDelayMs: 300,
+      maxDelayMs: 300,
+      sleepImpl: async (milliseconds) => { sleeps.push(milliseconds); },
+      fetchImpl: async () => new Response("ok", { status: 200 }),
+    });
+    await client.fetchText("https://ancuong.com/melamine.html");
+    await client.fetchText("https://ancuong.com/laminate.html");
+    expect(sleeps).toEqual([300]);
+  });
+
+  it("retrieves binary media with the same user agent and retry policy", async () => {
+    let attempts = 0;
+    let userAgent = "";
+    const client = createHttpClient({
+      minDelayMs: 0,
+      maxDelayMs: 0,
+      fetchImpl: async (_input, init) => {
+        attempts += 1;
+        userAgent = new Headers(init?.headers).get("user-agent") ?? "";
+        if (attempts === 1) return new Response("busy", { status: 503 });
+        return new Response(new Uint8Array([1, 2, 3]), { status: 200, headers: { "content-type": "image/png" } });
+      },
+    });
+    const result = await client.fetchBytes("https://ancuong.com/products/example.png");
+    expect([...result.body]).toEqual([1, 2, 3]);
+    expect(result.contentType).toBe("image/png");
+    expect(attempts).toBe(2);
+    expect(userAgent).toContain("TungPhat-AnCuong-Catalogue-Crawler");
+  });
 });

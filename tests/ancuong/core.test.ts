@@ -31,4 +31,13 @@ describe("An Cuong core helpers", () => {
     await store.set("https://ancuong.com/melamine/2.html", "fetching");
     expect(await store.pending()).toEqual(["https://ancuong.com/melamine/2.html"]);
   });
+
+  it("serializes concurrent checkpoint writes without losing URL states", async () => {
+    const dir = await mkdtemp(join(tmpdir(), "ancuong-state-concurrent-"));
+    const store = await createCheckpointStore(join(dir, "state.json"));
+    await Promise.all(Array.from({ length: 20 }, (_, index) => store.set(`https://ancuong.com/melamine/${index}.html`, "parsed")));
+    expect(Object.keys(await store.entries())).toHaveLength(20);
+    const reloaded = await createCheckpointStore(join(dir, "state.json"));
+    expect(Object.keys(await reloaded.entries())).toHaveLength(20);
+  });
 });

@@ -105,6 +105,7 @@ export interface AnCuongProduct {
   };
   contentUsageStatus: ContentUsageStatus;
   sourceContent?: SourceDescription[];
+  sourceFacets?: Record<string, string[]>;
   primaryImage?: AnCuongMedia;
   gallery: AnCuongMedia[];
   relatedProducts: AnCuongProductRelation[];
@@ -161,6 +162,7 @@ export interface RawProductDetail {
     dimensionThicknessMatrix: DimensionThickness[];
     technicalWarnings: string[];
   }>;
+  sourceContent?: SourceDescription[];
   sourceHash: string;
   discoveredAt: string;
   fetchedAt: string;
