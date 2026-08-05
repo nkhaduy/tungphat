@@ -24,7 +24,12 @@ const OG_IMAGE = {
 };
 
 export function absoluteUrl(path = "/") {
-  return new URL(path, SITE_URL).toString();
+  const url = new URL(path, SITE_URL);
+  const lastSegment = url.pathname.split("/").filter(Boolean).at(-1) || "";
+  if (!url.pathname.endsWith("/") && !lastSegment.includes(".")) {
+    url.pathname = `${url.pathname}/`;
+  }
+  return url.toString();
 }
 
 type PageMetadata = {

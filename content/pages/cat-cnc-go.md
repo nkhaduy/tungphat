@@ -15,7 +15,7 @@ featuredImage: "/images/cnc-service.webp"
 featuredImageAlt: "Máy CNC tại Tùng Phát đang gia công một tấm ván"
 quoteCta: "Gửi yêu cầu cắt CNC"
 publishedAt: "2026-07-16"
-updatedAt: "2026-07-16"
+updatedAt: "2026-08-05"
 draft: false
 seoTitle: "Cắt CNC gỗ theo yêu cầu tại TP.HCM | Tùng Phát"
 seoDescription: "Tùng Phát nhận kiểm tra yêu cầu cắt CNC gỗ theo kích thước hoặc file kỹ thuật tại TP.HCM. Xác nhận vật liệu, độ dày và quy cách trước khi gia công."
@@ -35,3 +35,5 @@ Chi phí gia công phụ thuộc vật liệu, độ dày, tổng chiều dài v
 ## Hạn chế sai khác trước khi chạy máy
 
 Khách hàng và người phụ trách cần thống nhất đơn vị đo, mặt vật liệu, số lượng và yêu cầu cạnh. Những điểm chưa rõ phải được hỏi lại, không tự suy diễn từ tên file hoặc ảnh tham khảo.
+
+Nếu file sử dụng bề mặt theo mã, hãy gửi kèm link hoặc mã từ [catalogue Thanh Thuỳ tại Tùng Phát](/thuong-hieu/thanh-thuy/) để xưởng kiểm tra hướng vân, mặt cắt và phương án dán cạnh trước khi chạy máy.

@@ -36,6 +36,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
     ["Gỗ ghép tràm", "/go-ghep-tram"],
     ["Ván MDF", "/van-mdf"],
     ["MDF chống ẩm", "/mdf-chong-am"],
+    ["Mã màu Thanh Thuỳ", "/thuong-hieu/thanh-thuy/"],
     [t.navCatalogues, "/san-pham#catalogue"]
   ];
 
@@ -131,7 +132,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
           <button
             type="button"
             onClick={toggleLang}
-            aria-label="Chuyển ngôn ngữ"
+            title="Chuyển ngôn ngữ"
             className={`inline-flex min-h-11 items-center gap-1 px-2 text-xs font-bold transition-colors duration-300 ${lightStyle ? "text-ink/60 hover:text-ink" : "text-white/70 hover:text-white"}`}
           >
             <span className={lang === "vi" ? "text-wood-500" : ""}>VI</span>
@@ -148,8 +149,8 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
           >
             <Phone size={16} /> {t.phoneLabel}
           </a>
-          <a href={ZALO_URL} target="_blank" rel="noopener noreferrer" data-analytics-handled="1" data-track-event="click_quote" data-track-location="header" onClick={() => trackEvent("request_quote", { location: "header", channel: "zalo" })} aria-label={t.ctaGetQuote} className="inline-flex min-h-11 items-center gap-2 bg-wood-500 px-4 text-sm font-bold text-white transition hover:bg-wood-600">
-            <MessageCircle size={16} /> {t.ctaGetQuote}
+          <a href={ZALO_URL} target="_blank" rel="noopener noreferrer" data-analytics-handled="1" data-track-event="click_quote" data-track-location="header" onClick={() => trackEvent("request_quote", { location: "header", channel: "zalo" })} aria-label={t.ctaGetQuote} className="inline-flex min-h-11 items-center gap-2 bg-[#b84f05] px-4 text-sm font-bold text-white transition-colors hover:bg-[#963f04]">
+            <MessageCircle aria-hidden="true" size={16} /> {t.ctaGetQuote}
           </a>
         </div>
 
@@ -203,13 +204,13 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
             </a>
           ))}
           <div className="mt-4 flex items-center justify-between">
-            <button type="button" onClick={toggleLang} aria-label="Chuyển ngôn ngữ" className="inline-flex min-h-12 items-center gap-1 px-3 text-sm font-bold text-white/75">
+            <button type="button" onClick={toggleLang} title="Chuyển ngôn ngữ" className="inline-flex min-h-12 items-center gap-1 px-3 text-sm font-bold text-white/75">
               <span className={lang === "vi" ? "text-wood-500" : ""}>VI</span>
               <span className="text-white/40">|</span>
               <span className={lang === "en" ? "text-wood-500" : ""}>EN</span>
             </button>
-            <a href={PHONE_HREF} data-analytics-handled="1" data-track-event="click_phone" data-track-location="mobile_bottom_bar" onClick={() => trackEvent("click_phone", { location: "mobile_header" })} className="flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-4 font-bold text-white">
-              <Phone size={17} /> {t.callLabel}
+            <a href={PHONE_HREF} data-analytics-handled="1" data-track-event="click_phone" data-track-location="mobile_bottom_bar" onClick={() => trackEvent("click_phone", { location: "mobile_header" })} className="flex min-h-12 items-center justify-center gap-2 bg-[#b84f05] px-4 font-bold text-white">
+              <Phone aria-hidden="true" size={17} /> {t.callLabel}
             </a>
           </div>
         </div>

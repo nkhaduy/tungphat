@@ -15,7 +15,7 @@ featuredImage: "/images/hero-workshop6.webp"
 featuredImageAlt: "Khu vực máy và quá trình gia công CNC MDF tại Tùng Phát"
 quoteCta: "Yêu cầu báo giá CNC MDF"
 publishedAt: "2026-07-16"
-updatedAt: "2026-07-16"
+updatedAt: "2026-08-05"
 draft: false
 seoTitle: "Gia công CNC MDF theo yêu cầu tại TP.HCM"
 seoDescription: "Nhận gia công CNC MDF theo file hoặc kích thước tại TP.HCM. Tùng Phát kiểm tra cốt ván, độ dày, đường cắt và số lượng trước khi xác nhận báo giá."
@@ -35,3 +35,5 @@ Một file tốt cần có đơn vị đo, tỷ lệ, đường cắt rõ và t�
 ## Không báo giá bằng dữ liệu giả định
 
 Tùng Phát chỉ xác nhận báo giá sau khi xem vật liệu, độ dày, khối lượng và độ phức tạp. Các trường giá được để cho người quản trị cập nhật khi có dữ liệu thật, không tự sinh từ nội dung mẫu.
+
+Khi MDF được phủ Melamine, Laminate hoặc Acrylic, hãy gửi thêm mã bề mặt. Có thể bắt đầu từ [nhóm sản phẩm Thanh Thuỳ](/thuong-hieu/thanh-thuy/) rồi xác nhận mẫu thực tế trước khi chốt file CNC.
