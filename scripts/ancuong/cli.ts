@@ -28,6 +28,7 @@ export function parseCliArgs(args: string[]): { command: AnCuongCommand; options
     resume: false,
     force: false,
     changedOnly: false,
+    manifestOnly: false,
     skipMedia: false,
     verbose: false,
     concurrency: crawlerConfig.defaultConcurrency
@@ -37,6 +38,7 @@ export function parseCliArgs(args: string[]): { command: AnCuongCommand; options
     else if (flag === "--resume") options.resume = true;
     else if (flag === "--force") options.force = true;
     else if (flag === "--changed-only") options.changedOnly = true;
+    else if (flag === "--manifest-only") options.manifestOnly = true;
     else if (flag === "--skip-media") options.skipMedia = true;
     else if (flag === "--verbose") options.verbose = true;
     else if (flag.startsWith("--category=")) options.category = flag.slice("--category=".length);

@@ -7,12 +7,13 @@ import type { CliOptions } from "./types";
 import { createHttpClient, HttpStatusError, SourceBlockedError } from "./http-client";
 
 export type MediaRole = "primary" | "gallery" | "application";
-export type MediaDownloadStatus = "downloaded" | "duplicate" | "missing" | "invalid" | "failed" | "dry-run";
+export type MediaDownloadStatus = "discovered" | "downloaded" | "duplicate" | "missing" | "invalid" | "failed" | "dry-run";
 
 export interface MediaDownloadInput {
   sourceUrl: string;
   productSourceId?: string;
   productCode: string;
+  categorySlug?: string;
   role: MediaRole;
   alt?: string;
 }
@@ -136,7 +137,7 @@ function originalFilename(sourceUrl: string): string | undefined {
 }
 
 function emptySummary(): MediaManifest["summary"] {
-  return { total: 0, totalBytes: 0, downloaded: 0, duplicate: 0, missing: 0, invalid: 0, failed: 0, "dry-run": 0 };
+  return { total: 0, totalBytes: 0, discovered: 0, downloaded: 0, duplicate: 0, missing: 0, invalid: 0, failed: 0, "dry-run": 0 };
 }
 
 function buildManifest(records: MediaManifestRecord[]): MediaManifest {
@@ -151,6 +152,56 @@ function buildManifest(records: MediaManifestRecord[]): MediaManifest {
 
 function mediaIdentity(record: Pick<MediaDownloadInput, "sourceUrl" | "productSourceId" | "productCode" | "role">): string {
   return `${record.sourceUrl}|${record.productSourceId ?? ""}|${record.productCode}|${record.role}`;
+}
+
+type NormalizedMediaProduct = {
+  sourceUrl?: string;
+  sourceId?: string;
+  productCode?: string;
+  name?: string;
+  categorySlug?: string;
+  primaryImage?: { sourceUrl?: string; alt?: string };
+  gallery?: Array<{ sourceUrl?: string; alt?: string }>;
+};
+
+function galleryRole(sourceUrl: string): MediaRole {
+  try {
+    return /\/Upload\/MaterialApp\//i.test(new URL(sourceUrl).pathname) ? "application" : "gallery";
+  } catch {
+    return "gallery";
+  }
+}
+
+export function buildMediaInputs(products: NormalizedMediaProduct[]): MediaDownloadInput[] {
+  const inputs: MediaDownloadInput[] = [];
+  for (const product of products) {
+    if (!product.productCode) continue;
+    if (product.primaryImage?.sourceUrl) inputs.push({
+      sourceUrl: product.primaryImage.sourceUrl,
+      productSourceId: product.sourceId,
+      productCode: product.productCode,
+      categorySlug: product.categorySlug,
+      role: "primary",
+      alt: product.primaryImage.alt ?? product.name,
+    });
+    for (const media of product.gallery ?? []) if (media.sourceUrl) inputs.push({
+      sourceUrl: media.sourceUrl,
+      productSourceId: product.sourceId,
+      productCode: product.productCode,
+      categorySlug: product.categorySlug,
+      role: galleryRole(media.sourceUrl),
+      alt: media.alt ?? product.name,
+    });
+  }
+  return inputs;
+}
+
+export function buildMediaDiscoveryManifest(inputs: MediaDownloadInput[]): MediaManifest {
+  return buildManifest(inputs.map((input) => ({
+    ...input,
+    status: "discovered" as const,
+    originalFilename: originalFilename(input.sourceUrl),
+  })));
 }
 
 export async function downloadMedia(inputs: MediaDownloadInput[], options: DownloadMediaOptions): Promise<MediaManifest> {
@@ -251,12 +302,11 @@ export async function verifyMediaFile(filePath: string, expectedSha256: string):
 export async function run(options: CliOptions): Promise<MediaManifest> {
   const normalized = await readJsonIfExists<unknown>(path.join(paths.normalized, "catalogue.json"));
   const products = Array.isArray(normalized) ? normalized : (normalized && typeof normalized === "object" && Array.isArray((normalized as { records?: unknown[] }).records) ? (normalized as { records: unknown[] }).records : []);
-  const inputs: MediaDownloadInput[] = [];
-  for (const value of products) {
-    const product = value as { sourceUrl?: string; sourceId?: string; productCode?: string; name?: string; primaryImage?: { sourceUrl?: string; alt?: string }; gallery?: Array<{ sourceUrl?: string; alt?: string }> };
-    if (!product.productCode) continue;
-    if (product.primaryImage?.sourceUrl) inputs.push({ sourceUrl: product.primaryImage.sourceUrl, productSourceId: product.sourceId, productCode: product.productCode, role: "primary", alt: product.primaryImage.alt ?? product.name });
-    for (const media of product.gallery ?? []) if (media.sourceUrl) inputs.push({ sourceUrl: media.sourceUrl, productSourceId: product.sourceId, productCode: product.productCode, role: "gallery", alt: media.alt ?? product.name });
+  const inputs = buildMediaInputs(products as NormalizedMediaProduct[]);
+  if (options.manifestOnly) {
+    const manifest = buildMediaDiscoveryManifest(inputs);
+    if (!options.dryRun) await atomicWriteJson(path.join(paths.normalized, "media-manifest.json"), manifest);
+    return manifest;
   }
   return downloadMedia(inputs, { outputDir: paths.media, manifestPath: path.join(paths.normalized, "media-manifest.json"), concurrency: options.concurrency, force: options.force, dryRun: options.dryRun });
 }

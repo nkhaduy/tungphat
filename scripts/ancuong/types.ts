@@ -188,6 +188,7 @@ export interface CliOptions {
   limit?: number;
   concurrency: number;
   changedOnly: boolean;
+  manifestOnly?: boolean;
   skipMedia: boolean;
   verbose: boolean;
 }
