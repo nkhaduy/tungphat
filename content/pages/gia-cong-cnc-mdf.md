@@ -17,7 +17,7 @@ featuredImage: "/images/cnc-service.webp"
 featuredImageAlt: "Ảnh minh họa máy CNC đang gia công biên dạng trên vật liệu dạng tấm"
 quoteCta: "Yêu cầu báo giá CNC MDF"
 publishedAt: "2026-07-16"
-updatedAt: "2026-07-23"
+updatedAt: "2026-08-05"
 draft: false
 seoTitle: "Gia công CNC MDF theo yêu cầu tại TP.HCM"
 seoDescription: "Gửi yêu cầu gia công CNC MDF theo file, bản vẽ hoặc kích thước. Tùng Phát kiểm tra cốt, độ dày, bề mặt, cạnh và số lượng trước khi báo giá."
@@ -188,3 +188,7 @@ Nếu khách hàng chưa chốt nhóm vật liệu, [hướng dẫn ván gỗ c�
 Trước khi dùng nút gọi điện hoặc Zalo hiện có, hãy gom một gói thông tin ngắn gồm loại MDF, độ dày, kích thước, số lượng, mặt sử dụng, bề mặt hoặc lớp phủ, file hoặc bản vẽ và thao tác cần cắt, khoan hoặc soi rãnh. Nếu có cạnh cần để lộ, chi tiết nhỏ hoặc yêu cầu hoàn thiện, hãy ghi riêng theo từng mã chi tiết.
 
 Khách hàng có thể xem [thông tin liên hệ Tùng Phát](/lien-he/) để chọn kênh trao đổi. Tùng Phát chỉ xác nhận khả năng đọc dữ liệu, phương án gia công, giá và thời gian sau khi kiểm tra thông tin thực tế; website không thay thế bước xác nhận đó.
+
+Tùng Phát chỉ xác nhận báo giá sau khi xem vật liệu, độ dày, khối lượng và độ phức tạp. Các trường giá được để cho người quản trị cập nhật khi có dữ liệu thật, không tự sinh từ nội dung mẫu.
+
+Khi MDF được phủ Melamine, Laminate hoặc Acrylic, hãy gửi thêm mã bề mặt. Có thể bắt đầu từ [nhóm sản phẩm Thanh Thuỳ](/thuong-hieu/thanh-thuy/) rồi xác nhận mẫu thực tế trước khi chốt file CNC.

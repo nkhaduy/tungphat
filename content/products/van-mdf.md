@@ -29,7 +29,7 @@ gallery: []
 status: "available"
 quoteCta: "Yêu cầu báo giá ván MDF"
 publishedAt: "2026-07-16"
-updatedAt: "2026-07-22"
+updatedAt: "2026-08-05"
 draft: false
 seoTitle: "Ván MDF tại TP.HCM: độ dày, ứng dụng, báo giá"
 seoDescription: "Tìm hiểu ván MDF, độ dày, bề mặt và dữ liệu cần gửi khi đặt hàng. Tùng Phát kiểm tra mã vật liệu, quy cách và báo giá thực tế tại TP.HCM."
@@ -125,3 +125,7 @@ Trước khi gọi hoặc nhắn Zalo, khách hàng nên chuẩn bị:
 - Địa điểm nhận hàng hoặc cần trao đổi phương án giao hàng.
 
 Các thông tin trên giúp kiểm tra mã, quy cách, tình trạng cung cấp và gia công trước khi báo giá. Xem [nhóm sản phẩm](/san-pham/) hoặc [thông tin liên hệ](/lien-he/). Không gửi thông tin cá nhân hoặc file thiết kế vào analytics.
+
+Một yêu cầu rõ nên có số tấm nguyên hoặc danh sách chi tiết, độ dày, bề mặt, yêu cầu dán cạnh và các thao tác CNC. Không gửi thông tin cá nhân hoặc file thiết kế vào analytics; file kỹ thuật hiện được trao đổi qua kênh đã xác nhận với Tùng Phát.
+
+Nếu hạng mục dùng bề mặt trang trí, có thể [tra cứu mã Melamine Thanh Thuỳ](/san-pham/melamine/) và gửi kèm mã màu để Tùng Phát kiểm tra khả năng phối với cốt MDF, chỉ nẹp và quy cách gia công.

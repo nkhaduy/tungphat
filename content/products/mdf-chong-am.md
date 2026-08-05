@@ -30,7 +30,7 @@ gallery: []
 status: "available"
 quoteCta: "Kiểm tra MDF chống ẩm"
 publishedAt: "2026-07-16"
-updatedAt: "2026-07-22"
+updatedAt: "2026-08-05"
 draft: false
 seoTitle: "MDF chống ẩm tại TP.HCM: chọn loại và báo giá"
 seoDescription: "Xem lưu ý khi chọn MDF chống ẩm, độ dày và bề mặt. Gửi nhu cầu để Tùng Phát kiểm tra mã hàng, quy cách và báo giá thực tế tại TP.HCM."
@@ -133,3 +133,7 @@ Trước khi gọi hoặc nhắn Zalo, khách hàng nên chuẩn bị:
 - Thời gian cần hàng và địa điểm nhận/giao để trao đổi.
 
 Các thông tin này giúp kiểm tra mã hàng, quy cách và báo giá thực tế. Xem [nhóm sản phẩm](/san-pham/) hoặc [thông tin liên hệ](/lien-he/) trước khi gửi yêu cầu.
+
+Cho biết vị trí sử dụng, độ dày, kích thước, bề mặt và số lượng. Nếu cần cắt CNC, hãy bổ sung định dạng file và yêu cầu cạnh để Tùng Phát kiểm tra cùng vật liệu.
+
+Với hạng mục cần phủ bề mặt, khách hàng có thể [xem catalogue mã màu Thanh Thuỳ](/thuong-hieu/thanh-thuy/) rồi gửi mã đã chọn để đối chiếu mẫu, nền ván và cạnh hoàn thiện.
