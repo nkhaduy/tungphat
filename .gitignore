@@ -3,6 +3,7 @@ node_modules/
 .next/
 .seo-cache/
 .cache/thanh-thuy/
+.cache/ba-thanh/
 out/
 .wrangler/
 .dev.vars
