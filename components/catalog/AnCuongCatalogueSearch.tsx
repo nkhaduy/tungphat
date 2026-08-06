@@ -105,7 +105,7 @@ export function AnCuongCatalogueSearch({ entries }: { entries: CatalogSearchEntr
                 {item.thumbnail ? (
                   <Image src={item.thumbnail} alt="" width={72} height={48} className="h-12 w-[72px] shrink-0 object-contain" />
                 ) : (
-                  <span className="grid h-12 w-[72px] shrink-0 place-items-center border border-dashed border-forest-900/15 bg-[#f7f8f5] px-2 text-center text-[.6rem] font-bold leading-4 text-slate-500">
+                  <span className="grid h-12 w-[72px] shrink-0 place-items-center border border-dashed border-forest-900/15 bg-[#f7f8f5] px-2 text-center text-[.6rem] font-bold leading-4 text-slate-600">
                     Chưa có swatch cục bộ
                   </span>
                 )}

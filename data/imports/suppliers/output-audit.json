@@ -26,12 +26,12 @@
     ]
   },
   "summary": {
-    "pages": 595,
-    "indexable": 20,
+    "pages": 598,
+    "indexable": 23,
     "noindex": 575,
-    "uniqueTitles": 595,
-    "uniqueDescriptions": 589,
-    "canonicalsChecked": 595,
+    "uniqueTitles": 598,
+    "uniqueDescriptions": 592,
+    "canonicalsChecked": 598,
     "invalidJsonLd": 0,
     "brandMismatches": 0,
     "orphanIndexablePages": 0
