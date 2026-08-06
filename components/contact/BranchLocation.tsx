@@ -2,112 +2,22 @@ import Image from "next/image";
 import { ExternalLink, MapPin, Phone } from "lucide-react";
 import { TrackedLink } from "@/components/TrackedLink";
 
-export type ContactPhone = {
-  display: string;
-  href: string;
-};
-
-export type BranchLocationData = {
-  id: string;
-  shortId: string;
-  address: string;
-  image: string;
-  imageAlt: string;
-  embedSrc: string;
-  directionsUrl: string;
-};
-
-type BranchLocationProps = {
-  location: BranchLocationData;
-  phones: ContactPhone[];
-};
+export type ContactPhone = { display: string; href: string };
+export type BranchLocationData = { id: string; shortId: string; name?: string; address: string; image: string; imageAlt: string; embedSrc: string; directionsUrl: string };
+type BranchLocationProps = { location: BranchLocationData; phones: ContactPhone[] };
 
 export function BranchLocation({ location, phones }: BranchLocationProps) {
   const branchNumber = location.shortId.replace(/\D/g, "");
-
   return (
-    <section
-      id={location.id}
-      aria-labelledby={`${location.id}-title`}
-      className="scroll-mt-28 border-t border-forest-900/12 py-16 lg:py-24"
-    >
-      <div className="container-shell">
-        <div className="grid items-start gap-x-12 lg:grid-cols-[minmax(0,.82fr)_minmax(0,1.18fr)] xl:gap-x-16">
-          <div className="lg:col-start-2 lg:row-start-1">
-            <h2
-              id={`${location.id}-title`}
-              className="text-balance text-3xl font-extrabold leading-tight tracking-[-.02em] text-forest-950 sm:text-4xl"
-            >
-              Chi nhánh {branchNumber}
-            </h2>
-            <address className="mt-5 not-italic">
-              <p className="flex items-start gap-3 text-base font-semibold leading-7 text-slate-700">
-                <MapPin
-                  size={20}
-                  className="mt-0.5 shrink-0 text-wood-600"
-                  aria-hidden="true"
-                />
-                {location.address}
-              </p>
-              <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6">
-                {phones.map((phone) => (
-                  <TrackedLink
-                    key={phone.href}
-                    href={phone.href}
-                    eventName="click_phone"
-                    eventProperties={{ location: location.shortId }}
-                    className="inline-flex min-h-11 items-center gap-2 font-bold text-forest-900 transition-colors hover:text-wood-600"
-                  >
-                    <Phone size={17} aria-hidden="true" />
-                    {phone.display}
-                  </TrackedLink>
-                ))}
-              </div>
-            </address>
-          </div>
-
-          <div className="relative mt-8 aspect-[4/5] overflow-hidden bg-[#eef1ed] lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:mt-0">
-            {/* Ảnh được quản lý từ business.json để có thể thay riêng từng chi nhánh. */}
-            <Image
-              src={location.image}
-              alt={location.imageAlt}
-              fill
-              sizes="(max-width: 1023px) calc(100vw - 24px), 40vw"
-              className="object-cover"
-            />
-          </div>
-
-          <div className="mt-7 lg:col-start-2 lg:row-start-2">
-            <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-sm font-bold text-forest-950">
-                Bản đồ chi nhánh {branchNumber}
-              </p>
-              <TrackedLink
-                href={location.directionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                eventName="click_directions"
-                eventProperties={{ location: location.shortId }}
-                className="inline-flex min-h-12 w-full items-center justify-center gap-2 border border-forest-900/22 px-5 text-sm font-bold text-forest-900 transition-colors hover:border-forest-900 hover:bg-forest-900 hover:text-white sm:w-auto"
-              >
-                Mở Google Maps
-                <ExternalLink size={17} aria-hidden="true" />
-              </TrackedLink>
-            </div>
-            <div className="aspect-[4/3] w-full overflow-hidden border border-forest-900/12 bg-[#eef1ed] sm:aspect-[16/9] lg:aspect-auto lg:h-[360px]">
-              <iframe
-                src={location.embedSrc}
-                title={`Google Maps – Chi nhánh ${branchNumber} Tùng Phát`}
-                loading="lazy"
-                allowFullScreen
-                referrerPolicy="strict-origin-when-cross-origin"
-                className="block h-full w-full"
-                style={{ border: 0 }}
-              />
-            </div>
-          </div>
-        </div>
+    <article id={location.id} aria-labelledby={`${location.id}-title`} className="scroll-mt-32 overflow-hidden border border-forest-900/10 bg-white shadow-card">
+      <div className="relative aspect-[4/3] bg-[#eef1ed]"><Image src={location.image} alt={location.imageAlt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" /></div>
+      <div className="p-6 sm:p-7">
+        <p className="text-xs font-extrabold uppercase tracking-[.15em] text-wood-600">Chi nhánh {branchNumber}</p>
+        <h2 id={`${location.id}-title`} className="mt-3 text-2xl font-extrabold text-forest-950">{location.name || `Tùng Phát - Chi nhánh ${branchNumber}`}</h2>
+        <address className="mt-5 not-italic"><p className="flex items-start gap-3 text-sm font-semibold leading-7 text-slate-700"><MapPin size={19} className="mt-1 shrink-0 text-wood-600" aria-hidden="true" />{location.address}</p><div className="mt-4 flex flex-wrap gap-3">{phones.map((phone) => <TrackedLink key={phone.href} href={phone.href} eventName="click_phone" eventProperties={{ location: location.shortId }} className="inline-flex min-h-11 items-center gap-2 font-bold text-forest-900 hover:text-wood-600"><Phone size={17} aria-hidden="true" />{phone.display}</TrackedLink>)}</div></address>
+        <div className="mt-6 border-t border-forest-900/10 pt-5"><h3 className="text-sm font-extrabold text-forest-950">Dịch vụ có thể trao đổi tại chi nhánh</h3><p className="mt-2 text-sm leading-7 text-slate-700">Kiểm tra vật liệu, quy cách tấm, mã bề mặt và tiếp nhận thông tin gia công CNC. Phạm vi cụ thể được xác nhận khi liên hệ.</p></div>
+        <TrackedLink href={location.directionsUrl} target="_blank" rel="noopener noreferrer" eventName="click_directions" eventProperties={{ location: location.shortId }} className="pressable mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-forest-900 px-5 text-sm font-extrabold text-white hover:bg-forest-800">Mở Google Maps <ExternalLink size={17} aria-hidden="true" /></TrackedLink>
       </div>
-    </section>
+    </article>
   );
 }

@@ -1,3 +1,7 @@
+export type Lang = "vi" | "en";
+
+export type TranslationKey = keyof typeof vi;
+
 export const vi = {
   /* ── Site identity ── */
   siteName: "Tùng Phát",
@@ -340,3 +344,336 @@ export const vi = {
     }
   ]
 };
+
+export const en: typeof vi = {
+  siteName: "Tùng Phát",
+  siteTagline: "Wood Materials & CNC Machining",
+  siteDescription:
+    "Distributing wood materials and CNC machining to specification for furniture workshops, carpenters, architects, and business clients.",
+
+  navHome: "Home",
+  navProducts: "Products",
+  navCatalogues: "Catalogues",
+  navCNC: "CNC Machining",
+  navLibrary: "Library",
+  navContact: "Contact",
+  navAllProducts: "All Products",
+  mobileOpenMenu: "Open menu",
+  mobileCloseMenu: "Close menu",
+  mobileOpenProducts: "Open product menu",
+  mobileCloseProducts: "Close product menu",
+  ctaGetQuote: "Get a Quote",
+  phoneLabel: "0909 259 160",
+  callLabel: "Call 0909 259 160",
+
+  heroCompany: "Tùng Phát Wood Trading & Service Co., Ltd.",
+  heroTitle1: "Engineered",
+  heroTitle2: "wood",
+  heroTitle3: "& CNC",
+  heroTitle4: "solutions",
+  heroDescription:
+    "Supplying materials from trusted brands, combined with CNC machining to specification, serving furniture workshops, carpenters, architects, and business clients.",
+  heroCtaExplore: "Explore catalogue",
+  heroCtaQuote: "Contact for a quote",
+
+  partnersTitle: "PARTNERS & DISTRIBUTED BRANDS",
+  partnersDescription:
+    "Tùng Phát supplies wood material lines from reputable brands in the market.",
+
+  categoryEyebrow: "Material Categories",
+  categoryTitle: "Find the right panel for the right application",
+  categoryCtaCheck: "Check stock & get a quote",
+  categoryCtaRequest: "Request a quote",
+
+  categories: [
+    ["MDF – MFC Panels", "Multiple thicknesses, ideal for residential furniture and mass production."],
+    ["Moisture-Resistant Panels", "Green-core boards for high-humidity areas and kitchen applications."],
+    ["Plywood", "Multi-layer construction, high load-bearing capacity and machining stability."],
+    ["Melamine", "Finished surfaces in a wide range of solid colors, woodgrains, and stone textures."],
+    ["Laminate", "Durable, scratch-resistant surfaces for high-traffic areas."],
+    ["Acrylic", "Deep gloss, modern colors for cabinetry and shelving systems."],
+    ["Veneer", "Natural wood grain for projects requiring an authentic material feel."],
+    ["Decorative Panels", "Surface solutions for accent walls, counters, and showrooms."]
+  ],
+
+  cncEyebrow: "Workshop Capability",
+  cncTitle: "CNC Machining to Specification",
+  cncDescription:
+    "Precision machining from technical files or sketches, with specs confirmed before production.",
+  cncItems: [
+    "Cut-to-size panels",
+    "Drilling and joinery",
+    "Grooving",
+    "Pattern cutting",
+    "Detail machining from files",
+    "Pre-delivery inspection"
+  ],
+  cncCta: "Request a drawing-based quote",
+  cncOverlay: "Machining to size & drawing",
+
+  processEyebrow: "Ordering Process",
+  processTitle: "From material code to finished product, every step clear",
+  processDescription:
+    "A single point of contact confirms information end-to-end to minimize specification errors before production.",
+  processSteps: [
+    ["01", "Select material or send code"],
+    ["02", "Send dimensions / machining file"],
+    ["03", "Confirm specs and quote"],
+    ["04", "CNC cutting, final inspection"],
+    ["05", "Agree on the pickup method"]
+  ],
+  processScope:
+    "Scope shown on this website: material supply and CNC machining. Interior design, construction, and installation are not included.",
+
+  whyUsEyebrow: "Why Partner with Us",
+  whyUsTitle: "Why choose Tùng Phát?",
+  whyUsItems: [
+    "Verified material sources",
+    "Wide range of colors & surfaces",
+    "Precision CNC machining",
+    "Support for workshops, carpenters & designers"
+  ],
+
+  workshopEyebrow: "Real-World Images",
+  workshopTitle: "Tùng Phát Workshop, Materials & Finished Products",
+  workshopDescription:
+    "Focus on warehouse and workshop capability and machining quality so you can evaluate before ordering.",
+  workshopGalleryLabels: [
+    "Panel and material warehouse",
+    "CNC machine in operation",
+    "Workshop machining process",
+    "Actual material samples",
+    "Cut edges and finished details",
+    "Surface sample collection"
+  ],
+  workshopProcessEyebrow: "Workshop Process",
+  workshopProcessTitle: "Real machining at Tùng Phát workshop",
+  workshopProcessDescription:
+    "From drawing review and CNC cutting to edge-banding and finishing, every step is performed directly by the Tùng Phát team at our workshop, ensuring accuracy and quality to each order's specifications.",
+  workshopSteps: [
+    "Review and verify machining files",
+    "Precision CNC cutting to specification",
+    "Edge-banding and finishing"
+  ],
+
+  contactEyebrow: "CONTACT TUNG PHAT",
+  contactTitle: "Looking for a reliable material supply or CNC machining partner?",
+  contactDescription:
+    "Speak directly with Tùng Phát for advice on material codes, specifications, and machining options that fit your real project needs.",
+  contactCta: "Discuss a partnership",
+
+  footerDescription:
+    "Wood materials and CNC machining solutions for workshops, carpenters, architects, and business clients.",
+  footerMaterials: "Materials",
+  footerServices: "Services",
+  footerContact: "Contact",
+  footerCNC: "CNC Machining",
+  footerCatalogue: "Catalogue",
+  footerLibrary: "Workshop Library",
+  footerProcess: "Ordering Process",
+  footerLegal: "Legal",
+  footerPrivacy: "Privacy Policy",
+  footerTerms: "Terms of Use",
+  footerCopyright: "© 2026 Tùng Phát Wood Trading & Service Co., Ltd.",
+  footerBranchesEyebrow: "BRANCH LOCATIONS",
+  footerBranchesTitle: "Find Tùng Phát near you",
+  footerBranch1Name: "Tùng Phát 1",
+  footerBranch2Name: "Tùng Phát 2",
+
+  floatingQuote: "Get a Quote",
+
+  breadcrumbHome: "Home",
+  breadcrumbProducts: "Products",
+
+  catalogueTitle: "Catalogue",
+  catalogueDescription: "Official product catalogue from",
+  cataloguePlaceholder:
+    "Catalogue is being updated. Please contact us to receive the latest catalogue file.",
+  catalogueRequestCta: "Request catalogue",
+  catalogueThumbnails: {
+    melamine: "Melamine Collection",
+    laminate: "Laminate Collection",
+    acrylic: "Acrylic Collection",
+    veneer: "Veneer Collection",
+    plywood: "Plywood Collection",
+    mdf: "MDF – MFC Collection"
+  },
+
+  legalLastUpdated: "Last updated",
+
+  privacyTitle: "Privacy Policy",
+  privacySubtitle:
+    "Tùng Phát is committed to protecting customer information throughout consultation, quotation, and service delivery.",
+  privacySections: [
+    {
+      id: "muc-dich",
+      title: "01. Purpose of Information Collection",
+      content: [
+        "Tùng Phát collects information from customers and partners to support wood material consultation, CNC machining services, and related operations. Data collection helps us understand your needs and provide accurate, timely solutions.",
+        "Information is provided when you submit a quote/contact form, contact us by Zalo or phone, or discuss material and CNC orders. The website has no direct file-upload feature."
+      ]
+    },
+    {
+      id: "pham-vi",
+      title: "02. Scope of Information Use",
+      content: [
+        "Customer-provided information is used to check material codes, prepare quotes, confirm specifications, process CNC files, and discuss orders.",
+        "We do not use customer information for any purpose beyond the stated scope unless with the customer's explicit consent or as required by competent government authorities.",
+        "Tùng Phát does not sell, trade, or rent customer personal information to any third parties."
+      ]
+    },
+    {
+      id: "thoi-gian",
+      title: "03. Information Retention Period",
+      content: [
+        "Quote or contact requests that do not become transactions are retained for up to 24 months after the last update. Transaction-related records may be retained longer when required for legal or reconciliation obligations.",
+        "When information is no longer needed for the stated purposes, Tùng Phát will securely delete or anonymize the data."
+      ]
+    },
+    {
+      id: "don-vi",
+      title: "04. Information Management Unit",
+      content: [
+        "The unit responsible for receiving and managing customer information:",
+        "Tùng Phát Wood Trading & Service Co., Ltd.",
+        "Address: 14 Tam Binh and 81B Tam Binh, Hiep Binh Ward, Ho Chi Minh City",
+        "Phone: 0909 259 160",
+        "Zalo: 0909 259 160",
+        "For any inquiries regarding data collection and processing, please contact us through the channels above."
+      ]
+    },
+    {
+      id: "cam-ket",
+      title: "05. Information Security Commitment",
+      content: [
+        "Tùng Phát applies appropriate measures to limit unauthorized access, alteration, or disclosure of customer information within systems managed by the business.",
+        "Design files and CNC drawings provided by customers are used solely for quotation and machining purposes. We do not share customer files with third parties without consent.",
+        "In the event of a security incident, Tùng Phát will promptly notify customers and implement appropriate remedial measures."
+      ]
+    },
+    {
+      id: "analytics",
+      title: "06. Anonymous Website Measurement",
+      content: [
+        "The website uses random visitor and session identifiers to count visits, content views, and actions such as phone, Zalo, email, Google Maps, or catalogue clicks. This data helps Tùng Phát improve content and measure contact-channel effectiveness.",
+        "The analytics system does not store raw IP addresses, create browser or device fingerprints, record screens or keystrokes, or collect form content before submission. Detailed events and sessions are retained for up to 90 days; aggregate metrics may be retained for up to 25 months.",
+        "You can disable measurement on a device using the tp_analytics_opt_out cookie. Disabling analytics does not affect browsing or contacting Tùng Phát."
+      ]
+    },
+    {
+      id: "quyen",
+      title: "07. Customer Rights",
+      content: [
+        "Customers have the right to request Tùng Phát to provide information about stored personal data.",
+        "Customers have the right to request correction, supplementation, or deletion of personal information upon discovering errors or when services are no longer needed.",
+        "Customers may opt out of marketing communications at any time by contacting us directly.",
+        "All requests regarding personal data will be processed by Tùng Phát as soon as possible upon receiving a valid request."
+      ]
+    },
+    {
+      id: "lien-he",
+      title: "08. Contact",
+      content: [
+        "For any questions or requests regarding this Privacy Policy, please contact Tùng Phát through the following channels:",
+        "Phone: 0909 259 160",
+        "Zalo: 0909 259 160",
+        "We will respond as soon as possible."
+      ]
+    }
+  ],
+  /* ── Legal CTA ── */
+  legalCTAHeading: "Need further assistance?",
+  legalCTAText:
+    "Contact Tùng Phát for support with catalogues, material codes, and CNC machining.",
+  legalCTAQuote: "Get a Quote",
+  legalCTAZalo: "Contact via Zalo",
+  /* ── Legal TOC ── */
+  legalTOC: "Table of Contents",
+
+  termsTitle: "Terms of Use",
+  termsIntro:
+    "By accessing and using the Tùng Phát website, you agree to comply with the terms below. Please read carefully before using our services.",
+  termsSections: [
+    {
+      id: "chap-nhan",
+      title: "1. Acceptance of Terms",
+      content: [
+        "By accessing mdftungphat.com, you confirm that you have read, understood, and agree to these terms of use.",
+        "If you do not agree with any term, please discontinue use of the website."
+      ]
+    },
+    {
+      id: "so-huu-tri-tue",
+      title: "2. Intellectual Property",
+      content: [
+        "All content on this website including text, images, logos, icons, videos, and interface design is the property of Tùng Phát or used with the owner's permission.",
+        "Reproduction, distribution, modification, or commercial use of website content without written consent from Tùng Phát is prohibited."
+      ]
+    },
+    {
+      id: "su-dung",
+      title: "3. Scope of Use",
+      content: [
+        "The website provides information about Tùng Phát's products, services, and machining capabilities. Information is for reference and subject to change.",
+        "You may not use the website for any illegal, fraudulent, disruptive purposes, or in any way that infringes upon the rights of Tùng Phát or third parties.",
+        "All purchase and machining transactions are confirmed through direct communication, not solely based on information displayed on the website."
+      ]
+    },
+    {
+      id: "bao-gia",
+      title: "4. Quotes & Orders",
+      content: [
+        "Quotes discussed by phone or Zalo may change depending on actual specifications, quantities, and order timing.",
+        "Orders are only confirmed after both parties agree on specifications, pricing, and delivery timeline via written or message confirmation."
+      ]
+    },
+    {
+      id: "file",
+      title: "5. Design Files & CNC Machining",
+      content: [
+        "By submitting design files (DXF, DWG, PDF, AI/CDR), you warrant that you have the right to use such files and that they do not infringe third-party copyright.",
+        "Tùng Phát commits to using your files solely for quotation and machining purposes and will not share them with third parties without your consent."
+      ]
+    },
+    {
+      id: "mien-tru",
+      title: "6. Limitation of Liability",
+      content: [
+        "Tùng Phát shall not be liable for any indirect, incidental, or consequential damages arising from the use or inability to use the website.",
+        "We strive to ensure the accuracy of website information but do not guarantee absolute completeness or currency of all content.",
+        "Tùng Phát reserves the right to suspend or modify the website without prior notice."
+      ]
+    },
+    {
+      id: "lien-ket",
+      title: "7. External Links",
+      content: [
+        "The website may contain links to third-party websites (Zalo, social networks). Tùng Phát does not control and is not responsible for the content or policies of those sites."
+      ]
+    },
+    {
+      id: "thay-doi-dk",
+      title: "8. Changes to Terms",
+      content: [
+        "Tùng Phát may update these Terms of Use from time to time. The latest version takes effect immediately upon posting on the website.",
+        "Your continued use of the website after terms are updated constitutes your acceptance of those changes."
+      ]
+    },
+    {
+      id: "lien-he-dk",
+      title: "9. Contact",
+      content: [
+        "For any questions regarding these Terms of Use, please contact:",
+        "Tùng Phát Wood Trading & Service Co., Ltd.",
+        "Phone: 0909 259 160",
+        "Zalo: 0909 259 160"
+      ]
+    }
+  ]
+};
+
+export const translations: Record<Lang, typeof vi> = { vi, en };
+
+export function t<K extends TranslationKey>(lang: Lang, key: K): (typeof vi)[K] {
+  return translations[lang][key];
+}
