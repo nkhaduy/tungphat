@@ -77,12 +77,15 @@ function attribute(attributes: string, name: string) {
 }
 
 function sourceCode(url: string, imageUrl: string) {
+  const routeBasename = decodeURIComponent(url.split("/").pop() || "").toUpperCase();
+  const wayRoute = routeBasename.match(/^WAY-([WPSF]\d{4})$/);
+  if (wayRoute) return wayRoute[1];
   const candidates = [imageUrl, url];
   for (const candidate of candidates) {
     const basename = decodeURIComponent(candidate.split("/").pop() || "")
       .replace(/\.[a-z0-9]+(?:\?.*)?$/i, "")
       .toUpperCase();
-    const matches = [...basename.matchAll(/(?:^|[^A-Z0-9])((?:BTSC|SC|BTS|BT|MT|S)[-_ ]?\d{1,4}[A-Z]{0,4})(?=$|[^A-Z0-9])/g)];
+    const matches = [...basename.matchAll(/(?:^|[^A-Z0-9])((?:BTSC|SC|BTS|BT|MT|S|W|P|F)[-_ ]?\d{1,4}[A-Z]{0,4})(?=$|[^A-Z0-9])/g)];
     if (matches[0]?.[1]) return matches[0][1].replace(/[-_ ]/g, "");
     const withoutDescriptor = basename
       .replace(/^(?:ML-)/, "")
@@ -178,8 +181,11 @@ export function recognizeBaThanhDetail(
     ...headingText.matchAll(/\bBT[-_ ]?S[-_ ]?\d{1,4}[A-Z]?\b/g),
     ...headingText.matchAll(/\bBT[-_ ]?[A-Z]\d{1,4}\b/g),
     ...headingText.matchAll(/\bBT[-_ ]?\d{1,4}[A-Z]?\b/g),
+    ...headingText.matchAll(/\b(?:W|P|S|F)[-_ ]?\d{4}\b/g),
   ].map((match) => normalizeSupplierCode(match[0]).normalized);
-  const isMelamine = /MELAMINE|WOOD\s*GRAINS?|SOLID\s*COLOR|STONE|VAN\s*(?:GO|DA|VAI)|DON\s*SAC/i.test(asciiFold(`${heading} ${stripTags(detailContent).slice(0, 800)}`));
+  const materialText = asciiFold(`${heading} ${stripTags(detailContent).slice(0, 800)}`);
+  const isMelamine = /MELAMINE|WOOD\s*GRAINS?|SOLID\s*COLOR|STONE|VAN\s*(?:GO|DA|VAI)|DON\s*SAC/i.test(materialText);
+  const isLaminate = /LAMINATE\W+WAY|HINH ANH MAU LAMINATE/i.test(materialText);
   const headingAscii = asciiFold(heading);
   const headingCompact = headingAscii.replace(/[^A-Z0-9]/g, "");
   const namedExpected = !/\d/.test(expected);
@@ -197,7 +203,7 @@ export function recognizeBaThanhDetail(
     .filter((src) => !/(?:logo|icon|background|cropped-)/i.test(src));
 
   return {
-    accepted: Boolean(heading && verifiedCodeRaw && isMelamine && (namedMatch || detailCodeMatchesExpected(expected, verified))),
+    accepted: Boolean(heading && verifiedCodeRaw && (isMelamine || isLaminate) && (namedMatch || detailCodeMatchesExpected(expected, verified))),
     verifiedCodeRaw,
     heading,
     text: stripTags(detailContent),

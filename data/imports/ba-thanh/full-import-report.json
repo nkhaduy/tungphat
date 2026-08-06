@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-06T16:09:09.079Z",
+  "dryRun": false,
+  "previousRecords": 279,
+  "melamineSkus": 233,
+  "melamineGroups": {
+    "van-go": 153,
+    "don-sac": 62,
+    "van-da": 13,
+    "van-vai": 5
+  },
+  "laminateSkus": 33,
+  "laminateGroups": {
+    "van-go": 8,
+    "don-sac": 16,
+    "van-da": 4,
+    "van-vai": 5
+  },
+  "familyRecords": 11,
+  "documentRecords": 2,
+  "totalImported": 279,
+  "mediaReferences": 326,
+  "uniqueMediaSourceUrls": 311,
+  "localMediaReferences": 241,
+  "sourceOnlyMediaReferences": 85,
+  "originalMediaDownload": "DEFERRED_CAPACITY_REVIEW",
+  "mediaRightsStatus": "UNCONFIRMED",
+  "created": 0,
+  "updated": 0,
+  "unchanged": 279,
+  "removed": 0,
+  "duplicates": 0,
+  "coveragePercentage": 100,
+  "accountedSourceUrls": 712,
+  "totalSourceUrls": 712,
+  "manifestChecksum": "aa008d3294698263114e5bb26c5dfec534d61e29863b72c481ebd1a2b28254c7",
+  "recordChecksum": "9ab97c27a24f1ca70c2b5c592053214de2a219f400a416803381d0053d292909"
+}
