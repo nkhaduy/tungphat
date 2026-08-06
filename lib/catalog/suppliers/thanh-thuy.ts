@@ -6,6 +6,7 @@ import {
 } from "@/lib/thanh-thuy";
 import { supplierRegistry } from "../core/registry";
 import type { SupplierCatalogAdapter } from "../core/types";
+import { getSupplierSearchIndex } from "./search-index";
 
 const definition = supplierRegistry.get("thanh-thuy");
 if (!definition) throw new Error("Thanh Thuy supplier definition is missing");
@@ -13,17 +14,7 @@ if (!definition) throw new Error("Thanh Thuy supplier definition is missing");
 export const thanhThuyAdapter: SupplierCatalogAdapter = {
   definition,
   getSearchEntries() {
-    return getThanhThuyCatalog().products.map((product) => ({
-      supplierId: definition.id,
-      supplierName: definition.displayName,
-      kind: definition.recordKind,
-      code: product.code,
-      name: product.name,
-      thumbnail: product.image,
-      canonicalRoute: thanhThuyPath(product.categorySlug, product.slug),
-      category: product.categoryName,
-      series: product.seriesName,
-    }));
+    return getSupplierSearchIndex().records.filter((record) => record.supplierId === definition.id);
   },
   getRouteClaims() {
     const catalog = getThanhThuyCatalog();
@@ -53,4 +44,3 @@ export const thanhThuyAdapter: SupplierCatalogAdapter = {
     }));
   },
 };
-

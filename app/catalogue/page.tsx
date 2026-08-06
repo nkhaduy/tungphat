@@ -7,6 +7,7 @@ import { PageContainer } from "@/components/ui/PageContainer";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
 import { getSupplierSearchEntries } from "@/lib/catalog/suppliers/search";
+import { getSupplierTotals } from "@/lib/catalog/suppliers/search-index";
 import {
   createPageMetadata,
   PHONE_DISPLAY,
@@ -21,35 +22,37 @@ export const metadata = createPageMetadata({
   path: "/catalogue/",
 });
 
-const suppliers = [
-  {
+function supplierCards() {
+  const totals = getSupplierTotals();
+  return [{
     name: "Thanh Thuỳ",
-    count: "26 nhóm · 348 sản phẩm",
+    count: `${totals["thanh-thuy"].total} mục tra cứu · ${totals["thanh-thuy"].sku} mã sản phẩm`,
     description:
-      "Tra mã và nhóm Melamine, Laminate, Acrylic, Veneer, chỉ nẹp cùng các dữ liệu đã nhập.",
+      "Phân biệt mã sản phẩm có thể tra cứu với các dòng và tài liệu nguồn-only trong bộ nhập đầy đủ.",
     href: "/thuong-hieu/thanh-thuy/",
     action: "Catalogue Thanh Thuỳ",
   },
   {
     name: "Ba Thanh",
-    count: "4 nhóm · 233 mã Melamine",
+    count: `${totals["ba-thanh"].total} mục nhập · ${totals["ba-thanh"].retainedMelamineCodes ?? 0} mã Melamine đang có trang chi tiết`,
     description:
-      "Tra mã BT 111, SC 020M và các nhóm vân gỗ, đơn sắc, vân đá, vân vải.",
+      `Tra ${totals["ba-thanh"].sku} mã sản phẩm cùng các dòng và tài liệu; mã chưa có trang chi tiết mở về nhóm phù hợp.`,
     href: "/ma-mau-melamine/ba-thanh/",
     action: "Catalogue Ba Thanh",
   },
   {
     name: "An Cường",
-    count: "7 mẫu dữ liệu tham khảo",
+    count: `${totals["an-cuong"].total} mục tra cứu · ${totals["an-cuong"].sku} mã vật liệu`,
     description:
-      "Xem rõ phạm vi dữ liệu mẫu hiện có; trang không đại diện cho toàn bộ catalogue An Cường.",
+      "Tra mã, dòng sản phẩm và tài liệu từ bộ nhập đầy đủ; mục nguồn-only không tạo trang sản phẩm mỏng.",
     href: "/catalogue/an-cuong/",
     action: "Catalogue An Cường",
-  },
-] as const;
+  }] as const;
+}
 
 export default function SupplierCataloguePage() {
   const entries = getSupplierSearchEntries();
+  const suppliers = supplierCards();
 
   return (
     <SiteShell

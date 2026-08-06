@@ -14,7 +14,12 @@ export type CatalogCollectionUrlState = {
 };
 
 const supplierIds = new Set<SupplierId>(["thanh-thuy", "ba-thanh", "an-cuong"]);
-const groups = new Set(["van-go", "don-sac", "van-da", "van-vai"]);
+const groups = new Set([
+  "van-go", "don-sac", "van-da", "van-vai",
+  "melamine", "laminate", "acrylic", "pvc-ppet", "veneer", "mdf-hdf",
+  "mfc-okal", "joined-wood", "edge-banding", "outdoor-panels",
+  "decorative-panels", "accessories", "flooring",
+]);
 
 export function parseCatalogUrlState(
   parameters: URLSearchParams,

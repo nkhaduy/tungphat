@@ -1,44 +1,34 @@
-import catalogue from "@/data/imports/ancuong/export/catalogue.json";
+import { isAnCuongCuratedCategory } from "../an-cuong-categories";
 import { supplierRegistry } from "../core/registry";
 import type { SupplierCatalogAdapter } from "../core/types";
-
-type AnCuongExportRecord = {
-  sourceId: string;
-  name: string;
-  productCode?: string;
-  normalizedProductCode?: string;
-  category: string;
-  productLine?: string;
-};
+import { getMaterialTaxonomyOptions, getSupplierSearchIndex } from "./search-index";
 
 const definition = supplierRegistry.get("an-cuong");
 if (!definition) throw new Error("An Cuong supplier definition is missing");
 
-const records = (catalogue as { records: AnCuongExportRecord[] }).records;
+const entries = getSupplierSearchIndex().records.filter((record) => record.supplierId === "an-cuong");
 
 export const anCuongAdapter: SupplierCatalogAdapter = {
   definition,
   getSearchEntries() {
-    return records.map((record) => ({
-      supplierId: definition.id,
-      supplierName: definition.displayName,
-      kind: definition.recordKind,
-      code: record.normalizedProductCode ?? record.productCode ?? record.sourceId,
-      name: record.name,
-      thumbnail: "/partners/an-cuong-logo.webp",
-      canonicalRoute: definition.cataloguePath,
-      category: record.category,
-      series: record.productLine,
-    }));
+    return entries;
   },
   getRouteClaims() {
     return [
       {
         supplierId: definition.id,
         path: definition.cataloguePath,
-        kind: "catalogue",
+        kind: "catalogue" as const,
         indexable: false,
       },
+      ...getMaterialTaxonomyOptions(entries)
+        .filter((item) => item.slug !== "all")
+        .map((item) => ({
+          supplierId: definition.id,
+          path: `${definition.cataloguePath}${item.slug}/`,
+          kind: "category" as const,
+          indexable: item.count > 0 && isAnCuongCuratedCategory(item.slug),
+        })),
     ];
   },
   getSitemapEntries() {
@@ -47,7 +37,7 @@ export const anCuongAdapter: SupplierCatalogAdapter = {
       path,
       indexable,
       changeFrequency: "monthly",
-      priority: 0.6,
+      priority: path === definition.cataloguePath ? 0.6 : 0.65,
     }));
   },
 };

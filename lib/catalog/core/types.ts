@@ -12,16 +12,23 @@ export type SupplierDefinition = {
 };
 
 export type CatalogSearchEntry = {
+  id?: string;
   supplierId: SupplierId;
   supplierName: string;
   kind: SupplierRecordKind;
   code: string;
+  normalizedCode?: string;
+  recordType?: "sku" | "family" | "document";
   name: string;
   thumbnail: string;
   canonicalRoute: string;
   category?: string;
   series?: string;
   group?: string;
+  material?: string;
+  seoStatus?: string;
+  indexable?: boolean;
+  formats?: string[];
   demandScore?: number;
 };
 

@@ -214,7 +214,7 @@ export function ThanhThuyProductDetail({
         ) : null}
         <section className="bg-[#f6f7f5] py-8">
           <div className="container-shell text-xs leading-5 text-slate-600">
-            Nguồn dữ liệu mẫu: {product.sourceName || "Gỗ Thanh Thuỳ"}. Nội dung
+            Nguồn dữ liệu: {product.sourceName || "Gỗ Thanh Thuỳ"}. Nội dung
             tư vấn và CTA do Tùng Phát biên soạn; vui lòng kiểm tra mẫu thực tế
             trước khi đặt.
           </div>

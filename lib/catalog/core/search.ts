@@ -12,26 +12,26 @@ export function normalizeCatalogSearch(value: string): string {
 }
 
 function rank(entry: CatalogSearchEntry, query: string): number {
-  const code = normalizeCatalogSearch(entry.code);
+  const code = normalizeCatalogSearch(entry.normalizedCode ?? entry.code);
   const name = normalizeCatalogSearch(entry.name);
   const supplier = normalizeCatalogSearch(entry.supplierName);
   const category = normalizeCatalogSearch(entry.category ?? "");
   const series = normalizeCatalogSearch(entry.series ?? "");
   const group = normalizeCatalogSearch(entry.group ?? "");
   const taxonomy = normalizeCatalogSearch(
-    [entry.supplierName, entry.category, entry.series, entry.group]
+    [entry.supplierName, entry.category, entry.series, entry.group, entry.material]
       .filter(Boolean)
       .join(" "),
   );
 
-  if (code === query) return 900;
-  if (name === query) return 800;
-  if (code.startsWith(query)) return 700;
-  if (supplier === query) return 600;
-  if (category === query || series === query || group === query) return 500;
-  if (code.includes(query)) return 400;
-  if (name.includes(query)) return 300;
-  if (taxonomy.includes(query)) return 200;
+  if (code && code === query) return 1_000;
+  if (name === query) return 900;
+  if (code && code.startsWith(query)) return 800;
+  if (supplier === query) return 700;
+  if (category === query || series === query || group === query || normalizeCatalogSearch(entry.material ?? "") === query) return 600;
+  if (code && code.includes(query)) return 500;
+  if (name.includes(query)) return 400;
+  if (taxonomy.includes(query)) return 300;
   return 0;
 }
 
@@ -69,12 +69,14 @@ export function searchSupplierCatalog(
     supplierId?: SupplierId;
     category?: string;
     group?: string;
+    material?: string;
     type?: Exclude<CatalogSearchIntent, "supplier">;
   } = {},
 ): CatalogSearchEntry[] {
   const normalizedQuery = normalizeCatalogSearch(query);
   const normalizedCategory = normalizeCatalogSearch(options.category ?? "");
   const normalizedGroup = normalizeCatalogSearch(options.group ?? "");
+  const normalizedMaterial = normalizeCatalogSearch(options.material ?? "");
 
   return entries
     .map((entry) => ({
@@ -98,6 +100,11 @@ export function searchSupplierCatalog(
       if (
         normalizedCategory &&
         normalizeCatalogSearch(entry.category ?? "") !== normalizedCategory
+      )
+        return false;
+      if (
+        normalizedMaterial &&
+        normalizeCatalogSearch(entry.material ?? "") !== normalizedMaterial
       )
         return false;
       if (
