@@ -200,7 +200,7 @@ const brands = [
     name: "An Cường",
     href: "/catalogue/an-cuong/",
     logo: "/partners/an-cuong-logo.webp",
-    action: "xem dữ liệu mẫu",
+    action: "tra cứu catalogue",
   },
   {
     name: "Thanh Thuỳ",

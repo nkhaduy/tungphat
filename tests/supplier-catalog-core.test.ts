@@ -267,9 +267,9 @@ describe("supplier sitemap composition", () => {
 
 describe("supplier adapters", () => {
   it("preserves supplier-specific record counts and SEO gates", () => {
-    expect(thanhThuyAdapter.getSearchEntries()).toHaveLength(348);
-    expect(baThanhAdapter.getSearchEntries()).toHaveLength(233);
-    expect(anCuongAdapter.getSearchEntries()).toHaveLength(7);
+    expect(thanhThuyAdapter.getSearchEntries()).toHaveLength(353);
+    expect(baThanhAdapter.getSearchEntries()).toHaveLength(305);
+    expect(anCuongAdapter.getSearchEntries()).toHaveLength(2_900);
 
     expect(
       thanhThuyAdapter.getSitemapEntries().filter((entry) => entry.indexable),
@@ -279,7 +279,7 @@ describe("supplier adapters", () => {
     ).toHaveLength(12);
     expect(
       anCuongAdapter.getSitemapEntries().filter((entry) => entry.indexable),
-    ).toHaveLength(0);
+    ).toContainEqual(expect.objectContaining({ path: "/catalogue/an-cuong/melamine/" }));
   });
 
   it("carries Ba Thanh demand priority into the shared catalogue search", () => {

@@ -1,10 +1,10 @@
 import {
   baThanhCategories,
-  getBaThanhMerchandisingScore,
   getBaThanhCodes,
 } from "@/lib/catalog/ba-thanh";
 import { supplierRegistry } from "../core/registry";
 import type { SupplierCatalogAdapter } from "../core/types";
+import { getSupplierSearchIndex } from "./search-index";
 
 const definition = supplierRegistry.get("ba-thanh");
 if (!definition) throw new Error("Ba Thanh supplier definition is missing");
@@ -14,18 +14,7 @@ const codePath = (slug: string) => `${definition.cataloguePath}${slug}/`;
 export const baThanhAdapter: SupplierCatalogAdapter = {
   definition,
   getSearchEntries() {
-    return getBaThanhCodes().map((record) => ({
-      supplierId: definition.id,
-      supplierName: definition.displayName,
-      kind: definition.recordKind,
-      code: record.displayName,
-      name: `Melamine Ba Thanh ${record.displayName}`,
-      thumbnail: record.images[0]?.thumbnailSrc ?? record.images[0]?.src ?? "",
-      canonicalRoute: codePath(record.slug),
-      category: record.category,
-      group: record.patternGroup,
-      demandScore: getBaThanhMerchandisingScore(record),
-    }));
+    return getSupplierSearchIndex().records.filter((record) => record.supplierId === definition.id);
   },
   getRouteClaims() {
     return [

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Download, MessageCircle } from "lucide-react";
 import { BrandPlaceholder } from "@/components/BrandPlaceholder";
-import { AnCuongSampleSearch } from "@/components/catalog/AnCuongSampleSearch";
+import { AnCuongCatalogueSearch } from "@/components/catalog/AnCuongCatalogueSearch";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ContactCTA } from "@/components/ui/ContactCTA";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -22,13 +22,13 @@ const liveCatalogueRoutes: Record<
     href: "/thuong-hieu/thanh-thuy/",
     action: "Mở catalogue Thanh Thuỳ",
     description:
-      "Trang tra cứu Thanh Thuỳ hiện có 348 sản phẩm, nhóm vật liệu, hình và mã để tìm trực tiếp.",
+      "Trang tra cứu Thanh Thuỳ có mã sản phẩm, nhóm vật liệu, hình và thông tin để tìm trực tiếp.",
   },
   "ba-thanh": {
     href: "/ma-mau-melamine/ba-thanh/",
     action: "Mở bảng mã Ba Thanh",
     description:
-      "Bảng mã Melamine Ba Thanh hiện có 233 mã màu, tìm theo mã và lọc theo nhóm vân hoặc màu.",
+      "Bảng mã Melamine Ba Thanh cho phép tìm theo mã và lọc theo nhóm vân hoặc màu.",
   },
 };
 
@@ -40,7 +40,7 @@ const brandPagePath = (slug: string) => {
 
 export function CatalogueView({ brand }: { brand: Brand }) {
   const liveCatalogue = liveCatalogueRoutes[brand.slug];
-  const anCuongSamples =
+  const anCuongEntries =
     brand.slug === "an-cuong" ? anCuongAdapter.getSearchEntries() : [];
   const catalogues = brand.catalogues.filter(
     (catalogue) => catalogue.pdfUrl.trim().length > 0,
@@ -49,7 +49,7 @@ export function CatalogueView({ brand }: { brand: Brand }) {
 
   return (
     <>
-      {anCuongSamples.length ? (
+      {anCuongEntries.length ? (
         <section className="relative overflow-hidden border-b border-forest-900/10 bg-[#f7f8f5] py-7 sm:py-9 lg:py-12">
           <div
             className="page-hero-pattern pointer-events-none absolute inset-y-0 right-0 w-1/2 opacity-25"
@@ -64,17 +64,17 @@ export function CatalogueView({ brand }: { brand: Brand }) {
               ]}
             />
             <div className="mt-4 max-w-4xl">
-              <p className="eyebrow">Dữ liệu mẫu có giới hạn</p>
+              <p className="eyebrow">Tra cứu catalogue đã nhập</p>
               <h1 className="mt-3 text-balance text-3xl font-extrabold leading-tight tracking-[-.035em] text-forest-950 sm:text-4xl lg:text-5xl">
                 Catalogue An Cường
               </h1>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700 sm:text-base">
-                Tìm trong bảy mẫu dữ liệu hiện có. Trang này không đại diện cho
-                toàn bộ catalogue An Cường; hãy liên hệ để kiểm tra mã và phạm
-                vi catalogue thực tế.
+                Tìm theo mã, tên, dòng sản phẩm và nhóm vật liệu trong dữ liệu
+                nhập từ nguồn công khai. Liên hệ Tùng Phát để xác nhận quy cách,
+                mẫu thực tế và tình trạng cung ứng.
               </p>
             </div>
-            <AnCuongSampleSearch entries={anCuongSamples} />
+            <AnCuongCatalogueSearch entries={anCuongEntries} />
           </PageContainer>
         </section>
       ) : (
@@ -120,7 +120,7 @@ export function CatalogueView({ brand }: { brand: Brand }) {
         />
       )}
 
-      {!anCuongSamples.length ? (
+      {!anCuongEntries.length ? (
         <section className="section-space bg-white">
           <div className="container-shell">
             {liveCatalogue ? (

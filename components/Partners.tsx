@@ -31,7 +31,7 @@ const partners = [
     slug: "an-cuong",
     name: "An Cường",
     href: "/catalogue/an-cuong/",
-    action: "Xem dữ liệu mẫu",
+    action: "Tra cứu catalogue",
     logo: "/partners/an-cuong-logo.webp",
     alt: "Logo An Cường",
     width: 500,
