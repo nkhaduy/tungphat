@@ -81,4 +81,37 @@ describe("An Cuong parser runners", () => {
     expect(fetched).toEqual([listing.sourceUrl]);
     expect(details).toHaveLength(1);
   });
+
+  it("adds numeric product URLs discovered only through the product sitemap", async () => {
+    const directory = await mkdtemp(join(tmpdir(), "ancuong-sitemap-listings-"));
+    const discoveryPath = join(directory, "discovery.json");
+    const outputPath = join(directory, "listings.json");
+    const statePath = join(directory, "state.json");
+    const listingHtml = await fixture("melamine-listing.html");
+    await writeFile(discoveryPath, `${JSON.stringify({
+      schemaVersion: "1.0.0",
+      parserVersion: "1.0.0",
+      sourceRoot: "https://ancuong.com/online-catalogue/catalogue-vat-lieu.html",
+      generatedAt: "2026-08-06T00:00:00.000Z",
+      categories: [{ name: "Melamine", slug: "melamine", sourceUrl: "https://ancuong.com/melamine.html", catalogueUrls: [] }],
+      productUrls: [],
+      sitemapProductUrls: ["https://ancuong.com/eco-veneer/303002267.html"],
+      duplicateUrls: [],
+      excludedUrls: [],
+    }, null, 2)}\n`);
+
+    const listings = await runListings(options, {
+      discoveryPath,
+      outputPath,
+      statePath,
+      fetchText: async () => ({ body: listingHtml, contentHash: "5".repeat(64) }),
+    });
+
+    expect(listings).toHaveLength(3);
+    expect(listings).toContainEqual(expect.objectContaining({
+      sourceId: "303002267",
+      sourceUrl: "https://ancuong.com/eco-veneer/303002267.html",
+      categorySlug: "eco-veneer",
+    }));
+  });
 });

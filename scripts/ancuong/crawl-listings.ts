@@ -14,6 +14,26 @@ type ListingDependencies = {
   now?: () => string;
 };
 
+function syntheticListing(sourceUrl: string): ListingProduct | undefined {
+  const url = new URL(sourceUrl);
+  const sourceId = url.pathname.match(/\/(\d+)(?:-en)?\.html$/i)?.[1];
+  if (!sourceId) return undefined;
+  const categorySlug = url.pathname.split("/").filter(Boolean)[0] ?? "unknown";
+  const category = categorySlug
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+  return {
+    sourceUrl,
+    sourceId,
+    category,
+    categorySlug,
+    productCode: sourceId,
+    name: sourceId,
+    facetKeys: {},
+  };
+}
+
 export async function run(options: CliOptions, dependencies: ListingDependencies = {}): Promise<ListingProduct[]> {
   const discoveryPath = dependencies.discoveryPath ?? `${paths.reports}/discovery-manifest.json`;
   const outputPath = dependencies.outputPath ?? `${paths.raw}/listings.json`;
@@ -55,6 +75,7 @@ export async function run(options: CliOptions, dependencies: ListingDependencies
     fetchedByCategory.push(...await mapConcurrent(selected, options.concurrency, fetchCategory));
     products.push(...fetchedByCategory.flat());
   }
+  products.push(...(manifest.sitemapProductUrls ?? []).map(syntheticListing).filter((product): product is ListingProduct => Boolean(product)));
 
   const seen = new Set<string>();
   const duplicateUrls: string[] = [];
