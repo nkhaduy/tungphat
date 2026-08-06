@@ -32,7 +32,7 @@ Every source record receives one stable compact-index ID. Family and document re
 - Only `/catalogue/an-cuong/melamine/`, `/catalogue/an-cuong/laminate/`, and `/catalogue/an-cuong/acrylic/` are statically generated and included in the sitemap.
 - Those three routes have distinct editorial introductions, application guidance, selection guidance, self-canonicals, CollectionPage/ItemList JSON-LD and BreadcrumbList JSON-LD.
 - ItemList entries use source names and real identifiers without emitting many ListItems that repeat the category canonical URL.
-- Other non-empty An Cường taxonomy route claims are explicitly non-indexable and remain outside the sitemap; direct non-curated category rendering resolves to not-found.
+- Other An Cường material records route to the supplier hub; only the curated `melamine`, `laminate`, and `acrylic` category routes are claimed and rendered, and all An Cường records remain non-indexable.
 - Sparse/source-only records route to an owned hub/category page. No An Cường SKU detail route was invented.
 - The static build produced only the three curated An Cường category routes, and the generated sitemap contains exactly those three An Cường paths.
 

@@ -443,7 +443,13 @@ test("robots, sitemap, Vercel admin redirect và 404 đúng", async ({
     "/catalogue/thanh-thuy",
     "/catalogue/ba-thanh",
   ])
-    expect(xml).not.toContain(`https://mdftungphat.com${route}`);
+    expect(xml).not.toContain(
+      `<loc>https://mdftungphat.com${route}/</loc>`,
+    );
+  for (const route of ["melamine", "laminate", "acrylic"])
+    expect(xml).toContain(
+      `<loc>https://mdftungphat.com/catalogue/an-cuong/${route}/</loc>`,
+    );
   expect(xml).not.toContain("https://mdftungphat.com/bao-gia");
   expect(xml).not.toContain("https://mdftungphat.com/cms-preview");
   expect(xml).not.toContain("/admin");

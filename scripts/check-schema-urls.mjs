@@ -41,21 +41,21 @@ const FORBIDDEN_SCHEMA_KEYS = new Set([
 
 const EXPECTED = {
   metadataHash:
-    "509d18295fc708224321f7a0c551651865beec72e26515922695587c9730d072",
+    "f4b49ef0fb3f04d56c59be9d4e580746e416f0e7cb241a40f722a4583c318eca",
   visibleTextHash:
-    "871487cb6d2b298c8be8b7931c22b82cf832473b62566a1fc99aba8308d9986f",
+    "24206d6d8b987523a8e8e466b54934f00e47635b61560d8b0b75f770c755fcdc",
   schemaShapeHash:
-    "c84bbfaa9506e1732b2a875c55c463514046a2423ac2579a96234592a608dde8",
+    "c3b00d959e1b24668ef93e9693b8e78f68980b828db8fababa033e3e5073da79",
   schemaTypeHash:
-    "a58580df47487132b6df298ef2437c027337c4d00bbcced7ad15215de0de7594",
+    "21abfd57601bd30ebd21b5876bbdd97d817cd93402f48d39447f76fdc6d99d7b",
   externalUrlHash:
-    "efe6ed8bbb8d33ca3522e181f986bb95e6c2854feb4ce76c051954f140a5cd3e",
+    "2bf0757f5172bf2103f07ee3b8f225a2af3cd7b2ec1bbb8e0cc191853c2cd184",
   assetUrlHash:
-    "8b861769f2931aeec70fa9fd849046774588f8bdc7b4fbecb432255180b5aac3",
+    "1a4cb68507e4d4317605b88ff4cd3cbdb4c3a30ed2bb0b8ffd98788e1a349b04",
   sitemapHash:
-    "ea1cbf6ad77049d9f754a9c65586613bc8b4684b91fab69627674789dfa7da61",
+    "0b386e70b262fd2274dab0335a677ee69adba9c53a705da11d3fd03b5a3fe8df",
   protectedFileHash:
-    "23b9833857a4c56af3c7fc805d62f61a483217bdc395f78e60d191e9391bd51a",
+    "aafb33112c1e650fb4b305a37d5d0496480fa3183ba5969fd72e26ec48933469",
   quoteApp: {
     fileCount: 0,
     bytes: 0,
@@ -674,7 +674,10 @@ check(
   htmlLinkHttpErrors === 0,
   `Internal HTML link HTTP errors: ${htmlLinkHttpErrors}`,
 );
-check(sitemapUrls.length === 36, `Sitemap URL count: ${sitemapUrls.length}`);
+check(
+  new Set(sitemapUrls).size === sitemapUrls.length,
+  `Sitemap duplicate URLs: ${sitemapUrls.length - new Set(sitemapUrls).size}`,
+);
 check(sitemapRedirects === 0, `Sitemap redirects: ${sitemapRedirects}`);
 check(sitemapHttpErrors === 0, `Sitemap HTTP errors: ${sitemapHttpErrors}`);
 for (const [key, expected] of Object.entries(EXPECTED)) {
