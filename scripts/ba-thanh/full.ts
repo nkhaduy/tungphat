@@ -17,8 +17,10 @@ type FullDiscovery = {
   supplier: "ba-thanh";
   discoveredAt: string;
   discovered: DiscoveredSourceUrl[];
+  melamineBaselineCodes?: string[];
   melamineCounts: Record<string, number>;
   laminateCounts: Record<string, number>;
+  melamineCrawl?: { total: number; successful: number; discoveredOutsideMap?: number; rejected: number; failed: number };
   laminateCrawl?: { total: number; successful: number; rejected: number; failed: number };
 };
 
@@ -66,6 +68,25 @@ function importDelta(previous: FullRecordFile | undefined, records: CatalogueRec
   };
 }
 
+function preserveImportedAt(previous: FullRecordFile | undefined, records: CatalogueRecord[]) {
+  const previousById = new Map((previous?.records ?? []).map((record) => [recordId(record), record]));
+  return records.map((record) => {
+    if (record.recordType !== "sku") return record;
+    const existing = previousById.get(recordId(record));
+    if (existing?.recordType !== "sku" || existing.sourceChecksum !== record.sourceChecksum) return record;
+    return { ...record, importedAt: existing.importedAt };
+  });
+}
+
+function groupCounts(records: CatalogueRecord[]) {
+  return Object.fromEntries([...new Set(records
+    .filter((record) => record.recordType === "sku")
+    .map((record) => String(record.attributes.sourceGroup)))]
+    .sort()
+    .map((group) => [group, records.filter((record) =>
+      record.recordType === "sku" && String(record.attributes.sourceGroup) === group).length]));
+}
+
 function discoveredWithRecordAssets(base: DiscoveredSourceUrl[], records: CatalogueRecord[]): DiscoveredSourceUrl[] {
   const byUrl = new Map(base.map((item) => [new URL(item.url).toString(), item]));
   for (const record of records) {
@@ -99,6 +120,7 @@ function discoveredWithRecordAssets(base: DiscoveredSourceUrl[], records: Catalo
 
 function validateArtifacts(options: {
   discovery: FullDiscovery;
+  melamineSources: BaThanhFullSourceItem[];
   laminate: BaThanhFullSourceItem[];
   recordFile: FullRecordFile;
   manifest: FullSourceManifest;
@@ -111,28 +133,23 @@ function validateArtifacts(options: {
   const laminate = skuRecords.filter((record) => record.productFamily === "WAY Laminate");
   const families = records.filter((record) => record.recordType === "family");
   const documents = records.filter((record) => record.recordType === "document");
-  if (melamine.length !== 233) errors.push(`Expected 233 Melamine SKUs, found ${melamine.length}`);
-  if (laminate.length !== 33) errors.push(`Expected 33 WAY Laminate SKUs, found ${laminate.length}`);
+  const expectedMelamineCodes = new Set([
+    ...(options.discovery.melamineBaselineCodes ?? []),
+    ...options.melamineSources.filter((item) => item.status === "PARSED").map((item) => item.codeNormalized),
+  ]);
+  const expectedLaminateCodes = new Set(options.laminate.filter((item) => item.status === "PARSED").map((item) => item.codeNormalized));
+  if (melamine.length !== expectedMelamineCodes.size) errors.push(`Expected ${expectedMelamineCodes.size} discovered Melamine SKUs, found ${melamine.length}`);
+  if (laminate.length !== expectedLaminateCodes.size) errors.push(`Expected ${expectedLaminateCodes.size} discovered WAY Laminate SKUs, found ${laminate.length}`);
+  const importedMelamineCodes = new Set(melamine.map((record) => record.normalizedCode));
+  const missingBaseline = (options.discovery.melamineBaselineCodes ?? []).filter((code) => !importedMelamineCodes.has(code));
+  if (missingBaseline.length) errors.push(`${missingBaseline.length} baseline Melamine code(s) are missing from the import`);
   if (families.length !== 11) errors.push(`Expected 11 family records, found ${families.length}`);
   if (documents.length !== 2) errors.push(`Expected 2 document records, found ${documents.length}`);
-  const melamineGroups = Object.fromEntries(["van-go", "don-sac", "van-da", "van-vai"].map((group) => [
-    group,
-    melamine.filter((record) => record.attributes.sourceGroup === group).length,
-  ]));
-  if (JSON.stringify(melamineGroups) !== JSON.stringify({ "van-go": 153, "don-sac": 62, "van-da": 13, "van-vai": 5 })) {
-    errors.push(`Melamine group counts do not reconcile: ${JSON.stringify(melamineGroups)}`);
-  }
-  const laminateGroups = Object.fromEntries(["van-go", "don-sac", "van-da", "van-vai"].map((group) => [
-    group,
-    laminate.filter((record) => record.attributes.sourceGroup === group).length,
-  ]));
-  if (JSON.stringify(laminateGroups) !== JSON.stringify({ "van-go": 8, "don-sac": 16, "van-da": 4, "van-vai": 5 })) {
-    errors.push(`Laminate group counts do not reconcile: ${JSON.stringify(laminateGroups)}`);
-  }
   if (families.some((record) => "code" in record)) errors.push("Family records contain invented codes");
   if (skuRecords.some((record) => /MDF(?:3|5|9|12|15|17|25)MM/.test(record.normalizedCode))) errors.push("Thickness-derived fake SKU detected");
   if (new Set(skuRecords.map((record) => record.normalizedCode)).size !== skuRecords.length) errors.push("Duplicate SKU code within Ba Thanh");
-  if (options.laminate.length !== 33 || options.laminate.some((item) => item.status !== "PARSED")) errors.push("Laminate crawl is not fully verified");
+  if (options.melamineSources.some((item) => item.status !== "PARSED")) errors.push("Melamine crawl is not fully verified");
+  if (options.laminate.some((item) => item.status !== "PARSED")) errors.push("Laminate crawl is not fully verified");
   if (documents.find((record) => record.slug === "catalogue-melamine-ba-thanh-2025")?.images.length !== 24) errors.push("Melamine catalogue page count is not 24");
   if (documents.find((record) => record.slug === "catalogue-van-san-dongwha")?.images.length !== 14) errors.push("Dongwha catalogue page count is not 14");
   if (JSON.stringify(records).match(/3970[.\s-]*1399|0986[.\s-]*94[.\s-]*95[.\s-]*86|group@bathanh/i)) errors.push("Supplier contact details leaked into normalized records");
@@ -164,41 +181,44 @@ export async function runBaThanhFullImport(options: {
   const manifestPath = path.join(importDir, "full-source-manifest.json");
   const reportPath = path.join(importDir, "full-import-report.json");
   const discovery = readJson<FullDiscovery>(path.join(importDir, "full-discovery.json"));
+  const melamineSources = readJson<BaThanhFullSourceItem[]>(path.join(importDir, "discovered-codes.json"));
   const laminate = readJson<BaThanhFullSourceItem[]>(path.join(importDir, "discovered-laminate-codes.json"));
   const melamine = readJson<SupplierColorCode[]>(path.join(root, "data/catalogs/ba-thanh.json"));
 
   if (options.validateOnly) {
     const recordFile = readJson<FullRecordFile>(recordFilePath);
     const manifest = readJson<FullSourceManifest>(manifestPath);
-    const errors = validateArtifacts({ discovery, laminate, recordFile, manifest, root });
+    const errors = validateArtifacts({ discovery, melamineSources, laminate, recordFile, manifest, root });
     if (errors.length) throw new Error(errors.join("\n"));
     const coverage = buildCoverageSummary(manifest);
     console.log(JSON.stringify({ command: "validate:full", records: recordFile.records.length, coverage: coverage.coveragePercentage, pass: true }, null, 2));
     return null;
   }
 
-  const records = buildBaThanhCatalogueRecords({
-    melamine,
-    laminate,
-    importedAt: discovery.discoveredAt,
-  });
-  const recordFile: FullRecordFile = {
-    schemaVersion: 1,
-    supplier: "ba-thanh",
-    generatedAt: discovery.discoveredAt,
-    records,
-    checksum: checksumBaThanhRecords(records),
-  };
-  const discovered = discoveredWithRecordAssets(discovery.discovered, records);
-  const manifest = buildBaThanhFullSourceManifest({ records, discovered, generatedAt: discovery.discoveredAt });
-  const errors = validateArtifacts({ discovery, laminate, recordFile, manifest, root });
-  if (errors.length) throw new Error(errors.join("\n"));
   let previous: FullRecordFile | undefined;
   try {
     previous = readJson<FullRecordFile>(recordFilePath);
   } catch {
     previous = undefined;
   }
+  const records = preserveImportedAt(previous, buildBaThanhCatalogueRecords({
+    melamine,
+    melamineSources,
+    laminate,
+    importedAt: discovery.discoveredAt,
+  }));
+  const recordChecksum = checksumBaThanhRecords(records);
+  const recordFile: FullRecordFile = {
+    schemaVersion: 1,
+    supplier: "ba-thanh",
+    generatedAt: previous?.checksum === recordChecksum ? previous.generatedAt : discovery.discoveredAt,
+    records,
+    checksum: recordChecksum,
+  };
+  const discovered = discoveredWithRecordAssets(discovery.discovered, records);
+  const manifest = buildBaThanhFullSourceManifest({ records, discovered, generatedAt: discovery.discoveredAt });
+  const errors = validateArtifacts({ discovery, melamineSources, laminate, recordFile, manifest, root });
+  if (errors.length) throw new Error(errors.join("\n"));
   const delta = importDelta(previous, records);
   const coverage = buildCoverageSummary(manifest);
   const mediaReferences = records.flatMap((record) => record.images);
@@ -208,12 +228,12 @@ export async function runBaThanhFullImport(options: {
     generatedAt: discovery.discoveredAt,
     dryRun: Boolean(options.dryRun),
     previousRecords: previous?.records.length ?? 0,
-    melamineSkus: 233,
-    melamineGroups: { "van-go": 153, "don-sac": 62, "van-da": 13, "van-vai": 5 },
-    laminateSkus: 33,
-    laminateGroups: { "van-go": 8, "don-sac": 16, "van-da": 4, "van-vai": 5 },
-    familyRecords: 11,
-    documentRecords: 2,
+    melamineSkus: records.filter((record) => record.recordType === "sku" && record.productFamily === "Melamine").length,
+    melamineGroups: groupCounts(records.filter((record) => record.recordType === "sku" && record.productFamily === "Melamine")),
+    laminateSkus: records.filter((record) => record.recordType === "sku" && record.productFamily === "WAY Laminate").length,
+    laminateGroups: groupCounts(records.filter((record) => record.recordType === "sku" && record.productFamily === "WAY Laminate")),
+    familyRecords: records.filter((record) => record.recordType === "family").length,
+    documentRecords: records.filter((record) => record.recordType === "document").length,
     totalImported: records.length,
     mediaReferences: mediaReferences.length,
     uniqueMediaSourceUrls: uniqueMediaSourceUrls.size,

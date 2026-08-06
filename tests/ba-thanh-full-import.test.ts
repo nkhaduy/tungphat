@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { buildCoverageSummary, validateFullSourceManifest } from "@/lib/catalog/full-import/manifest";
@@ -9,6 +10,9 @@ import type {
 } from "@/lib/catalog/full-import/types";
 import type { SupplierColorCode } from "@/lib/catalog/types";
 import * as baThanhImportModule from "@/scripts/ba-thanh/import";
+import * as baThanhDiscoveryModule from "@/scripts/ba-thanh/discover-full";
+import * as baThanhCrawlModule from "@/scripts/ba-thanh/crawl-full";
+import { runBaThanhFullImport } from "@/scripts/ba-thanh/full";
 
 type LaminateSource = {
   sourceUrl: string;
@@ -43,6 +47,23 @@ type FullImportApi = {
 };
 
 const fullImport = baThanhImportModule as typeof baThanhImportModule & FullImportApi;
+const discoveryValidation = baThanhDiscoveryModule as typeof baThanhDiscoveryModule & {
+  validateBaThanhDiscoveryCoverage?: (options: {
+    baselineMelamineCodes: string[];
+    freshMelamineCodes: string[];
+    laminateCodes: string[];
+  }) => { melamine: number; laminate: number };
+};
+const crawlValidation = baThanhCrawlModule as typeof baThanhCrawlModule & {
+  validateBaThanhCrawlCoverage?: (items: Array<{ codeNormalized: string; status: string }>) => void;
+  classifyBaThanhPage?: (options: {
+    url: string;
+    html: string;
+    status: number;
+    knownProductSources: Map<string, string>;
+    discoveredAt: string;
+  }) => { classification: { outcome: string } };
+};
 const importedAt = "2026-08-06T13:18:43.855Z";
 const laminateGroups = {
   "van-go": ["W7020", "W7393", "W0502", "W0304", "W0504", "W9630", "W7412", "W5220"],
@@ -95,6 +116,35 @@ function buildRecords() {
 }
 
 describe("Ba Thanh full catalogue records", () => {
+  it("retains the known baseline while accepting newly discovered Melamine and Laminate codes", () => {
+    expect(discoveryValidation.validateBaThanhDiscoveryCoverage).toBeTypeOf("function");
+    expect(crawlValidation.validateBaThanhCrawlCoverage).toBeTypeOf("function");
+
+    expect(discoveryValidation.validateBaThanhDiscoveryCoverage?.({
+      baselineMelamineCodes: ["BT001", "SC001"],
+      freshMelamineCodes: ["BT001", "SC001", "SC037DL"],
+      laminateCodes: ["W7020", "P1010", "W9999"],
+    })).toEqual({ melamine: 3, laminate: 3 });
+    expect(() => crawlValidation.validateBaThanhCrawlCoverage?.([
+      { codeNormalized: "W7020", status: "PARSED" },
+      { codeNormalized: "P1010", status: "PARSED" },
+      { codeNormalized: "W9999", status: "PARSED" },
+    ])).not.toThrow();
+  });
+
+  it("does not classify a corporate page as a family duplicate only because it mentions materials", () => {
+    expect(crawlValidation.classifyBaThanhPage).toBeTypeOf("function");
+    const result = crawlValidation.classifyBaThanhPage?.({
+      url: "https://bathanh.com.vn/lien-he-2",
+      html: "<main><h1>Liên hệ</h1><p>Liên hệ để được tư vấn Veneer, Melamine và MDF.</p></main>",
+      status: 200,
+      knownProductSources: new Map(),
+      discoveredAt: importedAt,
+    });
+
+    expect(result?.classification.outcome).toBe("non-product");
+  });
+
   it("retains all 233 Melamine codes and all four exact source group counts", () => {
     const records = buildRecords();
     const melamine = records?.filter(
@@ -219,6 +269,11 @@ describe("Ba Thanh full source accounting", () => {
         discoveredFrom: "html-link",
         locale: "unknown",
         pageType: "unknown",
+        classification: {
+          outcome: "non-product",
+          reason: "Fetched robots policy is discovery infrastructure.",
+          evidence: { kind: "infrastructure", status: 200, checksum: "robots-checksum" },
+        },
       },
       {
         supplier: "ba-thanh",
@@ -226,6 +281,11 @@ describe("Ba Thanh full source accounting", () => {
         discoveredFrom: "sitemap",
         locale: "unknown",
         pageType: "unknown",
+        classification: {
+          outcome: "non-product",
+          reason: "Fetched sitemap index is discovery infrastructure.",
+          evidence: { kind: "infrastructure", status: 200, checksum: "sitemap-checksum" },
+        },
       },
       {
         supplier: "ba-thanh",
@@ -244,7 +304,7 @@ describe("Ba Thanh full source accounting", () => {
     ];
     const discovered = [...new Map(
       discoveredWithDuplicates.map((item) => [new URL(item.url).toString(), item]),
-    ).values()];
+    ).values()] as unknown as DiscoveredSourceUrl[];
     const manifest = records && fullImport.buildBaThanhFullSourceManifest?.({ records, discovered, generatedAt: importedAt });
 
     expect(manifest).toBeDefined();
@@ -262,15 +322,125 @@ describe("Ba Thanh full source accounting", () => {
     ].includes(record.url)).every((record) => record.outcome === "imported" && record.recordIds?.length)).toBe(true);
   });
 
-  it("produces identical record and manifest checksums on a second import", () => {
-    const firstRecords = buildRecords();
-    const secondRecords = buildRecords();
-    const checksum = fullImport.checksumBaThanhRecords;
+  it("does not call an unclassified page non-product without crawl evidence", () => {
+    const records = buildRecords()!;
+    const url = "https://bathanh.com.vn/public-page-without-classification";
+    const manifest = fullImport.buildBaThanhFullSourceManifest?.({
+      records,
+      generatedAt: importedAt,
+      discovered: [{
+        supplier: "ba-thanh",
+        url,
+        discoveredFrom: "sitemap",
+        locale: "vi",
+        pageType: "unknown",
+      }],
+    });
 
-    expect(firstRecords).toBeDefined();
-    expect(secondRecords).toBeDefined();
-    expect(checksum).toBeTypeOf("function");
-    expect(checksum?.(firstRecords!)).toBe(checksum?.(secondRecords!));
-    expect(JSON.stringify(firstRecords)).toBe(JSON.stringify(secondRecords));
+    expect(manifest?.records[0]).toEqual(expect.objectContaining({ url, outcome: undefined }));
+    expect(buildCoverageSummary(manifest!)).toEqual(expect.objectContaining({
+      accounted: 0,
+      unaccounted: 1,
+      coveragePercentage: 0,
+    }));
+  });
+
+  it("associates evidenced duplicate catalogue routes and evidenced non-product pages", () => {
+    const records = buildRecords()!;
+    const duplicateUrl = "https://bathanh.com.vn/map-ma-melamine/van-phu-verneer";
+    const nonProductUrl = "https://bathanh.com.vn/lien-he-2";
+    const discovered = [
+      {
+        supplier: "ba-thanh",
+        url: duplicateUrl,
+        discoveredFrom: "sitemap",
+        locale: "vi",
+        pageType: "product-family",
+        classification: {
+          outcome: "duplicate",
+          reason: "Fetched page describes the same Veneer-faced board family.",
+          canonicalUrl: "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          evidence: { kind: "http-html", status: 200, checksum: "duplicate-page-checksum" },
+        },
+      },
+      {
+        supplier: "ba-thanh",
+        url: nonProductUrl,
+        discoveredFrom: "sitemap",
+        locale: "vi",
+        pageType: "unknown",
+        classification: {
+          outcome: "non-product",
+          reason: "Fetched page is the supplier contact page and contains no catalogue record.",
+          evidence: { kind: "http-html", status: 200, checksum: "contact-page-checksum" },
+        },
+      },
+    ] as unknown as DiscoveredSourceUrl[];
+    const manifest = fullImport.buildBaThanhFullSourceManifest?.({ records, discovered, generatedAt: importedAt });
+    const duplicate = manifest?.records.find((record) => record.url === duplicateUrl);
+    const nonProduct = manifest?.records.find((record) => record.url === nonProductUrl);
+
+    expect(duplicate).toEqual(expect.objectContaining({
+      outcome: "duplicate",
+      recordIds: ["ba-thanh:family:van-phu-veneer"],
+    }));
+    expect(nonProduct).toEqual(expect.objectContaining({
+      outcome: "non-product",
+      reason: expect.stringContaining("contact page"),
+    }));
+    expect(validateFullSourceManifest(manifest!)).toEqual([]);
+  });
+
+  it("keeps importer output unchanged when a fresh discovery only changes timestamps", async () => {
+    const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), "ba-thanh-idempotency-"));
+    try {
+      const importDir = path.join(tempRoot, "data/imports/ba-thanh");
+      fs.mkdirSync(importDir, { recursive: true });
+      fs.mkdirSync(path.join(tempRoot, "data/catalogs"), { recursive: true });
+      fs.mkdirSync(path.join(tempRoot, "public/catalog"), { recursive: true });
+      fs.copyFileSync("data/catalogs/ba-thanh.json", path.join(tempRoot, "data/catalogs/ba-thanh.json"));
+      for (const filename of ["full-discovery.json", "discovered-codes.json", "discovered-laminate-codes.json"]) {
+        fs.copyFileSync(path.join("data/imports/ba-thanh", filename), path.join(importDir, filename));
+      }
+      const discoveryFixturePath = path.join(importDir, "full-discovery.json");
+      const discoveryFixture = JSON.parse(fs.readFileSync(discoveryFixturePath, "utf8"));
+      const previousManifest = JSON.parse(fs.readFileSync("data/imports/ba-thanh/full-source-manifest.json", "utf8"));
+      const previousByUrl = new Map(previousManifest.records.map((record: { url: string }) => [record.url, record]));
+      discoveryFixture.discovered = discoveryFixture.discovered.map((item: DiscoveredSourceUrl) => {
+        const previous = previousByUrl.get(item.url) as { outcome?: string; reason?: string } | undefined;
+        if (previous?.outcome !== "non-product") return item;
+        return {
+          ...item,
+          classification: {
+            outcome: "non-product",
+            reason: previous.reason ?? "Fixture page was previously classified as non-product.",
+            evidence: { kind: "http-html", status: 200, checksum: `fixture-${item.url}` },
+          },
+        };
+      });
+      fs.writeFileSync(discoveryFixturePath, `${JSON.stringify(discoveryFixture, null, 2)}\n`);
+      fs.symlinkSync(path.join(process.cwd(), "public/catalog/ba-thanh"), path.join(tempRoot, "public/catalog/ba-thanh"));
+
+      const first = await runBaThanhFullImport({ root: tempRoot });
+      const firstFile = fs.readFileSync(path.join(importDir, "full-records.json"), "utf8");
+      const discoveryPath = path.join(importDir, "full-discovery.json");
+      const laminatePath = path.join(importDir, "discovered-laminate-codes.json");
+      const discovery = JSON.parse(fs.readFileSync(discoveryPath, "utf8"));
+      const laminate = JSON.parse(fs.readFileSync(laminatePath, "utf8"));
+      discovery.discoveredAt = "2026-08-07T00:00:00.000Z";
+      for (const item of laminate) item.discoveredAt = discovery.discoveredAt;
+      fs.writeFileSync(discoveryPath, `${JSON.stringify(discovery, null, 2)}\n`);
+      fs.writeFileSync(laminatePath, `${JSON.stringify(laminate, null, 2)}\n`);
+
+      const second = await runBaThanhFullImport({ root: tempRoot });
+      const secondFile = fs.readFileSync(path.join(importDir, "full-records.json"), "utf8");
+
+      expect(first?.recordFile.checksum).toBe(second?.recordFile.checksum);
+      expect(second?.report).toEqual(expect.objectContaining({ created: 0, updated: 0 }));
+      expect(second?.report.unchanged).toBe(second?.report.totalImported);
+      expect(secondFile).toBe(firstFile);
+    } finally {
+      fs.rmSync(tempRoot, { recursive: true, force: true });
+    }
   });
 });

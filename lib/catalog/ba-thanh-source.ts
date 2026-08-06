@@ -177,10 +177,10 @@ export function recognizeBaThanhDetail(
   const expected = normalizeSupplierCode(input.expectedCode).normalized;
   const headingText = heading.toUpperCase();
   const headingCodes = [
-    ...headingText.matchAll(/\bSC[-_ ]?\d{1,4}[-_ ]?(?:MW|M|G)?\b/g),
-    ...headingText.matchAll(/\bBT[-_ ]?S[-_ ]?\d{1,4}[A-Z]?\b/g),
+    ...headingText.matchAll(/\bSC[-_ ]?\d{1,4}[-_ ]?[A-Z]{0,4}\b/g),
+    ...headingText.matchAll(/\bBT[-_ ]?S[-_ ]?\d{1,4}[A-Z]{0,4}\b/g),
     ...headingText.matchAll(/\bBT[-_ ]?[A-Z]\d{1,4}\b/g),
-    ...headingText.matchAll(/\bBT[-_ ]?\d{1,4}[A-Z]?\b/g),
+    ...headingText.matchAll(/\bBT[-_ ]?\d{1,4}[A-Z]{0,4}\b/g),
     ...headingText.matchAll(/\b(?:W|P|S|F)[-_ ]?\d{4}\b/g),
   ].map((match) => normalizeSupplierCode(match[0]).normalized);
   const materialText = asciiFold(`${heading} ${stripTags(detailContent).slice(0, 800)}`);
