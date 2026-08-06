@@ -22,12 +22,12 @@ export const anCuongAdapter: SupplierCatalogAdapter = {
         indexable: false,
       },
       ...getMaterialTaxonomyOptions(entries)
-        .filter((item) => item.slug !== "all")
+        .filter((item) => isAnCuongCuratedCategory(item.slug))
         .map((item) => ({
           supplierId: definition.id,
           path: `${definition.cataloguePath}${item.slug}/`,
           kind: "category" as const,
-          indexable: item.count > 0 && isAnCuongCuratedCategory(item.slug),
+          indexable: item.count > 0,
         })),
     ];
   },

@@ -2,15 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Search } from "lucide-react";
+import { ArrowRight, MessageCircle, Search } from "lucide-react";
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { searchSupplierCatalog } from "@/lib/catalog/core/search";
 import type { CatalogSearchEntry } from "@/lib/catalog/core/types";
+import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
 import { materialTaxonomyOptions } from "@/lib/catalog/material-taxonomy";
 import {
   buildCatalogCollectionSearchParams,
   parseCatalogCollectionUrlState,
 } from "@/lib/catalog/url-state";
+import { ZALO_URL } from "@/lib/seo";
 
 const PAGE_SIZE = 48;
 
@@ -102,7 +104,11 @@ export function AnCuongCatalogueSearch({ entries }: { entries: CatalogSearchEntr
               <div className="flex items-start gap-4">
                 {item.thumbnail ? (
                   <Image src={item.thumbnail} alt="" width={72} height={48} className="h-12 w-[72px] shrink-0 object-contain" />
-                ) : null}
+                ) : (
+                  <span className="grid h-12 w-[72px] shrink-0 place-items-center border border-dashed border-forest-900/15 bg-[#f7f8f5] px-2 text-center text-[.6rem] font-bold leading-4 text-slate-500">
+                    Chưa có swatch cục bộ
+                  </span>
+                )}
                 <div className="min-w-0">
                   <p className="text-[.65rem] font-extrabold uppercase tracking-[.13em] text-wood-600">An Cường · {item.recordType === "sku" ? "Mã vật liệu" : item.recordType === "family" ? "Dòng sản phẩm" : "Tài liệu"}</p>
                   {item.code ? <p className="mt-2 break-words font-mono text-base font-extrabold text-forest-950" translate="no">{item.code}</p> : null}
@@ -111,9 +117,20 @@ export function AnCuongCatalogueSearch({ entries }: { entries: CatalogSearchEntr
               <h3 className="mt-4 text-base font-extrabold leading-6 text-forest-950">{item.name}</h3>
               <p className="mt-2 text-xs leading-5 text-slate-600">{[item.category, item.series].filter(Boolean).join(" · ")}</p>
               {item.formats?.length ? <p className="mt-2 line-clamp-2 text-xs leading-5 text-slate-500">Quy cách nguồn: {item.formats.join(" · ")}</p> : null}
-              <Link href={item.canonicalRoute} className="pressable mt-auto inline-flex min-h-11 items-center gap-2 pt-5 text-sm font-extrabold text-forest-950">
-                Xem nhóm và gửi yêu cầu <ArrowRight size={16} aria-hidden="true" />
-              </Link>
+              <div className="mt-auto grid gap-2 pt-5 sm:grid-cols-2">
+                <Link href={item.canonicalRoute} className="pressable inline-flex min-h-11 items-center justify-center gap-2 border border-forest-900/15 px-3 text-xs font-extrabold text-forest-950">
+                  Xem nhóm <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+                <a
+                  href={buildSupplierZaloInquiryUrl(ZALO_URL, "An Cường", item.code || undefined)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pressable inline-flex min-h-11 items-center justify-center gap-2 bg-wood-500 px-3 text-xs font-extrabold text-white hover:bg-wood-600"
+                >
+                  <MessageCircle size={15} aria-hidden="true" />
+                  {item.code ? "Gửi mã qua Zalo" : "Nhắn Zalo tư vấn"}
+                </a>
+              </div>
             </article>
           ))}
         </div>

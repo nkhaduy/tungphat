@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
+import { isAnCuongCuratedCategory } from "../../lib/catalog/an-cuong-categories";
 import { classifyMaterialTaxonomy } from "../../lib/catalog/material-taxonomy";
 import type { CatalogSearchEntry, SupplierId } from "../../lib/catalog/core/types";
 
@@ -83,6 +84,13 @@ function localThumbnail(record: SourceRecord, fallback: string): string {
   return typeof image?.localPath === "string" ? image.localPath : fallback;
 }
 
+function verifiedPublicThumbnail(root: string, record: SourceRecord): string {
+  const localPath = localThumbnail(record, "");
+  if (!localPath) return "";
+  const publicPath = localPath.startsWith("/") ? localPath : `/${localPath}`;
+  return fs.existsSync(path.join(root, "public", publicPath.slice(1))) ? publicPath : "";
+}
+
 function formats(record: SourceRecord): string[] {
   return [...new Set(array(record, "formats").map((item) => {
     if (!item || typeof item !== "object") return "";
@@ -125,8 +133,8 @@ export function buildSupplierSearchIndex(root = process.cwd()): SupplierSearchIn
       id: `an-cuong:${recordType}:${sourceGroup}:${identity}`,
       supplierId: "an-cuong", supplierName: "An Cường", kind: "catalogue-item", recordType,
       code, normalizedCode: code ? normalizedCode(code) : undefined,
-      name: text(record, "name"), thumbnail: "/partners/an-cuong-logo.webp",
-      canonicalRoute: material ? `/catalogue/an-cuong/${material}/` : "/catalogue/an-cuong/",
+      name: text(record, "name"), thumbnail: verifiedPublicThumbnail(root, record),
+      canonicalRoute: material && isAnCuongCuratedCategory(material) ? `/catalogue/an-cuong/${material}/` : "/catalogue/an-cuong/",
       category, series, group: text(record, "materialPattern"), material,
       seoStatus: text(record, "seoStatus") || "NOINDEX_USEFUL", indexable: false,
       formats: [...new Set([...array(record, "dimensions"), ...array(record, "thicknesses")].filter((value): value is string => typeof value === "string"))].slice(0, 6),

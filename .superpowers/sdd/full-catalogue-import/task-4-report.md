@@ -21,8 +21,8 @@ Every source record receives one stable compact-index ID. Family and document re
 
 - Artifact: `data/catalogs/supplier-search-index.json`
 - Generator: `scripts/catalog-suppliers/build-search-index.ts`
-- Size: 1,807,624 bytes, compared with the approximately 28 MiB normalized An Cường catalogue source.
-- Content checksum: `7384674a2104f1937b9908f3be76b7d4220ae2e937127389f0bd4b84271a5c0f`
+- Size: 1,715,094 bytes, compared with the approximately 28 MiB normalized An Cường catalogue source.
+- Content checksum after fix round 1: `33047ad2c53b7d793a8242b80ae5880574d47bb153f634e1f67472d0a05062a2`
 - Determinism: two consecutive generator runs produced byte-identical output, command output and file SHA-256.
 - Loading boundary: catalogue server routes/adapters import the compact artifact. Homepage and global shell do not import either the artifact or the normalized An Cường source.
 
@@ -119,6 +119,47 @@ The sample-copy boundary scan returned no matches in the requested public compon
 ## Concerns
 
 - Media rights remain `UNCONFIRMED`; this task performed no live crawl or media download.
-- The compact artifact is approximately 1.8 MiB. It is deliberately limited to catalogue server-route usage and is not imported by the homepage/global shell.
+- The compact artifact is approximately 1.7 MiB after removing unverified An Cường logo fallbacks. It is deliberately limited to catalogue server-route usage and is not imported by the homepage/global shell.
 - Expanded Ba Thanh records without retained public detail pages intentionally open existing category/hub pages.
 - An Cường sparse/source-only records intentionally do not receive thousands of thin public detail pages.
+
+## Task 4 fix round 1 — review findings
+
+### RED evidence
+
+The reviewer regression command was run before production changes:
+
+```bash
+npm test -- --run tests/full-catalogue-search-index.test.ts tests/supplier-catalog-core.test.ts tests/catalogue-hub-layout.test.ts tests/catalogue-view.test.ts tests/an-cuong-category-route.test.ts
+```
+
+It failed with 7 expected findings: non-curated An Cường records still pointed at category routes that render `notFound`, An Cường records still used the shared logo thumbnail, legacy group selection had no mapping helper, partial code matches outranked high-demand name matches, Thanh Thuỳ public product totals were absent, and swatch/direct inquiry copy was absent from cards/category routes.
+
+The additional route-ownership regression was then run independently:
+
+```bash
+npm test -- --run tests/an-cuong-category-route.test.ts
+```
+
+It failed because the adapter still claimed all 13 non-empty material category paths even though only three category pages render.
+
+### GREEN evidence
+
+- `npm run catalog:suppliers:search-index`: 3,558 records; An Cường 2,900; Thanh Thuỳ 353; Ba Thanh 305; checksum `33047ad2c53b7d793a8242b80ae5880574d47bb153f634e1f67472d0a05062a2`.
+- `npm test -- --run tests/full-catalogue-search-index.test.ts tests/an-cuong-category-route.test.ts tests/supplier-catalog-core.test.ts tests/catalogue-hub-layout.test.ts tests/catalogue-view.test.ts`: 5 files, 36 tests passed.
+- Relevant Task 4 suite: 12 files, 78 tests passed.
+- `npm run catalog:suppliers:test`: 37 files, 256 tests passed.
+- Full `npm test`: 67 files, 413 tests passed.
+- `npm run lint`: passed with zero warnings.
+- `npm run typecheck`: application and Cloudflare checks passed.
+- `npm run build`: production/static export passed; 2,672 files, largest file 2,108,160 bytes; sitemap validation 39 URLs; metadata validation 12 URLs.
+- `git diff --check`: passed.
+
+### Fix-round implementation notes
+
+- Non-curated An Cường material records now route to `/catalogue/an-cuong/`; only curated material records use the three generated category routes. The adapter claims only the hub and those three renderable category routes.
+- Shared catalogue selection now distinguishes material taxonomy slugs from legacy groups (`van-go`, `don-sac`, `van-da`, `van-vai`) and passes the correct `material` or `group` filter.
+- Search comparison preserves exact/name/prefix/taxonomy tiers, then applies merchandising demand before partial-match strength. The exact-code test now queries the full normalized code `MFCMS01012T` and adds a competing partial record.
+- Thanh Thuỳ hub copy now labels imported searchable records separately from the public product count derived from `getThanhThuyCatalog().products.length`.
+- An Cường generation uses only verified files under `public/` as thumbnails. No verified local An Cường swatches exist in this worktree, so cards explicitly render `Chưa có swatch cục bộ` instead of a repeated supplier logo or an unverified hotlink.
+- An Cường cards expose a direct code-aware Zalo inquiry action, and curated category routes expose a category-specific Zalo inquiry CTA.

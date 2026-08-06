@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { MessageCircle } from "lucide-react";
 import { AnCuongCatalogueSearch } from "@/components/catalog/AnCuongCatalogueSearch";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteShell } from "@/components/site/SiteShell";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { PageContainer } from "@/components/ui/PageContainer";
+import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
 import {
   anCuongCategoryContent,
   anCuongCuratedCategories,
@@ -12,7 +14,7 @@ import {
 } from "@/lib/catalog/an-cuong-categories";
 import { getSupplierSearchIndex } from "@/lib/catalog/suppliers/search-index";
 import { materialTaxonomy } from "@/lib/catalog/material-taxonomy";
-import { absoluteUrl, breadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import { absoluteUrl, breadcrumbSchema, createPageMetadata, ZALO_URL } from "@/lib/seo";
 
 type RouteProps = { params: Promise<{ category: string }> };
 
@@ -77,6 +79,15 @@ export default async function AnCuongCategoryRoute({ params }: RouteProps) {
             <p className="eyebrow">Nhóm vật liệu An Cường</p>
             <h1 className="mt-3 text-balance text-3xl font-extrabold tracking-[-.035em] text-forest-950 sm:text-4xl">Catalogue An Cường · {label}</h1>
             <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700 sm:text-base">{content.intro}</p>
+            <a
+              href={buildSupplierZaloInquiryUrl(ZALO_URL, `An Cường - nhóm ${label}`)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pressable mt-5 inline-flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-5 text-sm font-extrabold text-white hover:bg-wood-600"
+            >
+              <MessageCircle size={17} aria-hidden="true" />
+              Nhắn Zalo kiểm tra {label}
+            </a>
           </div>
           <div className="mt-6 grid gap-4 lg:grid-cols-2">
             <section className="border border-forest-900/10 bg-white p-5 sm:p-6">

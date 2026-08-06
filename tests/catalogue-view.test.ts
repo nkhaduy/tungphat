@@ -64,4 +64,24 @@ describe("CatalogueView", () => {
     expect((html.match(/<article/g) ?? [])).toHaveLength(48);
     expect(html).toContain("100 mục phù hợp");
   });
+
+  it("shows unavailable swatches and a direct An Cuong inquiry action", () => {
+    const entry: CatalogSearchEntry = {
+      id: "an-cuong:sku:swatch-check",
+      supplierId: "an-cuong",
+      supplierName: "An Cường",
+      kind: "catalogue-item",
+      recordType: "sku",
+      code: "MFC - MS 01012 T",
+      normalizedCode: "MFCMS01012T",
+      name: "Laricio Pine",
+      thumbnail: "",
+      canonicalRoute: "/catalogue/an-cuong/melamine/",
+      category: "Melamine",
+      material: "melamine",
+    };
+    const html = renderToStaticMarkup(createElement(AnCuongCatalogueSearch, { entries: [entry] }));
+    expect(html).toContain("Chưa có swatch cục bộ");
+    expect(html).toContain("Gửi mã qua Zalo");
+  });
 });

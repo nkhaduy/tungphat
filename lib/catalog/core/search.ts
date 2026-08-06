@@ -1,6 +1,22 @@
 import type { CatalogSearchEntry, SupplierId } from "./types";
+import { isMaterialTaxonomySlug } from "../material-taxonomy";
 
 export type CatalogSearchIntent = "all" | "melamine" | "supplier";
+
+export function getCatalogSearchOptionsForSelection(
+  group: string,
+  type: CatalogSearchIntent,
+): { group: string | undefined; material: string | undefined } {
+  const material = isMaterialTaxonomySlug(group)
+    ? group
+    : type === "melamine"
+      ? "melamine"
+      : undefined;
+  return {
+    group: group && !isMaterialTaxonomySlug(group) ? group : undefined,
+    material,
+  };
+}
 
 export function normalizeCatalogSearch(value: string): string {
   return value
@@ -117,15 +133,19 @@ export function searchSupplierCatalog(
       return matchScore > 0;
     })
     .sort(
-      (left, right) =>
-        right.matchScore - left.matchScore ||
+      (left, right) => {
+        const leftPrimaryMatch = left.matchScore >= 600 ? left.matchScore : 0;
+        const rightPrimaryMatch = right.matchScore >= 600 ? right.matchScore : 0;
+        return rightPrimaryMatch - leftPrimaryMatch ||
         right.merchandisingScore - left.merchandisingScore ||
+        right.matchScore - left.matchScore ||
         left.entry.code.localeCompare(right.entry.code, "vi") ||
         left.entry.name.localeCompare(right.entry.name, "vi") ||
         left.entry.canonicalRoute.localeCompare(
           right.entry.canonicalRoute,
           "vi",
-        ),
+        );
+      },
     )
     .map(({ entry }) => entry);
 }

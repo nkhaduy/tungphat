@@ -8,6 +8,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
 import { getSupplierSearchEntries } from "@/lib/catalog/suppliers/search";
 import { getSupplierTotals } from "@/lib/catalog/suppliers/search-index";
+import { getThanhThuyCatalog } from "@/lib/thanh-thuy";
 import {
   createPageMetadata,
   PHONE_DISPLAY,
@@ -24,9 +25,10 @@ export const metadata = createPageMetadata({
 
 function supplierCards() {
   const totals = getSupplierTotals();
+  const thanhThuyPublicProducts = getThanhThuyCatalog().products.length;
   return [{
     name: "Thanh Thuỳ",
-    count: `${totals["thanh-thuy"].total} mục tra cứu · ${totals["thanh-thuy"].sku} mã sản phẩm`,
+    count: `${totals["thanh-thuy"].total} mục tra cứu · ${totals["thanh-thuy"].sku} mã nhập · ${thanhThuyPublicProducts} sản phẩm công khai`,
     description:
       "Phân biệt mã sản phẩm có thể tra cứu với các dòng và tài liệu nguồn-only trong bộ nhập đầy đủ.",
     href: "/thuong-hieu/thanh-thuy/",

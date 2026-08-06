@@ -25,4 +25,11 @@ describe("catalogue hub customer journey", () => {
       markup.indexOf("Catalogue Thanh Thuỳ"),
     );
   });
+
+  it("distinguishes Thanh Thuy searchable imports from public product pages", () => {
+    const markup = renderToStaticMarkup(SupplierCataloguePage());
+    expect(markup).toContain("353 mục tra cứu");
+    expect(markup).toContain("339 mã nhập");
+    expect(markup).toContain("348 sản phẩm công khai");
+  });
 });

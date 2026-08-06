@@ -19,6 +19,10 @@ export const materialTaxonomy = [
 
 export type MaterialTaxonomySlug = Exclude<(typeof materialTaxonomy)[number]["slug"], "all">;
 
+export function isMaterialTaxonomySlug(value: string): value is MaterialTaxonomySlug {
+  return materialTaxonomy.some((item) => item.slug !== "all" && item.slug === value);
+}
+
 function fold(value: string): string {
   return value
     .normalize("NFD")

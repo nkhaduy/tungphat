@@ -34,12 +34,34 @@ describe("full supplier compact search index", () => {
 
   it("ranks an exact normalized code before names and partial matches", () => {
     const entries = getSupplierSearchIndex().records;
-    const results = searchSupplierCatalog(entries, "MS 01012 T");
+    const exact = entries.find((record) => record.normalizedCode === "MFCMS01012T");
+    expect(exact).toBeDefined();
+    const partial = { ...exact!, id: "test-partial", code: "MFCMS01012T2", normalizedCode: "MFCMS01012T2", demandScore: 0 };
+    const results = searchSupplierCatalog([...entries, partial], "MFCMS01012T");
     expect(results[0]).toMatchObject({
       supplierId: "an-cuong",
       code: "MFC - MS 01012 T",
       normalizedCode: "MFCMS01012T",
     });
+    expect(results[0]?.normalizedCode).toBe("MFCMS01012T");
+  });
+
+  it("keeps non-curated An Cuong records on owned routes instead of 404 category routes", () => {
+    const curated = new Set([
+      "/catalogue/an-cuong/melamine/",
+      "/catalogue/an-cuong/laminate/",
+      "/catalogue/an-cuong/acrylic/",
+      "/catalogue/an-cuong/",
+    ]);
+    expect(getSupplierSearchIndex().records
+      .filter((record) => record.supplierId === "an-cuong")
+      .every((record) => curated.has(record.canonicalRoute))).toBe(true);
+  });
+
+  it("uses an explicit unavailable swatch state when no verified local image exists", () => {
+    expect(getSupplierSearchIndex().records
+      .filter((record) => record.supplierId === "an-cuong")
+      .every((record) => record.thumbnail === "")).toBe(true);
   });
 
   it("does not invent codes for family or document records", () => {
