@@ -27,6 +27,21 @@ test("brand catalogue supports code search without creating hotlinks", async ({
   ).toEqual([]);
 });
 
+test("header keeps accessible contrast while switching to its scrolled appearance", async ({
+  page,
+}) => {
+  await page.goto("/thuong-hieu/thanh-thuy/");
+  await page.evaluate(() => window.scrollTo(0, 200));
+  await page.waitForTimeout(50);
+
+  const axe = await new AxeBuilder({ page })
+    .include(".site-header")
+    .withRules(["color-contrast"])
+    .analyze();
+
+  expect(axe.violations).toEqual([]);
+});
+
 test("sparse code page is useful but noindex", async ({ page }) => {
   await page.goto("/san-pham/melamine/thanh-thuy-142-roman-oak/");
   await expect(

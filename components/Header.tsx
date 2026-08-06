@@ -29,7 +29,7 @@ const productLinks: NavigationLink[] = [
 ];
 
 function desktopLinkClass(lightStyle: boolean) {
-  return `py-7 text-[.8125rem] font-bold transition-colors duration-300 hover:text-wood-500 ${
+  return `py-7 text-[.8125rem] font-bold hover:text-wood-500 ${
     lightStyle ? "text-ink/70 hover:text-ink" : "text-white/80 hover:text-white"
   }`;
 }
@@ -56,7 +56,7 @@ function DesktopDropdown({
         type="button"
         aria-label={`Mở menu ${label}`}
         aria-haspopup="true"
-        className={`grid h-11 w-7 place-items-center transition-colors duration-300 ${
+        className={`grid h-11 w-7 place-items-center ${
           lightStyle ? "text-ink/70" : "text-white/80"
         }`}
       >
@@ -162,7 +162,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
   return (
     <header
       className={[
-        "site-header fixed inset-x-0 top-0 z-50 border-b transition-all duration-300",
+        "site-header fixed inset-x-0 top-0 z-50 border-b",
         lightStyle
           ? "border-black/[0.08] bg-white/95 shadow-[0_1px_12px_rgba(0,0,0,0.07)] backdrop-blur-md"
           : darkStyle
@@ -257,7 +257,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
             data-track-event="click_phone"
             data-track-location="header"
             onClick={() => trackEvent("click_phone", { location: "header" })}
-            className={`inline-flex min-h-11 items-center gap-2 px-2 text-sm font-bold transition-colors duration-300 ${lightStyle ? "text-ink hover:text-wood-500" : "text-white/90 hover:text-white"}`}
+            className={`inline-flex min-h-11 items-center gap-2 px-2 text-sm font-bold ${lightStyle ? "text-ink hover:text-wood-500" : "text-white/90 hover:text-white"}`}
           >
             <Phone size={16} /> {t.phoneLabel}
           </a>
@@ -286,7 +286,7 @@ export function Header({ appearance = "adaptive" }: HeaderProps) {
           onClick={() => setOpen((current) => !current)}
           aria-expanded={open}
           aria-label={open ? t.mobileCloseMenu : t.mobileOpenMenu}
-          className={`grid h-11 w-11 place-items-center border transition-colors duration-300 xl:hidden ${lightStyle ? "border-ink/20 text-ink" : "border-white/25 text-white"}`}
+          className={`grid h-11 w-11 place-items-center border xl:hidden ${lightStyle ? "border-ink/20 text-ink" : "border-white/25 text-white"}`}
         >
           {open ? <X /> : <Menu />}
         </button>
