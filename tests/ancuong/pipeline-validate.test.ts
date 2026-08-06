@@ -58,6 +58,35 @@ describe("An Cuong validation", () => {
     expect(result.summary).toEqual(expect.objectContaining({ products: 1, errors: 0 }));
   });
 
+  it("rejects a canonical full import that is still limited to seven products", () => {
+    const products = Array.from({ length: 7 }, (_, index) => ({
+      ...validProduct,
+      sourceId: String(index + 1),
+      sourceUrl: `https://ancuong.com/melamine/${index + 1}.html`,
+    }));
+    const result = validateCatalogue({
+      products,
+      knownProductIds: products.map((product) => product.sourceId),
+      requireCompleteCoverage: true,
+    });
+
+    expect(result.valid).toBe(false);
+    expect(result.issues.map((issue) => issue.code)).toContain("FULL_IMPORT_SAMPLE_LIMIT");
+  });
+
+  it("rejects canonical full output when a discovered product URL is unaccounted", () => {
+    const result = validateCatalogue({
+      products: [validProduct],
+      knownProductIds: ["103", "104"],
+      requireCompleteCoverage: true,
+    });
+
+    expect(result.valid).toBe(false);
+    expect(result.issues).toEqual(expect.arrayContaining([
+      expect.objectContaining({ code: "DISCOVERY_COVERAGE_INCOMPLETE" }),
+    ]));
+  });
+
   it("accepts real SSR product and material relation URL patterns", () => {
     const result = validateCatalogue({
       products: [validProduct],

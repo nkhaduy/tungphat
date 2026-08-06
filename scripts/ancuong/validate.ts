@@ -28,7 +28,7 @@ interface ValidationMedia {
 }
 
 interface ValidationRelation { relationType?: string; sourceId?: string; targetSourceId?: string; sourceUrl?: string; targetSourceUrl?: string; targetProductCode?: string; targetName?: string }
-interface ValidationInput { products: Array<Partial<AnCuongProduct> & Record<string, unknown>>; media?: ValidationMedia[]; relations?: ValidationRelation[]; knownProductIds?: string[]; }
+interface ValidationInput { products: Array<Partial<AnCuongProduct> & Record<string, unknown>>; media?: ValidationMedia[]; relations?: ValidationRelation[]; knownProductIds?: string[]; requireCompleteCoverage?: boolean; }
 
 const EXCLUDED_SEGMENTS = /\/(?:tin-tuc|news|kien-thuc|du-an|project|tuyen-dung|lien-he|contact|showroom|chinh-sach|search)(?:\/|$)/i;
 const IMAGE_MIMES = new Set(["image/avif", "image/gif", "image/jpeg", "image/png", "image/webp"]);
@@ -80,6 +80,16 @@ export function productIdsFromDiscoveryManifest(value: unknown): string[] {
 export function validateCatalogue(input: ValidationInput): ValidationResult {
   const issues: ValidationIssue[] = [];
   if (input.products.length === 0) issue(issues, "PRODUCTS_EMPTY", "normalized catalogue contains no products");
+  if (input.requireCompleteCoverage) {
+    if (input.products.length <= 7) {
+      issue(issues, "FULL_IMPORT_SAMPLE_LIMIT", "canonical full import must contain more records than the seven-item representative sample");
+    }
+    const importedIds = new Set(input.products.map((product) => product.sourceId).filter((value): value is string => typeof value === "string" && value.length > 0));
+    const missingIds = [...new Set(input.knownProductIds ?? [])].filter((sourceId) => !importedIds.has(sourceId));
+    if (missingIds.length > 0) {
+      issue(issues, "DISCOVERY_COVERAGE_INCOMPLETE", `${missingIds.length} discovered product record(s) are missing from canonical full output`);
+    }
+  }
   const seen = new Set<string>();
   const productIds = new Set([
     ...input.products.map((product) => product.sourceId).filter((value): value is string => typeof value === "string" && value.length > 0),
@@ -139,7 +149,7 @@ export async function run(options: CliOptions): Promise<ValidationResult> {
     ...listings.map((listing) => listing.sourceId).filter((value): value is string => typeof value === "string" && value.length > 0),
     ...productIdsFromDiscoveryManifest(discoveryManifest),
   ];
-  const result = validateCatalogue({ products, media, relations, knownProductIds });
+  const result = validateCatalogue({ products, media, relations, knownProductIds, requireCompleteCoverage: true });
   if (!options.dryRun) await atomicWriteJson(path.join(paths.reports, "validation-report.json"), result);
   if (!result.valid) throw new Error(`An Cuong validation failed with ${result.summary.errors} error(s)`);
   return result;
