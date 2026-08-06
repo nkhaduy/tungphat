@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { collectWordPressProducts } from "@/scripts/thanh-thuy/crawl";
@@ -9,6 +10,8 @@ import {
   THANH_THUY_DOCUMENT_SOURCES,
 } from "@/scripts/thanh-thuy/full-import";
 import { buildThanhThuyFullArtifacts, buildThanhThuyFullSummary } from "@/scripts/thanh-thuy/full";
+import { runThanhThuyFullImport } from "@/scripts/thanh-thuy/run-full";
+import { stableChecksum } from "@/scripts/thanh-thuy/lib";
 import type { ImportReport, SourceManifest, ThanhThuyCatalog } from "@/scripts/thanh-thuy/types";
 import { buildCoverageSummary, validateFullSourceManifest } from "@/lib/catalog/full-import/manifest";
 
@@ -169,5 +172,78 @@ describe("Thanh Thuy complete source accounting", () => {
   it("routes the full npm command through one orchestrator so dry-run applies to every stage", () => {
     const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")) as { scripts: Record<string, string> };
     expect(packageJson.scripts["catalog:thanh-thuy:import:full"]).toBe("tsx scripts/thanh-thuy/run-full.ts");
+  });
+
+  it("builds hypothetical full artifacts during dry-run without persisting a changed catalogue", async () => {
+    const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), "thanh-thuy-full-dry-run-"));
+    try {
+      const sourceDirectory = path.join(temporaryRoot, "source");
+      const importDirectory = path.join(temporaryRoot, "data/imports/thanh-thuy");
+      fs.mkdirSync(sourceDirectory, { recursive: true });
+      fs.mkdirSync(importDirectory, { recursive: true });
+      const productUrl = "https://www.gothanhthuy.com/product/melamine/101-white/";
+      const categoryUrl = "https://www.gothanhthuy.com/products/melamine/";
+      fs.writeFileSync(path.join(sourceDirectory, "products-1.json"), JSON.stringify([{
+        id: 1,
+        slug: "101-white",
+        link: productUrl,
+        title: { rendered: "101 White" },
+        content: { rendered: "<p>Mã sản phẩm: 101. Thông số kỹ thuật.</p>" },
+        excerpt: { rendered: "101 White" },
+        product_cat: [21],
+      }]));
+      fs.writeFileSync(path.join(sourceDirectory, "categories.json"), JSON.stringify([{
+        id: 21,
+        count: 1,
+        name: "Melamine",
+        slug: "melamine",
+        parent: 0,
+        link: categoryUrl,
+      }]));
+      const sourceManifest: SourceManifest = {
+        schemaVersion: 1,
+        discoveredAt: "2026-08-06T00:00:00.000Z",
+        robotsUrl: "https://www.gothanhthuy.com/robots.txt",
+        sitemapIndexUrl: "https://www.gothanhthuy.com/sitemap_index.xml",
+        productSitemaps: ["https://www.gothanhthuy.com/product-sitemap1.xml"],
+        categorySitemap: "https://www.gothanhthuy.com/product_cat-sitemap.xml",
+        pageSitemap: "https://www.gothanhthuy.com/page-sitemap.xml",
+        catalogSitemap: "https://www.gothanhthuy.com/catalog-sitemap.xml",
+        productApi: "https://www.gothanhthuy.com/wp-json/wp/v2/product",
+        categoryApi: "https://www.gothanhthuy.com/wp-json/wp/v2/product_cat",
+        productCount: 1,
+        productUrls: [productUrl],
+        productUrlSources: { [productUrl]: "https://www.gothanhthuy.com/product-sitemap1.xml" },
+        productUrlEvidence: {
+          [productUrl]: { status: 200, canonicalUrl: productUrl, redirects: [], checkedAt: "2026-08-06T00:00:00.000Z" },
+        },
+        categoryUrls: [categoryUrl],
+        pageUrls: [
+          "https://www.gothanhthuy.com/products/",
+          "https://www.gothanhthuy.com/catalog/",
+          "https://www.gothanhthuy.com/colormap/",
+        ],
+        catalogueUrls: THANH_THUY_DOCUMENT_SOURCES.filter((source) => source.documentType === "catalogue").map((source) => source.url),
+        productApiPages: ["https://www.gothanhthuy.com/wp-json/wp/v2/product?per_page=100&page=1&_embed=1"],
+        categoryApiPages: ["https://www.gothanhthuy.com/wp-json/wp/v2/product_cat?per_page=100&page=1"],
+        checksum: stableChecksum("fixture"),
+      };
+      fs.writeFileSync(path.join(importDirectory, "source-manifest.json"), JSON.stringify(sourceManifest));
+
+      const result = await runThanhThuyFullImport({
+        root: temporaryRoot,
+        sourceDirectory,
+        cacheDirectory: path.join(temporaryRoot, "cache"),
+        dryRun: true,
+      });
+
+      expect(result.imported.report.created).toBe(1);
+      expect(result.artifacts?.summary.newlyDiscoveredProducts).toBe(1);
+      expect(result.artifacts?.summary.publicApiProducts).toBe(1);
+      expect(fs.existsSync(path.join(temporaryRoot, "data/catalogs/thanh-thuy/catalog.json"))).toBe(false);
+      expect(fs.existsSync(path.join(importDirectory, "full-source-manifest.json"))).toBe(false);
+    } finally {
+      fs.rmSync(temporaryRoot, { recursive: true, force: true });
+    }
   });
 });
