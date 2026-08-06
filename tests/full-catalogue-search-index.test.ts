@@ -92,4 +92,17 @@ describe("full supplier compact search index", () => {
     );
     expect(options.every((option) => option.count > 0)).toBe(true);
   });
+
+  it("hides material taxonomy choices that are empty for the selected supplier", async () => {
+    const taxonomy = await import("@/lib/catalog/material-taxonomy");
+    const optionsForSupplier = Reflect.get(taxonomy, "materialTaxonomyOptionsForSupplier");
+
+    expect(optionsForSupplier).toBeTypeOf("function");
+    const options = optionsForSupplier(getSupplierSearchIndex().records, "thanh-thuy");
+
+    expect(options.every((option: { count: number }) => option.count > 0)).toBe(true);
+    expect(options.map((option: { slug: string }) => option.slug)).not.toContain("accessories");
+    expect(options.map((option: { slug: string }) => option.slug)).not.toContain("outdoor-panels");
+    expect(options.map((option: { slug: string }) => option.slug)).not.toContain("decorative-panels");
+  });
 });
