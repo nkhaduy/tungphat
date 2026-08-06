@@ -114,4 +114,14 @@ describe("An Cuong product-line families", () => {
       dimensionThicknessMatrix: [{ dimension: "1220x2440", thicknesses: ["9", "18"] }],
     });
   });
+
+  it("keeps family slugs unique when the supplier reuses the same display name", () => {
+    const html = `<main id="product-page"><h1>Chỉ PVC</h1></main>`;
+    const records = buildProductLineFamilyRecords([
+      parseProductLinePage(html, "https://ancuong.com/chi-dan-canh-pvc/chi-foil.html", "a".repeat(64)),
+      parseProductLinePage(html, "https://ancuong.com/chi-dan-canh-pvc/chi-pvc.html", "b".repeat(64)),
+    ]);
+
+    expect(new Set(records.map((record) => record.slug)).size).toBe(records.length);
+  });
 });
