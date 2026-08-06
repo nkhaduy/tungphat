@@ -115,3 +115,31 @@ Final validation results before commit:
 - Full supplier originals are not downloaded and must not be described as complete.
 - Existing Ba Thành/Thanh Thuỳ local files are transformed legacy delivery variants, not source-original bytes.
 - Usage rights remain unconfirmed for every supplier asset.
+
+## Fix round 1
+
+The first review round added regression coverage and closed the seven identified capacity/crawl-safety gaps without making broad supplier requests.
+
+### RED evidence
+
+Before the fix, the new focused tests failed for stale HEAD seed precedence, missing exact-preview functions, missing MIME classification, missing Pages capacity measurement, and missing `publicDelivery.scope`. The preview tests also exercised unsafe initial URLs, one total deadline, single-attempt 429 handling with `Retry-After`, unknown-length body rejection before body access, atomic rate-limit checkpoint resume suppression, and a hard concurrency cap of three.
+
+### GREEN evidence
+
+- `npm test -- --run tests/supplier-full-media.test.ts tests/cloudflare-pages-capacity.test.ts`: 2 files, 25 tests passed.
+- `npx tsc --noEmit`: passed.
+- Targeted ESLint for all changed TypeScript/JavaScript/test files: passed with zero warnings.
+- `node scripts/check-cloudflare-pages-capacity.mjs`: `PREBUILD_SOURCE_PUBLIC`, 1,389 files, 144,384,764 bytes, largest 2,267,726 bytes; both gates `PASS`.
+- `npm run build`: passed; postbuild measured the actual `STATIC_OUTPUT` tree at 2,664 files, 198,601,511 bytes, largest 2,108,160 bytes; both Pages gates `PASS`.
+- Offline regeneration was run twice; the second run reported all manifests `changed: false` and `summaryChanged: false`.
+
+### Fix-round generated values
+
+The exact combined counts remain 10,654 refs, 7,923 unique URLs, 589 local preview refs, 525 deduplicated files, 80,357,860 local bytes, 6,209 original-only refs, 3,856 unresolved/deferred refs, and `UNCONFIRMED` rights. Updated checksums are:
+
+- An Cường: `951da19323fbbb544372a3556210649d51c743824f5fddc71b75e89f33b058f8`
+- Ba Thành: `7e48ef6ba83f1f047eff6241325d7343458f92c1b442979f70a0f61f02e99414`
+- Thanh Thuỳ: `92035ceae4a4d59aa32fb6aa074a013bbca6672b19be29ba9788a3fbaf1069dc`
+- Capacity summary: `1f936227e3cb0c321c6b56b4325c947a562d35da945d751607365c0ee5019969`
+
+The summary now labels `publicDelivery.scope` as `PREBUILD_SOURCE_PUBLIC` when `out/` is absent. A postbuild hook measures the full static output directory as `STATIC_OUTPUT` and enforces the same 20,000-file and 25 MiB-per-file gates.

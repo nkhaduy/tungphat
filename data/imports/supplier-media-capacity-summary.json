@@ -1,5 +1,5 @@
 {
-  "checksum": "22448b5b96c28569c222f665b14d0bf20ebd8520fab398a9ae05e3138b589bd0",
+  "checksum": "1f936227e3cb0c321c6b56b4325c947a562d35da945d751607365c0ee5019969",
   "combined": {
     "invalidRefs": 0,
     "localPreviewBytes": 80357860,
@@ -11,7 +11,7 @@
     "uniqueUrls": 7923,
     "unresolvedDeferredRefs": 3856
   },
-  "generatedAt": "2026-08-06T18:05:42.477Z",
+  "generatedAt": "2026-08-06T18:41:41.415Z",
   "policy": {
     "cloudflarePagesLimitsChecked": "2026-07-16",
     "cloudflarePagesLimitsSource": "https://developers.cloudflare.com/pages/platform/limits/",
@@ -21,13 +21,15 @@
     "transformedLegacyAssets": "DELIVERY_VARIANT_NOT_ORIGINAL_BYTES"
   },
   "publicDelivery": {
-    "bytes": 107453754,
+    "bytes": 144384764,
     "cloudflarePagesFileLimit": 20000,
     "cloudflarePagesMaxFileBytes": 26214400,
-    "fileCount": 1330,
+    "directory": "public",
+    "fileCount": 1389,
     "fileCountGate": "PASS",
-    "maxFileBytes": 469014,
-    "maxFileGate": "PASS"
+    "maxFileBytes": 2267726,
+    "maxFileGate": "PASS",
+    "scope": "PREBUILD_SOURCE_PUBLIC"
   },
   "schemaVersion": 1,
   "suppliers": {

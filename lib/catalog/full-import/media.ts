@@ -97,6 +97,8 @@ export type MediaCapacitySummary = {
   suppliers: Partial<Record<SupplierId, SupplierMediaCapacityCounts>>;
   combined: SupplierMediaCapacityCounts;
   publicDelivery: {
+    scope: "STATIC_OUTPUT" | "PREBUILD_SOURCE_PUBLIC";
+    directory?: string;
     fileCount: number;
     bytes: number;
     maxFileBytes: number;
@@ -270,6 +272,262 @@ export function inspectMediaBytes(
   return detected;
 }
 
+export function classifySupplierMediaOrigin(
+  origin: SupplierMediaOrigin,
+): { state: "ORIGINAL_PROVENANCE_ONLY" | "UNRESOLVED" | "INVALID"; reason: string } {
+  if (origin.httpStatus === 200 && origin.mimeType && !origin.mimeType.startsWith("image/")) {
+    return { state: "INVALID", reason: `Supplier media HEAD returned non-image MIME ${origin.mimeType}.` };
+  }
+  if (origin.rateLimited || origin.httpStatus === 429) {
+    return { state: "UNRESOLVED", reason: `Supplier media HEAD was rate-limited (HTTP 429${origin.retryAfter ? `; Retry-After ${origin.retryAfter}` : ""}).` };
+  }
+  if (origin.httpStatus === 404 || origin.httpStatus === 410) {
+    return { state: "UNRESOLVED", reason: `Supplier media returned HTTP ${origin.httpStatus}; no local path was invented.` };
+  }
+  if (origin.httpStatus && origin.httpStatus >= 400) {
+    return { state: "UNRESOLVED", reason: `Supplier media metadata returned HTTP ${origin.httpStatus}; original bytes were not downloaded.` };
+  }
+  return {
+    state: "ORIGINAL_PROVENANCE_ONLY",
+    reason: origin.error
+      ? "Public source reference retained; metadata was unavailable and no original GET was attempted."
+      : "Archival original retained as inventory-only provenance because projected full-image download exceeds safe capacity.",
+  };
+}
+
+export type ExactSupplierPreviewResult =
+  | { status: "downloaded"; bytes: Buffer; origin: SupplierMediaOrigin }
+  | { status: "rate-limited" | "failed"; origin: SupplierMediaOrigin };
+
+export type ExactSupplierPreviewRequest = SupplierMediaInventoryRequest;
+
+export type ExactSupplierPreviewOptions = {
+  fetchImpl?: typeof fetch;
+  retries?: number;
+  maxRedirects?: number;
+  timeoutMs?: number;
+};
+
+function parseContentLength(response: Response): number | "unknown" {
+  const raw = response.headers.get("content-length");
+  if (raw === null || raw.trim() === "") return "unknown";
+  const parsed = Number(raw);
+  return Number.isSafeInteger(parsed) && parsed >= 0 ? parsed : "unknown";
+}
+
+async function readResponseBytesWithLimit(
+  response: Response,
+  maxBytes: number,
+): Promise<Buffer> {
+  if (!response.body) throw new Error("Supplier preview response has no readable body");
+  const reader = response.body.getReader();
+  const chunks: Buffer[] = [];
+  let total = 0;
+  try {
+    while (true) {
+      const next = await reader.read();
+      if (next.done) break;
+      const chunk = Buffer.from(next.value);
+      total += chunk.length;
+      if (total > maxBytes) {
+        await reader.cancel("25 MiB per-file gate exceeded");
+        throw new Error("Supplier preview exceeds the 25 MiB per-file gate");
+      }
+      chunks.push(chunk);
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  return Buffer.concat(chunks, total);
+}
+
+export async function fetchExactSupplierPreview(
+  supplier: SupplierId,
+  sourceUrl: string,
+  options: ExactSupplierPreviewOptions = {},
+): Promise<ExactSupplierPreviewResult> {
+  if (!isAllowedSupplierMediaUrl(supplier, sourceUrl)) {
+    throw new Error(`Supplier preview URL is not HTTPS on an allowlisted host: ${sourceUrl}`);
+  }
+  const fetchImpl = options.fetchImpl ?? fetch;
+  const retries = Math.max(0, Math.min(options.retries ?? 2, 4));
+  const maxRedirects = Math.max(0, Math.min(options.maxRedirects ?? 5, 10));
+  const timeoutMs = Math.max(1, options.timeoutMs ?? 20_000);
+  const deadline = Date.now() + timeoutMs;
+  const controller = new AbortController();
+  const deadlineTimer = setTimeout(() => controller.abort(), timeoutMs);
+  const redirectChain: string[] = [];
+  const visited = new Set([sourceUrl]);
+  let currentUrl = sourceUrl;
+  try {
+    for (let redirects = 0; ; redirects += 1) {
+      let response: Response | undefined;
+      let lastError: unknown;
+      for (let attempt = 0; attempt <= retries; attempt += 1) {
+        const remaining = deadline - Date.now();
+        if (remaining <= 0) throw new Error(`Supplier preview deadline exceeded: ${sourceUrl}`);
+        try {
+          response = await fetchImpl(currentUrl, {
+            method: "GET",
+            redirect: "manual",
+            signal: controller.signal,
+            headers: {
+              accept: "image/avif,image/webp,image/png,image/jpeg,image/gif",
+              "user-agent": "TungPhat-Supplier-Preview-Importer/1.0 (+https://mdftungphat.com)",
+            },
+          });
+        } catch (error) {
+          lastError = error;
+          if (attempt === retries) throw error;
+          const delay = Math.min(250 * 2 ** attempt, Math.max(0, deadline - Date.now()));
+          if (delay > 0) await new Promise((resolve) => setTimeout(resolve, delay));
+          continue;
+        }
+        if (![408, 425, 500, 502, 503, 504].includes(response.status) || attempt === retries) break;
+        const delay = Math.min(250 * 2 ** attempt, Math.max(0, deadline - Date.now()));
+        if (delay > 0) await new Promise((resolve) => setTimeout(resolve, delay));
+      }
+      if (!response) throw lastError instanceof Error ? lastError : new Error(`Supplier preview GET failed: ${currentUrl}`);
+      const contentLength = response.status === 429 ? "unknown" : parseContentLength(response);
+      const baseOrigin: SupplierMediaOrigin = {
+        sourceUrl,
+        finalUrl: currentUrl,
+        redirectChain: [...redirectChain],
+        httpStatus: response.status,
+        mimeType: response.headers.get("content-type")?.split(";", 1)[0]?.trim().toLowerCase(),
+        contentLength,
+      };
+      if (response.status === 429) {
+        return {
+          status: "rate-limited",
+          origin: {
+            ...baseOrigin,
+            error: "HTTP 429 rate limited",
+            rateLimited: true,
+            retryAfter: response.headers.get("retry-after") ?? undefined,
+          },
+        };
+      }
+      if ([301, 302, 303, 307, 308].includes(response.status)) {
+        const location = response.headers.get("location");
+        if (!location) throw new Error(`Supplier media redirect is missing Location: ${currentUrl}`);
+        if (redirects >= maxRedirects) throw new Error(`Supplier media redirect limit exceeded: ${sourceUrl}`);
+        const redirected = new URL(location, currentUrl).toString();
+        if (!isAllowedSupplierMediaUrl(supplier, redirected)) throw new Error(`Supplier media redirect left allowlisted HTTPS hosts: ${redirected}`);
+        if (visited.has(redirected)) throw new Error(`Supplier media redirect cycle detected: ${redirected}`);
+        visited.add(redirected);
+        redirectChain.push(redirected);
+        currentUrl = redirected;
+        continue;
+      }
+      if (!response.ok) throw new Error(`Supplier preview GET returned HTTP ${response.status}`);
+      if (contentLength === "unknown") throw new Error("Supplier preview Content-Length is unknown; no body was read");
+      if (contentLength > 25 * 1024 * 1024) throw new Error("Supplier preview exceeds the 25 MiB per-file gate");
+      const bytes = await readResponseBytesWithLimit(response, 25 * 1024 * 1024);
+      const info = inspectMediaBytes(bytes, baseOrigin.mimeType);
+      return {
+        status: "downloaded",
+        bytes,
+        origin: { ...baseOrigin, mimeType: info.mimeType, contentLength: bytes.length },
+      };
+    }
+  } finally {
+    clearTimeout(deadlineTimer);
+  }
+}
+
+type ExactSupplierPreviewCheckpoint = {
+  schemaVersion: 1;
+  results: Record<string, ExactSupplierPreviewResult["origin"] & { status: "rate-limited" | "failed" }>;
+};
+
+function writePreviewCheckpoint(file: string, results: Map<string, ExactSupplierPreviewResult["origin"] & { status: "rate-limited" | "failed" }>): void {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  const temporary = `${file}.${process.pid}.tmp`;
+  const checkpoint: ExactSupplierPreviewCheckpoint = {
+    schemaVersion: 1,
+    results: Object.fromEntries([...results].sort(([left], [right]) => left.localeCompare(right))),
+  };
+  fs.writeFileSync(temporary, `${JSON.stringify(checkpoint, null, 2)}\n`);
+  fs.renameSync(temporary, file);
+}
+
+export async function fetchExactSupplierPreviewsWithCache(
+  requests: ExactSupplierPreviewRequest[],
+  options: ExactSupplierPreviewOptions & {
+    cacheFile: string;
+    concurrency?: number;
+    minDelayMs?: number;
+    refreshRateLimited?: boolean;
+    offline?: boolean;
+  },
+): Promise<Map<string, ExactSupplierPreviewResult>> {
+  const checkpoint = fs.existsSync(options.cacheFile)
+    ? JSON.parse(fs.readFileSync(options.cacheFile, "utf8")) as ExactSupplierPreviewCheckpoint
+    : undefined;
+  const cached = new Map(Object.entries(checkpoint?.results ?? {}));
+  const unique = new Map(requests.map((request) => [`${request.supplier}|${request.sourceUrl}`, request]));
+  const pending = [...unique].sort(([left], [right]) => left.localeCompare(right));
+  const results = new Map<string, ExactSupplierPreviewResult>();
+  const concurrency = Math.max(1, Math.min(options.concurrency ?? 3, 3, pending.length || 1));
+  const minDelayMs = Math.max(0, options.minDelayMs ?? 0);
+  let cursor = 0;
+  let requestGate = Promise.resolve();
+  const nextByHost = new Map<string, number>();
+  const pace = async (host: string) => {
+    const previous = requestGate;
+    let release = () => {};
+    requestGate = new Promise<void>((resolve) => { release = resolve; });
+    await previous;
+    const delay = Math.max(0, (nextByHost.get(host) ?? 0) - Date.now());
+    if (delay > 0) await new Promise((resolve) => setTimeout(resolve, delay));
+    nextByHost.set(host, Date.now() + minDelayMs);
+    release();
+  };
+  const worker = async () => {
+    while (cursor < pending.length) {
+      const [key, request] = pending[cursor++]!;
+      const cachedResult = cached.get(key);
+      if (cachedResult && !(cachedResult.status === "rate-limited" && options.refreshRateLimited)) {
+        const { status, ...origin } = cachedResult;
+        results.set(key, { status, origin });
+        continue;
+      }
+      if (options.offline) {
+        const origin: SupplierMediaOrigin = { sourceUrl: request.sourceUrl, redirectChain: [], contentLength: "unknown", error: "Offline preview fetch skipped; no local exact bytes were cached." };
+        const failed = { status: "failed" as const, ...origin };
+        results.set(key, { status: "failed", origin });
+        cached.set(key, failed);
+        writePreviewCheckpoint(options.cacheFile, cached);
+        continue;
+      }
+      try {
+        await pace(new URL(request.sourceUrl).hostname.toLowerCase());
+        const result = await fetchExactSupplierPreview(request.supplier, request.sourceUrl, options);
+        results.set(key, result);
+        if (result.status === "rate-limited") {
+          cached.set(key, { status: "rate-limited", ...result.origin });
+          writePreviewCheckpoint(options.cacheFile, cached);
+        }
+      } catch (error) {
+        const origin: SupplierMediaOrigin = {
+          sourceUrl: request.sourceUrl,
+          redirectChain: [],
+          contentLength: "unknown",
+          error: error instanceof Error ? error.message : String(error),
+        };
+        const failed = { status: "failed" as const, ...origin };
+        results.set(key, { status: "failed", origin });
+        cached.set(key, failed);
+        writePreviewCheckpoint(options.cacheFile, cached);
+      }
+    }
+  };
+  await Promise.all(Array.from({ length: concurrency }, worker));
+  if (!fs.existsSync(options.cacheFile) && cached.size) writePreviewCheckpoint(options.cacheFile, cached);
+  return results;
+}
+
 function uniqueBy<T>(values: T[], key: (value: T) => string): T[] {
   const seen = new Set<string>();
   return values.filter((value) => {
@@ -345,6 +603,8 @@ export function buildMediaCapacitySummary(
     publicFileCount: number;
     publicBytes: number;
     maxPublicFileBytes: number;
+    scope?: "STATIC_OUTPUT" | "PREBUILD_SOURCE_PUBLIC";
+    directory?: string;
   },
 ): MediaCapacitySummary {
   const suppliers: Partial<Record<SupplierId, SupplierMediaCapacityCounts>> = {};
@@ -357,6 +617,8 @@ export function buildMediaCapacitySummary(
     suppliers,
     combined: capacityCounts(manifests),
     publicDelivery: {
+      scope: publicDelivery.scope ?? "PREBUILD_SOURCE_PUBLIC",
+      directory: publicDelivery.directory,
       fileCount: publicDelivery.publicFileCount,
       bytes: publicDelivery.publicBytes,
       maxFileBytes: publicDelivery.maxPublicFileBytes,
@@ -442,6 +704,9 @@ export function validateSupplierMediaManifest(
       }
       if (origin.contentLength !== "unknown" && (!Number.isSafeInteger(origin.contentLength) || origin.contentLength < 0)) {
         issues.push({ code: "CONTENT_LENGTH_INVALID", message: "Content-Length must be a non-negative integer or unknown", assetId: asset.assetId, url: origin.sourceUrl });
+      }
+      if (origin.httpStatus === 200 && origin.mimeType && !origin.mimeType.startsWith("image/")) {
+        issues.push({ code: "SOURCE_MIME_INVALID", message: `Successful supplier media origin returned non-image MIME ${origin.mimeType}`, assetId: asset.assetId, url: origin.sourceUrl });
       }
     }
     for (const reference of asset.references) {
@@ -644,8 +909,8 @@ export async function inventoryMediaOriginsWithCache(
     }] as const;
   });
   const origins = new Map<string, SupplierMediaOrigin>([
-    ...cachedEntries,
     ...(options.seed ? [...options.seed] : []),
+    ...cachedEntries,
   ]);
   if (normalizedRateLimits) writeInventoryCache(options.cacheFile, origins);
   const unique = new Map(requests.map((request) => [inventoryKey(request), request]));

@@ -4,10 +4,13 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   buildMediaCapacitySummary,
+  classifySupplierMediaOrigin,
   checksumSupplierMediaManifest,
   inspectMediaBytes,
   inventoryMediaOrigin,
   inventoryMediaOriginsWithCache,
+  fetchExactSupplierPreview,
+  fetchExactSupplierPreviewsWithCache,
   mergeMediaAssetsByChecksum,
   selectCapacitySafePreviewUrls,
   validateSupplierMediaManifest,
@@ -264,6 +267,42 @@ describe("supplier full-media provenance", () => {
     fs.rmSync(directory, { recursive: true, force: true });
   });
 
+  it("prefers the newer atomic checkpoint over a stale manifest seed", async () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), "supplier-media-precedence-"));
+    const cacheFile = path.join(directory, "inventory.json");
+    const key = "an-cuong|https://ancuong.com/a.jpg";
+    fs.writeFileSync(cacheFile, JSON.stringify({
+      schemaVersion: 1,
+      origins: {
+        [key]: {
+          sourceUrl: "https://ancuong.com/a.jpg",
+          redirectChain: [],
+          httpStatus: 200,
+          mimeType: "image/jpeg",
+          contentLength: 222,
+        },
+      },
+    }));
+
+    const result = await inventoryMediaOriginsWithCache(
+      [{ supplier: "an-cuong", sourceUrl: "https://ancuong.com/a.jpg" }],
+      {
+        cacheFile,
+        offline: true,
+        seed: new Map([[key, {
+          sourceUrl: "https://ancuong.com/a.jpg",
+          redirectChain: [],
+          httpStatus: 200,
+          mimeType: "image/jpeg",
+          contentLength: 111,
+        }]]),
+      },
+    );
+
+    expect(result.get(key)?.contentLength).toBe(222);
+    fs.rmSync(directory, { recursive: true, force: true });
+  });
+
   it("does not retry cached rate limits unless an explicit refresh window is requested", async () => {
     const directory = fs.mkdtempSync(path.join(os.tmpdir(), "supplier-media-retry-"));
     const cacheFile = path.join(directory, "inventory.json");
@@ -350,6 +389,160 @@ describe("supplier full-media provenance", () => {
     expect(() => selectCapacitySafePreviewUrls(urls, { enabled: true, limit: 51 })).toThrow(
       /50/,
     );
+  });
+
+  it("rejects a preview source before the first GET when the initial host is unsafe", async () => {
+    let requests = 0;
+    await expect(
+      fetchExactSupplierPreview("an-cuong", "https://cdn.example.com/a.png", {
+        fetchImpl: async () => {
+          requests += 1;
+          return new Response(PNG_1X1, { status: 200 });
+        },
+        retries: 0,
+        maxRedirects: 0,
+        timeoutMs: 100,
+      }),
+    ).rejects.toThrow(/allowlisted/i);
+    expect(requests).toBe(0);
+  });
+
+  it("uses one total deadline across preview GET retries and redirects", async () => {
+    const fetchImpl: typeof fetch = async (_input, init) =>
+      await new Promise<Response>((_resolve, reject) => {
+        init?.signal?.addEventListener("abort", () => reject(new Error("aborted")));
+      });
+    const startedAt = Date.now();
+
+    await expect(
+      fetchExactSupplierPreview("an-cuong", "https://ancuong.com/a.png", {
+        fetchImpl,
+        retries: 4,
+        maxRedirects: 5,
+        timeoutMs: 20,
+      }),
+    ).rejects.toThrow();
+    expect(Date.now() - startedAt).toBeLessThan(100);
+  });
+
+  it("does not retry preview HTTP 429 and preserves Retry-After evidence", async () => {
+    let requests = 0;
+    const result = await fetchExactSupplierPreview("an-cuong", "https://ancuong.com/a.png", {
+      fetchImpl: async () => {
+        requests += 1;
+        return new Response(null, { status: 429, headers: { "retry-after": "180" } });
+      },
+      retries: 3,
+      maxRedirects: 0,
+      timeoutMs: 100,
+    });
+
+    expect(requests).toBe(1);
+    expect(result).toMatchObject({
+      status: "rate-limited",
+      origin: { httpStatus: 429, rateLimited: true, retryAfter: "180", contentLength: "unknown" },
+    });
+  });
+
+  it("rejects unknown-length preview bodies before reading them", async () => {
+    let bodyAccessed = false;
+    const response = {
+      status: 200,
+      ok: true,
+      headers: new Headers({ "content-type": "image/png" }),
+      get body() {
+        bodyAccessed = true;
+        throw new Error("body must not be read");
+      },
+    } as Response;
+
+    await expect(
+      fetchExactSupplierPreview("an-cuong", "https://ancuong.com/a.png", {
+        fetchImpl: async () => response,
+        retries: 0,
+        maxRedirects: 0,
+        timeoutMs: 100,
+      }),
+    ).rejects.toThrow(/Content-Length/i);
+    expect(bodyAccessed).toBe(false);
+  });
+
+  it("atomically checkpoints preview rate limits and suppresses normal resume", async () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), "supplier-preview-cache-"));
+    const cacheFile = path.join(directory, "preview.json");
+    const requests = [{ supplier: "an-cuong" as const, sourceUrl: "https://ancuong.com/a.png" }];
+    await fetchExactSupplierPreviewsWithCache(requests, {
+      cacheFile,
+      fetchImpl: async () => new Response(null, { status: 429, headers: { "retry-after": "120" } }),
+      concurrency: 1,
+      retries: 0,
+      maxRedirects: 0,
+      timeoutMs: 100,
+      minDelayMs: 0,
+    });
+    let resumedRequests = 0;
+    const resumed = await fetchExactSupplierPreviewsWithCache(requests, {
+      cacheFile,
+      fetchImpl: async () => {
+        resumedRequests += 1;
+        return new Response(PNG_1X1, { status: 200, headers: { "content-type": "image/png", "content-length": String(PNG_1X1.length) } });
+      },
+      concurrency: 1,
+      retries: 0,
+      maxRedirects: 0,
+      timeoutMs: 100,
+      minDelayMs: 0,
+    });
+
+    expect(resumedRequests).toBe(0);
+    expect(resumed.get("an-cuong|https://ancuong.com/a.png")?.status).toBe("rate-limited");
+    expect(JSON.parse(fs.readFileSync(cacheFile, "utf8"))).toMatchObject({ schemaVersion: 1 });
+    fs.rmSync(directory, { recursive: true, force: true });
+  });
+
+  it("caps the actual preview GET batch at three concurrent requests", async () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), "supplier-preview-concurrency-"));
+    let active = 0;
+    let maxActive = 0;
+    const requests = Array.from({ length: 6 }, (_, index) => ({
+      supplier: "an-cuong" as const,
+      sourceUrl: `https://ancuong.com/${index}.png`,
+    }));
+    const result = await fetchExactSupplierPreviewsWithCache(requests, {
+      cacheFile: path.join(directory, "preview.json"),
+      concurrency: 8,
+      retries: 0,
+      maxRedirects: 0,
+      timeoutMs: 500,
+      minDelayMs: 0,
+      fetchImpl: async () => {
+        active += 1;
+        maxActive = Math.max(maxActive, active);
+        await new Promise((resolve) => setTimeout(resolve, 30));
+        active -= 1;
+        return new Response(PNG_1X1, {
+          status: 200,
+          headers: { "content-type": "image/png", "content-length": String(PNG_1X1.length) },
+        });
+      },
+    });
+
+    expect(maxActive).toBeLessThanOrEqual(3);
+    expect([...result.values()].every((item) => item.status === "downloaded")).toBe(true);
+    fs.rmSync(directory, { recursive: true, force: true });
+  });
+
+  it("classifies HTTP 200 non-image media origins as invalid evidence", () => {
+    expect(classifySupplierMediaOrigin({
+      sourceUrl: "https://ancuong.com/a.jpg",
+      redirectChain: [],
+      httpStatus: 200,
+      mimeType: "text/html",
+      contentLength: 120,
+    })).toEqual({
+      state: "INVALID",
+      reason: "Supplier media HEAD returned non-image MIME text/html.",
+    });
   });
 
   it("deduplicates exact local bytes while retaining every source and product relationship", () => {
@@ -498,6 +691,7 @@ describe("supplier full-media provenance", () => {
         publicFileCount: 1331,
         publicBytes: 110_000_000,
         maxPublicFileBytes: 1234,
+        scope: "PREBUILD_SOURCE_PUBLIC",
       }).suppliers["an-cuong"],
     ).toMatchObject({
       totalRefs: 3,
@@ -508,6 +702,14 @@ describe("supplier full-media provenance", () => {
       originalProvenanceOnlyRefs: 1,
       rightsStatus: "UNCONFIRMED",
     });
+    expect(
+      buildMediaCapacitySummary([source], {
+        publicFileCount: 1331,
+        publicBytes: 110_000_000,
+        maxPublicFileBytes: 1234,
+        scope: "PREBUILD_SOURCE_PUBLIC",
+      }).publicDelivery.scope,
+    ).toBe("PREBUILD_SOURCE_PUBLIC");
   });
 
   it("never promotes an explicitly source-only relationship into local delivery", () => {
