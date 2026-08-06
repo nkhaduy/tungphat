@@ -87,6 +87,7 @@ export async function discoverBaThanhFull(options: { refresh?: boolean } = {}) {
     const normalized = normalizeSupplierCode(baseline?.codeNormalized ?? item.codeRaw);
     return {
       ...item,
+      materialType: "melamine" as const,
       codeRaw: baseline?.codeRaw ?? item.codeRaw,
       id: `ba-thanh:${normalized.normalized}`,
       codeNormalized: normalized.normalized,
@@ -102,6 +103,7 @@ export async function discoverBaThanhFull(options: { refresh?: boolean } = {}) {
     const normalized = normalizeSupplierCode(item.codeRaw);
     return {
       ...item,
+      materialType: "laminate" as const,
       id: `ba-thanh:laminate:${normalized.normalized}`,
       codeNormalized: normalized.normalized,
       displayName: normalized.display,
@@ -199,6 +201,7 @@ export async function discoverBaThanhFull(options: { refresh?: boolean } = {}) {
       melamine.filter((item) => item.category === category.slug).length,
     ])),
     laminateIndexUrl: LAMINATE_INDEX_URL,
+    laminateBaselineCodes: laminate.map((item) => item.codeNormalized).sort(),
     laminateCategories: laminateParsed.categories,
     laminateCounts: Object.fromEntries(laminateParsed.categories.map((category) => [
       category.slug,

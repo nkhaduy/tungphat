@@ -76,13 +76,66 @@ function routeCode(url: string) {
   return match?.[1] ? normalizeSupplierCode(match[1]).normalized : undefined;
 }
 
+function pageText(html: string) {
+  const footerIndex = html.search(/<footer\b|<div\b[^>]*id=["']footer["']/i);
+  const page = footerIndex >= 0 ? html.slice(0, footerIndex) : html;
+  const main = page.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1] ?? page;
+  return main
+    .replace(/<script\b[\s\S]*?<\/script>|<style\b[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&[a-z0-9#]+;/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function foldedPageText(html: string) {
+  return pageText(html).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
+}
+
+function primaryPageLabel(html: string) {
+  const label = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1]
+    ?? html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]
+    ?? "";
+  return label
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&[a-z0-9#]+;/gi, " ")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toUpperCase();
+}
+
+const contentFamilyRules: Array<{ pattern: RegExp; canonicalUrl: string; label: string; recordIds: string[] }> = [
+  { pattern: /\b(?:HMR|MMR|LMR)\b|MDF.{0,30}(?:CHONG AM|KHANG AM|MOISTURE)/, canonicalUrl: "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html", label: "MDF chống ẩm HMR", recordIds: ["ba-thanh:family:van-mdf-chong-am-hmr"] },
+  { pattern: /\bHDF\b|HIGH DENSITY FIBERBOARD/, canonicalUrl: "https://bathanh.com.vn/portfolio/van-mdf-hdf", label: "HDF", recordIds: ["ba-thanh:family:van-hdf"] },
+  { pattern: /\bMDF\b|MEDIUM DENSITY FIBERBOARD/, canonicalUrl: "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf", label: "MDF", recordIds: ["ba-thanh:family:van-mdf"] },
+  { pattern: /GO GHEP|FINGER ?JOINT/, canonicalUrl: "https://bathanh.com.vn/portfolio/van-go-ghep", label: "gỗ ghép", recordIds: ["ba-thanh:family:van-go-ghep"] },
+  { pattern: /\bOKAL\b|PARTICLE ?BOARD|\bMFC\b/, canonicalUrl: "https://bathanh.com.vn/portfolio/vanokal", label: "OKAL/MFC", recordIds: ["ba-thanh:family:van-okal-mfc"] },
+  { pattern: /CHI (?:VIEN|DAN CANH)|EDGE ?BANDING|NEP.{0,20}\bPVC\b/, canonicalUrl: "https://bathanh.com.vn/portfolio/chi-vien-veneer-pvc", label: "chỉ dán cạnh", recordIds: ["ba-thanh:family:chi-dan-canh-veneer-pvc"] },
+  { pattern: /DONGWHA|VAN SAN|FLOORING/, canonicalUrl: "https://bathanh.com.vn/catalogue-van-san-dongwha", label: "ván sàn", recordIds: ["ba-thanh:family:van-san-dongwha-natus", "ba-thanh:family:van-san-dongwha-sanus"] },
+  { pattern: /VAN.{0,20}(?:PHU )?VENEER|VENEER.{0,20}(?:BOARD|PANEL)/, canonicalUrl: "https://bathanh.com.vn/portfolio/van-phu-veneer", label: "ván phủ Veneer", recordIds: ["ba-thanh:family:van-phu-veneer"] },
+  { pattern: /VAN.{0,20}PHU GIAY|PAPER.{0,20}(?:FACED|COATED).{0,20}(?:BOARD|PANEL)/, canonicalUrl: "https://bathanh.com.vn/portfolio/van-phu-giay-melamine", label: "ván phủ giấy", recordIds: ["ba-thanh:family:van-phu-giay"] },
+  { pattern: /VAN.{0,20}PHU MELAMINE|MELAMINE.{0,20}(?:FACED|COATED).{0,20}(?:BOARD|PANEL)/, canonicalUrl: "https://bathanh.com.vn/portfolio/van-phu-melamine", label: "ván phủ Melamine", recordIds: ["ba-thanh:family:van-phu-melamine"] },
+];
+
+function contentFamilyEvidence(html: string) {
+  const primary = primaryPageLabel(html);
+  const primaryMatches = contentFamilyRules.filter((rule) => rule.pattern.test(primary));
+  if (primaryMatches.length) return primaryMatches;
+  const text = foldedPageText(html);
+  const productCue = /\b(?:VAN (?:MDF|HDF|GO|PHU|OKAL|MFC|SAN)|BOARD|PANEL|TAM (?:MDF|HDF|GO|PHU|OKAL|MFC)|SAN PHAM|PRODUCT|QUY CACH|THICKNESS|DO DAY|TY TRONG|DENSITY|COT VAN|CORE)\b/.test(text);
+  if (!productCue) return [];
+  return contentFamilyRules.filter((rule) => rule.pattern.test(text));
+}
+
 export function classifyBaThanhPage(options: {
   url: string;
   html: string;
   status: number;
   knownProductSources: Map<string, string>;
   discoveredAt: string;
-}): { classification: BaThanhSourceClassification; extraMelamine?: BaThanhFullSourceItem } {
+}): { classification: BaThanhSourceClassification; extraMelamine?: BaThanhFullSourceItem; extraLaminate?: BaThanhFullSourceItem } {
   const url = new URL(options.url).toString();
   const pathname = new URL(url).pathname.replace(/\/$/, "") || "/";
   const checksum = createHash("sha256").update(options.html).digest("hex");
@@ -95,15 +148,6 @@ export function classifyBaThanhPage(options: {
   if (family) return { classification: { outcome: "imported", reason: "Fetched official product-family source page.", canonicalUrl: family.sourceUrl, evidence } };
   const document = BA_THANH_DOCUMENT_SOURCES.find((source) => new URL(source.sourceUrl).toString() === url);
   if (document) return { classification: { outcome: "imported", reason: "Fetched official catalogue document page.", canonicalUrl: document.sourceUrl, evidence } };
-  const collections: Record<string, BaThanhSourceClassification["recordGroup"]> = {
-    "/": "all",
-    "/san-pham": "all",
-    "/portfolio": "families",
-    "/map-ma-melamine": "melamine",
-    "/map-mau-laminate": "laminate",
-  };
-  if (collections[pathname]) return { classification: { outcome: "imported", reason: "Fetched official catalogue collection page.", recordGroup: collections[pathname], evidence } };
-
   const expectedCode = routeCode(url);
   if (expectedCode) {
     const parsed = recognizeBaThanhDetail(options.html, { expectedCode, sourceUrl: url });
@@ -113,14 +157,18 @@ export function classifyBaThanhPage(options: {
         return { classification: { outcome: "duplicate", reason: "Fetched product page resolves to a code already represented by its canonical source page.", canonicalUrl: canonical, recordCode: expectedCode, evidence } };
       }
       const normalized = normalizeSupplierCode(expectedCode);
+      const materialText = foldedPageText(options.html);
+      const materialType = /\bLAMINATE\b|LAMINATE.{0,20}\bWAY\b/.test(materialText) ? "laminate" as const : "melamine" as const;
+      const extraKey = materialType === "laminate" ? "extraLaminate" : "extraMelamine";
       return {
-        classification: { outcome: "imported", reason: "Fetched page exposes a verified public Melamine product code.", recordCode: expectedCode, evidence },
+        classification: { outcome: "imported", reason: `Fetched page exposes a verified public ${materialType === "laminate" ? "WAY Laminate" : "Melamine"} product code.`, recordCode: expectedCode, evidence },
         ...(!canonical ? {
-          extraMelamine: {
+          [extraKey]: {
+            materialType,
             sourceUrl: url,
             sourceImageUrl: parsed.images[0],
             category: "public-product-page",
-            sourceCategoryLabel: "Sản phẩm Melamine công khai",
+            sourceCategoryLabel: materialType === "laminate" ? "Sản phẩm Laminate WAY công khai" : "Sản phẩm Melamine công khai",
             codeRaw: expectedCode,
             codeNormalized: expectedCode,
             displayName: normalized.display,
@@ -136,6 +184,43 @@ export function classifyBaThanhPage(options: {
         } : {}),
       };
     }
+  }
+
+  const primaryLabel = primaryPageLabel(options.html);
+  if (/\b(?:LIEN HE|CONTACT|COMPANY|ABOUT|GIOI THIEU|CHINH SACH|POLICY|THANH TOAN|PAYMENT|DOI TRA|RETURN|NHA MAY|FACTORY|TIN TUC|NEWS|BLOG|DAI LY|AGENT|DICH VU|SERVICE)\b/.test(primaryLabel)) {
+    return {
+      classification: {
+        outcome: "non-product",
+        reason: `Fetched page primary heading identifies corporate or service content (${primaryLabel || "untitled"}); embedded product navigation is not treated as catalogue identity.`,
+        evidence,
+      },
+    };
+  }
+
+  const familyEvidence = contentFamilyEvidence(options.html);
+  const folded = foldedPageText(options.html);
+  const codeCount = new Set([...folded.matchAll(/\b(?:BTSC|BTS|BT|SC|W|P|S|F)[-_ ]?\d{1,4}[A-Z]{0,4}\b/g)]
+    .map((match) => normalizeSupplierCode(match[0]).normalized)).size;
+  if (pathname === "/map-ma-melamine" && /\bMELAMINE\b/.test(folded) && codeCount > 1) {
+    return { classification: { outcome: "imported", reason: "Fetched collection contains multiple verified Melamine codes.", recordGroup: "melamine", evidence } };
+  }
+  if (pathname === "/map-mau-laminate" && /\bLAMINATE\b/.test(folded) && codeCount > 1) {
+    return { classification: { outcome: "imported", reason: "Fetched collection contains multiple verified WAY Laminate codes.", recordGroup: "laminate", evidence } };
+  }
+  const collectionCue = /\b(?:DANH MUC|CAC DONG SAN PHAM|PRODUCT CATEGORIES|COLLECTION|CATALOGUE)\b/.test(folded);
+  if (familyEvidence.length > 1) {
+    return {
+      classification: {
+        outcome: collectionCue || pathname === "/" ? "imported" : "duplicate",
+        reason: `Fetched code-less page contains ${collectionCue || pathname === "/" ? "collection" : "comparison"} evidence for ${familyEvidence.map((item) => item.label).join(", ")}.`,
+        canonicalUrls: familyEvidence.map((item) => item.canonicalUrl),
+        recordIds: familyEvidence.flatMap((item) => item.recordIds),
+        evidence,
+      },
+    };
+  }
+  if (familyEvidence.length) {
+    return { classification: { outcome: "duplicate", reason: `Fetched code-less page contains product-family evidence for ${familyEvidence[0].label}.`, canonicalUrl: familyEvidence[0].canonicalUrl, recordIds: familyEvidence[0].recordIds, evidence } };
   }
 
   return {
@@ -170,7 +255,7 @@ export async function crawlBaThanhFull(options: { refresh?: boolean } = {}) {
   ]));
   const productDetailsByUrl = new Map([...melamineDetails, ...laminateDetails].map((item) => [new URL(item.sourceUrl).toString(), item]));
   const discovered = fullDiscovery.discovered as BaThanhDiscoveredSourceUrl[];
-  type PageResult = BaThanhDiscoveredSourceUrl & { extraMelamine?: BaThanhFullSourceItem };
+  type PageResult = BaThanhDiscoveredSourceUrl & { extraMelamine?: BaThanhFullSourceItem; extraLaminate?: BaThanhFullSourceItem };
   const pageResults = await mapWithConcurrency<BaThanhDiscoveredSourceUrl, PageResult>(discovered, CONCURRENCY, async (item) => {
     if (item.classification?.evidence.kind === "infrastructure") return item;
     const url = new URL(item.url);
@@ -199,7 +284,14 @@ export async function crawlBaThanhFull(options: { refresh?: boolean } = {}) {
         validateUrl: (candidate) => assertRobotsAllowed(robots, USER_AGENT, candidate),
       });
       const result = classifyBaThanhPage({ url: url.toString(), html, status: 200, knownProductSources, discoveredAt: fullDiscovery.discoveredAt });
-      return { ...item, status: 200, checksum: result.classification.evidence.checksum, classification: result.classification, extraMelamine: result.extraMelamine };
+      return {
+        ...item,
+        status: 200,
+        checksum: result.classification.evidence.checksum,
+        classification: result.classification,
+        extraMelamine: result.extraMelamine,
+        extraLaminate: result.extraLaminate,
+      };
     } catch (error) {
       return {
         ...item,
@@ -216,15 +308,23 @@ export async function crawlBaThanhFull(options: { refresh?: boolean } = {}) {
     .map((item) => item.extraMelamine as BaThanhFullSourceItem | undefined)
     .filter((item): item is BaThanhFullSourceItem => Boolean(item));
   const existingCodes = new Set(melamineDetails.map((item) => item.codeNormalized));
-  const uniqueExtra = extraMelamine.filter((item, index, all) =>
+  const uniqueExtraMelamine = extraMelamine.filter((item, index, all) =>
     !existingCodes.has(item.codeNormalized) && all.findIndex((candidate) => candidate.codeNormalized === item.codeNormalized) === index);
-  const allMelamineDetails = [...melamineDetails, ...uniqueExtra];
-  for (const extra of uniqueExtra) knownProductSources.set(extra.codeNormalized, extra.sourceUrl);
+  const extraLaminate = pageResults
+    .map((item) => item.extraLaminate as BaThanhFullSourceItem | undefined)
+    .filter((item): item is BaThanhFullSourceItem => Boolean(item));
+  const existingLaminateCodes = new Set(laminateDetails.map((item) => item.codeNormalized));
+  const uniqueExtraLaminate = extraLaminate.filter((item, index, all) =>
+    !existingLaminateCodes.has(item.codeNormalized) && all.findIndex((candidate) => candidate.codeNormalized === item.codeNormalized) === index);
+  const allMelamineDetails = [...melamineDetails, ...uniqueExtraMelamine];
+  const allLaminateDetails = [...laminateDetails, ...uniqueExtraLaminate];
+  for (const extra of [...uniqueExtraMelamine, ...uniqueExtraLaminate]) knownProductSources.set(extra.codeNormalized, extra.sourceUrl);
 
   fullDiscovery.crawledAt = new Date().toISOString();
   fullDiscovery.discovered = pageResults.map((item) => {
     const discoveredItem = { ...item };
     delete discoveredItem.extraMelamine;
+    delete discoveredItem.extraLaminate;
     return discoveredItem;
   });
   fullDiscovery.melamineCrawl = {
@@ -236,15 +336,17 @@ export async function crawlBaThanhFull(options: { refresh?: boolean } = {}) {
     failed: melamineDetails.filter((item) => item.status === "FAILED").length,
   };
   fullDiscovery.laminateCrawl = {
-    total: laminateDetails.length,
-    successful: laminateDetails.filter((item) => item.status === "PARSED").length,
+    total: allLaminateDetails.length,
+    successful: allLaminateDetails.filter((item) => item.status === "PARSED").length,
+    discoveredOutsideMap: allLaminateDetails.filter((item) =>
+      !(fullDiscovery.laminateBaselineCodes as string[] | undefined)?.includes(item.codeNormalized)).length,
     rejected: laminateDetails.filter((item) => item.status === "REJECTED").length,
     failed: laminateDetails.filter((item) => item.status === "FAILED").length,
   };
   await fs.writeFile(path.join(IMPORT_DIR, "discovered-codes.json"), `${JSON.stringify(allMelamineDetails, null, 2)}\n`);
-  await fs.writeFile(path.join(IMPORT_DIR, "discovered-laminate-codes.json"), `${JSON.stringify(laminateDetails, null, 2)}\n`);
+  await fs.writeFile(path.join(IMPORT_DIR, "discovered-laminate-codes.json"), `${JSON.stringify(allLaminateDetails, null, 2)}\n`);
   await fs.writeFile(fullDiscoveryPath, `${JSON.stringify(fullDiscovery, null, 2)}\n`);
-  return { fullDiscovery, melamine: allMelamineDetails, details: laminateDetails };
+  return { fullDiscovery, melamine: allMelamineDetails, details: allLaminateDetails };
 }
 
 if (process.argv[1]?.endsWith("crawl-full.ts")) {
