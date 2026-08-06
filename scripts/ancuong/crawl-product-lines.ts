@@ -94,7 +94,15 @@ export function buildProductLineFamilyRecords(pages: ParsedProductLinePage[]): S
       seoStatus: "NEEDS_ENRICHMENT",
     });
   }
-  return records.sort((left, right) => left.name.localeCompare(right.name));
+  const slugCounts = new Map<string, number>();
+  for (const record of records) slugCounts.set(record.slug, (slugCounts.get(record.slug) ?? 0) + 1);
+  return records
+    .map((record) => {
+      if ((slugCounts.get(record.slug) ?? 0) < 2) return record;
+      const sourceSuffix = new URL(record.sourceUrls[0]).pathname.split("/").filter(Boolean).at(-1)?.replace(/\.html$/i, "") ?? record.sourceChecksum.slice(0, 8);
+      return { ...record, slug: `${record.slug}-${slug(sourceSuffix)}` };
+    })
+    .sort((left, right) => left.name.localeCompare(right.name) || left.slug.localeCompare(right.slug));
 }
 
 export function enrichProductLineFamilyRecords(
