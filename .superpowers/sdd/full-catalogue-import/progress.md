@@ -27,3 +27,8 @@ Task 5: in progress
 Task 5: fix round 1 — reviewer found missing mandatory coverage matrix columns, non-executable/incomplete supplier runbook commands, and root-cause report rewrite without required headings/file:line evidence.
 Task 5: fix round 1 complete — commit 56133bd; scoped re-review PASS with no Critical/Important findings. Sample discovery/listing/detail/checkpoint paths are isolated; coverage matrix, executable runbook, and root-cause evidence are restored. Minor deferred: new-supplier onboarding is procedural because no generic fourth-supplier CLI exists.
 Task 5: complete — commits 874ea1d..56133bd; scoped review clean.
+Task 6: in progress
+Task 6 review follow-up: resolved the deferred empty-category UX finding with TDD in commit aefc1b7; supplier material options now derive from the selected supplier and the full suite increased to 414 tests.
+Task 6 verification: final code HEAD passed 414 Vitest tests, lint, app/Cloudflare typecheck, 635-page production build, links/sitemap/schema/output/media audits, 62 local Playwright tests, and 27 Cloudflare preview Playwright journeys.
+Task 6 delivery: branch pushed, draft PR #18 targets codex/main-sitewide-catalog-rollout, Cloudflare Pages branch preview smoke passed on all required routes. No main merge, production deployment, DNS change, paid service, or media-rights change.
+Task 6: complete — final code commit aefc1b7; preview https://codex-catalog-full-supplier.tungphat-i9i.pages.dev; PR https://github.com/nkhaduy/tungphat/pull/18.

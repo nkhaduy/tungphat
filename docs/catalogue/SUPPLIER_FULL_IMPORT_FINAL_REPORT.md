@@ -38,9 +38,20 @@ All rights remain `UNCONFIRMED`. This work does not assert complete original-med
 
 ## Verification Boundary
 
-Fresh verification passes Vitest (413 tests), Playwright (62 tests), lint, application/Cloudflare typecheck, production build, links, sitemap, supplier output audit, JSON-LD/canonical audit, media validation, deterministic search-index regeneration, secret checks, and diff checks. Mobile Lighthouse scores are 90/100/100/100 for the homepage, 90/100/100/100 for the catalogue hub, and 96/100/100/100 for the An Cường Melamine route (performance/accessibility/best practices/SEO).
+Fresh verification at the final code HEAD passes Vitest (414 tests), Playwright (62 tests), lint, application/Cloudflare typecheck, production build (635 static pages; 2,672 output files; 207,577,392 bytes), links, sitemap, supplier output audit, JSON-LD/canonical audit, media validation, deterministic search-index regeneration, secret checks, and diff checks. Mobile Lighthouse scores are 90/100/100/100 for the homepage, 90/100/100/100 for the catalogue hub, and 96/100/100/100 for the An Cường Melamine route (performance/accessibility/best practices/SEO).
 
 Detailed commands, outputs, and the initial stale-test/a11y findings corrected during verification are recorded in `.superpowers/sdd/full-catalogue-import/task-5-report.md`. Preview deployment, pushing, and production mutation are outside Task 5.
+
+## Delivery And Preview
+
+- Worktree: `/Users/khaduy/Downloads/tungphat-catalog-full-supplier-import`.
+- Branch: `codex/catalog-full-supplier-import`.
+- Base: `98be2e84d4c8d019d04464784fd05048b7bd239d`.
+- Final code commit: `aefc1b7`.
+- Draft PR: `https://github.com/nkhaduy/tungphat/pull/18`, targeting `codex/main-sitewide-catalog-rollout`.
+- Cloudflare Pages branch preview: `https://codex-catalog-full-supplier.tungphat-i9i.pages.dev`.
+- Preview smoke: required routes returned HTTP 200; 27 external Playwright supplier journeys passed, including exact-code search, supplier/material filters, mobile/zoom, noindex, images, and Zalo CTA behavior.
+- Production boundary: no merge to `main`, no production catalogue deploy, no DNS mutation, no paid service, and media rights remain `UNCONFIRMED`.
 
 ## Residual Concerns
 
