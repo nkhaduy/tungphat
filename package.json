@@ -75,7 +75,10 @@
     "catalog:suppliers:validate": "npm run catalog:thanh-thuy:validate && npm run catalog:ba-thanh:validate && npm run catalog:ancuong:validate",
     "catalog:suppliers:test": "vitest run supplier thanh-thuy ba-thanh ancuong",
     "catalog:suppliers:audit": "npm run catalog:thanh-thuy:audit-duplication && npm run catalog:ba-thanh:audit && npm run catalog:ancuong:report",
-    "catalog:suppliers:audit:output": "tsx scripts/catalog-suppliers/output-audit.ts"
+    "catalog:suppliers:audit:output": "tsx scripts/catalog-suppliers/output-audit.ts",
+    "catalog:suppliers:media": "tsx scripts/catalog-suppliers/media-provenance.ts",
+    "catalog:suppliers:media:offline": "tsx scripts/catalog-suppliers/media-provenance.ts --offline",
+    "catalog:suppliers:media:validate": "tsx scripts/catalog-suppliers/media-provenance.ts --validate-only"
   },
   "dependencies": {
     "framer-motion": "^12.42.2",

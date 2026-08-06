@@ -4,6 +4,7 @@ node_modules/
 .seo-cache/
 .cache/thanh-thuy/
 .cache/ba-thanh/
+.cache/supplier-media/
 out/
 .wrangler/
 .dev.vars
