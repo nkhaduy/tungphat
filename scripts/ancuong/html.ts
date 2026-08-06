@@ -22,6 +22,20 @@ type ProductDetailInput = {
 
 export type ParsedProductDetail = RawProductDetail & { sourceContent: SourceDescription[] };
 
+export type ParsedProductLinePage = {
+  sourceUrl: string;
+  sourceHash: string;
+  locale: "vi" | "en" | "unknown";
+  alternateViUrl?: string;
+  alternateEnUrl?: string;
+  name: string;
+  category: string;
+  features: string[];
+  standards: string[];
+  dimensionThicknessMatrix: DimensionThickness[];
+  imageUrls: string[];
+};
+
 function decodeHtml(value: string): string {
   return value
     .replace(/&#(x[\da-f]+|\d+);/gi, (_, code: string) => String.fromCodePoint(Number(code.toLowerCase().startsWith("x") ? parseInt(code.slice(1), 16) : code)))
@@ -117,7 +131,7 @@ function optionMap(html: string): Map<string, { facet: string; value: string }> 
 
 function categoryFromUrl(sourceUrl: string, html: string): { name: string; slug: string } {
   const pathname = new URL(sourceUrl).pathname;
-  const isDetail = /\/\d+\.html$/i.test(pathname);
+  const isDetail = /\/\d+\.html$/i.test(pathname) || /class=["'][^"']*title-info/i.test(html);
   const pathSegments = pathname.split("/").filter(Boolean);
   const sourceSlug = (isDetail ? pathSegments.at(-2) : pathSegments.at(-1))?.replace(/\.html$/i, "");
   const breadcrumbBlock = first(html, "div", (opening) => /class=["'][^"']*breadcrumb/i.test(opening));
@@ -197,10 +211,49 @@ export function parseDimensionThicknessTable(html: string): DimensionThickness[]
     const dimensionCell = cells.find((cell) => /t-left/i.test(openTag(cell, "td")));
     if (!dimensionCell) continue;
     const dimension = normalizeDimension(text(dimensionCell));
+    if (/^(?:kíchthước|dimension)$/i.test(dimension)) continue;
     const available = cells.slice(cells.indexOf(dimensionCell) + 1).map(text);
     result.push({ dimension, thicknesses: thicknesses.filter((_, index) => /^o$/i.test(available[index] ?? "")) });
   }
   return result;
+}
+
+export function parseProductLinePage(html: string, sourceUrl: string, sourceHash: string): ParsedProductLinePage {
+  const alternates = elements(html, "link", (opening) => /rel=["']alternate["']/i.test(opening))
+    .map((item) => attrs(openTag(item, "link")));
+  const alternateViUrl = alternates.find((item) => /^vi(?:-|$)/i.test(item.hreflang ?? ""))?.href;
+  const alternateEnUrl = alternates.find((item) => /^en(?:-|$)/i.test(item.hreflang ?? ""))?.href;
+  const locale = sourceUrl === alternateViUrl ? "vi" : sourceUrl === alternateEnUrl ? "en" : "unknown";
+  const main = first(html, "main", (opening) => /id=["']product-page["']/i.test(opening)) || html;
+  const features: string[] = [];
+  const standards: string[] = [];
+  for (const group of elements(main, "div", (opening) => /class=["'][^"']*list-features/i.test(opening))) {
+    const heading = firstText(group, "h3");
+    const values = elements(group, "div", (opening) => /class=["'][^"']*features-item/i.test(opening))
+      .map((item) => attrs(openTag(item, "div"))["data-tip"] || text(item));
+    if (/tính năng|features/i.test(heading)) features.push(...values);
+    if (/tiêu chuẩn|standards/i.test(heading)) standards.push(...values);
+  }
+  const imageUrls = unique(elements(main, "img")
+    .map((item) => {
+      const imageAttrs = attrs(openTag(item, "img"));
+      return imageAttrs["data-src"] || imageAttrs.src || "";
+    })
+    .filter((url) => /\/pictures\/files\/products\/dong-san-pham\//i.test(url)));
+  const categorySlug = new URL(sourceUrl).pathname.split("/").filter(Boolean)[0] ?? "other";
+  return {
+    sourceUrl: canonicalUrl(sourceUrl),
+    sourceHash,
+    locale,
+    ...(alternateViUrl ? { alternateViUrl: canonicalUrl(alternateViUrl) } : {}),
+    ...(alternateEnUrl ? { alternateEnUrl: canonicalUrl(alternateEnUrl) } : {}),
+    name: firstText(main, "h1"),
+    category: categorySlug.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" "),
+    features: unique(features),
+    standards: unique(standards),
+    dimensionThicknessMatrix: parseDimensionThicknessTable(main),
+    imageUrls,
+  };
 }
 
 function relationFromCard(card: string, relationType: AnCuongProductRelation["relationType"]): AnCuongProductRelation | undefined {
@@ -262,7 +315,7 @@ export function parseProductDetail(html: string, input: ProductDetailInput): Par
   const sourceId = absoluteSourceId(input.sourceUrl) ?? "";
   const titleInfo = first(html, "div", (opening) => /class=["'][^"']*title-info/i.test(opening));
   const name = firstText(titleInfo, "h1") || firstText(html, "h1");
-  const productCode = text(titleInfo.match(/Mã\s*Sản\s*Phẩm[\s\S]{0,120}?<strong[^>]*>([\s\S]*?)<\/strong>/i)?.[1] ?? "");
+  const productCode = text(titleInfo.match(/(?:Mã\s*Sản\s*Phẩm|Product\s*Code)[\s\S]{0,120}?<strong[^>]*>([\s\S]*?)<\/strong>/i)?.[1] ?? "");
   const facets: Record<string, string[]> = {};
   const info = first(html, "div", (opening) => /class=["'][^"']*product-info/i.test(opening));
   for (const item of elements(info, "div", (opening) => /class=["'][^"']*des-item/i.test(opening))) {

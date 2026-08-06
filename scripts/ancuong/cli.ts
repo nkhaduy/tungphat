@@ -3,6 +3,8 @@ import type { CliOptions } from "./types";
 
 export type AnCuongCommand =
   | "discover"
+  | "crawl:non-numeric"
+  | "crawl:product-lines"
   | "crawl:listings"
   | "crawl:details"
   | "crawl:relations"
@@ -17,7 +19,7 @@ export type AnCuongCommand =
   | "test:live";
 
 const commands = new Set<AnCuongCommand>([
-  "discover", "crawl:listings", "crawl:details", "crawl:relations", "media", "normalize", "validate", "diff", "export", "report", "sample", "all", "test:live"
+  "discover", "crawl:non-numeric", "crawl:product-lines", "crawl:listings", "crawl:details", "crawl:relations", "media", "normalize", "validate", "diff", "export", "report", "sample", "all", "test:live"
 ]);
 
 export function parseCliArgs(args: string[]): { command: AnCuongCommand; options: CliOptions } {
@@ -58,6 +60,8 @@ type StepModule = { run?: (options: CliOptions) => Promise<unknown> | unknown };
 
 const stepModules: Partial<Record<AnCuongCommand, string>> = {
   discover: "./discover",
+  "crawl:non-numeric": "./crawl-non-numeric",
+  "crawl:product-lines": "./crawl-product-lines",
   "crawl:listings": "./crawl-listings",
   "crawl:details": "./crawl-details",
   "crawl:relations": "./crawl-relations",
@@ -70,7 +74,7 @@ const stepModules: Partial<Record<AnCuongCommand, string>> = {
 };
 
 export const PIPELINE_STEPS = [
-  "discover", "crawl:listings", "crawl:details", "crawl:relations", "normalize", "media", "validate", "diff", "export", "report"
+  "discover", "crawl:non-numeric", "crawl:product-lines", "crawl:listings", "crawl:details", "crawl:relations", "normalize", "media", "validate", "diff", "export", "report"
 ] as const;
 
 export async function runCommand(command: AnCuongCommand, options: CliOptions): Promise<void> {

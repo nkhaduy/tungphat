@@ -5,9 +5,12 @@ import { atomicWriteJson, readJsonIfExists } from "./stable-json";
 import { createCheckpointStore } from "./state";
 import type { CliOptions, DiscoveryManifest, ListingProduct } from "./types";
 import { mapConcurrent } from "./concurrency";
+import type { NonNumericProductAudit } from "./crawl-non-numeric";
+import { dirname, join } from "node:path";
 
 type ListingDependencies = {
   discoveryPath?: string;
+  nonNumericAuditPath?: string;
   outputPath?: string;
   statePath?: string;
   fetchText?: (url: string) => Promise<{ body: string; contentHash?: string }>;
@@ -36,6 +39,9 @@ function syntheticListing(sourceUrl: string): ListingProduct | undefined {
 
 export async function run(options: CliOptions, dependencies: ListingDependencies = {}): Promise<ListingProduct[]> {
   const discoveryPath = dependencies.discoveryPath ?? `${paths.reports}/discovery-manifest.json`;
+  const nonNumericAuditPath = dependencies.nonNumericAuditPath ?? (dependencies.discoveryPath
+    ? join(dirname(discoveryPath), "non-numeric-product-audit.json")
+    : `${paths.reports}/non-numeric-product-audit.json`);
   const outputPath = dependencies.outputPath ?? `${paths.raw}/listings.json`;
   const statePath = dependencies.statePath ?? `${paths.state}/crawl-listings.json`;
   const manifest = await readJsonIfExists<DiscoveryManifest>(discoveryPath);
@@ -76,6 +82,8 @@ export async function run(options: CliOptions, dependencies: ListingDependencies
     products.push(...fetchedByCategory.flat());
   }
   products.push(...(manifest.sitemapProductUrls ?? []).map(syntheticListing).filter((product): product is ListingProduct => Boolean(product)));
+  const nonNumericAudit = await readJsonIfExists<NonNumericProductAudit>(nonNumericAuditPath);
+  products.push(...(nonNumericAudit?.listings ?? []));
 
   const seen = new Set<string>();
   const duplicateUrls: string[] = [];

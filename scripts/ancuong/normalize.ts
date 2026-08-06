@@ -5,6 +5,10 @@ import type { CliOptions } from "./types";
 import { paths } from "./config";
 import { atomicWriteJson, readJsonIfExists, stableStringify } from "./stable-json";
 import { join } from "node:path";
+import { buildRelationOnlySkuRecords } from "./relation-only";
+import type { RelationRecord } from "./crawl-relations";
+import { enrichProductLineFamilyRecords } from "./crawl-product-lines";
+import type { SupplierFamilyRecord } from "../../lib/catalog/full-import/types";
 
 export function normalizeProductCode(value: string): string {
   return value
@@ -20,6 +24,44 @@ export function sha256(value: string | Uint8Array): string {
 
 function unique(values: string[]): string[] {
   return [...new Set(values.map((value) => value.trim()).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+}
+
+export type RejectedProductDetail = {
+  sourceUrl: string;
+  sourceId?: string;
+  sourceHash: string;
+  outcome: "invalid";
+  reason: string;
+};
+
+export function partitionProductDetails(details: RawProductDetail[]): {
+  accepted: RawProductDetail[];
+  rejected: RejectedProductDetail[];
+} {
+  const accepted: RawProductDetail[] = [];
+  const rejected: RejectedProductDetail[] = [];
+  for (const detail of details) {
+    const custom404 = detail.name.trim() === "404" &&
+      !detail.productCode.trim() &&
+      !detail.primaryImageUrl &&
+      detail.galleryUrls.length === 0 &&
+      Object.keys(detail.facets).length === 0;
+    if (custom404) {
+      rejected.push({
+        sourceUrl: detail.sourceUrl,
+        ...(detail.sourceId ? { sourceId: detail.sourceId } : {}),
+        sourceHash: detail.sourceHash,
+        outcome: "invalid",
+        reason: "The sitemap URL resolved to the supplier custom 404 page",
+      });
+      continue;
+    }
+    accepted.push(detail);
+  }
+  return {
+    accepted: accepted.sort((left, right) => left.sourceUrl.localeCompare(right.sourceUrl)),
+    rejected: rejected.sort((left, right) => left.sourceUrl.localeCompare(right.sourceUrl)),
+  };
 }
 
 function facet(detail: RawProductDetail, ...labels: string[]): string[] {
@@ -210,16 +252,31 @@ export async function run(options: CliOptions): Promise<void> {
   if (!details) throw new Error(`Missing raw product details: ${join(paths.raw, "details.json")}`);
   const discovery = await readJsonIfExists<DiscoveryManifest>(join(paths.reports, "discovery-manifest.json"));
   const listings = await readJsonIfExists<ListingProduct[]>(join(paths.raw, "listings.json"));
-  const normalized = details.map(normalizeProduct);
+  const relations = (await readJsonIfExists<RelationRecord[]>(join(paths.normalized, "relations.json"))) ?? [];
+  const productFamilies = (await readJsonIfExists<SupplierFamilyRecord[]>(join(paths.normalized, "product-families.json"))) ?? [];
+  const partitioned = partitionProductDetails(details);
+  const normalized = partitioned.accepted.map(normalizeProduct);
   const deduped = dedupeProducts(normalized);
   const previous = await readJsonIfExists<AnCuongProduct[]>(join(paths.normalized, "catalogue.json"));
   const stableProducts = stabilizeUnchangedProducts(deduped.products, previous ?? []);
+  const importedAt = partitioned.accepted.map((detail) => detail.fetchedAt).sort().at(-1) ?? new Date(0).toISOString();
+  const relationOnlyProducts = buildRelationOnlySkuRecords(
+    relations,
+    partitioned.rejected,
+    new Set(stableProducts.map((product) => product.sourceId).filter((value): value is string => Boolean(value))),
+    importedAt,
+  );
+  const enrichedProductFamilies = enrichProductLineFamilyRecords(productFamilies, partitioned.accepted);
   if (options.dryRun) {
-    if (options.verbose) console.log(`Would normalize ${stableProducts.length} products (${deduped.duplicates.length} duplicates)`);
+    if (options.verbose) console.log(`Would normalize ${stableProducts.length} detail products and ${relationOnlyProducts.length} relation-only products, reject ${partitioned.rejected.length} invalid source pages (${deduped.duplicates.length} duplicates)`);
     return;
   }
+  const acceptedUrls = new Set(partitioned.accepted.map((detail) => detail.sourceUrl));
   await atomicWriteJson(join(paths.normalized, "catalogue.json"), stableProducts);
-  await atomicWriteJson(join(paths.normalized, "categories.json"), buildNormalizedCategories(discovery?.categories ?? [], listings ?? []));
+  await atomicWriteJson(join(paths.normalized, "relation-only-products.json"), relationOnlyProducts);
+  await atomicWriteJson(join(paths.normalized, "product-families.json"), enrichedProductFamilies);
+  await atomicWriteJson(join(paths.normalized, "categories.json"), buildNormalizedCategories(discovery?.categories ?? [], (listings ?? []).filter((listing) => acceptedUrls.has(listing.sourceUrl))));
   await atomicWriteJson(join(paths.normalized, "taxonomy.json"), buildTaxonomy(stableProducts));
   await atomicWriteJson(join(paths.reports, "duplicate-report.json"), deduped.duplicates);
+  await atomicWriteJson(join(paths.reports, "detail-rejections.json"), partitioned.rejected);
 }
