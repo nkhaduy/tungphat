@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-06T16:50:22.910Z",
+  "generatedAt": "2026-08-06T17:11:54.397Z",
   "dryRun": false,
   "previousRecords": 305,
   "melamineSkus": 259,
@@ -35,6 +35,6 @@
   "coveragePercentage": 100,
   "accountedSourceUrls": 717,
   "totalSourceUrls": 717,
-  "manifestChecksum": "55e9428eb8a864f6ee64dec33dc53f55dce8513bd054d3494a36aaedf3467519",
+  "manifestChecksum": "fd7c1f4ef5e634f60f82966eba2c620734162417dc3204ed8c8d824b4b087998",
   "recordChecksum": "2996f948b5ca740e8f1fc5fe75780ae35fc9a992b8bbd31b63609001af2774dc"
 }

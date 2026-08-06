@@ -189,3 +189,51 @@ npx vitest run tests/ba-thanh-catalog.test.ts tests/ba-thanh-full-import.test.ts
 - Full TypeScript checks: passed for the application and Cloudflare configuration.
 - Legacy validator: 233/233 retained records passed.
 - Full validator: 305 records, 717/717 accounted URLs, 100% coverage passed.
+
+## Fix Round 2
+
+### Findings Addressed
+
+1. Content classification now uses fetched primary headings/titles and material-family evidence instead of relying only on hardcoded routes. Code-less pages emit exact family record IDs; multi-family collection/comparison pages reference only the families evidenced in their content. The homepage is no longer associated with every catalogue record: its current evidence accounts only the 11 matching family records, with no SKU or document IDs. Corporate/contact/service headings take precedence over embedded product navigation and remain evidence-backed `non-product`.
+2. Newly discovered coded pages retain `materialType`. A verified `LAMINATE WAY` page produces `extraLaminate`, is appended to the Laminate source snapshot, and is guarded from the Melamine builder. The reciprocal guard prevents Melamine sources from entering Laminate records.
+
+### TDD RED Evidence
+
+- `npx vitest run tests/ba-thanh-full-import.test.ts -t "HDF|WAY Laminate|corporate page"`
+  - Unknown code-less HDF content returned `non-product` instead of the HDF family.
+  - Synthetic `LAMINATE WAY W9999` produced no `extraLaminate` because it was routed as extra Melamine.
+- `npx vitest run tests/ba-thanh-full-import.test.ts -t "corporate page"`
+  - A contact page with embedded material navigation returned `imported` instead of evidence-backed `non-product`.
+- `npx vitest run tests/ba-thanh-full-import.test.ts -t "code-less HDF"`
+  - HDF/MDF comparison content inherited unrelated navigation families; the focused fixture received six family identities instead of HDF and MDF only.
+  - A material collection had no explicit family record IDs and could indirectly pull the Dongwha document record through a shared canonical URL.
+
+### TDD GREEN Evidence
+
+- Focused Ba Thanh suite: 6 files, 77/77 tests passed.
+- Full repository lint: passed with zero warnings.
+- Full TypeScript checks: passed for the application and Cloudflare configuration.
+- Legacy validator: 233 retained Melamine records passed.
+- Full validator: 305 records and 717/717 accounted URLs passed at 100% coverage.
+- Second real import: `created=0`, `updated=0`, `unchanged=305`, `removed=0`, `duplicates=0`.
+
+### Evidence Results
+
+- Homepage: 11 evidenced family record IDs; 0 SKU IDs; 0 document IDs.
+- HDF/MDF comparison page: exactly `ba-thanh:family:van-hdf` and `ba-thanh:family:van-mdf`.
+- Contact page: `non-product` with HTTP status and checksum evidence, no catalogue record IDs.
+- Manifest outcomes: 665 imported, 7 duplicate, 45 evidence-backed non-product, 0 blocked, 0 unaccounted.
+- Melamine source snapshot: 259 records, all `materialType=melamine`.
+- Laminate source snapshot: 33 records, all `materialType=laminate`; no new live code outside the current map in this crawl.
+- Regression `W9999`: builds as `WAY Laminate`, never Melamine.
+- Media rights remain `UNCONFIRMED`; no production mutation.
+
+### Fix Round Checksums
+
+- Logical manifest checksum: `fd7c1f4ef5e634f60f82966eba2c620734162417dc3204ed8c8d824b4b087998`.
+- Logical record checksum: `2996f948b5ca740e8f1fc5fe75780ae35fc9a992b8bbd31b63609001af2774dc`.
+- `discovered-codes.json`: `aecab0e35c73215e2e15126099f6403e71cd07ad322bddd48f4a405430688a22`.
+- `discovered-laminate-codes.json`: `7818361f9344950841c542dd413eb154ee41071fceab44156c068831ac6e4cbd`.
+- `full-discovery.json`: `80dfbba1996d00593d45be36c412deac1853d121fcb5ea10d362f8d324458c65`.
+- `full-records.json`: `6d5f1a69b31c1e4d72c0b88bcaae7f10c5147200486fd3e416064a357c6769f9`.
+- `full-source-manifest.json`: `498e892025cb252ec9512dea5e563e20fd73dee4f40533b70581007de614b32a`.

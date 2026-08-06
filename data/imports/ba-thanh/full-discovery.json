@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "supplier": "ba-thanh",
-  "discoveredAt": "2026-08-06T16:50:22.910Z",
+  "discoveredAt": "2026-08-06T17:11:54.397Z",
   "robotsUrl": "https://bathanh.com.vn/robots.txt",
   "sitemapIndexUrl": "https://bathanh.com.vn/sitemap_index.xml",
   "childSitemaps": [
@@ -1024,6 +1024,41 @@
     "van-vai": 5
   },
   "laminateIndexUrl": "https://bathanh.com.vn/map-mau-laminate",
+  "laminateBaselineCodes": [
+    "F0022",
+    "F3292",
+    "F3293",
+    "F3294",
+    "F3295",
+    "P1010",
+    "P1150",
+    "P2001",
+    "P2002",
+    "P2052",
+    "P2061",
+    "P2660",
+    "P3190",
+    "P4600",
+    "P4640",
+    "P7700",
+    "P7740",
+    "P7790",
+    "P9120",
+    "P9340",
+    "P9660",
+    "S4600",
+    "S7382",
+    "S7402",
+    "S7403",
+    "W0304",
+    "W0502",
+    "W0504",
+    "W5220",
+    "W7020",
+    "W7393",
+    "W7412",
+    "W9630"
+  ],
   "laminateCategories": [
     {
       "slug": "van-go",
@@ -1115,7 +1150,7 @@
       "checksum": "6eeefb69219941ef6305110e32f07b6237220cae89c0479dcecb488a08bcc010",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (GIOI THIEU QUI CACH VAN MDF); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1153,8 +1188,31 @@
       "status": 200,
       "checksum": "440bb9fe1edbdf766d4c5e74018988d506b2cfd1543d6db9bfd24035893d55e2",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1172,8 +1230,31 @@
       "status": 200,
       "checksum": "8af99137e3e51f6542be9507e6bdc4f9ec14fc3897043f020ca87fda4b5a1c12",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1211,8 +1292,32 @@
       "checksum": "8e32a475a4bbbda4a803e9b8cd8bd48fee9ca74b4925ab47273114d6e00adc46",
       "classification": {
         "outcome": "imported",
-        "reason": "Fetched official catalogue collection page.",
-        "recordGroup": "all",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, chỉ dán cạnh, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/portfolio/chi-vien-veneer-pvc",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:chi-dan-canh-veneer-pvc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1230,8 +1335,31 @@
       "status": 200,
       "checksum": "edda72f1b8beb65e5ea9e05be19ede5384f3877d27cc634f816fa1c2e32404b8",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1250,8 +1378,30 @@
       "checksum": "bec1ce180218638a54ed3c02483477da736d8f7e59432a8b58bb7f196272f7ec",
       "classification": {
         "outcome": "imported",
-        "reason": "Fetched official catalogue collection page.",
-        "recordGroup": "all",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1270,7 +1420,7 @@
       "checksum": "01c8c27477090f56e1213138d14e8650f22b23d195da2689559c5f5f0a9c07f5",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (DICH VU - BA THANH GROUP-MANG GIA TRI THUC ĐEN NGUOI TIEU DUNG !); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1288,8 +1438,31 @@
       "status": 200,
       "checksum": "13c8842a07060b2c5b780cca6fbe452b3f025a1065e188944f3b7c9adeef97ac",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1307,8 +1480,21 @@
       "status": 200,
       "checksum": "a0886d5543107a8ae96c8f6b3871112623ff4c0a875cefd81a1c670ab00c8c70",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF, gỗ ghép, OKAL/MFC, ván sàn.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1327,7 +1513,7 @@
       "checksum": "0faf166139966f500198a3f6b918bad64af713c6c276ee77b2dc383633c9b4af",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (AGENT POLICY); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1346,7 +1532,7 @@
       "checksum": "b2019468538a1e9dfdabbd9322bdea511a3610d21201e053fe81c0d49c4ed151",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (COMPANY); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1383,8 +1569,31 @@
       "status": 200,
       "checksum": "b2e0fc4ab68051187a1ca124cf4f3a4c9b14ac9bbaf4e41601791e78626bad03",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1422,7 +1631,7 @@
       "checksum": "9a259ff1d632eaa28ac76fab2d8c3ecd0a420b1b9760e6c7ca05bc623695f7e4",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (ABOUT); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1460,7 +1669,7 @@
       "checksum": "5db2c8892ee3a029b0c4ce096dc5edff1994ca8c76c024a3dd4ac62b7eaf1a23",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (SERVICE); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1478,8 +1687,24 @@
       "status": 200,
       "checksum": "e9be4e34c6d3d667a27ee65a514f55c0448602dd0ad96a03fb6e6ca815b4e734",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "duplicate",
+        "reason": "Fetched code-less page contains comparison evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván phủ Veneer.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-phu-veneer"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1517,7 +1742,7 @@
       "checksum": "35f1bae9309aa3cac44d816666aa97ae8d876d7e8fc07c892f2239ca5d8d47dd",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (PRODUCT RETURN); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1633,8 +1858,21 @@
       "status": 200,
       "checksum": "c1e7a049390fe9ccc04fd1ba50f2fea6a2ec26aa6464fd41d4131d70dc670781",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF, gỗ ghép, OKAL/MFC, ván sàn.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1652,8 +1890,21 @@
       "status": 200,
       "checksum": "3998e978c8b535922b4a41a0e8bb7b7bcfe62d50c868ae47cf583e2cf28f5c45",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF, gỗ ghép, OKAL/MFC, ván sàn.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1671,8 +1922,21 @@
       "status": 200,
       "checksum": "70a9cafad5950fe2aaaa2ff8973a7a1ae8dd7e52865a8dd71972a5221c5e7476",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF, gỗ ghép, OKAL/MFC, ván sàn.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1691,7 +1955,7 @@
       "checksum": "63fbbdd023c46c70af2f29a744c12df5d63cab8d220944b65c71371a7107f296",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (CONTACT); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1710,7 +1974,7 @@
       "checksum": "e13a496b54c4e549cc2e387163d8d2c508b893bbde24e16b58236a8817c39563",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (NHA MAY SAN XUAT); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1729,7 +1993,7 @@
       "checksum": "9fad16c97e538c03a86ea9054a4a260aaa6fafee4dfe264cfda57e4282b81f64",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (FACTORY); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1747,8 +2011,21 @@
       "status": 200,
       "checksum": "b050805c1fd569768ad1ce4970b36680b281de0adc2e05004656ba8a044f1cda",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF, gỗ ghép, OKAL/MFC, ván sàn.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1785,8 +2062,31 @@
       "status": 200,
       "checksum": "71810b6661aa2dc9087d93535ed9f3dd0e89a6a4096fbb5caaf9d3a69c7b1086",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1805,7 +2105,7 @@
       "checksum": "0b1265e9b849ca709973aab12c9ce8778d8663403b84f7145a74b13e90fa2582",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (PRODUCT NEWS); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1823,8 +2123,21 @@
       "status": 200,
       "checksum": "caa2fcf02fe6f90cdac92fe7fc8821c5c211dd59e24e885b137cef463fae1b7b",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF, gỗ ghép, OKAL/MFC, ván sàn.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1861,8 +2174,31 @@
       "status": 200,
       "checksum": "d2e30856a6eb2a65b1d4cad3bd98995b54cad350b2e476649a6ac6639c3207c5",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1880,8 +2216,31 @@
       "status": 200,
       "checksum": "5defa48dacd95d68def8646127eb5243ac460dfc4e97e487371efc3e37b75fef",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1900,7 +2259,7 @@
       "checksum": "039fb8acab536e48cc7a85787231b6c7888fb55874a88d5947c336cfa47aeb45",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (LIEN HE - BA THANH GROUP-MANG GIA TRI THUC ĐEN NGUOI TIEU DUNG !); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1978,8 +2337,31 @@
       "status": 200,
       "checksum": "2c5b82e4955acff1c3cf42475789c84cea2f6db7f14938d122170777d3b299b9",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -1997,8 +2379,31 @@
       "status": 200,
       "checksum": "63036a35428e7b5abadff4f055296f520f34c21263a8d7aeafea9b1220d66a21",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -2017,7 +2422,7 @@
       "checksum": "1defe63edb2f372e2c3b968986135ef18c95dea8caabaec651b10c87b2587d83",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (GIOI THIEU DM); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -2055,8 +2460,31 @@
       "status": 200,
       "checksum": "fabf16b55d4ae4d968289bb33b7d173806d26aa18d04d7d0ff80f6fe65faa6e9",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -2074,8 +2502,31 @@
       "status": 200,
       "checksum": "fdbabdba0211268cca4e92fb8b3f205dafe725755e694218b443eb6c19d2120e",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -2093,8 +2544,31 @@
       "status": 200,
       "checksum": "f4dc87784222edd926993b3fbbf5c037e02beaed218e1c88249ee6bcd53762af",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -2113,7 +2587,7 @@
       "checksum": "afafeee18d8c683f4cfceaa630de2dfa9780fe79a4ca435fd6e8614bc6396139",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (HINH THUC THANH TOAN); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -2132,7 +2606,7 @@
       "checksum": "c42555d0449e47efab1444190ac33bbaaad2b1e5b3fe25ff03f42f47dfc73799",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (CHINH SACH ĐAI LY); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -2150,8 +2624,31 @@
       "status": 200,
       "checksum": "bec8b2b26380562d6c40a5e551ee449435c9d685a80308f847de6bc20dca0592",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -2170,7 +2667,7 @@
       "checksum": "e0771c0a0b4a94baffaab21e902ad78e4bf98795d86835ddaf023f7d9c523885",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (THONG TIN THANH TOAN); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -2188,8 +2685,31 @@
       "status": 200,
       "checksum": "b84421388bc37f06105bb3464ff94cbb3d2063be583dbde7d88c95a266be3b20",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -2207,8 +2727,31 @@
       "status": 200,
       "checksum": "f65d5754096e9a26a51857365ec3bebe25329ca849570ac9ae9cc4f37d8bff76",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -2227,7 +2770,7 @@
       "checksum": "e94a81506d220a36281a81a26b66dd12329c8ae336e8a9f719b2eb8b587bfa8d",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (GIOI THIEU); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -6506,8 +7049,30 @@
       "checksum": "62f1c7fb02f4140af8337f06b9d28ea8f677585ca17d00d33804db6096c4b90d",
       "classification": {
         "outcome": "imported",
-        "reason": "Fetched official catalogue collection page.",
-        "recordGroup": "laminate",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -7546,7 +8111,7 @@
       "checksum": "1ebd5f8ad1deca798f8551b6459463e9f7b1d4fd16650e2cefe96459adac985b",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (VAN PHONG VA NHA MAY); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -7744,8 +8309,31 @@
       "status": 200,
       "checksum": "7a4d1f4480ff8449e15353a1aeb3e964bffad112d3b1461d86a5709351dc0201",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8163,8 +8751,31 @@
       "status": 200,
       "checksum": "36149fbdd5d0327df6c4c98e919c153ce84f1c7592d9d37ae904c059c677e919",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8183,8 +8794,30 @@
       "checksum": "387b0576368e3b9e2767fb1428c653c7b9dd4b6db019b2adad8391de004a1291",
       "classification": {
         "outcome": "imported",
-        "reason": "Fetched official catalogue collection page.",
-        "recordGroup": "melamine",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8202,8 +8835,31 @@
       "status": 200,
       "checksum": "622c66b62db2b52d111af9dc2211083c4545bc0ae7dceeaa51632509c6003aa7",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8298,7 +8954,7 @@
       "checksum": "2a2a33ba83688ee106719fa27f48e46655f0deeb5ffceb56bd865bb031270176",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (EN DICH VU GIOI THIEU BLOCK); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8317,7 +8973,7 @@
       "checksum": "fc69c5a44a127cbf37aef8abd4724befe64dbbc348f5acd3170d733d99a1d5cd",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (VN DICH VU – GIOI THIEU BLOCK NEW); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8335,8 +8991,31 @@
       "status": 200,
       "checksum": "436311bc9e8edd6049175ca7aaff0a979870a734084f8a7d527f53c22aa37f7b",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8354,8 +9033,31 @@
       "status": 200,
       "checksum": "0a27718670ff420e31abf3b72d37bbca3645ae2227841be409719582650d618f",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8373,8 +9075,31 @@
       "status": 200,
       "checksum": "8bf99f6500351c636759d26c1c39a1c7b2feac6bec6a50fa2dcdbc83286dbfd3",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8392,8 +9117,31 @@
       "status": 200,
       "checksum": "fcd5ba2b589f52f4b251a6947aa3b3a1b60f0d617184dcd0e55e34798877b7c8",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8412,7 +9160,7 @@
       "checksum": "cb6d85458f0950417a7830d5ddec2dc90b5a827dfc210114ac6b2943576bc1af",
       "classification": {
         "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "reason": "Fetched page primary heading identifies corporate or service content (VN DICH VU GIOI THIEU BLOCK); embedded product navigation is not treated as catalogue identity.",
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8430,8 +9178,31 @@
       "status": 200,
       "checksum": "9a4594364820f5ad4bed35c6fb5db24de76848c8d68669bea712c13763fe399f",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8469,8 +9240,30 @@
       "checksum": "983cac620df8f5f7748674caa4e4c1614172a18746d95e1bca38d9f4e6ea6555",
       "classification": {
         "outcome": "imported",
-        "reason": "Fetched official catalogue collection page.",
-        "recordGroup": "families",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8568,8 +9361,16 @@
       "status": 200,
       "checksum": "0c553531c0aea35d3a2954fa5b43c4bd9c3a0d5c0fc8b2c6bf7f8ac6ab2e0ed2",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for HDF, MDF.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8587,8 +9388,31 @@
       "status": 200,
       "checksum": "05d6f78e77831dbe39dc39f647c08bc350804614a204214ce000fc7348c64283",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8606,8 +9430,31 @@
       "status": 200,
       "checksum": "466c57a2411fe5fc6e88664e6461929605e5e47b4c8e77ea8c6b12997070b227",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8744,8 +9591,31 @@
       "status": 200,
       "checksum": "a974228d117b86e9ec3c59f5a55da70af000b3c6ac5fb3b1b56ab7b8cdf59417",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8763,8 +9633,31 @@
       "status": 200,
       "checksum": "0106e2d7840599e519db7a01dbfcd07f58ce2090ca83d6a31048ebf08e3f3823",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8782,8 +9675,31 @@
       "status": 200,
       "checksum": "8a59a27ca14baaeaf15618eab9805cae122dd349cef29bd8a07fbe800c101ce7",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8820,8 +9736,31 @@
       "status": 200,
       "checksum": "c2b67cc279a58e8007b7d45fbdfcc4007b35cccb760ad1252ec181d95513c397",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8839,8 +9778,31 @@
       "status": 200,
       "checksum": "35a1282f611f2e5f3d878c28aaf88021abb3518bc6e9a38cb2f71ddc40fb16ab",
       "classification": {
-        "outcome": "non-product",
-        "reason": "Fetched public HTML contains no verified product code, catalogue collection, document, or material-family signal.",
+        "outcome": "imported",
+        "reason": "Fetched code-less page contains collection evidence for MDF chống ẩm HMR, HDF, MDF, gỗ ghép, OKAL/MFC, ván sàn, ván phủ Veneer, ván phủ giấy, ván phủ Melamine.",
+        "canonicalUrls": [
+          "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+          "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+          "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+          "https://bathanh.com.vn/portfolio/van-go-ghep",
+          "https://bathanh.com.vn/portfolio/vanokal",
+          "https://bathanh.com.vn/catalogue-van-san-dongwha",
+          "https://bathanh.com.vn/portfolio/van-phu-veneer",
+          "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+          "https://bathanh.com.vn/portfolio/van-phu-melamine"
+        ],
+        "recordIds": [
+          "ba-thanh:family:van-mdf-chong-am-hmr",
+          "ba-thanh:family:van-hdf",
+          "ba-thanh:family:van-mdf",
+          "ba-thanh:family:van-go-ghep",
+          "ba-thanh:family:van-okal-mfc",
+          "ba-thanh:family:van-san-dongwha-natus",
+          "ba-thanh:family:van-san-dongwha-sanus",
+          "ba-thanh:family:van-phu-veneer",
+          "ba-thanh:family:van-phu-giay",
+          "ba-thanh:family:van-phu-melamine"
+        ],
         "evidence": {
           "kind": "http-html",
           "status": 200,
@@ -8943,7 +9905,7 @@
       }
     }
   ],
-  "crawledAt": "2026-08-06T16:58:55.739Z",
+  "crawledAt": "2026-08-06T17:18:59.086Z",
   "melamineCrawl": {
     "total": 259,
     "successful": 259,
@@ -8954,6 +9916,7 @@
   "laminateCrawl": {
     "total": 33,
     "successful": 33,
+    "discoveredOutsideMap": 0,
     "rejected": 0,
     "failed": 0
   }

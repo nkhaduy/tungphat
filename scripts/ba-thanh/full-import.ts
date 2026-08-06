@@ -11,6 +11,7 @@ import { checksumFullSourceManifest } from "@/lib/catalog/full-import/manifest";
 import type { CatalogImage, SupplierColorCode } from "@/lib/catalog/types";
 
 export type BaThanhFullSourceItem = {
+  materialType?: "melamine" | "laminate";
   sourceUrl: string;
   sourceImageUrl?: string;
   category: string;
@@ -32,6 +33,8 @@ export type BaThanhSourceClassification = {
   outcome: "imported" | "duplicate" | "non-product" | "blocked";
   reason: string;
   canonicalUrl?: string;
+  canonicalUrls?: string[];
+  recordIds?: string[];
   recordGroup?: "melamine" | "laminate" | "families" | "all";
   recordCode?: string;
   evidence: {
@@ -350,7 +353,7 @@ export function buildBaThanhCatalogueRecords(options: {
 
   const legacyMelamineCodes = new Set(options.melamine.map((record) => record.codeNormalized));
   const newlyDiscoveredMelamine: CatalogueRecord[] = (options.melamineSources ?? [])
-    .filter((item) => item.status === "PARSED" && item.codeNormalized && !legacyMelamineCodes.has(item.codeNormalized))
+    .filter((item) => item.materialType !== "laminate" && item.status === "PARSED" && item.codeNormalized && !legacyMelamineCodes.has(item.codeNormalized))
     .map((item) => {
       const sourceImages = [item.sourceImageUrl, ...(item.images ?? [])]
         .filter((url): url is string => Boolean(url))
@@ -389,7 +392,7 @@ export function buildBaThanhCatalogueRecords(options: {
     });
 
   const laminate: CatalogueRecord[] = options.laminate
-    .filter((item) => item.status === "PARSED" && item.codeNormalized)
+    .filter((item) => item.materialType !== "melamine" && item.status === "PARSED" && item.codeNormalized)
     .map((item) => ({
       recordType: "sku",
       supplier: "ba-thanh",
@@ -476,6 +479,7 @@ export function buildBaThanhFullSourceManifest(options: {
   const idsByCode = new Map(options.records
     .filter((record) => record.recordType === "sku")
     .map((record) => [record.normalizedCode, recordId(record)]));
+  const availableRecordIds = new Set(options.records.map(recordId));
   const seen = new Set<string>();
   const records: AccountedSourceRecord[] = [];
   for (const discovered of options.discovered) {
@@ -494,14 +498,17 @@ export function buildBaThanhFullSourceManifest(options: {
             ? idsByFamily.families
             : [];
     const classification = discovered.classification;
-    const canonicalIds = classification?.canonicalUrl
-      ? [...(idsByUrl.get(new URL(classification.canonicalUrl).toString()) ?? [])]
-      : [];
+    const canonicalIds = [classification?.canonicalUrl, ...(classification?.canonicalUrls ?? [])]
+      .filter((value): value is string => Boolean(value))
+      .flatMap((value) => [...(idsByUrl.get(new URL(value).toString()) ?? [])]);
     const groupIds = classification?.recordGroup ? idsByFamily[classification.recordGroup] : [];
     const codeId = classification?.recordCode ? idsByCode.get(classification.recordCode) : undefined;
+    const classifiedIds = (classification?.recordIds ?? []).filter((id) => availableRecordIds.has(id));
     const recordIds = directIds.length
       ? directIds
-      : canonicalIds.length
+      : classifiedIds.length
+        ? classifiedIds
+        : canonicalIds.length
         ? canonicalIds
         : groupIds.length
           ? groupIds

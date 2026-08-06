@@ -35,6 +35,7 @@ type LaminateSource = {
 type FullImportApi = {
   buildBaThanhCatalogueRecords?: (options: {
     melamine: SupplierColorCode[];
+    melamineSources?: LaminateSource[];
     laminate: LaminateSource[];
     importedAt: string;
   }) => CatalogueRecord[];
@@ -62,7 +63,11 @@ const crawlValidation = baThanhCrawlModule as typeof baThanhCrawlModule & {
     status: number;
     knownProductSources: Map<string, string>;
     discoveredAt: string;
-  }) => { classification: { outcome: string } };
+  }) => {
+    classification: { outcome: string; canonicalUrl?: string; canonicalUrls?: string[]; recordIds?: string[]; recordGroup?: string };
+    extraMelamine?: LaminateSource;
+    extraLaminate?: LaminateSource;
+  };
 };
 const importedAt = "2026-08-06T13:18:43.855Z";
 const laminateGroups = {
@@ -136,13 +141,106 @@ describe("Ba Thanh full catalogue records", () => {
     expect(crawlValidation.classifyBaThanhPage).toBeTypeOf("function");
     const result = crawlValidation.classifyBaThanhPage?.({
       url: "https://bathanh.com.vn/lien-he-2",
-      html: "<main><h1>Liên hệ</h1><p>Liên hệ để được tư vấn Veneer, Melamine và MDF.</p></main>",
+      html: "<main><h1>Liên hệ</h1><p>Thông tin liên hệ doanh nghiệp.</p><section>Danh mục sản phẩm: Ván HDF, ván MDF và ván gỗ ghép.</section></main>",
       status: 200,
       knownProductSources: new Map(),
       discoveredAt: importedAt,
     });
 
     expect(result?.classification.outcome).toBe("non-product");
+  });
+
+  it("classifies an unknown code-less HDF page from content evidence without broad homepage accounting", () => {
+    expect(crawlValidation.classifyBaThanhPage).toBeTypeOf("function");
+    const hdfUrl = "https://bathanh.com.vn/portfolio/high-density-board-new";
+    const hdf = crawlValidation.classifyBaThanhPage?.({
+      url: hdfUrl,
+      html: "<main><h1>Ván HDF tỷ trọng cao</h1><p>Sản phẩm ván HDF có quy cách và độ dày dùng cho nội thất.</p></main>",
+      status: 200,
+      knownProductSources: new Map(),
+      discoveredAt: importedAt,
+    });
+    const homepage = crawlValidation.classifyBaThanhPage?.({
+      url: "https://bathanh.com.vn/",
+      html: "<main><h1>Công ty Ba Thanh</h1><p>Giới thiệu doanh nghiệp và hệ thống phân phối.</p></main>",
+      status: 200,
+      knownProductSources: new Map(),
+      discoveredAt: importedAt,
+    });
+    const comparison = crawlValidation.classifyBaThanhPage?.({
+      url: "https://bathanh.com.vn/portfolio/hdf-mdf-comparison",
+      html: "<main><h1>Phân biệt HDF và MDF</h1><p>So sánh ván HDF và MDF.</p><nav>Danh mục sản phẩm: ván gỗ ghép, OKAL, ván sàn, Veneer.</nav></main>",
+      status: 200,
+      knownProductSources: new Map(),
+      discoveredAt: importedAt,
+    });
+    const materialCollection = crawlValidation.classifyBaThanhPage?.({
+      url: "https://bathanh.com.vn/material-collection",
+      html: "<main><h1>Danh mục vật liệu</h1><p>Các dòng sản phẩm ván HDF và ván sàn Dongwha.</p></main>",
+      status: 200,
+      knownProductSources: new Map(),
+      discoveredAt: importedAt,
+    });
+
+    expect(hdf?.classification).toEqual(expect.objectContaining({
+      outcome: "duplicate",
+      canonicalUrl: "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+    }));
+    expect(homepage?.classification).toEqual(expect.objectContaining({ outcome: "non-product" }));
+    expect(homepage?.classification.recordGroup).toBeUndefined();
+    expect(comparison?.classification.canonicalUrls).toEqual([
+      "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+      "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+    ]);
+    expect(materialCollection?.classification.recordIds).toEqual([
+      "ba-thanh:family:van-hdf",
+      "ba-thanh:family:van-san-dongwha-natus",
+      "ba-thanh:family:van-san-dongwha-sanus",
+    ]);
+    expect(materialCollection?.classification.recordIds).not.toContain("ba-thanh:document:catalogue-van-san-dongwha");
+
+    const records = buildRecords()!;
+    const manifest = fullImport.buildBaThanhFullSourceManifest?.({
+      records,
+      generatedAt: importedAt,
+      discovered: [{
+        supplier: "ba-thanh",
+        url: hdfUrl,
+        discoveredFrom: "sitemap",
+        locale: "vi",
+        pageType: "product-family",
+        classification: hdf!.classification,
+      }] as unknown as DiscoveredSourceUrl[],
+    });
+    expect(manifest?.records[0]).toEqual(expect.objectContaining({
+      outcome: "duplicate",
+      recordIds: ["ba-thanh:family:van-hdf"],
+    }));
+  });
+
+  it("routes a newly discovered WAY Laminate code to Laminate sources and records", () => {
+    expect(crawlValidation.classifyBaThanhPage).toBeTypeOf("function");
+    const result = crawlValidation.classifyBaThanhPage?.({
+      url: "https://bathanh.com.vn/way-w9999",
+      html: "<main><h1>LAMINATE WAY W9999</h1><p>Hình ảnh màu Laminate WAY.</p><img src='/wp-content/uploads/W9999.jpg'></main>",
+      status: 200,
+      knownProductSources: new Map(),
+      discoveredAt: importedAt,
+    });
+
+    expect(result?.extraLaminate).toEqual(expect.objectContaining({ codeNormalized: "W9999" }));
+    expect(result?.extraMelamine).toBeUndefined();
+    const records = fullImport.buildBaThanhCatalogueRecords?.({
+      melamine: [],
+      melamineSources: [],
+      laminate: [result!.extraLaminate!],
+      importedAt,
+    });
+    expect(records?.find((record) => record.recordType === "sku" && record.normalizedCode === "W9999")).toEqual(expect.objectContaining({
+      productFamily: "WAY Laminate",
+      category: "Laminate",
+    }));
+    expect(records?.some((record) => record.recordType === "sku" && record.normalizedCode === "W9999" && record.productFamily === "Melamine")).toBe(false);
   });
 
   it("retains all 233 Melamine codes and all four exact source group counts", () => {
