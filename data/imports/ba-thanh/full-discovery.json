@@ -1,0 +1,4027 @@
+{
+  "schemaVersion": 1,
+  "supplier": "ba-thanh",
+  "discoveredAt": "2026-08-06T16:09:09.079Z",
+  "robotsUrl": "https://bathanh.com.vn/robots.txt",
+  "sitemapIndexUrl": "https://bathanh.com.vn/sitemap_index.xml",
+  "childSitemaps": [
+    "https://bathanh.com.vn/post-sitemap.xml",
+    "https://bathanh.com.vn/page-sitemap.xml",
+    "https://bathanh.com.vn/block-sitemap.xml",
+    "https://bathanh.com.vn/portfolio-sitemap.xml",
+    "https://bathanh.com.vn/category-sitemap.xml",
+    "https://bathanh.com.vn/portfolio_cat-sitemap.xml"
+  ],
+  "sitemapEntries": {
+    "https://bathanh.com.vn/post-sitemap.xml": [
+      "https://bathanh.com.vn/tong-hop-5-cau-hoi-tiep-theo-cua-khach-hang-khi-dat-tu-bep.html",
+      "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+      "https://bathanh.com.vn/%e2%80%8bvanphumelamine.html",
+      "https://bathanh.com.vn/nhanh-tay-dat-tu-bep-nhan-ngay-qua-hap-dan-trong-thang-4-nay.html"
+    ],
+    "https://bathanh.com.vn/page-sitemap.xml": [
+      "https://bathanh.com.vn/",
+      "https://bathanh.com.vn/cong-ty",
+      "https://bathanh.com.vn/san-pham",
+      "https://bathanh.com.vn/dich-vu",
+      "https://bathanh.com.vn/cong-ty/tu-van",
+      "https://bathanh.com.vn/en/customer-care-see",
+      "https://bathanh.com.vn/en/agent-policy",
+      "https://bathanh.com.vn/en/company",
+      "https://bathanh.com.vn/en/company/quality-certification",
+      "https://bathanh.com.vn/cong-ty/doi-tac",
+      "https://bathanh.com.vn/en/company/partner",
+      "https://bathanh.com.vn/en/company/about",
+      "https://bathanh.com.vn/en/company/suicide",
+      "https://bathanh.com.vn/en/service",
+      "https://bathanh.com.vn/en/service/processing",
+      "https://bathanh.com.vn/en/service/carriage",
+      "https://bathanh.com.vn/en/product-return",
+      "https://bathanh.com.vn/en/solution",
+      "https://bathanh.com.vn/en/solution/only-veneer-pvc-edgebanding",
+      "https://bathanh.com.vn/en/solution/processing-melamine-paper",
+      "https://bathanh.com.vn/en/solution/processing-veneer",
+      "https://bathanh.com.vn/en/distribution-system",
+      "https://bathanh.com.vn/en/payments",
+      "https://bathanh.com.vn/en/business-cooperation",
+      "https://bathanh.com.vn/en/shopping-guide",
+      "https://bathanh.com.vn/en/contact",
+      "https://bathanh.com.vn/nha-may-san-xuat",
+      "https://bathanh.com.vn/en/factory",
+      "https://bathanh.com.vn/en/operating-regulation",
+      "https://bathanh.com.vn/en/product",
+      "https://bathanh.com.vn/san-pham-moi",
+      "https://bathanh.com.vn/en/product-news",
+      "https://bathanh.com.vn/en/billing-information",
+      "https://bathanh.com.vn/en/blogs",
+      "https://bathanh.com.vn/dai-ly",
+      "https://bathanh.com.vn/cong-ty/chung-nhan-chat-luong",
+      "https://bathanh.com.vn/lien-he-2",
+      "https://bathanh.com.vn/map-ma-melamine/van-phu-keo-melamine",
+      "https://bathanh.com.vn/map-ma-melamine/van-phu-verneer",
+      "https://bathanh.com.vn/map-ma-melamine/nep-chi-pvc-dan-go",
+      "https://bathanh.com.vn/dich-vu/gia-cong",
+      "https://bathanh.com.vn/test",
+      "https://bathanh.com.vn/gioi-thieu-dm",
+      "https://bathanh.com.vn/catalogue-van-san-dongwha",
+      "https://bathanh.com.vn/cham-soc-khach-hang",
+      "https://bathanh.com.vn/huong-dan-mua-hang",
+      "https://bathanh.com.vn/hop-tac-kinh-doanh",
+      "https://bathanh.com.vn/hinh-thuc-thanh-toan",
+      "https://bathanh.com.vn/chinh-sach-dai-ly",
+      "https://bathanh.com.vn/quy-che-hoat-dong",
+      "https://bathanh.com.vn/thong-tin-thanh-toan",
+      "https://bathanh.com.vn/doi-tra-san-pham",
+      "https://bathanh.com.vn/dich-vu/van-tai",
+      "https://bathanh.com.vn/cong-ty/gioi-thieu",
+      "https://bathanh.com.vn/bt-01-solid-color",
+      "https://bathanh.com.vn/bt-02-solid-color",
+      "https://bathanh.com.vn/bt-103-solid-color",
+      "https://bathanh.com.vn/bt166",
+      "https://bathanh.com.vn/bt167",
+      "https://bathanh.com.vn/bt168",
+      "https://bathanh.com.vn/bt169",
+      "https://bathanh.com.vn/bt170",
+      "https://bathanh.com.vn/bt-49-wood-grains",
+      "https://bathanh.com.vn/bt-55-wood-grains",
+      "https://bathanh.com.vn/bt-a150-solid-color",
+      "https://bathanh.com.vn/bt-cam-solid-color",
+      "https://bathanh.com.vn/bt-den-solid-color",
+      "https://bathanh.com.vn/bt-den-ash-solid-color",
+      "https://bathanh.com.vn/bt-trang-ash-solid-color",
+      "https://bathanh.com.vn/bt-xam-solid-color",
+      "https://bathanh.com.vn/ml-bt04",
+      "https://bathanh.com.vn/bt-05-wood-grains",
+      "https://bathanh.com.vn/bt-06-wood-grains",
+      "https://bathanh.com.vn/bt-07-wood-grains",
+      "https://bathanh.com.vn/bt-08-wood-grains",
+      "https://bathanh.com.vn/bt-09-wood-grains",
+      "https://bathanh.com.vn/bt-10-wood-grains",
+      "https://bathanh.com.vn/bt-100-wood-grains",
+      "https://bathanh.com.vn/bt-11-wood-grains",
+      "https://bathanh.com.vn/bt-111-wood-grains",
+      "https://bathanh.com.vn/bt-112-wood-grains",
+      "https://bathanh.com.vn/bt-113-wood-grains",
+      "https://bathanh.com.vn/bt-114-wood-grains",
+      "https://bathanh.com.vn/bt-115-wood-grains",
+      "https://bathanh.com.vn/bt-116-wood-grains",
+      "https://bathanh.com.vn/bt-117-wood-grains",
+      "https://bathanh.com.vn/bt-118-wood-grains",
+      "https://bathanh.com.vn/bt-119-wood-grains",
+      "https://bathanh.com.vn/bt-12-wood-grains",
+      "https://bathanh.com.vn/bt-120-wood-grains",
+      "https://bathanh.com.vn/bt-122-wood-grains",
+      "https://bathanh.com.vn/bt-123-wood-grains",
+      "https://bathanh.com.vn/bt-124-wood-grains",
+      "https://bathanh.com.vn/bt-125-wood-grains",
+      "https://bathanh.com.vn/bt-126-wood-grains",
+      "https://bathanh.com.vn/bt-127-wood-grains",
+      "https://bathanh.com.vn/bt-128-wood-grains",
+      "https://bathanh.com.vn/bt-129-wood-grains",
+      "https://bathanh.com.vn/bt-13-wood-grains",
+      "https://bathanh.com.vn/bt-130-wood-grains",
+      "https://bathanh.com.vn/bt-131-wood-grains",
+      "https://bathanh.com.vn/bt-132-wood-grains",
+      "https://bathanh.com.vn/bt-133-wood-grains",
+      "https://bathanh.com.vn/bt-134-wood-grains",
+      "https://bathanh.com.vn/bt-135-wood-grains",
+      "https://bathanh.com.vn/bt-136-wood-grains",
+      "https://bathanh.com.vn/bt-137-wood-grains",
+      "https://bathanh.com.vn/bt-138-wood-grains",
+      "https://bathanh.com.vn/bt-139-wood-grains",
+      "https://bathanh.com.vn/bt-14-wood-grains",
+      "https://bathanh.com.vn/bt-140-wood-grains",
+      "https://bathanh.com.vn/bt-141-wood-grains",
+      "https://bathanh.com.vn/bt-142-wood-grains",
+      "https://bathanh.com.vn/bt-143-wood-grains",
+      "https://bathanh.com.vn/bt-144-wood-grains",
+      "https://bathanh.com.vn/bt-145-wood-grains",
+      "https://bathanh.com.vn/bt-146-wood-grains",
+      "https://bathanh.com.vn/bt-147-wood-grains",
+      "https://bathanh.com.vn/bt-148-wood-grains",
+      "https://bathanh.com.vn/bt-15-wood-grains",
+      "https://bathanh.com.vn/bt-151-wood-grains",
+      "https://bathanh.com.vn/bt-152-wood-grains",
+      "https://bathanh.com.vn/bt-154-wood-grains",
+      "https://bathanh.com.vn/bt-155-wood-grains",
+      "https://bathanh.com.vn/bt-156-wood-grains",
+      "https://bathanh.com.vn/bt-157-wood-grains",
+      "https://bathanh.com.vn/bt-158-wood-grains",
+      "https://bathanh.com.vn/bt-159-wood-grains",
+      "https://bathanh.com.vn/bt-16-wood-grains",
+      "https://bathanh.com.vn/bt-160-wood-grains",
+      "https://bathanh.com.vn/bt-161-wood-grains",
+      "https://bathanh.com.vn/bt-162-wood-grains",
+      "https://bathanh.com.vn/bt-163-wood-grains",
+      "https://bathanh.com.vn/bt-164-wood-grains",
+      "https://bathanh.com.vn/bt-165-wood-grains",
+      "https://bathanh.com.vn/bt-17-wood-grains",
+      "https://bathanh.com.vn/bt-18-wood-grains",
+      "https://bathanh.com.vn/bt-19-wood-grains",
+      "https://bathanh.com.vn/bt-20-wood-grains",
+      "https://bathanh.com.vn/bt-22-wood-grains",
+      "https://bathanh.com.vn/bt-23-wood-grains",
+      "https://bathanh.com.vn/bt-24-wood-grains",
+      "https://bathanh.com.vn/bt-25-wood-grains",
+      "https://bathanh.com.vn/bt-26-wood-grains",
+      "https://bathanh.com.vn/bt-27-wood-grains",
+      "https://bathanh.com.vn/bt-28-wood-grains",
+      "https://bathanh.com.vn/bt-29-wood-grains",
+      "https://bathanh.com.vn/bt-30-wood-grains",
+      "https://bathanh.com.vn/bt-31-wood-grains",
+      "https://bathanh.com.vn/bt-32-wood-grains",
+      "https://bathanh.com.vn/bt-33-wood-grains",
+      "https://bathanh.com.vn/bt-34-wood-grains",
+      "https://bathanh.com.vn/bt-35-wood-grains",
+      "https://bathanh.com.vn/bt-36-wood-grains",
+      "https://bathanh.com.vn/bt-37-wood-grains",
+      "https://bathanh.com.vn/bt-38-wood-grains",
+      "https://bathanh.com.vn/bt-40-wood-grains",
+      "https://bathanh.com.vn/bt-41-wood-grains",
+      "https://bathanh.com.vn/bt-42-wood-grains",
+      "https://bathanh.com.vn/bt-43-wood-grains",
+      "https://bathanh.com.vn/bt-44-wood-grains",
+      "https://bathanh.com.vn/bt-45-wood-grains",
+      "https://bathanh.com.vn/bt-46-wood-grains",
+      "https://bathanh.com.vn/bt-47-wood-grains",
+      "https://bathanh.com.vn/bt-48-wood-grains",
+      "https://bathanh.com.vn/bt-50-wood-grains",
+      "https://bathanh.com.vn/bt-51-wood-grains",
+      "https://bathanh.com.vn/bt-52-wood-grains",
+      "https://bathanh.com.vn/bt-53-wood-grains",
+      "https://bathanh.com.vn/bt-54-wood-grains",
+      "https://bathanh.com.vn/bt-56-wood-grains",
+      "https://bathanh.com.vn/bt-57-wood-grains",
+      "https://bathanh.com.vn/bt-58-wood-grains",
+      "https://bathanh.com.vn/bt-59-wood-grains",
+      "https://bathanh.com.vn/bt-61-wood-grains",
+      "https://bathanh.com.vn/bt-62-wood-grains",
+      "https://bathanh.com.vn/bt-63-wood-grains",
+      "https://bathanh.com.vn/bt-64-wood-grains",
+      "https://bathanh.com.vn/bt-65-wood-grains",
+      "https://bathanh.com.vn/bt-66-wood-grains",
+      "https://bathanh.com.vn/bt-67-wood-grains",
+      "https://bathanh.com.vn/bt-68-wood-grains",
+      "https://bathanh.com.vn/bt-69-wood-grains",
+      "https://bathanh.com.vn/bt-70-wood-grains",
+      "https://bathanh.com.vn/bt-71-wood-grains",
+      "https://bathanh.com.vn/bt-72-wood-grains",
+      "https://bathanh.com.vn/bt-60-solid-color",
+      "https://bathanh.com.vn/bt-73-wood-grains",
+      "https://bathanh.com.vn/bt-74-wood-grains",
+      "https://bathanh.com.vn/bt-75-wood-grains",
+      "https://bathanh.com.vn/bt-76-wood-grains",
+      "https://bathanh.com.vn/bt-77-wood-grains",
+      "https://bathanh.com.vn/bt-78-wood-grains",
+      "https://bathanh.com.vn/bt-79-wood-grains",
+      "https://bathanh.com.vn/bt-80-wood-grains",
+      "https://bathanh.com.vn/bt-81-wood-grains",
+      "https://bathanh.com.vn/bt-82-wood-grains",
+      "https://bathanh.com.vn/bt-83-wood-grains",
+      "https://bathanh.com.vn/bt-84-wood-grains",
+      "https://bathanh.com.vn/bt-85-wood-grains",
+      "https://bathanh.com.vn/bt-86-wood-grains",
+      "https://bathanh.com.vn/bt-87-wood-grains",
+      "https://bathanh.com.vn/bt-88-wood-grains",
+      "https://bathanh.com.vn/bt-89-wood-grains",
+      "https://bathanh.com.vn/bt-90-wood-grains",
+      "https://bathanh.com.vn/bt-91-wood-grains",
+      "https://bathanh.com.vn/bt-92-wood-grains",
+      "https://bathanh.com.vn/bt-93-wood-grains",
+      "https://bathanh.com.vn/bt-94-wood-grains",
+      "https://bathanh.com.vn/bt-95-wood-grains",
+      "https://bathanh.com.vn/bt-96-wood-grains",
+      "https://bathanh.com.vn/bt-97-wood-grains",
+      "https://bathanh.com.vn/bt-98-wood-grains",
+      "https://bathanh.com.vn/bt-99-wood-grains",
+      "https://bathanh.com.vn/bt-s6-stone",
+      "https://bathanh.com.vn/bt-s7-stone",
+      "https://bathanh.com.vn/bt-s8-stone",
+      "https://bathanh.com.vn/bt-s9-stone",
+      "https://bathanh.com.vn/bt-hong-solid-color",
+      "https://bathanh.com.vn/sc-001m-solid-color",
+      "https://bathanh.com.vn/bt-sc001mw-solid-color",
+      "https://bathanh.com.vn/sc-002m-solid-color",
+      "https://bathanh.com.vn/sc-002mw-solid-color",
+      "https://bathanh.com.vn/sc-003m-solid-color",
+      "https://bathanh.com.vn/sc-003mw-solid-color",
+      "https://bathanh.com.vn/sc-004m-solid-color",
+      "https://bathanh.com.vn/sc-004mw-solid-color",
+      "https://bathanh.com.vn/sc-005m-solid-color",
+      "https://bathanh.com.vn/sc-005mw-solid-color",
+      "https://bathanh.com.vn/sc-006m-solid-color",
+      "https://bathanh.com.vn/sc-006mw-solid-color",
+      "https://bathanh.com.vn/sc-007m-solid-color",
+      "https://bathanh.com.vn/sc-007mw-solid-color",
+      "https://bathanh.com.vn/sc-008m-solid-color",
+      "https://bathanh.com.vn/sc-008mw-solid-color",
+      "https://bathanh.com.vn/btsc009",
+      "https://bathanh.com.vn/btsc010",
+      "https://bathanh.com.vn/btsc011",
+      "https://bathanh.com.vn/btsc012",
+      "https://bathanh.com.vn/btsc013",
+      "https://bathanh.com.vn/btsc014",
+      "https://bathanh.com.vn/btsc015",
+      "https://bathanh.com.vn/sc016",
+      "https://bathanh.com.vn/bt-vang-solid-color",
+      "https://bathanh.com.vn/bt-xam-chi-solid-color",
+      "https://bathanh.com.vn/bt-xanh-chuoi-solid-color",
+      "https://bathanh.com.vn/bt-xanh-coban-solid-color",
+      "https://bathanh.com.vn/sc010mw",
+      "https://bathanh.com.vn/sc011mw",
+      "https://bathanh.com.vn/sc012mw",
+      "https://bathanh.com.vn/sc013mw",
+      "https://bathanh.com.vn/sc014mw",
+      "https://bathanh.com.vn/sc015mw",
+      "https://bathanh.com.vn/sc016mw",
+      "https://bathanh.com.vn/sc017mw",
+      "https://bathanh.com.vn/sc009mw",
+      "https://bathanh.com.vn/way-p1010",
+      "https://bathanh.com.vn/way-p1150",
+      "https://bathanh.com.vn/way-p2002",
+      "https://bathanh.com.vn/way-p2052",
+      "https://bathanh.com.vn/way-p2061",
+      "https://bathanh.com.vn/way-p4640",
+      "https://bathanh.com.vn/way-f0022",
+      "https://bathanh.com.vn/way-f3292",
+      "https://bathanh.com.vn/way-f3293",
+      "https://bathanh.com.vn/way-f3294",
+      "https://bathanh.com.vn/way-f3295",
+      "https://bathanh.com.vn/map-mau-laminate",
+      "https://bathanh.com.vn/way-p2001",
+      "https://bathanh.com.vn/way-p2660",
+      "https://bathanh.com.vn/way-p3190",
+      "https://bathanh.com.vn/way-p4600",
+      "https://bathanh.com.vn/way-p7700",
+      "https://bathanh.com.vn/way-p7740",
+      "https://bathanh.com.vn/way-p7790",
+      "https://bathanh.com.vn/way-p9120",
+      "https://bathanh.com.vn/way-p9340",
+      "https://bathanh.com.vn/way-p9660",
+      "https://bathanh.com.vn/way-s4600",
+      "https://bathanh.com.vn/way-s7382",
+      "https://bathanh.com.vn/way-s7402",
+      "https://bathanh.com.vn/way-s7403",
+      "https://bathanh.com.vn/way-w0304",
+      "https://bathanh.com.vn/way-w0502",
+      "https://bathanh.com.vn/way-w0504",
+      "https://bathanh.com.vn/way-w5220",
+      "https://bathanh.com.vn/way-w7020",
+      "https://bathanh.com.vn/way-w7393",
+      "https://bathanh.com.vn/way-w7412",
+      "https://bathanh.com.vn/way-w9630",
+      "https://bathanh.com.vn/bt171",
+      "https://bathanh.com.vn/sc017",
+      "https://bathanh.com.vn/sc018mw",
+      "https://bathanh.com.vn/btsc018",
+      "https://bathanh.com.vn/sc028mw",
+      "https://bathanh.com.vn/sc027mw",
+      "https://bathanh.com.vn/sc026mw",
+      "https://bathanh.com.vn/sc025mw",
+      "https://bathanh.com.vn/sc024mw",
+      "https://bathanh.com.vn/sc022mw",
+      "https://bathanh.com.vn/sc021mw",
+      "https://bathanh.com.vn/sc020mw",
+      "https://bathanh.com.vn/sc019mw",
+      "https://bathanh.com.vn/bt172ev",
+      "https://bathanh.com.vn/bt171ev",
+      "https://bathanh.com.vn/sc029mw",
+      "https://bathanh.com.vn/sc030mw",
+      "https://bathanh.com.vn/bts12",
+      "https://bathanh.com.vn/bts11",
+      "https://bathanh.com.vn/sc019",
+      "https://bathanh.com.vn/sc020",
+      "https://bathanh.com.vn/sc022",
+      "https://bathanh.com.vn/sc024",
+      "https://bathanh.com.vn/sc025",
+      "https://bathanh.com.vn/sc026",
+      "https://bathanh.com.vn/sc021",
+      "https://bathanh.com.vn/sc027",
+      "https://bathanh.com.vn/sc028",
+      "https://bathanh.com.vn/bt-xanh-bien-solid-color",
+      "https://bathanh.com.vn/lien-he-2/lien-he",
+      "https://bathanh.com.vn/sc029",
+      "https://bathanh.com.vn/sc030",
+      "https://bathanh.com.vn/bts14",
+      "https://bathanh.com.vn/bts15",
+      "https://bathanh.com.vn/bt173",
+      "https://bathanh.com.vn/bt174",
+      "https://bathanh.com.vn/bt175",
+      "https://bathanh.com.vn/catalogue-pdf",
+      "https://bathanh.com.vn/bt172",
+      "https://bathanh.com.vn/lien-he-2/he-thong-phan-phoi",
+      "https://bathanh.com.vn/sc032dl",
+      "https://bathanh.com.vn/sc032n",
+      "https://bathanh.com.vn/sc034dl",
+      "https://bathanh.com.vn/sc034n",
+      "https://bathanh.com.vn/sc035dl",
+      "https://bathanh.com.vn/sc035n",
+      "https://bathanh.com.vn/sc036dl",
+      "https://bathanh.com.vn/sc036n",
+      "https://bathanh.com.vn/sc037dl",
+      "https://bathanh.com.vn/sc037n",
+      "https://bathanh.com.vn/bt176",
+      "https://bathanh.com.vn/bt177",
+      "https://bathanh.com.vn/bt178",
+      "https://bathanh.com.vn/bt179",
+      "https://bathanh.com.vn/bt180",
+      "https://bathanh.com.vn/bt181",
+      "https://bathanh.com.vn/bt182",
+      "https://bathanh.com.vn/bt183",
+      "https://bathanh.com.vn/bt184",
+      "https://bathanh.com.vn/bt185",
+      "https://bathanh.com.vn/ung-dung-mau-melamine",
+      "https://bathanh.com.vn/map-ma-melamine",
+      "https://bathanh.com.vn/tin-tuc"
+    ],
+    "https://bathanh.com.vn/block-sitemap.xml": [
+      "https://bathanh.com.vn/en/block/en-video-popup",
+      "https://bathanh.com.vn/en/block/en-footer-page-block",
+      "https://bathanh.com.vn/en/block/en-doi-tac-dang-ky-block",
+      "https://bathanh.com.vn/en/block/en-dich-vu-gioi-thieu-block",
+      "https://bathanh.com.vn/block/vn-dich-vu-gioi-thieu-block-new",
+      "https://bathanh.com.vn/block/vn-doi-tac-dang-ky-block-new",
+      "https://bathanh.com.vn/block/vn-video-popup",
+      "https://bathanh.com.vn/block/taskbar-hotline",
+      "https://bathanh.com.vn/block/vn-doi-tac-dang-ky-block",
+      "https://bathanh.com.vn/block/vn-dich-vu-gioi-thieu-block",
+      "https://bathanh.com.vn/block/vn-footer-page-block"
+    ],
+    "https://bathanh.com.vn/portfolio-sitemap.xml": [
+      "https://bathanh.com.vn/portfolio",
+      "https://bathanh.com.vn/portfolio/van-phu-melamine",
+      "https://bathanh.com.vn/portfolio/chi-vien-veneer-pvc",
+      "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+      "https://bathanh.com.vn/portfolio/van-phu-veneer",
+      "https://bathanh.com.vn/portfolio/phan-biet-hdf-va-mdf-loi-xanh",
+      "https://bathanh.com.vn/portfolio/phan-biet-cac-loai-go-cong-nghiep",
+      "https://bathanh.com.vn/portfolio/gia-cong-vanvi-sao",
+      "https://bathanh.com.vn/portfolio/vanokal",
+      "https://bathanh.com.vn/portfolio/van-go-ghep",
+      "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+      "https://bathanh.com.vn/portfolio/van-mdf-chong-am-hmr-mmr",
+      "https://bathanh.com.vn/portfolio/van-mdf-hdf"
+    ],
+    "https://bathanh.com.vn/category-sitemap.xml": [
+      "https://bathanh.com.vn/chuyen-muc/khuyen-mai",
+      "https://bathanh.com.vn/chuyen-muc/tin-bathanh",
+      "https://bathanh.com.vn/chuyen-muc/tin-moi"
+    ],
+    "https://bathanh.com.vn/portfolio_cat-sitemap.xml": [
+      "https://bathanh.com.vn/portfolio_cat/go",
+      "https://bathanh.com.vn/portfolio_cat/van"
+    ]
+  },
+  "pageApi": "https://bathanh.com.vn/wp-json/wp/v2/pages",
+  "pageApiPages": [
+    {
+      "url": "https://bathanh.com.vn/wp-json/wp/v2/pages?page=1&per_page=100&_fields=id,link",
+      "sourceUrls": [
+        "https://bathanh.com.vn/ung-dung-mau-melamine",
+        "https://bathanh.com.vn/sc037dl",
+        "https://bathanh.com.vn/sc037n",
+        "https://bathanh.com.vn/sc036dl",
+        "https://bathanh.com.vn/sc036n",
+        "https://bathanh.com.vn/sc035dl",
+        "https://bathanh.com.vn/sc035n",
+        "https://bathanh.com.vn/sc032dl",
+        "https://bathanh.com.vn/sc034dl",
+        "https://bathanh.com.vn/sc034n",
+        "https://bathanh.com.vn/sc032n",
+        "https://bathanh.com.vn/bt185",
+        "https://bathanh.com.vn/bt184",
+        "https://bathanh.com.vn/bt183",
+        "https://bathanh.com.vn/bt182",
+        "https://bathanh.com.vn/bt181",
+        "https://bathanh.com.vn/bts15",
+        "https://bathanh.com.vn/bts14",
+        "https://bathanh.com.vn/sc030mw",
+        "https://bathanh.com.vn/sc030",
+        "https://bathanh.com.vn/sc029mw",
+        "https://bathanh.com.vn/sc029",
+        "https://bathanh.com.vn/bt180",
+        "https://bathanh.com.vn/bt179",
+        "https://bathanh.com.vn/bt178",
+        "https://bathanh.com.vn/bt177",
+        "https://bathanh.com.vn/bt176",
+        "https://bathanh.com.vn/bt175",
+        "https://bathanh.com.vn/bt174",
+        "https://bathanh.com.vn/bt172ev",
+        "https://bathanh.com.vn/bt171ev",
+        "https://bathanh.com.vn/bt173",
+        "https://bathanh.com.vn/bts12",
+        "https://bathanh.com.vn/bts11",
+        "https://bathanh.com.vn/sc028mw",
+        "https://bathanh.com.vn/sc028",
+        "https://bathanh.com.vn/sc027mw",
+        "https://bathanh.com.vn/sc027",
+        "https://bathanh.com.vn/sc026mw",
+        "https://bathanh.com.vn/sc026",
+        "https://bathanh.com.vn/sc025mw",
+        "https://bathanh.com.vn/sc025",
+        "https://bathanh.com.vn/sc024mw",
+        "https://bathanh.com.vn/sc024",
+        "https://bathanh.com.vn/sc022mw",
+        "https://bathanh.com.vn/sc021mw",
+        "https://bathanh.com.vn/sc022",
+        "https://bathanh.com.vn/sc021",
+        "https://bathanh.com.vn/sc020mw",
+        "https://bathanh.com.vn/sc020",
+        "https://bathanh.com.vn/sc019mw",
+        "https://bathanh.com.vn/sc019",
+        "https://bathanh.com.vn/bt172",
+        "https://bathanh.com.vn/way-w5220",
+        "https://bathanh.com.vn/way-w7412",
+        "https://bathanh.com.vn/way-w9630",
+        "https://bathanh.com.vn/way-w0504",
+        "https://bathanh.com.vn/way-w0304",
+        "https://bathanh.com.vn/way-w0502",
+        "https://bathanh.com.vn/way-w7393",
+        "https://bathanh.com.vn/way-w7020",
+        "https://bathanh.com.vn/way-f3295",
+        "https://bathanh.com.vn/way-f3294",
+        "https://bathanh.com.vn/way-f3293",
+        "https://bathanh.com.vn/way-f3292",
+        "https://bathanh.com.vn/way-f0022",
+        "https://bathanh.com.vn/way-s4600",
+        "https://bathanh.com.vn/way-s7382",
+        "https://bathanh.com.vn/way-s7402",
+        "https://bathanh.com.vn/way-s7403",
+        "https://bathanh.com.vn/way-p9660",
+        "https://bathanh.com.vn/way-p2660",
+        "https://bathanh.com.vn/way-p4640",
+        "https://bathanh.com.vn/way-p4600",
+        "https://bathanh.com.vn/way-p9340",
+        "https://bathanh.com.vn/way-p7790",
+        "https://bathanh.com.vn/way-p7740",
+        "https://bathanh.com.vn/way-p7700",
+        "https://bathanh.com.vn/way-p3190",
+        "https://bathanh.com.vn/way-p9120",
+        "https://bathanh.com.vn/way-p2001",
+        "https://bathanh.com.vn/way-p1010",
+        "https://bathanh.com.vn/way-p2002",
+        "https://bathanh.com.vn/way-p1150",
+        "https://bathanh.com.vn/way-p2061",
+        "https://bathanh.com.vn/way-p2052",
+        "https://bathanh.com.vn/map-mau-laminate",
+        "https://bathanh.com.vn/btsc018",
+        "https://bathanh.com.vn/sc017",
+        "https://bathanh.com.vn/sc016",
+        "https://bathanh.com.vn/sc018mw",
+        "https://bathanh.com.vn/sc017mw",
+        "https://bathanh.com.vn/sc016mw",
+        "https://bathanh.com.vn/sc015mw",
+        "https://bathanh.com.vn/sc014mw",
+        "https://bathanh.com.vn/sc013mw",
+        "https://bathanh.com.vn/sc012mw",
+        "https://bathanh.com.vn/sc011mw",
+        "https://bathanh.com.vn/sc010mw",
+        "https://bathanh.com.vn/sc009mw"
+      ]
+    },
+    {
+      "url": "https://bathanh.com.vn/wp-json/wp/v2/pages?page=2&per_page=100&_fields=id,link",
+      "sourceUrls": [
+        "https://bathanh.com.vn/btsc015",
+        "https://bathanh.com.vn/btsc014",
+        "https://bathanh.com.vn/btsc013",
+        "https://bathanh.com.vn/btsc012",
+        "https://bathanh.com.vn/btsc011",
+        "https://bathanh.com.vn/btsc010",
+        "https://bathanh.com.vn/btsc009",
+        "https://bathanh.com.vn/bt171",
+        "https://bathanh.com.vn/bt170",
+        "https://bathanh.com.vn/bt169",
+        "https://bathanh.com.vn/bt168",
+        "https://bathanh.com.vn/bt167",
+        "https://bathanh.com.vn/bt166",
+        "https://bathanh.com.vn/bt-47-wood-grains",
+        "https://bathanh.com.vn/bt-103-solid-color",
+        "https://bathanh.com.vn/bt-02-solid-color",
+        "https://bathanh.com.vn/bt-01-solid-color",
+        "https://bathanh.com.vn/bt-a150-solid-color",
+        "https://bathanh.com.vn/bt-trang-ash-solid-color",
+        "https://bathanh.com.vn/bt-den-ash-solid-color",
+        "https://bathanh.com.vn/sc-008mw-solid-color",
+        "https://bathanh.com.vn/sc-008m-solid-color",
+        "https://bathanh.com.vn/sc-007mw-solid-color",
+        "https://bathanh.com.vn/sc-007m-solid-color",
+        "https://bathanh.com.vn/sc-006mw-solid-color",
+        "https://bathanh.com.vn/sc-006m-solid-color",
+        "https://bathanh.com.vn/sc-005mw-solid-color",
+        "https://bathanh.com.vn/sc-005m-solid-color",
+        "https://bathanh.com.vn/bt-165-wood-grains",
+        "https://bathanh.com.vn/bt-164-wood-grains",
+        "https://bathanh.com.vn/bt-163-wood-grains",
+        "https://bathanh.com.vn/bt-162-wood-grains",
+        "https://bathanh.com.vn/bt-161-wood-grains",
+        "https://bathanh.com.vn/catalogue-van-san-dongwha",
+        "https://bathanh.com.vn/bt-160-wood-grains",
+        "https://bathanh.com.vn/bt-159-wood-grains",
+        "https://bathanh.com.vn/bt-158-wood-grains",
+        "https://bathanh.com.vn/bt-157-wood-grains",
+        "https://bathanh.com.vn/bt-156-wood-grains",
+        "https://bathanh.com.vn/bt-155-wood-grains",
+        "https://bathanh.com.vn/bt-154-wood-grains",
+        "https://bathanh.com.vn/bt-152-wood-grains",
+        "https://bathanh.com.vn/bt-151-wood-grains",
+        "https://bathanh.com.vn/bt-148-wood-grains",
+        "https://bathanh.com.vn/bt-147-wood-grains",
+        "https://bathanh.com.vn/bt-146-wood-grains",
+        "https://bathanh.com.vn/bt-145-wood-grains",
+        "https://bathanh.com.vn/bt-144-wood-grains",
+        "https://bathanh.com.vn/bt-143-wood-grains",
+        "https://bathanh.com.vn/bt-142-wood-grains",
+        "https://bathanh.com.vn/bt-141-wood-grains",
+        "https://bathanh.com.vn/bt-140-wood-grains",
+        "https://bathanh.com.vn/bt-139-wood-grains",
+        "https://bathanh.com.vn/bt-138-wood-grains",
+        "https://bathanh.com.vn/bt-137-wood-grains",
+        "https://bathanh.com.vn/bt-136-wood-grains",
+        "https://bathanh.com.vn/bt-135-wood-grains",
+        "https://bathanh.com.vn/bt-134-wood-grains",
+        "https://bathanh.com.vn/bt-133-wood-grains",
+        "https://bathanh.com.vn/bt-132-wood-grains",
+        "https://bathanh.com.vn/bt-131-wood-grains",
+        "https://bathanh.com.vn/bt-130-wood-grains",
+        "https://bathanh.com.vn/bt-129-wood-grains",
+        "https://bathanh.com.vn/bt-128-wood-grains",
+        "https://bathanh.com.vn/bt-127-wood-grains",
+        "https://bathanh.com.vn/bt-126-wood-grains",
+        "https://bathanh.com.vn/gioi-thieu-dm",
+        "https://bathanh.com.vn/bt-125-wood-grains",
+        "https://bathanh.com.vn/bt-124-wood-grains",
+        "https://bathanh.com.vn/bt-123-wood-grains",
+        "https://bathanh.com.vn/bt-122-wood-grains",
+        "https://bathanh.com.vn/bt-120-wood-grains",
+        "https://bathanh.com.vn/bt-119-wood-grains",
+        "https://bathanh.com.vn/bt-118-wood-grains",
+        "https://bathanh.com.vn/bt-117-wood-grains",
+        "https://bathanh.com.vn/bt-116-wood-grains",
+        "https://bathanh.com.vn/bt-115-wood-grains",
+        "https://bathanh.com.vn/bt-114-wood-grains",
+        "https://bathanh.com.vn/bt-113-wood-grains",
+        "https://bathanh.com.vn/bt-112-wood-grains",
+        "https://bathanh.com.vn/bt-111-wood-grains",
+        "https://bathanh.com.vn/bt-100-wood-grains",
+        "https://bathanh.com.vn/bt-99-wood-grains",
+        "https://bathanh.com.vn/bt-98-wood-grains",
+        "https://bathanh.com.vn/bt-97-wood-grains",
+        "https://bathanh.com.vn/bt-96-wood-grains",
+        "https://bathanh.com.vn/bt-95-wood-grains",
+        "https://bathanh.com.vn/bt-94-wood-grains",
+        "https://bathanh.com.vn/bt-93-wood-grains",
+        "https://bathanh.com.vn/bt-92-wood-grains",
+        "https://bathanh.com.vn/bt-91-wood-grains",
+        "https://bathanh.com.vn/bt-90-wood-grains",
+        "https://bathanh.com.vn/bt-89-wood-grains",
+        "https://bathanh.com.vn/bt-88-wood-grains",
+        "https://bathanh.com.vn/bt-87-wood-grains",
+        "https://bathanh.com.vn/bt-86-wood-grains",
+        "https://bathanh.com.vn/bt-85-wood-grains",
+        "https://bathanh.com.vn/bt-84-wood-grains",
+        "https://bathanh.com.vn/bt-83-wood-grains",
+        "https://bathanh.com.vn/bt-82-wood-grains"
+      ]
+    },
+    {
+      "url": "https://bathanh.com.vn/wp-json/wp/v2/pages?page=3&per_page=100&_fields=id,link",
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-81-wood-grains",
+        "https://bathanh.com.vn/bt-80-wood-grains",
+        "https://bathanh.com.vn/bt-79-wood-grains",
+        "https://bathanh.com.vn/bt-78-wood-grains",
+        "https://bathanh.com.vn/bt-77-wood-grains",
+        "https://bathanh.com.vn/bt-76-wood-grains",
+        "https://bathanh.com.vn/bt-75-wood-grains",
+        "https://bathanh.com.vn/bt-74-wood-grains",
+        "https://bathanh.com.vn/bt-73-wood-grains",
+        "https://bathanh.com.vn/bt-72-wood-grains",
+        "https://bathanh.com.vn/bt-71-wood-grains",
+        "https://bathanh.com.vn/bt-70-wood-grains",
+        "https://bathanh.com.vn/bt-69-wood-grains",
+        "https://bathanh.com.vn/bt-68-wood-grains",
+        "https://bathanh.com.vn/bt-67-wood-grains",
+        "https://bathanh.com.vn/bt-66-wood-grains",
+        "https://bathanh.com.vn/bt-65-wood-grains",
+        "https://bathanh.com.vn/bt-64-wood-grains",
+        "https://bathanh.com.vn/bt-63-wood-grains",
+        "https://bathanh.com.vn/bt-62-wood-grains",
+        "https://bathanh.com.vn/bt-61-wood-grains",
+        "https://bathanh.com.vn/bt-59-wood-grains",
+        "https://bathanh.com.vn/bt-58-wood-grains",
+        "https://bathanh.com.vn/bt-57-wood-grains",
+        "https://bathanh.com.vn/bt-56-wood-grains",
+        "https://bathanh.com.vn/bt-55-wood-grains",
+        "https://bathanh.com.vn/bt-54-wood-grains",
+        "https://bathanh.com.vn/bt-53-wood-grains",
+        "https://bathanh.com.vn/bt-52-wood-grains",
+        "https://bathanh.com.vn/bt-51-wood-grains",
+        "https://bathanh.com.vn/bt-den-solid-color",
+        "https://bathanh.com.vn/bt-50-wood-grains",
+        "https://bathanh.com.vn/bt-49-wood-grains",
+        "https://bathanh.com.vn/bt-48-wood-grains",
+        "https://bathanh.com.vn/bt-46-wood-grains",
+        "https://bathanh.com.vn/bt-45-wood-grains",
+        "https://bathanh.com.vn/bt-44-wood-grains",
+        "https://bathanh.com.vn/bt-43-wood-grains",
+        "https://bathanh.com.vn/bt-42-wood-grains",
+        "https://bathanh.com.vn/bt-41-wood-grains",
+        "https://bathanh.com.vn/bt-40-wood-grains",
+        "https://bathanh.com.vn/bt-38-wood-grains",
+        "https://bathanh.com.vn/bt-37-wood-grains",
+        "https://bathanh.com.vn/bt-36-wood-grains",
+        "https://bathanh.com.vn/bt-35-wood-grains",
+        "https://bathanh.com.vn/bt-34-wood-grains",
+        "https://bathanh.com.vn/bt-33-wood-grains",
+        "https://bathanh.com.vn/bt-32-wood-grains",
+        "https://bathanh.com.vn/bt-31-wood-grains",
+        "https://bathanh.com.vn/bt-30-wood-grains",
+        "https://bathanh.com.vn/bt-29-wood-grains",
+        "https://bathanh.com.vn/bt-28-wood-grains",
+        "https://bathanh.com.vn/bt-27-wood-grains",
+        "https://bathanh.com.vn/bt-26-wood-grains",
+        "https://bathanh.com.vn/bt-25-wood-grains",
+        "https://bathanh.com.vn/bt-24-wood-grains",
+        "https://bathanh.com.vn/bt-23-wood-grains",
+        "https://bathanh.com.vn/bt-22-wood-grains",
+        "https://bathanh.com.vn/bt-20-wood-grains",
+        "https://bathanh.com.vn/bt-19-wood-grains",
+        "https://bathanh.com.vn/bt-18-wood-grains",
+        "https://bathanh.com.vn/bt-17-wood-grains",
+        "https://bathanh.com.vn/bt-16-wood-grains",
+        "https://bathanh.com.vn/bt-15-wood-grains",
+        "https://bathanh.com.vn/bt-14-wood-grains",
+        "https://bathanh.com.vn/bt-13-wood-grains",
+        "https://bathanh.com.vn/bt-12-wood-grains",
+        "https://bathanh.com.vn/bt-11-wood-grains",
+        "https://bathanh.com.vn/bt-10-wood-grains",
+        "https://bathanh.com.vn/bt-09-wood-grains",
+        "https://bathanh.com.vn/bt-08-wood-grains",
+        "https://bathanh.com.vn/bt-07-wood-grains",
+        "https://bathanh.com.vn/bt-06-wood-grains",
+        "https://bathanh.com.vn/bt-05-wood-grains",
+        "https://bathanh.com.vn/bt-s9-stone",
+        "https://bathanh.com.vn/bt-s8-stone",
+        "https://bathanh.com.vn/bt-s7-stone",
+        "https://bathanh.com.vn/bt-s6-stone",
+        "https://bathanh.com.vn/bt-60-solid-color",
+        "https://bathanh.com.vn/bt-xam-chi-solid-color",
+        "https://bathanh.com.vn/bt-xam-solid-color",
+        "https://bathanh.com.vn/bt-hong-solid-color",
+        "https://bathanh.com.vn/bt-xanh-bien-solid-color",
+        "https://bathanh.com.vn/bt-xanh-chuoi-solid-color",
+        "https://bathanh.com.vn/bt-xanh-coban-solid-color",
+        "https://bathanh.com.vn/bt-vang-solid-color",
+        "https://bathanh.com.vn/bt-cam-solid-color",
+        "https://bathanh.com.vn/sc-004m-solid-color",
+        "https://bathanh.com.vn/sc-003m-solid-color",
+        "https://bathanh.com.vn/sc-002m-solid-color",
+        "https://bathanh.com.vn/sc-001m-solid-color",
+        "https://bathanh.com.vn/sc-004mw-solid-color",
+        "https://bathanh.com.vn/sc-003mw-solid-color",
+        "https://bathanh.com.vn/sc-002mw-solid-color",
+        "https://bathanh.com.vn/bt-sc001mw-solid-color",
+        "https://bathanh.com.vn/ml-bt04",
+        "https://bathanh.com.vn/lien-he-2",
+        "https://bathanh.com.vn/dai-ly",
+        "https://bathanh.com.vn/test",
+        "https://bathanh.com.vn/dich-vu/van-tai"
+      ]
+    },
+    {
+      "url": "https://bathanh.com.vn/wp-json/wp/v2/pages?page=4&per_page=100&_fields=id,link",
+      "sourceUrls": [
+        "https://bathanh.com.vn/dich-vu/gia-cong",
+        "https://bathanh.com.vn/lien-he-2/he-thong-phan-phoi",
+        "https://bathanh.com.vn/map-ma-melamine/nep-chi-pvc-dan-go",
+        "https://bathanh.com.vn/cong-ty/tu-van",
+        "https://bathanh.com.vn/map-ma-melamine/van-phu-keo-melamine",
+        "https://bathanh.com.vn/map-ma-melamine/van-phu-verneer",
+        "https://bathanh.com.vn/dich-vu",
+        "https://bathanh.com.vn/tin-tuc",
+        "https://bathanh.com.vn/lien-he-2/lien-he",
+        "https://bathanh.com.vn/cong-ty/chung-nhan-chat-luong",
+        "https://bathanh.com.vn/cong-ty/doi-tac",
+        "https://bathanh.com.vn/cong-ty/gioi-thieu",
+        "https://bathanh.com.vn/nha-may-san-xuat",
+        "https://bathanh.com.vn/san-pham-moi",
+        "https://bathanh.com.vn/thong-tin-thanh-toan",
+        "https://bathanh.com.vn/chinh-sach-dai-ly",
+        "https://bathanh.com.vn/quy-che-hoat-dong",
+        "https://bathanh.com.vn/hop-tac-kinh-doanh",
+        "https://bathanh.com.vn/doi-tra-san-pham",
+        "https://bathanh.com.vn/cham-soc-khach-hang",
+        "https://bathanh.com.vn/hinh-thuc-thanh-toan",
+        "https://bathanh.com.vn/huong-dan-mua-hang",
+        "https://bathanh.com.vn/catalogue-pdf",
+        "https://bathanh.com.vn/san-pham",
+        "https://bathanh.com.vn/map-ma-melamine",
+        "https://bathanh.com.vn/cong-ty",
+        "https://bathanh.com.vn/"
+      ]
+    }
+  ],
+  "publicPageApiRecords": 327,
+  "melamineIndexUrl": "https://bathanh.com.vn/map-ma-melamine",
+  "melamineCategories": [
+    {
+      "slug": "van-go",
+      "sourceLabel": "MÀU VÂN GỖ"
+    },
+    {
+      "slug": "don-sac",
+      "sourceLabel": "MÀU ĐƠN SẮC"
+    },
+    {
+      "slug": "van-da",
+      "sourceLabel": "MÀU VÂN ĐÁ"
+    },
+    {
+      "slug": "van-vai",
+      "sourceLabel": "MÀU VÂN VẢI"
+    }
+  ],
+  "melamineCounts": {
+    "van-go": 153,
+    "don-sac": 62,
+    "van-da": 13,
+    "van-vai": 5
+  },
+  "laminateIndexUrl": "https://bathanh.com.vn/map-mau-laminate",
+  "laminateCategories": [
+    {
+      "slug": "van-go",
+      "sourceLabel": "MÀU VÂN GỖ"
+    },
+    {
+      "slug": "don-sac",
+      "sourceLabel": "MÀU ĐƠN SẮC"
+    },
+    {
+      "slug": "van-da",
+      "sourceLabel": "MÀU VÂN ĐÁ"
+    },
+    {
+      "slug": "van-vai",
+      "sourceLabel": "MÀU VÂN VẢI"
+    }
+  ],
+  "laminateCounts": {
+    "van-go": 8,
+    "don-sac": 16,
+    "van-da": 4,
+    "van-vai": 5
+  },
+  "discovered": [
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/robots.txt",
+      "discoveredFrom": "html-link",
+      "locale": "unknown",
+      "pageType": "unknown",
+      "status": 200
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sitemap_index.xml",
+      "discoveredFrom": "sitemap",
+      "locale": "unknown",
+      "pageType": "unknown",
+      "status": 200
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/post-sitemap.xml",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/sitemap_index.xml",
+      "locale": "unknown",
+      "pageType": "unknown",
+      "status": 200
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/tong-hop-5-cau-hoi-tiep-theo-cua-khach-hang-khi-dat-tu-bep.html",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/post-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/phan-biet-hdf-va-mdf-loi-xanh.html",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/post-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product-family"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/%e2%80%8bvanphumelamine.html",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/post-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/nhanh-tay-dat-tu-bep-nhan-ngay-qua-hap-dan-trong-thang-4-nay.html",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/post-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/page-sitemap.xml",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/sitemap_index.xml",
+      "locale": "unknown",
+      "pageType": "unknown",
+      "status": 200
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/cong-ty",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/san-pham",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "collection"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/dich-vu",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/cong-ty/tu-van",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/customer-care-see",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/agent-policy",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/company",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/company/quality-certification",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/cong-ty/doi-tac",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/company/partner",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/company/about",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/company/suicide",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/service",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/service/processing",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/service/carriage",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/product-return",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/solution",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/solution/only-veneer-pvc-edgebanding",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/solution/processing-melamine-paper",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/solution/processing-veneer",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/distribution-system",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/payments",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/business-cooperation",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/shopping-guide",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/contact",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/nha-may-san-xuat",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/factory",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/operating-regulation",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/product",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/san-pham-moi",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/product-news",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/billing-information",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/blogs",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/dai-ly",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/cong-ty/chung-nhan-chat-luong",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/lien-he-2",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/map-ma-melamine/van-phu-keo-melamine",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/map-ma-melamine/van-phu-verneer",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/map-ma-melamine/nep-chi-pvc-dan-go",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/dich-vu/gia-cong",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/test",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/gioi-thieu-dm",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/catalogue-van-san-dongwha",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product-family"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/cham-soc-khach-hang",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/huong-dan-mua-hang",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/hop-tac-kinh-doanh",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/hinh-thuc-thanh-toan",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/chinh-sach-dai-ly",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/quy-che-hoat-dong",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/thong-tin-thanh-toan",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/doi-tra-san-pham",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/dich-vu/van-tai",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/cong-ty/gioi-thieu",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-01-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-02-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-103-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt166",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt167",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt168",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt169",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt170",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-49-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-55-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-a150-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-cam-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-den-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-den-ash-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-trang-ash-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-xam-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/ml-bt04",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-05-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-06-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-07-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-08-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-09-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-10-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-100-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-11-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-111-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-112-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-113-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-114-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-115-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-116-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-117-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-118-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-119-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-12-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-120-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-122-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-123-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-124-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-125-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-126-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-127-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-128-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-129-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-13-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-130-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-131-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-132-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-133-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-134-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-135-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-136-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-137-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-138-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-139-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-14-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-140-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-141-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-142-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-143-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-144-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-145-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-146-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-147-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-148-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-15-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-151-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-152-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-154-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-155-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-156-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-157-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-158-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-159-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-16-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-160-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-161-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-162-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-163-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-164-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-165-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-17-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-18-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-19-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-20-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-22-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-23-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-24-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-25-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-26-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-27-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-28-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-29-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-30-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-31-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-32-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-33-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-34-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-35-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-36-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-37-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-38-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-40-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-41-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-42-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-43-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-44-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-45-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-46-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-47-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-48-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-50-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-51-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-52-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-53-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-54-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-56-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-57-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-58-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-59-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-61-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-62-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-63-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-64-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-65-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-66-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-67-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-68-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-69-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-70-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-71-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-72-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-60-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-73-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-74-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-75-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-76-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-77-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-78-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-79-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-80-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-81-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-82-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-83-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-84-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-85-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-86-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-87-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-88-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-89-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-90-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-91-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-92-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-93-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-94-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-95-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-96-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-97-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-98-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-99-wood-grains",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-s6-stone",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-s7-stone",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-s8-stone",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-s9-stone",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-hong-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc-001m-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-sc001mw-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc-002m-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc-002mw-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc-003m-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc-003mw-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc-004m-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc-004mw-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc-005m-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc-005mw-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc-006m-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc-006mw-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc-007m-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc-007mw-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc-008m-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc-008mw-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/btsc009",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/btsc010",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/btsc011",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/btsc012",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/btsc013",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/btsc014",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/btsc015",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc016",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-vang-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-xam-chi-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-xanh-chuoi-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-xanh-coban-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc010mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc011mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc012mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc013mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc014mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc015mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc016mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc017mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc009mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p1010",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p1150",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p2002",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p2052",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p2061",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p4640",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-f0022",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-f3292",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-f3293",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-f3294",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-f3295",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/map-mau-laminate",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "collection"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p2001",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p2660",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p3190",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p4600",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p7700",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p7740",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p7790",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p9120",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p9340",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-p9660",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-s4600",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-s7382",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-s7402",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-s7403",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-w0304",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-w0502",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-w0504",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-w5220",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-w7020",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-w7393",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-w7412",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/way-w9630",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt171",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc017",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc018mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/btsc018",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc028mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc027mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc026mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc025mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc024mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc022mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc021mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc020mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc019mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt172ev",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt171ev",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc029mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc030mw",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bts12",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bts11",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc019",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc020",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc022",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc024",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc025",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc026",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc021",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc027",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc028",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt-xanh-bien-solid-color",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/lien-he-2/lien-he",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc029",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc030",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bts14",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bts15",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt173",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt174",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt175",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/catalogue-pdf",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "catalogue"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt172",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/lien-he-2/he-thong-phan-phoi",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc032dl",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc032n",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc034dl",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc034n",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc035dl",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc035n",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc036dl",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc036n",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc037dl",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/sc037n",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt176",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt177",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt178",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt179",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt180",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt181",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt182",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt183",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt184",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/bt185",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/ung-dung-mau-melamine",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/map-ma-melamine",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "collection"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/tin-tuc",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/page-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/block-sitemap.xml",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/sitemap_index.xml",
+      "locale": "unknown",
+      "pageType": "unknown",
+      "status": 200
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/block/en-video-popup",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/block-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/block/en-footer-page-block",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/block-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/block/en-doi-tac-dang-ky-block",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/block-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/en/block/en-dich-vu-gioi-thieu-block",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/block-sitemap.xml",
+      "locale": "en",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/block/vn-dich-vu-gioi-thieu-block-new",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/block-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/block/vn-doi-tac-dang-ky-block-new",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/block-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/block/vn-video-popup",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/block-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/block/taskbar-hotline",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/block-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/block/vn-doi-tac-dang-ky-block",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/block-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/block/vn-dich-vu-gioi-thieu-block",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/block-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/block/vn-footer-page-block",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/block-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio-sitemap.xml",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/sitemap_index.xml",
+      "locale": "unknown",
+      "pageType": "unknown",
+      "status": 200
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/portfolio-sitemap.xml",
+      "locale": "vi",
+      "pageType": "collection"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio/van-phu-melamine",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/portfolio-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product-family"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio/chi-vien-veneer-pvc",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/portfolio-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product-family"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio/van-phu-giay-melamine",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/portfolio-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product-family"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio/van-phu-veneer",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/portfolio-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product-family"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio/phan-biet-hdf-va-mdf-loi-xanh",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/portfolio-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio/phan-biet-cac-loai-go-cong-nghiep",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/portfolio-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio/gia-cong-vanvi-sao",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/portfolio-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio/vanokal",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/portfolio-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product-family"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio/van-go-ghep",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/portfolio-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product-family"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio/gioi-thieu-qui-cach-van-mdf",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/portfolio-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product-family"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio/van-mdf-chong-am-hmr-mmr",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/portfolio-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product-family"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio/van-mdf-hdf",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/portfolio-sitemap.xml",
+      "locale": "vi",
+      "pageType": "product-family"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/category-sitemap.xml",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/sitemap_index.xml",
+      "locale": "unknown",
+      "pageType": "unknown",
+      "status": 200
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/chuyen-muc/khuyen-mai",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/category-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/chuyen-muc/tin-bathanh",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/category-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/chuyen-muc/tin-moi",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/category-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio_cat-sitemap.xml",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/sitemap_index.xml",
+      "locale": "unknown",
+      "pageType": "unknown",
+      "status": 200
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio_cat/go",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/portfolio_cat-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/portfolio_cat/van",
+      "discoveredFrom": "sitemap",
+      "sourceParent": "https://bathanh.com.vn/portfolio_cat-sitemap.xml",
+      "locale": "vi",
+      "pageType": "unknown"
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-json/wp/v2/pages",
+      "discoveredFrom": "api",
+      "locale": "vi",
+      "pageType": "collection",
+      "status": 200
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-json/wp/v2/pages?page=1&per_page=100&_fields=id,link",
+      "discoveredFrom": "api",
+      "sourceParent": "https://bathanh.com.vn/wp-json/wp/v2/pages",
+      "locale": "vi",
+      "pageType": "collection",
+      "status": 200
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-json/wp/v2/pages?page=2&per_page=100&_fields=id,link",
+      "discoveredFrom": "pagination",
+      "sourceParent": "https://bathanh.com.vn/wp-json/wp/v2/pages",
+      "locale": "vi",
+      "pageType": "collection",
+      "status": 200
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-json/wp/v2/pages?page=3&per_page=100&_fields=id,link",
+      "discoveredFrom": "pagination",
+      "sourceParent": "https://bathanh.com.vn/wp-json/wp/v2/pages",
+      "locale": "vi",
+      "pageType": "collection",
+      "status": 200
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-json/wp/v2/pages?page=4&per_page=100&_fields=id,link",
+      "discoveredFrom": "pagination",
+      "sourceParent": "https://bathanh.com.vn/wp-json/wp/v2/pages",
+      "locale": "vi",
+      "pageType": "collection",
+      "status": 200
+    }
+  ],
+  "crawledAt": "2026-08-06T16:09:10.706Z",
+  "laminateCrawl": {
+    "total": 33,
+    "successful": 33,
+    "rejected": 0,
+    "failed": 0
+  }
+}

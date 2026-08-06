@@ -8,6 +8,12 @@ import type { CatalogImage, SupplierColorCode } from "@/lib/catalog/types";
 import { COLOR_DISCLAIMER, CATALOG_PATH, IMPORT_DIR, MEDIA_DIR, READY_EDITORIAL, SOURCE_INDEX_URL, USER_AGENT } from "./config";
 import { downloadCatalogImage } from "./download-media";
 
+export {
+  buildBaThanhCatalogueRecords,
+  buildBaThanhFullSourceManifest,
+  checksumBaThanhRecords,
+} from "./full-import";
+
 type SourceItem = {
   sourceUrl: string;
   sourceImageUrl: string;

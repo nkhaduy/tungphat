@@ -170,6 +170,42 @@ describe("extractBaThanhIndex", () => {
         .items,
     ).toEqual([]);
   });
+
+  it("discovers public WAY Laminate codes without treating WAY as part of the code", () => {
+    const source = `
+      <a href="#wood"><span class="vc_tta-title-text">MÀU VÂN GỖ</span></a>
+      <a href="#solid"><span class="vc_tta-title-text">MÀU ĐƠN SẮC</span></a>
+      <div class="vc_tta-panel" id="wood">
+        <a href="/way-w7020"><img src="/uploads/W7020.jpg"></a>
+      </div>
+      <div class="vc_tta-panel" id="solid">
+        <a href="/way-p1010"><img src="/uploads/P1010.jpg"></a>
+      </div>
+    `;
+
+    expect(
+      extractBaThanhIndex(
+        source,
+        "https://bathanh.com.vn/map-mau-laminate",
+      ).items.map((item) => item.codeRaw),
+    ).toEqual(["W7020", "P1010"]);
+  });
+
+  it("uses a WAY detail route code when the Laminate index reuses an unrelated Melamine thumbnail filename", () => {
+    const source = `
+      <a href="#wood"><span class="vc_tta-title-text">MÀU VÂN GỖ</span></a>
+      <div class="vc_tta-panel" id="wood">
+        <a href="/way-w0502"><img src="/wp-content/uploads/BT-163.jpg"></a>
+      </div>
+    `;
+
+    expect(
+      extractBaThanhIndex(
+        source,
+        "https://bathanh.com.vn/map-mau-laminate",
+      ).items[0]?.codeRaw,
+    ).toBe("W0502");
+  });
 });
 
 describe("recognizeBaThanhDetail", () => {
@@ -317,6 +353,42 @@ describe("recognizeBaThanhDetail", () => {
     expect(detail.text).toContain("1220mm x 2440mm");
     expect(detail.text).not.toContain("TIN TỨC");
     expect(detail.text).not.toContain("source contact");
+  });
+
+  it("verifies a public Laminate WAY detail code from its visible heading", () => {
+    const detail = recognizeBaThanhDetail(
+      `<main>
+        <h1>LAMINATE WAY W7020</h1>
+        <p>Hình ảnh màu Laminate chụp thực tế.</p>
+        <img src="https://bathanh.com.vn/wp-content/uploads/W7020-Z.jpg">
+      </main>`,
+      {
+        expectedCode: "W7020",
+        sourceUrl: "https://bathanh.com.vn/way-w7020",
+      },
+    );
+
+    expect(detail).toEqual(expect.objectContaining({
+      accepted: true,
+      verifiedCodeRaw: "W7020",
+      heading: "LAMINATE WAY W7020",
+    }));
+  });
+
+  it("accepts the supplier's dash-separated Laminate heading without requiring a photo caption", () => {
+    const detail = recognizeBaThanhDetail(
+      `<main>
+        <h1>LAMINATE – WAY – W7393</h1>
+        <p>Hình ảnh chỉ mang tính tham khảo.</p>
+      </main>`,
+      {
+        expectedCode: "W7393",
+        sourceUrl: "https://bathanh.com.vn/way-w7393",
+      },
+    );
+
+    expect(detail.accepted).toBe(true);
+    expect(detail.verifiedCodeRaw).toBe("W7393");
   });
 });
 
