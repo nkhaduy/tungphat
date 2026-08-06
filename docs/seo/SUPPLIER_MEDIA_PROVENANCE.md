@@ -24,7 +24,7 @@ Each manifest separates supplier source provenance from local delivery. `exact-s
 
 An Cường contributes 4,584 archival-original assets with 7,267 product/role references and 2,682 supplier-thumbnail assets with 2,682 preview references. Four URLs overlap between those inventories, producing 7,262 unique An Cường URLs. No An Cường original or thumbnail was added to `public/` in this safety-converged run.
 
-The public catalogue currently contains 1,330 files / 107,453,754 bytes. The largest file is 469,014 bytes. Both Cloudflare Pages gates pass: 1,330 is below 20,000 files and 469,014 is below 25 MiB. Limits source: <https://developers.cloudflare.com/pages/platform/limits/> (checked 2026-07-16).
+The prebuild source tree currently contains 1,389 files / 144,384,764 bytes. The largest file is 2,267,726 bytes. This is labeled `PREBUILD_SOURCE_PUBLIC` because `out/` is not present; it is a source-public planning measurement, not a claim about the final Pages deployment. Both Cloudflare Pages gates pass: 1,389 is below 20,000 files and 2,267,726 is below 25 MiB. After a build, `postbuild` runs `scripts/check-cloudflare-pages-capacity.mjs` against the complete `out/` tree and fails if either actual deployment gate fails. Limits source: <https://developers.cloudflare.com/pages/platform/limits/> (checked 2026-07-16).
 
 ## Crawl safety and metadata
 
@@ -58,4 +58,4 @@ npm run catalog:suppliers:media:validate
 npm test -- --run tests/supplier-full-media.test.ts
 ```
 
-`next build` does not call the supplier media pipeline and performs no supplier crawl/fetch.
+`next build` does not call the supplier media pipeline and performs no supplier crawl/fetch. The catalogue-only delivery count is not a Pages deployment count; use the `publicDelivery.scope` field and the postbuild `out/` check for deployment capacity.

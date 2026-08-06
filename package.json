@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "npm run validate:content && npm run images:check && node ./node_modules/next/dist/bin/next build",
-    "postbuild": "node scripts/clean-empty-collection-routes.mjs && node scripts/clean-export-image-sources.mjs && node scripts/check-static-output.mjs && node scripts/check-sitemap-output.mjs && node scripts/check-metadata-output.mjs",
+    "postbuild": "node scripts/clean-empty-collection-routes.mjs && node scripts/clean-export-image-sources.mjs && node scripts/check-static-output.mjs && node scripts/check-cloudflare-pages-capacity.mjs && node scripts/check-sitemap-output.mjs && node scripts/check-metadata-output.mjs",
     "start": "npx serve out",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.cloudflare.json --noEmit",

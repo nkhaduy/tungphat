@@ -4,6 +4,8 @@ import path from "node:path";
 import {
   buildMediaCapacitySummary,
   checksumSupplierMediaManifest,
+  classifySupplierMediaOrigin,
+  fetchExactSupplierPreviewsWithCache,
   inspectMediaBytes,
   inventoryMediaOriginsWithCache,
   isAllowedSupplierMediaUrl,
@@ -22,6 +24,7 @@ const ROOT = process.cwd();
 const PUBLIC_ROOT = path.join(ROOT, "public");
 const PUBLIC_CATALOG = path.join(PUBLIC_ROOT, "catalog");
 const AN_CUONG_PUBLIC = path.join(PUBLIC_CATALOG, "an-cuong");
+const PREVIEW_CHECKPOINT = path.join(ROOT, ".cache/supplier-media/preview-inventory.json");
 const MAX_FILE_BYTES = 25 * 1024 * 1024;
 const MAX_NEW_PREVIEW_BYTES = 384 * 1024 * 1024;
 const MIN_FREE_DISK_RESERVE_BYTES = 8 * 1024 * 1024 * 1024;
@@ -175,50 +178,11 @@ function extensionForMime(mimeType: string): string {
   return extension;
 }
 
-async function mapConcurrent<T, R>(values: T[], concurrency: number, worker: (value: T, index: number) => Promise<R>): Promise<R[]> {
-  const results = new Array<R>(values.length);
-  let cursor = 0;
-  const run = async () => {
-    while (cursor < values.length) {
-      const index = cursor++;
-      results[index] = await worker(values[index]!, index);
-    }
-  };
-  await Promise.all(Array.from({ length: Math.min(Math.max(1, concurrency), values.length || 1) }, run));
-  return results;
-}
-
-function createPacer(minDelayMs: number): () => Promise<void> {
-  let gate = Promise.resolve();
-  let nextAt = 0;
-  return async () => {
-    const previous = gate;
-    let release = () => {};
-    gate = new Promise<void>((resolve) => { release = resolve; });
-    await previous;
-    const delay = Math.max(0, nextAt - Date.now());
-    if (delay > 0) await new Promise((resolve) => setTimeout(resolve, delay));
-    nextAt = Date.now() + minDelayMs;
-    release();
-  };
-}
-
 function originalState(origin: SupplierMediaOrigin): Pick<SupplierMediaAsset, "state" | "reason"> {
   if (!isAllowedSupplierMediaUrl("an-cuong", origin.sourceUrl)) {
     return { state: "INVALID", reason: "Source URL is outside the official An Cường HTTPS media hosts." };
   }
-  if (origin.httpStatus === 404 || origin.httpStatus === 410) {
-    return { state: "UNRESOLVED", reason: `Supplier original returned HTTP ${origin.httpStatus}; no local path was invented.` };
-  }
-  if (origin.httpStatus && origin.httpStatus >= 400 && origin.httpStatus !== 405) {
-    return { state: "UNRESOLVED", reason: `Supplier original metadata request returned HTTP ${origin.httpStatus}; original bytes were not downloaded.` };
-  }
-  return {
-    state: "ORIGINAL_PROVENANCE_ONLY",
-    reason: origin.error
-      ? "Public source reference retained; HEAD metadata was unavailable and no original GET was attempted."
-      : "Archival original retained as inventory-only provenance because projected full-image download exceeds safe capacity.",
-  };
+  return classifySupplierMediaOrigin(origin);
 }
 
 function buildAnCuongReferences(products: AnCuongProduct[], listings: AnCuongListing[]) {
@@ -245,72 +209,6 @@ function buildAnCuongReferences(products: AnCuongProduct[], listings: AnCuongLis
     }
   }
   return { originalReferences, previewReferences };
-}
-
-async function fetchExactImage(
-  supplier: SupplierId,
-  sourceUrl: string,
-  options: { retries: number; maxRedirects: number; timeoutMs: number },
-): Promise<{ bytes: Buffer; origin: SupplierMediaOrigin }> {
-  let currentUrl = sourceUrl;
-  const redirectChain: string[] = [];
-  const visited = new Set([sourceUrl]);
-  for (let redirects = 0; ; redirects += 1) {
-    let response: Response | undefined;
-    let lastError: unknown;
-    for (let attempt = 0; attempt <= options.retries; attempt += 1) {
-      const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), options.timeoutMs);
-      try {
-        response = await fetch(currentUrl, {
-          method: "GET",
-          redirect: "manual",
-          signal: controller.signal,
-          headers: {
-            accept: "image/avif,image/webp,image/png,image/jpeg,image/gif",
-            "user-agent": "TungPhat-Supplier-Preview-Importer/1.0 (+https://mdftungphat.com)",
-          },
-        });
-        if (![408, 425, 429, 500, 502, 503, 504].includes(response.status) || attempt === options.retries) break;
-      } catch (error) {
-        lastError = error;
-        if (attempt === options.retries) throw error;
-      } finally {
-        clearTimeout(timer);
-      }
-      await new Promise((resolve) => setTimeout(resolve, 250 * 2 ** attempt));
-    }
-    if (!response) throw lastError instanceof Error ? lastError : new Error(`GET failed: ${currentUrl}`);
-    if ([301, 302, 303, 307, 308].includes(response.status)) {
-      const location = response.headers.get("location");
-      if (!location) throw new Error(`Supplier media redirect is missing Location: ${currentUrl}`);
-      if (redirects >= options.maxRedirects) throw new Error(`Supplier media redirect limit exceeded: ${sourceUrl}`);
-      const redirected = new URL(location, currentUrl).toString();
-      if (!isAllowedSupplierMediaUrl(supplier, redirected)) throw new Error(`Supplier media redirect left allowlisted HTTPS hosts: ${redirected}`);
-      if (visited.has(redirected)) throw new Error(`Supplier media redirect cycle detected: ${redirected}`);
-      visited.add(redirected);
-      redirectChain.push(redirected);
-      currentUrl = redirected;
-      continue;
-    }
-    if (!response.ok) throw new Error(`Supplier preview GET returned HTTP ${response.status}`);
-    const declaredLength = Number(response.headers.get("content-length"));
-    if (Number.isFinite(declaredLength) && declaredLength > MAX_FILE_BYTES) throw new Error("Supplier preview exceeds the 25 MiB per-file gate");
-    const bytes = Buffer.from(await response.arrayBuffer());
-    if (bytes.length > MAX_FILE_BYTES) throw new Error("Supplier preview exceeds the 25 MiB per-file gate");
-    const info = inspectMediaBytes(bytes, response.headers.get("content-type") ?? undefined);
-    return {
-      bytes,
-      origin: {
-        sourceUrl,
-        finalUrl: currentUrl,
-        redirectChain,
-        httpStatus: response.status,
-        mimeType: info.mimeType,
-        contentLength: bytes.length,
-      },
-    };
-  }
 }
 
 function cachedPreviewBySource(previous: SupplierMediaManifest | undefined): Map<string, SupplierMediaAsset> {
@@ -346,6 +244,7 @@ async function buildAnCuongManifest(options: {
   concurrency: number;
   offline: boolean;
   previewDownloadUrls: ReadonlySet<string>;
+  refreshRateLimited: boolean;
 }): Promise<SupplierMediaManifest> {
   const originals: SupplierMediaAsset[] = [];
   for (const [sourceUrl, references] of [...options.originalReferences].sort(([left], [right]) => left.localeCompare(right))) {
@@ -354,9 +253,7 @@ async function buildAnCuongManifest(options: {
     originals.push(sourceAsset("archival-original", origin, references, state.state, state.reason));
   }
 
-  const existingPublicFiles = fs.existsSync(PUBLIC_CATALOG)
-    ? fs.readdirSync(PUBLIC_CATALOG, { recursive: true, withFileTypes: true }).filter((entry) => entry.isFile()).length
-    : 0;
+  const existingPublicFiles = deploymentCapacity().fileCount;
   const stat = fs.statfsSync(ROOT);
   const freeBytes = stat.bavail * stat.bsize;
   const knownPreviewBytes = [...options.previewReferences.keys()].reduce((total, url) => {
@@ -379,10 +276,22 @@ async function buildAnCuongManifest(options: {
 
   fs.mkdirSync(AN_CUONG_PUBLIC, { recursive: true });
   const cache = cachedPreviewBySource(options.previous);
-  const pacePreviewRequest = createPacer(250);
+  const selectedRequests = [...options.previewDownloadUrls].sort().map((sourceUrl) => ({ supplier: "an-cuong" as const, sourceUrl }));
+  const previewResults = selectedRequests.length
+    ? await fetchExactSupplierPreviewsWithCache(selectedRequests, {
+        cacheFile: PREVIEW_CHECKPOINT,
+        concurrency: options.concurrency,
+        retries: 2,
+        maxRedirects: 5,
+        timeoutMs: 20_000,
+        minDelayMs: 250,
+        refreshRateLimited: options.refreshRateLimited,
+        offline: options.offline,
+      })
+    : new Map();
   let acceptedBytes = 0;
   const previewEntries = [...options.previewReferences].sort(([left], [right]) => left.localeCompare(right));
-  const previews = await mapConcurrent(previewEntries, options.concurrency, async ([sourceUrl, references]) => {
+  const previews = previewEntries.map(([sourceUrl, references]) => {
     const cached = cache.get(sourceUrl);
     if (cached && verifyCachedPreview(cached)) {
       const origin = cached.origins.find((value) => value.sourceUrl === sourceUrl) ?? options.origins.get(sourceUrl)!;
@@ -408,9 +317,18 @@ async function buildAnCuongManifest(options: {
         "Exact supplier thumbnail is not cached locally; offline mode did not fetch it.",
       );
     }
+    const downloaded = previewResults.get(`an-cuong|${sourceUrl}`);
+    if (!downloaded || downloaded.status !== "downloaded") {
+      const unresolvedOrigin = downloaded?.origin ?? origin;
+      return sourceAsset(
+        "supplier-thumbnail",
+        unresolvedOrigin,
+        references,
+        "UNRESOLVED",
+        `${unresolvedOrigin.error ?? "Exact supplier preview was not downloaded"}; no local path was created.`,
+      );
+    }
     try {
-      await pacePreviewRequest();
-      const downloaded = await fetchExactImage("an-cuong", sourceUrl, { retries: 2, maxRedirects: 5, timeoutMs: 20_000 });
       if (acceptedBytes + downloaded.bytes.length > MAX_NEW_PREVIEW_BYTES) {
         return sourceAsset("supplier-thumbnail", downloaded.origin, references, "DEFERRED", "Actual thumbnail bytes reached the capacity-safe preview budget; no local path was created.");
       }
@@ -484,6 +402,11 @@ function buildExistingSupplierAssets(
       ...(origins.get(sourceUrl) ?? { sourceUrl, redirectChain: [], contentLength: "unknown" as const }),
       sourceChecksum: value.sourceChecksum,
     };
+    const sourceClassification = classifySupplierMediaOrigin(origin);
+    if (sourceClassification.state === "INVALID") {
+      assets.push(sourceAsset("archival-original", origin, value.references, "INVALID", sourceClassification.reason));
+      continue;
+    }
     if (value.localPath && fs.existsSync(publicPathToFile(value.localPath))) {
       assets.push({
         ...sourceAsset("archival-original", origin, value.references, "LOCAL_PREVIEW"),
@@ -519,8 +442,8 @@ function makeManifest(
   return manifest;
 }
 
-function listPublicFiles(): string[] {
-  if (!fs.existsSync(PUBLIC_CATALOG)) return [];
+function listFiles(directory: string): string[] {
+  if (!fs.existsSync(directory)) return [];
   const files: string[] = [];
   const visit = (directory: string) => {
     for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -529,8 +452,29 @@ function listPublicFiles(): string[] {
       else if (entry.isFile()) files.push(child);
     }
   };
-  visit(PUBLIC_CATALOG);
+  visit(directory);
   return files.sort();
+}
+
+function listPublicFiles(): string[] {
+  return listFiles(PUBLIC_ROOT);
+}
+
+function deploymentCapacity() {
+  const staticOutput = path.join(ROOT, "out");
+  const scope = fs.existsSync(staticOutput)
+    ? "STATIC_OUTPUT" as const
+    : "PREBUILD_SOURCE_PUBLIC" as const;
+  const directory = scope === "STATIC_OUTPUT" ? staticOutput : PUBLIC_ROOT;
+  const files = listFiles(directory);
+  const sizes = files.map((file) => fs.statSync(file).size);
+  return {
+    scope,
+    directory: path.relative(ROOT, directory).split(path.sep).join("/"),
+    fileCount: files.length,
+    bytes: sizes.reduce((total, size) => total + size, 0),
+    maxFileBytes: Math.max(0, ...sizes),
+  };
 }
 
 function validateLocalDelivery(manifest: SupplierMediaManifest, knownLocalPaths: Set<string>): string[] {
@@ -566,7 +510,7 @@ async function main() {
   const previewLimitArg = process.argv.find((value) => value.startsWith("--preview-limit="));
   const previewLimit = Number(previewLimitArg?.split("=")[1] ?? 0);
   const concurrencyArg = process.argv.find((value) => value.startsWith("--concurrency="));
-  const concurrency = Math.max(1, Math.min(Number(concurrencyArg?.split("=")[1] ?? DEFAULT_CONCURRENCY), 4));
+  const concurrency = Math.max(1, Math.min(Number(concurrencyArg?.split("=")[1] ?? DEFAULT_CONCURRENCY), 3));
 
   if (validateOnly) {
     const manifests = (["an-cuong", "ba-thanh", "thanh-thuy"] as const).map((supplier) => {
@@ -634,6 +578,7 @@ async function main() {
     previous: previous["an-cuong"],
     concurrency,
     offline,
+    refreshRateLimited,
     previewDownloadUrls: new Set(selectCapacitySafePreviewUrls([...anCuong.previewReferences.keys()], {
       enabled: downloadPreviews,
       limit: previewLimit,
@@ -643,11 +588,13 @@ async function main() {
   const thanhThuyManifest = makeManifest("thanh-thuy", buildExistingSupplierAssets("thanh-thuy", thanhThuyRecords, thanhThuyOrigins), previous["thanh-thuy"]);
   const manifests = [anCuongManifest, baThanhManifest, thanhThuyManifest];
   const publicFiles = listPublicFiles();
-  const publicStats = publicFiles.map((file) => fs.statSync(file).size);
+  const deployment = deploymentCapacity();
   const summaryCore = buildMediaCapacitySummary(manifests, {
-    publicFileCount: publicFiles.length,
-    publicBytes: publicStats.reduce((total, bytes) => total + bytes, 0),
-    maxPublicFileBytes: Math.max(0, ...publicStats),
+    publicFileCount: deployment.fileCount,
+    publicBytes: deployment.bytes,
+    maxPublicFileBytes: deployment.maxFileBytes,
+    scope: deployment.scope,
+    directory: deployment.directory,
   });
   const summaryChecksum = sha256(JSON.stringify(stableValue(summaryCore)));
   const summaryPath = path.join(ROOT, "data/imports/supplier-media-capacity-summary.json");
