@@ -6,6 +6,7 @@ import { ArrowRight, Check, Copy, Search } from "lucide-react";
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { useCatalogFilterRobots } from "@/components/catalog/useCatalogFilterRobots";
 import {
+  getCatalogSearchOptionsForSelection,
   searchSupplierCatalog,
   type CatalogSearchIntent,
 } from "@/lib/catalog/core/search";
@@ -121,7 +122,7 @@ export function SupplierCatalogSearch({
     () =>
       searchSupplierCatalog(entries, deferredQuery, {
         supplierId: supplierId || undefined,
-        material: group || (type === "melamine" ? "melamine" : undefined),
+        ...getCatalogSearchOptionsForSelection(group, type),
       }),
     [deferredQuery, entries, group, supplierId, type],
   );
@@ -157,7 +158,7 @@ export function SupplierCatalogSearch({
     if (event.key !== "Enter") return;
     const currentResults = searchSupplierCatalog(entries, query, {
       supplierId: supplierId || undefined,
-      material: group || (type === "melamine" ? "melamine" : undefined),
+      ...getCatalogSearchOptionsForSelection(group, type),
     });
     const exact = findExactCatalogCodeMatch(currentResults, query);
     if (!exact) return;

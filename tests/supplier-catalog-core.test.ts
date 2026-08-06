@@ -5,6 +5,7 @@ import {
 } from "../lib/catalog/core/registry";
 import {
   catalogMerchandisingScore,
+  getCatalogSearchOptionsForSelection,
   searchSupplierCatalog,
 } from "../lib/catalog/core/search";
 import {
@@ -172,6 +173,19 @@ describe("supplier catalogue search", () => {
         (entry) => entry.code,
       ),
     ).toEqual(["BT 111"]);
+  });
+
+  it("maps a legacy group selection to group filtering instead of material filtering", () => {
+    expect(getCatalogSearchOptionsForSelection("van-go", "all"))
+      .toEqual({ group: "van-go", material: undefined });
+  });
+
+  it("puts demand before partial-match strength", () => {
+    const partialMatches: CatalogSearchEntry[] = [
+      { ...entries[0], id: "high-demand-name", code: "ZZ 900", name: "Oak Pattern", demandScore: 1000 },
+      { ...entries[0], id: "low-demand-code", code: "XX OAK 100", name: "Neutral", demandScore: 0 },
+    ];
+    expect(searchSupplierCatalog(partialMatches, "OAK")[0]?.id).toBe("high-demand-name");
   });
 });
 
