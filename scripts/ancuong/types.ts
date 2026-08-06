@@ -175,6 +175,19 @@ export interface DiscoveryManifest {
   generatedAt: string;
   categories: CategoryRecord[];
   productUrls: string[];
+  robotsUrl?: string;
+  sitemapIndexUrl?: string;
+  sitemapUrls?: string[];
+  sitemapCategoryUrls?: string[];
+  sitemapProductUrls?: string[];
+  sitemapProductAliases?: Array<{
+    url: string;
+    canonicalUrl: string;
+    locale: "vi" | "en" | "unknown";
+    sourceId: string;
+  }>;
+  sitemapNonNumericProductUrls?: string[];
+  sitemapProductLineUrls?: string[];
   duplicateUrls: string[];
   excludedUrls: string[];
 }
