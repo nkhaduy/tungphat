@@ -1,0 +1,961 @@
+{
+  "accounting": [
+    {
+      "canonicalUrl": "https://ancuong.com/tam-chong-chay/jean-ash.html",
+      "checksum": "7af3df650b5e7431663db2a45505914a3ffc21d46b7947acac9c29eb41b4846a",
+      "outcome": "duplicate",
+      "productCode": "FPB H4574",
+      "reason": "Duplicate locale route for product code FPB H4574",
+      "sourceUrl": "https://ancuong.com/fire-proof-board/jean-ash-en.html",
+      "status": 200
+    },
+    {
+      "checksum": "e218d94a0cbb5baf8edb6e253f5e0a69e147096ea46e57c859aa8c6be4adf3c5",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T10&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "3f35e482a303760a9a10d6d924b21d4e501ed3e3d7020a482a9b4ae1f5ad1413",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T100&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "4189ab73f026f0940b5456dafa5c098cd99134f20420a5b75cad4b3466cefdae",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T101&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "007f2641600f08063f5272daa4d6eb8aedd526c6107585b68166876cdf24e58c",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T102&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "323fe009cb4b2e370a132b13664e89774bed7ba655add1e1429660321890ab49",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T103&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "36692bab536eba259097a7f237651536621450661b0e7289db12848042024a46",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T104&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "58d886b28d597c6b1a9a354d9acf5b352cdecd1268a21e875bd315367f08d63f",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T105&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "855872f5cf7fc0bbfdba434d79df3bdcfd6a0d8dfca12b6c9706765fdd04baeb",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T106&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "14ace0aa000443186c6d206260a8f78626221b3e3f1f1b742e515b26a4360786",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T107&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "afc17ed5c9efc5d0aed9e42e29ffa9d3dec412ddf066a263380a2d6250fe42da",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T108&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "0f4102b31ae96675246387d5a2d72ce4376d75fbc84a80fc23affe9d20316be5",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T109&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "06e2945cbf361d2093b4b0cef775c1a5944bb129d530ddc2c9268cb45767a355",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T11&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "45cff2a2b750e7b2d507b7df794b34e324b3f6ee62e213bb61b07c3c4426725e",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T110&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "56315c8aa3a24ac78d717df507e52e2cd4999508ab5e5e274fca4923592da9de",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T111&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "d8f855eb75e97d9ed607f703fde62c0ea24f6dd9efffa1499f61daafc1c7ad13",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T112&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "ec4c90fc29f0f8c4a0447ed1fab60821fe9556dd3bf4f5d658f9c036af8ee428",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T113&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "d5d0780841d824a4533ec631946e197c70e2736e338239e754c104ff8fe1625b",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T114&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "680aa19404345592caaa7a0418a57ddc5fbc6ef87e57e30c56b6ef79f53098b0",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T115&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "da5841d6a31879aebd393de3e3afa83dd8a13476d9c90ab50696ab9009dc77c1",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T116&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "23f550377f66b575e9b1f620a390f9799589e70726b4cf093ce20cb4442abfae",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T117&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "8d6af4c49f24ad9215cee259f29e91599c78bd01a0fb54e5f07437c0a459374b",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T118&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "64af91b9f45f057eb60a833ee86b0aa53aae005563ee8f229e15413a8a345f73",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T119&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "bef683b4f0d3d2a1813610d057120ab6e9bca8efcba17a400d524491f6d5ed3b",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T12&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "7fc6cb07f82f7ed41bd4d24539ec9ce87524d74a1bc50c257cc951428d0e505e",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T120&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "0b1317ae1e76a1dcb19d9efcb1f9d5c05b92d950fc347df2de8f55d6c74fc233",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T121&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "06849c99664e89170b8422cff2b5975c45861530409188562222b9fdb9d9f72a",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T13&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "384a1da31aef59fa7f23028e3cc33d4f36cccb47489dfbf4cdc8992846824d36",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T14&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "ba97078b36cbc7ddea1cc3efce34b60eb6cbc5253ebb0cd7bdb1d962600253ae",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T15&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "1b961494916b7dffa664bebfae6e09bb9ec27c7e559276cb64cf37d875ffe443",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T16&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "0864bfc3086bcc7e8fe0c015a069ff3b2bf7408d5e2cf6430feff98819e465a9",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T17&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "febd10c515917a1e96b10f695fc440d3388e8898d5727527b131d69916f546f7",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T18&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "490244f0123495ca47144b40493372e0be99391941186f48cbee2b4462d8ed13",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T19&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "a83c951a1da6371885a206e96363a58b833a4d886ed55da26fa18f32a1f5eec8",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T21&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "0f1583620b9217e3f01c154d1c95380570b7cbd3cedf3fd85f4b24f5eb6afe97",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T22&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "b2377fee9effb405893b1e6bef39590d1590d6066b44b0fbcd90cc79475ea26b",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T23&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "44babb66fdb04def2c816c8fd31ba903f7b83fffd5096c8ae29bd06163730044",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T24&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "94ff295b42e4cd7278c352dab45478c46b99ad0965a4b23def791fcf30320463",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T25&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "37aa30596d47e3f88d63e0c9efcd2822c5fd8a7de4fac5bce220889a87355669",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T26&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "4e84d2a3e02e53639a81cf2f4857e46e500d8bb3f063fbd01b5734a0aa3828f9",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T27&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "9b7542bc5cffc1768bf8efabf84268e12c6f3342758bac3d638a2a8252e4f702",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T28&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "cc33f20664e7e33a8b742a44e8667b4e6d4f47eb64e1936da489cc92e0735a16",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T29&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "99f8a2ecfc10f00ce11f6f57700738fa839de8d4e731bb9dc00ee52f2160089f",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T3&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "ed1414c1a6a2fb0fab58aa2ac412294072b9b662e913257d85d0aa89549c1f8d",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T30&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "28707ca94579da5ad4949884599cd28ae4d1a5d8d9cba0d0410ae7744805d814",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T31&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "88a917e1212ad3f788ffb88cb78f6081f5b063fb98142e95241c858215537208",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T32&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "e21c8d38ece4913aba58f9a6076b3eb9c7d0b59009b5ae06103cba3c6f945005",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T33&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "d0b381aef24990246ef403f0124fae22ce01de86842e3bac2878d05c3a7fb976",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T36&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "23d878ae8b1b62f5f4f6c46c7b40ea1f9666a89b4c0c29d28e88a9490f945bf3",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T38&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "7c9febf6aded8904dca78f4b59f4c5fda81f0111bf2f2fde2a6265798e15edad",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T39&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "26998c92f700822d9a0c07496e909496e2529446ac2eead1d0ad0dd7b6bdd9b7",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T4&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "197d0037133e05c70cb4383a6dab3cf60bd1390149e050288cf27a9dee2b96e0",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T40&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "334eb65e7b12d439a491d7fb6f11d97eaeaab6f72f19700e778f9155b1a673f2",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T41&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "d50174b77f0dde73c67641e3c34a458158665f3b5aa954c2313a4e6ea2b79cef",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T42&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "dc7fcc662edda9ac17f43855ef7990caf2f529f16deac38eff453db6a3c4df01",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T43&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "076471aaf71e86e6f7480a969eb8d3fa97dd756c4d8429cf6d30cc1a76ec0f4c",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T44&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "87231d366d099d001acdf5ba7bf319f4f08739fe4901b2e7953a0a384c7c46e3",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T45&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "90e3e1abcd4ed2a1cacca29eb83ef67139ccb9ae92f166285d0945f085600a49",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T46&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "f04e2b8d6d664430f017a1c783f697a05e28c74828a8867ab54c37e6ccfa5b81",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T47&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "1454292eece053d48c7a2c97713cd65e123bd7b38a25745e37cb360bf5309b49",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T48&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "9e830906aef5dfb93d94bece484b3a5951f557ca7eeb3a269e0fb0a3c9099c81",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T49&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "f4f42dfb064d11bb3e6e5d3df2d2f8de0776f134656381f14a93baedae9fead1",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T5&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "1e9db22246cce54bb0e40c0effa879a77de9e0af20170210737392b9b2708529",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T50&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "d0c41f57433bc02930f5b94e72c6252a3d6a4ac5621ede0bf8701be364bfe620",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T51&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "124b981dc921213bab6ce01fd1f1afb249e5f68d0bb6e556fb5643f35362b928",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T52&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "f3ec85be3c0f854937661319d1d36f622e3bbcd57dee2819bde8f9faa2a72050",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T53&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "b32f02de13985d2a2db3503c24166a0c65f8f3c9689c3903448b0948f22d4019",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T54&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "4834328e809b84db9e032b44ce9345dd390035a8facc7c9c5618ac497386875a",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T55&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "331228dc6aeed35c5e7c25b39971d6c01a395c5b0f7c26dd0fac76855e2a5abb",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T56&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "3ad92b7c71d24da78362fc641c015363ee980e2dd8e4354820b4a5b7ae524b8c",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T57&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "ffc568c02ac57ccde2ebbe2e03c7f394e9b0f70b0ec95dcbc1b3d74085e57e50",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T58&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "eb786a7604cf72d15162b0609e8a1946fef5be9247b9441b7acabd8be043a372",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T59&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "29b21b21727e6f82f74c3503593b5863308c34ba66551123e4f9c83fd1b7880c",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T6&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "2e07536ed0dc34c211d27234c57e0c45101fe6673bb63363c2439e7060f685c4",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T60&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "b22a3453832ca01b33a59aa6836bb3fa7083566204e410703d3fd6786632e96d",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T61&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "ad378c70b6ae3c25b646eb0b7310ed1c90c9a054e27a44c8ce6ce50841cd7794",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T62&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "3273e1a17ce3a6c611234a0913e91a2838de84b3c76005c58d28e07461495a81",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T63&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "6759bb2e01fad2813f25ae47bc3812bfc56c9fb6007769fd79f003e38a7931ac",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T64&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "ab7e34448df4294a5708c9ee6d3066a6d7d5c92df103f94262be2b16d6db660a",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T65&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "40f6d3b36d955c2f631f10d3013b0e92dc6e3032f1c5400e1b65041c78b87a2a",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T66&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "2e983223d9eba3243c45a0374e03fab284b40007426ebd2880fdedd4e3f2cb06",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T67&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "d449e2e25660297e3a665ca5f0624d50bc82ce3523b0c047526e637e5f7f081d",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T68&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "7a08e38efcd1339912f751432dca2e28c1d7ce9cc35332a8b9a8d1baa8b4693d",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T69&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "10a0ce289f9bc01e2b8f7ca34ebfe90ec88a42c7c448eef991351852a92d5827",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T7&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "f5b84010ea7ee3d63a9c92693eb7f1cb188e639afa374731957a8476d7fc0f79",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T70&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "fa6acbf84659dd6f29235fd4b9ecc9f352629f9dbe833013a3f2d218c622a4be",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T71&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "df74b229bc6a394af55cbf98050bc8e981a9bf8d9b16f57f0c7a35e42aa3f756",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T72&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "b37d93fd44085c79c95721fe6d3c5adb0e9a8931391e7d944769ae18e1a765d3",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T73&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "22e787882d480a256d01cda0870ba16953aaf5f4a4d119d84813815c3e08f2eb",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T74&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "1a747aab892a836cd16b6f13ea5ca27beab1184c9c90323275cf9a5cf9ee231e",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T75&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "75f4a7757710e95fae67e7d68e393285e46a689395a3b9554a199739955e515e",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T76&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "e49099568669021320e1f64b298ddeee7ae28e9aaa9a57f8bd65b37f8921ac79",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T77&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "93372c401340834dba7eb41b9d6d9fcdf0444134c34b2a60c1f212aea66faf12",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T78&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "04bc3b04bf41d4266f7d7adc64f280f397f78af2147961df8543180ce2ef58c7",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T79&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "c2298d55a78641dadf6efd5462d8913911a6722192ab210ebcf2897e306da4cf",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T8&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "85c09886753a8ffe1e4eb743227984010f2134b4c7f5f284ec777af51ac4bd3a",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T80&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "a9e4f8d423b22302b71f9f42d8b4933881ce117100fb02d8a5f4ae53a5e5d28d",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T81&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "73e03c018085b7fc261902149525003ef92817ccde153334f83ac97da9faf849",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T82&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "7ed0c0224f5129e292e3d2f6801d6c2fbc8328d176ab68f140b6007eee5e97e9",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T83&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "a441eb04b86e4156431635cd0109696e76428679db53ab28f1c6c94af9b4bece",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T84&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "5c5eccdd8edd00fa86f1ba05c7c79dd8c8b24a03ad329e07f4926bcd2e2bf0bc",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T85&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "ca98d52ec0bafe23db551d52d54f3f72e5dd62518f9f87d0d9e8179e5852e58e",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T86&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "f86aa7447cebbc73b7335ec260455157b31f1c2d8817f11ef844d5829d997bed",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T88&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "3b0adfc2f681c035aba8c6cf7937a052e5aed9536a1dd913898afaa82496e32c",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T89&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "51fc3d808cb1b044621bac5c29e0be179b0fa39a4c6683e634f5238ab94b43e9",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T9&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "4b62870bf4a513ab7f5129c342255e8e9cd4a612f816022d4b83d8beae8dbdc4",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T92&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "834e67ea3659e2703f6b8f30debe23b9b078f0db7d221357c5449eb938ea8575",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T94&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "60f9c06c22f462809f2ffcb0181b88a4f045ce00da66c2dbd5b4638eef5d1849",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T96&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "4c0d6f1db90b0df3c6b089227edc63d490032e9df734ac348d1c00505b21b118",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T97&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "260cd7ff968b4250f06a471daa3ad8fdebee654db1c5a37ff88589b74f94c851",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T98&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "checksum": "835e45906485b940de4fc10c89abea751a2754d979696fbd05caa7f33913c93d",
+      "outcome": "invalid",
+      "reason": "The sitemap URL resolved to a non-product page",
+      "sourceUrl": "https://ancuong.com/laminate-flooring/=T99&%22-en%22.html",
+      "status": 200
+    },
+    {
+      "canonicalUrl": "https://ancuong.com/laminate/fine-weave-grey.html",
+      "checksum": "f2f3de174c690eaa9d05f58e07e70cc16bc02060ae766ad87175a687ea1a0077",
+      "outcome": "duplicate",
+      "productCode": "LK 4654 A",
+      "reason": "Duplicate locale route for product code LK 4654 A",
+      "sourceUrl": "https://ancuong.com/laminate-panel/fine-weave-grey-en.html",
+      "status": 200
+    },
+    {
+      "canonicalUrl": "https://ancuong.com/laminate/fine-weave-ivory.html",
+      "checksum": "da4b2edbe493fa85fafb4cfd48d919e35caa3b7403e8c8932cd3d618be0b26ec",
+      "outcome": "duplicate",
+      "productCode": "LK 4617 A",
+      "reason": "Duplicate locale route for product code LK 4617 A",
+      "sourceUrl": "https://ancuong.com/laminate-panel/fine-weave-ivory-en.html",
+      "status": 200
+    },
+    {
+      "canonicalUrl": "https://ancuong.com/laminate/jean-ash-1.html",
+      "checksum": "eae5cd9b221fb7e0b51add70780838cb86b57f36f33e82a09edef0bd5efc9561",
+      "outcome": "duplicate",
+      "productCode": "LK 4574 Z8",
+      "reason": "Duplicate locale route for product code LK 4574 Z8",
+      "sourceUrl": "https://ancuong.com/laminate-panel/jean-ash.html",
+      "status": 200
+    },
+    {
+      "canonicalUrl": "https://ancuong.com/laminate/fine-weave-grey.html",
+      "checksum": "efd6eb86972a75d978c23206701308c28bb0bd9586093526588cdc170a4c92d6",
+      "outcome": "imported",
+      "productCode": "LK 4654 A",
+      "sourceUrl": "https://ancuong.com/laminate/fine-weave-grey.html",
+      "status": 200
+    },
+    {
+      "canonicalUrl": "https://ancuong.com/laminate/fine-weave-ivory.html",
+      "checksum": "dae52a21aed8ed31e3267920b7163ef5c62a176b6e36a199481cb84354cf810b",
+      "outcome": "imported",
+      "productCode": "LK 4617 A",
+      "sourceUrl": "https://ancuong.com/laminate/fine-weave-ivory.html",
+      "status": 200
+    },
+    {
+      "canonicalUrl": "https://ancuong.com/laminate/jean-ash-1.html",
+      "checksum": "c83acaa9fcb2ac02b2b043650659f7674d22c2e3943275bed4f377d8af134a54",
+      "outcome": "imported",
+      "productCode": "LK 4574 Z8",
+      "sourceUrl": "https://ancuong.com/laminate/jean-ash-1.html",
+      "status": 200
+    },
+    {
+      "canonicalUrl": "https://ancuong.com/tam-chong-chay/jean-ash.html",
+      "checksum": "ba0f4004b603df9866f97aa1660b0b7c076204639573838ed75ea44248f55281",
+      "outcome": "imported",
+      "productCode": "FPB H4574",
+      "sourceUrl": "https://ancuong.com/tam-chong-chay/jean-ash.html",
+      "status": 200
+    }
+  ],
+  "generatedAt": "2026-08-06T13:58:44.216Z",
+  "listings": [
+    {
+      "category": "Laminate",
+      "categorySlug": "laminate",
+      "facetKeys": {
+        "Bộ Sưu Tập": [
+          "Trend Laminate | New Arrivals"
+        ],
+        "Giải Pháp": [
+          "Giải Pháp Chỉ Đồng Màu, Giải Pháp Laminate-MFC Đồng Màu"
+        ],
+        "Kích Thước (mm)": [
+          "1220*2440"
+        ],
+        "Loại Sản Phẩm": [
+          "Laminate Kingdom"
+        ],
+        "Loại Vân": [
+          "Vân Vải | Da | Mây"
+        ],
+        "Màu Sắc": [
+          "Xám"
+        ],
+        "Nhóm Giá": [
+          "A"
+        ]
+      },
+      "imageUrl": "https://ancuong.com/products/products-full/30300419900202456002.jpg",
+      "name": "Fine Weave Grey",
+      "productCode": "LK 4654 A",
+      "sourceId": "",
+      "sourceUrl": "https://ancuong.com/laminate/fine-weave-grey.html"
+    },
+    {
+      "category": "Laminate",
+      "categorySlug": "laminate",
+      "facetKeys": {
+        "Giải Pháp": [
+          "Giải Pháp Chỉ Đồng Màu, Giải Pháp Laminate-MFC Đồng Màu"
+        ],
+        "Kích Thước (mm)": [
+          "1220*2440"
+        ],
+        "Loại Sản Phẩm": [
+          "Laminate Kingdom"
+        ],
+        "Loại Vân": [
+          "Vân Vải | Da | Mây"
+        ],
+        "Màu Sắc": [
+          "Trắng"
+        ],
+        "Nhóm Giá": [
+          "A"
+        ]
+      },
+      "imageUrl": "https://ancuong.com/products/products-full/30300407100202202002.jpg",
+      "name": "Fine Weave Ivory",
+      "productCode": "LK 4617 A",
+      "sourceId": "",
+      "sourceUrl": "https://ancuong.com/laminate/fine-weave-ivory.html"
+    },
+    {
+      "category": "Laminate",
+      "categorySlug": "laminate",
+      "facetKeys": {
+        "Giải Pháp": [
+          "Giải Pháp Chỉ Đồng Màu, Giải Pháp Laminate-MFC Đồng Màu"
+        ],
+        "Kích Thước (mm)": [
+          "1220*2440"
+        ],
+        "Loại Sản Phẩm": [
+          "Kingdom Basic"
+        ],
+        "Loại Vân": [
+          "Vân Vải | Da | Mây"
+        ],
+        "Màu Sắc": [
+          "Xám"
+        ],
+        "Nhóm Giá": [
+          "Z8"
+        ]
+      },
+      "imageUrl": "https://ancuong.com/products/products-full/30300685700200680076.jpg",
+      "name": "Jean Ash",
+      "productCode": "LK 4574 Z8",
+      "sourceId": "",
+      "sourceUrl": "https://ancuong.com/laminate/jean-ash-1.html"
+    },
+    {
+      "category": "Tam Chong Chay",
+      "categorySlug": "tam-chong-chay",
+      "facetKeys": {
+        "Kích Thước (mm)": [
+          "1220*2440, 1220*3050"
+        ],
+        "Loại Sản Phẩm": [
+          "Tấm Chống Cháy"
+        ],
+        "Loại Vân": [
+          "Vân Vải | Da | Mây"
+        ],
+        "Màu Sắc": [
+          "Xám"
+        ],
+        "Tính Năng Đặc Biệt": [
+          "Chống Cháy"
+        ]
+      },
+      "imageUrl": "https://ancuong.com/products/products-full/30300803903302094000.jpg",
+      "name": "Jean Ash",
+      "productCode": "FPB H4574",
+      "sourceId": "",
+      "sourceUrl": "https://ancuong.com/tam-chong-chay/jean-ash.html"
+    }
+  ]
+}

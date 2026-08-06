@@ -47,6 +47,8 @@
     "analytics:maintenance:preview": "wrangler deploy --env preview --config workers/analytics-maintenance/wrangler.jsonc",
     "analytics:maintenance:deploy": "wrangler deploy --env=\"\" --config workers/analytics-maintenance/wrangler.jsonc",
     "catalog:ancuong:discover": "tsx scripts/ancuong/cli.ts discover",
+    "catalog:ancuong:crawl:non-numeric": "tsx scripts/ancuong/cli.ts crawl:non-numeric",
+    "catalog:ancuong:crawl:product-lines": "tsx scripts/ancuong/cli.ts crawl:product-lines",
     "catalog:ancuong:crawl:listings": "tsx scripts/ancuong/cli.ts crawl:listings",
     "catalog:ancuong:crawl:details": "tsx scripts/ancuong/cli.ts crawl:details",
     "catalog:ancuong:crawl:relations": "tsx scripts/ancuong/cli.ts crawl:relations",

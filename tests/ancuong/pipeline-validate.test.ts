@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { productIdsFromDiscoveryManifest, validateCatalogue } from "../../scripts/ancuong/validate";
+import { buildKnownProductCoverage, productIdsFromDiscoveryManifest, validateCatalogue } from "../../scripts/ancuong/validate";
 
 const validProduct = {
   source: "ancuong",
@@ -36,6 +36,20 @@ const validProduct = {
 };
 
 describe("An Cuong validation", () => {
+  it("excludes explicitly rejected custom 404 URLs from the imported-product coverage set", () => {
+    expect(buildKnownProductCoverage([
+      { sourceId: "1", sourceUrl: "https://ancuong.com/melamine/1.html" },
+      { sourceId: "2", sourceUrl: "https://ancuong.com/eco-veneer/2.html" },
+    ], [{
+      sourceId: "2",
+      sourceUrl: "https://ancuong.com/eco-veneer/2.html",
+      reason: "The sitemap URL resolved to the supplier custom 404 page",
+    }])).toEqual({
+      knownProductIds: ["1"],
+      knownProductUrls: ["https://ancuong.com/melamine/1.html"],
+    });
+  });
+
   it("derives discovered product IDs from committed manifest URLs", () => {
     expect(productIdsFromDiscoveryManifest({
       productUrls: [
@@ -56,6 +70,20 @@ describe("An Cuong validation", () => {
     const result = validateCatalogue({ products: [validProduct] });
     expect(result.valid).toBe(true);
     expect(result.summary).toEqual(expect.objectContaining({ products: 1, errors: 0 }));
+  });
+
+  it("accepts a verified non-numeric product route when the public page provides a real code", () => {
+    const result = validateCatalogue({
+      products: [{
+        ...validProduct,
+        sourceId: undefined,
+        sourceUrl: "https://ancuong.com/laminate/fine-weave-ivory.html",
+        productCode: "LK 4617 A",
+        normalizedProductCode: "LK 4617 A",
+      }],
+    });
+
+    expect(result.valid).toBe(true);
   });
 
   it("rejects a canonical full import that is still limited to seven products", () => {
@@ -84,6 +112,33 @@ describe("An Cuong validation", () => {
     expect(result.valid).toBe(false);
     expect(result.issues).toEqual(expect.arrayContaining([
       expect.objectContaining({ code: "DISCOVERY_COVERAGE_INCOMPLETE" }),
+    ]));
+  });
+
+  it("counts relation-only SKU records as accounted discovered product IDs", () => {
+    const result = validateCatalogue({
+      products: [validProduct],
+      knownProductIds: ["103", "104"],
+      accountedProductIds: ["104"],
+      requireCompleteCoverage: true,
+    });
+
+    expect(result.issues.map((issue) => issue.code)).not.toContain("DISCOVERY_COVERAGE_INCOMPLETE");
+  });
+
+  it("rejects canonical full output when a discovered code-only product URL is missing", () => {
+    const result = validateCatalogue({
+      products: [validProduct],
+      knownProductUrls: [
+        validProduct.sourceUrl,
+        "https://ancuong.com/laminate/fine-weave-ivory.html",
+      ],
+      requireCompleteCoverage: true,
+    });
+
+    expect(result.valid).toBe(false);
+    expect(result.issues).toEqual(expect.arrayContaining([
+      expect.objectContaining({ code: "DISCOVERY_URL_COVERAGE_INCOMPLETE" }),
     ]));
   });
 

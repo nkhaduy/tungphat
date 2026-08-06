@@ -108,6 +108,22 @@ describe("An Cuong SSR HTML parsers", () => {
     });
   });
 
+  it("parses the English Product Code label used by locale product routes", () => {
+    const detail = parseProductDetail(`
+      <main id="product-page">
+        <div class="breadcrumb"><a href="/laminate.html">Laminate</a></div>
+        <div class="title-info"><h1>Fine Weave Ivory</h1><p>Product Code: <strong>LK 4617 A</strong></p></div>
+      </main>
+    `, {
+      sourceUrl: "https://ancuong.com/laminate-panel/fine-weave-ivory-en.html",
+      sourceHash: "c".repeat(64),
+      discoveredAt: "2026-08-06T00:00:00.000Z",
+      fetchedAt: "2026-08-06T00:01:00.000Z",
+    });
+
+    expect(detail.productCode).toBe("LK 4617 A");
+  });
+
   it("creates same-color relations only from the explicit product-map tab", async () => {
     const html = await fixture("melamine-detail.html");
     const relations = parseExplicitRelations(html);

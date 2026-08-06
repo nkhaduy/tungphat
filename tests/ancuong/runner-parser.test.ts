@@ -114,4 +114,49 @@ describe("An Cuong parser runners", () => {
       categorySlug: "eco-veneer",
     }));
   });
+
+  it("adds verified non-numeric products from the dedicated sitemap audit", async () => {
+    const directory = await mkdtemp(join(tmpdir(), "ancuong-non-numeric-listings-"));
+    const discoveryPath = join(directory, "discovery.json");
+    const nonNumericAuditPath = join(directory, "non-numeric-audit.json");
+    const outputPath = join(directory, "listings.json");
+    const statePath = join(directory, "state.json");
+    await writeFile(discoveryPath, `${JSON.stringify({
+      schemaVersion: "1.0.0",
+      parserVersion: "1.0.0",
+      sourceRoot: "https://ancuong.com/online-catalogue/catalogue-vat-lieu.html",
+      generatedAt: "2026-08-06T00:00:00.000Z",
+      categories: [],
+      productUrls: [],
+      duplicateUrls: [],
+      excludedUrls: [],
+    })}\n`);
+    await writeFile(nonNumericAuditPath, `${JSON.stringify({
+      generatedAt: "2026-08-06T00:00:00.000Z",
+      listings: [{
+        sourceUrl: "https://ancuong.com/laminate/fine-weave-ivory.html",
+        sourceId: "",
+        category: "Laminate",
+        categorySlug: "laminate",
+        productCode: "LK 4617 A",
+        name: "Fine Weave Ivory",
+        facetKeys: {},
+      }],
+      accounting: [],
+    })}\n`);
+
+    const listings = await runListings(options, {
+      discoveryPath,
+      nonNumericAuditPath,
+      outputPath,
+      statePath,
+    });
+
+    expect(listings).toEqual([
+      expect.objectContaining({
+        sourceUrl: "https://ancuong.com/laminate/fine-weave-ivory.html",
+        productCode: "LK 4617 A",
+      }),
+    ]);
+  });
 });

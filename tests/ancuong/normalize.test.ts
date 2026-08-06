@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildNormalizedCategories, buildTaxonomy, dedupeProducts, normalizeProduct, stabilizeUnchangedProducts } from "@/scripts/ancuong/normalize";
+import { buildNormalizedCategories, buildTaxonomy, dedupeProducts, normalizeProduct, partitionProductDetails, stabilizeUnchangedProducts } from "@/scripts/ancuong/normalize";
 import type { RawProductDetail } from "@/scripts/ancuong/types";
 import type { AnCuongProduct } from "@/scripts/ancuong/types";
 
@@ -21,6 +21,59 @@ function product(overrides: Partial<AnCuongProduct>): AnCuongProduct {
 }
 
 describe("An Cuong normalization dataset", () => {
+  it("rejects a stale sitemap URL that resolved to the supplier custom 404 page", () => {
+    const detail: RawProductDetail = {
+      sourceUrl: "https://ancuong.com/eco-veneer/303002267.html",
+      sourceId: "303002267",
+      category: "Eco Veneer",
+      categorySlug: "eco-veneer",
+      name: "404",
+      productCode: "",
+      facets: {},
+      galleryUrls: [],
+      relatedProducts: [],
+      sameColorProducts: [],
+      applicationProducts: [],
+      productLines: [],
+      sourceHash: "a".repeat(64),
+      discoveredAt: "2026-08-06T00:00:00.000Z",
+      fetchedAt: "2026-08-06T00:01:00.000Z",
+    };
+
+    expect(partitionProductDetails([detail])).toEqual({
+      accepted: [],
+      rejected: [{
+        sourceUrl: detail.sourceUrl,
+        sourceId: detail.sourceId,
+        sourceHash: detail.sourceHash,
+        outcome: "invalid",
+        reason: "The sitemap URL resolved to the supplier custom 404 page",
+      }],
+    });
+  });
+
+  it("keeps a code-backed non-numeric product route", () => {
+    const detail: RawProductDetail = {
+      sourceUrl: "https://ancuong.com/laminate/fine-weave-ivory.html",
+      sourceId: "",
+      category: "Laminate",
+      categorySlug: "laminate",
+      name: "Fine Weave Ivory",
+      productCode: "LK 4617 A",
+      facets: {},
+      galleryUrls: [],
+      relatedProducts: [],
+      sameColorProducts: [],
+      applicationProducts: [],
+      productLines: [],
+      sourceHash: "b".repeat(64),
+      discoveredAt: "2026-08-06T00:00:00.000Z",
+      fetchedAt: "2026-08-06T00:01:00.000Z",
+    };
+
+    expect(partitionProductDetails([detail])).toEqual({ accepted: [detail], rejected: [] });
+  });
+
   it("keeps canonical timestamps stable when normalized source facts are unchanged", () => {
     const raw: RawProductDetail = {
       sourceUrl: "https://ancuong.com/melamine/1.html", sourceId: "1", category: "Melamine", categorySlug: "melamine", name: "Oak", productCode: "MFC - MS 1", facets: {}, galleryUrls: [], relatedProducts: [], sameColorProducts: [], applicationProducts: [], productLines: [], sourceHash: "new-source", discoveredAt: "2026-08-05T00:00:00.000Z", fetchedAt: "2026-08-05T00:01:00.000Z"
