@@ -12,7 +12,7 @@ import {
 } from "@/lib/catalog/core/search";
 import { supplierDefinitions } from "@/lib/catalog/core/registry";
 import type { CatalogSearchEntry, SupplierId } from "@/lib/catalog/core/types";
-import { materialTaxonomyOptions } from "@/lib/catalog/material-taxonomy";
+import { materialTaxonomyOptionsForSupplier } from "@/lib/catalog/material-taxonomy";
 import {
   findExactCatalogCodeMatch,
   findExactSupplierMatch,
@@ -53,14 +53,14 @@ export function SupplierCatalogSearch({
   const [copyStatus, setCopyStatus] = useState("");
   const deferredQuery = useDeferredValue(query);
   const primarySelections: PrimarySelection[] = useMemo(() => [
-    ...materialTaxonomyOptions(entries).map((option) => ({
+    ...materialTaxonomyOptionsForSupplier(entries, supplierId).map((option) => ({
       value: option.slug,
       label: `${option.label} (${option.count})`,
       type: "all" as const,
       group: option.slug === "all" ? "" : option.slug,
     })),
     { value: "supplier", label: "Theo thương hiệu", type: "supplier" as const, group: "" },
-  ], [entries]);
+  ], [entries, supplierId]);
 
   const activeSelection =
     type === "supplier"

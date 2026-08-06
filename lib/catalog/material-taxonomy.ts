@@ -58,3 +58,12 @@ export function materialTaxonomyOptions(entries: CatalogSearchEntry[]) {
     .map((item) => ({ ...item, count: item.slug === "all" ? entries.length : counts.get(item.slug) ?? 0 }))
     .filter((item) => item.count > 0);
 }
+
+export function materialTaxonomyOptionsForSupplier(
+  entries: CatalogSearchEntry[],
+  supplierId?: CatalogSearchEntry["supplierId"] | "",
+) {
+  return materialTaxonomyOptions(
+    supplierId ? entries.filter((entry) => entry.supplierId === supplierId) : entries,
+  );
+}
