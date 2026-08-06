@@ -22,3 +22,16 @@ for (const [name, route] of auditedRoutes) {
     ).toEqual([]);
   });
 }
+
+test("homepage hero content stays readable before hydration", async ({
+  browser,
+}) => {
+  const page = await browser.newPage({ javaScriptEnabled: false });
+
+  try {
+    await page.goto("/");
+    await expect(page.locator(".hero-content > div")).toHaveCSS("opacity", "1");
+  } finally {
+    await page.close();
+  }
+});
