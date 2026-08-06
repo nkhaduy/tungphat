@@ -23,6 +23,7 @@ export async function runThanhThuyFullImport(options: {
     root,
     dryRun: options.dryRun,
     importReport: imported.report,
+    catalog: imported.catalog,
   });
   return { imported, artifacts };
 }

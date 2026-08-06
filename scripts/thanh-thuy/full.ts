@@ -111,6 +111,7 @@ export async function runThanhThuyFullArtifacts(options: {
   dryRun?: boolean;
   validateOnly?: boolean;
   importReport?: ImportReport;
+  catalog?: ThanhThuyCatalog;
 } = {}) {
   const root = options.root ?? process.cwd();
   const sourceManifestFile = path.join(root, "data/imports/thanh-thuy/source-manifest.json");
@@ -120,7 +121,7 @@ export async function runThanhThuyFullArtifacts(options: {
   const reportFile = path.join(root, "data/imports/thanh-thuy/full-import-report.json");
   const importReportFile = path.join(root, "data/imports/thanh-thuy/import-report.json");
   const sourceManifest = readJson<SourceManifest>(sourceManifestFile);
-  const catalog = readJson<ThanhThuyCatalog>(catalogFile);
+  const catalog = options.catalog ?? readJson<ThanhThuyCatalog>(catalogFile);
 
   if (options.validateOnly) {
     const errors = validateThanhThuyFullArtifacts({
