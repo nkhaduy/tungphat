@@ -8,7 +8,8 @@ import {
   reconcileThanhThuyProductSources,
   THANH_THUY_DOCUMENT_SOURCES,
 } from "@/scripts/thanh-thuy/full-import";
-import type { SourceManifest, ThanhThuyCatalog } from "@/scripts/thanh-thuy/types";
+import { buildThanhThuyFullArtifacts, buildThanhThuyFullSummary } from "@/scripts/thanh-thuy/full";
+import type { ImportReport, SourceManifest, ThanhThuyCatalog } from "@/scripts/thanh-thuy/types";
 import { buildCoverageSummary, validateFullSourceManifest } from "@/lib/catalog/full-import/manifest";
 
 const root = process.cwd();
@@ -31,6 +32,19 @@ describe("Thanh Thuy full source pagination", () => {
     expect(pages).toEqual([1, 2, 3, 4]);
     expect(result.records).toHaveLength(348);
     expect(result.pagesFetched).toBe(4);
+  });
+
+  it("stops at the declared WordPress total when the final page is exactly full", async () => {
+    const source = Array.from({ length: 200 }, (_, index) => ({ id: index + 1 }));
+    const pages: number[] = [];
+    const result = await collectWordPressProducts(async ({ page, pageSize }) => {
+      pages.push(page);
+      const start = (page - 1) * pageSize;
+      return { records: source.slice(start, start + pageSize) as never[], total: source.length };
+    });
+
+    expect(pages).toEqual([1, 2]);
+    expect(result.records).toHaveLength(200);
   });
 });
 
@@ -76,7 +90,11 @@ describe("Thanh Thuy complete source accounting", () => {
   ) as ThanhThuyCatalog;
 
   it("reconciles every sitemap product URL to exactly one public API product", () => {
-    const reconciliation = reconcileThanhThuyProductSources(catalog.products, sourceManifest.productUrls);
+    const reconciliation = reconcileThanhThuyProductSources(
+      catalog.products,
+      sourceManifest.productUrls,
+      sourceManifest.productUrlEvidence,
+    );
 
     expect(sourceManifest.productUrls).toHaveLength(348);
     expect(reconciliation.apiOnly).toEqual([]);
@@ -97,11 +115,59 @@ describe("Thanh Thuy complete source accounting", () => {
     expect(coverage.coveragePercentage).toBe(100);
     expect(fullManifest.records.filter((record) => record.pageType === "product")).toHaveLength(348);
     expect(Object.keys(sourceManifest.productUrlSources)).toHaveLength(348);
+    expect(Object.keys(sourceManifest.productUrlEvidence)).toHaveLength(348);
     expect(
       fullManifest.records
         .filter((record) => record.pageType === "product")
         .every((record) => record.sourceParent === sourceManifest.productUrlSources[record.url]),
     ).toBe(true);
+    const redirected = fullManifest.records.filter((record) => record.outcome === "redirected");
+    expect(redirected).toHaveLength(322);
+    expect(redirected.every((record) =>
+      record.status === 200 &&
+      record.canonicalUrl === sourceManifest.productUrlEvidence[record.url]?.canonicalUrl &&
+      sourceManifest.productUrlEvidence[record.url]?.redirects.length > 0
+    )).toBe(true);
     expect(new Set(fullManifest.records.map((record) => record.url)).size).toBe(fullManifest.records.length);
+  });
+
+  it("derives change and coverage totals instead of hardcoding the generated report", () => {
+    const artifacts = buildThanhThuyFullArtifacts({ sourceManifest, catalog });
+    const importReport = {
+      schemaVersion: 1,
+      importedAt: "2026-08-06T00:00:00.000Z",
+      dryRun: false,
+      sourceProducts: 348,
+      catalogProducts: 348,
+      previousRecords: 350,
+      categories: 26,
+      uniqueSourceImages: 341,
+      localImages: 286,
+      created: 2,
+      updated: 3,
+      unchanged: 343,
+      removed: 4,
+      statuses: {},
+      catalogChecksum: catalog.checksum,
+      backup: null,
+    } as unknown as ImportReport;
+    const summary = buildThanhThuyFullSummary({
+      sourceManifest,
+      catalog,
+      importReport,
+      ...artifacts,
+    });
+
+    expect(summary.previousRecords).toBe(350);
+    expect(summary.newlyDiscoveredProducts).toBe(2);
+    expect(summary.updated).toBe(3);
+    expect(summary.unchanged).toBe(343);
+    expect(summary.removedFromSource).toBe(4);
+    expect(summary.coveragePercentage).toBe(100);
+  });
+
+  it("routes the full npm command through one orchestrator so dry-run applies to every stage", () => {
+    const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")) as { scripts: Record<string, string> };
+    expect(packageJson.scripts["catalog:thanh-thuy:import:full"]).toBe("tsx scripts/thanh-thuy/run-full.ts");
   });
 });

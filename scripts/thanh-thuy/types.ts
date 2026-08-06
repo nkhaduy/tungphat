@@ -138,6 +138,13 @@ export interface SourceManifest {
   productCount: number;
   productUrls: string[];
   productUrlSources: Record<string, string>;
+  productUrlEvidence: Record<string, {
+    status: number;
+    canonicalUrl: string;
+    redirects: string[];
+    checkedAt: string;
+    error?: string;
+  }>;
   categoryUrls: string[];
   pageUrls: string[];
   catalogueUrls: string[];
@@ -152,12 +159,14 @@ export interface ImportReport {
   dryRun: boolean;
   sourceProducts: number;
   catalogProducts: number;
+  previousRecords: number;
   categories: number;
   uniqueSourceImages: number;
   localImages: number;
   created: number;
   updated: number;
   unchanged: number;
+  removed: number;
   statuses: Record<ThanhThuySeoStatus, number>;
   catalogChecksum: string;
   backup: string | null;
