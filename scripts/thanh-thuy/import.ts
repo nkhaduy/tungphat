@@ -326,6 +326,8 @@ export async function runImport(options: {
       applications: previous.applications.length ? previous.applications : product.applications,
     };
   });
+  const currentIds = new Set(products.map((product) => product.id));
+  const removed = [...previousById.keys()].filter((id) => !currentIds.has(id)).length;
   const categories = normalizedCategories(source.categories);
   const checksum = catalogPayloadChecksum(categories, products);
   const catalog: ThanhThuyCatalog = {
@@ -345,12 +347,14 @@ export async function runImport(options: {
     dryRun,
     sourceProducts: source.products.length,
     catalogProducts: products.length,
+    previousRecords: existing?.products.length ?? 0,
     categories: categories.length,
     uniqueSourceImages: media.uniqueSourceImages,
     localImages: new Set(products.map((product) => product.image?.src).filter(Boolean)).size,
     created,
     updated,
     unchanged,
+    removed,
     statuses: statusCounts(products),
     catalogChecksum: checksum,
     backup: null,

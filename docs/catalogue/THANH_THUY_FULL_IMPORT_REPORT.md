@@ -9,6 +9,7 @@
 - Product sitemap URLs: 348 across two product sitemaps.
 - Exact canonical sitemap/API URL matches: 26.
 - Sitemap aliases that publicly redirect to the canonical REST product URL: 322.
+- Product URL HTTP checks: 348 final `200`, 322 with a verified redirect chain, 0 failed.
 - Newly discovered product records: 0.
 - Removed from the public source: 0.
 - Updated product records: 0.
@@ -48,7 +49,7 @@ All five records use `SOURCE_ONLY`, require editorial review, and preserve the o
 - Invalid: 0.
 - Blocked unaccounted URLs: 0.
 
-The manifest retains the exact parent sitemap for every product URL and records each public REST pagination request. Redirected aliases point to their canonical product URL and normalized record ID.
+The manifest retains the exact parent sitemap for every product URL and records each public REST pagination request. Redirected aliases include the final HTTP status, redirect chain evidence, exact canonical product URL, evidence checksum, and normalized record ID. Slug similarity alone is never accepted as redirect evidence.
 
 ## Media
 
@@ -69,5 +70,5 @@ The second import reuses complete local responsive variants, preserves each offi
 - First import: created 0, updated 0, unchanged 348.
 - Second import: created 0, updated 0, unchanged 348.
 - Catalogue checksum on both runs: `8e5050a67ef2fa9812a001dad263d3ed209fee86c8c663c7e262b14359dd3eee`.
-- Full manifest checksum: `2d78feea2843d6bb480e2f9299fe29b4ecc5f058dd1c9b308cb53c8008cb8f16`.
+- Full manifest checksum: `c980583478f32ad5ca34d3acaed51950f43966dad2a5604e82671f7ecd376925`.
 - Full record checksum: `cc8f4516aae65495df166bc07b2d596ced15da2cd43e1b391c906aac6c52f7d1`.

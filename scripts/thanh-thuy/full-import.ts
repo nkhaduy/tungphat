@@ -47,10 +47,6 @@ function canonicalUrl(value: string): string {
   return new URL(value).toString();
 }
 
-function terminalSlug(value: string): string {
-  return new URL(value).pathname.split("/").filter(Boolean).at(-1) ?? "";
-}
-
 function recordId(record: CatalogueRecord): string {
   if (record.recordType === "sku") return `thanh-thuy:sku:${record.sourceProductId ?? record.normalizedCode}`;
   return `thanh-thuy:${record.recordType}:${record.slug}`;
@@ -154,13 +150,22 @@ export function buildThanhThuyCatalogueRecords(catalog: ThanhThuyCatalog): Catal
 export function reconcileThanhThuyProductSources(
   products: Array<{ sourceUrl: string }>,
   productUrls: string[],
+  evidence: SourceManifest["productUrlEvidence"],
 ): { matched: number; apiOnly: string[]; sitemapOnly: string[] } {
-  const apiBySlug = new Map(products.map((product) => [terminalSlug(product.sourceUrl), canonicalUrl(product.sourceUrl)]));
-  const sitemapBySlug = new Map(productUrls.map((url) => [terminalSlug(url), canonicalUrl(url)]));
+  const api = new Set(products.map((product) => canonicalUrl(product.sourceUrl)));
+  const accountedCanonicalUrls = new Set(
+    productUrls
+      .map((url) => evidence[url])
+      .filter((item) => item?.status === 200)
+      .map((item) => canonicalUrl(item.canonicalUrl)),
+  );
   return {
-    matched: [...apiBySlug.keys()].filter((slug) => sitemapBySlug.has(slug)).length,
-    apiOnly: [...apiBySlug].filter(([slug]) => !sitemapBySlug.has(slug)).map(([, url]) => url).sort(),
-    sitemapOnly: [...sitemapBySlug].filter(([slug]) => !apiBySlug.has(slug)).map(([, url]) => url).sort(),
+    matched: [...api].filter((url) => accountedCanonicalUrls.has(url)).length,
+    apiOnly: [...api].filter((url) => !accountedCanonicalUrls.has(url)).sort(),
+    sitemapOnly: productUrls.filter((url) => {
+      const item = evidence[url];
+      return !item || item.status !== 200 || !api.has(canonicalUrl(item.canonicalUrl));
+    }).sort(),
   };
 }
 
@@ -185,12 +190,8 @@ export function buildThanhThuyFullSourceManifest(options: {
   const { sourceManifest, catalog } = options;
   const catalogueRecords = buildThanhThuyCatalogueRecords(catalog);
   const bySourceUrl = new Map<string, CatalogueRecord>();
-  const byProductSlug = new Map<string, CatalogueRecord>();
   for (const record of catalogueRecords) {
     for (const url of record.sourceUrls) bySourceUrl.set(canonicalUrl(url), record);
-    if (record.recordType !== "document") {
-      byProductSlug.set(terminalSlug(record.sourceUrls[0]), record);
-    }
   }
   const categoryIds = new Map(
     catalog.categories.map((category) => [canonicalUrl(category.sourceUrl), `thanh-thuy:category:${category.slug}`]),
@@ -199,9 +200,11 @@ export function buildThanhThuyFullSourceManifest(options: {
 
   for (const url of sourceManifest.productUrls) {
     const normalized = canonicalUrl(url);
-    const record = bySourceUrl.get(normalized) ?? byProductSlug.get(terminalSlug(url));
-    const canonicalSourceUrl = record?.sourceUrls[0];
-    const redirected = Boolean(record && canonicalSourceUrl && canonicalUrl(canonicalSourceUrl) !== normalized);
+    const evidence = sourceManifest.productUrlEvidence[url];
+    const canonicalSourceUrl = evidence?.canonicalUrl;
+    const record = canonicalSourceUrl ? bySourceUrl.get(canonicalUrl(canonicalSourceUrl)) : undefined;
+    const redirected = Boolean(record && evidence?.redirects.length);
+    const verified = Boolean(record && evidence?.status === 200);
     records.push({
       supplier: "thanh-thuy",
       url,
@@ -210,11 +213,13 @@ export function buildThanhThuyFullSourceManifest(options: {
       sourceParent: sourceManifest.productUrlSources[url],
       locale: "vi",
       pageType: "product",
-      outcome: record ? (redirected ? "redirected" : "imported") : "invalid",
-      reason: record
+      status: evidence?.status,
+      checksum: evidence ? stableChecksum(evidence) : undefined,
+      outcome: verified ? (redirected ? "redirected" : "imported") : "invalid",
+      reason: verified
         ? (redirected ? "Sitemap alias redirects to the canonical public WordPress product URL." : undefined)
-        : "Sitemap product URL has no matching public WordPress REST record.",
-      recordIds: record ? [recordId(record)] : undefined,
+        : "Sitemap product URL lacks verified HTTP 200 evidence matching a public WordPress REST record.",
+      recordIds: verified && record ? [recordId(record)] : undefined,
     });
   }
   for (const url of sourceManifest.categoryUrls) {

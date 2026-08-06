@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { checksumFullSourceManifest, validateFullSourceManifest } from "../../lib/catalog/full-import/manifest";
+import { buildCoverageSummary, checksumFullSourceManifest, validateFullSourceManifest } from "../../lib/catalog/full-import/manifest";
 import type { CatalogueRecord, FullSourceManifest } from "../../lib/catalog/full-import/types";
 import { parseCliArgs, stableChecksum, writeJsonAtomic } from "./lib";
 import {
@@ -9,9 +9,9 @@ import {
   buildThanhThuyFullSourceManifest,
   reconcileThanhThuyProductSources,
 } from "./full-import";
-import type { SourceManifest, ThanhThuyCatalog } from "./types";
+import type { ImportReport, SourceManifest, ThanhThuyCatalog } from "./types";
 
-type FullRecordFile = {
+export type FullRecordFile = {
   schemaVersion: 1;
   supplier: "thanh-thuy";
   generatedAt: string;
@@ -34,7 +34,11 @@ export function validateThanhThuyFullArtifacts(options: {
   recordFile: FullRecordFile;
 }): string[] {
   const errors: string[] = [];
-  const reconciliation = reconcileThanhThuyProductSources(options.catalog.products, options.sourceManifest.productUrls);
+  const reconciliation = reconcileThanhThuyProductSources(
+    options.catalog.products,
+    options.sourceManifest.productUrls,
+    options.sourceManifest.productUrlEvidence,
+  );
   if (reconciliation.apiOnly.length) errors.push(`${reconciliation.apiOnly.length} API product URL(s) missing from product sitemaps`);
   if (reconciliation.sitemapOnly.length) errors.push(`${reconciliation.sitemapOnly.length} sitemap product URL(s) missing from the public API`);
   errors.push(...validateFullSourceManifest(options.fullManifest).map((issue) => `${issue.code}: ${issue.url ?? issue.message}`));
@@ -47,6 +51,36 @@ export function validateThanhThuyFullArtifacts(options: {
   if (families.some((record) => "code" in record)) errors.push("Family records must not contain invented codes");
   if (documents.length !== 5) errors.push(`Expected 5 source-only documents, found ${documents.length}`);
   return errors;
+}
+
+export function buildThanhThuyFullSummary(options: {
+  sourceManifest: SourceManifest;
+  catalog: ThanhThuyCatalog;
+  importReport: ImportReport;
+  fullManifest: FullSourceManifest;
+  recordFile: FullRecordFile;
+}) {
+  const coverage = buildCoverageSummary(options.fullManifest);
+  return {
+    schemaVersion: 1 as const,
+    generatedAt: options.sourceManifest.discoveredAt,
+    previousRecords: options.importReport.previousRecords,
+    publicApiProducts: options.catalog.products.length,
+    sitemapProductUrls: options.sourceManifest.productUrls.length,
+    sourceCategories: options.catalog.categories.length,
+    skuRecords: options.recordFile.records.filter((record) => record.recordType === "sku").length,
+    familyRecords: options.recordFile.records.filter((record) => record.recordType === "family").length,
+    catalogueOnly: options.recordFile.records.filter((record) => record.recordType === "document").length,
+    newlyDiscoveredProducts: options.importReport.created,
+    updated: options.importReport.updated,
+    unchanged: options.importReport.unchanged,
+    removedFromSource: options.importReport.removed,
+    coveragePercentage: coverage.coveragePercentage,
+    accountedSourceUrls: coverage.accounted,
+    totalSourceUrls: coverage.totalDiscovered,
+    manifestChecksum: options.fullManifest.checksum,
+    recordChecksum: options.recordFile.checksum,
+  };
 }
 
 export function buildThanhThuyFullArtifacts(options: {
@@ -72,18 +106,23 @@ export function buildThanhThuyFullArtifacts(options: {
   };
 }
 
-async function main() {
-  const args = parseCliArgs();
-  const root = process.cwd();
+export async function runThanhThuyFullArtifacts(options: {
+  root?: string;
+  dryRun?: boolean;
+  validateOnly?: boolean;
+  importReport?: ImportReport;
+} = {}) {
+  const root = options.root ?? process.cwd();
   const sourceManifestFile = path.join(root, "data/imports/thanh-thuy/source-manifest.json");
   const catalogFile = path.join(root, "data/catalogs/thanh-thuy/catalog.json");
   const fullManifestFile = path.join(root, "data/imports/thanh-thuy/full-source-manifest.json");
   const recordFilePath = path.join(root, "data/imports/thanh-thuy/full-records.json");
   const reportFile = path.join(root, "data/imports/thanh-thuy/full-import-report.json");
+  const importReportFile = path.join(root, "data/imports/thanh-thuy/import-report.json");
   const sourceManifest = readJson<SourceManifest>(sourceManifestFile);
   const catalog = readJson<ThanhThuyCatalog>(catalogFile);
 
-  if (args.has("validate-only")) {
+  if (options.validateOnly) {
     const errors = validateThanhThuyFullArtifacts({
       sourceManifest,
       catalog,
@@ -92,34 +131,32 @@ async function main() {
     });
     if (errors.length) throw new Error(errors.join("\n"));
     console.log("Thanh Thuỳ full artifacts hợp lệ.");
-    return;
+    return null;
   }
 
   const artifacts = buildThanhThuyFullArtifacts({ sourceManifest, catalog });
   const errors = validateThanhThuyFullArtifacts({ sourceManifest, catalog, ...artifacts });
   if (errors.length) throw new Error(errors.join("\n"));
-  const summary = {
-    schemaVersion: 1,
-    generatedAt: sourceManifest.discoveredAt,
-    previousRecords: 348,
-    publicApiProducts: catalog.products.length,
-    sitemapProductUrls: sourceManifest.productUrls.length,
-    sourceCategories: catalog.categories.length,
-    skuRecords: artifacts.recordFile.records.filter((record) => record.recordType === "sku").length,
-    familyRecords: artifacts.recordFile.records.filter((record) => record.recordType === "family").length,
-    catalogueOnly: artifacts.recordFile.records.filter((record) => record.recordType === "document").length,
-    newlyDiscoveredProducts: 0,
-    removedFromSource: 0,
-    coveragePercentage: 100,
-    manifestChecksum: artifacts.fullManifest.checksum,
-    recordChecksum: artifacts.recordFile.checksum,
-  };
-  if (!args.has("dry-run")) {
+  const importReport = options.importReport ?? readJson<ImportReport>(importReportFile);
+  if (importReport.catalogChecksum !== catalog.checksum) {
+    throw new Error("Thanh Thuỳ import report does not match the current catalogue checksum.");
+  }
+  const summary = buildThanhThuyFullSummary({ sourceManifest, catalog, importReport, ...artifacts });
+  if (!options.dryRun) {
     writeJsonAtomic(fullManifestFile, artifacts.fullManifest);
     writeJsonAtomic(recordFilePath, artifacts.recordFile);
     writeJsonAtomic(reportFile, summary);
   }
-  console.log(JSON.stringify({ ...summary, dryRun: args.has("dry-run") }, null, 2));
+  console.log(JSON.stringify({ ...summary, dryRun: Boolean(options.dryRun) }, null, 2));
+  return { ...artifacts, summary };
+}
+
+async function main() {
+  const args = parseCliArgs();
+  await runThanhThuyFullArtifacts({
+    dryRun: args.has("dry-run"),
+    validateOnly: args.has("validate-only"),
+  });
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

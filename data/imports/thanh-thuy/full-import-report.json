@@ -9,8 +9,12 @@
   "familyRecords": 9,
   "catalogueOnly": 5,
   "newlyDiscoveredProducts": 0,
+  "updated": 0,
+  "unchanged": 348,
   "removedFromSource": 0,
   "coveragePercentage": 100,
-  "manifestChecksum": "2d78feea2843d6bb480e2f9299fe29b4ecc5f058dd1c9b308cb53c8008cb8f16",
+  "accountedSourceUrls": 402,
+  "totalSourceUrls": 402,
+  "manifestChecksum": "c980583478f32ad5ca34d3acaed51950f43966dad2a5604e82671f7ecd376925",
   "recordChecksum": "cc8f4516aae65495df166bc07b2d596ced15da2cd43e1b391c906aac6c52f7d1"
 }

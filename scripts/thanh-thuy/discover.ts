@@ -1,3 +1,4 @@
+import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import {
@@ -51,6 +52,13 @@ export function robotsAllowsProducts(robots: string): boolean {
   return true;
 }
 
+export function checksumThanhThuySourceManifest(manifest: Omit<SourceManifest, "checksum"> | SourceManifest): string {
+  const stable = { ...manifest } as Partial<SourceManifest>;
+  delete stable.checksum;
+  delete stable.discoveredAt;
+  return stableChecksum(stable);
+}
+
 export async function discoverSource(options: {
   root?: string;
   cacheDirectory?: string;
@@ -95,6 +103,14 @@ export async function discoverSource(options: {
   const catalogueUrls = uniqueSorted(
     allSitemapUrls(catalogXml).filter((url) => isOfficialHttpsUrl(url) && new URL(url).pathname.startsWith("/catalog/")),
   );
+  const previous = fs.existsSync(outputFile)
+    ? JSON.parse(fs.readFileSync(outputFile, "utf8")) as Partial<SourceManifest>
+    : undefined;
+  const productUrlEvidence = Object.fromEntries(
+    productUrls
+      .filter((url) => previous?.productUrlEvidence?.[url])
+      .map((url) => [url, previous!.productUrlEvidence![url]]),
+  );
   const discoveredAt = options.now ?? new Date().toISOString();
   const manifestWithoutChecksum = {
     schemaVersion: 1 as const,
@@ -110,6 +126,7 @@ export async function discoverSource(options: {
     productCount: productUrls.length,
     productUrls,
     productUrlSources,
+    productUrlEvidence,
     categoryUrls,
     pageUrls,
     catalogueUrls,
@@ -121,7 +138,7 @@ export async function discoverSource(options: {
   };
   const manifest: SourceManifest = {
     ...manifestWithoutChecksum,
-    checksum: stableChecksum({ ...manifestWithoutChecksum, discoveredAt: undefined }),
+    checksum: checksumThanhThuySourceManifest(manifestWithoutChecksum),
   };
   writeJsonAtomic(outputFile, manifest);
   return manifest;

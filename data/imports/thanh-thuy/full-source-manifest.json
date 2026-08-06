@@ -11,6 +11,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "daa3a963dc6ee7e4d2ba0adc9a9bc9a58372b4314ee74348bbe7d5f5db98409a",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1190"
@@ -24,6 +26,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "25548eac9f1ab7f7744a2d86018fa3d14b93d728008534d6ebce3bf589e40d7c",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1191"
@@ -37,6 +41,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "70635b6f302cb71097d37d1fd6f9d1bda7b5c00ac7418cc286471dcc95ba58af",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1192"
@@ -50,6 +56,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "4d68bf105ab89022d5d403f9705b587cd76e4f82bf912c6055cf04967d9490d7",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1193"
@@ -63,6 +71,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "d630b4764ce0d61598935652bb864cbe26238d28291e322cd4255e68942f0187",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1194"
@@ -76,6 +86,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "2c3d51f1c5bea256ac1beb443c353508db50f4f58555ad72aa5a9982b20b0497",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1195"
@@ -89,6 +101,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "b48256779acd2e1fd722cf59328b8e29adcc5d0c6a8c3518783a59329d638ad4",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1196"
@@ -102,6 +116,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "7a601b73f58b5824e3bc9d05f1ca2c9c88b1f3fc7eff0f4cf0b6838d82935a47",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1197"
@@ -115,6 +131,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "8af4adf53a6acc8e74bc8dc6ba190bdb297412831eb7499c8c21393de015f4a3",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1198"
@@ -128,6 +146,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "670344dbd5995c4d72b54510b1c8ec99c672bcfd762e1136e1d7f1815fec325d",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1199"
@@ -141,6 +161,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "05d275f2df43d40eb8bd59bbc999d0044990571ac10d2a15b2ffe4e8d79ab6d2",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1200"
@@ -154,6 +176,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "eff0ed9fc3beea3e7791d0c7caa51ed12108b3dcb7a1c6e8ab3561847a653217",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1201"
@@ -167,6 +191,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "c7fa15e92bdd31778766e3f6049466b4f6c43c977b3fe70adf4d0c224e37a298",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1202"
@@ -180,6 +206,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "27c66fadec30335de40ed673315a36bbadfa145357567c24180e6f8dc25b87e5",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1203"
@@ -193,6 +221,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "2b6af9da181a74273bbb402c5099ec937108bddf7835d3e66d4ad11ecb9b1c28",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1204"
@@ -206,6 +236,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "a339027f2baf960ee08d77ae2b7d009cbe382eb8f100b45e6d7b3c38448e6eeb",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1205"
@@ -219,6 +251,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "b41e281a597e48e8818113b46fd710df15ddfc5c1fc0d3fa1c0ed8433eddc381",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1206"
@@ -232,6 +266,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "2c7158c1b108b2a03f03bd8df41dd1ad79a0d02acc51d2623cc1bca05606cdba",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1207"
@@ -245,6 +281,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "c6d90eebb5d1a973fff6296f9e9e6603513f949c62567c388e9a8945389857e9",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1208"
@@ -258,6 +296,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "725685fd9b4807f7a4b4605dfdda70337e7282b4db26e856308ce4f7c8660d13",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1521"
@@ -271,6 +311,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "5842047c47d8935c6aa87ca699693305a56bcefe544dfc108606fb9dccc0ea87",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1522"
@@ -284,6 +326,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "cee202608098f11c741bd36eebb13c4b84a1ea3972431cff9487112d05d5dd6a",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1523"
@@ -297,6 +341,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "7ba30a1a0621b9e8d921ecbd64b2aa8b6d334fdecafbd81b53ff8e30561c83c0",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1524"
@@ -310,6 +356,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "c21510795d52d3b404662f05dc22c290788aa8d3800aeb50f0eb62193b1ffad8",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1525"
@@ -323,6 +371,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "eed32126841eab76093d33e038a9af0c71b8cb9ecc6619a2a89c84cbbe4181e4",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1526"
@@ -336,6 +386,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "5efc6b5df6a6f4e757e8028fdc1bcf0dd8682f85b4adb422ca8fd4b79157eed4",
       "outcome": "imported",
       "recordIds": [
         "thanh-thuy:sku:1527"
@@ -349,6 +401,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "276762bc856b31f8007dd88a94226832a7b6e08da2de56b84679cee3a5b4d1f0",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -363,6 +417,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "c55d9ed2e94113ef293f60195b78000846712b9cb02e42502e5deae693584d5e",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -377,6 +433,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "08d98ecca44ba60e6eede2ecfa14fe107f8ba5b0a83fb237dcb70d4b9e7476c7",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -391,6 +449,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "759e4a192f279906741cc9ea86eea291cdd3e164c71a2588d28d5a76261c2fcb",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -405,6 +465,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "23c11de6a1ede4e7acfb02bf292df2c58377eff6623868a4e349fd8da22eee93",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -419,6 +481,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "adb54ba5bb67a487834a4bad39364df652371c5ae3f579e27d0d0daa8724b022",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -433,6 +497,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "c7c2a54718d07b1c5fac03ae4757938b1e4057da3f0cae529a1ce94f78e63fe6",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -447,6 +513,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f5a54112505643cb8fd04de1aa274cbeea4dfe3775e63d4074330d5d0ff3fee6",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -461,6 +529,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "671f859debe81d1146d1fafe6dd7942374ed93ab1e81468445c008a7478ad3fd",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -475,6 +545,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "efa8a5e8ca39901e05264491e9d1f559336ada0a6ed68372db3eff380ac66f92",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -489,6 +561,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "98baa8868e547dc5f9411b5d8745623ba04134cfb21b8fd3e4c0e05889bad392",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -503,6 +577,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ba52e9f326768d2e69acea7695aefce83272599b78b8639008c13a4877ee6812",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -517,6 +593,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "88f48a807d3771cf63b91cd7f8de841165e8d11b04f8da2a09acd45bd58be470",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -531,6 +609,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "cfa325eb9b2869957a9d7e31c41961d15e16433d620f259f943741f6964dd4ea",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -545,6 +625,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "3c31e03f6bea6f3df093b4b8e281f75a518e7ffaa3de9eba5cad1914f3c77933",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -559,6 +641,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "b48833d29e2c4e9df887bff8b73eee385184935aee63bc0b9c53ec892e5ecb83",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -573,6 +657,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "243cc510f56e342a3750ec2ec76ce4745f9d1c0ef1b554693c3f2385d9b4be7b",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -587,6 +673,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "cd53c8a5d95309e1af7516d702e0d844fc2757c4b5ace49b223f1f0f5eacfabc",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -601,6 +689,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "7a5e92697c713af66b689a034005798c11afa1836394316b5907eb9f3b68bf7f",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -615,6 +705,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "8b76ad2d5b36831c066b0bdd244ff1322773b6ef34569d142a1326b24e9ebe98",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -629,6 +721,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e899bccbf6dc2d9bed460bdbc1745de494d195d535ac8d7c8e62fb2adbafbdfc",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -643,6 +737,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "5bb9b2e178f7436c40670487d24dccd355321ecefd53d156e4f922c158226c12",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -657,6 +753,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "86ae321605842c94a05c2525e4b371f273b687a73fda7d308db86141426d801c",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -671,6 +769,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "4a0256216e91d3ecee7e4070cbc3970bb0effecbe98863775e569ae23b15ce1c",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -685,6 +785,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "349e3d1cd61389dafc3c8c6df4c5c83012790a4fd61bbdca3910382504a73168",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -699,6 +801,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "555b9aea1d17f485d05db9c7934df22a6f8c4001c84c6de88468e85d13b9d5fe",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -713,6 +817,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "0590d58c8596dd4d7cbf469541e52bf3429e6accafecc4a81e5d31e989278360",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -727,6 +833,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f835ac16c549711cb6d2a2c9e8cf869c02acdbc09a5390061bd4697fe61bf1fc",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -741,6 +849,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "aa274a3297f60aa08a307f8810026045eb206b69601cbc3e65ef4e7e764cb3bd",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -755,6 +865,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e159f255e1d13a1abda3233dab33a7cac363a22f9c9e334396f3cf63a07e2125",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -769,6 +881,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "8ba6ee7d8c9d45fab1436f764f7dfe17be68d965f2455c158474395bae245ed3",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -783,6 +897,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "94fda144b55860877967b4e4d4b739608b4555c4eaa55dba9086c84166b9e4a4",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -797,6 +913,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "21933a868ef2fefe3ae833e7d55e472f01b45e5bca26f425a504b0938e93431f",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -811,6 +929,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e7c1906b97d4c8d63927080e3ef854daa1e2fbf275b615960e4f89c54bdefa6d",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -825,6 +945,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "119f5e3aff183cc3ae3a961f09ddfc7e41765c1063325cd7075ab50cb3e90225",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -839,6 +961,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "0140e74dfc627b825c83e3aa0eb869908ace10f1adc6eb5403bd2c7daf2b71ac",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -853,6 +977,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "fcda871e67c533901f5556353cadbcaa562fcebffca759304778d6dd46329a62",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -867,6 +993,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "6a9de8e2376594a22bd20ff915b3cc0728a5691c64e9dc6811950c5677bb260d",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -881,6 +1009,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f737548e8649d3acd5e161a4b7b1adc53755fe584ce90288cb403c996fabe2a5",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -895,6 +1025,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "8c243f552b7416289de0926ae8eed6e861b6413583fc25ae7acad39e4574264f",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -909,6 +1041,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "0880bc8bd89885bc7e39ee96cf5d74e3d32a54f9d2652efecd2ac8e771284428",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -923,6 +1057,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "7c4b22668ff76ad15d75e8d82760ef30754904e50768258b0548fbe93b2b83b0",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -937,6 +1073,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "3573cfd85fba4cb3d912c76bbc293097bba64f4b2e4bf8f4f50c00f7fa1d580e",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -951,6 +1089,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "68f1b98a99b089f66388b541512e2e0aced0473a09278cdbbb5a837f3cab9d45",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -965,6 +1105,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "dc0652c2f7993d9740ccd8b3965abbc99691dc7c7bbff0c03296dab60f2b01f4",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -979,6 +1121,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "1400461c4d25740f0ca7f6f4ff6bce71dbce4b767278c7e0603f780c9ddef769",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -993,6 +1137,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f04e1eeb6e51089390d5468242d9343642dc9cebbd86e7b2e92ca802eae35d16",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1007,6 +1153,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f3f0bbb873e40c5ddbd203b11a3fbfbf3586c2667c4121c4c11782ffb1371bd8",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1021,6 +1169,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f59c792fafe0a3b560e6617fd8307ad74449f4f1492b938e8b95a2effef3ff4d",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1035,6 +1185,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "39138f866dea35819281b3459cdeea6e1f811550482d68b888d87eea42f3491b",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1049,6 +1201,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "6d0030fdad9a80c477b3113ca94c2a4117c2f1c00c85c30cac1a2793886d38ab",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1063,6 +1217,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e23d94a59f756a93b34ad81fabe03206eec1773191015efcf8596f4324768a99",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1077,6 +1233,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f18a4927f592dcc859368836faadba8544852203ff70e29c95a35211631f0496",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1091,6 +1249,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "b1d2ce0a4209f74786889483241a2e38cdcadca67750c01457fe326fda4ae65a",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1105,6 +1265,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "c06100c741084410a26fd2400e6e8185d3250c175d48d82121f0d5b2d08e73d3",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1119,6 +1281,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "a73d51aeccd914d0530080392e644c1b191624af0936bdee4db0db91dd60877a",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1133,6 +1297,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "d0623532d0b0e3d83fd8839e86a12b59ba8d850b26f4077d61aacbe13fbe9bd5",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1147,6 +1313,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "20dc7944cb655d2ba4db6e86bbecba01aa49f45b162bca6d0a01780ae98d3824",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1161,6 +1329,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "cc6225b4a3eeea502eb9152eb2f989f9cf6ed3ab704a4e1735d43905688fe110",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1175,6 +1345,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "6738217728f3348d174cb21e36931728545aead20e56a36247039ca5966b77e4",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1189,6 +1361,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "01ebbd4804ab86c762016c59dcf353a406c03957848abf674d3de05e725cc651",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1203,6 +1377,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "885c1cc47299017706f0a12d1a1bd229859bd301dbbb723d2dad74a84680694b",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1217,6 +1393,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "3b1f80a306e32ffb70d2d5dc52268118815c811e018c858310d29f0ac260b2b1",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1231,6 +1409,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "93ade3bffb616136f58c737238513357cf846301efd6b82e4cc5d5743dbcecb1",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1245,6 +1425,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "c369d9ed15869965b6008f9f17cccbd5a6083db8910e9d4d49a4a2553adcec44",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1259,6 +1441,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "d8769fb1932b6b76346546c4d164d03751a67943e2247bf7396a2098caee46bf",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1273,6 +1457,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "a0d02f18f77f89c5f04fe2477cb5d9dac7e84bd291fc20758f2f84b53b6ddc9e",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1287,6 +1473,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "0877ae2ebfaf553f90e728008c137e86f49e638610eeaba9b72d24c257586ad8",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1301,6 +1489,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "001d571a806f9525b0a5ca4cb5653fcc97af7dcae7e78e0c506c7f653433738b",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1315,6 +1505,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "84e2de6a31d7788d8af1c18e8bb104c75d8a9212cfaebe787c8a0f24d595a925",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1329,6 +1521,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "b179a4ee144049e314e24056069038c61576f7b7a0bd0d7e8fb238a13c6a3f61",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1343,6 +1537,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "536044e1ff63aa52bbc153612930e9d72a135b4d47f2a9fd3b43e3d778b2f930",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1357,6 +1553,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "cbdbf5437584e04506a7ee222fe3a7544094aa0c3c533b4d6e7e85003fbad082",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1371,6 +1569,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e178cdaea333e05538da9073f9a376298484d4c3ba2302b93d321611da4a7f89",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1385,6 +1585,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "2a3ae149c6d5dd3bf15804bce0ed475f350c080420defb3ed969675ba238f008",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1399,6 +1601,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "57308375eae489441b91df7570ad45747dd6ec7e54d6327099362d9064ad937c",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1413,6 +1617,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "22df96132138f2ca34607d158c5476f34d49f0a761227126acd35a1722d2cb58",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1427,6 +1633,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "710f487608931738a30f48342f443ba203c2bdac33a285315d168928b4e71df9",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1441,6 +1649,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "593c33163a0016ec2587a51a3447caa64c1d9e49df96f600ac36440143a5f831",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1455,6 +1665,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f2d1e32a6f1cf989cabd85c04830432cf8203b4dbe16651415a2f57dd2a3f946",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1469,6 +1681,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "54fe827a8aaeaf167d2ce6012a9026fea99743384bdf9f50afd8590189b80f16",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1483,6 +1697,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "0a265d5e8e7eb6981660b206829c93e229f3b5effd23aadfb0738bacdbd461ce",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1497,6 +1713,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e18cf5399f569d2bd28e36445902d524d6df1b04881a87a05580f5975f848a3f",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1511,6 +1729,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f4aa1e24b2a9ab73ddcd50e4ba6dff4e5f6ec878d8fee81b3966a436fd6a6f0a",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1525,6 +1745,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "6f4bee7a5c88428637ff3951f08a465314dca1e18cf62d29e6244606f54bb53c",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1539,6 +1761,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "104fc479b849f1394f66d6e4b36e293518519d473fe7a112531efd7ec1008432",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1553,6 +1777,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "dadad0634068d3a65ab351ec1b356c8063a95c69c0ff4f9312085395ca383036",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1567,6 +1793,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e721b4ef6ae1c28dd2be61b074e14644c9fb0f1bb5de98adcb6caf6e72046a1c",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1581,6 +1809,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "0b852a51031b1b16ae295cda04fc23ab442a760230037dd547efe5862aed3812",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1595,6 +1825,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "1bad641de87f71996b71e820f80b4690e599a48deb4a0821766d866c172372eb",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1609,6 +1841,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "8830f4b1a4fd622df31ad01e46f61b12d7025b686edc09fa0126747458cb6d1b",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1623,6 +1857,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "595eedc75e1be15ea074d288004e774f24d873860bbe03f54360b640533e657d",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1637,6 +1873,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "a2db20e30eb6e9cdbaa83d1813b49234cc96101af606c471a2aedd7d55b47171",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1651,6 +1889,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "419ede5cb776616b172a79fa4ef1f09084142c7c191c087291397965c4196763",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1665,6 +1905,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "bb8b0e328de13a3b03dc991a5ba931d3aefbdc6c26ef1eb2d32cb3c88cadb1f1",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1679,6 +1921,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "0e3f35f98d7d24a7171cb4ca59f0e44a91380ed50f21965d260d3cbf2fc1b5e4",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1693,6 +1937,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "afc2fe1ffbc3699d13dee1a518bda78e07dcb93d06d5ccaf9613c208d3cbd7f8",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1707,6 +1953,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "64265e9e29dc7c53544a474cef19d376e7ee79a066576da1b4288b11e9eced48",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1721,6 +1969,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "7a4bd46714b8f827a40c05f459921e95efc8916dce2fce55075007746c4f4376",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1735,6 +1985,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "0215c2cc57686fd18899ca51a3c6535e569041f0c0cae4b12a3469e3744bd69f",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1749,6 +2001,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "812f8355439cbb5570bfc9aef6b54c643d002f54164e385ad22957a31eb0453a",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1763,6 +2017,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "041e3d892f71d0f4e43683b47263a8697dcf9506afa780a60c015f47f4ed330f",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1777,6 +2033,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "0493df5df774f03e1eed1a015baf41b84a14ed7605d973f2465af8614df2d0bb",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1791,6 +2049,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "d17a8dd7dc38010ded6f6a740ff5d18bde39cc50a96bcb7cca1f3ce7f106c284",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1805,6 +2065,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f2b6b61c84f65f18768d6c4d08280dea1f4127f20e405aea56ba0c1f223b13c0",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1819,6 +2081,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "17d8984ac4d17d0533ca5cd18017478ef06ec606951fc5ae941cf056c1442dd0",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1833,6 +2097,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "95057bcd752dbf55ce3d9a7640003ef7137e1a737218e2381f85c4203178b431",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1847,6 +2113,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "4f82912790921a7d377f441e45d2373675d0d911cbeab8b5af4d3f81346822a1",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1861,6 +2129,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "d03f5050b3d8f47984e9b861ca6c144b54f61f3dc5bbd84c3d84ee0e51769e3f",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1875,6 +2145,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "511c6603e78fd56a40b408c137ecd69ee53e3154edc0a1faead95f87e41a07c4",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1889,6 +2161,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "0866a811fe183e508e18d1f4da04ad380f5ac294f30a09826a8f6c0d20aa08dc",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1903,6 +2177,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "307f37a221b592a4019ee80639e1b5d0ffa5e914dc38d342045d7132a48a85cf",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1917,6 +2193,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "0f5a4fdc7675bd951f67ba3daccb36bfeab876869a4353c0fde5642b9f5d797f",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1931,6 +2209,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "06992c61ccf66361b5ecbec457f06c4a2ad2c91ead0fee985d0fb78514b7279a",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1945,6 +2225,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "a73f60f6c9cdf571c7d3b744686ca423bbffe6a6f4e17814f62277b7bc121de5",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1959,6 +2241,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e3a9674d75b3b7003ceb61d036d03f5b1b17c1383bdb25e1e9dc36f6e70159bc",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1973,6 +2257,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "407dfe689a2ad7a8ea274a35eead83fd5762b4cfe5c471ed6bbdbbade5bc1cc6",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -1987,6 +2273,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "2b924d6746689d4c19ae62ac0ebe857420a87aaa0bb843d56c62f489b59d833d",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2001,6 +2289,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "573b50dd48910c86d1c6d39453a054f69c876fc1982510d7d4569ee10387c076",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2015,6 +2305,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "8e2a9daaac4d9bdd467ddff823fe5fdaea1b35e00c200d3ceacf5b7dab1de160",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2029,6 +2321,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "8fa0a05c7906c092f652cb464ed5268c89d67d8949e559c387957f6d1b854b1e",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2043,6 +2337,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "7a3621e94751cfd99fd2645d1a0ab3aea40233f4963bb2556f29e97b32eaabe5",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2057,6 +2353,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "801e09aa60026879e685e3978556a24faf48db48ce2e102404f4097ca188c0c4",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2071,6 +2369,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "1cf7515a1f03cc3cb843b8d8e3af5768717a304596b4de7c82b72560d561413b",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2085,6 +2385,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ec608c8b011ef64638dd16f3ac34c7c95b6cfb97c326ce7d979fba076f1bc486",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2099,6 +2401,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "6cb39ab13dbda5f27573bf74c89400ee3349116976087975ee2636031e824689",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2113,6 +2417,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f829574b3cccf13f7af2b18cecffe3c175e5622333f55dfe4e9c2ff7be876257",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2127,6 +2433,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "78564742c04cc2f064688a74988d146c660599bcfbdd7467813d3fb4bf0e5f63",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2141,6 +2449,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "99917017e3a9db3181ef84fda565d216da488bd4671d5d18ecf80bf03f308662",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2155,6 +2465,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "d265cc12342c7f9f807d943ce4c36e2afb9283d8b623f47ecb6dac78ed91740e",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2169,6 +2481,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e91d459a9d08d1a44d69c2aec9bd19ad0688768b55e3359363ca379946a77777",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2183,6 +2497,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ae10b2873b9df9d39190f0506a0e3a6c4e2e8bf8ae757e7ad46ce2cdf61db828",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2197,6 +2513,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "d6d796c9ecd4b36013c07ae496d7d745c5fc5a205443d6a3d6ac6aacbf6a3e9b",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2211,6 +2529,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "a29f718d48cc4c3819b9fd55057970b3b242dbd07e99ac7a2782c1a64cbd9a77",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2225,6 +2545,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "39aeb54c4463bbf333871569ffe874c09eb6ef79c0d8400dbbd09e606920ac13",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2239,6 +2561,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "19bfba368b115b8c15b373d0875bc531442e0557454b19613cebf0bd72620ebf",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2253,6 +2577,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "6314041d23a51b97d04574d29fb751fb5e9da0066b3e0e0ac21626b9f6767ba8",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2267,6 +2593,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "60653f6e701b02a3a4336498c327540bec7ab7178814e476483510e6a5b15089",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2281,6 +2609,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "71f75d4c8a1fe7804c7557ddddbf8ff6232675535a48b0492d0c69a4a2dceea6",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2295,6 +2625,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e929227ed58d7c9a06506ca1ebdb76d60cbdabb0fb7cd6e981d9049c3da8a54d",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2309,6 +2641,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ff2554e7f58bc39b22c6a05eabadbad7af1118528f23949e38648853f7c584e6",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2323,6 +2657,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "cd154bb5245fcbf8f450f1b379635899f426f7674cab5ee74528772692dd9669",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2337,6 +2673,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "99efd54d788bad1b42d7b73640f6351e6da6bbb9017e986bf1b866351926d70e",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2351,6 +2689,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "7bc15a022cf4ffc65c3b465f7e591d68c27843b52384b96ad5cd8b3505ef6825",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2365,6 +2705,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "d6edb9c618da95ad86889181d465f8d497845b3b75c6e2374ce00b3d4c0c7b40",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2379,6 +2721,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "0bb2c21506eb14360918b79566fd88de07488c6808d42b5b199be86559738766",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2393,6 +2737,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "2f2ab822376ccbd042f16ffe5d19e8376dad5a3d2127a7ac38227f6766bbb970",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2407,6 +2753,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "a941d45b231d11cc04233fb4528a16a73c923ec95d7e8a7cf3e6def2c837f9ad",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2421,6 +2769,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "dbb6608d8326b3910955e8212ac134f36df196d5280fa4bc664b7183de042954",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2435,6 +2785,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "9c8fb36e4b0d0616005b091131c63460f05f77ce1c43823cfdfcf7adfad1a7cd",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2449,6 +2801,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "b74fd102776797a6126023e7a39e9833ff753f5612e122f2f272af8fc7b3dc52",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2463,6 +2817,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "d2dee65b303d5aa5d8f83318e69a80d1e6a9c55772968a8e415b44d09aaba3c3",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2477,6 +2833,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "d063491e8bf72f55a04a6770a7cfc5965e503af1aa843fb4701e97a592315c6b",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2491,6 +2849,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "efb0d2b16ac8dd12f974dfabbd46145f713ade02224f01a47a3c8edcbccaa3ca",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2505,6 +2865,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "3adf18f86838a211f48b24dce8a620bb7cf3e2eb88f32b690a1c9a8da7623777",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2519,6 +2881,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e03c50d5359d84ee1523c6d9c6c10562f4a32d77e0f707b864a8e0bcd89a4435",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2533,6 +2897,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "c598d586ec1336cc3f6b580416dfb3f45570937335d2e8574d97d23658961011",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2547,6 +2913,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "4469212ee5fb8afe1d9cdf8be2447a961b56e497b1fb18e35cd40e4559e8fe48",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2561,6 +2929,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "1d2bff6f15c6a8d9cc7dca83f1700fdebabd1e411e10314fd356fd88b43e3189",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2575,6 +2945,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "263e8d2b60a5f8c4e1b44245fd510bf650d599517c0fe3c9136abe1a30a85ca7",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2589,6 +2961,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ce57f2958e40cd9488ce7e8d8e3b6baad00286c2d706955d49cc03c2b652da7e",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2603,6 +2977,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "34579b3eac794a2004fd7953d1add713bdd4524ddfb2729dbdf642bbee6194d4",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2617,6 +2993,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f5a85c65b806eba69e8a9ef207363d5385055bc75ea1cdf43e423695660ab165",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2631,6 +3009,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ab8532c0e9f8f2d5544bfd8c97f07cb8340020eb5a7d02237444f42b3fc55f35",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2645,6 +3025,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "bd757edce0be0f0290f17d2b3ca340570dd9b3209dfcb86557ea4bce18be35eb",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2659,6 +3041,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ab06679543b4fbbb0f34d1a3aee3ddf5d8ac38c657b0f0f4c3a32bf8f3863269",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2673,6 +3057,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "8f01786c839099398d15685704ed5170c68a03904c2daa3a642cf12761367cf7",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2687,6 +3073,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "3b4d297f73cfa97def5364e948715352126648019ff1f9720d61b988d3629497",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2701,6 +3089,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "88216c543b81c03500089cb34ed7b03a2109cff0b851cd013c51358b24b730ec",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2715,6 +3105,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "a8e688d86fcd1a2717d040303a34a601f8d3685c00383a5eb1a73dfe98c97535",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2729,6 +3121,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ff3435d88f5b7f5e68f20c675850d6bdde4166afd89f07316fe4323327565dca",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2743,6 +3137,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "aadf6578d9b4ef4e773707962351dc1db8ba7491008f28402bb521c794ea5418",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2757,6 +3153,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "2bbf12f7bce19d8ab6f0a4eb29fed2e95638d114881deaadd07ccedfac1ff545",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2771,6 +3169,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "410b752a28d065efb31e32f70c08166d10fc0b2299465302bef8cc445f66ca6a",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2785,6 +3185,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ba0345664a3374450657f3988461a1072e3c933c380e7000a9d4daad179a569c",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2799,6 +3201,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ec403c0306d107a244f0e47088360deb6a3d5e224831e9b171c44bd48280302d",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2813,6 +3217,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "5543eba86504cd75d6aef3fad735f435c20ed772d025c34d0d7af25ae4fef42e",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2827,6 +3233,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "6f086108aca24f40777b18ce3d9718798717542a1c31a4c05f91987ffb9b9168",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2841,6 +3249,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "3731be80621646c074785e95a484f644d7552c93d1f6716385241497c1380197",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2855,6 +3265,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "af2f1e0d99091f16f8bd55b61741db4f650b6ab1a02648bec7534991a90e4f3c",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2869,6 +3281,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "a14a7b1df8bcb8d8be5fcadba4f6539d1e4c621b2ec1facbdfa49148bf63a908",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2883,6 +3297,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "7915833c94c43f0e29c1ad16759a26143c3ed1d440cd98ca54cacb730017c946",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2897,6 +3313,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "5b1da86afe88e74f3341306d48afee4b0365c4e897260ea31c19e89955ede1ae",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2911,6 +3329,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "1fc72cdda51f8af2b47874d11783fc75de375ce256373eb9e3b62f168fc5aeeb",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2925,6 +3345,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "b5bc69e764f062ef1afa53b77412b5f6dfdb123dfff6a718092c77917cb10368",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2939,6 +3361,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "50cb6bb7b0172cb2f4c4ea6b7effd15859f17f71ae9628960643ddf5800871b8",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2953,6 +3377,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "46ec7169db02e75b4dc5aabbead874f885092e543fac04d3fd2f83d6a23fbf85",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2967,6 +3393,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "5f4e8e3f44f4c8f5bf84a14c767a9d5dd8f9b50bcc4d728ee7d4ddcbdcc71c4b",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2981,6 +3409,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "1c8babd527abeaa1e77da96115088f7c37d90fddb69e5938d97e7c29ccd49728",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -2995,6 +3425,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "0107b58098145a5d76417bf9981526ecaebab0ef3340f20c4d96dfe8d1a4990f",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3009,6 +3441,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "cb94f502ba1bd0e25b204236f4a51897236a3c96c66dac8264a5f03164d80496",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3023,6 +3457,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ab54d16fb28d73cd33a545b94fc6342c0f2b5d15ce114d995caf01aa1ee5a9e9",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3037,6 +3473,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "a4a5525e1fc38e613c93f3275c9f9eebb2f964d682a3c933d135fbf70d10d059",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3051,6 +3489,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "85d0ed11b2c4b7d1c42f3b4d3e4b0fcc91addf150e0462a5cdfbebf54734c117",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3065,6 +3505,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "3e728ae2f4966a748475e8d7f8f953c649778df37f5b2c4a30b94263eb9c8ed7",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3079,6 +3521,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "03777109444d62660dac4cc501f32546a2dbc4fde2c163a203ee7cf053d409cf",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3093,6 +3537,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "5061ddf580b95d521b7a1e520e883ed88d7d1b1773a71f31ac9cf158be027403",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3107,6 +3553,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "3ad3b3ae656407a93ae0d3076dc1ad244f1e0005b9b43b667701bf160b57ca44",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3121,6 +3569,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f17e7db0daea759a2cf9e4c7130ee7aacc28bc792e09040a68fc9183ef442124",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3135,6 +3585,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "5f43da189acf83ac1df4c833d24431fb84d2710b0e53e09bae60bc894775a517",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3149,6 +3601,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "6f2c975279b8266c6499d9a53c551b3fdab9b76b51f8909e9861524bb8327733",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3163,6 +3617,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "72a3c8116115809b5208aa92d5c58171adc4d85bac0d4f103207644d7738b18c",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3177,6 +3633,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "3330272c004160a5ee18261d7d1b029c6776809ccb94e14af894d471760136cb",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3191,6 +3649,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "97cc502bb27a808dfc6e71c6eb1d2f48459aa64b6e5490adb35a98a395cd53fb",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3205,6 +3665,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "be73800a41ebe95ed5f6bab52adc98d2a25229d848a9179a699049ef2d035156",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3219,6 +3681,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "cf3cb92464599d59fe07667c99644e55279904bdf56600fe6a1dadda31a9ce60",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3233,6 +3697,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "064544dff4e59d42828044ca35da9567361e6adb1c70cae57abb7d11a9ffbb39",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3247,6 +3713,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "c62da08b41878e274a14dea421bfb6d46f5d97496441ce0da3b21d28b074f7ed",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3261,6 +3729,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "576096c267f34a97db2ef02b0d114cecfac00ca5c2907c7d7c92e15570c3a0e7",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3275,6 +3745,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "3de3303702b72b137ff341f8974a872e94c2373e6cf14e32a07ec29ef4bbc30b",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3289,6 +3761,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "3eea8899b4da995424748abc2d07c3021c9714ce4e6b6bccae4f9f70526394c8",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3303,6 +3777,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "1fc0b6975c8301f73c09486692bc8008cf1f870504ad292e9b5046fddc13a2fe",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3317,6 +3793,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "cb0075548beb975e2742a6c998a6d98f4dac8467ca5f41e2468a6bee49e660a2",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3331,6 +3809,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "75706682999c68be98532cf6d868b4f23d1ee8d4772b676c971447aa48aaefc6",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3345,6 +3825,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "a9961dad49fd9b7409659dc5151afe575067066b8b97dd9edef2e0d5727d6483",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3359,6 +3841,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "98edae80b0978388e889da6f797bee6b5d01215cda24e936b2143b8559ffa7ce",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3373,6 +3857,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ef28343c11ac8cfb893f0e83aef01c4a86d78d7f6826b02f439f099861e2beb8",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3387,6 +3873,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "2f020fef98db0e53bef78973074e59cb2c6937dea6c9f1d75215a8e591d95efd",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3401,6 +3889,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "8c2eed24d0660087350c8453f481cc408f56ac36a1a1ccdacbd9bb5d0f47e59c",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3415,6 +3905,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "75a2b050dd666cb2b0bd77eb217bcc26b3103b18fab23589b9f279818ad4c69c",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3429,6 +3921,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ed7f3695d52aa4b5fc01424550276c3def7f39de03accd334678947f93a86d19",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3443,6 +3937,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f9c64c64688f67bd979c5160c55220e5eed26b44ac887bcbc101540cdbc35fac",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3457,6 +3953,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ddbc9836e022a8be478d5da3b5c5402e766a0c675d53ad2da1aebac06f4c11d5",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3471,6 +3969,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "fbcd9c96ff0864e6a74883b6ce96e9974715600c408e75a37ed2b02d5aa5dd01",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3485,6 +3985,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "19a661c20529e3c019c7d48cd7708cc19b5086f1b63eb99b153f1225acf2cb00",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3499,6 +4001,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "d5191fc7f9de6310293dca029132be587526f2065d3481e02a249d418d5b9158",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3513,6 +4017,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "06475e6a6b7d5634704f32861147c1b24503b477d99bfc0b91f6df2420a0e56e",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3527,6 +4033,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "8411b1c54c49924e672ba5c9a1f0e014beb664aee9c9137739dcddf21cd1359b",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3541,6 +4049,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "c266bc7cdc7a370d63920daea65d204822e1f89693b6dd976eef6469d6c5d1b0",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3555,6 +4065,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f96a9a7a309d642267498f054fc109f05b3e6a42381f1aa9100136515534caae",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3569,6 +4081,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "2ecdd1f6d58a175e4533118c692835419f07c551154bfc3b5100ee19dbe9358f",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3583,6 +4097,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ecfb67610cb7d7720f4ac3285e1d5549570c219829b6a476e25922401e3a0513",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3597,6 +4113,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "079a6b21c66a1b56f0b2d3f3f466cd2e318dc65fbbee823d9c40e7c9ff7dc1c1",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3611,6 +4129,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "1e63f4f4adf878b39141dac77c710fd34f82f20ffc324a550db4d0516a7ce41a",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3625,6 +4145,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "813dbfe30adcf3ea615686d09b57756e32deae207718f0fbeb3ad76b6cd2184a",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3639,6 +4161,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "54869d33ec5d900e91beed8c4e482d4b94eb7d4120c0dd447d65edad987c2248",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3653,6 +4177,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "90105d1b4090e92a4d35b38bd2515f60d9cec1d3e39d926de4a5cbbdb3e7760a",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3667,6 +4193,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ebf5d5d63aeb9d6af6d87b66b7707f343aaf4f243b8ebd47317740c5ce36256b",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3681,6 +4209,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "9df699a976b542f0403b404b254b0c9a9f6098e904feacd1db78820550887257",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3695,6 +4225,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "1f611300b31147ccd7fc34d7e98f87780baf356bf1f049feeb26343306d1f62e",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3709,6 +4241,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "1b3b9fd5f4ec679aa44ab3eb3738c627d82c54c521007e97b5140885b4bfbe89",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3723,6 +4257,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "bd533fd1da2699345a360c580c61dcb53ac9b2dd077fd75eed8fbddbcf31a440",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3737,6 +4273,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "9b4c427b78ab4f4a59ba9912537f5fd79ca28563d06bba6140c15c36dfa36d45",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3751,6 +4289,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "77f55a5dd5d7f2b4ee647ba648972f024b60d44dd0a9410f0b698b3b201e85df",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3765,6 +4305,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e7b439192d9ca7396fb09c6b5aad3096318c30526e6b65231c194b9195161364",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3779,6 +4321,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "b58bf6d8f0aa8d837602dfdead79fb01c2c57bd7c933478046dc09397157b256",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3793,6 +4337,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "00a65407382d38f32077aa1b53983b7a391f7f93c3bf769d8527e71d3d547ca9",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3807,6 +4353,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "9fb4ff6be092dcff8be9a127dc38ba76adddbbed74e6711ec7233868597d169c",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3821,6 +4369,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "a3a98e1995e815cf73e1e266171353cb84672817fbe31de5dbda6c3a93a6e905",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3835,6 +4385,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "0fdc3de675790223c57a124df9da9550e349693ca9ef304c48bc1e2863ff30a4",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3849,6 +4401,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "9e89ff59e63f1b8f2c40f55698f682cc5f71513aa09ffc10749679459c678d32",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3863,6 +4417,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "aa1ce61a499767823f6703277ade06b19ecb2efb6b59fa1b688348ef7bfd9374",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3877,6 +4433,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "98683df77944d16c143a3210e2d9824cc65bc09cf7eded03ca92a86bb17a707e",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3891,6 +4449,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "271e3435a82d53e7310ef1e811f2509aa638079c7da51ff8e986a40119e0cd49",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3905,6 +4465,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "dae5626f9a5a6eaa56508036e89a30549e3d04331a1f0330d965611f6e59fd7b",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3919,6 +4481,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "5bb55196717889c546014a086ee8a8426e7708f318523c92629c983c631b9b88",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3933,6 +4497,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "8c759603eabc873c622dea540365912d4cf5f2750a28d4690e08a921c6c5b936",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3947,6 +4513,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "3c1890026845da83cb397ba1f291add66fa57f84460e3cf858ae0fc8e4917aa5",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3961,6 +4529,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ca7ec64f84bc558b666cb13ee0883b74294c456f16804467a71a1d3f4ed6c2b6",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3975,6 +4545,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "bb5277244cc8e24b2c0085ff590ab93ee434415ec2b3844350d59fd94a8a8dc3",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -3989,6 +4561,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "14bed4d0e47d8e1dcc1cc28e91e5214c085849e5b9548d170d827359e9279180",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4003,6 +4577,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "da7a851c3bbf32fae8dc68f7511dded02df50b30739f6ba0427b96486af704a7",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4017,6 +4593,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "1b1769c8f49d34b95e6b0324941bdc85fa01c99dbb1fc74c99e1a355497460f5",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4031,6 +4609,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "b2833a63dd9fd244f36a3fd6dbad2c970a766301a08165ecd39d0d52319232ff",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4045,6 +4625,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "330a14fb28deea8a52ec8e85924bda3f0bfbd2dfba1cb4e2c79959548f5385a1",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4059,6 +4641,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "0ee1e8e35108b04e7a800e7da05afee0f5eb600aa568972a0e02c1956263549c",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4073,6 +4657,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "9df4573f53941409fcd7a00d3f9c39d984aef5fcfe476c8e5b519e91ea104aa1",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4087,6 +4673,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "ceaf8406d2674ece378e238c01d237634d46fb789cfa8b2ed763379bbdcfb4c5",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4101,6 +4689,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "034cd295b36ada3951a10de949f612b736a826a8e0d0a157d7b50b72c6e7a298",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4115,6 +4705,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "17000abab6f16a5c17fc5f10d436c0d812d89690881b86281422bd147b2f73d3",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4129,6 +4721,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "f7bd57e6bbd9f8b83adb631203ddcbfb448bab94ab720ea2ddc5a1a12a220c88",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4143,6 +4737,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "215e63029e04cdffb3b0a019c379596fcf39280fac952150339056b935b288aa",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4157,6 +4753,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "265eabb432646ccd477ec20bb332a9e64ec612b48ad4e116880f90f83a22116e",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4171,6 +4769,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "c3173cae7ce917dac5d3ac7cc23b65bfbbcad06556f54de5873746c85cc8f2d1",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4185,6 +4785,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "9e54b62d6a9fcf2728724058e604d8de8db071ade181fd2c5aca01ffd705a741",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4199,6 +4801,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "9a8b916e7f71f1f7932c75e5947cdf709a29ae73ad71a13b28ca39168074296d",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4213,6 +4817,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "33017f4cadd7d5e3ee957222a6f95bba695c6c356eda5208f7322d52a122f1d4",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4227,6 +4833,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "6cdac82ea688c4da4a3a53e8584537dc6da66a3985327d71397ec6c0d5a8a30e",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4241,6 +4849,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "62d956ff75fa3707936d143c62445ce83ed2c00f5787dc602de1e45b7534cb32",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4255,6 +4865,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "6482d62a66a6c638dd33615dc3718aaf99cc507409247cc2e80c92d1e8d868c5",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4269,6 +4881,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "5ae12104f34901f026c1e4f0c8cf14604a66c82ff4a6962fc3a8574a452a6d96",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4283,6 +4897,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "827a768e4da2543cbf89dc6da403fa35c1afdb13fe046fae064ce2944f0ceba7",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4297,6 +4913,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "fc82a859af424be5477b338c393228eab70464af637cb63cd1b93ef0a8c98d30",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4311,6 +4929,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "149c5b48482a92762db2f67512ec2cf1c746394cee72a85dbd949361477a0689",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4325,6 +4945,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "387e6a0aed401790d4f9f93f1c673c53167e845a0c7ff661b54813c1477a3433",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4339,6 +4961,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "a48674f8fb708c02d83afcd6d1e0480bb61ffaa49d91ea18758ccdc47ee4645a",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4353,6 +4977,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "d26463d625230afa0fa713c467c5c01e5a342c3608c465440d7fb42546d0241b",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4367,6 +4993,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "c3a9489dd766a6a53ba03924b947612bf94c74f86456acb6ba234bba694157af",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4381,6 +5009,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "bf271876e9e1f86435e9f7a2f2603e17308f39eb9f7e010ea34db2c3437216ab",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4395,6 +5025,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "caa8cd6cfd11d2021f70d2fccf287ee0065ce658ad3b0e9804ab5132840b6871",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4409,6 +5041,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "1a7735c98f171fed1dc25428ac0b811989180b587c72670f85ad772ae4c3f80d",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4423,6 +5057,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "853325d63f7e82bd048313b37ab33f496cebc71a0950d6404768ec6a0a05dba1",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4437,6 +5073,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "bf58b644f248cfec9de054285bc1fe266e762e8f9d3b742530dceb285608ae53",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4451,6 +5089,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "08dcb25dd941fd0fe82d41b215bb400f23644a322db1d05706a1d729a40b9e8d",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4465,6 +5105,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "b5b7e19d0928fd4cdf5f136ee021e4f51347d26b688cc1169a25164ba3f56a0c",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4479,6 +5121,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "92dea00f9e2d608399ad9d4bad147063c51613f09975b9313acb398a1da592b8",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4493,6 +5137,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "8901944a2f52331c9d59cc8d3f9602e8dfcc8ee850d3556279be5ed81697f915",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4507,6 +5153,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "3cc4f2fd3fc88c7f64605991dae90b126425489bf181060707cb36c7c34ea3c9",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4521,6 +5169,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "fcb54e38a0082e91031f7cdb41656177ede6ac08c880dc5b44141b2e9be2b858",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4535,6 +5185,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e7d0f5e1d3ea595d01aca81c9a80768ea3b6492d2502594d47ede58f55968a6b",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4549,6 +5201,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "82733beb37732b5e4edb03c6b51bc15772794be9f0b0c9674168fa984caa318d",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4563,6 +5217,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "d39c0f9e8ab3b960f9ff8f58a1236aabf5510d83d33890d8346d0fdeae8d51e6",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4577,6 +5233,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "2dd62315fe708a770068c375cba1d01d5652ffb4512e0d3db428830629c245d1",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4591,6 +5249,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "443e14bfc2f0c4d7685711bb49b8240a69b0732a3fc60dee900ab06721950332",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4605,6 +5265,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "4bb89aac02df95ea8c7accde993bf5c0016cb8173d7b6e4a45f65b4f4446abab",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4619,6 +5281,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "3aad508576fdbd12a79f68a98823488b16dd4f9b860cc40f4e3909f4d62950e0",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4633,6 +5297,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "584b2fd1fd50b6918e5698bbd7d6f629cf105765733f4444e957095349add5ba",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4647,6 +5313,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "7ea04ecfbe5cd90ea63760ae8d194b6e827030d78b817eb13e2064aadc408ea9",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4661,6 +5329,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "90429ada0a4d43b373fb99c0f9e31582416dbb515c465803f4d8c032bc54d1e7",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4675,6 +5345,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "236790ad555b486b29b984e063c508236d19813de6b37f688a7a1ac0310e7c45",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4689,6 +5361,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "7d21bd693428f9a71e85812efa88f7190c4fd652cdf98e240ce51b27f90a86e2",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4703,6 +5377,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "a8dd989b354b71c2874d70a54961fbe57a6c6aab17f2339e31419d27fd9269aa",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4717,6 +5393,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "7184ff71ee37ce985cbcbe09dfc89665d7cfcfeb52f2056e62319dcca5f1c73a",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4731,6 +5409,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e5d10218a749c1250df85a144879c47ec4186c543be72bbd34ac793ee146d4bb",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4745,6 +5425,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e44cfa5e4c8c18b07fbcfc38a3df561e22dbf2ee0e2696e3c39baf51fa857da0",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4759,6 +5441,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "1dcab4ded437682968729d3e271c7a2d5feca0940a28a107c920043662994814",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4773,6 +5457,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "57643d5d84ab44c0a44167a3b74ab4e8d82be4ac1f6532ef5390217d2089b502",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4787,6 +5473,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "4e3a96e4b3e9a3eb2b19c54b183a5d41e48618c787402953d8a1942dfa67f312",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4801,6 +5489,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "2273543cb7ba4936eab3d23cb1ac54f655774c581c4fbb5cec423dd2cb337d74",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4815,6 +5505,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "c1a5c0907331f4f899424a8aa72947725d21de8fec6a90675be620da04f32bb5",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4829,6 +5521,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap2.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "e8773d8dd9f4f67cc4114488715974f8ecf054bb87c71dd6adc7ee53ae6aac31",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -4843,6 +5537,8 @@
       "sourceParent": "https://www.gothanhthuy.com/product-sitemap1.xml",
       "locale": "vi",
       "pageType": "product",
+      "status": 200,
+      "checksum": "7147d9caf4f193b795b9cc2ed9662f781cab92821e9d26b119d0385aa6872e93",
       "outcome": "redirected",
       "reason": "Sitemap alias redirects to the canonical public WordPress product URL.",
       "recordIds": [
@@ -5860,5 +6556,5 @@
       "reason": "API collection endpoint; paginated request URLs are accounted separately."
     }
   ],
-  "checksum": "2d78feea2843d6bb480e2f9299fe29b4ecc5f058dd1c9b308cb53c8008cb8f16"
+  "checksum": "c980583478f32ad5ca34d3acaed51950f43966dad2a5604e82671f7ecd376925"
 }
