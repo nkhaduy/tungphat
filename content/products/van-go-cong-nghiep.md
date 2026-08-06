@@ -127,3 +127,9 @@ Trước khi gọi hoặc nhắn Zalo, khách hàng nên chuẩn bị:
 - Thời điểm cần và địa điểm nhận/giao nếu phù hợp quy trình.
 
 Danh sách giúp kiểm tra đúng nhóm vật liệu, quy cách và gia công trước khi báo giá. Xem [hub sản phẩm hiện có](/san-pham/) hoặc mở [trang liên hệ](/lien-he/) khi đã đủ thông tin.
+
+Khi khách cần gia công, Tùng Phát kiểm tra danh sách chi tiết và file trước khi chạy máy. Website không tự giả định thời gian xử lý; lịch thực hiện chỉ được xác nhận sau khi kiểm tra khối lượng và độ phức tạp.
+
+## Tra mã bề mặt Melamine
+
+Nếu thiết kế đã chốt mã Ba Thanh, có thể mở [bảng mã Melamine Ba Thanh](/ma-mau-melamine/ba-thanh/) để copy đúng mã trước khi gửi loại cốt ván, độ dày, kích thước cắt và yêu cầu dán cạnh.

@@ -5,17 +5,53 @@ import Link from "next/link";
 import { vi as t } from "@/lib/i18n";
 
 const partners = [
-  { slug: "thanh-thuy", name: "Thanh Thùy", logo: "/partners/thanh-thuy-logo.webp", alt: "Logo Thanh Thùy", width: 473, height: 244, className: "max-h-[122px] max-w-[236px]" },
-  { slug: "ba-thanh", name: "Ba Thanh", logo: "/partners/ba-thanh-logo.webp", alt: "Logo Ba Thanh", width: 600, height: 233, className: "max-h-[108px] max-w-[278px]" },
-  { slug: "an-cuong", name: "An Cường", logo: "/partners/an-cuong-logo.webp", alt: "Logo An Cường", width: 500, height: 200, className: "max-h-[104px] max-w-[280px]" }
+  {
+    slug: "thanh-thuy",
+    name: "Thanh Thuỳ",
+    href: "/thuong-hieu/thanh-thuy/",
+    action: "Xem catalogue",
+    logo: "/partners/thanh-thuy-logo.webp",
+    alt: "Logo Thanh Thuỳ",
+    width: 473,
+    height: 244,
+    className: "max-h-[96px] max-w-[214px]",
+  },
+  {
+    slug: "ba-thanh",
+    name: "Ba Thanh",
+    href: "/ma-mau-melamine/ba-thanh/",
+    action: "Xem bảng mã",
+    logo: "/partners/ba-thanh-logo.webp",
+    alt: "Logo Ba Thanh",
+    width: 600,
+    height: 233,
+    className: "max-h-[82px] max-w-[238px]",
+  },
+  {
+    slug: "an-cuong",
+    name: "An Cường",
+    href: "/catalogue/an-cuong/",
+    action: "Xem dữ liệu mẫu",
+    logo: "/partners/an-cuong-logo.webp",
+    alt: "Logo An Cường",
+    width: 500,
+    height: 200,
+    className: "max-h-[80px] max-w-[236px]",
+  },
 ];
 
 export function Partners() {
   return (
-    <section aria-labelledby="partners-title" className="border-b border-forest-900/10 bg-[#f6f7f5] py-14 sm:py-16 lg:py-20">
+    <section
+      aria-labelledby="partners-title"
+      className="border-b border-forest-900/10 bg-[#f6f7f5] py-14 sm:py-16 lg:py-20"
+    >
       <div className="container-shell">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 id="partners-title" className="text-balance font-display text-2xl font-bold leading-tight tracking-[-0.03em] text-forest-950 sm:text-3xl">
+          <h2
+            id="partners-title"
+            className="text-balance font-display text-2xl font-bold leading-tight tracking-[-0.03em] text-forest-950 sm:text-3xl"
+          >
             {t.partnersTitle}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-sm leading-7 text-slate-600 sm:text-base">
@@ -25,8 +61,14 @@ export function Partners() {
 
         <ul className="mx-auto mt-9 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-11 lg:grid-cols-3">
           {partners.map((partner, index) => (
-            <li key={partner.slug} className={index === 2 ? "sm:col-span-2 lg:col-span-1" : ""}>
-              <Link href={`/catalogue/${partner.slug}`} className="group mx-auto flex h-[190px] w-full max-w-md items-center justify-center rounded-lg bg-white px-7 py-8 shadow-card transition duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_4px_16px_rgba(7,59,40,0.14)] sm:h-[210px]">
+            <li
+              key={partner.slug}
+              className={index === 2 ? "sm:col-span-2 lg:col-span-1" : ""}
+            >
+              <Link
+                href={partner.href}
+                className="group mx-auto flex min-h-[190px] w-full max-w-md flex-col items-center justify-center rounded-lg bg-white px-7 py-7 text-center shadow-card transition duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_4px_16px_rgba(7,59,40,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wood-600 focus-visible:ring-offset-2 sm:min-h-[210px]"
+              >
                 <Image
                   src={partner.logo}
                   alt={partner.alt}
@@ -36,6 +78,12 @@ export function Partners() {
                   quality={95}
                   className={`h-auto w-auto object-contain ${partner.className}`}
                 />
+                <span className="mt-5 text-sm font-extrabold text-forest-950">
+                  {partner.name}
+                </span>
+                <span className="mt-1 text-xs font-bold text-wood-700 underline decoration-wood-400 underline-offset-4">
+                  {partner.action}
+                </span>
               </Link>
             </li>
           ))}

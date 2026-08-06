@@ -8,7 +8,20 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/", "/admin/", "/_vercel/", "/preview/", "/cms-preview/", "/*?preview="]
+      disallow: [
+        "/api/",
+        "/admin/",
+        "/_vercel/",
+        "/preview/",
+        "/cms-preview/",
+        "/*?preview=",
+        "/*?search=",
+        "/*?filter=",
+        "/*?q=",
+        "/*?query=",
+        "/*?category=",
+        "/*?sort=",
+      ]
     },
     host: SITE_URL,
     sitemap: `${SITE_URL}/sitemap.xml`

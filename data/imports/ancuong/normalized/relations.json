@@ -1,0 +1,477 @@
+[
+  {
+    "relationType": "application",
+    "sourceId": "303000054",
+    "sourceUrl": "https://ancuong.com/melamine/303000054.html",
+    "targetName": "Sản Phẩm Ứng Dụng",
+    "targetSourceId": "2556",
+    "targetSourceUrl": "https://ancuong.com/album-product/2556"
+  },
+  {
+    "relationType": "same-color",
+    "sourceId": "303000054",
+    "sourceUrl": "https://ancuong.com/melamine/303000054.html",
+    "targetName": "Woodgrain edge",
+    "targetProductCode": "PVC 01012",
+    "targetSourceId": "303000812",
+    "targetSourceUrl": "https://ancuong.com/chi-dan-canh-pvc/303000812.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000054",
+    "sourceUrl": "https://ancuong.com/melamine/303000054.html",
+    "targetName": "Ván Dăm Chống Ẩm Phủ Melamine",
+    "targetSourceUrl": "https://ancuong.com/melamine/van-dam-chong-am-phu-melamine.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000054",
+    "sourceUrl": "https://ancuong.com/melamine/303000054.html",
+    "targetName": "Ván Dăm Phủ Melamine",
+    "targetSourceUrl": "https://ancuong.com/melamine/van-dam-phu-melamine.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000054",
+    "sourceUrl": "https://ancuong.com/melamine/303000054.html",
+    "targetName": "Ván Gỗ Ghép Phủ Melamine",
+    "targetSourceUrl": "https://ancuong.com/melamine/van-go-ghep-phu-melamine.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000054",
+    "sourceUrl": "https://ancuong.com/melamine/303000054.html",
+    "targetName": "Ván CDF (Black HDF) Phủ Melamine",
+    "targetSourceUrl": "https://ancuong.com/melamine/van-hdf-loi-den-phu-melamine.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000054",
+    "sourceUrl": "https://ancuong.com/melamine/303000054.html",
+    "targetName": "Ván HDF Phủ Melamine",
+    "targetSourceUrl": "https://ancuong.com/melamine/van-hdf-phu-melamine.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000054",
+    "sourceUrl": "https://ancuong.com/melamine/303000054.html",
+    "targetName": "Ván MDF Chống Ẩm Phủ Melamine",
+    "targetSourceUrl": "https://ancuong.com/melamine/van-mdf-chong-am-phu-melamine.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000054",
+    "sourceUrl": "https://ancuong.com/melamine/303000054.html",
+    "targetName": "Ván MDF Phủ Melamine",
+    "targetSourceUrl": "https://ancuong.com/melamine/van-mdf-phu-melamine.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000054",
+    "sourceUrl": "https://ancuong.com/melamine/303000054.html",
+    "targetName": "EcoSmooth (Ván Plywood Phủ Melamine)",
+    "targetSourceUrl": "https://ancuong.com/melamine/van-plywood-phu-melamine.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000054",
+    "sourceUrl": "https://ancuong.com/melamine/303000054.html",
+    "targetName": "Ván WPB Phủ Melamine",
+    "targetSourceUrl": "https://ancuong.com/melamine/van-wpb-phu-melamine.html"
+  },
+  {
+    "relationType": "application",
+    "sourceId": "303000332",
+    "sourceUrl": "https://ancuong.com/laminate/303000332.html",
+    "targetName": "Sản Phẩm Ứng Dụng",
+    "targetSourceId": "2572",
+    "targetSourceUrl": "https://ancuong.com/album-product/2572"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000332",
+    "sourceUrl": "https://ancuong.com/laminate/303000332.html",
+    "targetName": "Tấm Laminate Kingdom",
+    "targetSourceUrl": "https://ancuong.com/laminate/tam-laminate-kingdom.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000332",
+    "sourceUrl": "https://ancuong.com/laminate/303000332.html",
+    "targetName": "Ván CDF (Black HDF) Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-cdf-black-hdf-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000332",
+    "sourceUrl": "https://ancuong.com/laminate/303000332.html",
+    "targetName": "Ván Dăm Chống Ẩm Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-dam-chong-am-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000332",
+    "sourceUrl": "https://ancuong.com/laminate/303000332.html",
+    "targetName": "Ván Dăm Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-dam-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000332",
+    "sourceUrl": "https://ancuong.com/laminate/303000332.html",
+    "targetName": "Ván Gỗ Ghép Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-go-ghep-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000332",
+    "sourceUrl": "https://ancuong.com/laminate/303000332.html",
+    "targetName": "Ván HDF Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-hdf-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000332",
+    "sourceUrl": "https://ancuong.com/laminate/303000332.html",
+    "targetName": "Ván MDF Chống Ẩm Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-mdf-chong-am-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000332",
+    "sourceUrl": "https://ancuong.com/laminate/303000332.html",
+    "targetName": "Ván MDF Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-mdf-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000332",
+    "sourceUrl": "https://ancuong.com/laminate/303000332.html",
+    "targetName": "Ván Plywood Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-plywood-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000332",
+    "sourceUrl": "https://ancuong.com/laminate/303000332.html",
+    "targetName": "Ván WPB Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-wpb-phu-laminate.html"
+  },
+  {
+    "relationType": "application",
+    "sourceId": "303000495",
+    "sourceUrl": "https://ancuong.com/laminate/303000495.html",
+    "targetName": "Sản Phẩm Ứng Dụng",
+    "targetSourceId": "2718",
+    "targetSourceUrl": "https://ancuong.com/album-product/2718"
+  },
+  {
+    "relationType": "same-color",
+    "sourceId": "303000495",
+    "sourceUrl": "https://ancuong.com/laminate/303000495.html",
+    "targetName": "Neo American Cherry",
+    "targetProductCode": "MFC - MS 604 RM",
+    "targetSourceId": "303000218",
+    "targetSourceUrl": "https://ancuong.com/melamine/303000218.html"
+  },
+  {
+    "relationType": "same-color",
+    "sourceId": "303000495",
+    "sourceUrl": "https://ancuong.com/laminate/303000495.html",
+    "targetName": "Woodgrain edge",
+    "targetProductCode": "PVC 604/LK4439",
+    "targetSourceId": "303001017",
+    "targetSourceUrl": "https://ancuong.com/chi-dan-canh-pvc/303001017.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000495",
+    "sourceUrl": "https://ancuong.com/laminate/303000495.html",
+    "targetName": "Tấm Laminate Kingdom",
+    "targetSourceUrl": "https://ancuong.com/laminate/tam-laminate-kingdom.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000495",
+    "sourceUrl": "https://ancuong.com/laminate/303000495.html",
+    "targetName": "Ván CDF (Black HDF) Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-cdf-black-hdf-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000495",
+    "sourceUrl": "https://ancuong.com/laminate/303000495.html",
+    "targetName": "Ván Dăm Chống Ẩm Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-dam-chong-am-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000495",
+    "sourceUrl": "https://ancuong.com/laminate/303000495.html",
+    "targetName": "Ván Dăm Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-dam-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000495",
+    "sourceUrl": "https://ancuong.com/laminate/303000495.html",
+    "targetName": "Ván Gỗ Ghép Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-go-ghep-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000495",
+    "sourceUrl": "https://ancuong.com/laminate/303000495.html",
+    "targetName": "Ván HDF Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-hdf-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000495",
+    "sourceUrl": "https://ancuong.com/laminate/303000495.html",
+    "targetName": "Ván MDF Chống Ẩm Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-mdf-chong-am-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000495",
+    "sourceUrl": "https://ancuong.com/laminate/303000495.html",
+    "targetName": "Ván MDF Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-mdf-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000495",
+    "sourceUrl": "https://ancuong.com/laminate/303000495.html",
+    "targetName": "Ván Plywood Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-plywood-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000495",
+    "sourceUrl": "https://ancuong.com/laminate/303000495.html",
+    "targetName": "Ván WPB Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-wpb-phu-laminate.html"
+  },
+  {
+    "relationType": "application",
+    "sourceId": "303000667",
+    "sourceUrl": "https://ancuong.com/acrylic/303000667.html",
+    "targetName": "Sản Phẩm Ứng Dụng",
+    "targetSourceId": "3713",
+    "targetSourceUrl": "https://ancuong.com/album-product/3713"
+  },
+  {
+    "relationType": "same-color",
+    "sourceId": "303000667",
+    "sourceUrl": "https://ancuong.com/acrylic/303000667.html",
+    "targetName": "Glossy edge",
+    "targetProductCode": "PVC PARC 01",
+    "targetSourceId": "303001219",
+    "targetSourceUrl": "https://ancuong.com/chi-abs/303001219.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000667",
+    "sourceUrl": "https://ancuong.com/acrylic/303000667.html",
+    "targetName": "Tấm High Gloss Acrylic",
+    "targetSourceUrl": "https://ancuong.com/acrylic/tam-high-gloss-acrylic.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000667",
+    "sourceUrl": "https://ancuong.com/acrylic/303000667.html",
+    "targetName": "Ván CDF (Black HDF) Phủ Acrylic",
+    "targetSourceUrl": "https://ancuong.com/acrylic/van-hdf-loi-den-phu-acrylic.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000667",
+    "sourceUrl": "https://ancuong.com/acrylic/303000667.html",
+    "targetName": "Ván HDF Phủ Acrylic",
+    "targetSourceUrl": "https://ancuong.com/acrylic/van-hdf-phu-acrylic.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000667",
+    "sourceUrl": "https://ancuong.com/acrylic/303000667.html",
+    "targetName": "Ván MDF Chống Ẩm Phủ Acrylic",
+    "targetSourceUrl": "https://ancuong.com/acrylic/van-mdf-chong-am-phu-acrylic.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000667",
+    "sourceUrl": "https://ancuong.com/acrylic/303000667.html",
+    "targetName": "Ván MDF Phủ Acrylic",
+    "targetSourceUrl": "https://ancuong.com/acrylic/van-mdf-phu-acrylic.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000667",
+    "sourceUrl": "https://ancuong.com/acrylic/303000667.html",
+    "targetName": "Ván Plywood Phủ Acrylic",
+    "targetSourceUrl": "https://ancuong.com/acrylic/van-plywood-phu-acrylic.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303000667",
+    "sourceUrl": "https://ancuong.com/acrylic/303000667.html",
+    "targetName": "Ván WPB Phủ Acrylic",
+    "targetSourceUrl": "https://ancuong.com/acrylic/van-wpb-phu-acrylic.html"
+  },
+  {
+    "relationType": "same-color",
+    "sourceId": "303001219",
+    "sourceUrl": "https://ancuong.com/chi-abs/303001219.html",
+    "targetName": "White",
+    "targetProductCode": "ACRYLIC PARC 01",
+    "targetSourceId": "303000667",
+    "targetSourceUrl": "https://ancuong.com/acrylic/303000667.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303001219",
+    "sourceUrl": "https://ancuong.com/chi-abs/303001219.html",
+    "targetName": "Chỉ ABS",
+    "targetSourceUrl": "https://ancuong.com/chi-abs/chi-abs.html"
+  },
+  {
+    "relationType": "application",
+    "sourceId": "303003838",
+    "sourceUrl": "https://ancuong.com/laminate/303003838.html",
+    "targetName": "Sản Phẩm Ứng Dụng",
+    "targetSourceId": "2878",
+    "targetSourceUrl": "https://ancuong.com/album-product/2878"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303003838",
+    "sourceUrl": "https://ancuong.com/laminate/303003838.html",
+    "targetName": "Tấm Laminate Kingdom",
+    "targetSourceUrl": "https://ancuong.com/laminate/tam-laminate-kingdom.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303003838",
+    "sourceUrl": "https://ancuong.com/laminate/303003838.html",
+    "targetName": "Ván CDF (Black HDF) Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-cdf-black-hdf-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303003838",
+    "sourceUrl": "https://ancuong.com/laminate/303003838.html",
+    "targetName": "Ván Dăm Chống Ẩm Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-dam-chong-am-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303003838",
+    "sourceUrl": "https://ancuong.com/laminate/303003838.html",
+    "targetName": "Ván Dăm Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-dam-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303003838",
+    "sourceUrl": "https://ancuong.com/laminate/303003838.html",
+    "targetName": "Ván Gỗ Ghép Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-go-ghep-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303003838",
+    "sourceUrl": "https://ancuong.com/laminate/303003838.html",
+    "targetName": "Ván HDF Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-hdf-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303003838",
+    "sourceUrl": "https://ancuong.com/laminate/303003838.html",
+    "targetName": "Ván MDF Chống Ẩm Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-mdf-chong-am-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303003838",
+    "sourceUrl": "https://ancuong.com/laminate/303003838.html",
+    "targetName": "Ván MDF Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-mdf-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303003838",
+    "sourceUrl": "https://ancuong.com/laminate/303003838.html",
+    "targetName": "Ván Plywood Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-plywood-phu-laminate.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303003838",
+    "sourceUrl": "https://ancuong.com/laminate/303003838.html",
+    "targetName": "Ván WPB Phủ Laminate",
+    "targetSourceUrl": "https://ancuong.com/laminate/van-wpb-phu-laminate.html"
+  },
+  {
+    "relationType": "application",
+    "sourceId": "303016500",
+    "sourceUrl": "https://ancuong.com/3d-embossed/303016500.html",
+    "targetName": "Sản Phẩm Ứng Dụng",
+    "targetSourceId": "5370",
+    "targetSourceUrl": "https://ancuong.com/album-product/5370"
+  },
+  {
+    "relationType": "same-color",
+    "sourceId": "303016500",
+    "sourceUrl": "https://ancuong.com/3d-embossed/303016500.html",
+    "targetName": "Copper Gold",
+    "targetProductCode": "LL 2500",
+    "targetSourceId": "303004243",
+    "targetSourceUrl": "https://ancuong.com/laminate/303004243.html"
+  },
+  {
+    "relationType": "same-color",
+    "sourceId": "303016500",
+    "sourceUrl": "https://ancuong.com/3d-embossed/303016500.html",
+    "targetName": "U - Edge Banding",
+    "targetProductCode": "NẸP NHÔM U INOX PLUS LL 2500",
+    "targetSourceId": "303017507",
+    "targetSourceUrl": "https://ancuong.com/nep-nhom-u/303017507.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303016500",
+    "sourceUrl": "https://ancuong.com/3d-embossed/303016500.html",
+    "targetName": "Tấm 3DE 02 Embossed Biên Dạng Nan Gỗ Hiện Đại",
+    "targetSourceUrl": "https://ancuong.com/3d-embossed/tam-3de-02-embossed-bien-dang-nan-go-hien-dai.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303016500",
+    "sourceUrl": "https://ancuong.com/3d-embossed/303016500.html",
+    "targetName": "Tấm 3DE 03 Embossed Biên Dạng Họa Tiết",
+    "targetSourceUrl": "https://ancuong.com/3d-embossed/tam-3de-03-embossed-bien-dang-hoa-tiet.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303016500",
+    "sourceUrl": "https://ancuong.com/3d-embossed/303016500.html",
+    "targetName": "Tấm 3DE 04 Embossed Biên Dạng Sọc Nhỏ",
+    "targetSourceUrl": "https://ancuong.com/3d-embossed/tam-3de-04-embossed-bien-dang-soc-nho.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303016500",
+    "sourceUrl": "https://ancuong.com/3d-embossed/303016500.html",
+    "targetName": "Tấm 3DE 05 Embossed Biên Dạng Sóng Lượn",
+    "targetSourceUrl": "https://ancuong.com/3d-embossed/tam-3de-05-embossed-bien-dang-song-luon.html"
+  },
+  {
+    "relationType": "same-line",
+    "sourceId": "303016500",
+    "sourceUrl": "https://ancuong.com/3d-embossed/303016500.html",
+    "targetName": "Tấm 3DE 06 Embossed Biên Dạng Gợn Sóng",
+    "targetSourceUrl": "https://ancuong.com/3d-embossed/tam-3de-06-embossed-bien-dang-gon-song.html"
+  }
+]

@@ -17,7 +17,7 @@ featuredImage: "/images/cnc-service.webp"
 featuredImageAlt: "Ảnh minh họa máy CNC đang gia công biên dạng trên tấm vật liệu"
 quoteCta: "Gửi yêu cầu cắt CNC"
 publishedAt: "2026-07-16"
-updatedAt: "2026-07-23"
+updatedAt: "2026-08-05"
 draft: false
 seoTitle: "Cắt CNC gỗ theo file, bản vẽ tại TP.HCM"
 seoDescription: "Gửi yêu cầu cắt CNC gỗ theo file, bản vẽ hoặc kích thước. Tùng Phát kiểm tra vật liệu, chi tiết, số lượng và khả năng gia công trước khi báo giá."
@@ -168,3 +168,7 @@ Nếu yêu cầu đã xác định rõ vật liệu MDF, hãy xem [dịch vụ g
 Trước khi dùng nút gọi điện hoặc Zalo hiện có, hãy gom một gói thông tin ngắn gồm vật liệu, độ dày, kích thước, số lượng, file hoặc bản vẽ, hạng mục cần cắt, khoan hoặc soi, mặt gia công và cạnh cần lưu ý. Nếu chưa đủ dữ liệu, ghi rõ phần cần Tùng Phát kiểm tra thay vì tự điền giả định.
 
 Website chưa có form tải file trực tiếp. Khách hàng có thể dùng CTA trên trang để trao đổi kênh gửi dữ liệu phù hợp, hoặc xem [thông tin liên hệ Tùng Phát](/lien-he/). Việc gửi yêu cầu là bước bắt đầu kiểm tra, không phải xác nhận tự động về khả năng thực hiện, giá hoặc lịch gia công.
+
+Khách hàng và người phụ trách cần thống nhất đơn vị đo, mặt vật liệu, số lượng và yêu cầu cạnh. Những điểm chưa rõ phải được hỏi lại, không tự suy diễn từ tên file hoặc ảnh tham khảo.
+
+Nếu file sử dụng bề mặt theo mã, hãy gửi kèm link hoặc mã từ [catalogue Thanh Thuỳ tại Tùng Phát](/thuong-hieu/thanh-thuy/) để xưởng kiểm tra hướng vân, mặt cắt và phương án dán cạnh trước khi chạy máy.
