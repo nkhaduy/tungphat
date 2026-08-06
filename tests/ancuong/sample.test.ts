@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { selectSampleListings } from "@/scripts/ancuong/sample";
+import { runSamplePipeline, selectSampleListings } from "@/scripts/ancuong/sample";
 import type { ListingProduct } from "@/scripts/ancuong/types";
 
 function listing(sourceId: string, categorySlug: string, facetKeys: Record<string, string[]> = {}): ListingProduct {
@@ -35,5 +35,41 @@ describe("An Cuong representative sample selection", () => {
     expect(selected.some((item) => (item.facetKeys["Kích Thước (mm)"]?.length ?? 0) > 1)).toBe(true);
     expect(selected.some((item) => "Bộ Sưu Tập" in item.facetKeys)).toBe(true);
     expect(selected.some((item) => "Hiệu Ứng Bề Mặt" in item.facetKeys)).toBe(true);
+  });
+
+  it("keeps sample detail output isolated from canonical full-import artifacts", async () => {
+    const calls: string[] = [];
+    const source = [listing("1", "melamine")];
+
+    await runSamplePipeline({
+      dryRun: false,
+      resume: false,
+      force: false,
+      changedOnly: false,
+      skipMedia: true,
+      verbose: false,
+      concurrency: 1,
+    }, {
+      sampleListingsPath: "/tmp/ancuong-sample/sample-listings.json",
+      sampleDetailsPath: "/tmp/ancuong-sample/sample-details.json",
+      discover: async () => { calls.push("discover"); },
+      crawlListings: async () => { calls.push("listings"); return source; },
+      writeListings: async (path, records) => {
+        calls.push(`write:${path}:${records.length}`);
+      },
+      crawlDetails: async (_options, dependencies) => {
+        calls.push(`details:${dependencies.listingsPath}:${dependencies.outputPath}`);
+        return [];
+      },
+    });
+
+    expect(calls).toEqual([
+      "discover",
+      "listings",
+      "write:/tmp/ancuong-sample/sample-listings.json:1",
+      "details:/tmp/ancuong-sample/sample-listings.json:/tmp/ancuong-sample/sample-details.json",
+    ]);
+    expect(calls.join("\n")).not.toContain("data/imports/ancuong/normalized");
+    expect(calls.join("\n")).not.toContain("data/imports/ancuong/export");
   });
 });
