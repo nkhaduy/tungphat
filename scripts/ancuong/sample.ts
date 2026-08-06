@@ -39,8 +39,11 @@ export function selectSampleListings(listings: ListingProduct[], requestedLimit 
 }
 
 type SamplePipelineDependencies = {
+  sampleDiscoveryPath: string;
   sampleListingsPath: string;
   sampleDetailsPath: string;
+  sampleListingsStatePath: string;
+  sampleDetailsStatePath: string;
   discover: typeof runDiscover;
   crawlListings: typeof runListings;
   writeListings: typeof atomicWriteJson;
@@ -48,8 +51,11 @@ type SamplePipelineDependencies = {
 };
 
 const defaultDependencies: SamplePipelineDependencies = {
+  sampleDiscoveryPath: `${paths.reports}/sample-discovery-manifest.json`,
   sampleListingsPath: `${paths.raw}/sample-listings.json`,
   sampleDetailsPath: `${paths.raw}/sample-details.json`,
+  sampleListingsStatePath: `${paths.state}/sample-crawl-listings.json`,
+  sampleDetailsStatePath: `${paths.state}/sample-crawl-details.json`,
   discover: runDiscover,
   crawlListings: runListings,
   writeListings: atomicWriteJson,
@@ -60,8 +66,15 @@ export async function runSamplePipeline(
   options: CliOptions,
   dependencies: SamplePipelineDependencies = defaultDependencies,
 ): Promise<ListingProduct[]> {
-  await dependencies.discover(options);
-  const listings = await dependencies.crawlListings({ ...options, limit: undefined });
+  await dependencies.discover(options, { outputPath: dependencies.sampleDiscoveryPath });
+  const listings = await dependencies.crawlListings(
+    { ...options, limit: undefined },
+    {
+      discoveryPath: dependencies.sampleDiscoveryPath,
+      outputPath: dependencies.sampleListingsPath,
+      statePath: dependencies.sampleListingsStatePath,
+    },
+  );
   if (!listings.length) throw new Error("Sample requires a non-empty listing dataset");
   const selected = selectSampleListings(listings, options.limit ?? 7);
   await dependencies.writeListings(dependencies.sampleListingsPath, selected);
@@ -70,6 +83,7 @@ export async function runSamplePipeline(
     {
       listingsPath: dependencies.sampleListingsPath,
       outputPath: dependencies.sampleDetailsPath,
+      statePath: dependencies.sampleDetailsStatePath,
     },
   );
   return selected;

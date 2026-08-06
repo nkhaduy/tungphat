@@ -88,3 +88,26 @@ Capacity-safe media remains 10,654 references, 7,923 unique URLs, 589 local prev
 
 - `git diff --check`: recorded after final report generation.
 - `progress.md` remains parent-owned and is excluded from staging.
+
+## Fix Round 1: Sample Artifact Isolation And Documentation Corrections
+
+The follow-up review found that sample orchestration still passed canonical discovery, listing, and checkpoint defaults to upstream crawlers. The production fix adds sample-specific discovery/listing/detail/state paths and keeps the sample pipeline limited to those artifacts. `progress.md` remains parent-owned and is not part of this fix round.
+
+### TDD Regression Evidence
+
+- RED was observed after changing `tests/ancuong/sample.test.ts` first: `TypeError: Cannot read properties of undefined (reading 'outputPath')`.
+- GREEN after the minimal `scripts/ancuong/sample.ts` change: focused sample isolation tests passed (`Test Files 1 passed`, `Tests 2 passed` at the initial focused run).
+- Fresh focused regression gate: `npm test -- --run tests/ancuong/sample.test.ts tests/ancuong/pipeline-validate.test.ts` -> 2 files, 15 tests passed.
+
+### Documentation Corrections
+
+- `SUPPLIER_FULL_CATALOGUE_COVERAGE.md` now separates source outcomes from normalized record classes and reports mandated columns with explicit `accounted / total = 100%` coverage, including `UNAVAILABLE` versus numeric zero semantics.
+- `SUPPLIER_FULL_IMPORT_RUNBOOK.md` is standalone and executable for all three suppliers, with real discovery/crawl/import/validate/resume/refresh/dry-run/restore/media/search/preview/pagination/onboarding commands and live-network boundaries.
+- `AN_CUONG_SAMPLE_LIMIT_ROOT_CAUSE.md` restores the required historical headings and exact code/config/adapter/package/runbook/pinned-snapshot references, and documents the current isolation fix.
+
+### Fresh Fix-Round Gates
+
+- `npm run lint` -> passed with zero warnings.
+- `npm run typecheck` -> application and Cloudflare TypeScript checks passed.
+- `npm run validate:links` -> 624 HTML files, 19,695 internal links, zero redirects/HTTP errors/trailing-slash failures; sitemap 39 valid URLs.
+- `git diff --check` -> passed.
