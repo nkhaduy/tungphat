@@ -111,3 +111,20 @@ The follow-up review found that sample orchestration still passed canonical disc
 - `npm run typecheck` -> application and Cloudflare TypeScript checks passed.
 - `npm run validate:links` -> 624 HTML files, 19,695 internal links, zero redirects/HTTP errors/trailing-slash failures; sitemap 39 valid URLs.
 - `git diff --check` -> passed.
+
+## Final HEAD Verification And Task 6 Preview
+
+After the sample-isolation fix and supplier-filter correction, the final code HEAD was reverified independently:
+
+- `npm test` -> 67 files, 414 tests passed.
+- `npm run lint` -> passed with zero warnings.
+- `npm run typecheck` -> application and Cloudflare checks passed.
+- `npm run build` -> 635 static pages, 2,672 output files, 207,577,392 bytes; Cloudflare file/count gates passed.
+- `npm run validate:links` -> 624 HTML files, 19,695 internal links, zero redirects/HTTP errors/trailing-slash failures; 39 sitemap URLs passed.
+- `node scripts/check-schema-urls.mjs --out out` -> 622 routes, 1,249 JSON-LD blocks, 8,993 schema nodes, zero parse/canonical/HTTP/forbidden-field errors.
+- `npm run catalog:suppliers:audit:output` -> 598 pages, 23 indexable, 575 noindex, zero invalid JSON-LD/brand mismatches/orphan indexable pages.
+- `npm run catalog:suppliers:media:validate` -> all three committed media checksums/assets validated; rights remain `UNCONFIRMED`.
+- `npm run test:e2e` -> 62/62 local Playwright tests passed.
+- `PLAYWRIGHT_BASE_URL=https://codex-catalog-full-supplier.tungphat-i9i.pages.dev npx playwright test e2e/supplier-catalogue.spec.ts e2e/thanh-thuy.spec.ts` -> 27/27 preview journeys passed.
+- Required preview routes returned HTTP 200: `/`, `/catalogue/`, `/catalogue/an-cuong/`, `/catalogue/an-cuong/melamine/`, `/thuong-hieu/thanh-thuy/`, `/thuong-hieu/ba-thanh/`, `/ma-mau-melamine/ba-thanh/`.
+- Branch pushed and draft PR #18 created against `codex/main-sitewide-catalog-rollout`; no merge or production mutation performed.
