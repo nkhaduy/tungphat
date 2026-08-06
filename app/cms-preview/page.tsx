@@ -69,7 +69,7 @@ export default function CmsPreviewPage() {
   }, []);
 
   const rendered = useMemo(() => draft ? previewEntry(draft) : null, [draft]);
-  if (!rendered) return <main className="grid min-h-screen place-items-center bg-[#f5f7f5] p-6 text-center text-forest-950"><div><Image src="/logo-horizontal.png" width="800" height="240" priority alt="Tùng Phát" className="mx-auto h-auto w-[min(320px,80vw)]" /><p className="mt-8 text-sm font-semibold text-slate-600">Mở một nội dung trong CMS để xem bản nháp.</p></div></main>;
+  if (!rendered) return <main className="grid min-h-screen place-items-center bg-[#f5f7f5] p-6 text-center text-forest-950"><div><Image src="/logo-horizontal.webp" width="800" height="240" priority alt="Tùng Phát" className="mx-auto h-auto w-[min(320px,80vw)]" /><p className="mt-8 text-sm font-semibold text-slate-600">Mở một nội dung trong CMS để xem bản nháp.</p></div></main>;
 
   return (
     <div data-cms-preview="true">

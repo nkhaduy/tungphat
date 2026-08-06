@@ -42,7 +42,7 @@ export function WorkshopMedia() {
                 <figure key={src} className={`group relative overflow-hidden ${index === 0 || index === 4 ? "sm:row-span-2" : ""}`}>
                   <Image src={`/images/${src}`} alt={label} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" quality={95} className="object-cover transition duration-500 ease-out group-hover:scale-[1.025]" />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-forest-950/72 to-transparent" aria-hidden="true" />
-                  <figcaption className="absolute bottom-3 left-3 right-3 w-fit max-w-[calc(100%-1.5rem)] rounded bg-forest-950/58 px-3 py-2 text-xs font-bold leading-snug text-white shadow-sm backdrop-blur-[6px] sm:text-sm">
+                  <figcaption className="absolute bottom-3 left-3 right-3 w-fit max-w-[calc(100%-1.5rem)] rounded bg-forest-950 px-3 py-2 text-xs font-bold leading-snug text-white shadow-sm sm:text-sm">
                     {label}
                   </figcaption>
                 </figure>

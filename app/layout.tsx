@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@/components/Analytics";
 import { AnalyticsProvider } from "@/components/analytics/AnalyticsProvider";
 import { JsonLd } from "@/components/JsonLd";
+import { LanguageProvider } from "@/lib/i18n-context";
 import { OPEN_GRAPH_LOCALE, SCHEMA_LANGUAGE, SITE_LANGUAGE } from "@/lib/locale";
 import {
   BUSINESS_NAME,
@@ -123,7 +124,7 @@ export default function RootLayout({
         <JsonLd data={siteSchema} />
       </head>
       <body>
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
         <Analytics />
         <AnalyticsProvider />
       </body>
