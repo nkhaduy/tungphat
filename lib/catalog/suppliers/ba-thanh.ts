@@ -1,5 +1,6 @@
 import {
   baThanhCategories,
+  getBaThanhMerchandisingScore,
   getBaThanhCodes,
 } from "@/lib/catalog/ba-thanh";
 import { supplierRegistry } from "../core/registry";
@@ -23,12 +24,23 @@ export const baThanhAdapter: SupplierCatalogAdapter = {
       canonicalRoute: codePath(record.slug),
       category: record.category,
       group: record.patternGroup,
+      demandScore: getBaThanhMerchandisingScore(record),
     }));
   },
   getRouteClaims() {
     return [
-      { supplierId: definition.id, path: definition.brandPath, kind: "brand" as const, indexable: true },
-      { supplierId: definition.id, path: definition.cataloguePath, kind: "catalogue" as const, indexable: true },
+      {
+        supplierId: definition.id,
+        path: definition.brandPath,
+        kind: "brand" as const,
+        indexable: true,
+      },
+      {
+        supplierId: definition.id,
+        path: definition.cataloguePath,
+        kind: "catalogue" as const,
+        indexable: true,
+      },
       ...baThanhCategories.map((category) => ({
         supplierId: definition.id,
         path: codePath(category.slug),
@@ -48,9 +60,14 @@ export const baThanhAdapter: SupplierCatalogAdapter = {
       supplierId,
       path,
       indexable,
-      changeFrequency: path === definition.brandPath || path === definition.cataloguePath ? "weekly" : "monthly",
-      priority: path === definition.brandPath || path === definition.cataloguePath ? 0.8 : 0.65,
+      changeFrequency:
+        path === definition.brandPath || path === definition.cataloguePath
+          ? "weekly"
+          : "monthly",
+      priority:
+        path === definition.brandPath || path === definition.cataloguePath
+          ? 0.8
+          : 0.65,
     }));
   },
 };
-

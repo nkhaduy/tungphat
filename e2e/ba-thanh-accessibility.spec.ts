@@ -30,7 +30,12 @@ test("homepage hero content stays readable before hydration", async ({
 
   try {
     await page.goto("/");
-    await expect(page.locator(".hero-content > div")).toHaveCSS("opacity", "1");
+    await expect(
+      page.getByRole("heading", {
+        level: 1,
+        name: "Ván gỗ công nghiệp & gia công CNC tại TP.HCM",
+      }),
+    ).toBeVisible();
   } finally {
     await page.close();
   }

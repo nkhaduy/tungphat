@@ -6,25 +6,41 @@ import { SiteShell } from "@/components/site/SiteShell";
 import { ThanhThuyCategoryPage } from "@/components/thanh-thuy/ThanhThuyCategory";
 import { brands, getBrand } from "@/lib/brands";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
-import { getThanhThuyCatalog, getThanhThuyCategory, getThanhThuyTopCategories } from "@/lib/thanh-thuy";
-import { createThanhThuyCategoryMetadata, thanhThuyZaloUrl } from "@/lib/thanh-thuy-seo";
+import {
+  getThanhThuyCatalog,
+  getThanhThuyCategory,
+  getThanhThuyTopCategories,
+} from "@/lib/thanh-thuy";
+import {
+  createThanhThuyCategoryMetadata,
+  thanhThuyZaloUrl,
+} from "@/lib/thanh-thuy-seo";
 
 type BrandRouteProps = { params: Promise<{ brand: string }> };
 
 export function generateStaticParams() {
   return [
-    ...brands.filter((brand) => brand.slug !== "thanh-thuy").map((brand) => ({ brand: brand.slug })),
-    ...getThanhThuyTopCategories().map((category) => ({ brand: category.slug })),
+    ...brands
+      .filter((brand) => brand.slug !== "thanh-thuy")
+      .map((brand) => ({ brand: brand.slug })),
+    ...getThanhThuyTopCategories().map((category) => ({
+      brand: category.slug,
+    })),
   ];
 }
 
-export async function generateMetadata({ params }: BrandRouteProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: BrandRouteProps): Promise<Metadata> {
   const { brand: brandSlug } = await params;
   const brand = getBrand(brandSlug);
   const category = getThanhThuyCategory(brandSlug);
 
   if (!brand && category) {
-    return createThanhThuyCategoryMetadata(category, `/san-pham/${category.slug}/`);
+    return createThanhThuyCategoryMetadata(
+      category,
+      `/san-pham/${category.slug}/`,
+    );
   }
 
   return brand
@@ -69,7 +85,6 @@ export default async function BrandRoute({ params }: BrandRouteProps) {
         <ThanhThuyCategoryPage
           category={category}
           items={items}
-          categories={catalog.categories}
           zaloUrl={thanhThuyZaloUrl()}
         />
       </SiteShell>

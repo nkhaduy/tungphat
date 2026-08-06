@@ -36,7 +36,6 @@ export function ColorCodeCard({
               alt={image.alt}
               fill
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 220px"
-              quality={90}
               loading="lazy"
               className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.025] motion-reduce:transform-none motion-reduce:transition-none"
             />

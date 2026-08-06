@@ -84,9 +84,16 @@ tailwind.config.ts
 ## Production Rollback Points
 
 - `PRE_ROLLOUT_MAIN_SHA`: `ed07a2ad86c8971a5bd3831f96c83fd38c2900f4`
-- `PRE_LANDING_DEPLOY_SHA`: to be recorded immediately before landing merge to `main`
-- `LANDING_RELEASE_SHA`: to be recorded after landing merge to `main`
+- `PRE_LANDING_DEPLOY_SHA`: `ed07a2ad86c8971a5bd3831f96c83fd38c2900f4`
+- `LANDING_RELEASE_SHA`: `a698153655667b44cdd14c831f751666c127ee0b`
 - Catalogue rollback target: `LANDING_RELEASE_SHA`, so a catalogue rollback does not remove the stable landing release.
+
+## Landing Production Evidence
+
+- Production URL: `https://mdftungphat.com`
+- Cloudflare Pages deployment: `466dea89-ab39-4f3f-b94b-90f5e0e4bae4`
+- Landing pull requests: `#15`, `#16`
+- Production smoke test: passed before catalogue integration began
 
 ## Invariants
 

@@ -5,7 +5,7 @@ export function supplierInquiryMessage(
   const normalizedSupplier = supplierName.trim();
   const normalizedCode = code?.trim();
   if (normalizedCode) {
-    return `Tôi cần kiểm tra mã ${normalizedCode} của ${normalizedSupplier} tại Tùng Phát. Vui lòng tư vấn loại ván, quy cách, tình trạng hàng và dịch vụ gia công phù hợp.`;
+    return `Tôi cần kiểm tra mã ${normalizedCode} của ${normalizedSupplier} tại Tùng Phát. Vui lòng tư vấn cốt ván, quy cách, tình trạng hàng và dịch vụ gia công phù hợp.`;
   }
   return `Tôi cần tư vấn catalogue ${normalizedSupplier} tại Tùng Phát.`;
 }

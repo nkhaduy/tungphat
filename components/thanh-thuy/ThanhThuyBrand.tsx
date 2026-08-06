@@ -11,6 +11,8 @@ import {
   PHONE_DISPLAY,
   PHONE_HREF,
 } from "@/lib/seo";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { PageContainer } from "@/components/ui/PageContainer";
 import { createThanhThuyItemListSchema } from "@/lib/thanh-thuy-schema";
 import type { ThanhThuyCategory } from "@/lib/thanh-thuy";
 
@@ -52,55 +54,29 @@ export function ThanhThuyBrandPage({
         ]}
       />
       <div className="bg-[#f6f7f5]">
-        <section className="relative overflow-hidden bg-forest-950 py-20 text-white lg:py-28">
+        <section className="relative overflow-hidden border-b border-forest-900/10 bg-[#f7f8f5] py-7 sm:py-9 lg:py-12">
           <div
+            className="page-hero-pattern pointer-events-none absolute inset-y-0 right-0 w-1/2 opacity-25"
             aria-hidden="true"
-            className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-wood-500/20 blur-3xl"
           />
-          <div className="container-shell relative">
-            <nav
-              aria-label="Breadcrumb"
-              className="flex items-center gap-2 text-sm text-white/65"
-            >
-              <Link
-                href="/"
-                className="hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wood-500"
-              >
-                Trang chủ
-              </Link>
-              <span aria-hidden="true">/</span>
-              <span className="text-white">Thanh Thuỳ</span>
-            </nav>
-            <span className="eyebrow eyebrow-on-dark mt-10 block">
-              THƯƠNG HIỆU VẬT LIỆU
-            </span>
-            <h1 className="mt-4 max-w-4xl text-balance font-display text-5xl font-extrabold tracking-[-.05em] sm:text-6xl">
+          <PageContainer className="relative">
+            <Breadcrumbs
+              items={[
+                { label: "Trang chủ", href: "/" },
+                { label: "Thanh Thuỳ" },
+              ]}
+            />
+            <span className="eyebrow mt-4 block">Thương hiệu vật liệu</span>
+            <h1 className="mt-3 max-w-4xl text-balance text-3xl font-extrabold leading-tight tracking-[-.035em] text-forest-950 sm:text-4xl lg:text-5xl">
               Catalogue Thanh Thuỳ tại Tùng Phát
             </h1>
-            <p className="mt-6 max-w-3xl text-base leading-8 text-white/78">
-              Tùng Phát tiếp nhận tư vấn và cung cấp vật liệu theo mã Thanh Thuỳ
-              để khách hàng đối chiếu mẫu, chọn bề mặt cho tủ, bàn, vách, quầy
-              hoặc hạng mục nội thất theo thiết kế.
+            <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700 sm:text-base">
+              Tìm theo mã, tên hoặc nhóm vật liệu. Liên hệ Tùng Phát để đối
+              chiếu mẫu, cốt ván, quy cách và tình trạng hàng thực tế.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={zaloUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-13 touch-manipulation items-center justify-center gap-2 bg-[#b84f05] px-7 text-sm font-bold transition-colors hover:bg-[#963f04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wood-500 active:scale-[.98]"
-              >
-                <MessageCircle aria-hidden="true" size={18} /> Gửi mã qua Zalo
-              </a>
-              <a
-                href={PHONE_HREF}
-                className="inline-flex min-h-13 touch-manipulation items-center justify-center gap-2 border border-white/30 px-7 text-sm font-bold text-white transition-colors hover:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wood-500"
-              >
-                <Phone aria-hidden="true" size={17} /> {PHONE_DISPLAY}
-              </a>
-            </div>
-          </div>
+            <ThanhThuyExplorer items={items} categories={categories} compact />
+          </PageContainer>
         </section>
-        <ThanhThuyExplorer items={items} categories={categories} />
         <section className="bg-white py-14 lg:py-20">
           <div className="container-shell">
             <div className="mb-8 max-w-2xl">
@@ -155,6 +131,22 @@ export function ThanhThuyBrandPage({
                 Tùng Phát có thể tiếp nhận yêu cầu cắt ván, dán cạnh và gia công
                 CNC theo mã màu sau khi xác nhận mẫu, quy cách và file kỹ thuật.
               </p>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href={zaloUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pressable inline-flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-5 text-sm font-extrabold text-white hover:bg-wood-600 focus-visible:ring-2 focus-visible:ring-wood-500"
+                >
+                  <MessageCircle size={17} aria-hidden="true" /> Gửi mã qua Zalo
+                </a>
+                <a
+                  href={PHONE_HREF}
+                  className="pressable inline-flex min-h-12 items-center justify-center gap-2 border border-white/25 px-5 text-sm font-extrabold text-white hover:border-white focus-visible:ring-2 focus-visible:ring-wood-500"
+                >
+                  <Phone size={17} aria-hidden="true" /> {PHONE_DISPLAY}
+                </a>
+              </div>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {[

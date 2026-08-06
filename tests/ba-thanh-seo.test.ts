@@ -7,7 +7,11 @@ import {
   getBaThanhIndexableCodes,
   searchBaThanhCodes,
 } from "@/lib/catalog/ba-thanh";
-import { buildBaThanhCodeMetadata, buildBaThanhProductSchema, getBaThanhSitemapPaths } from "@/lib/catalog/ba-thanh-seo";
+import {
+  buildBaThanhCodeMetadata,
+  buildBaThanhProductSchema,
+  getBaThanhSitemapPaths,
+} from "@/lib/catalog/ba-thanh-seo";
 
 describe("Ba Thanh catalogue repository", () => {
   it("loads every verified source code without collapsing suffix variants", () => {
@@ -17,7 +21,9 @@ describe("Ba Thanh catalogue repository", () => {
   });
 
   it("keeps the four discovered categories and their verified counts", () => {
-    expect(baThanhCategories.map((category) => [category.slug, category.count])).toEqual([
+    expect(
+      baThanhCategories.map((category) => [category.slug, category.count]),
+    ).toEqual([
       ["van-go", 153],
       ["don-sac", 62],
       ["van-da", 13],
@@ -26,9 +32,17 @@ describe("Ba Thanh catalogue repository", () => {
   });
 
   it("finds spacing and hyphen variants while preserving the display code", () => {
-    expect(searchBaThanhCodes("bt-111").map((record) => record.displayName)).toContain("BT 111");
-    expect(searchBaThanhCodes("SC 028M").map((record) => record.displayName)).toContain("SC 028M");
-    expect(searchBaThanhCodes("van da", "van-da").every((record) => record.category === "van-da")).toBe(true);
+    expect(
+      searchBaThanhCodes("bt-111").map((record) => record.displayName),
+    ).toContain("BT 111");
+    expect(
+      searchBaThanhCodes("SC 028M").map((record) => record.displayName),
+    ).toContain("SC 028M");
+    expect(
+      searchBaThanhCodes("van da", "van-da").every(
+        (record) => record.category === "van-da",
+      ),
+    ).toBe(true);
   });
 });
 
@@ -43,28 +57,45 @@ describe("Ba Thanh SEO policy", () => {
       "SC028M",
       "SC029M",
     ]);
-    expect(indexable.every((record) => record.seoStatus === "READY_TO_INDEX" && record.published)).toBe(true);
+    expect(
+      indexable.every(
+        (record) => record.seoStatus === "READY_TO_INDEX" && record.published,
+      ),
+    ).toBe(true);
   });
 
   it("keeps the exact display code in every indexable editorial description", () => {
     const mismatches = getBaThanhIndexableCodes()
-      .filter((record) => !record.editorialDescription?.includes(record.displayName))
+      .filter(
+        (record) => !record.editorialDescription?.includes(record.displayName),
+      )
       .map((record) => record.codeNormalized);
 
     expect(mismatches).toEqual([]);
   });
 
   it("server-renders every indexable code in the hub featured set", () => {
-    expect(getBaThanhHubFeaturedCodes().map((record) => record.codeNormalized)).toEqual(
-      getBaThanhIndexableCodes().map((record) => record.codeNormalized),
+    expect(
+      getBaThanhHubFeaturedCodes()
+        .map((record) => record.codeNormalized)
+        .sort(),
+    ).toEqual(
+      getBaThanhIndexableCodes()
+        .map((record) => record.codeNormalized)
+        .sort(),
     );
   });
 
   it("creates self-referencing code metadata and noindexes thin records", () => {
     const ready = getBaThanhCode("bt-111")!;
     const thin = getBaThanhCode("bt-100")!;
-    expect(buildBaThanhCodeMetadata(ready).alternates?.canonical).toBe("https://mdftungphat.com/ma-mau-melamine/ba-thanh/bt-111/");
-    expect(buildBaThanhCodeMetadata(thin).robots).toEqual({ index: false, follow: true });
+    expect(buildBaThanhCodeMetadata(ready).alternates?.canonical).toBe(
+      "https://mdftungphat.com/ma-mau-melamine/ba-thanh/bt-111/",
+    );
+    expect(buildBaThanhCodeMetadata(thin).robots).toEqual({
+      index: false,
+      follow: true,
+    });
   });
 
   it("emits factual Product schema without Offer, price or availability", () => {
