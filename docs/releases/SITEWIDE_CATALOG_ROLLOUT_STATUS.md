@@ -12,6 +12,7 @@ Date: 2026-08-06
 - Catalogue merge boundary: `52ee5c3`
 - Rollout branch: `codex/main-sitewide-catalog-rollout`
 - Rollout worktree: `/Users/khaduy/Downloads/tungphat-main-rollout`
+- Catalogue pull request: `#17` (draft, production merge blocked by media rights)
 
 ## Catalogue Integration
 
@@ -51,6 +52,22 @@ Date: 2026-08-06
 - Secret scan over changed files: pass
 - Production dependency audit: no high or critical findings; two moderate Next/PostCSS advisories require a breaking Next 16 upgrade and remain maintenance debt
 
+## Catalogue Preview Evidence
+
+- Cloudflare Pages deployment: `74c58717-e810-4368-b765-0775be998189`
+- Commit preview: `https://74c58717.tungphat-i9i.pages.dev`
+- Branch preview: `https://codex-main-sitewide-catalog.tungphat-i9i.pages.dev`
+- GitHub checks: `verify`, `e2e`, Cloudflare Pages, Vercel and Vercel Preview Comments all pass
+- Preview catalogue Playwright profile: 32/32 pass across supplier journeys, accessibility, exact-code search, copy, Zalo, noindex behavior and the requested viewport matrix
+- Required route smoke test: 6/6 HTML routes return HTTP 200; `sitemap.xml` and `robots.txt` return HTTP 200
+- Sampled preview assets: CSS, JavaScript, logos, icons and eight leading Ba Thanh WebP swatches return HTTP 200
+- Browser audit: shared header/footer present, no horizontal overflow, no broken rendered images and no console errors on required routes
+- Catalogue hub: search and primary selectors precede product and supplier sections; default results begin with `BT 111`, `BT 143`, `BT 184`, `SC 028M`, `SC 029M`, `BTS 14G`
+- Search/filter behavior: exact `BT 111` returns one leading result, URL state and browser back work, and filter state emits `noindex, follow`
+- Mobile: 390x844 search height is 56px, category chips scroll horizontally, mobile menu locks body scroll and Escape restores the closed state
+- An Cuong: seven sample cards remain visible, search precedes cards and `noindex, follow` is preserved
+- Ba Thanh detail: approved code-specific Zalo message, copy live-region confirmation and inventory-check wording verified without an availability claim
+
 ## Lighthouse Mobile
 
 | Route                        | Performance | Accessibility | Best Practices | SEO | CLS |
@@ -66,6 +83,7 @@ An Cuong remains intentionally `noindex`; its lower Lighthouse SEO score is not 
 
 - Catalogue media rights: `UNCONFIRMED`
 - Catalogue preview: allowed
+- Catalogue preview deployment: passed
 - Catalogue production deployment: blocked
 - DNS/custom domain changes: prohibited and not required
 - Paid service activation: prohibited and not required
