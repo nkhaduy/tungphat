@@ -158,9 +158,25 @@ async function mapConcurrent<T, R>(items: T[], concurrency: number, operation: (
   return results;
 }
 
+export function canReuseExistingMedia(image: ThanhThuyImage, root: string): boolean {
+  const expectedChecksums = new Map(image.variants.map((variant) => [variant.src, variant.checksum]));
+  if (!expectedChecksums.has(image.src)) expectedChecksums.set(image.src, image.checksum);
+  return expectedChecksums.size > 0 && [...expectedChecksums].every(([src, checksum]) => {
+    if (!src.startsWith("/catalog/thanh-thuy/") || /^https?:\/\//.test(src) || !/^[a-f0-9]{64}$/.test(checksum)) return false;
+    const file = path.join(root, "public", src.replace(/^\//, ""));
+    return fs.existsSync(file) && stableChecksum(fs.readFileSync(file)) === checksum;
+  });
+}
+
 async function loadMedia(
   products: SourceProduct[],
-  options: { root: string; cacheDirectory: string; dryRun: boolean; resume: boolean },
+  options: {
+    root: string;
+    cacheDirectory: string;
+    dryRun: boolean;
+    resume: boolean;
+    existingById?: Map<number, ThanhThuyImage>;
+  },
 ): Promise<{ byId: Map<number, ThanhThuyImage>; createdMedia: string[]; uniqueSourceImages: number }> {
   const references = new Map<string, SourceProduct[]>();
   for (const product of products) {
@@ -176,6 +192,10 @@ async function loadMedia(
   fs.mkdirSync(processedDirectory, { recursive: true });
   const sourceEntries = [...references.entries()].sort(([left], [right]) => left.localeCompare(right));
   const processed = await mapConcurrent(sourceEntries, 3, async ([sourceUrl, linkedProducts]) => {
+    const reusable = linkedProducts
+      .map((product) => options.existingById?.get(product.id))
+      .find((image): image is ThanhThuyImage => Boolean(image && canReuseExistingMedia(image, options.root)));
+    if (reusable) return { sourceUrl, linkedProducts, reusable };
     const rawFile = path.join(rawDirectory, `${stableChecksum(sourceUrl)}.bin`);
     let input: Buffer;
     if (options.resume && fs.existsSync(rawFile)) input = fs.readFileSync(rawFile);
@@ -193,13 +213,25 @@ async function loadMedia(
       if (!fs.existsSync(file)) fs.writeFileSync(file, variant.buffer);
       return file;
     });
-    return { sourceUrl, linkedProducts, image, variants, processedFiles };
+    return { sourceUrl, linkedProducts, reusable: null, image, variants, processedFiles };
   });
 
   const byChecksum = new Map<string, { src: string; width: number; height: number; variants: Array<{ src: string; absolute: string; width: number; height: number; checksum: string }> }>();
   const byId = new Map<number, ThanhThuyImage>();
   const createdMedia: string[] = [];
   for (const item of processed) {
+    if (item.reusable) {
+      for (const product of item.linkedProducts) {
+        byId.set(product.id, {
+          ...item.reusable,
+          sourceUrl: item.sourceUrl,
+          mimeType: product.image?.mimeType,
+          rightsStatus: "UNCONFIRMED",
+          alt: product.image?.alt || product.title.rendered,
+        });
+      }
+      continue;
+    }
     let local = byChecksum.get(item.image.checksum);
     if (!local) {
       const representative = [...item.linkedProducts].sort((a, b) => a.id - b.id)[0];
@@ -228,6 +260,9 @@ async function loadMedia(
     for (const product of item.linkedProducts) {
       byId.set(product.id, {
         src: local.src,
+        sourceUrl: item.sourceUrl,
+        mimeType: product.image?.mimeType,
+        rightsStatus: "UNCONFIRMED",
         alt: product.image?.alt || product.title.rendered,
         width: local.width,
         height: local.height,
@@ -261,8 +296,9 @@ export async function runImport(options: {
   const backupDirectory = path.join(cacheDirectory, "backups");
   const source = await crawlSource({ root, sourceDirectory: options.sourceDirectory, cacheDirectory: path.join(cacheDirectory, "raw"), resume });
   if (source.products.length < 1 || source.categories.length < 1) throw new Error("Crawl không đầy đủ; giữ nguyên catalogue hiện tại.");
-  const media = await loadMedia(source.products, { root, cacheDirectory, dryRun, resume });
   const existing = readExistingCatalog(catalogFile);
+  const existingById = new Map(existing?.products.filter((product) => product.image).map((product) => [product.sourceId, product.image!]) ?? []);
+  const media = await loadMedia(source.products, { root, cacheDirectory, dryRun, resume, existingById });
   const normalized = normalizeSourceProducts(source.products, { categories: source.categories, importedAt: now, localImageById: media.byId });
   const previousById = new Map(existing?.products.map((product) => [product.id, product]) ?? []);
   let created = 0;

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "importedAt": "2026-08-05T15:12:18.224Z",
+  "importedAt": "2026-08-06T15:09:58.588Z",
   "dryRun": false,
   "sourceProducts": 348,
   "catalogProducts": 348,
@@ -18,6 +18,6 @@
     "DUPLICATE": 0,
     "SOURCE_UNAVAILABLE": 0
   },
-  "catalogChecksum": "e44907478b33c0db25c1f95a5cc3dc25487d69b91efa038af752d9b664703ced",
-  "backup": ".cache/thanh-thuy/backups/2026-08-05T15-12-18-224Z-catalog.json"
+  "catalogChecksum": "8e5050a67ef2fa9812a001dad263d3ed209fee86c8c663c7e262b14359dd3eee",
+  "backup": ".cache/thanh-thuy/backups/2026-08-06T15-09-58-588Z-catalog.json"
 }
