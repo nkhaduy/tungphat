@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BrandPage } from "@/components/BrandPage";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { JsonLd } from "@/components/JsonLd";
+import { SiteShell } from "@/components/site/SiteShell";
 import { brands, getBrand } from "@/lib/brands";
-import { createPageMetadata } from "@/lib/seo";
+import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
 type BrandRouteProps = { params: Promise<{ brand: string }> };
 
@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: BrandRouteProps): Promise<Met
   const brand = getBrand(brandSlug);
   return brand
     ? createPageMetadata({
-        title: `${brand.name} | Sản phẩm`,
-        description: `Sản phẩm và catalogue ${brand.name} tại Tùng Phát.`,
+        title: `${brand.name} | Sản phẩm Tùng Phát`,
+        description: `Sản phẩm và catalogue ${brand.name} tại Tùng Phát. Gửi mã màu hoặc nhóm vật liệu để kiểm tra hàng thực tế.`,
         path: `/san-pham/${brand.slug}/`,
         noIndex: true,
         followWhenNoIndex: true,
@@ -32,10 +32,9 @@ export default async function BrandRoute({ params }: BrandRouteProps) {
   if (!brand) notFound();
 
   return (
-    <>
-      <Header appearance="dark" />
+    <SiteShell>
+      <JsonLd data={breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Thương hiệu", path: "/san-pham" }, { name: brand.name, path: `/san-pham/${brand.slug}` }])} />
       <BrandPage brand={brand} />
-      <Footer />
-    </>
+    </SiteShell>
   );
 }

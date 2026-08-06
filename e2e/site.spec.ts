@@ -1,8 +1,66 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { readFileSync } from "node:fs";
 
-const publicRoutes = ["/", "/san-pham/", "/go-ghep/", "/go-ghep-cao-su/", "/go-ghep-tram/", "/van-mdf/", "/mdf-chong-am/", "/van-go-cong-nghiep/", "/gia-cong-cnc/", "/cat-cnc-go/", "/gia-cong-cnc-mdf/", "/bao-gia/", "/du-an/", "/bai-viet/", "/lien-he/"];
+const publicRoutes = [
+  "/",
+  "/san-pham/",
+  "/go-ghep/",
+  "/go-ghep-cao-su/",
+  "/go-ghep-tram/",
+  "/van-mdf/",
+  "/mdf-chong-am/",
+  "/van-go-cong-nghiep/",
+  "/gia-cong-cnc/",
+  "/cat-cnc-go/",
+  "/gia-cong-cnc-mdf/",
+  "/san-pham/an-cuong/",
+  "/san-pham/thanh-thuy/",
+  "/san-pham/ba-thanh/",
+  "/san-pham/kes/",
+  "/catalogue/an-cuong/",
+  "/catalogue/thanh-thuy/",
+  "/catalogue/ba-thanh/",
+  "/bao-gia/",
+  "/du-an/",
+  "/bai-viet/",
+  "/lien-he/",
+  "/chinh-sach-bao-mat/",
+  "/dieu-khoan-su-dung/"
+];
+const representativeRoutes = [
+  "/",
+  "/go-ghep-cao-su/",
+  "/van-mdf/",
+  "/gia-cong-cnc/",
+  "/san-pham/an-cuong/",
+  "/catalogue/an-cuong/",
+  "/lien-he/",
+  "/chinh-sach-bao-mat/",
+  "/bai-viet/"
+];
+const acceptanceViewports = [
+  { width: 375, height: 812 },
+  { width: 390, height: 844 },
+  { width: 768, height: 1024 },
+  { width: 1280, height: 800 },
+  { width: 1440, height: 900 },
+  { width: 1920, height: 1080 }
+];
+
+function normalizedPath(value: string) {
+  const path = new URL(value, "https://mdftungphat.com").pathname;
+  return path === "/" ? path : `${path.replace(/\/+$/, "")}/`;
+}
+
+async function pageErrors(page: Page) {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  page.on("console", (message) => {
+    if (message.type() === "error" && !message.text().includes("Turnstile")) errors.push(message.text());
+  });
+  return errors;
+}
 const apiPayload = (overrides: Record<string, unknown> = {}) => ({
   submission_id: crypto.randomUUID(),
   full_name: "Khách kiểm thử",
@@ -17,82 +75,226 @@ const apiPayload = (overrides: Record<string, unknown> = {}) => ({
 });
 
 test("các route chính trả về trang có H1, canonical và không có lỗi console", async ({ page }) => {
-  const errors: string[] = [];
-  page.on("pageerror", (error) => errors.push(error.message));
-  page.on("console", (message) => { if (message.type() === "error" && !message.text().includes("Turnstile")) errors.push(message.text()); });
+  const errors = await pageErrors(page);
   for (const route of publicRoutes) {
     const response = await page.goto(route, { waitUntil: "domcontentloaded" });
     expect(response?.status(), route).toBe(200);
-    await expect(page.getByRole("heading", { level: 1 }).first()).toBeVisible();
-    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /^https:\/\/mdftungphat\.com\//);
+    await expect(page.getByRole("heading", { level: 1 }), route).toHaveCount(1);
+    const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
+    expect(canonical, route).not.toBeNull();
+    expect(normalizedPath(canonical || "/"), route).toBe(route);
   }
   expect(errors).toEqual([]);
 });
 
-test("hero chọn slide đầu ngẫu nhiên, tiếp tục tự động và chỉ ưu tiên ảnh mở đầu", async ({ page }) => {
-  await page.addInitScript(() => {
-    Crypto.prototype.getRandomValues = function <T extends ArrayBufferView | null>(array: T): T {
-      (array as Uint32Array)[0] = 2;
-      return array;
-    };
-  });
+test("shared site contract uses solid light chrome without blur", async ({ page }) => {
+  for (const route of representativeRoutes) {
+    await page.goto(route);
+    const header = page.getByRole("banner");
+    const footer = page.getByRole("contentinfo");
+    await expect(header, route).toBeVisible();
+    await expect(footer, route).toBeAttached();
+
+    const headerStyles = await header.evaluate((element) => {
+      const style = getComputedStyle(element);
+      return {
+        backgroundColor: style.backgroundColor,
+        backdropFilter: style.backdropFilter,
+        webkitBackdropFilter: style.getPropertyValue("-webkit-backdrop-filter")
+      };
+    });
+    const footerBackground = await footer.evaluate((element) => getComputedStyle(element).backgroundColor);
+
+    expect(headerStyles.backgroundColor, route).toMatch(/^rgb\(/);
+    expect(headerStyles.backgroundColor, route).not.toBe("rgba(0, 0, 0, 0)");
+    expect(headerStyles.backdropFilter, route).toBe("none");
+    expect(headerStyles.webkitBackdropFilter || "none", route).toBe("none");
+    expect(footerBackground, route).toMatch(/^rgb\((2[3-5]\d|255), (2[3-5]\d|255), (2[3-5]\d|255)\)$/);
+  }
+});
+
+test("brand hero preserves the full logo without cropping", async ({ page }) => {
+  await page.goto("/san-pham/an-cuong/");
+  const logo = page.getByRole("img", { name: "Logo An Cường" });
+  await expect(logo).toBeVisible();
+  expect(await logo.evaluate((image) => getComputedStyle(image).objectFit)).toBe("contain");
+});
+
+test("representative routes expose breadcrumbs, intact images, and no horizontal overflow", async ({ page }) => {
+  const errors = await pageErrors(page);
+  for (const route of representativeRoutes.filter((route) => route !== "/")) {
+    await page.goto(route, { waitUntil: "networkidle" });
+    await expect(page.getByRole("navigation", { name: "Breadcrumb" }), route).toBeVisible();
+    const brokenImages = await page.locator("img").evaluateAll((images) => images.filter((image) => image.complete && image.naturalWidth === 0).map((image) => image.getAttribute("src")));
+    expect(brokenImages, route).toEqual([]);
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(overflow, route).toBeLessThanOrEqual(1);
+  }
+  expect(errors).toEqual([]);
+});
+
+test("homepage có hero tĩnh sáng, CTA chính và chỉ ưu tiên ảnh CNC mở đầu", async ({ page }) => {
   await page.goto("/");
   const hero = page.locator("#trang-chu");
-  await expect(hero.getByRole("img", { name: /Không gian ứng dụng vật liệu gỗ/ })).toBeVisible();
+  await expect(hero.getByRole("heading", { level: 1, name: "Ván gỗ công nghiệp & gia công CNC tại TP.HCM" })).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Gửi quy cách nhận báo giá" })).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Xem catalogue" })).toBeVisible();
+  await expect(hero.getByRole("img", { name: /Máy CNC/ })).toBeVisible();
   await expect(hero.locator('img[fetchpriority="high"]')).toHaveCount(1);
-  await expect(hero.getByRole("img", { name: /Không gian trưng bày vật liệu gỗ/ })).toBeVisible({ timeout: 7_000 });
+  await expect(hero.locator("picture")).toHaveCount(0);
 });
 
-test("hero trang pháp lý chọn ảnh ngẫu nhiên khi tải trang", async ({ page }) => {
+test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
+  for (const heading of [
+    "Bạn đang cần gì?",
+    "Danh mục vật liệu chính",
+    "Năng lực gia công CNC",
+    "Gửi file và quy cách để nhận báo giá",
+    "Quy cách vật liệu thường được hỏi",
+    "Chọn vật liệu theo nhu cầu",
+    "Đơn hàng và thành phẩm thực tế tại Tùng Phát",
+    "Các thương hiệu vật liệu Tùng Phát đang cung cấp",
+    "Hệ thống hai chi nhánh tại TP.HCM"
+  ]) {
+    await expect(page.getByRole("heading", { level: 2, name: heading })).toBeVisible();
+  }
+  await expect(page.locator('iframe[src*="google.com/maps"]')).toHaveCount(0);
+});
+
+test("CTA báo giá vật liệu có accessible name khớp nhãn hiển thị", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("link", { name: "Kiểm tra hàng / báo giá Ván MDF", exact: true })).toBeVisible();
+});
+
+test("requirement finder tạo nội dung có cấu trúc mà không gọi Forms API", async ({ page }) => {
+  const formRequests: string[] = [];
   await page.addInitScript(() => {
-    Crypto.prototype.getRandomValues = function <T extends ArrayBufferView | null>(array: T): T {
-      (array as Uint32Array)[0] = 3;
-      return array;
-    };
+    Object.defineProperty(navigator, "clipboard", {
+      configurable: true,
+      value: { writeText: async () => undefined }
+    });
+    window.open = () => null;
   });
-  await page.goto("/chinh-sach-bao-mat/");
-  await expect(page.locator("main section").first().locator('img[src*="hero-workshop6.webp"]')).toBeVisible();
+  page.on("request", (request) => {
+    if (/\/api\/(quote|contact)|cms\.mdftungphat\.com\/api\/(quote|contact)/i.test(request.url())) formRequests.push(request.url());
+  });
+
+  await page.goto("/");
+  const finder = page.locator("#requirement-finder");
+  await expect(finder.getByRole("heading", { level: 2, name: "Tìm đúng vật liệu hoặc dịch vụ trong 30 giây" })).toBeVisible();
+  await finder.getByRole("button", { name: "Gia công CNC theo file" }).click();
+  await finder.getByRole("button", { name: "MDF chống ẩm" }).click();
+  await finder.getByLabel("Độ dày").fill("18 mm");
+  await finder.getByLabel("Kích thước").fill("600 x 1200 mm");
+  await finder.getByLabel("Số lượng").fill("12 chi tiết");
+  await finder.getByLabel("Nội dung yêu cầu").fill("Soi rãnh theo file DXF");
+  await finder.getByLabel("Số điện thoại hoặc Zalo").fill("0909259160");
+  await finder.getByRole("button", { name: "Chuẩn bị nội dung và mở Zalo" }).click();
+  await expect(finder.getByRole("status")).toContainText("Đã chuẩn bị nội dung");
+  expect(formRequests).toEqual([]);
 });
 
-test("menu mobile mở được, không tràn ngang", async ({ page }) => {
+test("mobile navigation contract supports focus, Escape, and a solid surface", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
-  await page.getByRole("button", { name: "Mở menu" }).click();
-  await expect(page.getByRole("banner").getByRole("link", { name: "Liên hệ", exact: true })).toBeVisible();
+  const trigger = page.getByRole("button", { name: "Mở menu" });
+  await expect(trigger).toHaveAttribute("aria-expanded", "false");
+  await trigger.click();
+  await expect(trigger).toHaveAttribute("aria-expanded", "true");
+  const mobileNavigation = page.getByRole("dialog", { name: "Điều hướng di động" });
+  await expect(mobileNavigation).toBeVisible();
+  await expect(mobileNavigation.getByRole("link", { name: "Vật liệu", exact: true })).toBeFocused();
+  const navigationStyles = await mobileNavigation.evaluate((element) => {
+    const style = getComputedStyle(element);
+    return { backgroundColor: style.backgroundColor, backdropFilter: style.backdropFilter };
+  });
+  expect(navigationStyles.backgroundColor).toMatch(/^rgb\(/);
+  expect(navigationStyles.backdropFilter).toBe("none");
+  await page.keyboard.press("Escape");
+  await expect(mobileNavigation).toBeHidden();
+  await expect(trigger).toBeFocused();
+  await expect(trigger).toHaveAttribute("aria-expanded", "false");
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(overflow).toBeLessThanOrEqual(1);
 });
 
-test("header tham chiếu đúng bề mặt mở đầu trên toàn bộ nhóm trang", async ({ page }) => {
-  const darkHeaderRoutes = [
-    ...publicRoutes.filter((route) => route !== "/" && route !== "/lien-he/"),
-    "/chinh-sach-bao-mat/",
-    "/dieu-khoan-su-dung/",
-    "/san-pham/an-cuong/",
-    "/catalogue/an-cuong/"
-  ];
-
-  for (const route of darkHeaderRoutes) {
-    await page.goto(route);
-    const header = page.getByRole("banner");
-    await expect(header, route).toHaveClass(/bg-forest-950/);
-    await expect(header.locator('img[src="/logo-horizontal-white.png"]'), route).toHaveClass(/opacity-100/);
-    await expect(header.locator('img[src="/logo-horizontal.png"]'), route).toHaveClass(/opacity-0/);
+test("mobile navigation remains usable up to the desktop breakpoint", async ({ page }) => {
+  for (const width of [1024, 1279]) {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto("/");
+    const trigger = page.getByRole("button", { name: "Mở menu" });
+    await expect(trigger, `${width}px trigger`).toBeVisible();
+    await trigger.click();
+    await expect(page.getByRole("dialog", { name: "Điều hướng di động" }), `${width}px drawer`).toBeVisible();
+    await page.keyboard.press("Escape");
   }
 
-  await page.goto("/lien-he/");
-  const contactHeader = page.getByRole("banner");
-  await expect(contactHeader).toHaveClass(/bg-transparent/);
-  await expect(contactHeader.locator('img[src="/logo-horizontal-white.png"]')).toHaveClass(/opacity-100/);
-  await expect(contactHeader.locator('img[src="/logo-horizontal.png"]')).toHaveClass(/opacity-0/);
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("/");
+  await expect(page.getByRole("button", { name: "Mở menu" })).toBeHidden();
+  await expect(page.getByRole("navigation", { name: "Điều hướng chính" })).toBeVisible();
+});
 
-  await page.goto("/san-pham/");
-  await page.evaluate(() => window.scrollTo(0, 120));
-  await expect(page.getByRole("banner")).toHaveClass(/bg-white\/95/);
-  await expect(page.getByRole("banner").locator('img[src="/logo-horizontal.png"]')).toHaveClass(/opacity-100/);
+test("language control lets persisted English users return to Vietnamese", async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem("tungphat-lang", "en"));
+  await page.goto("/chinh-sach-bao-mat/");
+  await expect(page.getByRole("heading", { level: 1, name: "Privacy Policy" })).toBeVisible();
+  await expect(page.getByRole("contentinfo").getByRole("heading", { name: "Materials" })).toBeAttached();
+  const languageControl = page.getByRole("button", { name: "Switch language" });
+  await expect(languageControl).toBeVisible();
+  await languageControl.click();
+  await expect(page.getByRole("heading", { level: 1, name: "Chính sách bảo mật" })).toBeVisible();
+  await expect(page.locator("html")).toHaveAttribute("lang", "vi");
+});
 
-  await page.goto("/khong-ton-tai/");
-  await expect(page.getByRole("banner")).toHaveClass(/bg-white\/95/);
+test("shared navigation links meet the 44px target contract", async ({ page }) => {
+  await page.goto("/go-ghep-cao-su/");
+  const targets = [
+    page.getByRole("navigation", { name: "Breadcrumb" }).getByRole("link").first(),
+    page.getByRole("contentinfo").getByRole("link", { name: "Ván MDF" }),
+    page.getByRole("contentinfo").getByRole("link", { name: "Chính sách bảo mật" })
+  ];
+  for (const target of targets) {
+    const box = await target.boundingBox();
+    expect(box?.height).toBeGreaterThanOrEqual(44);
+  }
+});
+
+test("thanh hành động mobile có nền trắng rõ ràng", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  const styles = await page.getByRole("navigation", { name: "Liên hệ nhanh" }).evaluate((element) => {
+    const style = getComputedStyle(element);
+    return { backgroundColor: style.backgroundColor, backdropFilter: style.backdropFilter };
+  });
+  expect(styles.backgroundColor).toBe("rgb(255, 255, 255)");
+  expect(styles.backdropFilter).toBe("none");
+});
+
+test("thanh hành động mobile không che footer khi cuộn đến cuối trang", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/go-ghep-cao-su/");
+  await page.evaluate(() => {
+    document.documentElement.style.scrollBehavior = "auto";
+    window.scrollTo(0, document.documentElement.scrollHeight);
+  });
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(1_000);
+  const actionTop = await page.getByRole("navigation", { name: "Liên hệ nhanh" }).evaluate((element) => element.getBoundingClientRect().top);
+  const footerBottom = await page.getByRole("contentinfo").evaluate((element) => element.getBoundingClientRect().bottom);
+  expect(footerBottom).toBeLessThanOrEqual(actionTop + 1);
+});
+
+test("representative routes không tràn ngang trên các viewport acceptance", async ({ page }) => {
+  for (const route of representativeRoutes) {
+    for (const viewport of acceptanceViewports) {
+      await page.setViewportSize(viewport);
+      await page.goto(route);
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+      expect(overflow, `${route} at ${viewport.width}x${viewport.height}`).toBeLessThanOrEqual(1);
+    }
+  }
 });
 
 test("robots, sitemap, Vercel admin redirect và 404 đúng", async ({ page, request }) => {
@@ -101,7 +303,17 @@ test("robots, sitemap, Vercel admin redirect và 404 đúng", async ({ page, req
   const sitemap = await request.get("/sitemap.xml");
   const xml = await sitemap.text();
   expect(xml).toContain("https://mdftungphat.com/go-ghep");
+  for (const route of [
+    "/san-pham/an-cuong",
+    "/san-pham/thanh-thuy",
+    "/san-pham/ba-thanh",
+    "/san-pham/kes",
+    "/catalogue/an-cuong",
+    "/catalogue/thanh-thuy",
+    "/catalogue/ba-thanh"
+  ]) expect(xml).not.toContain(`https://mdftungphat.com${route}`);
   expect(xml).not.toContain("https://mdftungphat.com/bao-gia");
+  expect(xml).not.toContain("https://mdftungphat.com/cms-preview");
   expect(xml).not.toContain("/admin");
   expect(xml).not.toContain("__empty-collection");
   expect(await request.get("/bai-viet/__empty-collection/").then((response) => response.status())).toBe(404);
@@ -113,6 +325,14 @@ test("robots, sitemap, Vercel admin redirect và 404 đúng", async ({ page, req
   ]));
   const missing = await page.goto("/khong-ton-tai/");
   expect(missing?.status()).toBe(404);
+});
+
+test("direct quote and CMS preview routes stay noindex", async ({ page }) => {
+  for (const route of ["/bao-gia/", "/cms-preview/"]) {
+    await page.goto(route);
+    const robots = await page.locator('meta[name="robots"]').getAttribute("content");
+    expect(robots, route).toMatch(/noindex/i);
+  }
 });
 
 test("404 chỉ hiện footer sau khi người dùng cuộn trên desktop và mobile", async ({ page }) => {
@@ -133,6 +353,20 @@ test("trang liên hệ trực tiếp không có lỗi accessibility nghiêm tr�
   await page.goto("/bao-gia/");
   const results = await new AxeBuilder({ page }).disableRules(["color-contrast"]).analyze();
   expect(results.violations.filter((violation) => violation.impact === "critical" || violation.impact === "serious")).toEqual([]);
+});
+
+test("homepage không có lỗi accessibility nghiêm trọng", async ({ page }) => {
+  await page.goto("/");
+  const results = await new AxeBuilder({ page }).analyze();
+  expect(results.violations.filter((violation) => violation.impact === "critical" || violation.impact === "serious")).toEqual([]);
+});
+
+test("representative routes meet accessibility without serious or critical violations", async ({ page }) => {
+  for (const route of ["/go-ghep-cao-su/", "/van-mdf/", "/gia-cong-cnc/", "/san-pham/an-cuong/", "/lien-he/", "/chinh-sach-bao-mat/"]) {
+    await page.goto(route);
+    const results = await new AxeBuilder({ page }).analyze();
+    expect(results.violations.filter((violation) => violation.impact === "critical" || violation.impact === "serious"), route).toEqual([]);
+  }
 });
 
 test("API từ chối origin khác và không lộ stack trace", async ({ request }) => {
@@ -199,7 +433,7 @@ test("payload kiểu SQL injection không làm thay đổi schema", async ({ req
   expect(after.status()).toBe(201);
 });
 
-test("frontend công khai không tải form, Turnstile hoặc Forms API", async ({ page }) => {
+test("frontend công khai không tải Turnstile hoặc Forms API", async ({ page }) => {
   const unexpectedRequests: string[] = [];
   page.on("request", (request) => {
     if (/challenges\.cloudflare\.com\/turnstile|cms\.mdftungphat\.com\/api\/(contact|quote)/i.test(request.url())) {
@@ -209,7 +443,8 @@ test("frontend công khai không tải form, Turnstile hoặc Forms API", async 
 
   for (const route of ["/", "/lien-he/", "/bao-gia/", "/go-ghep/", "/cat-cnc-go/"]) {
     await page.goto(route, { waitUntil: "networkidle" });
-    await expect(page.locator('form, .cf-turnstile, script[src*="turnstile"]')).toHaveCount(0);
+    await expect(page.locator('.cf-turnstile, script[src*="turnstile"]')).toHaveCount(0);
+    if (route !== "/") await expect(page.locator("form")).toHaveCount(0);
   }
 
   expect(unexpectedRequests).toEqual([]);

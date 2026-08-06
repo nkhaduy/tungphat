@@ -54,7 +54,7 @@ function cleanMedia(value: unknown) {
     const url = new URL(media);
     if (url.protocol === "https:" && ["mdftungphat.com", "cms.mdftungphat.com"].includes(url.hostname)) return url.toString();
   } catch { /* use fallback */ }
-  return "/logo-horizontal.png";
+  return "/logo-horizontal.webp";
 }
 
 export function sanitizeCmsPreviewDraft(value: unknown): CmsPreviewDraft | null {
@@ -85,7 +85,7 @@ const common = {
   slug: "ban-nhap",
   excerpt: "Nội dung xem trước sẽ cập nhật theo các trường đang chỉnh sửa trong CMS.",
   body: "",
-  featuredImage: "/logo-horizontal.png",
+  featuredImage: "/logo-horizontal.webp",
   featuredImageAlt: "Logo Tùng Phát",
   publishedAt: today,
   updatedAt: today,
