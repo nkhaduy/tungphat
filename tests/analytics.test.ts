@@ -1,17 +1,55 @@
-import { describe, expect, it } from "vitest";
-import { attributionFromUrl, attributionParameters } from "@/lib/analytics/attribution";
-import { normalizeCtaLocation, sanitizePath, sanitizeText, shouldTrackLocation } from "@/lib/analytics/sanitize";
-import { generateAnonymousId, SESSION_TIMEOUT_MS } from "@/lib/analytics/session";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import {
+  attributionFromUrl,
+  attributionParameters,
+} from "@/lib/analytics/attribution";
+import {
+  normalizeCtaLocation,
+  sanitizePath,
+  sanitizeText,
+  shouldTrackLocation,
+} from "@/lib/analytics/sanitize";
+import {
+  generateAnonymousId,
+  SESSION_TIMEOUT_MS,
+} from "@/lib/analytics/session";
 import { analyticsEventNames } from "@/lib/analytics/types";
-import { conversionRate, countLeadSessions, isAssistedConversion, recordMilestone, vietnamDayBounds } from "@/lib/analytics/metrics";
+import {
+  conversionRate,
+  countLeadSessions,
+  isAssistedConversion,
+  recordMilestone,
+  vietnamDayBounds,
+} from "@/lib/analytics/metrics";
 
 describe("anonymous analytics primitives", () => {
+  afterEach(() => vi.unstubAllGlobals());
+
   it("generates random UUID v4 visitor and session identifiers", () => {
     const first = generateAnonymousId();
     const second = generateAnonymousId();
     expect(first).not.toBe(second);
     expect(first).toMatch(/^[0-9a-f-]{36}$/i);
     expect(first[14]).toBe("4");
+  });
+
+  it("generates UUID v4 identifiers when randomUUID is unavailable", () => {
+    let cursor = 0;
+    vi.stubGlobal("crypto", {
+      getRandomValues: (bytes: Uint8Array) => {
+        for (let index = 0; index < bytes.length; index += 1) {
+          bytes[index] = (cursor + index + 1) % 256;
+        }
+        cursor += bytes.length;
+        return bytes;
+      },
+    });
+
+    const first = generateAnonymousId();
+    const second = generateAnonymousId();
+
+    expect(first).toBe("01020304-0506-4708-890a-0b0c0d0e0f10");
+    expect(second).toBe("11121314-1516-4718-991a-1b1c1d1e1f20");
   });
 
   it("uses a 30 minute session timeout", () => {
@@ -27,11 +65,19 @@ describe("anonymous analytics primitives", () => {
 
 describe("attribution", () => {
   it("prioritizes UTM attribution and only extracts allowlisted parameters", () => {
-    const url = new URL("https://mdftungphat.com/go-ghep?utm_source=Facebook&utm_medium=Social&utm_campaign=sale&secret=never");
+    const url = new URL(
+      "https://mdftungphat.com/go-ghep?utm_source=Facebook&utm_medium=Social&utm_campaign=sale&secret=never",
+    );
     expect(attributionFromUrl(url, "google.com")).toEqual({
-      source: "facebook", medium: "social", campaign: "sale", term: undefined, content: undefined,
+      source: "facebook",
+      medium: "social",
+      campaign: "sale",
+      term: undefined,
+      content: undefined,
     });
-    expect(attributionParameters(url, "https://google.com/search?q=private")).toEqual({
+    expect(
+      attributionParameters(url, "https://google.com/search?q=private"),
+    ).toEqual({
       utm_source: "Facebook",
       utm_medium: "Social",
       utm_campaign: "sale",
@@ -47,13 +93,17 @@ describe("attribution", () => {
     ["https://example.com/article", "example.com", "referral"],
   ])("classifies %s", (referrer, source, medium) => {
     const host = referrer ? new URL(referrer).hostname : "";
-    expect(attributionFromUrl(new URL("https://mdftungphat.com/"), host)).toMatchObject({ source, medium });
+    expect(
+      attributionFromUrl(new URL("https://mdftungphat.com/"), host),
+    ).toMatchObject({ source, medium });
   });
 });
 
 describe("sanitization and exclusions", () => {
   it("drops query strings, hashes and duplicate slashes from paths", () => {
-    expect(sanitizePath("https://mdftungphat.com//go-ghep/?email=private#x")).toBe("/go-ghep/");
+    expect(
+      sanitizePath("https://mdftungphat.com//go-ghep/?email=private#x"),
+    ).toBe("/go-ghep/");
   });
 
   it("limits titles and removes control characters", () => {
@@ -102,7 +152,9 @@ describe("business metric definitions", () => {
   it("uses exact Asia/Ho_Chi_Minh day boundaries", () => {
     const bounds = vietnamDayBounds("2026-07-20");
     expect(bounds?.end).toBe((bounds?.start || 0) + 86400);
-    expect(new Date((bounds?.start || 0) * 1000).toISOString()).toBe("2026-07-19T17:00:00.000Z");
+    expect(new Date((bounds?.start || 0) * 1000).toISOString()).toBe(
+      "2026-07-19T17:00:00.000Z",
+    );
     expect(bounds?.timezone).toBe("Asia/Ho_Chi_Minh");
   });
 });

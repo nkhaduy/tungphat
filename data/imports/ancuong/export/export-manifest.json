@@ -1,0 +1,40 @@
+{
+  "exports": [
+    {
+      "bytes": 85124,
+      "checksum": "3529d940ab33eedafc210296b27afbd398c67220b8fc9cff4f4e7fe353e9f4f4",
+      "file": "catalogue.json",
+      "recordCount": 7
+    },
+    {
+      "bytes": 6890,
+      "checksum": "1ea101dbdd011c3c61abeb447ca1b2ea455d12881b4e39c1b43538be17d4620c",
+      "file": "categories.json",
+      "recordCount": 33
+    },
+    {
+      "bytes": 10276,
+      "checksum": "8fbaa184dafda61f50403f2c54d18e4f4c6eccf1b6bad405ec4414be97d1f918",
+      "file": "taxonomy.json",
+      "recordCount": 16
+    },
+    {
+      "bytes": 19306,
+      "checksum": "00bb3cba446aba594afdbd5c7edafac9048828f8c3f7c6ee301ad8da33565ef2",
+      "file": "relations.json",
+      "recordCount": 65
+    },
+    {
+      "bytes": 15243,
+      "checksum": "05a3541c3d33596ac83fc0362ac3d5d48d2e58e96e6b71ff1041d86b84ad065c",
+      "file": "media.json",
+      "recordCount": 20
+    }
+  ],
+  "exportTime": "2026-08-05T14:17:04.510Z",
+  "parserVersion": "1.0.0",
+  "schemaVersion": "1.0.0",
+  "sourceAuditReference": "docs/catalog/ancuong/ANCUONG_SOURCE_AUDIT.md",
+  "sourceRoot": "https://ancuong.com/online-catalogue/catalogue-vat-lieu.html",
+  "validationStatus": "passed"
+}

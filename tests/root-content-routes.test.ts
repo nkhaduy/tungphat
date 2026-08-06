@@ -26,6 +26,6 @@ describe("CMS dynamic root route fixtures", () => {
       ...cmsFixture[0],
       title: "Sản phẩm mới", body: "Nội dung", category: "MDF", materialType: "MDF", supplier: "", dimensions: [], thicknesses: [], surfaces: [], standards: [], applications: ["Ứng dụng"], advantages: ["Ưu điểm"], limitations: ["Lưu ý"], orderingSteps: ["Bước"], excerpt: "Nội dung fixture chỉ dùng để kiểm tra metadata của route CMS mới.", featuredImage: "/images/wood-panels.webp", featuredImageAlt: "Ảnh fixture", gallery: [], status: "available", quoteCta: "Báo giá", publishedAt: "2026-07-18", updatedAt: "2026-07-18", featured: false, seoTitle: "Sản phẩm mới fixture metadata canonical", seoDescription: "Mô tả fixture đủ dài để xác nhận metadata của CMS luôn dùng canonical apex đúng theo cấu hình website.", canonical: "", faq: [], relatedArticles: [], sourcePath: "tests/fixtures/product.md"
     }, "/san-pham-moi");
-    expect(metadata.alternates?.canonical).toBe("https://mdftungphat.com/san-pham-moi");
+    expect(metadata.alternates?.canonical).toBe("https://mdftungphat.com/san-pham-moi/");
   });
 });
