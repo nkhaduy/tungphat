@@ -22,6 +22,7 @@ export type CatalogSearchEntry = {
   category?: string;
   series?: string;
   group?: string;
+  demandScore?: number;
 };
 
 export type CatalogRouteClaim = {
@@ -46,4 +47,3 @@ export type SupplierCatalogAdapter = {
   getRouteClaims(): CatalogRouteClaim[];
   getSitemapEntries(): CatalogSitemapEntry[];
 };
-

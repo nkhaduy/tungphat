@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 const approvedBaThanhMessage =
-  "Tôi cần kiểm tra mã BT 111 của Ba Thanh tại Tùng Phát. Vui lòng tư vấn loại ván, quy cách, tình trạng hàng và dịch vụ gia công phù hợp.";
+  "Tôi cần kiểm tra mã BT 111 của Ba Thanh tại Tùng Phát. Vui lòng tư vấn cốt ván, quy cách, tình trạng hàng và dịch vụ gia công phù hợp.";
 
 test.describe("supplier catalogue customer journeys", () => {
   test("homepage supplier cards open the live catalogue routes", async ({
@@ -10,7 +10,10 @@ test.describe("supplier catalogue customer journeys", () => {
     await page.goto("/");
 
     await expect(
-      page.getByRole("link", { name: "Tùng Phát", exact: true }).first(),
+      page.getByRole("link", {
+        name: "Tùng Phát - Trang chủ",
+        exact: true,
+      }),
     ).toBeVisible();
 
     await expect(
@@ -25,8 +28,8 @@ test.describe("supplier catalogue customer journeys", () => {
     await expect(
       page
         .getByRole("contentinfo")
-        .getByRole("link", { name: "Tất cả sản phẩm", exact: true }),
-    ).toHaveAttribute("href", "/san-pham/#catalogue");
+        .getByRole("link", { name: "Catalogue", exact: true }),
+    ).toHaveAttribute("href", "/catalogue/");
   });
 
   test("exact code search supports Enter, Escape and browser restoration", async ({
@@ -38,7 +41,7 @@ test.describe("supplier catalogue customer journeys", () => {
     });
 
     await search.fill("bt-111");
-    await expect(page).toHaveURL(/q=bt-111/i);
+    await expect(page).toHaveURL(/query=bt-111/i);
     await expect(
       page.getByRole("link", { name: /Ba Thanh.*BT 111/i }).first(),
     ).toBeVisible();
@@ -49,7 +52,7 @@ test.describe("supplier catalogue customer journeys", () => {
     await expect(search).toHaveValue("bt-111");
     await search.press("Escape");
     await expect(search).toHaveValue("");
-    await expect(page).not.toHaveURL(/q=/);
+    await expect(page).not.toHaveURL(/query=/);
   });
 
   test("search and filters keep supplier and taxonomy explicit", async ({
@@ -71,11 +74,9 @@ test.describe("supplier catalogue customer journeys", () => {
     await page
       .getByRole("combobox", { name: "Lọc theo nhà cung cấp" })
       .selectOption("ba-thanh");
-    await page
-      .getByRole("combobox", { name: "Lọc theo danh mục" })
-      .selectOption({ label: "Vân gỗ" });
+    await page.getByRole("button", { name: "Vân gỗ", exact: true }).click();
     await expect(page).toHaveURL(/supplier=ba-thanh/);
-    await expect(page).toHaveURL(/category=van-go/);
+    await expect(page).toHaveURL(/group=van-go/);
     await expect(
       page.getByRole("link", { name: /Ba Thanh, mã BT 111/i }),
     ).toBeVisible();
@@ -110,6 +111,10 @@ test.describe("supplier catalogue customer journeys", () => {
   }) => {
     await page.goto("/catalogue/an-cuong/");
 
+    const search = page.getByRole("searchbox", {
+      name: "Tìm mã hoặc tên mẫu An Cường",
+    });
+    await expect(search).toBeVisible();
     await expect(page.getByText(/7 mẫu dữ liệu tham khảo/i)).toBeVisible();
     await expect(
       page
@@ -118,6 +123,13 @@ test.describe("supplier catalogue customer journeys", () => {
     ).toHaveCount(7);
     await expect(page.getByText("MFC - MS 01012 T")).toBeVisible();
     await expect(page.getByText("3DE 02 LL 2500")).toBeVisible();
+    await search.fill("MFC - MS 01012 T");
+    await expect(page).toHaveURL(/query=MFC/);
+    await expect(
+      page
+        .getByRole("region", { name: "Mẫu dữ liệu An Cường" })
+        .getByRole("article"),
+    ).toHaveCount(1);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
       "content",
       /noindex, follow/i,
@@ -166,26 +178,29 @@ test.describe("supplier catalogue customer journeys", () => {
     const search = page.getByRole("searchbox", {
       name: "Tìm theo mã, tên hoặc nhóm vân",
     });
-    const category = page.getByRole("combobox", { name: "Lọc nhóm màu" });
+    const category = page.getByRole("button", { name: "Vân gỗ", exact: true });
 
     await search.fill("BT111");
-    await category.selectOption("van-go");
-    await expect(page).toHaveURL(/q=BT111/);
-    await expect(page).toHaveURL(/category=van-go/);
+    await category.click();
+    await expect(page).toHaveURL(/query=BT111/);
+    await expect(page).toHaveURL(/group=van-go/);
+    await expect(
+      page.locator('meta[name="robots"][data-catalogue-filter-state="true"]'),
+    ).toHaveAttribute("content", "noindex, follow");
     await page
       .getByRole("link", { name: /BT 111/i })
       .first()
       .click();
     await expect(page).toHaveURL(/\/ma-mau-melamine\/ba-thanh\/bt-111\/$/);
     await page.goBack();
-    await expect(page).toHaveURL(/q=BT111/);
-    await expect(page).toHaveURL(/category=van-go/);
+    await expect(page).toHaveURL(/query=BT111/);
+    await expect(page).toHaveURL(/group=van-go/);
     await expect(search).toHaveValue("BT111");
-    await expect(category).toHaveValue("van-go");
+    await expect(category).toHaveAttribute("aria-pressed", "true");
 
     await page.reload();
     await expect(search).toHaveValue("BT111");
-    await expect(category).toHaveValue("van-go");
+    await expect(category).toHaveAttribute("aria-pressed", "true");
   });
 
   test("legacy noindex supplier catalogue routes hand customers to live data", async ({
@@ -213,11 +228,11 @@ test.describe("supplier catalogue customer journeys", () => {
     await page.goto("/catalogue/");
     await expect(
       page.getByRole("heading", {
-        name: "Tìm đúng mã vật liệu từ ba nhà cung cấp.",
+        name: "Tra cứu mã vật liệu và catalogue",
       }),
     ).toBeVisible();
     await expect(
-      page.getByRole("link", { name: /Nhà cung cấp Ba Thanh/i }),
+      page.getByRole("link", { name: /Ba Thanh.*233 mã Melamine/i }),
     ).toHaveAttribute("href", "/ma-mau-melamine/ba-thanh/");
     await context.close();
   });
@@ -239,17 +254,20 @@ test.describe("supplier catalogue customer journeys", () => {
 test.describe("supplier catalogue mobile navigation", () => {
   test.use({ viewport: { width: 390, height: 844 } });
 
-  test("mobile menu presents one supplier catalogue group and locks background scroll", async ({
+  test("mobile menu presents one catalogue entry and locks background scroll", async ({
     page,
   }) => {
     await page.goto("/");
     await page.getByRole("button", { name: "Mở menu" }).click();
 
     await expect(
-      page.getByRole("link", { name: "Catalogue nhà cung cấp", exact: true }),
+      page
+        .getByRole("navigation", {
+          name: "Điều hướng trên thiết bị di động",
+        })
+        .getByRole("link", { name: "Catalogue", exact: true }),
     ).toBeVisible();
     await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
-    await expect(page.getByText("Thương hiệu", { exact: true })).toHaveCount(0);
 
     await page.getByRole("button", { name: "Đóng menu" }).click();
     await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
@@ -354,7 +372,7 @@ test.describe("supplier catalogue requested viewport matrix", () => {
           page
             .getByRole("navigation", { name: "Điều hướng chính" })
             .getByRole("link", {
-              name: "Catalogue nhà cung cấp",
+              name: "Catalogue",
               exact: true,
             }),
         ).toBeVisible();
@@ -363,7 +381,7 @@ test.describe("supplier catalogue requested viewport matrix", () => {
         await menu.click();
         await expect(
           page.getByRole("link", {
-            name: "Catalogue nhà cung cấp",
+            name: "Catalogue",
             exact: true,
           }),
         ).toBeVisible();

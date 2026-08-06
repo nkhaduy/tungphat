@@ -23,7 +23,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { route: "/gia-cong-cnc/", include: true },
     {
       route: "/du-an/",
-      include: getListingIndexability(projects.length).includeInSitemap,
+      include: getListingIndexability(projects.length, {
+        hasStandaloneContent: true,
+      }).includeInSitemap,
     },
     {
       route: "/bai-viet/",

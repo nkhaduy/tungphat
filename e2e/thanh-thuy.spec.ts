@@ -16,6 +16,10 @@ test("brand catalogue supports code search without creating hotlinks", async ({
     name: "Tìm tên hoặc mã Thanh Thuỳ",
   });
   await search.fill("142 Roman Oak");
+  await expect(page).toHaveURL(/query=142\+Roman\+Oak|query=142%20Roman%20Oak/);
+  await expect(
+    page.locator('meta[name="robots"][data-catalogue-filter-state="true"]'),
+  ).toHaveAttribute("content", "noindex, follow");
   await expect(page.getByRole("link", { name: /142 Roman Oak/ })).toBeVisible();
   await expect(page.locator('img[src*="gothanhthuy.com"]')).toHaveCount(0);
   const axe = await new AxeBuilder({ page }).analyze();
@@ -27,7 +31,7 @@ test("brand catalogue supports code search without creating hotlinks", async ({
   ).toEqual([]);
 });
 
-test("header keeps accessible contrast while switching to its scrolled appearance", async ({
+test("shared header keeps accessible contrast after scrolling", async ({
   page,
 }) => {
   await page.goto("/thuong-hieu/thanh-thuy/");
@@ -35,7 +39,7 @@ test("header keeps accessible contrast while switching to its scrolled appearanc
   await page.waitForTimeout(50);
 
   const axe = await new AxeBuilder({ page })
-    .include(".site-header")
+    .include("header")
     .withRules(["color-contrast"])
     .analyze();
 
@@ -57,7 +61,7 @@ test("sparse code page is useful but noindex", async ({ page }) => {
   });
   const href = await zalo.getAttribute("href");
   expect(new URL(href!).searchParams.get("text")).toBe(
-    "Tôi cần kiểm tra mã 142 của Thanh Thuỳ tại Tùng Phát. Vui lòng tư vấn loại ván, quy cách, tình trạng hàng và dịch vụ gia công phù hợp.",
+    "Tôi cần kiểm tra mã 142 của Thanh Thuỳ tại Tùng Phát. Vui lòng tư vấn cốt ván, quy cách, tình trạng hàng và dịch vụ gia công phù hợp.",
   );
 });
 
@@ -98,6 +102,7 @@ test("mobile catalogue has labels, focus and no horizontal overflow", async ({
   await page
     .getByRole("combobox", { name: "Lọc theo nhóm vật liệu" })
     .selectOption("acrylic");
+  await expect(page).toHaveURL(/group=acrylic/);
   await expect(page.getByText(/mã phù hợp/)).toBeVisible();
   const overflow = await page.evaluate(
     () =>

@@ -13,6 +13,10 @@ import {
 } from "@/lib/catalog/import-utils";
 import type { SupplierColorCode } from "@/lib/catalog/types";
 import { buildSourceChecksum } from "@/scripts/ba-thanh/import";
+import {
+  getBaThanhMerchandisingScore,
+  searchBaThanhCodes,
+} from "@/lib/catalog/ba-thanh";
 
 describe("normalizeSupplierCode", () => {
   it.each([
@@ -510,10 +514,37 @@ describe("catalogue source checksum", () => {
   });
 });
 
+describe("Ba Thanh merchandising", () => {
+  it("puts editorially complete, high-intent codes before source A-Z order", () => {
+    const ordered = searchBaThanhCodes("");
+
+    expect(ordered[0].displayName).toBe("BT 111");
+    expect(getBaThanhMerchandisingScore(ordered[0])).toBeGreaterThan(
+      getBaThanhMerchandisingScore(
+        ordered.find((record) => record.displayName === "BT 01")!,
+      ),
+    );
+    expect(
+      ordered.slice(0, 12).map((record) => record.displayName),
+    ).not.toEqual(
+      [...ordered]
+        .sort((left, right) =>
+          left.displayName.localeCompare(right.displayName, "vi"),
+        )
+        .slice(0, 12)
+        .map((record) => record.displayName),
+    );
+  });
+
+  it("keeps demand ordering inside a selected group", () => {
+    expect(searchBaThanhCodes("", "van-go")[0].displayName).toBe("BT 111");
+  });
+});
+
 describe("Zalo inquiry", () => {
   it("encodes the exact code-specific request without changing the business URL", () => {
     expect(buildZaloInquiryUrl("https://zalo.me/0909259160", "SC 020M")).toBe(
-      "https://zalo.me/0909259160?text=T%C3%B4i+c%E1%BA%A7n+ki%E1%BB%83m+tra+m%C3%A3+SC+020M+c%E1%BB%A7a+Ba+Thanh+t%E1%BA%A1i+T%C3%B9ng+Ph%C3%A1t.+Vui+l%C3%B2ng+t%C6%B0+v%E1%BA%A5n+lo%E1%BA%A1i+v%C3%A1n%2C+quy+c%C3%A1ch%2C+t%C3%ACnh+tr%E1%BA%A1ng+h%C3%A0ng+v%C3%A0+d%E1%BB%8Bch+v%E1%BB%A5+gia+c%C3%B4ng+ph%C3%B9+h%E1%BB%A3p.",
+      "https://zalo.me/0909259160?text=T%C3%B4i+c%E1%BA%A7n+ki%E1%BB%83m+tra+m%C3%A3+SC+020M+c%E1%BB%A7a+Ba+Thanh+t%E1%BA%A1i+T%C3%B9ng+Ph%C3%A1t.+Vui+l%C3%B2ng+t%C6%B0+v%E1%BA%A5n+c%E1%BB%91t+v%C3%A1n%2C+quy+c%C3%A1ch%2C+t%C3%ACnh+tr%E1%BA%A1ng+h%C3%A0ng+v%C3%A0+d%E1%BB%8Bch+v%E1%BB%A5+gia+c%C3%B4ng+ph%C3%B9+h%E1%BB%A3p.",
     );
   });
 });

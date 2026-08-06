@@ -97,7 +97,7 @@ describe("supplier Zalo inquiry", () => {
     const message = supplierInquiryMessage("Ba Thanh", "BT 111");
 
     expect(message).toBe(
-      "Tôi cần kiểm tra mã BT 111 của Ba Thanh tại Tùng Phát. Vui lòng tư vấn loại ván, quy cách, tình trạng hàng và dịch vụ gia công phù hợp.",
+      "Tôi cần kiểm tra mã BT 111 của Ba Thanh tại Tùng Phát. Vui lòng tư vấn cốt ván, quy cách, tình trạng hàng và dịch vụ gia công phù hợp.",
     );
     expect(
       new URL(

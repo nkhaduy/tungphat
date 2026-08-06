@@ -2,8 +2,14 @@
 
 import Link from "next/link";
 import { Copy, Search } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
+import { useCatalogFilterRobots } from "@/components/catalog/useCatalogFilterRobots";
 import { MaterialSwatchImage } from "@/components/thanh-thuy/MaterialSwatchImage";
+import { searchThanhThuyItems } from "@/lib/catalog/thanh-thuy-search";
+import {
+  buildCatalogCollectionSearchParams,
+  parseCatalogCollectionUrlState,
+} from "@/lib/catalog/url-state";
 
 export type ThanhThuyExplorerItem = {
   slug: string;
@@ -29,6 +35,7 @@ type ThanhThuyExplorerProps = {
   categories: ExplorerCategory[];
   basePath?: string;
   title?: string;
+  compact?: boolean;
 };
 
 export function ThanhThuyExplorer({
@@ -36,32 +43,61 @@ export function ThanhThuyExplorer({
   categories,
   basePath = "/san-pham",
   title = "Tra cứu mã màu Thanh Thuỳ",
+  compact = false,
 }: ThanhThuyExplorerProps) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("");
   const [copied, setCopied] = useState("");
   const [visibleCount, setVisibleCount] = useState(48);
-  const filtered = useMemo(() => {
-    const needle = query.trim().toLocaleLowerCase("vi");
-    return items.filter((item) => {
-      const matchesQuery =
-        !needle ||
-        [
-          item.name,
-          item.code,
-          item.categoryName,
-          item.seriesName,
-          item.color,
-          item.pattern,
-        ]
-          .filter(Boolean)
-          .join(" ")
-          .toLocaleLowerCase("vi")
-          .includes(needle);
-      return matchesQuery && (!category || item.categorySlug === category);
-    });
-  }, [category, items, query]);
+  const deferredQuery = useDeferredValue(query);
+  const topCategories = useMemo(
+    () => categories.filter((item) => !item.parentSlug),
+    [categories],
+  );
+  const categorySlugs = useMemo(
+    () => topCategories.map((item) => item.slug),
+    [topCategories],
+  );
+  const filtered = useMemo(
+    () => searchThanhThuyItems(items, deferredQuery, category),
+    [category, deferredQuery, items],
+  );
   const visibleItems = filtered.slice(0, visibleCount);
+  useCatalogFilterRobots(Boolean(query.trim() || category));
+
+  useEffect(() => {
+    const restoreFromUrl = () => {
+      const restored = parseCatalogCollectionUrlState(
+        new URLSearchParams(window.location.search),
+        categorySlugs,
+      );
+      setQuery(restored.query);
+      setCategory(restored.group);
+      setVisibleCount(48);
+    };
+    restoreFromUrl();
+    window.addEventListener("popstate", restoreFromUrl);
+    return () => window.removeEventListener("popstate", restoreFromUrl);
+  }, [categorySlugs]);
+
+  function updateUrl(
+    next: { query?: string; category?: string },
+    mode: "push" | "replace" = "replace",
+  ) {
+    const parameters = buildCatalogCollectionSearchParams(
+      new URLSearchParams(window.location.search),
+      {
+        query: next.query ?? query,
+        group: next.category ?? category,
+      },
+    );
+    const search = parameters.toString();
+    window.history[mode === "push" ? "pushState" : "replaceState"](
+      window.history.state,
+      "",
+      `${window.location.pathname}${search ? `?${search}` : ""}${window.location.hash}`,
+    );
+  }
 
   async function copyCode(code: string) {
     try {
@@ -73,35 +109,45 @@ export function ThanhThuyExplorer({
     }
   }
 
+  const Root = compact ? "div" : "section";
+
   return (
-    <section
+    <Root
       aria-labelledby="thanh-thuy-explorer-title"
-      className="bg-[#f6f7f5] py-14 lg:py-20"
+      className={compact ? "" : "bg-[#f6f7f5] py-14 lg:py-20"}
     >
-      <div className="container-shell">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <span className="eyebrow eyebrow-on-light">
-              MÃ MÀU &amp; VẬT LIỆU
-            </span>
-            <h2
-              id="thanh-thuy-explorer-title"
-              className="mt-3 font-display text-3xl font-extrabold tracking-[-.03em] text-forest-950 sm:text-4xl"
-            >
-              {title}
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
-              Tìm theo tên, mã, nhóm vật liệu hoặc vân màu. Mã chưa có thông tin
-              tồn kho trực tuyến vẫn được giữ để Tùng Phát kiểm tra theo mẫu
-              thực tế.
+      <div className={compact ? "" : "container-shell"}>
+        {compact ? (
+          <h2 id="thanh-thuy-explorer-title" className="sr-only">
+            {title}
+          </h2>
+        ) : (
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <span className="eyebrow eyebrow-on-light">
+                MÃ MÀU &amp; VẬT LIỆU
+              </span>
+              <h2
+                id="thanh-thuy-explorer-title"
+                className="mt-3 font-display text-3xl font-extrabold tracking-[-.03em] text-forest-950 sm:text-4xl"
+              >
+                {title}
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
+                Tìm theo tên, mã, nhóm vật liệu hoặc vân màu. Mã chưa có thông
+                tin tồn kho trực tuyến vẫn được giữ để Tùng Phát kiểm tra theo
+                mẫu thực tế.
+              </p>
+            </div>
+            <p className="text-sm font-bold text-forest-900" aria-live="polite">
+              {filtered.length} mã phù hợp
             </p>
           </div>
-          <p className="text-sm font-bold text-forest-900" aria-live="polite">
-            {filtered.length} mã phù hợp
-          </p>
-        </div>
+        )}
 
-        <div className="mt-8 grid gap-3 rounded-2xl border border-forest-900/10 bg-white p-4 shadow-[0_12px_40px_rgba(10,42,28,.06)] md:grid-cols-[minmax(0,1fr)_220px]">
+        <div
+          className={`${compact ? "mt-6" : "mt-8"} grid gap-3 border border-forest-900/10 bg-white p-4 shadow-card md:grid-cols-[minmax(0,1fr)_220px]`}
+        >
           <label className="relative block">
             <span className="sr-only">Tìm tên hoặc mã Thanh Thuỳ</span>
             <Search
@@ -117,6 +163,7 @@ export function ThanhThuyExplorer({
               onChange={(event) => {
                 setQuery(event.target.value);
                 setVisibleCount(48);
+                updateUrl({ query: event.target.value });
               }}
               type="search"
               placeholder="Ví dụ: 142, Roman Oak, Laminate…"
@@ -132,20 +179,28 @@ export function ThanhThuyExplorer({
               onChange={(event) => {
                 setCategory(event.target.value);
                 setVisibleCount(48);
+                updateUrl({ category: event.target.value }, "push");
               }}
               className="min-h-12 w-full border border-slate-200 bg-[#fffdf8] px-4 text-sm font-semibold text-forest-950 outline-none transition-colors focus-visible:border-wood-600 focus-visible:ring-2 focus-visible:ring-wood-600/20"
             >
               <option value="">Tất cả nhóm vật liệu</option>
-              {categories
-                .filter((item) => !item.parentSlug)
-                .map((item) => (
-                  <option key={item.slug} value={item.slug}>
-                    {item.name}
-                  </option>
-                ))}
+              {topCategories.map((item) => (
+                <option key={item.slug} value={item.slug}>
+                  {item.name}
+                </option>
+              ))}
             </select>
           </label>
         </div>
+
+        {compact ? (
+          <p
+            className="mt-4 text-sm font-bold text-forest-900"
+            aria-live="polite"
+          >
+            {filtered.length} mã phù hợp
+          </p>
+        ) : null}
 
         {filtered.length === 0 ? (
           <div className="mt-8 border border-dashed border-forest-900/20 bg-white p-10 text-center">
@@ -228,6 +283,6 @@ export function ThanhThuyExplorer({
           </>
         )}
       </div>
-    </section>
+    </Root>
   );
 }

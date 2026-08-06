@@ -3,7 +3,10 @@ import {
   createSupplierRegistry,
   supplierDefinitions,
 } from "../lib/catalog/core/registry";
-import { searchSupplierCatalog } from "../lib/catalog/core/search";
+import {
+  catalogMerchandisingScore,
+  searchSupplierCatalog,
+} from "../lib/catalog/core/search";
 import {
   createRouteOwnershipIndex,
   getRouteOwner,
@@ -58,7 +61,9 @@ describe("supplier catalogue registry", () => {
   });
 
   it("ships the three supplier definitions with isolated brand names", () => {
-    expect(supplierDefinitions.map((supplier) => [supplier.id, supplier.brandName])).toEqual([
+    expect(
+      supplierDefinitions.map((supplier) => [supplier.id, supplier.brandName]),
+    ).toEqual([
       ["thanh-thuy", "Thanh Thuỳ"],
       ["ba-thanh", "Ba Thanh"],
       ["an-cuong", "An Cường"],
@@ -104,7 +109,9 @@ describe("supplier catalogue search", () => {
   it.each(["BT 111", "BT111", "BT-111"])(
     "ranks the exact normalized code first for %s",
     (query) => {
-      expect(searchSupplierCatalog(entries, query)[0]?.supplierId).toBe("ba-thanh");
+      expect(searchSupplierCatalog(entries, query)[0]?.supplierId).toBe(
+        "ba-thanh",
+      );
     },
   );
 
@@ -119,14 +126,81 @@ describe("supplier catalogue search", () => {
       canonicalRoute: "/catalogue/an-cuong/",
     });
   });
+
+  it("uses transparent merchandising to put high-intent Melamine codes first by default", () => {
+    const ordered = searchSupplierCatalog(entries, "");
+
+    expect(ordered[0]).toMatchObject({
+      supplierId: "ba-thanh",
+      code: "BT 111",
+    });
+    expect(catalogMerchandisingScore(ordered[0])).toBeGreaterThan(
+      catalogMerchandisingScore(ordered[1]),
+    );
+    expect(ordered.map((entry) => entry.code)).not.toEqual(
+      [...ordered.map((entry) => entry.code)].sort((left, right) =>
+        left.localeCompare(right, "vi"),
+      ),
+    );
+  });
+
+  it("uses alphabetical order only as the final tie-breaker", () => {
+    const tied: CatalogSearchEntry[] = [
+      {
+        ...entries[0],
+        code: "ZZ 10",
+        name: "Cùng mức ưu tiên",
+        canonicalRoute: "/zz/",
+      },
+      {
+        ...entries[0],
+        code: "AA 10",
+        name: "Cùng mức ưu tiên",
+        canonicalRoute: "/aa/",
+      },
+    ];
+
+    expect(searchSupplierCatalog(tied, "").map((entry) => entry.code)).toEqual([
+      "AA 10",
+      "ZZ 10",
+    ]);
+  });
+
+  it("filters primary intent groups before applying merchandising", () => {
+    expect(
+      searchSupplierCatalog(entries, "", { group: "van-go" }).map(
+        (entry) => entry.code,
+      ),
+    ).toEqual(["BT 111"]);
+  });
 });
 
 describe("supplier route ownership", () => {
   const claims: CatalogRouteClaim[] = [
-    { supplierId: "thanh-thuy", path: "/thuong-hieu/thanh-thuy/", kind: "brand", indexable: true },
-    { supplierId: "thanh-thuy", path: "/san-pham/melamine/", kind: "category", indexable: true },
-    { supplierId: "ba-thanh", path: "/ma-mau-melamine/ba-thanh/bt-111/", kind: "detail", indexable: true },
-    { supplierId: "an-cuong", path: "/catalogue/an-cuong/", kind: "catalogue", indexable: false },
+    {
+      supplierId: "thanh-thuy",
+      path: "/thuong-hieu/thanh-thuy/",
+      kind: "brand",
+      indexable: true,
+    },
+    {
+      supplierId: "thanh-thuy",
+      path: "/san-pham/melamine/",
+      kind: "category",
+      indexable: true,
+    },
+    {
+      supplierId: "ba-thanh",
+      path: "/ma-mau-melamine/ba-thanh/bt-111/",
+      kind: "detail",
+      indexable: true,
+    },
+    {
+      supplierId: "an-cuong",
+      path: "/catalogue/an-cuong/",
+      kind: "catalogue",
+      indexable: false,
+    },
   ];
 
   it("resolves canonical routes to one supplier", () => {
@@ -138,31 +212,56 @@ describe("supplier route ownership", () => {
   });
 
   it("rejects routes claimed by multiple suppliers", () => {
-    expect(() => createRouteOwnershipIndex([
-      ...claims,
-      { supplierId: "ba-thanh", path: "/san-pham/melamine/", kind: "category", indexable: true },
-    ])).toThrow(/route collision/i);
+    expect(() =>
+      createRouteOwnershipIndex([
+        ...claims,
+        {
+          supplierId: "ba-thanh",
+          path: "/san-pham/melamine/",
+          kind: "category",
+          indexable: true,
+        },
+      ]),
+    ).toThrow(/route collision/i);
   });
 });
 
 describe("supplier sitemap composition", () => {
   const entries: CatalogSitemapEntry[] = [
-    { supplierId: "thanh-thuy", path: "/thuong-hieu/thanh-thuy/", indexable: true },
-    { supplierId: "ba-thanh", path: "/ma-mau-melamine/ba-thanh/bt-01/", indexable: false },
-    { supplierId: "an-cuong", path: "/catalogue/an-cuong/?q=mfc", indexable: true },
+    {
+      supplierId: "thanh-thuy",
+      path: "/thuong-hieu/thanh-thuy/",
+      indexable: true,
+    },
+    {
+      supplierId: "ba-thanh",
+      path: "/ma-mau-melamine/ba-thanh/bt-01/",
+      indexable: false,
+    },
+    {
+      supplierId: "an-cuong",
+      path: "/catalogue/an-cuong/?q=mfc",
+      indexable: true,
+    },
   ];
 
   it("includes canonical indexable paths only", () => {
     expect(composeSupplierSitemap(entries)).toEqual([
-      { supplierId: "thanh-thuy", path: "/thuong-hieu/thanh-thuy/", indexable: true },
+      {
+        supplierId: "thanh-thuy",
+        path: "/thuong-hieu/thanh-thuy/",
+        indexable: true,
+      },
     ]);
   });
 
   it("rejects duplicate canonical sitemap paths", () => {
-    expect(() => composeSupplierSitemap([
-      entries[0],
-      { ...entries[0], supplierId: "ba-thanh" },
-    ])).toThrow(/duplicate sitemap path/i);
+    expect(() =>
+      composeSupplierSitemap([
+        entries[0],
+        { ...entries[0], supplierId: "ba-thanh" },
+      ]),
+    ).toThrow(/duplicate sitemap path/i);
   });
 });
 
@@ -172,9 +271,28 @@ describe("supplier adapters", () => {
     expect(baThanhAdapter.getSearchEntries()).toHaveLength(233);
     expect(anCuongAdapter.getSearchEntries()).toHaveLength(7);
 
-    expect(thanhThuyAdapter.getSitemapEntries().filter((entry) => entry.indexable)).toHaveLength(8);
-    expect(baThanhAdapter.getSitemapEntries().filter((entry) => entry.indexable)).toHaveLength(12);
-    expect(anCuongAdapter.getSitemapEntries().filter((entry) => entry.indexable)).toHaveLength(0);
+    expect(
+      thanhThuyAdapter.getSitemapEntries().filter((entry) => entry.indexable),
+    ).toHaveLength(8);
+    expect(
+      baThanhAdapter.getSitemapEntries().filter((entry) => entry.indexable),
+    ).toHaveLength(12);
+    expect(
+      anCuongAdapter.getSitemapEntries().filter((entry) => entry.indexable),
+    ).toHaveLength(0);
+  });
+
+  it("carries Ba Thanh demand priority into the shared catalogue search", () => {
+    const ordered = searchSupplierCatalog(
+      baThanhAdapter.getSearchEntries(),
+      "",
+      {
+        supplierId: "ba-thanh",
+        group: "van-go",
+      },
+    );
+
+    expect(ordered[0]?.code).toBe("BT 111");
   });
 
   it("builds brand-isolated product JSON-LD without invented commerce fields", () => {
