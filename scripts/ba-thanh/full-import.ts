@@ -12,7 +12,7 @@ import type { CatalogImage, SupplierColorCode } from "@/lib/catalog/types";
 
 export type BaThanhFullSourceItem = {
   sourceUrl: string;
-  sourceImageUrl: string;
+  sourceImageUrl?: string;
   category: string;
   sourceCategoryLabel: string;
   codeRaw: string;
@@ -26,6 +26,23 @@ export type BaThanhFullSourceItem = {
   images?: string[];
   discoveredAt: string;
   pageChecksum?: string;
+};
+
+export type BaThanhSourceClassification = {
+  outcome: "imported" | "duplicate" | "non-product" | "blocked";
+  reason: string;
+  canonicalUrl?: string;
+  recordGroup?: "melamine" | "laminate" | "families" | "all";
+  recordCode?: string;
+  evidence: {
+    kind: "http-html" | "api-record" | "infrastructure";
+    status: number;
+    checksum: string;
+  };
+};
+
+export type BaThanhDiscoveredSourceUrl = DiscoveredSourceUrl & {
+  classification?: BaThanhSourceClassification;
 };
 
 type MediaMetadata = {
@@ -292,6 +309,7 @@ function familyRecords(mediaByUrl: Map<string, MediaMetadata>): SupplierFamilyRe
 
 export function buildBaThanhCatalogueRecords(options: {
   melamine: SupplierColorCode[];
+  melamineSources?: BaThanhFullSourceItem[];
   laminate: BaThanhFullSourceItem[];
   importedAt: string;
   media?: MediaMetadata[];
@@ -330,6 +348,46 @@ export function buildBaThanhCatalogueRecords(options: {
     seoStatus: record.seoStatus === "READY_TO_INDEX" ? "READY_TO_INDEX" : "NEEDS_ENRICHMENT",
   }));
 
+  const legacyMelamineCodes = new Set(options.melamine.map((record) => record.codeNormalized));
+  const newlyDiscoveredMelamine: CatalogueRecord[] = (options.melamineSources ?? [])
+    .filter((item) => item.status === "PARSED" && item.codeNormalized && !legacyMelamineCodes.has(item.codeNormalized))
+    .map((item) => {
+      const sourceImages = [item.sourceImageUrl, ...(item.images ?? [])]
+        .filter((url): url is string => Boolean(url))
+        .filter((url, index, all) => all.indexOf(url) === index);
+      return {
+        recordType: "sku",
+        supplier: "ba-thanh",
+        sourceProductId: `ba-thanh:${item.codeNormalized}`,
+        code: item.codeNormalized,
+        normalizedCode: item.codeNormalized,
+        name: `Melamine Ba Thanh ${item.displayName}`,
+        slug: item.slug,
+        productFamily: "Melamine",
+        category: "Melamine",
+        collections: [item.sourceCategoryLabel],
+        attributes: { sourceGroup: item.category, patternGroup: item.sourceCategoryLabel },
+        formats: [],
+        images: sourceImages.map((url, index) => mediaImage(url, index === 0 ? "swatch" : "product", mediaByUrl.get(url))),
+        documents: [],
+        sourceUrls: [item.sourceUrl],
+        canonicalSourceUrl: item.sourceUrl,
+        importedAt: item.discoveredAt || options.importedAt,
+        sourceChecksum: checksum({
+          sourceUrl: item.sourceUrl,
+          sourceImageUrl: item.sourceImageUrl,
+          category: item.category,
+          codeNormalized: item.codeNormalized,
+          heading: item.heading,
+          text: item.text,
+          images: item.images ?? [],
+        }),
+        completenessScore: 45 + (sourceImages.length ? 20 : 0),
+        editorialStatus: "NEEDS_EDITORIAL_REVIEW",
+        seoStatus: "NOINDEX_USEFUL",
+      };
+    });
+
   const laminate: CatalogueRecord[] = options.laminate
     .filter((item) => item.status === "PARSED" && item.codeNormalized)
     .map((item) => ({
@@ -346,6 +404,7 @@ export function buildBaThanhCatalogueRecords(options: {
       attributes: { sourceGroup: item.category, patternGroup: item.sourceCategoryLabel, brand: "WAY" },
       formats: [],
       images: [item.sourceImageUrl, ...(item.images ?? [])]
+        .filter((url): url is string => Boolean(url))
         .filter((url, index, all) => all.indexOf(url) === index)
         .filter((url) => laminateMediaMatchesCode(url, item.codeNormalized))
         .map((url, index) => mediaImage(url, index === 0 ? "swatch" : "product", mediaByUrl.get(url))),
@@ -383,7 +442,7 @@ export function buildBaThanhCatalogueRecords(options: {
     needsEditorialReview: true,
   }));
 
-  return [...melamine, ...laminate, ...familyRecords(mediaByUrl), ...documents];
+  return [...melamine, ...newlyDiscoveredMelamine, ...laminate, ...familyRecords(mediaByUrl), ...documents];
 }
 
 function recordUrls(record: CatalogueRecord): string[] {
@@ -396,7 +455,7 @@ function recordUrls(record: CatalogueRecord): string[] {
 
 export function buildBaThanhFullSourceManifest(options: {
   records: CatalogueRecord[];
-  discovered: DiscoveredSourceUrl[];
+  discovered: BaThanhDiscoveredSourceUrl[];
   generatedAt: string;
 }): FullSourceManifest {
   const idsByUrl = new Map<string, Set<string>>();
@@ -414,6 +473,9 @@ export function buildBaThanhFullSourceManifest(options: {
     families: options.records.filter((record) => record.recordType === "family").map(recordId),
     all: options.records.map(recordId),
   };
+  const idsByCode = new Map(options.records
+    .filter((record) => record.recordType === "sku")
+    .map((record) => [record.normalizedCode, recordId(record)]));
   const seen = new Set<string>();
   const records: AccountedSourceRecord[] = [];
   for (const discovered of options.discovered) {
@@ -431,17 +493,28 @@ export function buildBaThanhFullSourceManifest(options: {
           : pathname === "/portfolio"
             ? idsByFamily.families
             : [];
-    const recordIds = directIds.length ? directIds : collectionIds;
-    const infrastructure = /robots\.txt$|sitemap(?:_index)?\.xml$|wp-json\/wp\/v2\/pages/.test(url);
+    const classification = discovered.classification;
+    const canonicalIds = classification?.canonicalUrl
+      ? [...(idsByUrl.get(new URL(classification.canonicalUrl).toString()) ?? [])]
+      : [];
+    const groupIds = classification?.recordGroup ? idsByFamily[classification.recordGroup] : [];
+    const codeId = classification?.recordCode ? idsByCode.get(classification.recordCode) : undefined;
+    const recordIds = directIds.length
+      ? directIds
+      : canonicalIds.length
+        ? canonicalIds
+        : groupIds.length
+          ? groupIds
+          : codeId
+            ? [codeId]
+            : collectionIds;
+    const outcome = classification?.outcome ?? (recordIds.length ? "imported" : undefined);
     records.push({
       ...discovered,
       url,
-      outcome: recordIds.length ? "imported" : infrastructure || discovered.pageType === "unknown" ? "non-product" : "invalid",
-      ...(recordIds.length ? { recordIds: [...recordIds].sort() } : {
-        reason: infrastructure || discovered.pageType === "unknown"
-          ? "Discovery infrastructure or public non-catalogue page; catalogue URLs are accounted separately."
-          : "Public catalogue-shaped URL has no verified normalized Ba Thanh record.",
-      }),
+      outcome,
+      ...(recordIds.length ? { recordIds: [...recordIds].sort() } : {}),
+      ...(classification?.reason ? { reason: classification.reason } : {}),
     });
   }
   const manifest: FullSourceManifest = {

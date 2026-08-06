@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "supplier": "ba-thanh",
-  "generatedAt": "2026-08-06T16:09:09.079Z",
+  "generatedAt": "2026-08-06T16:50:22.910Z",
   "records": [
     {
       "recordType": "sku",
@@ -10156,6 +10156,942 @@
     {
       "recordType": "sku",
       "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:BT49",
+      "code": "BT49",
+      "normalizedCode": "BT49",
+      "name": "Melamine Ba Thanh BT 49",
+      "slug": "bt-49",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-49-e1713937690671.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-49-wood-grains"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-49-wood-grains",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "db2357cf7af3c5abc23708eb6ad9ad10485149f0d807265a035fca3ebe8b5fdd",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:BT55",
+      "code": "BT55",
+      "normalizedCode": "BT55",
+      "name": "Melamine Ba Thanh BT 55",
+      "slug": "bt-55",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-55-e1713937570962.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-55-wood-grains"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-55-wood-grains",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "e203e1acb1eeb52327aff116c6ac1d082e57c7d3153181d887e73b257f6d64c6",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:BT91",
+      "code": "BT91",
+      "normalizedCode": "BT91",
+      "name": "Melamine Ba Thanh BT 91",
+      "slug": "bt-91",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-91.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-91-wood-grains"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-91-wood-grains",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "250b5542d8e0ad8f84615e63d7de675ab1be7a3c3fbb86cb4d9d03177fb18ffd",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC028MW",
+      "code": "SC028MW",
+      "normalizedCode": "SC028MW",
+      "name": "Melamine Ba Thanh SC 028MW",
+      "slug": "sc-028mw",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-103-e1698733774228.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc028mw"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc028mw",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "d559f1a3d7ff38463b7921304c666593401fd31696e5f3c5fb1842ad45e6a02a",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC027MW",
+      "code": "SC027MW",
+      "normalizedCode": "SC027MW",
+      "name": "Melamine Ba Thanh SC 027MW",
+      "slug": "sc-027mw",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-103-e1698733774228.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc027mw"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc027mw",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "41d1bbc168790d2e507cafea33b20809564e019cec038e6a959556515edc2402",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC026MW",
+      "code": "SC026MW",
+      "normalizedCode": "SC026MW",
+      "name": "Melamine Ba Thanh SC 026MW",
+      "slug": "sc-026mw",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-103-e1698733774228.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc026mw"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc026mw",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "88d6e12e1aec253545ca79868ef011b04b668e15c9b79276b92a61c1940c9e78",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC025MW",
+      "code": "SC025MW",
+      "normalizedCode": "SC025MW",
+      "name": "Melamine Ba Thanh SC 025MW",
+      "slug": "sc-025mw",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-103-e1698733774228.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc025mw"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc025mw",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "bfd9c4aad216d16c2b1c0af164c425dff4e94316211dc83910cf2e7902c3b2b4",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC024MW",
+      "code": "SC024MW",
+      "normalizedCode": "SC024MW",
+      "name": "Melamine Ba Thanh SC 024MW",
+      "slug": "sc-024mw",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-103-e1698733774228.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc024mw"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc024mw",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "68f18651ea980a5dd2df860982419d28e7612c7b4cb7761aadbfc492553d583c",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC022MW",
+      "code": "SC022MW",
+      "normalizedCode": "SC022MW",
+      "name": "Melamine Ba Thanh SC 022MW",
+      "slug": "sc-022mw",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-103-e1698733774228.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc022mw"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc022mw",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "19ce8681b6977b67cebab6f7541ffdff5501aa32db059b2bc488eaf32b8fb999",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC021MW",
+      "code": "SC021MW",
+      "normalizedCode": "SC021MW",
+      "name": "Melamine Ba Thanh SC 021MW",
+      "slug": "sc-021mw",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-103-e1698733774228.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc021mw"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc021mw",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "19e6db72a38234513d736b5c8bc352e2a1a5b5354458a864f6b9da8fbd327a50",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC020MW",
+      "code": "SC020MW",
+      "normalizedCode": "SC020MW",
+      "name": "Melamine Ba Thanh SC 020MW",
+      "slug": "sc-020mw",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-103-e1698733774228.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc020mw"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc020mw",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "2eeb138d88dc43891e0f355d690bf55b7eb307df4ecf2f832947dcfb3e000f5c",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC019MW",
+      "code": "SC019MW",
+      "normalizedCode": "SC019MW",
+      "name": "Melamine Ba Thanh SC 019MW",
+      "slug": "sc-019mw",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-103-e1698733774228.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc019mw"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc019mw",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "23497e081cca49f65948c0c6634a9979d6b78e51d44c617f2c97203a67943902",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC029MW",
+      "code": "SC029MW",
+      "normalizedCode": "SC029MW",
+      "name": "Melamine Ba Thanh SC 029MW",
+      "slug": "sc-029mw",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-103-e1698733774228.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc029mw"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc029mw",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "bc202ac7b0621f1eb97cbac7794b4cd4f944f879441001382cae414bcf04f27f",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC030MW",
+      "code": "SC030MW",
+      "normalizedCode": "SC030MW",
+      "name": "Melamine Ba Thanh SC 030MW",
+      "slug": "sc-030mw",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-103-e1698733774228.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc030mw"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc030mw",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "21e12c0c56caf8e1a3a8706017471e129f2cbe2e11afd2a76526f0ad2a2211ae",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:BT172EV",
+      "code": "BT172EV",
+      "normalizedCode": "BT172EV",
+      "name": "Melamine Ba Thanh BT 172EV",
+      "slug": "bt-172ev",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-103-e1698733774228.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt172ev"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt172ev",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "ef1d8694b7ad66e07d929c950f1db661775c551e79019e1777536b106c14b4d5",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:BT171EV",
+      "code": "BT171EV",
+      "normalizedCode": "BT171EV",
+      "name": "Melamine Ba Thanh BT 171EV",
+      "slug": "bt-171ev",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-103-e1698733774228.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt171ev"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt171ev",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "a39c2c6bece2f8b2792bb9eb969846404aeaa96185d354edda21e3223f1a49aa",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC032DL",
+      "code": "SC032DL",
+      "normalizedCode": "SC032DL",
+      "name": "Melamine Ba Thanh SC 032DL",
+      "slug": "sc-032dl",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/soon-01.png",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc032dl"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc032dl",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "98cc1f0dd3c0fdf6d8a03d123697b5fa63bfe5214dfd77c63e892ac83a0c77c3",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC032N",
+      "code": "SC032N",
+      "normalizedCode": "SC032N",
+      "name": "Melamine Ba Thanh SC 032N",
+      "slug": "sc-032n",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/soon-01.png",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc032n"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc032n",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "d6f2ac928741ff2e0259bf331aced14b7400a0dd5a69c1b105b36e7540f66f17",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC034DL",
+      "code": "SC034DL",
+      "normalizedCode": "SC034DL",
+      "name": "Melamine Ba Thanh SC 034DL",
+      "slug": "sc-034dl",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/soon-01.png",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc034dl"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc034dl",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "fc0e9d288b93d688b68bd6532a4ec04fd3d42dee20dad2b2b29492c37d6fe92e",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC034N",
+      "code": "SC034N",
+      "normalizedCode": "SC034N",
+      "name": "Melamine Ba Thanh SC 034N",
+      "slug": "sc-034n",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/soon-01.png",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc034n"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc034n",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "e6c58853b7402cefa2d1df8a2cda9d5f8bd523c3aeefb732b1e7a4eeaff504d4",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC035DL",
+      "code": "SC035DL",
+      "normalizedCode": "SC035DL",
+      "name": "Melamine Ba Thanh SC 035DL",
+      "slug": "sc-035dl",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/soon-01.png",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc035dl"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc035dl",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "6cccdcc91b8e1020375604b96faa013bdae5227fa69a6fb1ba983fee37bc8151",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC035N",
+      "code": "SC035N",
+      "normalizedCode": "SC035N",
+      "name": "Melamine Ba Thanh SC 035N",
+      "slug": "sc-035n",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/soon-01.png",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc035n"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc035n",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "54b1241a315c37d57e76a7b778886b1e6504dfd70d285fb94d978f6d0f81a2c5",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC036DL",
+      "code": "SC036DL",
+      "normalizedCode": "SC036DL",
+      "name": "Melamine Ba Thanh SC 036DL",
+      "slug": "sc-036dl",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/soon-01.png",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc036dl"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc036dl",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "47fe0f1f44b78e0339c6ba2ec484651967ed9bad2022cbe38aeed270b6b61bcd",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC036N",
+      "code": "SC036N",
+      "normalizedCode": "SC036N",
+      "name": "Melamine Ba Thanh SC 036N",
+      "slug": "sc-036n",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/soon-01.png",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc036n"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc036n",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "69e0f5dfaef1a93c44674ab61c1c1baa7e00e179d23c750db34c0d4b32e70bb1",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC037DL",
+      "code": "SC037DL",
+      "normalizedCode": "SC037DL",
+      "name": "Melamine Ba Thanh SC 037DL",
+      "slug": "sc-037dl",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/soon-01.png",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc037dl"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc037dl",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "c63c874f33a4b930cfdcc3bdfbc78dc77f3c88623bcdd88ef7fea7a3b039ba9a",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:SC037N",
+      "code": "SC037N",
+      "normalizedCode": "SC037N",
+      "name": "Melamine Ba Thanh SC 037N",
+      "slug": "sc-037n",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "Sản phẩm Melamine công khai"
+      ],
+      "attributes": {
+        "sourceGroup": "public-product-page",
+        "patternGroup": "Sản phẩm Melamine công khai"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/soon-01.png",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc037n"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc037n",
+      "importedAt": "2026-08-06T16:50:22.910Z",
+      "sourceChecksum": "de45c493184062b16ee32bab99d64d949846579c42808d667595ffa0d06ae10f",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
       "sourceProductId": "ba-thanh:laminate:W7020",
       "code": "W7020",
       "normalizedCode": "W7020",
@@ -12057,5 +12993,5 @@
       "needsEditorialReview": true
     }
   ],
-  "checksum": "9ab97c27a24f1ca70c2b5c592053214de2a219f400a416803381d0053d292909"
+  "checksum": "2996f948b5ca740e8f1fc5fe75780ae35fc9a992b8bbd31b63609001af2774dc"
 }

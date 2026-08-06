@@ -137,3 +137,55 @@ npx vitest run tests/ba-thanh-catalog.test.ts tests/ba-thanh-full-import.test.ts
 1. Eight verified WAY Laminate pages currently expose only mismatched supplier media; those records intentionally have no image and remain noindex.
 2. The 257 MiB additional-original payload is deferred to Task 3; the 85 new source-only references must not be exposed as hotlinks before that work lands.
 3. Media rights remain `UNCONFIRMED`; do not merge or deploy the catalogue to production.
+
+## Fix Round 1
+
+### Findings Addressed
+
+1. Removed the discovery ceiling. The 233 legacy Melamine codes are now a required baseline subset keyed by their already-reconciled source URLs, while every additional fresh map/detail code is accepted dynamically. Crawl completeness compares successful unique records with the discovered input length, and import validation/report counts are derived from source artifacts and normalized records rather than `233`/`33` literals.
+2. Replaced syntactic `unknown => non-product` accounting with crawl evidence. All 399 discovery URLs now carry an explicit classification; 386 public HTML pages were fetched and checksummed, infrastructure responses retain response checksums, six verified catalogue aliases point to normalized record IDs, and `non-product` is reserved for fetched pages with an explicit reason.
+3. Replaced the in-memory checksum assertion with a real two-run importer test in a temporary artifact tree. Unchanged SKU records preserve their original `importedAt` when `sourceChecksum` is stable, so changing discovery timestamps alone produces `created=0`, `updated=0`, and `unchanged=totalImported` with byte-identical `full-records.json`.
+
+### TDD RED Evidence
+
+- `npx vitest run tests/ba-thanh-full-import.test.ts`
+  - 4 expected failures: missing dynamic discovery/crawl validators; unclassified URL incorrectly became `non-product`; evidenced duplicate lacked its family record ID; a timestamp-only second importer run reported 33 updates and changed the record checksum.
+- `npx vitest run tests/ba-thanh-catalog.test.ts -t "multi-letter suffix"`
+  - 2 expected failures: `SC032DL` was truncated to `SC032`, and `BT172EV` was not verified.
+- `npx vitest run tests/ba-thanh-full-import.test.ts -t "corporate page"`
+  - Expected `non-product`, received `duplicate` when a contact page merely mentioned Veneer/Melamine/MDF.
+
+### Fresh Source Results
+
+- Current map: 233 Melamine baseline codes retained.
+- Verified public product pages outside the map: 26 additional Melamine SKUs.
+- WAY Laminate: 33 verified SKUs.
+- Full normalized result: 305 records = 259 Melamine + 33 Laminate + 11 families + 2 documents.
+- Discovery URLs: 399; final manifest URLs including record assets/documents: 717.
+- Manifest outcomes: 627 imported, 6 duplicate, 84 evidence-backed non-product, 0 blocked, 0 invalid, 0 unaccounted.
+- Coverage: 717/717, 100%.
+- Duplicate catalogue routes without record IDs: 0.
+- Non-product outcomes without classification evidence: 0.
+- Media rights: `UNCONFIRMED`; no production mutation.
+
+### Fix Round Checksums
+
+- Logical manifest checksum: `55e9428eb8a864f6ee64dec33dc53f55dce8513bd054d3494a36aaedf3467519`.
+- Logical record checksum: `2996f948b5ca740e8f1fc5fe75780ae35fc9a992b8bbd31b63609001af2774dc`.
+- `discovered-codes.json`: `d0ece01a8ff792d8276aaa50f21bf0632149ee24fcc690cb9dd18d0656c76ba9`.
+- `discovered-laminate-codes.json`: `a84a9f92344a8d10e8358581d73d798740806064510ad3a7520c95253416f86b`.
+- `full-discovery.json`: `95be56a2b9a4665af8c6c4353bc70f51fe1025d6d3ea8099fb346d4bafa85de9`.
+- `full-records.json`: `6219b8a9fa25daaa035b3816bc4a9215ff89a631e228f264136ec493f08c81a6`.
+- `full-source-manifest.json`: `73e2731a98cf126f79e68053604f7c7a2721077cf9a026e9498a81a1d91bdcb0`.
+
+### Idempotency
+
+- Second real import: `created=0`, `updated=0`, `unchanged=305`, `removed=0`, `duplicates=0`.
+
+### TDD GREEN Evidence
+
+- Focused Ba Thanh suite: 6 files, 75/75 tests passed.
+- Full repository lint: passed with zero warnings.
+- Full TypeScript checks: passed for the application and Cloudflare configuration.
+- Legacy validator: 233/233 retained records passed.
+- Full validator: 305 records, 717/717 accounted URLs, 100% coverage passed.

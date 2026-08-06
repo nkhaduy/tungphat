@@ -390,6 +390,19 @@ describe("recognizeBaThanhDetail", () => {
     expect(detail.accepted).toBe(true);
     expect(detail.verifiedCodeRaw).toBe("W7393");
   });
+
+  it.each([
+    ["SC032DL", "MELAMINE BA THANH – SC 032 DL", "MFC - BT SC 032 DL"],
+    ["BT172EV", "BT 172EV – WOOD GRAINS", "MFC - BT 172EV"],
+  ])("keeps the full multi-letter suffix for public code %s", (expectedCode, heading, body) => {
+    const detail = recognizeBaThanhDetail(
+      `<main><h1>${heading}</h1><p>${body}</p></main>`,
+      { expectedCode, sourceUrl: `https://bathanh.com.vn/${expectedCode.toLowerCase()}` },
+    );
+
+    expect(detail.accepted).toBe(true);
+    expect(detail.verifiedCodeRaw).toBe(expectedCode);
+  });
 });
 
 describe("reconcileBaThanhCode", () => {
