@@ -1,0 +1,1080 @@
+{
+  "issues": [
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[1202].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[1216].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[5114].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[5129].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[5955].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[5960].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[5984].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6008].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6026].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6038].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6045].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6050].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6089].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6096].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6106].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6123].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6138].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6158].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6167].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6193].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6227].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6238].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6262].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6267].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6323].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6331].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6345].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6365].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6380].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6387].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6442].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6449].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6458].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[6463].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[10501].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[10560].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[11342].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[11361].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[14302].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[14322].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[14900].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15556].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15569].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15582].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15595].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15608].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15621].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15634].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15647].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15660].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15673].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15686].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15699].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15712].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15725].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15738].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15751].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15764].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15777].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15790].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15803].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15816].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15829].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[15930].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[19752].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[19836].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[19870].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[19969].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[20043].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[20060].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[20065].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[20070].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[20075].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[20080].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[20086].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[22243].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23281].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23286].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23291].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23296].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23301].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23306].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23311].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23316].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23321].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23328].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23335].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23341].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23346].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23351].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23367].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23374].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23379].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23384].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23389].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23394].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23399].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23405].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23417].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23423].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23430].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23440].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23447].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23454].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23460].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23466].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23472].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23478].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23484].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23490].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23496].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23502].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23508].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23514].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23520].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23527].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23642].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23653].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23665].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23682].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23697].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23708].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23719].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23730].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23742].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23753].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23764].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23775].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23786].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23797].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23808].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23819].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23830].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23841].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23853].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23864].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23879].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23889].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23899].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23909].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23919].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23929].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23939].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23949].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23959].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23969].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23979].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23989].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[23999].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[24009].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[24019].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[24029].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[24039].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[24049].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[24061].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[24071].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[24081].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[25492].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[25503].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[25514].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[25525].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[25536].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[25547].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[25557].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[25568].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[25579].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[25590].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[25600].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[25611].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[26021].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[26031].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[26042].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[26052].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[26062].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[26072].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[26082].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[26093].targetSourceId"
+    },
+    {
+      "code": "RELATION_UNRESOLVED",
+      "level": "warning",
+      "message": "source-declared relation target does not exist in the discovered catalogue",
+      "path": "relations[26104].targetSourceId"
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "media": 7267,
+    "products": 2682,
+    "relations": 26158,
+    "warnings": 178
+  },
+  "valid": true
+}

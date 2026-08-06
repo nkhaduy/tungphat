@@ -1,0 +1,18 @@
+{
+  "crawlDurationSeconds": 2466.91,
+  "discovered": 2682,
+  "duplicate": 0,
+  "failedFinal": 0,
+  "failedRetryable": 0,
+  "fetched": 2682,
+  "missing": 0,
+  "nonTerminal": 0,
+  "normalized": 2682,
+  "parsed": 2682,
+  "queued": 0,
+  "sourceUnavailable": 0,
+  "terminal": 2682,
+  "validated": 2682,
+  "validationErrors": 0,
+  "validationWarnings": 178
+}

@@ -1,0 +1,17 @@
+{
+  "bidirectionalEdges": 5326,
+  "duplicateEdges": 0,
+  "edges": 26158,
+  "oneWayEdges": 127,
+  "relationTypes": {
+    "application": 1903,
+    "edge-band": 0,
+    "related": 0,
+    "same-color": 5631,
+    "same-line": 18624
+  },
+  "selfReferences": 0,
+  "targetCodeCollisions": 0,
+  "unresolvedEdges": 178,
+  "unresolvedUniqueTargets": 63
+}

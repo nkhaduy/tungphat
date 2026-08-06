@@ -1,0 +1,251 @@
+{
+  "exportTime": "2026-08-05T08:00:31.659Z",
+  "parserVersion": "1.0.0",
+  "records": [
+    {
+      "catalogueUrls": [],
+      "name": "Tấm 3D Embossed",
+      "productCount": 87,
+      "slug": "3d-embossed",
+      "sourceUrl": "https://ancuong.com/3d-embossed.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Tấm 3D Embossed Thô",
+      "productCount": 0,
+      "slug": "3de-tho",
+      "sourceUrl": "https://ancuong.com/3de-tho.html"
+    },
+    {
+      "catalogueUrls": [
+        "https://catalogue.ancuong.com/high-gloss-acrylic-panel/"
+      ],
+      "name": "Acrylic",
+      "productCount": 109,
+      "slug": "acrylic",
+      "sourceUrl": "https://ancuong.com/acrylic.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Chỉ ABS",
+      "productCount": 16,
+      "slug": "chi-abs",
+      "sourceUrl": "https://ancuong.com/chi-abs.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Chỉ PVC",
+      "productCount": 341,
+      "slug": "chi-dan-canh-pvc",
+      "sourceUrl": "https://ancuong.com/chi-dan-canh-pvc.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Cửa Gỗ Ngoại Thất",
+      "productCount": 0,
+      "slug": "cua-go-ngoai-that",
+      "sourceUrl": "https://ancuong.com/cua-go-ngoai-that.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Cửa Khung Siêu Mỏng",
+      "productCount": 0,
+      "slug": "cua-khung",
+      "sourceUrl": "https://ancuong.com/cua-khung.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Cửa Gỗ Nội Thất",
+      "productCount": 0,
+      "slug": "cua-noi-that",
+      "sourceUrl": "https://ancuong.com/cua-noi-that.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Decal",
+      "productCount": 0,
+      "slug": "decal",
+      "sourceUrl": "https://ancuong.com/decal.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Cánh Shaker",
+      "productCount": 0,
+      "slug": "gia-cong-canh-shaker",
+      "sourceUrl": "https://ancuong.com/gia-cong-canh-shaker.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Gia Công Noline",
+      "productCount": 0,
+      "slug": "gia-cong-noline",
+      "sourceUrl": "https://ancuong.com/gia-cong-noline.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Gia Công Vát Tay Nắm",
+      "productCount": 0,
+      "slug": "gia-cong-vat-tay-nam",
+      "sourceUrl": "https://ancuong.com/gia-cong-vat-tay-nam.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Keo",
+      "productCount": 0,
+      "slug": "keo",
+      "sourceUrl": "https://ancuong.com/keo.html"
+    },
+    {
+      "catalogueUrls": [
+        "https://catalogue.ancuong.com/laminate-kingdom-high-pressure-laminate/",
+        "https://catalogue.ancuong.com/laminate-kingdom-trend-collection/",
+        "https://catalogue.ancuong.com/laminate-flooring"
+      ],
+      "name": "Laminate",
+      "productCount": 1120,
+      "slug": "laminate",
+      "sourceUrl": "https://ancuong.com/laminate.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Lõi Ván",
+      "productCount": 0,
+      "slug": "loi-van",
+      "sourceUrl": "https://ancuong.com/loi-van.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Mặt Top (Compact)",
+      "productCount": 5,
+      "slug": "mat-top-compact",
+      "sourceUrl": "https://ancuong.com/mat-top-compact.html"
+    },
+    {
+      "catalogueUrls": [
+        "https://catalogue.ancuong.com/innovative-mfc-mdf-melamine-panels/"
+      ],
+      "name": "Melamine",
+      "productCount": 367,
+      "slug": "melamine",
+      "sourceUrl": "https://ancuong.com/melamine.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Nẹp Nhôm U",
+      "productCount": 19,
+      "slug": "nep-nhom-u",
+      "sourceUrl": "https://ancuong.com/nep-nhom-u.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Phụ Kiện Sàn Gỗ",
+      "productCount": 78,
+      "slug": "phu-kien-san-go",
+      "sourceUrl": "https://ancuong.com/phu-kien-san-go.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "PPET / PVC",
+      "productCount": 48,
+      "slug": "ppet-pvc",
+      "sourceUrl": "https://ancuong.com/ppet-pvc.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Sàn Gỗ",
+      "productCount": 110,
+      "slug": "san-go",
+      "sourceUrl": "https://ancuong.com/san-go.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Tấm 2D MDF",
+      "productCount": 22,
+      "slug": "tam-2d-mdf",
+      "sourceUrl": "https://ancuong.com/tam-2d-mdf.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Tấm 2D WPB",
+      "productCount": 26,
+      "slug": "tam-2d-wpb",
+      "sourceUrl": "https://ancuong.com/tam-2d-wpb.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Tấm 3D",
+      "productCount": 46,
+      "slug": "tam-3d",
+      "sourceUrl": "https://ancuong.com/tam-3d.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Tấm Acoustic",
+      "productCount": 50,
+      "slug": "tam-acoustic",
+      "sourceUrl": "https://ancuong.com/tam-acoustic.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Tấm Chống Cháy",
+      "productCount": 48,
+      "slug": "tam-chong-chay",
+      "sourceUrl": "https://ancuong.com/tam-chong-chay.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Tấm Lambri",
+      "productCount": 28,
+      "slug": "tam-lambri",
+      "sourceUrl": "https://ancuong.com/tam-lambri.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Tấm Chống Cháy MGO",
+      "productCount": 0,
+      "slug": "tam-mgo",
+      "sourceUrl": "https://ancuong.com/tam-mgo.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Tấm Ốp Vách 3D",
+      "productCount": 3,
+      "slug": "tam-op-vach-3d",
+      "sourceUrl": "https://ancuong.com/tam-op-vach-3d.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Tấm Trang Trí Ngoài Trời",
+      "productCount": 3,
+      "slug": "tam-trang-tri-ngoai-troi",
+      "sourceUrl": "https://ancuong.com/tam-trang-tri-ngoai-troi.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Tấm Ván Ngoài Trời",
+      "productCount": 3,
+      "slug": "tam-van-ngoai-troi",
+      "sourceUrl": "https://ancuong.com/tam-van-ngoai-troi.html"
+    },
+    {
+      "catalogueUrls": [],
+      "name": "Tấm Wall - Ceiling",
+      "productCount": 45,
+      "slug": "tam-wall-ceiling",
+      "sourceUrl": "https://ancuong.com/tam-wall-ceiling.html"
+    },
+    {
+      "catalogueUrls": [
+        "https://catalogue.ancuong.com/veneer/"
+      ],
+      "name": "Veneer",
+      "productCount": 108,
+      "slug": "veneer",
+      "sourceUrl": "https://ancuong.com/veneer.html"
+    }
+  ],
+  "schemaVersion": "1.0.0",
+  "sourceAuditReference": "docs/catalog/ancuong/ANCUONG_SOURCE_AUDIT.md",
+  "sourceRoot": "https://ancuong.com/online-catalogue/catalogue-vat-lieu.html",
+  "validationStatus": "passed"
+}

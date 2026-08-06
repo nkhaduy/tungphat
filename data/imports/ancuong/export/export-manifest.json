@@ -1,0 +1,57 @@
+{
+  "categoryCount": 33,
+  "datasetChecksum": "9c2268e805d3655f2804dc2278c372abdb676223915d717ae01988a7a43c0203",
+  "discoveryCount": 2682,
+  "exports": [
+    {
+      "bytes": 30809051,
+      "checksum": "074daf3eaef097bbad358c4185f73e704c7f4ae879b950c7ae68ed9a585c62c9",
+      "file": "catalogue.json",
+      "recordCount": 2682
+    },
+    {
+      "bytes": 6890,
+      "checksum": "83a745bcaaab7849add917e206cae5e67d2dc298ea5c23fdeab60a4fcd55cf8f",
+      "file": "categories.json",
+      "recordCount": 33
+    },
+    {
+      "bytes": 505330,
+      "checksum": "cf6ec10d6d6ebadf58d70d889363b5538296797716d7692ad9f805109ef41c11",
+      "file": "taxonomy.json",
+      "recordCount": 16
+    },
+    {
+      "bytes": 7742757,
+      "checksum": "c8436a4c333e0d37ff266f974bafb62b8278451669abe1031cfaf985a4575c36",
+      "file": "relations.json",
+      "recordCount": 26158
+    },
+    {
+      "bytes": 2579255,
+      "checksum": "f411499910fbb385fa595157fe1a0e4bf1afe80679a56f398e355da12c9709b4",
+      "file": "media.json",
+      "recordCount": 7267
+    }
+  ],
+  "exportTime": "2026-08-05T08:00:31.659Z",
+  "fullCrawl": true,
+  "fullCrawlStatus": "complete",
+  "invalidCount": 0,
+  "knownLimitations": [
+    "Binary media download was not started because the filesystem failed the 20% free-space reserve gate.",
+    "178 source-declared relation targets are outside the discovered catalogue and remain factual unresolved references."
+  ],
+  "mediaComplete": false,
+  "mediaCrawlStatus": "discovery-only",
+  "mediaReferenceCount": 7267,
+  "parserVersion": "1.0.0",
+  "productCount": 2682,
+  "relationCount": 26158,
+  "schemaVersion": "1.0.0",
+  "sourceAuditReference": "docs/catalog/ancuong/ANCUONG_SOURCE_AUDIT.md",
+  "sourceRoot": "https://ancuong.com/online-catalogue/catalogue-vat-lieu.html",
+  "uniqueMediaCount": 4584,
+  "validationStatus": "passed",
+  "validCount": 2682
+}
