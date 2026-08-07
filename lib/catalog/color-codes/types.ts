@@ -69,3 +69,10 @@ export type SupplierColorCode = {
   confidence: "verified";
   seoStatus: Extract<SeoStatus, "READY_TO_INDEX" | "NOINDEX_USEFUL" | "NEEDS_ENRICHMENT">;
 };
+
+export type PublicSupplierColorCode = SupplierColorCode & {
+  id: string;
+  slug: string;
+  canonicalRoute: string;
+  demandScore: number;
+};

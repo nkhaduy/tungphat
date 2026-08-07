@@ -79,7 +79,8 @@
     "catalog:suppliers:media": "tsx scripts/catalog-suppliers/media-provenance.ts",
     "catalog:suppliers:media:offline": "tsx scripts/catalog-suppliers/media-provenance.ts --offline",
     "catalog:suppliers:media:validate": "tsx scripts/catalog-suppliers/media-provenance.ts --validate-only",
-    "catalog:suppliers:search-index": "tsx scripts/catalog-suppliers/build-search-index.ts"
+    "catalog:suppliers:search-index": "tsx scripts/catalog-suppliers/build-search-index.ts",
+    "catalog:suppliers:color-codes": "tsx scripts/catalog-suppliers/build-color-code-index.ts"
   },
   "dependencies": {
     "framer-motion": "^12.42.2",
