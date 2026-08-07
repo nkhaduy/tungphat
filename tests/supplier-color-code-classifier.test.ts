@@ -86,6 +86,29 @@ describe("supplier color-code classifiers", () => {
     expect(result.colorCode).toBeUndefined();
   });
 
+  it.each([
+    ["2D EV4300", "Tấm 2D MDF", "2D MDF Chống ẩm phủ Eco-Veneer", "panel"],
+    ["NẸP NHÔM U INOX PLUS LL 2500", "Nẹp Nhôm U", "Nẹp Nhôm U Inox Plus", "edge-banding"],
+    ["3DWP WP01 P524", "Tấm Ốp Vách 3D", "Ốp Vách 3D", "panel"],
+  ] as const)(
+    "keeps decorative An Cuong surface code %s even when the substrate or profile name is generic",
+    (code, category, productType, materialType) => {
+      const result = classifyAnCuongRecord({
+        sourceUrl: `https://ancuong.com/product/${encodeURIComponent(code)}.html`,
+        productCode: code,
+        name: code,
+        category,
+        productType,
+        materialPattern: "Vân Gỗ",
+        primaryImage: {
+          sourceUrl: `https://ancuong.com/products/products-full/${encodeURIComponent(code)}.jpg`,
+        },
+      });
+
+      expect(result.colorCode).toMatchObject({ codeRaw: code, materialType });
+    },
+  );
+
   it("classifies Ba Thanh Melamine and Laminate SKUs from official maps only", () => {
     const melamine = classifyBaThanhRecord({
       recordType: "sku",

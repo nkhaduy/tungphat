@@ -46,17 +46,17 @@ function fold(value: string): string {
 
 export function decorativeMaterialType(values: string[]): SupplierColorMaterialType | undefined {
   const value = fold(values.filter(Boolean).join(" "));
-  if (/core board|cot van|mdf|hdf|hardware|phu kien noi that|keo dan|adhesive/.test(value)) return undefined;
-  if (/chi pvc|chi abs|edge band|dan canh/.test(value)) return "edge-banding";
+  if (/chi pvc|chi abs|edge band|dan canh|nep nhom u|u wrapping/.test(value)) return "edge-banding";
   if (/worktop|mat top|compact top/.test(value)) return "worktop";
   if (/san go|flooring|len tuong|nep cau thang/.test(value)) return "flooring";
+  if (/panel|tam 2d|tam 3d|tam op vach|tam acoustic|wall|ceiling|lambri|ngoai troi|fireproof|chong chay/.test(value)) return "panel";
   if (/acrylic/.test(value)) return "acrylic";
   if (/laminate|formica|hpl/.test(value)) return "laminate";
   if (/melamine/.test(value)) return "melamine";
   if (/veneer|eco veneer/.test(value)) return "veneer";
   if (/ppet/.test(value)) return "ppet";
   if (/pvc|decal/.test(value)) return "pvc";
-  if (/panel|tam 2d|tam 3d|tam acoustic|wall|ceiling|lambri|ngoai troi|fireproof|chong chay/.test(value)) return "panel";
+  if (/core board|cot van|mdf|hdf|hardware|phu kien noi that|keo dan|adhesive/.test(value)) return undefined;
   return undefined;
 }
 
