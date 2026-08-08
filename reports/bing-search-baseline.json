@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-08T16:19:52.327Z",
+  "webmasterStatus": "BLOCKED_AUTH",
+  "sitemap": null,
+  "indexNow": {
+    "endpoint": "https://api.indexnow.org/indexnow",
+    "keyLocation": "https://mdftungphat.com/indexnow-key.txt",
+    "submittedUrls": 19,
+    "status": 200,
+    "attempts": 1,
+    "submittedAt": "2026-08-08T16:19:52.327Z",
+    "sitemapHash": "bf265530558d42a7c7e276d66d2a7e2f46f09ed480bb703023a65b4b56783d2e",
+    "unchangedRerun": "SKIPPED_HASH_MATCH"
+  },
+  "indexedUrls": null,
+  "performanceBaseline": null,
+  "blocker": "No authenticated Bing Webmaster browser session or API credentials were available. IndexNow was verified independently through its public protocol endpoint."
+}
