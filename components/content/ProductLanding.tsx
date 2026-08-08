@@ -12,33 +12,40 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import type { ContentEntry } from "@/lib/content";
 import type { ProductFrontmatter } from "@/lib/content-schema";
 import { absoluteMediaUrl, mediaUrl } from "@/lib/media";
-import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, breadcrumbSchema } from "@/lib/seo";
+import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, absolutePageUrl, breadcrumbSchema, schemaPageId, webPageSchema } from "@/lib/seo";
 
 export function ProductLanding({ product }: { product: ContentEntry<ProductFrontmatter> }) {
-  const productSchema = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "@id": `${SITE_URL}/${product.slug}#product`,
-    name: product.title,
-    description: product.excerpt,
-    image: [absoluteMediaUrl(product.featuredImage, SITE_URL)],
-    category: product.category,
-    material: product.materialType,
-    url: `${SITE_URL}/${product.slug}`,
-    brand: product.supplier ? { "@type": "Brand", name: product.supplier } : undefined,
-    additionalProperty: [
-      ...product.dimensions.map((value) => ({ "@type": "PropertyValue", name: "Kích thước", value })),
-      ...product.thicknesses.map((value) => ({ "@type": "PropertyValue", name: "Độ dày", value })),
-      ...product.surfaces.map((value) => ({ "@type": "PropertyValue", name: "Bề mặt", value }))
-    ]
-  };
+  const productPath = `/${product.slug}`;
+  const productUrl = absolutePageUrl(productPath);
+  const isGuide = product.status === "guide";
+  const entityId = isGuide ? undefined : schemaPageId(productPath, "product");
+  const productSchema = isGuide
+    ? null
+    : {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "@id": entityId,
+        name: product.title,
+        description: product.excerpt,
+        image: [absoluteMediaUrl(product.featuredImage, SITE_URL)],
+        category: product.category,
+        material: product.materialType,
+        url: productUrl,
+        brand: product.supplier ? { "@type": "Brand", name: product.supplier } : undefined,
+        additionalProperty: [
+          ...product.dimensions.map((value) => ({ "@type": "PropertyValue", name: "Kích thước", value })),
+          ...product.thicknesses.map((value) => ({ "@type": "PropertyValue", name: "Độ dày", value })),
+          ...product.surfaces.map((value) => ({ "@type": "PropertyValue", name: "Bề mặt", value })),
+        ],
+      };
+  const pageSchema = webPageSchema({ path: productPath, name: product.title, description: product.excerpt, type: isGuide ? "CollectionPage" : "WebPage", primaryEntityId: entityId, datePublished: product.publishedAt, dateModified: product.updatedAt });
 
   const specGroups = [["Kích thước", product.dimensions], ["Độ dày", product.thicknesses], ["Bề mặt", product.surfaces], ["Tiêu chuẩn", product.standards]] as const;
   const detailGroups = [["Ứng dụng", product.applications], ["Điểm phù hợp", product.advantages], ["Lưu ý khi chọn", product.limitations]] as const;
 
   return (
     <>
-      <JsonLd data={[breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Sản phẩm", path: "/san-pham" }, { name: product.title, path: `/${product.slug}` }]), productSchema]} />
+      <JsonLd data={[pageSchema, breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Sản phẩm", path: "/san-pham" }, { name: product.title, path: productPath }]), ...(productSchema ? [productSchema] : [])]} />
       <SiteShell>
         <ContentEngagementTracker contentType="product" contentId={product.slug} contentTitle={product.title} contentCategory={product.category} />
         <PageHero
@@ -54,6 +61,18 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
             </>
           }
         />
+
+        <div className="border-b border-forest-900/10 bg-white">
+          <p className="container-shell py-3 text-xs font-semibold text-slate-500">Cập nhật dữ liệu: <time dateTime={product.updatedAt}>{product.updatedAt}</time></p>
+        </div>
+
+        <section data-answer-block className="border-b border-forest-900/10 bg-[#edf4ef] py-8" aria-labelledby="direct-answer-title">
+          <div className="container-shell max-w-4xl">
+            <p className="text-xs font-extrabold uppercase tracking-[.15em] text-wood-600">Trả lời nhanh</p>
+            <h2 id="direct-answer-title" className="mt-2 text-2xl font-extrabold text-forest-950">{product.title} là gì và phù hợp với ai?</h2>
+            <p className="mt-3 text-base leading-8 text-slate-700">{product.excerpt} Phù hợp cụ thể còn phụ thuộc vào ứng dụng, quy cách, bề mặt và điều kiện sử dụng; hãy xác nhận mã hàng thực tế trước khi chốt.</p>
+          </div>
+        </section>
 
         <section data-analytics-content className="section-space bg-white">
           <div className="container-shell grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start">

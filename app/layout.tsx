@@ -71,6 +71,14 @@ const siteSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "ImageObject",
+      "@id": `${absoluteUrl("/icon.png")}#image`,
+      url: absoluteUrl("/icon.png"),
+      contentUrl: absoluteUrl("/icon.png"),
+      width: 512,
+      height: 512,
+    },
+    {
       "@type": "WebSite",
       "@id": schemaPageId("/", "website"),
       url: absolutePageUrl("/"),
@@ -83,7 +91,7 @@ const siteSchema = {
       "@id": schemaPageId("/", "organization"),
       name: BUSINESS_NAME,
       url: absolutePageUrl("/"),
-      logo: "https://mdftungphat.com/icon.png",
+      logo: { "@id": `${absoluteUrl("/icon.png")}#image` },
       telephone: PHONE_E164,
       email: business.email,
       taxID: business.taxId,
@@ -97,6 +105,7 @@ const siteSchema = {
       "@id": schemaPageId("/", location.id),
       name: location.name,
       url: schemaPageId("/lien-he", location.id),
+      image: absoluteUrl(location.image),
       telephone: PHONE_E164,
       email: business.email,
       parentOrganization: { "@id": schemaPageId("/", "organization") },

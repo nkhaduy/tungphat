@@ -70,7 +70,7 @@ const cncCapabilities: { title: string; description: string; icon: LucideIcon }[
 ];
 
 const gallery = [
-  { src: "/images/cnc-service.webp", alt: "Máy CNC tại Tùng Phát đang gia công một tấm ván", label: "Máy CNC đang gia công" },
+  { src: "/images/cnc-service.webp", alt: "Ảnh minh họa máy CNC gia công một tấm ván", label: "Ảnh minh họa máy CNC" },
   { src: "/images/contact/chi-nhanh-1.webp", alt: "Mặt tiền cửa hàng Tùng Phát tại 14 Tam Bình", label: "Mặt tiền chi nhánh 1" },
   { src: "/images/contact/chi-nhanh-2.webp", alt: "Mặt tiền chi nhánh Tùng Phát tại 81B Tam Bình", label: "Mặt tiền chi nhánh 2" }
 ] as const;
@@ -90,6 +90,14 @@ export function HomeContent() {
 
   return (
     <>
+      <section data-answer-block className="border-y border-forest-900/10 bg-[#edf4ef] py-12 sm:py-16">
+        <div className="container-shell max-w-4xl">
+          <p className="eyebrow">Trả lời nhanh</p>
+          <h2 className="text-balance mt-4 font-display text-3xl font-extrabold leading-tight tracking-[-.035em] text-forest-950 sm:text-4xl">Tùng Phát cung cấp gì và phục vụ ở đâu?</h2>
+          <p className="mt-5 max-w-3xl text-base leading-8 text-slate-700">Công ty TNHH TMDV Gỗ Tùng Phát cung cấp vật liệu gỗ dạng tấm như MDF, MFC, plywood, gỗ ghép và các nhóm vật liệu liên quan đang được giới thiệu trên website. Tùng Phát cũng tiếp nhận cắt, khoan, soi rãnh và gia công CNC theo kích thước, file kỹ thuật hoặc bản phác thảo đã được kiểm tra. Doanh nghiệp có hai chi nhánh tại đường Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh và phục vụ khu vực TP. Hồ Chí Minh. Khi yêu cầu báo giá, khách hàng nên gửi loại vật liệu, độ dày, kích thước, số lượng, bề mặt và file nếu có; khả năng cung ứng, quy cách và giá chỉ được xác nhận sau khi đối chiếu dữ liệu thực tế.</p>
+          <p className="mt-4 text-xs font-semibold text-slate-600">Nguồn: cấu hình doanh nghiệp và nội dung sản phẩm/dịch vụ đã publish trên website Tùng Phát.</p>
+        </div>
+      </section>
       <section className="bg-white py-16 lg:py-24">
         <div className="container-shell">
           <SectionIntro eyebrow="Chọn đúng hướng trao đổi" title="Bạn đang cần gì?" centered />

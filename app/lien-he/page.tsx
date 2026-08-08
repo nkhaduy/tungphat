@@ -9,10 +9,10 @@ import { ViewTracker } from "@/components/ViewTracker";
 import business from "@/content/settings/business.json";
 import staticPages from "@/content/settings/static-pages.json";
 import { locations } from "@/lib/locations";
-import { BUSINESS_NAME, PHONE_DISPLAY, PHONE_HREF, SITE_URL, TAX_ID, ZALO_URL, breadcrumbSchema, createPageMetadata } from "@/lib/seo";
+import { BUSINESS_NAME, PHONE_DISPLAY, PHONE_HREF, SITE_URL, TAX_ID, ZALO_URL, breadcrumbSchema, createPageMetadata, webPageSchema } from "@/lib/seo";
 
 export const metadata = createPageMetadata({ title: "Liên hệ", description: "Liên hệ Tùng Phát qua Zalo, email hoặc điện thoại; xem địa chỉ và chỉ đường đến hai chi nhánh tại đường Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh.", path: "/lien-he" });
-const contactPageSchema = { "@context": "https://schema.org", "@type": "ContactPage", "@id": `${SITE_URL}/lien-he#webpage`, url: `${SITE_URL}/lien-he`, name: "Liên hệ Tùng Phát", about: { "@id": `${SITE_URL}/#organization` } };
+const contactPageSchema = { ...webPageSchema({ path: "/lien-he", name: "Liên hệ Tùng Phát", description: "Thông tin liên hệ và địa chỉ các chi nhánh Tùng Phát.", type: "ContactPage", primaryEntityId: `${SITE_URL}/#organization` }), "@type": "ContactPage" };
 const phones: ContactPhone[] = [{ display: `${PHONE_DISPLAY} (Mr. Tùng)`, href: PHONE_HREF }];
 
 export default function ContactPage() {

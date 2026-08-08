@@ -10,7 +10,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import type { ContentEntry } from "@/lib/content";
 import type { ArticleFrontmatter } from "@/lib/content-schema";
 import { absoluteMediaUrl, mediaUrl } from "@/lib/media";
-import { SITE_URL, absolutePageUrl, breadcrumbSchema, schemaPageId } from "@/lib/seo";
+import { SITE_URL, absolutePageUrl, breadcrumbSchema, schemaPageId, webPageSchema } from "@/lib/seo";
 
 function readableSlug(slug: string) {
   const label = slug.replace(/-/g, " ");
@@ -18,9 +18,13 @@ function readableSlug(slug: string) {
 }
 
 export function ArticleLanding({ article }: { article: ContentEntry<ArticleFrontmatter> }) {
+  const articlePath = `/bai-viet/${article.slug}`;
+  const articleUrl = absolutePageUrl(articlePath);
+  const articleId = schemaPageId(articlePath, "article");
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": articleId,
     headline: article.title,
     description: article.excerpt,
     image: absoluteMediaUrl(article.featuredImage, SITE_URL),
@@ -28,8 +32,9 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
     dateModified: article.updatedAt,
     author: { "@type": "Organization", name: article.author, url: absolutePageUrl("/") },
     publisher: { "@id": schemaPageId("/", "organization") },
-    mainEntityOfPage: absolutePageUrl(`/bai-viet/${article.slug}`),
+    mainEntityOfPage: articleUrl,
   };
+  const pageSchema = webPageSchema({ path: articlePath, name: article.title, description: article.excerpt, primaryEntityId: articleId, datePublished: article.publishedAt, dateModified: article.updatedAt });
   const relatedLinks = [
     ...article.relatedProducts.map((slug) => ({ href: `/${slug}`, label: readableSlug(slug), type: "Vật liệu" })),
     ...article.relatedArticles.map((slug) => ({ href: `/bai-viet/${slug}`, label: readableSlug(slug), type: "Bài viết" })),
@@ -37,7 +42,7 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
 
   return (
     <>
-      <JsonLd data={[breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Bài viết", path: "/bai-viet" }, { name: article.title, path: `/bai-viet/${article.slug}` }]), articleSchema]} />
+      <JsonLd data={[pageSchema, breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Bài viết", path: "/bai-viet" }, { name: article.title, path: articlePath }]), articleSchema]} />
       <SiteShell>
         <ContentEngagementTracker contentType="article" contentId={article.slug} contentTitle={article.title} contentCategory={article.category} />
         <article data-analytics-content>

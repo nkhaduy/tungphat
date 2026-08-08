@@ -6,7 +6,7 @@ import {
   twitterSocialImage,
   type SocialImage,
 } from "@/lib/social-images";
-import { OPEN_GRAPH_LOCALE } from "@/lib/locale";
+import { OPEN_GRAPH_LOCALE, SCHEMA_LANGUAGE } from "@/lib/locale";
 
 export const SITE_URL = seo.siteUrl;
 export const SITE_NAME = seo.siteName;
@@ -47,6 +47,7 @@ export function absolutePageUrl(path = "/") {
     url.hostname === `www.${canonicalOrigin.hostname}`;
 
   if (!isInternalHost) return value;
+  if (url.username || url.password) throw new Error(`Page URL must not contain credentials: ${value}`);
 
   url.protocol = canonicalOrigin.protocol;
   url.host = canonicalOrigin.host;
@@ -68,6 +69,42 @@ export function schemaPageId(path: string, fragment: string) {
   const url = new URL(absolutePageUrl(path));
   url.hash = normalizedFragment;
   return url.toString();
+}
+
+export type WebPageSchemaOptions = {
+  path: string;
+  name: string;
+  description: string;
+  type?: "WebPage" | "CollectionPage" | "ContactPage";
+  primaryEntityId?: string;
+  datePublished?: string;
+  dateModified?: string;
+};
+
+export function webPageSchema({
+  path,
+  name,
+  description,
+  type = "WebPage",
+  primaryEntityId,
+  datePublished,
+  dateModified,
+}: WebPageSchemaOptions) {
+  const pageUrl = absolutePageUrl(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": type,
+    "@id": schemaPageId(path, "webpage"),
+    url: pageUrl,
+    name,
+    description,
+    inLanguage: SCHEMA_LANGUAGE,
+    isPartOf: { "@id": schemaPageId("/", "website") },
+    about: { "@id": schemaPageId("/", "organization") },
+    ...(primaryEntityId ? { mainEntity: { "@id": primaryEntityId } } : {}),
+    ...(datePublished ? { datePublished } : {}),
+    ...(dateModified ? { dateModified } : {}),
+  };
 }
 
 export function formatPageTitle(title: string) {

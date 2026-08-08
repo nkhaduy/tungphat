@@ -19,3 +19,5 @@ local-media/
 work/
 *.tsbuildinfo
 .vercel
+.indexnow-state.json
+public/indexnow-key.txt

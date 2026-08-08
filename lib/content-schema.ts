@@ -39,7 +39,10 @@ const optionalCanonical = z
       .string()
       .url()
       .refine(
-        (value) => new URL(value).origin === "https://mdftungphat.com",
+        (value) => {
+          const url = new URL(value);
+          return url.origin === "https://mdftungphat.com" && !url.username && !url.password && !url.search && !url.hash;
+        },
         "Canonical phải thuộc https://mdftungphat.com",
       ),
   ])

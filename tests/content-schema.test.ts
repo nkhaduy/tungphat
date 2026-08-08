@@ -50,5 +50,6 @@ describe("productSchema", () => {
     expect(productSchema.safeParse({ ...product, slug: "Ván MDF" }).success).toBe(false);
     expect(productSchema.safeParse({ ...product, seoDescription: "quá ngắn" }).success).toBe(false);
     expect(productSchema.safeParse({ ...product, featuredImage: "/files/catalog.pdf" }).success).toBe(false);
+    expect(productSchema.safeParse({ ...product, canonical: "https://attacker:secret@mdftungphat.com/van-mdf-kiem-thu" }).success).toBe(false);
   });
 });
