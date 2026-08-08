@@ -1,4 +1,4 @@
-import { MessageCircle } from "lucide-react";
+import Image from "next/image";
 import { HomeContent } from "@/components/home/HomeContent";
 import { HomeBenefits, HomeHero } from "@/components/home/HomeHero";
 import { RequirementFinder } from "@/components/home/RequirementFinder";
@@ -34,9 +34,16 @@ export default function Home() {
         eventName="click_zalo"
         eventProperties={{ location: "home_floating" }}
         aria-label="Mở Zalo Tùng Phát"
-        className="fixed bottom-[max(16px,env(safe-area-inset-bottom))] right-4 z-40 hidden h-14 w-14 place-items-center rounded-full border-2 border-white bg-[#0068ff] text-white shadow-[0_10px_28px_rgba(0,0,0,.25)] transition hover:-translate-y-1 md:grid md:bottom-5 md:right-5"
+        className="floating-zalo fixed bottom-[max(16px,env(safe-area-inset-bottom))] right-4 z-40 hidden h-16 w-16 place-items-center rounded-full border-2 border-white bg-white p-0.5 md:grid md:bottom-5 md:right-5"
       >
-        <MessageCircle size={24} aria-hidden="true" />
+        <Image
+          src="/images/zalo-contact.png"
+          alt=""
+          width={64}
+          height={64}
+          className="floating-zalo__logo h-full w-full rounded-full object-contain"
+          aria-hidden="true"
+        />
       </TrackedLink>
       </SiteShell>
     </>

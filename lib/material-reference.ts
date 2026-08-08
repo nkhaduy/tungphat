@@ -1,4 +1,4 @@
-import type { Material, MaterialDataset } from "@/lib/materials";
+import { getMaterialDataset, type Material, type MaterialComparisonRecord, type MaterialDataset } from "@/lib/materials";
 
 export type MaterialReferenceFilters = { search: string; category: string };
 
@@ -8,7 +8,7 @@ export function filterMaterials(materials: Material[], filters: MaterialReferenc
     const categoryMatches = filters.category === "all" || material.category === filters.category;
     if (!categoryMatches) return false;
     if (!search) return true;
-    const searchable = [material.name, material.category, material.materialClass, ...material.applications, ...material.limitations]
+    const searchable = [material.name, material.category, material.materialClass, material.manufacturer ?? "", material.finish ?? "", ...material.applications, ...material.limitations]
       .join(" ")
       .toLocaleLowerCase("vi-VN");
     return searchable.includes(search);
@@ -25,19 +25,33 @@ function printable(value: string | string[] | null) {
 }
 
 export function toMaterialReferenceCsv(dataset: MaterialDataset) {
-  const header = ["slug", "name", "category", "materialClass", "dimensions", "thicknesses", "surface", "applications", "limitations", "sourceIds", "lastVerified"];
+  const header = ["id", "recordType", "slug", "name", "manufacturer", "category", "materialClass", "dimensions", "thicknesses", "finish", "surface", "applications", "limitations", "sourceIds", "lastVerified"];
   const rows = dataset.materials.map((material) => [
+    material.id,
+    material.recordType,
     material.slug,
     material.name,
+    printable(material.manufacturer),
     material.category,
     material.materialClass,
     printable(material.dimensions),
     printable(material.thicknesses),
+    printable(material.finish),
     printable(material.surface),
     printable(material.applications),
     printable(material.limitations),
     material.sourceIds.join("; "),
     dataset.lastVerified,
   ]);
+  return [header.join(","), ...rows.map((row) => row.map(csvCell).join(","))].join("\n") + "\n";
+}
+
+export function getMaterialComparisonMatrix() {
+  return getMaterialDataset().comparisonMatrix;
+}
+
+export function toMaterialComparisonCsv(records: MaterialComparisonRecord[]) {
+  const header = ["id", "name", "composition", "density", "moistureBehavior", "machining", "surfaceFinish", "typicalApplications", "choiceGuidance", "sourceIds"];
+  const rows = records.map((record) => [record.id, record.name, printable(record.composition), printable(record.density), printable(record.moistureBehavior), printable(record.machining), printable(record.surfaceFinish), printable(record.typicalApplications), printable(record.choiceGuidance), record.sourceIds.join("; ")]);
   return [header.join(","), ...rows.map((row) => row.map(csvCell).join(","))].join("\n") + "\n";
 }

@@ -3,7 +3,7 @@ title: "Gỗ ghép là gì? Cấu tạo và cách chọn theo nhu cầu"
 slug: "go-ghep-la-gi"
 excerpt: "Gỗ ghép là tấm gỗ tạo từ các thanh gỗ liên kết với nhau. Bài này tóm tắt cách chọn theo hạng mục, bề mặt, môi trường và yêu cầu CNC mà không suy đoán quy cách tồn kho."
 publishedAt: "2026-07-16"
-updatedAt: "2026-08-08"
+updatedAt: "2026-08-09"
 author: "Ban biên tập Tùng Phát"
 category: "Kiến thức gỗ ghép"
 tags: ["gỗ ghép", "ván gỗ ghép", "CNC gỗ"]
@@ -58,6 +58,8 @@ Tùng Phát đang tách [gỗ ghép cao su](/go-ghep-cao-su/) và [gỗ ghép tr
 
 Website chưa công bố catalogue tồn kho hoàn chỉnh. Hãy xem [tham chiếu vật liệu](/tham-chieu-vat-lieu/) và [liên hệ Tùng Phát](/lien-he/) để đối chiếu dữ liệu thực tế trước khi nhận báo giá.
 
+Khi cần đặt cạnh MDF hoặc plywood, dùng [ma trận so sánh có nguồn](/tham-chieu-vat-lieu/#family-hdf) để phân biệt cấu tạo thay vì suy luận từ tên gọi. Với chi tiết theo file, quy trình [gia công CNC](/gia-cong-cnc/) và trang [cắt CNC gỗ](/cat-cnc-go/) nêu rõ dữ liệu cần gửi.
+
 ## Nguồn và giới hạn dữ liệu
 
-Bài viết được biên tập từ các trang [gỗ ghép](/go-ghep/), [gỗ ghép cao su](/go-ghep-cao-su/), [gỗ ghép tràm](/go-ghep-tram/) và bộ [knowledge.json](/knowledge.json), cập nhật ngày 2026-08-08. Các trường chưa có bằng chứng trong catalogue được giữ ở trạng thái cần xác minh; bài không thay thế bản vẽ kết cấu hoặc xác nhận kỹ thuật cho từng lô hàng.
+Bài viết được biên tập từ các trang [gỗ ghép](/go-ghep/), [gỗ ghép cao su](/go-ghep-cao-su/), [gỗ ghép tràm](/go-ghep-tram/) và bộ [knowledge.json](/knowledge.json), cập nhật ngày 2026-08-09. Các trường chưa có bằng chứng trong catalogue được giữ ở trạng thái cần xác minh; bài không thay thế bản vẽ kết cấu hoặc xác nhận kỹ thuật cho từng lô hàng.

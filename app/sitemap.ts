@@ -12,10 +12,12 @@ import staticPages from "@/content/settings/static-pages.json";
 import { getSupplierSitemapEntries } from "@/lib/catalog/suppliers/sitemap";
 import { getThanhThuyCatalog } from "@/lib/thanh-thuy";
 import { buildThanhThuySitemapEntries } from "@/lib/thanh-thuy-sitemap";
+import { getMaterialDataset } from "@/lib/materials";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const materialDataset = getMaterialDataset();
   const articles = getPublishedArticles();
   const projects = getPublishedProjects();
   const staticRouteRules = [
@@ -40,7 +42,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter(({ include }) => include)
     .map(({ route }) => ({
       url: absoluteUrl(route),
-      lastModified: staticPages.updatedAt,
+      lastModified:
+        route === "/tham-chieu-vat-lieu/"
+          ? materialDataset.lastVerified
+          : staticPages.updatedAt,
       changeFrequency: route === "/" ? "weekly" : "monthly",
       priority: route === "/" ? 1 : 0.7,
     }));
