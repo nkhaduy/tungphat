@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SupplierColorCodeSearch } from "@/components/catalog/AnCuongCatalogueSearch";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
@@ -9,7 +10,7 @@ import { getSupplierSearchIndex } from "@/lib/catalog/suppliers/search-index";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteShell } from "@/components/site/SiteShell";
-import { humanizeCatalogLabel } from "@/lib/catalog/ui";
+import { formatCatalogCardTitle, humanizeCatalogLabel } from "@/lib/catalog/ui";
 
 type RouteProps = { params: Promise<{ supplier: string; material: string }> };
 
@@ -36,6 +37,7 @@ export default async function SupplierMaterialRoute({ params }: RouteProps) {
   if (!entries.length) notFound();
   const materialLabel = humanizeCatalogLabel(material);
   const path = `/catalogue/${supplier}/${material}/`;
+  const referenceEntries = entries.filter((entry) => entry.indexable);
   return <SiteShell>
     <JsonLd data={breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Mã màu", path: "/catalogue/" }, { name: definition.displayName, path: `/catalogue/${supplier}/` }, { name: materialLabel, path }])} />
     <section className="border-b border-forest-900/10 bg-[#f7f8f5] py-8 sm:py-10 lg:py-12">
@@ -43,6 +45,15 @@ export default async function SupplierMaterialRoute({ params }: RouteProps) {
         <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Mã màu", href: "/catalogue/" }, { label: definition.displayName, href: `/catalogue/${supplier}/` }, { label: materialLabel }]} />
         <h1 className="mt-5 text-3xl font-extrabold text-forest-950 sm:text-4xl">Mã màu {materialLabel} · {definition.displayName}</h1>
         <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700">{entries.length} mã màu đã xác minh. Trang này chỉ chứa mã bề mặt thực tế, không gồm dòng sản phẩm hoặc tài liệu kỹ thuật.</p>
+        {referenceEntries.length ? (
+          <nav aria-label={`Mã ${materialLabel} đã sẵn sàng tham chiếu`} className="mt-5 flex flex-wrap gap-2">
+            {referenceEntries.map((entry) => (
+              <Link key={entry.id ?? entry.canonicalRoute} href={entry.canonicalRoute} className="pressable inline-flex min-h-11 items-center border border-forest-900/15 bg-white px-4 text-sm font-bold text-forest-950 hover:border-wood-500">
+                {formatCatalogCardTitle(entry)}
+              </Link>
+            ))}
+          </nav>
+        ) : null}
         <SupplierColorCodeSearch entries={entries} supplierId={supplier as "an-cuong" | "ba-thanh" | "thanh-thuy"} supplierLabel={definition.displayName} />
       </PageContainer>
     </section>
