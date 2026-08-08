@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-08-08T17:58:31.223Z",
+  "endpoint": "https://api.indexnow.org/indexnow",
+  "status": 200,
+  "ok": true,
+  "urlCount": 4,
+  "urls": [
+    "https://mdftungphat.com/san-pham/",
+    "https://mdftungphat.com/gia-cong-cnc/",
+    "https://mdftungphat.com/cat-cnc-go/",
+    "https://mdftungphat.com/van-go-cong-nghiep/"
+  ],
+  "body": null
+}

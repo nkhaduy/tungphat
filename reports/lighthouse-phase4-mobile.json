@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0",
+  "url": "https://mdftungphat.com",
+  "tool": "Lighthouse 13.4.1",
+  "strategy": "mobile default simulated throttling",
+  "sampleCount": 3,
+  "samples": [
+    {
+      "run": 1,
+      "fetchedAt": "2026-08-08T17:59:09.436Z",
+      "score": 67,
+      "lcpMs": 5055,
+      "fcpMs": 1397,
+      "cls": 0,
+      "tbtMs": 381,
+      "ttfbMs": 36
+    },
+    {
+      "run": 2,
+      "fetchedAt": "2026-08-08T17:59:25.112Z",
+      "score": 98,
+      "lcpMs": 2241,
+      "fcpMs": 1000,
+      "cls": 0,
+      "tbtMs": 68,
+      "ttfbMs": 38
+    },
+    {
+      "run": 3,
+      "fetchedAt": "2026-08-08T17:59:37.632Z",
+      "score": 97,
+      "lcpMs": 2463,
+      "fcpMs": 1037,
+      "cls": 0,
+      "tbtMs": 96,
+      "ttfbMs": 38
+    }
+  ],
+  "median": {
+    "score": 97,
+    "lcpMs": 2463,
+    "fcpMs": 1037,
+    "cls": 0,
+    "tbtMs": 96,
+    "ttfbMs": 38
+  },
+  "lcpElement": {
+    "selector": "div.container-shell > div.relative > div.relative > img.object-cover",
+    "snippet": "<img alt=\"Máy CNC tại Tùng Phát đang gia công một tấm ván\" fetchpriority=\"high\" decoding=\"sync\" data-nimg=\"fill\" class=\"object-cover\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" src=\"/images/cnc-service-home.webp\">",
+    "nodeLabel": "Máy CNC tại Tùng Phát đang gia công một tấm ván",
+    "resource": "/images/cnc-service-home.webp"
+  },
+  "representativeBreakdownMs": {
+    "timeToFirstByte": 134,
+    "resourceLoadDelay": 12,
+    "resourceLoadDuration": 46,
+    "elementRenderDelay": 165
+  },
+  "limitation": "Lab data only. The first cold sample was materially slower; the median is reported and all samples are retained in this summary. CrUX field data was unavailable without API credentials."
+}

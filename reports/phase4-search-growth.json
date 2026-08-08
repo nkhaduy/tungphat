@@ -1,0 +1,1823 @@
+{
+  "schemaVersion": "1.1",
+  "phase": "4",
+  "generatedAt": "2026-08-08T18:01:22.661Z",
+  "production": {
+    "url": "https://mdftungphat.com",
+    "deployedSha": "fe2713f6f4112f8e1e600a640fde5b083209c426",
+    "deploymentId": "dpl_GpiZxztQeU4vfyUpd9L7Ym8n82a2",
+    "status": "READY",
+    "customDomain": "https://mdftungphat.com",
+    "liveVerification": "mdftungphat.com and www.mdftungphat.com verified 200/308->200"
+  },
+  "performance": {
+    "before": {
+      "mobileScore": 78,
+      "lcpMs": 4500,
+      "fcpMs": 2850,
+      "cls": 0,
+      "tbtMs": 126,
+      "ttfbMs": 37,
+      "source": "Phase 3 mobile Lighthouse lab baseline supplied in the Phase 4 source-of-truth."
+    },
+    "after": {
+      "mobileScore": 97,
+      "lcpMs": 2463,
+      "fcpMs": 1037,
+      "cls": 0,
+      "tbtMs": 96,
+      "ttfbMs": 38,
+      "lcpElement": "/images/cnc-service-home.webp",
+      "rootCause": "Render/main-thread delay dominated LCP; the LCP image itself was small, preloaded and transferred quickly.",
+      "source": "Median of 3 sequential Lighthouse 13.4.1 production mobile runs: scores 67/98/97; raw LCP 5055/2241/2463 ms."
+    },
+    "fieldData": null
+  },
+  "seoGeo": {
+    "indexableUrls": 19,
+    "directAnswerPages": 15,
+    "verifiedDataPages": 10,
+    "provenancePages": 14,
+    "materialRecords": 6,
+    "entityVerifiedConsistent": 2,
+    "thinIndexables": 0,
+    "canonicalErrors": 0,
+    "schemaErrors": 0,
+    "brokenLinks": 0,
+    "aiCrawlerBlockers": 0
+  },
+  "informationMoat": {
+    "materialRecordsAdded": 0,
+    "materialRecords": 6,
+    "provenanceSources": 6,
+    "cncPreflightChecks": 12,
+    "cncPreflightSourceUrls": 3,
+    "downloadableResources": [
+      "https://mdftungphat.com/material-reference.csv",
+      "https://mdftungphat.com/cnc-preflight-checklist.csv"
+    ],
+    "publishedArticles": 3,
+    "fabricatedCases": 0,
+    "catalogueDiscovery": {
+      "importedCandidates": null,
+      "publicRecordsAdded": 0,
+      "status": "EDITORIAL_REVIEW_REQUIRED"
+    }
+  },
+  "queryMap": {
+    "queryCount": 100,
+    "covered": 87,
+    "partial": 3,
+    "gap": 0,
+    "shouldNotTarget": 10,
+    "modifiedUrls": [
+      "/san-pham/",
+      "/gia-cong-cnc/",
+      "/cat-cnc-go/",
+      "/van-go-cong-nghiep/"
+    ]
+  },
+  "authentication": {
+    "googleSearchConsole": {
+      "status": "BLOCKED_AUTH",
+      "property": null,
+      "sitemap": null,
+      "indexedUrls": null,
+      "queries": null,
+      "impressions": null,
+      "clicks": null,
+      "inspectedUrls": [],
+      "blocker": "No authenticated browser session or API credentials were available."
+    },
+    "bingWebmaster": {
+      "status": "BLOCKED_AUTH",
+      "sitemap": null,
+      "indexedUrls": null,
+      "performanceBaseline": null,
+      "blocker": "No authenticated Bing Webmaster account was available."
+    },
+    "googleBusinessProfile": {
+      "status": "BLOCKED_AUTH",
+      "branches": null
+    },
+    "bingPlaces": {
+      "status": "BLOCKED_AUTH"
+    },
+    "facebook": {
+      "status": "MISSING",
+      "url": null
+    },
+    "zalo": {
+      "status": "CONSISTENT",
+      "url": "https://zalo.me/0909259160"
+    }
+  },
+  "entityCorroboration": {
+    "summary": {
+      "total": 6,
+      "verified": 0,
+      "consistent": 2,
+      "corroborated": 2,
+      "mismatches": 0,
+      "missing": 1,
+      "unverified": 2,
+      "authBlocked": 1
+    },
+    "records": [
+      {
+        "source": "Official website",
+        "sourceType": "website",
+        "url": "https://mdftungphat.com/lien-he/",
+        "entity": "Công ty TNHH TMDV Gỗ Tùng Phát",
+        "branch": null,
+        "address": "14 Tam Bình và 81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
+        "phone": "0909 259 160",
+        "website": "https://mdftungphat.com/",
+        "categories": [
+          "LocalBusiness",
+          "MDF",
+          "CNC gỗ",
+          "Vật liệu nội thất"
+        ],
+        "relationship": "first-party source of truth",
+        "evidence": "Business settings and the public contact page use the same legal name, phone and two branch addresses.",
+        "consistency": "CONSISTENT",
+        "confidence": "high",
+        "checkedAt": "2026-08-08T00:00:00+07:00"
+      },
+      {
+        "source": "Google Maps - branch 1",
+        "sourceType": "maps",
+        "url": "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
+        "entity": "Cửa Hàng Gỗ Ghép Tùng Phát",
+        "branch": "branch 1",
+        "address": "14 Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
+        "phone": null,
+        "website": null,
+        "categories": [
+          "Cửa hàng vật liệu gỗ"
+        ],
+        "relationship": "location listing referenced by the official website",
+        "evidence": "The official website stores this Google place ID and address; authenticated profile details were not available through CLI.",
+        "consistency": "UNVERIFIED",
+        "confidence": "medium",
+        "checkedAt": "2026-08-08T00:00:00+07:00"
+      },
+      {
+        "source": "Google Maps - branch 2",
+        "sourceType": "maps",
+        "url": "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY",
+        "entity": "MDF - CNC TÙNG PHÁT",
+        "branch": "branch 2",
+        "address": "81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
+        "phone": null,
+        "website": null,
+        "categories": [
+          "MDF",
+          "CNC gỗ"
+        ],
+        "relationship": "location listing referenced by the official website",
+        "evidence": "The official website stores this Google place ID and address; authenticated profile details were not available through CLI.",
+        "consistency": "UNVERIFIED",
+        "confidence": "medium",
+        "checkedAt": "2026-08-08T00:00:00+07:00"
+      },
+      {
+        "source": "Zalo",
+        "sourceType": "social",
+        "url": "https://zalo.me/0909259160",
+        "entity": null,
+        "branch": null,
+        "address": null,
+        "phone": "0909 259 160",
+        "website": null,
+        "categories": [
+          "Business contact"
+        ],
+        "relationship": "official contact profile linked by the website",
+        "evidence": "The Zalo profile URL encodes the same public phone number used by the website.",
+        "consistency": "CONSISTENT",
+        "confidence": "medium",
+        "checkedAt": "2026-08-08T00:00:00+07:00"
+      },
+      {
+        "source": "Bing Places",
+        "sourceType": "maps",
+        "url": null,
+        "entity": null,
+        "branch": null,
+        "address": null,
+        "phone": null,
+        "website": null,
+        "categories": [],
+        "relationship": "local business listing",
+        "evidence": "No verified Bing Places listing URL is present in the repository or accessible account context.",
+        "consistency": "AUTH_BLOCKED",
+        "confidence": "high",
+        "checkedAt": "2026-08-08T00:00:00+07:00"
+      },
+      {
+        "source": "Official Facebook",
+        "sourceType": "social",
+        "url": null,
+        "entity": null,
+        "branch": null,
+        "address": null,
+        "phone": null,
+        "website": null,
+        "categories": [],
+        "relationship": "social identity",
+        "evidence": "No verified Facebook URL is present in business settings; no profile was inferred from search results.",
+        "consistency": "MISSING",
+        "confidence": "high",
+        "checkedAt": "2026-08-08T00:00:00+07:00"
+      }
+    ]
+  },
+  "indexNow": {
+    "status": "PASS",
+    "endpoint": "https://api.indexnow.org/indexnow",
+    "submittedAt": "2026-08-08T17:58:31.223Z",
+    "submittedCount": 4,
+    "failedCount": 0,
+    "retryAttempts": 1,
+    "responseStatus": 200,
+    "unchangedRun": "DELTA_ONLY",
+    "urls": [
+      "https://mdftungphat.com/san-pham/",
+      "https://mdftungphat.com/gia-cong-cnc/",
+      "https://mdftungphat.com/cat-cnc-go/",
+      "https://mdftungphat.com/van-go-cong-nghiep/"
+    ]
+  },
+  "searchBenchmark": {
+    "phase2": {
+      "checkedAt": "2026-08-08T09:23:12.518Z",
+      "surface": "Bing Web Search RSS",
+      "queryCount": 40,
+      "foundCount": 0,
+      "citedCount": 0,
+      "categoryCounts": {
+        "commercial": {
+          "queries": 10,
+          "found": 0,
+          "cited": 0
+        },
+        "informational": {
+          "queries": 10,
+          "found": 0,
+          "cited": 0
+        },
+        "comparison": {
+          "queries": 10,
+          "found": 0,
+          "cited": 0
+        },
+        "local-cnc": {
+          "queries": 10,
+          "found": 0,
+          "cited": 0
+        }
+      },
+      "limitation": "Public Bing RSS observation only; no direct AI-answer citation, Google Search Console, or Bing Webmaster ranking data."
+    },
+    "phase4": {
+      "summary": {
+        "queryCount": 40,
+        "foundCount": 0,
+        "citedCount": null,
+        "directAiCitationAvailable": false,
+        "categoryCounts": {
+          "commercial": {
+            "queries": 10,
+            "found": 0,
+            "cited": 0
+          },
+          "informational": {
+            "queries": 10,
+            "found": 0,
+            "cited": 0
+          },
+          "comparison": {
+            "queries": 10,
+            "found": 0,
+            "cited": 0
+          },
+          "local-cnc": {
+            "queries": 10,
+            "found": 0,
+            "cited": 0
+          }
+        },
+        "topCompetitors": [
+          {
+            "domain": "shopee.vn",
+            "observationCount": 17
+          },
+          {
+            "domain": "kosmos.vn",
+            "observationCount": 15
+          },
+          {
+            "domain": "vi.wikipedia.org",
+            "observationCount": 14
+          },
+          {
+            "domain": "ancuong.com",
+            "observationCount": 12
+          },
+          {
+            "domain": "hoangphatwood.vn",
+            "observationCount": 12
+          },
+          {
+            "domain": "en.wikipedia.org",
+            "observationCount": 10
+          },
+          {
+            "domain": "gominhlong.com",
+            "observationCount": 10
+          },
+          {
+            "domain": "govi.vn",
+            "observationCount": 10
+          },
+          {
+            "domain": "hoanmydecor.vn",
+            "observationCount": 10
+          },
+          {
+            "domain": "homedit.com",
+            "observationCount": 10
+          },
+          {
+            "domain": "noithatmanhhe.vn",
+            "observationCount": 10
+          },
+          {
+            "domain": "thewoodcarpenter.com",
+            "observationCount": 10
+          },
+          {
+            "domain": "goanthanh.com",
+            "observationCount": 7
+          },
+          {
+            "domain": "kesgroup.vn",
+            "observationCount": 7
+          },
+          {
+            "domain": "theptriviet.com.vn",
+            "observationCount": 7
+          },
+          {
+            "domain": "vietnamplywood.com.vn",
+            "observationCount": 7
+          },
+          {
+            "domain": "youtube.com",
+            "observationCount": 7
+          },
+          {
+            "domain": "banhang.shopee.vn",
+            "observationCount": 5
+          },
+          {
+            "domain": "cellphones.com.vn",
+            "observationCount": 5
+          },
+          {
+            "domain": "chotot.com",
+            "observationCount": 5
+          }
+        ]
+      },
+      "comparison": {
+        "gainedPresence": [],
+        "lostPresence": [],
+        "newCompetitors": [
+          "app.meinvoice.vn",
+          "hoadondientu.gdt.gov.vn",
+          "topcv.vn",
+          "zhihu.com"
+        ],
+        "indexabilityChanges": []
+      },
+      "records": [
+        {
+          "query": "mua ván MDF tại TP.HCM",
+          "category": "commercial",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/van-mdf/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "muasamcong.mpi.gov.vn",
+            "daotao.muasamcong.gov.vn",
+            "shopee.vn",
+            "chotot.com",
+            "lazada.vn",
+            "banhang.shopee.vn",
+            "youtube.com",
+            "cellphones.com.vn",
+            "vi.wikipedia.org"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "ván MDF Thủ Đức ở đâu",
+          "category": "commercial",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/van-mdf/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "shopee.vn",
+            "vietnamplywood.com.vn",
+            "theptriviet.com.vn",
+            "ancuong.com",
+            "hoangphatwood.vn",
+            "kesgroup.vn",
+            "goanthanh.com"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "đơn vị cung cấp MDF chống ẩm TP.HCM",
+          "category": "commercial",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/mdf-chong-am/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "maudon.vn",
+            "luatvietnam.vn",
+            "hoadondientu.gdt.gov.vn",
+            "thuvienphapluat.vn",
+            "vieclam24h.vn",
+            "fast.com.vn",
+            "topcv.vn",
+            "app.meinvoice.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "mua MDF chống ẩm cho tủ bếp",
+          "category": "commercial",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/mdf-chong-am/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "muasamcong.mpi.gov.vn",
+            "daotao.muasamcong.gov.vn",
+            "shopee.vn",
+            "chotot.com",
+            "lazada.vn",
+            "banhang.shopee.vn",
+            "youtube.com",
+            "cellphones.com.vn",
+            "vi.wikipedia.org"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "mua gỗ ghép cao su TP.HCM",
+          "category": "commercial",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/go-ghep-cao-su/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "muasamcong.mpi.gov.vn",
+            "daotao.muasamcong.gov.vn",
+            "shopee.vn",
+            "chotot.com",
+            "lazada.vn",
+            "banhang.shopee.vn",
+            "youtube.com",
+            "cellphones.com.vn",
+            "vi.wikipedia.org"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "mua gỗ ghép tràm TP.HCM",
+          "category": "commercial",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/go-ghep-tram/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "muasamcong.mpi.gov.vn",
+            "daotao.muasamcong.gov.vn",
+            "shopee.vn",
+            "chotot.com",
+            "lazada.vn",
+            "banhang.shopee.vn",
+            "youtube.com",
+            "cellphones.com.vn",
+            "vi.wikipedia.org"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "nơi bán gỗ ghép theo quy cách",
+          "category": "commercial",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/go-ghep/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "vi.wiktionary.org",
+            "tratu.soha.vn",
+            "vtudien.com",
+            "youtube.com",
+            "vanvn.net",
+            "tudientiengviet.org",
+            "thuvienphapluat.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "ván gỗ công nghiệp cho xưởng nội thất",
+          "category": "commercial",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/van-go-cong-nghiep/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "shopee.vn",
+            "vietnamplywood.com.vn",
+            "theptriviet.com.vn",
+            "ancuong.com",
+            "hoangphatwood.vn",
+            "kesgroup.vn",
+            "goanthanh.com"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "đặt ván MDF theo danh sách cắt",
+          "category": "commercial",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/van-mdf/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "vtudien.com",
+            "vi.wiktionary.org",
+            "agoda.com",
+            "nghengu.vn",
+            "tudientiengviet.org",
+            "thuvienphapluat.vn",
+            "vietnamairlines.com",
+            "vdict.com",
+            "abay.vn",
+            "traveloka.com"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "mua ván nguyên tấm và cắt CNC",
+          "category": "commercial",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/san-pham/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "muasamcong.mpi.gov.vn",
+            "daotao.muasamcong.gov.vn",
+            "shopee.vn",
+            "chotot.com",
+            "lazada.vn",
+            "banhang.shopee.vn",
+            "youtube.com",
+            "cellphones.com.vn",
+            "vi.wikipedia.org"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "ván MDF là gì",
+          "category": "informational",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/van-mdf/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "shopee.vn",
+            "vietnamplywood.com.vn",
+            "theptriviet.com.vn",
+            "ancuong.com",
+            "hoangphatwood.vn",
+            "kesgroup.vn",
+            "goanthanh.com"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "MDF chống ẩm là gì",
+          "category": "informational",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/mdf-chong-am/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "noithatmanhhe.vn",
+            "kosmos.vn",
+            "en.wikipedia.org",
+            "govi.vn",
+            "homedit.com",
+            "thewoodcarpenter.com",
+            "gominhlong.com",
+            "hoanmydecor.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "MDF chống ẩm có chịu nước không",
+          "category": "informational",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/mdf-chong-am/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "noithatmanhhe.vn",
+            "kosmos.vn",
+            "en.wikipedia.org",
+            "govi.vn",
+            "homedit.com",
+            "thewoodcarpenter.com",
+            "gominhlong.com",
+            "hoanmydecor.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "gỗ ghép là gì",
+          "category": "informational",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/go-ghep/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "vi.wikipedia.org",
+            "dogohoaphat.vn",
+            "kosmos.vn",
+            "noithatviva.vn",
+            "ancuong.com",
+            "gosaigon.vn",
+            "hoangphatwood.vn",
+            "timberphoenix.com",
+            "shopee.vn",
+            "nhagohoangphuc.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "gỗ ghép cao su là gì",
+          "category": "informational",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/go-ghep-cao-su/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "vi.wikipedia.org",
+            "dogohoaphat.vn",
+            "kosmos.vn",
+            "noithatviva.vn",
+            "ancuong.com",
+            "gosaigon.vn",
+            "hoangphatwood.vn",
+            "timberphoenix.com",
+            "shopee.vn",
+            "nhagohoangphuc.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "gỗ ghép tràm là gì",
+          "category": "informational",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/go-ghep-tram/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "vi.wikipedia.org",
+            "dogohoaphat.vn",
+            "kosmos.vn",
+            "noithatviva.vn",
+            "ancuong.com",
+            "gosaigon.vn",
+            "hoangphatwood.vn",
+            "timberphoenix.com",
+            "shopee.vn",
+            "nhagohoangphuc.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "ván gỗ công nghiệp là gì",
+          "category": "informational",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/van-go-cong-nghiep/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "shopee.vn",
+            "vietnamplywood.com.vn",
+            "theptriviet.com.vn",
+            "ancuong.com",
+            "hoangphatwood.vn",
+            "kesgroup.vn",
+            "goanthanh.com"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "cách chọn độ dày MDF",
+          "category": "informational",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/van-mdf/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "vi.wiktionary.org",
+            "vtudien.com",
+            "vi.wikipedia.org",
+            "tratu.soha.vn",
+            "wikihow.vn",
+            "tudientiengviet.org",
+            "luyengo10ngon.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "kích thước ván MDF cần kiểm tra gì",
+          "category": "informational",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/van-mdf/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "vi.wikipedia.org",
+            "invietnhat.vn",
+            "cf.goplay.vn",
+            "anruler.com",
+            "giaya4.vn",
+            "tnc.com.vn",
+            "tudientiengviet.org",
+            "truykich.vn",
+            "inuni.com.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "màu lõi xanh có xác định MDF chống ẩm không",
+          "category": "informational",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/mdf-chong-am/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "vietnix.vn",
+            "ingiacong.co",
+            "insonnguyen.vn",
+            "printgo.vn",
+            "vinahost.vn",
+            "vi.wikipedia.org",
+            "bietmaytinh.com",
+            "colour.vn",
+            "ung-dung.com"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "MDF thường và MDF chống ẩm khác nhau thế nào",
+          "category": "comparison",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/mdf-chong-am/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "noithatmanhhe.vn",
+            "kosmos.vn",
+            "en.wikipedia.org",
+            "govi.vn",
+            "homedit.com",
+            "thewoodcarpenter.com",
+            "gominhlong.com",
+            "hoanmydecor.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "MDF chống ẩm và chống nước khác nhau thế nào",
+          "category": "comparison",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/mdf-chong-am/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "noithatmanhhe.vn",
+            "kosmos.vn",
+            "en.wikipedia.org",
+            "govi.vn",
+            "homedit.com",
+            "thewoodcarpenter.com",
+            "gominhlong.com",
+            "hoanmydecor.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "MDF và plywood khác nhau thế nào",
+          "category": "comparison",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/van-go-cong-nghiep/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "noithatmanhhe.vn",
+            "kosmos.vn",
+            "en.wikipedia.org",
+            "govi.vn",
+            "homedit.com",
+            "thewoodcarpenter.com",
+            "gominhlong.com",
+            "hoanmydecor.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "MDF và MFC khác nhau thế nào",
+          "category": "comparison",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/van-go-cong-nghiep/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "noithatmanhhe.vn",
+            "kosmos.vn",
+            "en.wikipedia.org",
+            "govi.vn",
+            "homedit.com",
+            "thewoodcarpenter.com",
+            "gominhlong.com",
+            "hoanmydecor.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "MDF và HDF khác nhau thế nào",
+          "category": "comparison",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/van-go-cong-nghiep/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "noithatmanhhe.vn",
+            "kosmos.vn",
+            "en.wikipedia.org",
+            "govi.vn",
+            "homedit.com",
+            "thewoodcarpenter.com",
+            "gominhlong.com",
+            "hoanmydecor.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "MDF và gỗ ghép khác nhau thế nào",
+          "category": "comparison",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/van-go-cong-nghiep/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "noithatmanhhe.vn",
+            "kosmos.vn",
+            "en.wikipedia.org",
+            "govi.vn",
+            "homedit.com",
+            "thewoodcarpenter.com",
+            "gominhlong.com",
+            "hoanmydecor.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "gỗ ghép cao su và gỗ ghép tràm",
+          "category": "comparison",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/go-ghep/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "vi.wikipedia.org",
+            "dogohoaphat.vn",
+            "kosmos.vn",
+            "noithatviva.vn",
+            "ancuong.com",
+            "gosaigon.vn",
+            "hoangphatwood.vn",
+            "timberphoenix.com",
+            "shopee.vn",
+            "nhagohoangphuc.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "ván nguyên tấm và danh sách chi tiết khác nhau khi báo giá",
+          "category": "comparison",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/san-pham/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "shopee.vn",
+            "vietnamplywood.com.vn",
+            "theptriviet.com.vn",
+            "ancuong.com",
+            "hoangphatwood.vn",
+            "kesgroup.vn",
+            "goanthanh.com"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "cắt CNC MDF và cắt CNC gỗ ghép khác nhau gì",
+          "category": "comparison",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/cat-cnc-go/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "smallpdf.com",
+            "ilovepdf.com",
+            "videocompress.ai",
+            "support.microsoft.com",
+            "online-video-cutter.com",
+            "mypc.vn",
+            "rdsic.edu.vn",
+            "thegioididong.com"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "cắt theo kích thước và CNC theo file khác nhau gì",
+          "category": "comparison",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/gia-cong-cnc/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "smallpdf.com",
+            "ilovepdf.com",
+            "videocompress.ai",
+            "support.microsoft.com",
+            "online-video-cutter.com",
+            "mypc.vn",
+            "rdsic.edu.vn",
+            "thegioididong.com"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "Tùng Phát MDF ở đâu",
+          "category": "local-cnc",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/lien-he/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "youtube.com",
+            "facebook.com",
+            "35express.org",
+            "tuoitre.vn",
+            "zingmp3.vn",
+            "hvdic.thivien.net",
+            "vgt.vn",
+            "open.spotify.com"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "địa chỉ Tùng Phát Tam Bình",
+          "category": "local-cnc",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/lien-he/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "vi.wikipedia.org",
+            "diachi.io",
+            "chinhphu.vn",
+            "vietjack.com",
+            "diachimoi.net",
+            "translate.google.com",
+            "loigiaihay.com",
+            "thuvienphapluat.vn",
+            "dosmvn.mae.gov.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "ván MDF gần Thủ Đức",
+          "category": "local-cnc",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/van-mdf/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "shopee.vn",
+            "vietnamplywood.com.vn",
+            "theptriviet.com.vn",
+            "ancuong.com",
+            "hoangphatwood.vn",
+            "kesgroup.vn",
+            "goanthanh.com"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "ván gỗ Thủ Đức",
+          "category": "local-cnc",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/san-pham/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "shopee.vn",
+            "vietnamplywood.com.vn",
+            "theptriviet.com.vn",
+            "ancuong.com",
+            "hoangphatwood.vn",
+            "kesgroup.vn",
+            "goanthanh.com"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "cắt CNC Thủ Đức",
+          "category": "local-cnc",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/gia-cong-cnc/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "smallpdf.com",
+            "ilovepdf.com",
+            "videocompress.ai",
+            "support.microsoft.com",
+            "online-video-cutter.com",
+            "mypc.vn",
+            "rdsic.edu.vn",
+            "thegioididong.com"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "cắt CNC TP.HCM",
+          "category": "local-cnc",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/cat-cnc-go/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "smallpdf.com",
+            "ilovepdf.com",
+            "videocompress.ai",
+            "support.microsoft.com",
+            "online-video-cutter.com",
+            "mypc.vn",
+            "rdsic.edu.vn",
+            "thegioididong.com"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "MDF TP.HCM",
+          "category": "local-cnc",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/van-mdf/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "noithatmanhhe.vn",
+            "kosmos.vn",
+            "en.wikipedia.org",
+            "govi.vn",
+            "homedit.com",
+            "thewoodcarpenter.com",
+            "gominhlong.com",
+            "hoanmydecor.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "MDF chống ẩm TP.HCM",
+          "category": "local-cnc",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/mdf-chong-am/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "noithatmanhhe.vn",
+            "kosmos.vn",
+            "en.wikipedia.org",
+            "govi.vn",
+            "homedit.com",
+            "thewoodcarpenter.com",
+            "gominhlong.com",
+            "hoanmydecor.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "gỗ ghép TP.HCM",
+          "category": "local-cnc",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/go-ghep/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "vi.wikipedia.org",
+            "dogohoaphat.vn",
+            "kosmos.vn",
+            "noithatviva.vn",
+            "ancuong.com",
+            "gosaigon.vn",
+            "hoangphatwood.vn",
+            "timberphoenix.com",
+            "shopee.vn",
+            "nhagohoangphuc.vn"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        },
+        {
+          "query": "xưởng CNC ván gỗ TP.HCM",
+          "category": "local-cnc",
+          "engine": "Bing Web Search RSS",
+          "checkedAt": "2026-08-08T17:55:47.307Z",
+          "responseStatus": 200,
+          "searchAvailable": true,
+          "found": false,
+          "sourcePosition": null,
+          "directAiCitation": null,
+          "targetUrl": "/gia-cong-cnc/",
+          "targetStatus": 200,
+          "targetIndexable": true,
+          "targetAvailable": true,
+          "competitorSources": [
+            "support.google.com",
+            "zhihu.com"
+          ],
+          "limitation": "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.",
+          "runId": "phase4-production-20260809",
+          "previousPresence": false,
+          "changeState": "NOT_FOUND"
+        }
+      ],
+      "sourcePath": "reports/search-monitor-2026-08-09.json"
+    },
+    "directAiCitationsObserved": null
+  },
+  "verification": {
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "appTests": "148/148",
+    "cms": "lint PASS; typecheck PASS; tests 32/32; build PASS; dry-run PASS",
+    "build": "PASS",
+    "e2e": "local 30/30; production console contract 1/1",
+    "productionCrawl": {
+      "checkedAt": "2026-08-08T17:55:31.220Z",
+      "origin": "https://mdftungphat.com",
+      "pagesChecked": 19,
+      "totalHtml": 19,
+      "indexable": 19,
+      "noindex": 0,
+      "statusCounts": {
+        "2xx": 19
+      },
+      "canonicalErrors": 0,
+      "duplicateTitles": 0,
+      "duplicateDescriptions": 0,
+      "brokenLinks": 0,
+      "brokenLinkSamples": [],
+      "redirectLinks": [],
+      "orphanPages": 0,
+      "thinIndexablePages": 0,
+      "directAnswerPages": 15,
+      "schemaErrors": 0,
+      "structuredDataPages": 19,
+      "verifiedDataPages": 10,
+      "sourceProvenancePages": 14,
+      "sitemap": {
+        "status": 200,
+        "declaredInRobots": true,
+        "urls": 19,
+        "errors": 0
+      },
+      "retrievalAssets": {
+        "knowledgeJson": {
+          "status": 200,
+          "contentType": "application/json; charset=utf-8"
+        },
+        "llmsTxt": {
+          "status": 200,
+          "contentType": "text/plain; charset=utf-8"
+        },
+        "indexNowKey": {
+          "status": 200,
+          "contentType": "text/plain; charset=utf-8"
+        },
+        "materialReference": {
+          "status": 200,
+          "contentType": "text/csv; charset=utf-8"
+        },
+        "cncPreflight": {
+          "status": 200,
+          "contentType": "text/csv; charset=utf-8"
+        },
+        "errors": {
+          "errors": 0,
+          "missing": []
+        }
+      },
+      "robots": {
+        "status": 200,
+        "body": "User-Agent: *\nAllow: /\nDisallow: /api/\nDisallow: /admin/\nDisallow: /_vercel/\nDisallow: /preview/\nDisallow: /cms-preview/\nDisallow: /*?preview=\n\nSitemap: https://mdftungphat.com/sitemap.xml\n",
+        "headers": {
+          "cache-control": "public, max-age=0, must-revalidate",
+          "content-type": "text/plain; charset=utf-8",
+          "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.trustindex.io https://*.trustindex.io https://www.googletagmanager.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://*.trustindex.io; img-src 'self' data: blob: https://*.trustindex.io https://www.googletagmanager.com; font-src 'self' data: https://*.trustindex.io; connect-src 'self' https://cms.mdftungphat.com https://*.trustindex.io https://www.google-analytics.com https://region1.google-analytics.com https://challenges.cloudflare.com; frame-src https://www.google.com https://challenges.cloudflare.com; media-src 'self' https://cms.mdftungphat.com https://media.mdftungphat.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self' https://cms.mdftungphat.com https://tungphat-cms.pages.dev https://preview.tungphat-cms.pages.dev http://127.0.0.1:4174 http://localhost:4174; form-action 'self'; upgrade-insecure-requests",
+          "strict-transport-security": "max-age=31536000; includeSubDomains",
+          "x-content-type-options": "nosniff",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "permissions-policy": "camera=(), microphone=(), geolocation=()"
+        }
+      },
+      "botSimulation": [
+        {
+          "bot": "googlebot",
+          "userAgent": "Googlebot/2.1 (+http://www.google.com/bot.html)",
+          "status": 200,
+          "location": null,
+          "contentReadable": true,
+          "indexable": true,
+          "blocked": false
+        },
+        {
+          "bot": "googlebotSmartphone",
+          "userAgent": "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 Chrome/126 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+          "status": 200,
+          "location": null,
+          "contentReadable": true,
+          "indexable": true,
+          "blocked": false
+        },
+        {
+          "bot": "bingbot",
+          "userAgent": "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)",
+          "status": 200,
+          "location": null,
+          "contentReadable": true,
+          "indexable": true,
+          "blocked": false
+        },
+        {
+          "bot": "oaiSearchBot",
+          "userAgent": "OAI-SearchBot/1.0",
+          "status": 200,
+          "location": null,
+          "contentReadable": true,
+          "indexable": true,
+          "blocked": false
+        },
+        {
+          "bot": "chatgptUser",
+          "userAgent": "ChatGPT-User/1.0",
+          "status": 200,
+          "location": null,
+          "contentReadable": true,
+          "indexable": true,
+          "blocked": false
+        },
+        {
+          "bot": "gptBot",
+          "userAgent": "GPTBot/1.2",
+          "status": 200,
+          "location": null,
+          "contentReadable": true,
+          "indexable": true,
+          "blocked": false
+        },
+        {
+          "bot": "perplexityBot",
+          "userAgent": "PerplexityBot/1.0",
+          "status": 200,
+          "location": null,
+          "contentReadable": true,
+          "indexable": true,
+          "blocked": false
+        }
+      ],
+      "aiCrawlerBlockers": 0,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-type": "text/html; charset=utf-8",
+        "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.trustindex.io https://*.trustindex.io https://www.googletagmanager.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://*.trustindex.io; img-src 'self' data: blob: https://*.trustindex.io https://www.googletagmanager.com; font-src 'self' data: https://*.trustindex.io; connect-src 'self' https://cms.mdftungphat.com https://*.trustindex.io https://www.google-analytics.com https://region1.google-analytics.com https://challenges.cloudflare.com; frame-src https://www.google.com https://challenges.cloudflare.com; media-src 'self' https://cms.mdftungphat.com https://media.mdftungphat.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self' https://cms.mdftungphat.com https://tungphat-cms.pages.dev https://preview.tungphat-cms.pages.dev http://127.0.0.1:4174 http://localhost:4174; form-action 'self'; upgrade-insecure-requests",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()"
+      },
+      "security": {
+        "errors": 0,
+        "missing": []
+      },
+      "qualityGateFailures": [],
+      "sourcePath": "reports/production-crawl-phase4-2026-08-09.json"
+    },
+    "schema": true,
+    "internalLinks": true,
+    "lighthouse": {
+      "mobileScore": 97,
+      "lcpMs": 2463,
+      "fcpMs": 1037,
+      "cls": 0,
+      "tbtMs": 96,
+      "ttfbMs": 38,
+      "lcpElement": "/images/cnc-service-home.webp",
+      "rootCause": "Render/main-thread delay dominated LCP; the LCP image itself was small, preloaded and transferred quickly.",
+      "source": "Median of 3 sequential Lighthouse 13.4.1 production mobile runs: scores 67/98/97; raw LCP 5055/2241/2463 ms."
+    },
+    "botAccess": [
+      {
+        "bot": "googlebot",
+        "userAgent": "Googlebot/2.1 (+http://www.google.com/bot.html)",
+        "status": 200,
+        "location": null,
+        "contentReadable": true,
+        "indexable": true,
+        "blocked": false
+      },
+      {
+        "bot": "googlebotSmartphone",
+        "userAgent": "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 Chrome/126 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+        "status": 200,
+        "location": null,
+        "contentReadable": true,
+        "indexable": true,
+        "blocked": false
+      },
+      {
+        "bot": "bingbot",
+        "userAgent": "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)",
+        "status": 200,
+        "location": null,
+        "contentReadable": true,
+        "indexable": true,
+        "blocked": false
+      },
+      {
+        "bot": "oaiSearchBot",
+        "userAgent": "OAI-SearchBot/1.0",
+        "status": 200,
+        "location": null,
+        "contentReadable": true,
+        "indexable": true,
+        "blocked": false
+      },
+      {
+        "bot": "chatgptUser",
+        "userAgent": "ChatGPT-User/1.0",
+        "status": 200,
+        "location": null,
+        "contentReadable": true,
+        "indexable": true,
+        "blocked": false
+      },
+      {
+        "bot": "gptBot",
+        "userAgent": "GPTBot/1.2",
+        "status": 200,
+        "location": null,
+        "contentReadable": true,
+        "indexable": true,
+        "blocked": false
+      },
+      {
+        "bot": "perplexityBot",
+        "userAgent": "PerplexityBot/1.0",
+        "status": 200,
+        "location": null,
+        "contentReadable": true,
+        "indexable": true,
+        "blocked": false
+      }
+    ],
+    "security": {
+      "errors": 0,
+      "missing": []
+    }
+  },
+  "blockers": [
+    "GSC/Google Business Profile authentication unavailable in Codex browser session.",
+    "Bing Webmaster/Bing Places authentication unavailable in Codex browser session.",
+    "Official Facebook profile remains unverified.",
+    "Exact CNC machine limits, supported file formats and tolerances remain unverified and were not published as facts."
+  ]
+}
