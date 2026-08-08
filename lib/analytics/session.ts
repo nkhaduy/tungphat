@@ -5,12 +5,19 @@ export const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
 
 function cookie(name: string) {
   if (typeof document === "undefined") return "";
-  return document.cookie.split(";").map((part) => part.trim())
-    .find((part) => part.startsWith(`${name}=`))?.slice(name.length + 1) || "";
+  return (
+    document.cookie
+      .split(";")
+      .map((part) => part.trim())
+      .find((part) => part.startsWith(`${name}=`))
+      ?.slice(name.length + 1) || ""
+  );
 }
 
 function validUuid(value: string) {
-  return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+    value,
+  );
 }
 
 function setCookie(name: string, value: string, maxAge: number) {
@@ -23,7 +30,15 @@ export function analyticsOptedOut() {
 }
 
 export function generateAnonymousId() {
-  return crypto.randomUUID();
+  if (typeof crypto.randomUUID === "function") return crypto.randomUUID();
+
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  bytes[6] = (bytes[6] & 0x0f) | 0x40;
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
+  const value = Array.from(bytes, (byte) =>
+    byte.toString(16).padStart(2, "0"),
+  ).join("");
+  return `${value.slice(0, 8)}-${value.slice(8, 12)}-${value.slice(12, 16)}-${value.slice(16, 20)}-${value.slice(20)}`;
 }
 
 export function getAnalyticsIdentity(now = Date.now()) {
@@ -33,7 +48,9 @@ export function getAnalyticsIdentity(now = Date.now()) {
     setCookie(VISITOR_COOKIE, visitorId, 365 * 24 * 60 * 60);
   }
 
-  const lastActivity = Number(sessionStorage.getItem("tp_session_last_activity") || 0);
+  const lastActivity = Number(
+    sessionStorage.getItem("tp_session_last_activity") || 0,
+  );
   let sessionId = cookie(SESSION_COOKIE);
   const expired = !lastActivity || now - lastActivity > SESSION_TIMEOUT_MS;
   if (!validUuid(sessionId) || expired) {

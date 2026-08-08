@@ -1,9 +1,17 @@
 "use client";
 
 import { attributionParameters } from "./attribution";
-import { analyticsOptedOut, getAnalyticsIdentity } from "./session";
+import {
+  analyticsOptedOut,
+  generateAnonymousId,
+  getAnalyticsIdentity,
+} from "./session";
 import { sanitizePath, sanitizeText, shouldTrackLocation } from "./sanitize";
-import type { AnalyticsPayload, AnalyticsProperties, FirstPartyAnalyticsEvent } from "./types";
+import type {
+  AnalyticsPayload,
+  AnalyticsProperties,
+  FirstPartyAnalyticsEvent,
+} from "./types";
 
 declare global {
   interface Window {
@@ -14,25 +22,45 @@ declare global {
   }
 }
 
-const API_BASE = (process.env.NEXT_PUBLIC_ANALYTICS_API_BASE || "https://cms.mdftungphat.com").replace(/\/+$/, "");
+const API_BASE = (
+  process.env.NEXT_PUBLIC_ANALYTICS_API_BASE || "https://cms.mdftungphat.com"
+).replace(/\/+$/, "");
 const TEST_BUILD = process.env.NEXT_PUBLIC_ANALYTICS_TEST_MODE === "1";
 
 function sessionAttribution() {
   const cached = sessionStorage.getItem("tp_session_attribution");
   if (cached) {
-    try { return JSON.parse(cached) as AnalyticsPayload["attribution"]; } catch { /* recreate */ }
+    try {
+      return JSON.parse(cached) as AnalyticsPayload["attribution"];
+    } catch {
+      /* recreate */
+    }
   }
-  const value = attributionParameters(new URL(window.location.href), document.referrer);
+  const value = attributionParameters(
+    new URL(window.location.href),
+    document.referrer,
+  );
   sessionStorage.setItem("tp_session_attribution", JSON.stringify(value));
   return value;
 }
 
-function buildPayload(eventName: FirstPartyAnalyticsEvent, properties: AnalyticsProperties): AnalyticsPayload | null {
+function buildPayload(
+  eventName: FirstPartyAnalyticsEvent,
+  properties: AnalyticsProperties,
+): AnalyticsPayload | null {
   const testMode = TEST_BUILD && window.__TP_ANALYTICS_TEST_MODE__ === true;
-  if (window.__TP_PREVIEW__ === true || location.pathname.startsWith("/cms-preview") || analyticsOptedOut() || (!testMode && (navigator.webdriver || !shouldTrackLocation(location.hostname, location.pathname)))) return null;
+  if (
+    window.__TP_PREVIEW__ === true ||
+    location.pathname.startsWith("/cms-preview") ||
+    analyticsOptedOut() ||
+    (!testMode &&
+      (navigator.webdriver ||
+        !shouldTrackLocation(location.hostname, location.pathname)))
+  )
+    return null;
   const { visitorId, sessionId } = getAnalyticsIdentity();
   return {
-    event_id: crypto.randomUUID(),
+    event_id: generateAnonymousId(),
     visitor_id: visitorId,
     session_id: sessionId,
     event_name: eventName,
@@ -84,7 +112,8 @@ export function sendAnalyticsEvent(
   if (!payload) return;
   const dispatch = () => sendFirstParty(payload, options.beacon);
   if (options.beacon) dispatch();
-  else if (typeof window.requestIdleCallback === "function") window.requestIdleCallback(dispatch, { timeout: 1200 });
+  else if (typeof window.requestIdleCallback === "function")
+    window.requestIdleCallback(dispatch, { timeout: 1200 });
   else globalThis.setTimeout(dispatch, 0);
 
   if (options.ga4 !== false) {

@@ -14,16 +14,16 @@ export function generateStaticParams() {
     .map((brand) => ({ brand: brand.slug }));
 }
 
-export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: RouteProps): Promise<Metadata> {
   const { brand: brandSlug } = await params;
   const brand = getBrand(brandSlug);
   if (!brand) return {};
   return createPageMetadata({
-    title: `Catalogue ${brand.name}`,
-    description: `Catalogue ${brand.name} tại Tùng Phát. Xem file đã được publish hoặc gửi mã màu để nhận catalogue phù hợp.`,
+    title: `Mã màu ${brand.name}`,
+    description: `Tra cứu mã màu và mã bề mặt ${brand.name} đã xác minh tại Tùng Phát.`,
     path: `/catalogue/${brand.slug}/`,
-    noIndex: true,
-    followWhenNoIndex: true,
   });
 }
 
@@ -34,7 +34,7 @@ export default async function CatalogueRoute({ params }: RouteProps) {
 
   return (
     <SiteShell>
-      <JsonLd data={breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Catalogue", path: "/san-pham" }, { name: brand.name, path: `/catalogue/${brand.slug}` }])} />
+      <JsonLd data={breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Mã màu", path: "/catalogue/" }, { name: brand.name, path: `/catalogue/${brand.slug}/` }])} />
       <CatalogueView brand={brand} />
     </SiteShell>
   );

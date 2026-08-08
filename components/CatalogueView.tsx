@@ -1,24 +1,34 @@
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Download, MessageCircle } from "lucide-react";
-import { BrandPlaceholder } from "@/components/BrandPlaceholder";
+import { MessageCircle } from "lucide-react";
+import { SupplierColorCodeSearch } from "@/components/catalog/AnCuongCatalogueSearch";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ContactCTA } from "@/components/ui/ContactCTA";
-import { EmptyState } from "@/components/ui/EmptyState";
-import { PageHero } from "@/components/ui/PageHero";
-import { SectionHeader } from "@/components/ui/SectionHeader";
+import { PageContainer } from "@/components/ui/PageContainer";
+import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
+import type { SupplierId } from "@/lib/catalog/core/types";
+import { getSupplierSearchIndex } from "@/lib/catalog/suppliers/search-index";
 import type { Brand } from "@/lib/brands";
 import { ZALO_URL } from "@/lib/seo";
 
 export function CatalogueView({ brand }: { brand: Brand }) {
-  const catalogues = brand.catalogues.filter((catalogue) => catalogue.pdfUrl.trim().length > 0);
+  const entries = getSupplierSearchIndex().records.filter((record) => record.supplierId === brand.slug);
+  const supplierId = brand.slug as SupplierId;
+  const inquiryUrl = buildSupplierZaloInquiryUrl(ZALO_URL, brand.name);
 
   return (
     <>
-      <PageHero breadcrumbs={[{ label: "Trang chủ", href: "/" }, { label: "Catalogue", href: "/san-pham#catalogue" }, { label: brand.name }]} eyebrow="Bộ mẫu vật liệu" title={`Catalogue ${brand.name}`} description={`Trang catalogue ${brand.name} chỉ hiển thị file đã được đưa vào dữ liệu website. Khách hàng có thể gửi mã màu hoặc ảnh bề mặt để Tùng Phát kiểm tra catalogue và tình trạng cung cấp thực tế.`} image={brand.logo ? { src: brand.logo, alt: `Logo ${brand.name}`, fit: "contain" } : undefined} actions={<><a href={ZALO_URL} target="_blank" rel="noopener noreferrer" className="pressable inline-flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-6 text-sm font-extrabold text-white"><MessageCircle size={18} aria-hidden="true" />Yêu cầu catalogue</a><Link href={`/san-pham/${brand.slug}`} className="pressable inline-flex min-h-14 items-center justify-center gap-2 border border-forest-900/20 bg-white px-6 text-sm font-extrabold text-forest-950">Xem trang thương hiệu <ArrowRight size={17} aria-hidden="true" /></Link></>} />
-      <section className="section-space bg-white">
-        <div className="container-shell"><SectionHeader eyebrow="File đang có" title={`Danh sách catalogue ${brand.name}`} description="Không nhúng PDF trực tiếp để tránh tải nặng. Nút xem và tải chỉ xuất hiện khi dữ liệu có URL file đang hoạt động." />{catalogues.length ? <div className="mt-9 grid gap-6 md:grid-cols-2 lg:grid-cols-3">{catalogues.map((catalogue) => <article key={catalogue.name} className="overflow-hidden border border-forest-900/10 bg-white shadow-card">{catalogue.thumbnail ? <div className="relative aspect-[16/10]"><Image src={catalogue.thumbnail} alt={catalogue.name} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" /></div> : <BrandPlaceholder label={catalogue.name} className="aspect-[16/10]" />}<div className="p-6"><h2 className="text-lg font-extrabold text-forest-950">{catalogue.name}</h2><p className="mt-3 text-sm leading-7 text-slate-700">{catalogue.description}</p><div className="mt-5 flex flex-wrap gap-3"><a href={catalogue.pdfUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 bg-forest-900 px-5 text-sm font-extrabold text-white">Xem file <ArrowRight size={16} aria-hidden="true" /></a><a href={catalogue.pdfUrl} download className="inline-flex min-h-12 items-center gap-2 border border-forest-900/20 px-5 text-sm font-extrabold text-forest-950"><Download size={16} aria-hidden="true" />Tải PDF</a></div></div></article>)}</div> : <EmptyState title="Chưa có file catalogue được publish" description="Không có URL PDF đã xác minh trong dữ liệu hiện tại. Tùng Phát không tạo liên kết tải giả; vui lòng gửi thương hiệu, mã màu hoặc loại bề mặt để kiểm tra file phù hợp." action={<a href={ZALO_URL} target="_blank" rel="noopener noreferrer" className="pressable inline-flex min-h-12 items-center gap-2 bg-wood-500 px-5 text-sm font-extrabold text-white"><MessageCircle size={17} aria-hidden="true" />Nhận catalogue qua Zalo</a>} />}</div>
+      <section className="relative overflow-hidden border-b border-forest-900/10 bg-[#f7f8f5] py-7 sm:py-9 lg:py-12">
+        <PageContainer>
+          <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Mã màu", href: "/catalogue/" }, { label: brand.name }]} />
+          <div className="mt-4 max-w-4xl">
+            <p className="eyebrow">Tra cứu theo mã thực tế</p>
+            <h1 className="mt-3 text-balance text-3xl font-extrabold leading-tight tracking-[-.035em] text-forest-950 sm:text-4xl lg:text-5xl">Mã màu {brand.name}</h1>
+            <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700 sm:text-base">Chỉ hiển thị mã màu và mã bề mặt đã xác minh từ nguồn công khai của {brand.name}. Ảnh swatch/fullsheet được giữ nguyên nguồn để đối chiếu thực tế.</p>
+            <a href={inquiryUrl} target="_blank" rel="noopener noreferrer" className="pressable mt-5 inline-flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-5 text-sm font-extrabold text-white hover:bg-wood-600"><MessageCircle size={17} aria-hidden="true" />Gửi mã qua Zalo</a>
+          </div>
+          <SupplierColorCodeSearch entries={entries} supplierId={supplierId} supplierLabel={brand.name} />
+        </PageContainer>
       </section>
-      <ContactCTA eyebrow="Đối chiếu mã màu" title="Gửi mã hoặc ảnh bề mặt cần tìm" description="Gửi tên thương hiệu, mã màu, nhóm vật liệu và số lượng dự kiến. Tùng Phát sẽ kiểm tra catalogue và nguồn hàng theo dữ liệu thực tế." zaloLabel="Gửi mã qua Zalo" />
+      <ContactCTA eyebrow="Đối chiếu mã màu" title="Gửi mã hoặc ảnh bề mặt cần tìm" description="Gửi tên thương hiệu, mã màu, nhóm vật liệu và số lượng dự kiến. Tùng Phát sẽ kiểm tra cốt ván, quy cách và nguồn hàng theo dữ liệu thực tế." zaloLabel="Gửi mã qua Zalo" />
     </>
   );
 }

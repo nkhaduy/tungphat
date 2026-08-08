@@ -1,0 +1,130 @@
+import artifact from "@/data/catalogs/supplier-color-codes.json";
+import { materialTaxonomyOptions } from "../material-taxonomy";
+import type { PublicSupplierColorCode } from "../color-codes/types";
+import type { CatalogSearchEntry, SupplierId } from "../core/types";
+
+type SearchIndexRecord = CatalogSearchEntry & {
+  id: string;
+  recordType: "color-code";
+};
+
+type SupplierTotals = Record<
+  SupplierId,
+  {
+    total: number;
+    colorCodes: number;
+    withLocalPreview: number;
+    sourceMediaMissing: number;
+    sku: number;
+    family: number;
+    document: number;
+    retainedMelamineCodes?: number;
+  }
+>;
+
+const source = artifact as {
+  schemaVersion: 1;
+  checksum: string;
+  records: PublicSupplierColorCode[];
+};
+
+function supplierName(supplier: SupplierId): string {
+  return supplier === "an-cuong"
+    ? "An Cường"
+    : supplier === "thanh-thuy"
+      ? "Thanh Thuỳ"
+      : "Ba Thanh";
+}
+
+function materialSlug(record: PublicSupplierColorCode): string {
+  switch (record.materialType) {
+    case "edge-banding":
+      return "edge-banding";
+    case "panel":
+      return "panel";
+    case "pvc":
+    case "ppet":
+      return "pvc-ppet";
+    case "worktop":
+      return "worktop";
+    case "melamine":
+    case "laminate":
+    case "acrylic":
+    case "veneer":
+      return record.materialType;
+    default:
+      return "other-decorative";
+  }
+}
+
+function localThumbnail(record: PublicSupplierColorCode): string {
+  const rolePriority = ["swatch", "fullsheet", "actual-photo", "product", "application"] as const;
+  for (const role of rolePriority) {
+    const image = record.images.find((candidate) => candidate.role === role && candidate.localPath);
+    if (image?.localPath) return image.localPath;
+  }
+  return "";
+}
+
+function toSearchRecord(record: PublicSupplierColorCode): SearchIndexRecord {
+  return {
+    id: record.id,
+    supplierId: record.supplier,
+    supplierName: supplierName(record.supplier),
+    kind: "color-code",
+    recordType: "color-code",
+    code: record.codeRaw,
+    normalizedCode: record.codeNormalized,
+    aliases: record.searchAliases,
+    name: record.displayName?.trim() || record.codeRaw,
+    thumbnail: localThumbnail(record),
+    canonicalRoute: record.canonicalRoute,
+    category: record.materialType,
+    series: record.collection,
+    group: record.patternType,
+    material: materialSlug(record),
+    seoStatus: record.seoStatus,
+    indexable: record.seoStatus === "READY_TO_INDEX",
+    demandScore: record.demandScore,
+  };
+}
+
+function buildTotals(records: SearchIndexRecord[]): SupplierTotals {
+  return Object.fromEntries(
+    (["an-cuong", "thanh-thuy", "ba-thanh"] as SupplierId[]).map((supplier) => {
+      const scoped = records.filter((record) => record.supplierId === supplier);
+      return [supplier, {
+        total: scoped.length,
+        colorCodes: scoped.length,
+        withLocalPreview: scoped.filter((record) => Boolean(record.thumbnail)).length,
+        sourceMediaMissing: scoped.filter((record) => !record.thumbnail).length,
+        sku: scoped.length,
+        family: 0,
+        document: 0,
+        ...(supplier === "ba-thanh"
+          ? { retainedMelamineCodes: scoped.filter((record) => record.material === "melamine").length }
+          : {}),
+      }];
+    }),
+  ) as SupplierTotals;
+}
+
+const records = source.records.map(toSearchRecord);
+const index = {
+  schemaVersion: 1 as const,
+  checksum: source.checksum,
+  records,
+  totals: buildTotals(records),
+};
+
+export function getSupplierSearchIndex() {
+  return index;
+}
+
+export function getSupplierTotals(): SupplierTotals {
+  return index.totals;
+}
+
+export function getMaterialTaxonomyOptions(entries: CatalogSearchEntry[] = index.records) {
+  return materialTaxonomyOptions(entries);
+}
