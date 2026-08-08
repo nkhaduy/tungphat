@@ -26,4 +26,19 @@ describe("Decap to Light CMS source analysis", () => {
       password_hash: "!access-only!",
     });
   });
+
+  it("enforces unique Baogia subjects and one-time assertion identifiers", () => {
+    const database = new DatabaseSync(":memory:");
+    database.exec(fs.readFileSync(new URL("../migrations/0001_light_cms.sql", import.meta.url), "utf8"));
+    database.exec(fs.readFileSync(new URL("../migrations/0002_access_identity.sql", import.meta.url), "utf8"));
+    database.exec(fs.readFileSync(new URL("../migrations/0003_baogia_sso.sql", import.meta.url), "utf8"));
+    const insertUser = database.prepare(`INSERT INTO users(id,email,name,display_name,role,password_hash,active,status,baogia_subject,created_at,updated_at)
+      VALUES(?,?,?,?,?,'!sso!',1,'active',?,?,?)`);
+    insertUser.run("user-1", "one@baogia.invalid", "One", "One", "super-admin", "subject-1", "2026-08-09", "2026-08-09");
+    expect(() => insertUser.run("user-2", "two@baogia.invalid", "Two", "Two", "super-admin", "subject-1", "2026-08-09", "2026-08-09")).toThrow(/UNIQUE/u);
+
+    const insertUse = database.prepare("INSERT INTO sso_assertion_uses(jti_hash,subject,expires_at,used_at) VALUES(?,?,?,?)");
+    insertUse.run("jti-hash", "subject-1", 100, 90);
+    expect(() => insertUse.run("jti-hash", "subject-1", 100, 91)).toThrow(/UNIQUE/u);
+  });
 });
