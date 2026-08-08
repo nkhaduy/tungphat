@@ -10,7 +10,9 @@ describe("machine-readable knowledge index", () => {
     expect(index.business.name).toBe("Công ty TNHH TMDV Gỗ Tùng Phát");
     expect(index.business.url).toBe("https://mdftungphat.com/");
     expect(urls).toContain("https://mdftungphat.com/van-mdf/");
-    expect(urls).not.toContain("https://mdftungphat.com/bai-viet/go-ghep-la-gi/");
+    expect(urls).toContain("https://mdftungphat.com/bai-viet/go-ghep-la-gi/");
+    expect(urls).toContain("https://mdftungphat.com/bai-viet/mdf-thuong-va-chong-am/");
+    expect(urls).toContain("https://mdftungphat.com/bai-viet/chuan-bi-file-cnc/");
     expect(urls.every((url) => url.endsWith("/"))).toBe(true);
     expect(index.pages.find((page) => page.url.endsWith("/go-ghep/"))?.type).toBe("CollectionPage");
   });
