@@ -3,7 +3,7 @@ title: "MDF thường và MDF chống ẩm khác nhau thế nào?"
 slug: "mdf-thuong-va-chong-am"
 excerpt: "MDF chống ẩm phù hợp hơn MDF thường trong điều kiện ẩm hơn phòng khô khi chọn đúng mã, cạnh và hoàn thiện; chống ẩm không đồng nghĩa chống nước."
 publishedAt: "2026-07-16"
-updatedAt: "2026-08-08"
+updatedAt: "2026-08-09"
 author: "Ban biên tập Tùng Phát"
 category: "Kiến thức MDF"
 tags: ["MDF", "MDF chống ẩm", "vật liệu nội thất"]
@@ -56,6 +56,8 @@ MDF thường hướng tới điều kiện khô khi kết cấu phù hợp. MDF
 
 Các thông tin này giúp phân biệt nhu cầu tấm nguyên, danh sách cắt và gia công. Xem [tham chiếu vật liệu](/tham-chieu-vat-lieu/) để đọc các trường đã xác minh và điểm còn trống.
 
+Nếu đang so với HDF, MFC hoặc plywood, dùng [ma trận so sánh vật liệu có nguồn](/tham-chieu-vat-lieu/#family-hdf) trước khi chọn cốt. Trang [ván gỗ công nghiệp](/van-go-cong-nghiep/) giải thích thêm cách tách cốt, bề mặt, cạnh và mã hàng khi gửi yêu cầu.
+
 ## Nguồn và giới hạn dữ liệu
 
-Bài viết tổng hợp từ các trang [ván MDF](/van-mdf/), [MDF chống ẩm](/mdf-chong-am/) và bộ dữ liệu [knowledge.json](/knowledge.json), cập nhật ngày 2026-08-08. Tùng Phát không công bố tiêu chuẩn, độ dày, mã hàng, tồn kho hoặc khả năng chống nước nếu chưa có bằng chứng catalogue tương ứng.
+Bài viết tổng hợp từ các trang [ván MDF](/van-mdf/), [MDF chống ẩm](/mdf-chong-am/) và bộ dữ liệu [knowledge.json](/knowledge.json), cập nhật ngày 2026-08-09. Tùng Phát không công bố tiêu chuẩn, độ dày, mã hàng, tồn kho hoặc khả năng chống nước nếu chưa có bằng chứng catalogue tương ứng.

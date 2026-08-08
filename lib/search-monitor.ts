@@ -23,6 +23,35 @@ export type AnnotatedSearchMonitorRecord = SearchMonitorRecord & {
   changeState: SearchChangeState;
 };
 
+const PRIORITY_QUERY_SAMPLE = [
+  "mua ván MDF tại TP.HCM",
+  "đơn vị cung cấp MDF chống ẩm TP.HCM",
+  "đặt ván MDF theo danh sách cắt",
+  "cửa hàng vật liệu gỗ Tam Bình",
+  "liên hệ Tùng Phát báo giá vật liệu",
+  "ván MDF là gì",
+  "MDF chống ẩm có chịu nước không",
+  "ván gỗ công nghiệp là gì",
+  "MDF thường và MDF chống ẩm khác nhau thế nào",
+  "MDF và plywood khác nhau thế nào",
+  "Tùng Phát MDF ở đâu",
+  "cắt CNC Thủ Đức",
+  "cắt CNC MDF theo file",
+  "file CNC cần chuẩn bị gì",
+  "quy trình kiểm tra file trước khi chạy CNC",
+] as const;
+
+export function selectPriorityQueries<T extends { query: string }>(queries: T[]) {
+  const byQuery = new Map(queries.map((query) => [query.query, query]));
+  const selected = PRIORITY_QUERY_SAMPLE.map((query) => byQuery.get(query));
+  if (selected.some((query) => !query)) throw new Error("The fixed priority search sample no longer matches the query set.");
+  return selected as T[];
+}
+
+export function appendSearchRunHistory<T extends { runId: string }>(history: T[], run: T) {
+  return history.some((entry) => entry.runId === run.runId) ? history : [...history, run];
+}
+
 export function annotateSearchRecords(current: SearchMonitorRecord[], previous: SearchMonitorRecord[], runId: string): AnnotatedSearchMonitorRecord[] {
   const previousByQuery = new Map(previous.map((record) => [record.query, record]));
   return current.map((record) => {

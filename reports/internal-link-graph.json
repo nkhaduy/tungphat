@@ -1,0 +1,433 @@
+{
+  "generatedAt": "2026-08-08T19:05:29.471Z",
+  "pageCount": 31,
+  "byUrl": {
+    "/404/": {
+      "clickDepth": null,
+      "internalInlinks": 0,
+      "contextualInlinks": 0,
+      "navigationInlinks": 0,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": []
+    },
+    "/404.html": {
+      "clickDepth": null,
+      "internalInlinks": 0,
+      "contextualInlinks": 0,
+      "navigationInlinks": 0,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": []
+    },
+    "/bai-viet/chuan-bi-file-cnc/": {
+      "clickDepth": 2,
+      "internalInlinks": 4,
+      "contextualInlinks": 3,
+      "navigationInlinks": 1,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "Bài viết Chuan bi file cnc",
+        "Chuẩn bị file gì khi gửi xưởng CNC gỗ và MDF?",
+        "Đọc bài viết"
+      ]
+    },
+    "/bai-viet/go-ghep-la-gi/": {
+      "clickDepth": 2,
+      "internalInlinks": 5,
+      "contextualInlinks": 3,
+      "navigationInlinks": 2,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "Bài viết Go ghep la gi",
+        "Đọc bài viết",
+        "Gỗ ghép là gì? Cấu tạo và cách chọn theo nhu cầu"
+      ]
+    },
+    "/bai-viet/": {
+      "clickDepth": 1,
+      "internalInlinks": 66,
+      "contextualInlinks": 0,
+      "navigationInlinks": 63,
+      "breadcrumbInlinks": 3,
+      "anchorVariation": [
+        "Bài viết",
+        "Kiến thức"
+      ]
+    },
+    "/bai-viet/mdf-thuong-va-chong-am/": {
+      "clickDepth": 2,
+      "internalInlinks": 3,
+      "contextualInlinks": 3,
+      "navigationInlinks": 0,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "Đọc bài viết",
+        "MDF thường và MDF chống ẩm khác nhau thế nào?"
+      ]
+    },
+    "/bao-gia/": {
+      "clickDepth": null,
+      "internalInlinks": 0,
+      "contextualInlinks": 0,
+      "navigationInlinks": 0,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": []
+    },
+    "/cat-cnc-go/": {
+      "clickDepth": 1,
+      "internalInlinks": 39,
+      "contextualInlinks": 9,
+      "navigationInlinks": 30,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "cắt CNC gỗ",
+        "Cắt CNC gỗ",
+        "cắt CNC gỗ theo file",
+        "Cắt ván theo kích thước Gửi loại vật liệu, độ dày, kích thước và số lượng cần cắt. Xem hướng phù hợp",
+        "dịch vụ cắt CNC gỗ",
+        "dịch vụ gia công CNC gỗ",
+        "Trang cắt CNC gỗ",
+        "Xem hướng dẫn gửi yêu cầu"
+      ]
+    },
+    "/catalogue/an-cuong/": {
+      "clickDepth": 1,
+      "internalInlinks": 3,
+      "contextualInlinks": 3,
+      "navigationInlinks": 0,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "Xem catalogue"
+      ]
+    },
+    "/catalogue/ba-thanh/": {
+      "clickDepth": 1,
+      "internalInlinks": 3,
+      "contextualInlinks": 3,
+      "navigationInlinks": 0,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "Xem catalogue"
+      ]
+    },
+    "/catalogue/thanh-thuy/": {
+      "clickDepth": 1,
+      "internalInlinks": 3,
+      "contextualInlinks": 3,
+      "navigationInlinks": 0,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "Xem catalogue"
+      ]
+    },
+    "/chinh-sach-bao-mat/": {
+      "clickDepth": 1,
+      "internalInlinks": 30,
+      "contextualInlinks": 0,
+      "navigationInlinks": 30,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "Chính sách bảo mật"
+      ]
+    },
+    "/cms-preview/": {
+      "clickDepth": null,
+      "internalInlinks": 0,
+      "contextualInlinks": 0,
+      "navigationInlinks": 0,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": []
+    },
+    "/dieu-khoan-su-dung/": {
+      "clickDepth": 1,
+      "internalInlinks": 30,
+      "contextualInlinks": 0,
+      "navigationInlinks": 30,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "Điều khoản sử dụng"
+      ]
+    },
+    "/du-an/": {
+      "clickDepth": 1,
+      "internalInlinks": 60,
+      "contextualInlinks": 0,
+      "navigationInlinks": 60,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "Xưởng thực tế"
+      ]
+    },
+    "/gia-cong-cnc/": {
+      "clickDepth": 1,
+      "internalInlinks": 84,
+      "contextualInlinks": 20,
+      "navigationInlinks": 62,
+      "breadcrumbInlinks": 2,
+      "anchorVariation": [
+        "gia công CNC",
+        "Gia công CNC",
+        "Gia công CNC Gửi file, vật liệu và quy cách để kiểm tra khả năng gia công. Xem thông tin vật liệu",
+        "Gia công CNC theo file Trao đổi đường cắt, khoan, soi rãnh và biên dạng trước khi chạy máy. Xem hướng phù hợp",
+        "quy trình gia công CNC",
+        "Trang gia công CNC",
+        "trang quy trình gia công CNC",
+        "Xem dịch vụ CNC",
+        "Xem hướng dẫn CNC"
+      ]
+    },
+    "/gia-cong-cnc-mdf/": {
+      "clickDepth": 2,
+      "internalInlinks": 6,
+      "contextualInlinks": 6,
+      "navigationInlinks": 0,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "dịch vụ gia công CNC MDF",
+        "gia công CNC MDF"
+      ]
+    },
+    "/go-ghep/": {
+      "clickDepth": 1,
+      "internalInlinks": 46,
+      "contextualInlinks": 14,
+      "navigationInlinks": 32,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "gỗ ghép",
+        "Gỗ ghép",
+        "Gỗ ghép: cách chọn cao su, tràm theo nhu cầu",
+        "nhóm gỗ ghép",
+        "P3_FIRST_PARTY_BUSINESS",
+        "Tìm hiểu gỗ ghép",
+        "trang hub gỗ ghép",
+        "Trang hub gỗ ghép",
+        "Vật liệu Go ghep",
+        "Xem chi tiết"
+      ]
+    },
+    "/go-ghep-cao-su/": {
+      "clickDepth": 1,
+      "internalInlinks": 49,
+      "contextualInlinks": 18,
+      "navigationInlinks": 31,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "gỗ ghép cao su",
+        "Gỗ ghép cao su",
+        "Gỗ ghép cao su tại TP.HCM",
+        "P3_FIRST_PARTY_BUSINESS",
+        "Trang gỗ ghép cao su",
+        "Vật liệu Go ghep cao su",
+        "Xem chi tiết",
+        "Xem landing page",
+        "Xem quy cách",
+        "Xem vật liệu"
+      ]
+    },
+    "/go-ghep-tram/": {
+      "clickDepth": 1,
+      "internalInlinks": 19,
+      "contextualInlinks": 18,
+      "navigationInlinks": 1,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "gỗ ghép tràm",
+        "Gỗ ghép tràm",
+        "Gỗ ghép tràm tại TP.HCM",
+        "P3_FIRST_PARTY_BUSINESS",
+        "Trang gỗ ghép tràm",
+        "Vật liệu Go ghep tram",
+        "Xem chi tiết",
+        "Xem landing page",
+        "Xem quy cách",
+        "Xem vật liệu"
+      ]
+    },
+    "/": {
+      "clickDepth": 0,
+      "internalInlinks": 120,
+      "contextualInlinks": 2,
+      "navigationInlinks": 89,
+      "breadcrumbInlinks": 29,
+      "anchorVariation": [
+        "mdftungphat.com",
+        "Trang chủ",
+        "Về trang chủ"
+      ]
+    },
+    "/lien-he/": {
+      "clickDepth": 1,
+      "internalInlinks": 40,
+      "contextualInlinks": 10,
+      "navigationInlinks": 30,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "liên hệ",
+        "Liên hệ",
+        "liên hệ Tùng Phát",
+        "thông tin liên hệ",
+        "thông tin liên hệ Tùng Phát",
+        "trang liên hệ"
+      ]
+    },
+    "/mdf-chong-am/": {
+      "clickDepth": 1,
+      "internalInlinks": 56,
+      "contextualInlinks": 24,
+      "navigationInlinks": 32,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "Hướng dẫn MDF chống ẩm",
+        "MDF chống ẩm",
+        "MDF chống ẩm tại TP.HCM",
+        "MDF chống ẩm Tham khảo cách chọn cốt ván cho điều kiện có độ ẩm cao hơn môi trường khô. Xem thông tin vật liệu",
+        "P3_FIRST_PARTY_BUSINESS",
+        "Vật liệu Mdf chong am",
+        "Xem chi tiết",
+        "Xem landing page",
+        "Xem MDF chống ẩm",
+        "Xem quy cách",
+        "Xem vật liệu"
+      ]
+    },
+    "/san-pham/an-cuong/": {
+      "clickDepth": 2,
+      "internalInlinks": 2,
+      "contextualInlinks": 2,
+      "navigationInlinks": 0,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "Xem thương hiệu",
+        "Xem trang thương hiệu"
+      ]
+    },
+    "/san-pham/ba-thanh/": {
+      "clickDepth": 2,
+      "internalInlinks": 2,
+      "contextualInlinks": 2,
+      "navigationInlinks": 0,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "Xem thương hiệu",
+        "Xem trang thương hiệu"
+      ]
+    },
+    "/san-pham/": {
+      "clickDepth": 1,
+      "internalInlinks": 171,
+      "contextualInlinks": 25,
+      "navigationInlinks": 133,
+      "breadcrumbInlinks": 13,
+      "anchorVariation": [
+        "Catalogue",
+        "danh mục sản phẩm",
+        "hub sản phẩm hiện có",
+        "Laminate, Acrylic Veneer",
+        "Melamine",
+        "Mua ván nguyên tấm Xem các nhóm MDF, gỗ ghép và ván gỗ công nghiệp đang được giới thiệu. Xem hướng phù hợp",
+        "nhóm sản phẩm",
+        "Thương hiệu",
+        "Tìm mã màu và bề mặt Tham khảo nhóm catalogue và xác nhận lại mã hàng trước khi đặt. Xem hướng phù hợp",
+        "trang chi tiết vật liệu",
+        "trang sản phẩm",
+        "Vật liệu",
+        "Xem catalogue",
+        "Xem danh mục vật liệu",
+        "Xem quy cách",
+        "Xem toàn bộ vật liệu",
+        "Xem vật liệu khác"
+      ]
+    },
+    "/san-pham/kes/": {
+      "clickDepth": 2,
+      "internalInlinks": 1,
+      "contextualInlinks": 1,
+      "navigationInlinks": 0,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "Xem thương hiệu"
+      ]
+    },
+    "/san-pham/thanh-thuy/": {
+      "clickDepth": 2,
+      "internalInlinks": 2,
+      "contextualInlinks": 2,
+      "navigationInlinks": 0,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "Xem thương hiệu",
+        "Xem trang thương hiệu"
+      ]
+    },
+    "/tham-chieu-vat-lieu/": {
+      "clickDepth": 2,
+      "internalInlinks": 15,
+      "contextualInlinks": 15,
+      "navigationInlinks": 0,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "HDF",
+        "ma trận MDF, HDF, MFC, plywood và gỗ ghép",
+        "ma trận so sánh có nguồn",
+        "ma trận so sánh vật liệu có nguồn",
+        "MFC",
+        "Mở trung tâm tham chiếu",
+        "Plywood",
+        "tham chiếu vật liệu",
+        "xem nguồn tham chiếu"
+      ]
+    },
+    "/van-go-cong-nghiep/": {
+      "clickDepth": 1,
+      "internalInlinks": 53,
+      "contextualInlinks": 23,
+      "navigationInlinks": 30,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "hướng dẫn chọn nhóm ván gỗ công nghiệp",
+        "hướng dẫn ván gỗ công nghiệp",
+        "Hướng dẫn ván gỗ công nghiệp",
+        "P3_FIRST_PARTY_BUSINESS",
+        "Plywood",
+        "ván gỗ công nghiệp",
+        "Ván gỗ công nghiệp",
+        "Ván gỗ công nghiệp So sánh nhóm MDF, MFC, plywood và các bề mặt liên quan. Xem thông tin vật liệu",
+        "Ván gỗ công nghiệp: cách chọn nhóm phù hợp",
+        "Ván MFC",
+        "Xem chi tiết",
+        "Xem quy cách"
+      ]
+    },
+    "/van-mdf/": {
+      "clickDepth": 1,
+      "internalInlinks": 57,
+      "contextualInlinks": 25,
+      "navigationInlinks": 32,
+      "breadcrumbInlinks": 0,
+      "anchorVariation": [
+        "Cách chọn ván MDF",
+        "MDF",
+        "P3_FIRST_PARTY_BUSINESS",
+        "ván MDF",
+        "Ván MDF",
+        "Ván MDF Cốt ván, độ dày và bề mặt cần được xác nhận theo mã hàng. Xem thông tin vật liệu",
+        "Ván MDF tại TP.HCM",
+        "Vật liệu Van mdf",
+        "Xem chi tiết",
+        "Xem landing page",
+        "Xem quy cách",
+        "Xem trang MDF",
+        "Xem vật liệu"
+      ]
+    }
+  },
+  "priorityUrls": [
+    "/",
+    "/san-pham/",
+    "/van-go-cong-nghiep/",
+    "/gia-cong-cnc/",
+    "/cat-cnc-go/",
+    "/tham-chieu-vat-lieu/"
+  ],
+  "weakPriorityUrls": []
+}

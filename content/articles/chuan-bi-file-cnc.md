@@ -3,7 +3,7 @@ title: "Chuẩn bị file gì khi gửi xưởng CNC gỗ và MDF?"
 slug: "chuan-bi-file-cnc"
 excerpt: "Checklist chuẩn bị file CNC gồm đơn vị đo, đường cắt, mặt gia công, số lượng, vật liệu và bản đối chiếu trước khi gửi xưởng kiểm tra."
 publishedAt: "2026-07-16"
-updatedAt: "2026-08-08"
+updatedAt: "2026-08-09"
 author: "Ban biên tập Tùng Phát"
 category: "Hướng dẫn CNC"
 tags: ["CNC gỗ", "file CNC", "CNC MDF"]
@@ -54,6 +54,8 @@ Với [MDF](/van-mdf/), cần ghi cốt, độ dày, bề mặt/lớp phủ, m�
 
 Website chưa công bố danh sách định dạng file, khổ máy hoặc dung sai cố định. Không nên tự suy luận các numeric fields này từ ảnh minh họa hoặc tên dịch vụ. Xem [gia công CNC MDF](/gia-cong-cnc-mdf/) và [liên hệ](/lien-he/) để bắt đầu trao đổi.
 
+Nếu chưa chốt vật liệu, đối chiếu [ma trận MDF, HDF, MFC, plywood và gỗ ghép](/tham-chieu-vat-lieu/#family-hdf). Nếu file có nhiều biên dạng gỗ, xem thêm quy trình [cắt CNC gỗ theo file](/cat-cnc-go/) trước khi gửi danh sách chi tiết.
+
 ## Nguồn và giới hạn dữ liệu
 
-Bài viết tổng hợp từ các trang dịch vụ [cắt CNC gỗ](/cat-cnc-go/), [gia công CNC](/gia-cong-cnc/) và [gia công CNC MDF](/gia-cong-cnc-mdf/), cùng bộ [knowledge.json](/knowledge.json), cập nhật ngày 2026-08-08. Nội dung là checklist preflight, không phải cam kết nhận mọi định dạng, dung sai, thời gian hoặc khả năng gia công.
+Bài viết tổng hợp từ các trang dịch vụ [cắt CNC gỗ](/cat-cnc-go/), [gia công CNC](/gia-cong-cnc/) và [gia công CNC MDF](/gia-cong-cnc-mdf/), cùng bộ [knowledge.json](/knowledge.json), cập nhật ngày 2026-08-09. Nội dung là checklist preflight, không phải cam kết nhận mọi định dạng, dung sai, thời gian hoặc khả năng gia công.

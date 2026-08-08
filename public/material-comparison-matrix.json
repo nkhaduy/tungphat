@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "2.0",
+  "lastVerified": "2026-08-09",
+  "caveat": "Family-level comparison only; no stock, SKU, machine-limit or universal performance claim is implied.",
+  "records": [
+    {
+      "id": "family-mdf",
+      "name": "MDF",
+      "composition": "Sợi gỗ liên kết bằng keo nhựa tổng hợp",
+      "density": "Điển hình 700-800 kg/m3 theo EPF",
+      "moistureBehavior": "Tiêu chuẩn: ưu tiên điều kiện khô",
+      "machining": "Bề mặt nhẵn, kết cấu đồng nhất; phù hợp tạo biên dạng và hoàn thiện",
+      "surfaceFinish": "Sơn, foil hoặc veneer trên nền phù hợp",
+      "typicalApplications": "Mặt bàn, cánh cửa, mặt ngăn kéo, nội thất",
+      "choiceGuidance": "Chọn khi cần nền đồng nhất và gia công/hoàn thiện bề mặt; xác nhận mã hàng",
+      "sourceIds": [
+        "epf-mdf"
+      ]
+    },
+    {
+      "id": "family-mdf-moisture-resistant",
+      "name": "MDF chống ẩm",
+      "composition": "Biến thể fibreboard khô dành cho điều kiện ẩm nội thất",
+      "density": null,
+      "moistureBehavior": "Kháng điều kiện ẩm; không đồng nghĩa chống nước",
+      "machining": "Tương tự nhóm fibreboard, nhưng cần xác nhận cốt và cạnh",
+      "surfaceFinish": "Theo mã hàng và hệ hoàn thiện",
+      "typicalApplications": "Thiết bị phòng tắm, cửa, bậu cửa, nội thất nơi ẩm",
+      "choiceGuidance": "Chọn khi điều kiện ẩm là yêu cầu và có datasheet phù hợp; không dùng tên gọi thay cho cấp sản phẩm",
+      "sourceIds": [
+        "epf-mdf",
+        "site-mdf-chong-am"
+      ]
+    },
+    {
+      "id": "family-hdf",
+      "name": "HDF",
+      "composition": "Biến thể MDF mật độ cao trong nhóm fibreboard khô",
+      "density": "Trên 800 kg/m3 theo EPF",
+      "moistureBehavior": "Khả năng chống ẩm phụ thuộc cấp sản phẩm, không suy ra từ tên HDF",
+      "machining": "Có thể gia công và hoàn thiện; yêu cầu cụ thể theo datasheet",
+      "surfaceFinish": "Theo sản phẩm; HDF thường làm nền cho sàn laminate",
+      "typicalApplications": "Nền sàn laminate và ứng dụng theo cấp sản phẩm",
+      "choiceGuidance": "Chọn khi cần fibreboard mật độ cao và datasheet đáp ứng hạng mục",
+      "sourceIds": [
+        "epf-mdf"
+      ]
+    },
+    {
+      "id": "family-mfc",
+      "name": "MFC",
+      "composition": "Particleboard phủ bề mặt melamine",
+      "density": null,
+      "moistureBehavior": "MFC tiêu chuẩn nguồn An Cường không công bố chống ẩm; cấp chống ẩm cần xác nhận riêng",
+      "machining": "Kiểm tra theo cốt, lớp phủ, cạnh và mã hàng",
+      "surfaceFinish": "Melamine trang trí",
+      "typicalApplications": "Đồ nội thất và thiết kế nội thất",
+      "choiceGuidance": "Chọn khi cần tấm particleboard có bề mặt melamine hoàn thiện; xác nhận cốt, màu và cạnh",
+      "sourceIds": [
+        "ancuong-mfc",
+        "epf-particleboard"
+      ]
+    },
+    {
+      "id": "family-plywood",
+      "name": "Plywood",
+      "composition": "Các lớp veneer liên kết bằng keo, thớ lớp kề thường vuông góc",
+      "density": null,
+      "moistureBehavior": "Có cấp nội thất, độ ẩm cao và ngoại thất; phải chọn đúng hệ keo/cấp",
+      "machining": "Phụ thuộc loài gỗ, bố trí và độ dày lớp veneer",
+      "surfaceFinish": "Bề mặt veneer; nhiều lựa chọn hoàn thiện",
+      "typicalApplications": "Xây dựng, vận tải, bao bì, đồ nội thất, trang trí",
+      "choiceGuidance": "Chọn khi cấu trúc veneer ghép lớp và cấp sản phẩm phù hợp yêu cầu; không dùng một thông số chung cho mọi plywood",
+      "sourceIds": [
+        "epf-plywood"
+      ]
+    },
+    {
+      "id": "family-finger-jointed-wood",
+      "name": "Gỗ ghép",
+      "composition": "Các thanh gỗ liên kết thành tấm",
+      "density": null,
+      "moistureBehavior": "Phụ thuộc loại gỗ và hoàn thiện; không mặc định dùng ngoài trời/ẩm kéo dài",
+      "machining": "Kiểm tra loại gỗ, mối ghép, độ dày và hình học file",
+      "surfaceFinish": "Bề mặt gỗ tự nhiên cần đối chiếu mẫu/lô hàng",
+      "typicalApplications": "Mặt bàn, kệ, tủ, vách, phôi CNC",
+      "choiceGuidance": "Chọn khi cần bề mặt gỗ tự nhiên và chấp nhận đối chiếu mẫu/lô hàng",
+      "sourceIds": [
+        "site-go-ghep"
+      ]
+    }
+  ]
+}
