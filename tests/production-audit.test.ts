@@ -3,8 +3,8 @@ import { evaluateProductionAssets, evaluateProductionQualityGates, evaluateSecur
 
 describe("production audit quality gates", () => {
   it("requires all public retrieval and IndexNow endpoints", () => {
-    expect(evaluateProductionAssets({ robots: 200, sitemap: 200, knowledge: 200, llms: 200, indexNowKey: 200 })).toEqual({ errors: 0, missing: [] });
-    expect(evaluateProductionAssets({ robots: 200, sitemap: 200, knowledge: 404, llms: 200, indexNowKey: 404 }).missing).toEqual(["knowledge.json", "indexnow-key.txt"]);
+    expect(evaluateProductionAssets({ robots: 200, sitemap: 200, knowledge: 200, llms: 200, indexNowKey: 200, materialReference: 200, cncPreflight: 200 })).toEqual({ errors: 0, missing: [] });
+    expect(evaluateProductionAssets({ robots: 200, sitemap: 200, knowledge: 404, llms: 200, indexNowKey: 404, materialReference: 404, cncPreflight: 404 }).missing).toEqual(["knowledge.json", "indexnow-key.txt", "material-reference.csv", "cnc-preflight-checklist.csv"]);
   });
 
   it("checks the complete production security header baseline", () => {

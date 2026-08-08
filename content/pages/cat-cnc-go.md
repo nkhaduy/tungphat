@@ -72,6 +72,24 @@ Tên file không đủ để xác định nội dung gia công. File kỹ thuậ
 
 Tùng Phát chưa công bố danh sách định dạng file cụ thể được tiếp nhận. Khách hàng nên gửi định dạng đang có qua kênh liên hệ hiện tại để Tùng Phát kiểm tra khả năng đọc dữ liệu; không nên tự chuyển đổi hoặc xem một định dạng bất kỳ là chắc chắn phù hợp khi chưa được xác nhận.
 
+## File kỹ thuật và bản phác thảo dùng khi nào?
+
+| Dữ liệu đầu vào | Phù hợp khi | Điều còn phải kiểm tra |
+| --- | --- | --- |
+| File kỹ thuật | Kích thước, đường cắt, lỗ, rãnh, mặt gia công và số lượng đã được thể hiện có cấu trúc | Khả năng đọc định dạng, đơn vị đo, tỷ lệ, phiên bản và các chi tiết chưa rõ |
+| Bản phác thảo hoặc PDF/ảnh | Khách cần mô tả ý tưởng, kích thước sơ bộ hoặc điểm cần trao đổi trước khi hoàn thiện dữ liệu | Không xem là file sẵn sàng chạy máy; phải đối chiếu lại kích thước, hình học và phạm vi gia công |
+
+File kỹ thuật giúp giảm suy đoán khi dữ liệu đã hoàn chỉnh. Bản phác thảo phù hợp để bắt đầu trao đổi, nhưng không thay thế bước chuẩn hóa và xác nhận dữ liệu trước khi chạy máy.
+
+## CNC MDF và CNC gỗ ghép cần kiểm tra khác nhau gì?
+
+| Nhóm vật liệu | Trọng tâm kiểm tra trước CNC | Giới hạn công bố |
+| --- | --- | --- |
+| MDF | Cốt, độ dày, bề mặt/lớp phủ, mặt sử dụng, cạnh, đường cắt, lỗ và rãnh | Không mặc định mọi cốt hoặc bề mặt đều xử lý giống nhau |
+| Gỗ ghép | Loại gỗ, tấm/mẫu hoặc lô hàng, mặt sử dụng, màu/vân, mối ghép, cạnh và hoàn thiện | Không suy luận chất lượng hoặc khả năng gia công chỉ từ tên “gỗ ghép” |
+
+Cả hai nhóm đều có thể gửi để kiểm tra cắt, khoan và soi rãnh trong phạm vi nội dung đã công bố. Khả năng thực hiện, dung sai, giá và thời gian vẫn phải xác nhận theo vật liệu và file thực tế.
+
 ## Checklist trước khi gửi yêu cầu
 
 Bộ thông tin dưới đây giúp cuộc trao đổi tập trung vào yêu cầu thực tế thay vì phải suy đoán từ ảnh hoặc tên hạng mục.

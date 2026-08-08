@@ -3,7 +3,7 @@ import path from "node:path";
 import querySet from "../data/ai-search-query-set.json";
 import { parseBingRss, selectBenchmarkQueries } from "../lib/search-benchmark";
 import { parseHtmlSignals } from "../lib/live-seo-audit";
-import { compareSearchReports, summarizeSearchRecords, type SearchMonitorRecord } from "../lib/search-monitor";
+import { annotateSearchRecords, compareSearchReports, summarizeSearchRecords, type SearchMonitorRecord } from "../lib/search-monitor";
 
 const origin = (process.env.PRODUCTION_ORIGIN ?? "https://mdftungphat.com").replace(/\/$/u, "");
 const outputPath = process.env.SEARCH_MONITOR_OUTPUT ?? `reports/search-monitor-${new Date().toISOString().slice(0, 10)}.json`;
@@ -59,6 +59,7 @@ async function inspectSearch(query: string) {
 
 async function main() {
   const checkedAt = new Date().toISOString();
+  const runId = process.env.SEARCH_MONITOR_RUN_ID ?? `bing-rss-${checkedAt.replace(/[:.]/gu, "-")}`;
   const selected = selectBenchmarkQueries(querySet.queries);
   const previous = readPreviousReport();
   const records: SearchMonitorRecord[] = [];
@@ -78,7 +79,8 @@ async function main() {
     records.push({ query: query.query, category: query.intent === "local" || query.intent === "cnc" ? "local-cnc" : query.intent as SearchMonitorRecord["category"], engine: "Bing Web Search RSS", checkedAt, responseStatus: search.status, searchAvailable: search.available, found: search.available && firstParty >= 0, sourcePosition: search.available && firstParty >= 0 ? firstParty + 1 : null, directAiCitation: null, targetUrl, targetStatus: target.status, targetIndexable: target.indexable, targetAvailable: target.available, competitorSources, limitation });
     await new Promise((resolve) => setTimeout(resolve, 250));
   }
-  const result = { schemaVersion: "1.0", checkedAt, domain: querySet.domain, surface: "Bing Web Search RSS + public target inspection", queryCount: records.length, records, summary: summarizeSearchRecords(records), comparison: compareSearchReports(records, previous.records), previousReport: previous.path };
+  const annotatedRecords = annotateSearchRecords(records, previous.records, runId);
+  const result = { schemaVersion: "2.0", runId, checkedAt, domain: querySet.domain, surface: "Bing Web Search RSS + public target inspection", queryCount: annotatedRecords.length, records: annotatedRecords, summary: summarizeSearchRecords(annotatedRecords), comparison: compareSearchReports(annotatedRecords, previous.records), previousReport: previous.path };
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, `${JSON.stringify(result, null, 2)}\n`);
   console.log(JSON.stringify({ outputPath, queryCount: records.length, found: result.summary.foundCount, previousReport: previous.path, comparison: result.comparison }, null, 2));
