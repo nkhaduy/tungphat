@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRouteRules = [
     { route: "/", include: true },
     { route: "/san-pham/", include: true },
+    { route: "/tham-chieu-vat-lieu/", include: true },
     { route: "/gia-cong-cnc/", include: true },
     { route: "/du-an/", include: getListingIndexability(projects.length).includeInSitemap },
     { route: "/bai-viet/", include: getListingIndexability(articles.length).includeInSitemap },

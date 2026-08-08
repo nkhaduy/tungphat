@@ -13,6 +13,7 @@ import {
   type ServicePageFrontmatter
 } from "@/lib/content-schema";
 import { filterPublishedContent } from "@/lib/listing-indexability";
+import { hasMinimumProductEvidence } from "@/lib/content-evidence";
 
 export type ContentEntry<T> = T & { body: string; sourcePath: string };
 
@@ -47,7 +48,7 @@ export function getArticle(slug: string, options: { includeDrafts?: boolean } = 
 
 export function getProducts(options: { includeDrafts?: boolean } = {}) {
   return readCollection<ProductFrontmatter>("products", productSchema)
-    .filter((entry) => options.includeDrafts || (!entry.draft && !entry.noindex))
+    .filter((entry) => options.includeDrafts || (!entry.draft && !entry.noindex && hasMinimumProductEvidence(entry)))
     .sort((a, b) => a.title.localeCompare(b.title, "vi"));
 }
 

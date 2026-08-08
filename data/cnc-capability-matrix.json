@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.0",
+  "lastVerified": "2026-08-08",
+  "publicationRule": "Only capabilities explicitly described by current service pages are published. Numeric limits remain null until machine or operating records are verified.",
+  "capabilities": [
+    {
+      "material": "MDF thường",
+      "cutting": "CONDITIONAL",
+      "routing": "CONDITIONAL",
+      "drilling": "CONDITIONAL",
+      "engraving": null,
+      "nesting": null,
+      "maxDimensions": null,
+      "minThickness": null,
+      "maxThickness": null,
+      "fileFormats": null,
+      "tolerance": null,
+      "edgeRequirements": "Xác nhận mặt chính, cạnh để lộ và bước hoàn thiện.",
+      "limitations": "Kiểm tra cốt, độ dày, bề mặt, file, số lượng và chi tiết trước khi xác nhận.",
+      "source": "content/pages/gia-cong-cnc-mdf.md"
+    },
+    {
+      "material": "MDF chống ẩm",
+      "cutting": "CONDITIONAL",
+      "routing": "CONDITIONAL",
+      "drilling": "CONDITIONAL",
+      "engraving": null,
+      "nesting": null,
+      "maxDimensions": null,
+      "minThickness": null,
+      "maxThickness": null,
+      "fileFormats": null,
+      "tolerance": null,
+      "edgeRequirements": "Xác nhận mã vật liệu, bề mặt, cạnh và môi trường sử dụng.",
+      "limitations": "Chống ẩm không đồng nghĩa chống nước; khả năng gia công được xác nhận theo tấm và file.",
+      "source": "content/pages/gia-cong-cnc-mdf.md"
+    },
+    {
+      "material": "Gỗ ghép đã xác nhận loại và quy cách",
+      "cutting": "CONDITIONAL",
+      "routing": "CONDITIONAL",
+      "drilling": "CONDITIONAL",
+      "engraving": null,
+      "nesting": null,
+      "maxDimensions": null,
+      "minThickness": null,
+      "maxThickness": null,
+      "fileFormats": null,
+      "tolerance": null,
+      "edgeRequirements": "Xác nhận mặt sử dụng, màu/vân, mối ghép, cạnh và hoàn thiện.",
+      "limitations": "Kiểm tra mẫu/lô hàng, quy cách, file và chi tiết trước khi xác nhận.",
+      "source": "content/pages/cat-cnc-go.md"
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import business from "@/content/settings/business.json";
 import seo from "@/content/settings/seo.json";
 import { articleSchema, productSchema, projectSchema, servicePageSchema } from "@/lib/content-schema";
 import { absolutePageUrl } from "@/lib/seo";
+import materialDataset from "@/data/materials/materials.json";
 
 type KnowledgePage = {
   url: string;
@@ -88,6 +89,16 @@ export function buildKnowledgeIndex() {
       void embedSrc;
       return location;
     }),
+    resources: [
+      {
+        url: absolutePageUrl("/tham-chieu-vat-lieu"),
+        type: "Dataset",
+        name: "Tham chiếu vật liệu MDF, gỗ ghép và CNC",
+        updatedAt: materialDataset.lastVerified,
+        recordCount: materialDataset.materials.length,
+        sourceCount: materialDataset.sources.length,
+      },
+    ],
     pages: [...products, ...services, ...articles, ...projects],
   };
 }

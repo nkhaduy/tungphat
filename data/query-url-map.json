@@ -1,0 +1,1818 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-08-08",
+  "domain": "mdftungphat.com",
+  "queryCount": 100,
+  "entries": [
+    {
+      "query": "mua ván MDF tại TP.HCM",
+      "intent": "commercial",
+      "targetEntity": "Ván MDF",
+      "idealLandingUrl": "/van-mdf/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P0",
+      "targetUrl": "/van-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-mdf"
+    },
+    {
+      "query": "ván MDF Thủ Đức ở đâu",
+      "intent": "commercial",
+      "targetEntity": "Ván MDF",
+      "idealLandingUrl": "/van-mdf/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P0",
+      "targetUrl": "/van-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-mdf"
+    },
+    {
+      "query": "đơn vị cung cấp MDF chống ẩm TP.HCM",
+      "intent": "commercial",
+      "targetEntity": "MDF chống ẩm",
+      "idealLandingUrl": "/mdf-chong-am/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P0",
+      "targetUrl": "/mdf-chong-am/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "mdf-chống-ẩm"
+    },
+    {
+      "query": "mua MDF chống ẩm cho tủ bếp",
+      "intent": "commercial",
+      "targetEntity": "MDF chống ẩm",
+      "idealLandingUrl": "/mdf-chong-am/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P0",
+      "targetUrl": "/mdf-chong-am/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "mdf-chống-ẩm"
+    },
+    {
+      "query": "mua gỗ ghép cao su TP.HCM",
+      "intent": "commercial",
+      "targetEntity": "Gỗ ghép cao su",
+      "idealLandingUrl": "/go-ghep-cao-su/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P0",
+      "targetUrl": "/go-ghep-cao-su/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép-cao-su"
+    },
+    {
+      "query": "mua gỗ ghép tràm TP.HCM",
+      "intent": "commercial",
+      "targetEntity": "Gỗ ghép tràm",
+      "idealLandingUrl": "/go-ghep-tram/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P0",
+      "targetUrl": "/go-ghep-tram/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép-tràm"
+    },
+    {
+      "query": "nơi bán gỗ ghép theo quy cách",
+      "intent": "commercial",
+      "targetEntity": "Gỗ ghép",
+      "idealLandingUrl": "/go-ghep/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P1",
+      "targetUrl": "/go-ghep/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép"
+    },
+    {
+      "query": "ván gỗ công nghiệp cho xưởng nội thất",
+      "intent": "commercial",
+      "targetEntity": "Ván gỗ công nghiệp",
+      "idealLandingUrl": "/van-go-cong-nghiep/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P1",
+      "targetUrl": "/van-go-cong-nghiep/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-gỗ-công-nghiệp"
+    },
+    {
+      "query": "đặt ván MDF theo danh sách cắt",
+      "intent": "commercial",
+      "targetEntity": "Ván MDF",
+      "idealLandingUrl": "/van-mdf/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P0",
+      "targetUrl": "/van-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-mdf"
+    },
+    {
+      "query": "mua ván nguyên tấm và cắt CNC",
+      "intent": "commercial",
+      "targetEntity": "Vật liệu và CNC",
+      "idealLandingUrl": "/san-pham/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P0",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "vật-liệu-và-cnc"
+    },
+    {
+      "query": "nhận báo giá ván MDF theo số lượng",
+      "intent": "commercial",
+      "targetEntity": "Ván MDF",
+      "idealLandingUrl": "/van-mdf/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P0",
+      "targetUrl": "/van-mdf/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [
+        "cách nhận báo giá"
+      ],
+      "cannibalizationKey": "ván-mdf"
+    },
+    {
+      "query": "báo giá MDF chống ẩm theo mã hàng",
+      "intent": "commercial",
+      "targetEntity": "MDF chống ẩm",
+      "idealLandingUrl": "/mdf-chong-am/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P0",
+      "targetUrl": "/mdf-chong-am/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [
+        "cách nhận báo giá"
+      ],
+      "cannibalizationKey": "mdf-chống-ẩm"
+    },
+    {
+      "query": "báo giá gỗ ghép cao su theo tấm",
+      "intent": "commercial",
+      "targetEntity": "Gỗ ghép cao su",
+      "idealLandingUrl": "/go-ghep-cao-su/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P0",
+      "targetUrl": "/go-ghep-cao-su/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [
+        "cách nhận báo giá"
+      ],
+      "cannibalizationKey": "gỗ-ghép-cao-su"
+    },
+    {
+      "query": "báo giá gỗ ghép tràm theo tấm",
+      "intent": "commercial",
+      "targetEntity": "Gỗ ghép tràm",
+      "idealLandingUrl": "/go-ghep-tram/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P0",
+      "targetUrl": "/go-ghep-tram/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [
+        "cách nhận báo giá"
+      ],
+      "cannibalizationKey": "gỗ-ghép-tràm"
+    },
+    {
+      "query": "đặt vật liệu gỗ cho tủ kệ nội thất",
+      "intent": "commercial",
+      "targetEntity": "Vật liệu gỗ",
+      "idealLandingUrl": "/san-pham/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P1",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "vật-liệu-gỗ"
+    },
+    {
+      "query": "mua phôi MDF để gia công CNC",
+      "intent": "commercial",
+      "targetEntity": "Ván MDF",
+      "idealLandingUrl": "/van-mdf/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P1",
+      "targetUrl": "/van-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-mdf"
+    },
+    {
+      "query": "mua phôi gỗ ghép để cắt CNC",
+      "intent": "commercial",
+      "targetEntity": "Gỗ ghép",
+      "idealLandingUrl": "/go-ghep/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P1",
+      "targetUrl": "/go-ghep/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép"
+    },
+    {
+      "query": "tìm mã màu bề mặt ván gỗ",
+      "intent": "commercial",
+      "targetEntity": "Catalogue vật liệu",
+      "idealLandingUrl": "/san-pham/#catalogue",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P1",
+      "targetUrl": "/san-pham/#catalogue",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "catalogue-vật-liệu"
+    },
+    {
+      "query": "cửa hàng vật liệu gỗ Tam Bình",
+      "intent": "commercial",
+      "targetEntity": "Tùng Phát",
+      "idealLandingUrl": "/lien-he/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P0",
+      "targetUrl": "/lien-he/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "tùng-phát"
+    },
+    {
+      "query": "liên hệ Tùng Phát báo giá vật liệu",
+      "intent": "commercial",
+      "targetEntity": "Tùng Phát",
+      "idealLandingUrl": "/lien-he/",
+      "expectedAnswerElements": [
+        "loại vật liệu",
+        "quy cách cần xác nhận",
+        "khu vực phục vụ",
+        "cách nhận báo giá"
+      ],
+      "priority": "P0",
+      "targetUrl": "/lien-he/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [
+        "cách nhận báo giá"
+      ],
+      "cannibalizationKey": "tùng-phát"
+    },
+    {
+      "query": "ván MDF là gì",
+      "intent": "informational",
+      "targetEntity": "Ván MDF",
+      "idealLandingUrl": "/van-mdf/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P0",
+      "targetUrl": "/van-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-mdf"
+    },
+    {
+      "query": "MDF chống ẩm là gì",
+      "intent": "informational",
+      "targetEntity": "MDF chống ẩm",
+      "idealLandingUrl": "/mdf-chong-am/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P0",
+      "targetUrl": "/mdf-chong-am/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "mdf-chống-ẩm"
+    },
+    {
+      "query": "MDF chống ẩm có chịu nước không",
+      "intent": "informational",
+      "targetEntity": "MDF chống ẩm",
+      "idealLandingUrl": "/mdf-chong-am/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P0",
+      "targetUrl": "/mdf-chong-am/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "mdf-chống-ẩm"
+    },
+    {
+      "query": "gỗ ghép là gì",
+      "intent": "informational",
+      "targetEntity": "Gỗ ghép",
+      "idealLandingUrl": "/go-ghep/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P0",
+      "targetUrl": "/go-ghep/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép"
+    },
+    {
+      "query": "gỗ ghép cao su là gì",
+      "intent": "informational",
+      "targetEntity": "Gỗ ghép cao su",
+      "idealLandingUrl": "/go-ghep-cao-su/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P1",
+      "targetUrl": "/go-ghep-cao-su/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép-cao-su"
+    },
+    {
+      "query": "gỗ ghép tràm là gì",
+      "intent": "informational",
+      "targetEntity": "Gỗ ghép tràm",
+      "idealLandingUrl": "/go-ghep-tram/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P1",
+      "targetUrl": "/go-ghep-tram/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép-tràm"
+    },
+    {
+      "query": "ván gỗ công nghiệp là gì",
+      "intent": "informational",
+      "targetEntity": "Ván gỗ công nghiệp",
+      "idealLandingUrl": "/van-go-cong-nghiep/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P0",
+      "targetUrl": "/van-go-cong-nghiep/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-gỗ-công-nghiệp"
+    },
+    {
+      "query": "cách chọn độ dày MDF",
+      "intent": "informational",
+      "targetEntity": "Ván MDF",
+      "idealLandingUrl": "/van-mdf/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P1",
+      "targetUrl": "/van-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-mdf"
+    },
+    {
+      "query": "kích thước ván MDF cần kiểm tra gì",
+      "intent": "informational",
+      "targetEntity": "Ván MDF",
+      "idealLandingUrl": "/van-mdf/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P1",
+      "targetUrl": "/van-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-mdf"
+    },
+    {
+      "query": "màu lõi xanh có xác định MDF chống ẩm không",
+      "intent": "informational",
+      "targetEntity": "MDF chống ẩm",
+      "idealLandingUrl": "/mdf-chong-am/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P0",
+      "targetUrl": "/mdf-chong-am/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "mdf-chống-ẩm"
+    },
+    {
+      "query": "cách chọn mặt gỗ ghép",
+      "intent": "informational",
+      "targetEntity": "Gỗ ghép",
+      "idealLandingUrl": "/go-ghep/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P1",
+      "targetUrl": "/go-ghep/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép"
+    },
+    {
+      "query": "phân hạng gỗ ghép nghĩa là gì",
+      "intent": "informational",
+      "targetEntity": "Gỗ ghép",
+      "idealLandingUrl": "/go-ghep/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P1",
+      "targetUrl": "/go-ghep/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép"
+    },
+    {
+      "query": "cần chuẩn bị gì khi hỏi mua ván gỗ",
+      "intent": "informational",
+      "targetEntity": "Vật liệu gỗ",
+      "idealLandingUrl": "/san-pham/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P1",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "vật-liệu-gỗ"
+    },
+    {
+      "query": "yếu tố ảnh hưởng báo giá ván MDF",
+      "intent": "informational",
+      "targetEntity": "Ván MDF",
+      "idealLandingUrl": "/van-mdf/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P1",
+      "targetUrl": "/van-mdf/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-mdf"
+    },
+    {
+      "query": "bề mặt ván và cốt ván khác nhau thế nào",
+      "intent": "informational",
+      "targetEntity": "Ván gỗ công nghiệp",
+      "idealLandingUrl": "/van-go-cong-nghiep/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P1",
+      "targetUrl": "/van-go-cong-nghiep/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-gỗ-công-nghiệp"
+    },
+    {
+      "query": "khi nào cần kiểm tra mẫu vật liệu",
+      "intent": "informational",
+      "targetEntity": "Vật liệu gỗ",
+      "idealLandingUrl": "/san-pham/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P2",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "vật-liệu-gỗ"
+    },
+    {
+      "query": "ván MDF phù hợp hạng mục nào",
+      "intent": "informational",
+      "targetEntity": "Ván MDF",
+      "idealLandingUrl": "/van-mdf/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P1",
+      "targetUrl": "/van-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-mdf"
+    },
+    {
+      "query": "gỗ ghép phù hợp hạng mục nào",
+      "intent": "informational",
+      "targetEntity": "Gỗ ghép",
+      "idealLandingUrl": "/go-ghep/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P1",
+      "targetUrl": "/go-ghep/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép"
+    },
+    {
+      "query": "cách mô tả yêu cầu vật liệu rõ ràng",
+      "intent": "informational",
+      "targetEntity": "Vật liệu gỗ",
+      "idealLandingUrl": "/san-pham/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P2",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "vật-liệu-gỗ"
+    },
+    {
+      "query": "vì sao giá vật liệu phải xác nhận theo mã hàng",
+      "intent": "informational",
+      "targetEntity": "Vật liệu gỗ",
+      "idealLandingUrl": "/san-pham/",
+      "expectedAnswerElements": [
+        "định nghĩa trực tiếp",
+        "yếu tố lựa chọn",
+        "giới hạn",
+        "trang liên quan"
+      ],
+      "priority": "P1",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "vật-liệu-gỗ"
+    },
+    {
+      "query": "MDF thường và MDF chống ẩm khác nhau thế nào",
+      "intent": "comparison",
+      "targetEntity": "MDF",
+      "idealLandingUrl": "/mdf-chong-am/",
+      "expectedAnswerElements": [
+        "tiêu chí so sánh",
+        "khi nên chọn mỗi loại",
+        "hạn chế",
+        "dữ liệu cần xác nhận"
+      ],
+      "priority": "P0",
+      "targetUrl": "/tham-chieu-vat-lieu/",
+      "currentStatus": "COVERED",
+      "coverage": "comparison-table",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "mdf"
+    },
+    {
+      "query": "MDF chống ẩm và chống nước khác nhau thế nào",
+      "intent": "comparison",
+      "targetEntity": "MDF chống ẩm",
+      "idealLandingUrl": "/mdf-chong-am/",
+      "expectedAnswerElements": [
+        "tiêu chí so sánh",
+        "khi nên chọn mỗi loại",
+        "hạn chế",
+        "dữ liệu cần xác nhận"
+      ],
+      "priority": "P0",
+      "targetUrl": "/tham-chieu-vat-lieu/",
+      "currentStatus": "COVERED",
+      "coverage": "comparison-table",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "mdf-chống-ẩm"
+    },
+    {
+      "query": "MDF và plywood khác nhau thế nào",
+      "intent": "comparison",
+      "targetEntity": "Vật liệu dạng tấm",
+      "idealLandingUrl": "/van-go-cong-nghiep/",
+      "expectedAnswerElements": [
+        "tiêu chí so sánh",
+        "khi nên chọn mỗi loại",
+        "hạn chế",
+        "dữ liệu cần xác nhận"
+      ],
+      "priority": "P1",
+      "targetUrl": "/van-go-cong-nghiep/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "vật-liệu-dạng-tấm"
+    },
+    {
+      "query": "MDF và MFC khác nhau thế nào",
+      "intent": "comparison",
+      "targetEntity": "Vật liệu dạng tấm",
+      "idealLandingUrl": "/van-go-cong-nghiep/",
+      "expectedAnswerElements": [
+        "tiêu chí so sánh",
+        "khi nên chọn mỗi loại",
+        "hạn chế",
+        "dữ liệu cần xác nhận"
+      ],
+      "priority": "P1",
+      "targetUrl": "/van-go-cong-nghiep/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "vật-liệu-dạng-tấm"
+    },
+    {
+      "query": "MDF và HDF khác nhau thế nào",
+      "intent": "comparison",
+      "targetEntity": "Vật liệu dạng tấm",
+      "idealLandingUrl": "/van-go-cong-nghiep/",
+      "expectedAnswerElements": [
+        "tiêu chí so sánh",
+        "khi nên chọn mỗi loại",
+        "hạn chế",
+        "dữ liệu cần xác nhận"
+      ],
+      "priority": "P2",
+      "targetUrl": "/van-go-cong-nghiep/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "vật-liệu-dạng-tấm"
+    },
+    {
+      "query": "MDF và gỗ ghép khác nhau thế nào",
+      "intent": "comparison",
+      "targetEntity": "MDF và gỗ ghép",
+      "idealLandingUrl": "/van-go-cong-nghiep/",
+      "expectedAnswerElements": [
+        "tiêu chí so sánh",
+        "khi nên chọn mỗi loại",
+        "hạn chế",
+        "dữ liệu cần xác nhận"
+      ],
+      "priority": "P1",
+      "targetUrl": "/van-go-cong-nghiep/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "mdf-và-gỗ-ghép"
+    },
+    {
+      "query": "gỗ ghép cao su và gỗ ghép tràm",
+      "intent": "comparison",
+      "targetEntity": "Gỗ ghép",
+      "idealLandingUrl": "/go-ghep/",
+      "expectedAnswerElements": [
+        "tiêu chí so sánh",
+        "khi nên chọn mỗi loại",
+        "hạn chế",
+        "dữ liệu cần xác nhận"
+      ],
+      "priority": "P0",
+      "targetUrl": "/go-ghep/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép"
+    },
+    {
+      "query": "ván nguyên tấm và danh sách chi tiết khác nhau khi báo giá",
+      "intent": "comparison",
+      "targetEntity": "Quy cách vật liệu",
+      "idealLandingUrl": "/san-pham/",
+      "expectedAnswerElements": [
+        "tiêu chí so sánh",
+        "khi nên chọn mỗi loại",
+        "hạn chế",
+        "dữ liệu cần xác nhận"
+      ],
+      "priority": "P2",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "quy-cách-vật-liệu"
+    },
+    {
+      "query": "cắt CNC MDF và cắt CNC gỗ ghép khác nhau gì",
+      "intent": "comparison",
+      "targetEntity": "Gia công CNC",
+      "idealLandingUrl": "/cat-cnc-go/",
+      "expectedAnswerElements": [
+        "tiêu chí so sánh",
+        "khi nên chọn mỗi loại",
+        "hạn chế",
+        "dữ liệu cần xác nhận"
+      ],
+      "priority": "P1",
+      "targetUrl": "/cat-cnc-go/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gia-công-cnc"
+    },
+    {
+      "query": "cắt theo kích thước và CNC theo file khác nhau gì",
+      "intent": "comparison",
+      "targetEntity": "Gia công CNC",
+      "idealLandingUrl": "/gia-cong-cnc/",
+      "expectedAnswerElements": [
+        "tiêu chí so sánh",
+        "khi nên chọn mỗi loại",
+        "hạn chế",
+        "dữ liệu cần xác nhận"
+      ],
+      "priority": "P0",
+      "targetUrl": "/gia-cong-cnc/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gia-công-cnc"
+    },
+    {
+      "query": "file kỹ thuật và bản phác thảo dùng khi nào",
+      "intent": "comparison",
+      "targetEntity": "Dữ liệu CNC",
+      "idealLandingUrl": "/cat-cnc-go/",
+      "expectedAnswerElements": [
+        "tiêu chí so sánh",
+        "khi nên chọn mỗi loại",
+        "hạn chế",
+        "dữ liệu cần xác nhận"
+      ],
+      "priority": "P1",
+      "targetUrl": "/cat-cnc-go/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "dữ-liệu-cnc"
+    },
+    {
+      "query": "bề mặt melamine và laminate nên kiểm tra gì",
+      "intent": "comparison",
+      "targetEntity": "Bề mặt ván",
+      "idealLandingUrl": "/san-pham/#catalogue",
+      "expectedAnswerElements": [
+        "tiêu chí so sánh",
+        "khi nên chọn mỗi loại",
+        "hạn chế",
+        "dữ liệu cần xác nhận"
+      ],
+      "priority": "P2",
+      "targetUrl": "/san-pham/#catalogue",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "bề-mặt-ván"
+    },
+    {
+      "query": "ván trơn và ván phủ bề mặt khác nhau gì",
+      "intent": "comparison",
+      "targetEntity": "Bề mặt ván",
+      "idealLandingUrl": "/van-mdf/",
+      "expectedAnswerElements": [
+        "tiêu chí so sánh",
+        "khi nên chọn mỗi loại",
+        "hạn chế",
+        "dữ liệu cần xác nhận"
+      ],
+      "priority": "P1",
+      "targetUrl": "/van-mdf/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "bề-mặt-ván"
+    },
+    {
+      "query": "mua tấm nguyên và thuê gia công trọn yêu cầu",
+      "intent": "comparison",
+      "targetEntity": "Vật liệu và CNC",
+      "idealLandingUrl": "/gia-cong-cnc/",
+      "expectedAnswerElements": [
+        "tiêu chí so sánh",
+        "khi nên chọn mỗi loại",
+        "hạn chế",
+        "dữ liệu cần xác nhận"
+      ],
+      "priority": "P2",
+      "targetUrl": "/gia-cong-cnc/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "vật-liệu-và-cnc"
+    },
+    {
+      "query": "MDF thường hay MDF chống ẩm cho nội thất bếp",
+      "intent": "comparison",
+      "targetEntity": "MDF",
+      "idealLandingUrl": "/mdf-chong-am/",
+      "expectedAnswerElements": [
+        "tiêu chí so sánh",
+        "khi nên chọn mỗi loại",
+        "hạn chế",
+        "dữ liệu cần xác nhận"
+      ],
+      "priority": "P0",
+      "targetUrl": "/mdf-chong-am/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "mdf"
+    },
+    {
+      "query": "ván MDF làm tủ quần áo",
+      "intent": "product-use-case",
+      "targetEntity": "Ván MDF",
+      "idealLandingUrl": "/van-mdf/",
+      "expectedAnswerElements": [
+        "mức phù hợp",
+        "điều kiện sử dụng",
+        "quy cách",
+        "rủi ro cần xác nhận"
+      ],
+      "priority": "P0",
+      "targetUrl": "/van-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-mdf"
+    },
+    {
+      "query": "ván MDF làm kệ nội thất",
+      "intent": "product-use-case",
+      "targetEntity": "Ván MDF",
+      "idealLandingUrl": "/van-mdf/",
+      "expectedAnswerElements": [
+        "mức phù hợp",
+        "điều kiện sử dụng",
+        "quy cách",
+        "rủi ro cần xác nhận"
+      ],
+      "priority": "P1",
+      "targetUrl": "/van-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-mdf"
+    },
+    {
+      "query": "MDF chống ẩm làm tủ bếp",
+      "intent": "product-use-case",
+      "targetEntity": "MDF chống ẩm",
+      "idealLandingUrl": "/mdf-chong-am/",
+      "expectedAnswerElements": [
+        "mức phù hợp",
+        "điều kiện sử dụng",
+        "quy cách",
+        "rủi ro cần xác nhận"
+      ],
+      "priority": "P0",
+      "targetUrl": "/mdf-chong-am/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "mdf-chống-ẩm"
+    },
+    {
+      "query": "MDF chống ẩm dùng gần bồn rửa được không",
+      "intent": "product-use-case",
+      "targetEntity": "MDF chống ẩm",
+      "idealLandingUrl": "/mdf-chong-am/",
+      "expectedAnswerElements": [
+        "mức phù hợp",
+        "điều kiện sử dụng",
+        "quy cách",
+        "rủi ro cần xác nhận"
+      ],
+      "priority": "P0",
+      "targetUrl": "/mdf-chong-am/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "mdf-chống-ẩm"
+    },
+    {
+      "query": "gỗ ghép cao su làm mặt bàn",
+      "intent": "product-use-case",
+      "targetEntity": "Gỗ ghép cao su",
+      "idealLandingUrl": "/go-ghep-cao-su/",
+      "expectedAnswerElements": [
+        "mức phù hợp",
+        "điều kiện sử dụng",
+        "quy cách",
+        "rủi ro cần xác nhận"
+      ],
+      "priority": "P0",
+      "targetUrl": "/go-ghep-cao-su/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép-cao-su"
+    },
+    {
+      "query": "gỗ ghép tràm làm kệ",
+      "intent": "product-use-case",
+      "targetEntity": "Gỗ ghép tràm",
+      "idealLandingUrl": "/go-ghep-tram/",
+      "expectedAnswerElements": [
+        "mức phù hợp",
+        "điều kiện sử dụng",
+        "quy cách",
+        "rủi ro cần xác nhận"
+      ],
+      "priority": "P1",
+      "targetUrl": "/go-ghep-tram/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép-tràm"
+    },
+    {
+      "query": "gỗ ghép làm cánh tủ",
+      "intent": "product-use-case",
+      "targetEntity": "Gỗ ghép",
+      "idealLandingUrl": "/go-ghep/",
+      "expectedAnswerElements": [
+        "mức phù hợp",
+        "điều kiện sử dụng",
+        "quy cách",
+        "rủi ro cần xác nhận"
+      ],
+      "priority": "P1",
+      "targetUrl": "/go-ghep/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép"
+    },
+    {
+      "query": "ván MDF để soi rãnh CNC",
+      "intent": "product-use-case",
+      "targetEntity": "Ván MDF",
+      "idealLandingUrl": "/gia-cong-cnc-mdf/",
+      "expectedAnswerElements": [
+        "mức phù hợp",
+        "điều kiện sử dụng",
+        "quy cách",
+        "rủi ro cần xác nhận"
+      ],
+      "priority": "P0",
+      "targetUrl": "/gia-cong-cnc-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-mdf"
+    },
+    {
+      "query": "MDF phủ bề mặt để cắt CNC",
+      "intent": "product-use-case",
+      "targetEntity": "MDF CNC",
+      "idealLandingUrl": "/gia-cong-cnc-mdf/",
+      "expectedAnswerElements": [
+        "mức phù hợp",
+        "điều kiện sử dụng",
+        "quy cách",
+        "rủi ro cần xác nhận"
+      ],
+      "priority": "P1",
+      "targetUrl": "/gia-cong-cnc-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "mdf-cnc"
+    },
+    {
+      "query": "gỗ ghép để cắt biên dạng CNC",
+      "intent": "product-use-case",
+      "targetEntity": "Gỗ ghép CNC",
+      "idealLandingUrl": "/cat-cnc-go/",
+      "expectedAnswerElements": [
+        "mức phù hợp",
+        "điều kiện sử dụng",
+        "quy cách",
+        "rủi ro cần xác nhận"
+      ],
+      "priority": "P1",
+      "targetUrl": "/cat-cnc-go/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép-cnc"
+    },
+    {
+      "query": "ván gỗ cho chi tiết nội thất dạng tấm",
+      "intent": "product-use-case",
+      "targetEntity": "Ván gỗ công nghiệp",
+      "idealLandingUrl": "/van-go-cong-nghiep/",
+      "expectedAnswerElements": [
+        "mức phù hợp",
+        "điều kiện sử dụng",
+        "quy cách",
+        "rủi ro cần xác nhận"
+      ],
+      "priority": "P1",
+      "targetUrl": "/van-go-cong-nghiep/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-gỗ-công-nghiệp"
+    },
+    {
+      "query": "vật liệu cho khu vực có độ ẩm",
+      "intent": "product-use-case",
+      "targetEntity": "MDF chống ẩm",
+      "idealLandingUrl": "/mdf-chong-am/",
+      "expectedAnswerElements": [
+        "mức phù hợp",
+        "điều kiện sử dụng",
+        "quy cách",
+        "rủi ro cần xác nhận"
+      ],
+      "priority": "P0",
+      "targetUrl": "/mdf-chong-am/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "mdf-chống-ẩm"
+    },
+    {
+      "query": "vật liệu cho bề mặt vân gỗ tự nhiên",
+      "intent": "product-use-case",
+      "targetEntity": "Gỗ ghép",
+      "idealLandingUrl": "/go-ghep/",
+      "expectedAnswerElements": [
+        "mức phù hợp",
+        "điều kiện sử dụng",
+        "quy cách",
+        "rủi ro cần xác nhận"
+      ],
+      "priority": "P1",
+      "targetUrl": "/go-ghep/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép"
+    },
+    {
+      "query": "vật liệu cho phôi CNC theo danh sách",
+      "intent": "product-use-case",
+      "targetEntity": "Vật liệu CNC",
+      "idealLandingUrl": "/gia-cong-cnc/",
+      "expectedAnswerElements": [
+        "mức phù hợp",
+        "điều kiện sử dụng",
+        "quy cách",
+        "rủi ro cần xác nhận"
+      ],
+      "priority": "P1",
+      "targetUrl": "/gia-cong-cnc/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "vật-liệu-cnc"
+    },
+    {
+      "query": "chọn vật liệu khi chưa biết mã hàng",
+      "intent": "product-use-case",
+      "targetEntity": "Vật liệu gỗ",
+      "idealLandingUrl": "/van-go-cong-nghiep/",
+      "expectedAnswerElements": [
+        "mức phù hợp",
+        "điều kiện sử dụng",
+        "quy cách",
+        "rủi ro cần xác nhận"
+      ],
+      "priority": "P1",
+      "targetUrl": "/van-go-cong-nghiep/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "vật-liệu-gỗ"
+    },
+    {
+      "query": "Tùng Phát MDF ở đâu",
+      "intent": "local",
+      "targetEntity": "Tùng Phát",
+      "idealLandingUrl": "/lien-he/",
+      "expectedAnswerElements": [
+        "địa chỉ thật",
+        "điện thoại",
+        "khu vực phục vụ",
+        "chỉ đường"
+      ],
+      "priority": "P0",
+      "targetUrl": "/lien-he/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "tùng-phát"
+    },
+    {
+      "query": "địa chỉ Tùng Phát Tam Bình",
+      "intent": "local",
+      "targetEntity": "Tùng Phát",
+      "idealLandingUrl": "/lien-he/",
+      "expectedAnswerElements": [
+        "địa chỉ thật",
+        "điện thoại",
+        "khu vực phục vụ",
+        "chỉ đường"
+      ],
+      "priority": "P0",
+      "targetUrl": "/lien-he/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "tùng-phát"
+    },
+    {
+      "query": "ván MDF gần Thủ Đức",
+      "intent": "local",
+      "targetEntity": "Ván MDF",
+      "idealLandingUrl": "/van-mdf/",
+      "expectedAnswerElements": [
+        "địa chỉ thật",
+        "điện thoại",
+        "khu vực phục vụ",
+        "chỉ đường"
+      ],
+      "priority": "P0",
+      "targetUrl": "/van-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-mdf"
+    },
+    {
+      "query": "ván gỗ Thủ Đức",
+      "intent": "local",
+      "targetEntity": "Vật liệu gỗ",
+      "idealLandingUrl": "/san-pham/",
+      "expectedAnswerElements": [
+        "địa chỉ thật",
+        "điện thoại",
+        "khu vực phục vụ",
+        "chỉ đường"
+      ],
+      "priority": "P0",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "vật-liệu-gỗ"
+    },
+    {
+      "query": "cắt CNC Thủ Đức",
+      "intent": "local",
+      "targetEntity": "Gia công CNC",
+      "idealLandingUrl": "/gia-cong-cnc/",
+      "expectedAnswerElements": [
+        "địa chỉ thật",
+        "điện thoại",
+        "khu vực phục vụ",
+        "chỉ đường"
+      ],
+      "priority": "P0",
+      "targetUrl": "/gia-cong-cnc/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gia-công-cnc"
+    },
+    {
+      "query": "cắt CNC TP.HCM",
+      "intent": "local",
+      "targetEntity": "Gia công CNC",
+      "idealLandingUrl": "/cat-cnc-go/",
+      "expectedAnswerElements": [
+        "địa chỉ thật",
+        "điện thoại",
+        "khu vực phục vụ",
+        "chỉ đường"
+      ],
+      "priority": "P0",
+      "targetUrl": "/cat-cnc-go/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gia-công-cnc"
+    },
+    {
+      "query": "MDF TP.HCM",
+      "intent": "local",
+      "targetEntity": "Ván MDF",
+      "idealLandingUrl": "/van-mdf/",
+      "expectedAnswerElements": [
+        "địa chỉ thật",
+        "điện thoại",
+        "khu vực phục vụ",
+        "chỉ đường"
+      ],
+      "priority": "P0",
+      "targetUrl": "/van-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ván-mdf"
+    },
+    {
+      "query": "MDF chống ẩm TP.HCM",
+      "intent": "local",
+      "targetEntity": "MDF chống ẩm",
+      "idealLandingUrl": "/mdf-chong-am/",
+      "expectedAnswerElements": [
+        "địa chỉ thật",
+        "điện thoại",
+        "khu vực phục vụ",
+        "chỉ đường"
+      ],
+      "priority": "P0",
+      "targetUrl": "/mdf-chong-am/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "mdf-chống-ẩm"
+    },
+    {
+      "query": "gỗ ghép TP.HCM",
+      "intent": "local",
+      "targetEntity": "Gỗ ghép",
+      "idealLandingUrl": "/go-ghep/",
+      "expectedAnswerElements": [
+        "địa chỉ thật",
+        "điện thoại",
+        "khu vực phục vụ",
+        "chỉ đường"
+      ],
+      "priority": "P0",
+      "targetUrl": "/go-ghep/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gỗ-ghép"
+    },
+    {
+      "query": "xưởng CNC ván gỗ TP.HCM",
+      "intent": "local",
+      "targetEntity": "Gia công CNC",
+      "idealLandingUrl": "/gia-cong-cnc/",
+      "expectedAnswerElements": [
+        "địa chỉ thật",
+        "điện thoại",
+        "khu vực phục vụ",
+        "chỉ đường"
+      ],
+      "priority": "P0",
+      "targetUrl": "/gia-cong-cnc/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "gia-công-cnc"
+    },
+    {
+      "query": "cắt CNC MDF theo file",
+      "intent": "cnc",
+      "targetEntity": "CNC MDF",
+      "idealLandingUrl": "/gia-cong-cnc-mdf/",
+      "expectedAnswerElements": [
+        "dữ liệu đầu vào",
+        "hạng mục gia công",
+        "quy trình kiểm tra",
+        "giới hạn chưa cam kết"
+      ],
+      "priority": "P0",
+      "targetUrl": "/gia-cong-cnc-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "cnc-mdf"
+    },
+    {
+      "query": "cắt CNC gỗ theo yêu cầu",
+      "intent": "cnc",
+      "targetEntity": "CNC gỗ",
+      "idealLandingUrl": "/cat-cnc-go/",
+      "expectedAnswerElements": [
+        "dữ liệu đầu vào",
+        "hạng mục gia công",
+        "quy trình kiểm tra",
+        "giới hạn chưa cam kết"
+      ],
+      "priority": "P0",
+      "targetUrl": "/cat-cnc-go/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "cnc-gỗ"
+    },
+    {
+      "query": "file CNC cần chuẩn bị gì",
+      "intent": "cnc",
+      "targetEntity": "File CNC",
+      "idealLandingUrl": "/cat-cnc-go/",
+      "expectedAnswerElements": [
+        "dữ liệu đầu vào",
+        "hạng mục gia công",
+        "quy trình kiểm tra",
+        "giới hạn chưa cam kết"
+      ],
+      "priority": "P0",
+      "targetUrl": "/cat-cnc-go/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "file-cnc"
+    },
+    {
+      "query": "gửi DXF cắt CNC cần kiểm tra gì",
+      "intent": "cnc",
+      "targetEntity": "File CNC",
+      "idealLandingUrl": "/cat-cnc-go/",
+      "expectedAnswerElements": [
+        "dữ liệu đầu vào",
+        "hạng mục gia công",
+        "quy trình kiểm tra",
+        "giới hạn chưa cam kết"
+      ],
+      "priority": "P1",
+      "targetUrl": "/cat-cnc-go/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "file-cnc"
+    },
+    {
+      "query": "khoan CNC ván gỗ theo bản vẽ",
+      "intent": "cnc",
+      "targetEntity": "Khoan CNC",
+      "idealLandingUrl": "/gia-cong-cnc/",
+      "expectedAnswerElements": [
+        "dữ liệu đầu vào",
+        "hạng mục gia công",
+        "quy trình kiểm tra",
+        "giới hạn chưa cam kết"
+      ],
+      "priority": "P1",
+      "targetUrl": "/gia-cong-cnc/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "khoan-cnc"
+    },
+    {
+      "query": "soi rãnh CNC MDF",
+      "intent": "cnc",
+      "targetEntity": "Soi rãnh CNC",
+      "idealLandingUrl": "/gia-cong-cnc-mdf/",
+      "expectedAnswerElements": [
+        "dữ liệu đầu vào",
+        "hạng mục gia công",
+        "quy trình kiểm tra",
+        "giới hạn chưa cam kết"
+      ],
+      "priority": "P0",
+      "targetUrl": "/gia-cong-cnc-mdf/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "soi-rãnh-cnc"
+    },
+    {
+      "query": "cắt biên dạng CNC ván gỗ",
+      "intent": "cnc",
+      "targetEntity": "Cắt biên dạng",
+      "idealLandingUrl": "/gia-cong-cnc/",
+      "expectedAnswerElements": [
+        "dữ liệu đầu vào",
+        "hạng mục gia công",
+        "quy trình kiểm tra",
+        "giới hạn chưa cam kết"
+      ],
+      "priority": "P1",
+      "targetUrl": "/gia-cong-cnc/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "cắt-biên-dạng"
+    },
+    {
+      "query": "yếu tố ảnh hưởng giá cắt CNC",
+      "intent": "cnc",
+      "targetEntity": "Báo giá CNC",
+      "idealLandingUrl": "/cat-cnc-go/",
+      "expectedAnswerElements": [
+        "dữ liệu đầu vào",
+        "hạng mục gia công",
+        "quy trình kiểm tra",
+        "giới hạn chưa cam kết"
+      ],
+      "priority": "P0",
+      "targetUrl": "/cat-cnc-go/",
+      "currentStatus": "PARTIAL",
+      "coverage": "answer-with-verification-caveat",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "báo-giá-cnc"
+    },
+    {
+      "query": "cần ghi đơn vị đo trong file CNC không",
+      "intent": "cnc",
+      "targetEntity": "File CNC",
+      "idealLandingUrl": "/cat-cnc-go/",
+      "expectedAnswerElements": [
+        "dữ liệu đầu vào",
+        "hạng mục gia công",
+        "quy trình kiểm tra",
+        "giới hạn chưa cam kết"
+      ],
+      "priority": "P1",
+      "targetUrl": "/cat-cnc-go/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "file-cnc"
+    },
+    {
+      "query": "quy trình kiểm tra file trước khi chạy CNC",
+      "intent": "cnc",
+      "targetEntity": "Quy trình CNC",
+      "idealLandingUrl": "/gia-cong-cnc/",
+      "expectedAnswerElements": [
+        "dữ liệu đầu vào",
+        "hạng mục gia công",
+        "quy trình kiểm tra",
+        "giới hạn chưa cam kết"
+      ],
+      "priority": "P0",
+      "targetUrl": "/gia-cong-cnc/",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-and-related-links",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "quy-trình-cnc"
+    },
+    {
+      "query": "catalogue An Cường tại Tùng Phát",
+      "intent": "brand-material",
+      "targetEntity": "An Cường",
+      "idealLandingUrl": "/catalogue/an-cuong/",
+      "expectedAnswerElements": [
+        "vai trò thương hiệu hoặc vật liệu",
+        "dữ liệu catalogue",
+        "giới hạn xác nhận",
+        "liên hệ kiểm tra mã"
+      ],
+      "priority": "P1",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "SHOULD_NOT_TARGET",
+      "coverage": "placeholder-or-unverified-catalogue",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "an-cường"
+    },
+    {
+      "query": "catalogue Thanh Thùy tại Tùng Phát",
+      "intent": "brand-material",
+      "targetEntity": "Thanh Thùy",
+      "idealLandingUrl": "/catalogue/thanh-thuy/",
+      "expectedAnswerElements": [
+        "vai trò thương hiệu hoặc vật liệu",
+        "dữ liệu catalogue",
+        "giới hạn xác nhận",
+        "liên hệ kiểm tra mã"
+      ],
+      "priority": "P1",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "SHOULD_NOT_TARGET",
+      "coverage": "placeholder-or-unverified-catalogue",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "thanh-thùy"
+    },
+    {
+      "query": "catalogue Ba Thanh tại Tùng Phát",
+      "intent": "brand-material",
+      "targetEntity": "Ba Thanh",
+      "idealLandingUrl": "/catalogue/ba-thanh/",
+      "expectedAnswerElements": [
+        "vai trò thương hiệu hoặc vật liệu",
+        "dữ liệu catalogue",
+        "giới hạn xác nhận",
+        "liên hệ kiểm tra mã"
+      ],
+      "priority": "P1",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "SHOULD_NOT_TARGET",
+      "coverage": "placeholder-or-unverified-catalogue",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ba-thanh"
+    },
+    {
+      "query": "mã màu An Cường cần kiểm tra gì",
+      "intent": "brand-material",
+      "targetEntity": "An Cường",
+      "idealLandingUrl": "/san-pham/an-cuong/",
+      "expectedAnswerElements": [
+        "vai trò thương hiệu hoặc vật liệu",
+        "dữ liệu catalogue",
+        "giới hạn xác nhận",
+        "liên hệ kiểm tra mã"
+      ],
+      "priority": "P1",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "SHOULD_NOT_TARGET",
+      "coverage": "placeholder-or-unverified-catalogue",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "an-cường"
+    },
+    {
+      "query": "mã màu Thanh Thùy cần kiểm tra gì",
+      "intent": "brand-material",
+      "targetEntity": "Thanh Thùy",
+      "idealLandingUrl": "/san-pham/thanh-thuy/",
+      "expectedAnswerElements": [
+        "vai trò thương hiệu hoặc vật liệu",
+        "dữ liệu catalogue",
+        "giới hạn xác nhận",
+        "liên hệ kiểm tra mã"
+      ],
+      "priority": "P1",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "SHOULD_NOT_TARGET",
+      "coverage": "placeholder-or-unverified-catalogue",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "thanh-thùy"
+    },
+    {
+      "query": "mã màu Ba Thanh cần kiểm tra gì",
+      "intent": "brand-material",
+      "targetEntity": "Ba Thanh",
+      "idealLandingUrl": "/san-pham/ba-thanh/",
+      "expectedAnswerElements": [
+        "vai trò thương hiệu hoặc vật liệu",
+        "dữ liệu catalogue",
+        "giới hạn xác nhận",
+        "liên hệ kiểm tra mã"
+      ],
+      "priority": "P1",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "SHOULD_NOT_TARGET",
+      "coverage": "placeholder-or-unverified-catalogue",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "ba-thanh"
+    },
+    {
+      "query": "bề mặt melamine cho ván gỗ",
+      "intent": "brand-material",
+      "targetEntity": "Melamine",
+      "idealLandingUrl": "/san-pham/#catalogue",
+      "expectedAnswerElements": [
+        "vai trò thương hiệu hoặc vật liệu",
+        "dữ liệu catalogue",
+        "giới hạn xác nhận",
+        "liên hệ kiểm tra mã"
+      ],
+      "priority": "P1",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "SHOULD_NOT_TARGET",
+      "coverage": "placeholder-or-unverified-catalogue",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "melamine"
+    },
+    {
+      "query": "bề mặt laminate cho ván gỗ",
+      "intent": "brand-material",
+      "targetEntity": "Laminate",
+      "idealLandingUrl": "/san-pham/#catalogue",
+      "expectedAnswerElements": [
+        "vai trò thương hiệu hoặc vật liệu",
+        "dữ liệu catalogue",
+        "giới hạn xác nhận",
+        "liên hệ kiểm tra mã"
+      ],
+      "priority": "P1",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "SHOULD_NOT_TARGET",
+      "coverage": "placeholder-or-unverified-catalogue",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "laminate"
+    },
+    {
+      "query": "bề mặt acrylic cho nội thất",
+      "intent": "brand-material",
+      "targetEntity": "Acrylic",
+      "idealLandingUrl": "/san-pham/#catalogue",
+      "expectedAnswerElements": [
+        "vai trò thương hiệu hoặc vật liệu",
+        "dữ liệu catalogue",
+        "giới hạn xác nhận",
+        "liên hệ kiểm tra mã"
+      ],
+      "priority": "P2",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "SHOULD_NOT_TARGET",
+      "coverage": "placeholder-or-unverified-catalogue",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "acrylic"
+    },
+    {
+      "query": "veneer và bề mặt vân gỗ cần kiểm tra gì",
+      "intent": "brand-material",
+      "targetEntity": "Veneer",
+      "idealLandingUrl": "/san-pham/#catalogue",
+      "expectedAnswerElements": [
+        "vai trò thương hiệu hoặc vật liệu",
+        "dữ liệu catalogue",
+        "giới hạn xác nhận",
+        "liên hệ kiểm tra mã"
+      ],
+      "priority": "P2",
+      "targetUrl": "/san-pham/",
+      "currentStatus": "SHOULD_NOT_TARGET",
+      "coverage": "placeholder-or-unverified-catalogue",
+      "missingAnswerElements": [],
+      "cannibalizationKey": "veneer"
+    }
+  ]
+}
