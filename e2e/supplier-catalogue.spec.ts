@@ -83,7 +83,7 @@ test.describe("Mã màu customer journeys", () => {
   test("supplier hubs show verified color-code counts only", async ({ page }) => {
     const suppliers = [
       { path: "/catalogue/an-cuong/", heading: "Mã màu An Cường", count: 2195 },
-      { path: "/catalogue/thanh-thuy/", heading: /Mã màu Thanh Th[uù]y/, count: 339 },
+      { path: "/catalogue/thanh-thuy/", heading: /Mã màu Thanh Th[uù]y/, count: 342 },
       { path: "/catalogue/ba-thanh/", heading: "Mã màu Ba Thanh", count: 292 },
     ] as const;
 
@@ -171,6 +171,24 @@ test.describe("Mã màu customer journeys", () => {
       breadcrumb.getByRole("link", { name: "An Cường", exact: true }),
     ).toHaveAttribute("href", "/catalogue/an-cuong/");
     await expect(page.getByRole("img", { name: /MFC - MS 465 SC04 swatch/i })).toBeVisible();
+    await expect(page.locator('img[src=""]')).toHaveCount(0);
+  });
+
+  test("Thanh Thuỳ Veneer collection exposes the official surface identifier and swatch", async ({
+    page,
+  }) => {
+    await page.goto("/catalogue/thanh-thuy/veneer/veneer-cheery/");
+
+    await expect(
+      page.getByRole("heading", {
+        level: 1,
+        name: "VENEER CHEERY",
+        exact: true,
+      }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("img", { name: /VENEER CHEERY swatch/i }),
+    ).toHaveAttribute("src", /\/catalog\/thanh-thuy\/veneer-cheery-/);
     await expect(page.locator('img[src=""]')).toHaveCount(0);
   });
 

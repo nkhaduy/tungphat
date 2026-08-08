@@ -6,11 +6,11 @@ describe("canonical supplier color-code index", () => {
 
   it("reconciles the former mixed catalogue and exposes canonical verified codes only", () => {
     expect(artifact.previousSearchableRecords).toBe(3_558);
-    expect(artifact.records).toHaveLength(2_826);
-    expect(artifact.removedFromPublicColorIndex).toBe(732);
+    expect(artifact.records).toHaveLength(2_829);
+    expect(artifact.removedFromPublicColorIndex).toBe(729);
     expect(artifact.purposeTotals).toEqual({
-      "color-code": 3_376,
-      "product-family": 156,
+      "color-code": 3_379,
+      "product-family": 153,
       technical: 0,
       document: 26,
       other: 0,
@@ -30,7 +30,7 @@ describe("canonical supplier color-code index", () => {
   it("keeps every in-scope canonical supplier code and actual Ba Thanh Laminate map entry", () => {
     expect(artifact.totals).toMatchObject({
       "an-cuong": { verifiedColorCodes: 2_195, scopeExcluded: 549 },
-      "thanh-thuy": { verifiedColorCodes: 339 },
+      "thanh-thuy": { verifiedColorCodes: 342 },
       "ba-thanh": { verifiedColorCodes: 292 },
     });
     expect(
@@ -46,6 +46,22 @@ describe("canonical supplier color-code index", () => {
           record.codeRaw === "MFC - MS 465 SC04",
       ),
     ).toBe(true);
+    expect(
+      artifact.records
+        .filter(
+          (record) =>
+            record.supplier === "thanh-thuy" &&
+            record.materialType === "veneer",
+        )
+        .map((record) => record.codeRaw),
+    ).toEqual(["VENEER CHEERY", "VENEER OAK", "VENEER WALNUT"]);
+  });
+
+  it("stores mixed-supplier records in Thanh Thuy, Ba Thanh, An Cuong order", () => {
+    const priority = { "thanh-thuy": 0, "ba-thanh": 1, "an-cuong": 2 } as const;
+    const supplierRanks = artifact.records.map((record) => priority[record.supplier]);
+
+    expect(supplierRanks).toEqual([...supplierRanks].sort((left, right) => left - right));
   });
 
   it("limits An Cuong public codes to the approved product menu plus edge banding", () => {

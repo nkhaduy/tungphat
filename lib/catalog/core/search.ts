@@ -1,5 +1,6 @@
 import type { CatalogSearchEntry, SupplierId } from "./types";
 import { isMaterialTaxonomySlug } from "../material-taxonomy";
+import { supplierPriority } from "./registry";
 
 export type CatalogSearchIntent = "all" | "melamine" | "supplier";
 
@@ -139,6 +140,7 @@ export function searchSupplierCatalog(
         const leftPrimaryMatch = left.matchScore >= 600 ? left.matchScore : 0;
         const rightPrimaryMatch = right.matchScore >= 600 ? right.matchScore : 0;
         return rightPrimaryMatch - leftPrimaryMatch ||
+        supplierPriority(left.entry.supplierId) - supplierPriority(right.entry.supplierId) ||
         right.merchandisingScore - left.merchandisingScore ||
         right.matchScore - left.matchScore ||
         left.entry.code.localeCompare(right.entry.code, "vi") ||

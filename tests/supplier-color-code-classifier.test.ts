@@ -200,4 +200,46 @@ describe("supplier color-code classifiers", () => {
     expect(family).toMatchObject({ purpose: "product-family" });
     expect(document).toMatchObject({ purpose: "document" });
   });
+
+  it.each([
+    ["VENEER CHEERY", "veneer-cheery", "veneer_cherry.webp"],
+    ["VENEER OAK", "veneer-oak", "veneer_oak.webp"],
+    ["VENEER WALNUT", "veneer-walnut", "veneer_walnut.webp"],
+  ])(
+    "keeps official Thanh Thuy Veneer surface identifier %s from the public collection",
+    (name, slug, imageFile) => {
+      const result = classifyThanhThuyRecord({
+        recordType: "family",
+        name,
+        slug: `thanh-thuy-${slug}`,
+        category: "Tấm Veneer",
+        sourceUrls: [`https://www.gothanhthuy.com/product/veneer/${slug}/`],
+        images: [
+          {
+            sourceUrl: `https://www.gothanhthuy.com/assets/2025/11/${imageFile}`,
+            localPath: `/catalog/thanh-thuy/${slug}-500w-test.webp`,
+            mediaType: "swatch",
+            rightsStatus: "UNCONFIRMED",
+          },
+        ],
+        seoStatus: "NOINDEX_USEFUL",
+      });
+
+      expect(result).toMatchObject({
+        purpose: "color-code",
+        reason: "verified-official-surface-collection",
+        colorCode: {
+          supplier: "thanh-thuy",
+          codeRaw: name,
+          materialType: "veneer",
+          sourceColorMapUrl: "https://www.gothanhthuy.com/products/veneer/",
+          colorCodeEvidence: "official-color-map",
+          confidence: "verified",
+        },
+      });
+      expect(result.colorCode?.images).toEqual([
+        expect.objectContaining({ role: "swatch", localPath: `/catalog/thanh-thuy/${slug}-500w-test.webp` }),
+      ]);
+    },
+  );
 });

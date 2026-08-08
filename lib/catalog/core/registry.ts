@@ -27,6 +27,14 @@ export const supplierDefinitions: SupplierDefinition[] = [
   },
 ];
 
+const supplierPriorityById = new Map(
+  supplierDefinitions.map((supplier, index) => [supplier.id, index]),
+);
+
+export function supplierPriority(id: SupplierId): number {
+  return supplierPriorityById.get(id) ?? supplierDefinitions.length;
+}
+
 export function createSupplierRegistry(definitions: SupplierDefinition[]) {
   const suppliers = new Map<SupplierId, SupplierDefinition>();
   for (const definition of definitions) {

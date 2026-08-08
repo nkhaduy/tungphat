@@ -8,6 +8,7 @@ import type {
   SourceCatalogueRecord,
 } from "../../lib/catalog/color-codes/classify";
 import { classifyThanhThuyRecord } from "../../lib/catalog/color-codes/thanh-thuy";
+import { supplierPriority } from "../../lib/catalog/core/registry";
 import {
   applyColorMediaToIndex,
 } from "./merge-color-media";
@@ -236,8 +237,8 @@ export function buildSupplierColorCodeIndex(root = process.cwd()): SupplierColor
 
   let records = [...canonical.values()].sort(
     (left, right) =>
+      supplierPriority(left.supplier) - supplierPriority(right.supplier) ||
       right.demandScore - left.demandScore ||
-      left.supplier.localeCompare(right.supplier) ||
       left.codeNormalized.localeCompare(right.codeNormalized),
   );
   records = applyColorMediaToIndex(records, readColorMediaArtifacts(root));
