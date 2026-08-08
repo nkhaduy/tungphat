@@ -16,6 +16,27 @@ export type SearchMonitorRecord = {
   limitation: string;
 };
 
+export type SearchChangeState = "NEW" | "SAME" | "LOST" | "NOT_FOUND" | "UNAVAILABLE";
+export type AnnotatedSearchMonitorRecord = SearchMonitorRecord & {
+  runId: string;
+  previousPresence: boolean | null;
+  changeState: SearchChangeState;
+};
+
+export function annotateSearchRecords(current: SearchMonitorRecord[], previous: SearchMonitorRecord[], runId: string): AnnotatedSearchMonitorRecord[] {
+  const previousByQuery = new Map(previous.map((record) => [record.query, record]));
+  return current.map((record) => {
+    const prior = previousByQuery.get(record.query);
+    const previousPresence = prior ? prior.found : null;
+    const changeState: SearchChangeState = !record.searchAvailable
+      ? "UNAVAILABLE"
+      : record.found
+      ? prior?.found ? "SAME" : "NEW"
+      : prior?.found ? "LOST" : "NOT_FOUND";
+    return { ...record, runId, previousPresence, changeState };
+  });
+}
+
 export function summarizeSearchRecords(records: SearchMonitorRecord[]) {
   const categoryCounts: Record<string, { queries: number; found: number; cited: number }> = {};
   const competitorCounts = new Map<string, number>();

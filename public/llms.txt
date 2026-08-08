@@ -14,6 +14,7 @@
 - Sitemap: https://mdftungphat.com/sitemap.xml
 - Public knowledge index: https://mdftungphat.com/knowledge.json
 - Downloadable material reference CSV: https://mdftungphat.com/material-reference.csv
+- Downloadable CNC preflight checklist: https://mdftungphat.com/cnc-preflight-checklist.csv
 - Materials: https://mdftungphat.com/san-pham/
 - CNC service: https://mdftungphat.com/gia-cong-cnc/
 - CNC file guidance: https://mdftungphat.com/cat-cnc-go/

@@ -38,12 +38,14 @@ function visibleTextLength(html: string) {
 }
 
 async function main() {
-const [robotsResponse, sitemapResponse, knowledgeResponse, llmsResponse, indexNowKeyResponse] = await Promise.all([
+const [robotsResponse, sitemapResponse, knowledgeResponse, llmsResponse, indexNowKeyResponse, materialReferenceResponse, cncPreflightResponse] = await Promise.all([
   fetchAuditResource(`${origin}/robots.txt`, userAgents.browser),
   fetchAuditResource(`${origin}/sitemap.xml`, userAgents.browser),
   fetchAuditResource(`${origin}/knowledge.json`, userAgents.browser),
   fetchAuditResource(`${origin}/llms.txt`, userAgents.browser),
   fetchAuditResource(`${origin}/indexnow-key.txt`, userAgents.browser),
+  fetchAuditResource(`${origin}/material-reference.csv`, userAgents.browser),
+  fetchAuditResource(`${origin}/cnc-preflight-checklist.csv`, userAgents.browser),
 ]);
 const sitemapUrls = [...sitemapResponse.body.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/giu)].map((match) => match[1].trim());
 const routes = [...new Set(sitemapUrls.map(normalizeRoute))];
@@ -96,7 +98,20 @@ const statusCounts = pages.reduce<Record<string, number>>((counts, page) => {
   counts[key] = (counts[key] ?? 0) + 1;
   return counts;
 }, {});
-const productionAssets = evaluateProductionAssets({ robots: robotsResponse.status, sitemap: sitemapResponse.status, knowledge: knowledgeResponse.status, llms: llmsResponse.status, indexNowKey: indexNowKeyResponse.status });
+const assetEvidence = (response: typeof robotsResponse) => ({
+  status: response.status,
+  contentType: response.headers["content-type"] ?? null,
+  body: response.body,
+});
+const productionAssets = evaluateProductionAssets({
+  robots: assetEvidence(robotsResponse),
+  sitemap: assetEvidence(sitemapResponse),
+  knowledge: assetEvidence(knowledgeResponse),
+  llms: assetEvidence(llmsResponse),
+  indexNowKey: assetEvidence(indexNowKeyResponse),
+  materialReference: assetEvidence(materialReferenceResponse),
+  cncPreflight: assetEvidence(cncPreflightResponse),
+});
 const security = evaluateSecurityHeaders(pages.find((page) => page.route === "/")?.headers ?? {});
 const canonicalErrors = indexable.filter((page) => !page.signals || !canonicalOk(page.signals.canonical, page.route)).length;
 const schemaErrors = pages.reduce((sum, page) => sum + (page.signals?.schemaErrors ?? 0), 0);
@@ -130,6 +145,8 @@ const result = {
     knowledgeJson: { status: knowledgeResponse.status, contentType: knowledgeResponse.headers["content-type"] ?? null },
     llmsTxt: { status: llmsResponse.status, contentType: llmsResponse.headers["content-type"] ?? null },
     indexNowKey: { status: indexNowKeyResponse.status, contentType: indexNowKeyResponse.headers["content-type"] ?? null },
+    materialReference: { status: materialReferenceResponse.status, contentType: materialReferenceResponse.headers["content-type"] ?? null },
+    cncPreflight: { status: cncPreflightResponse.status, contentType: cncPreflightResponse.headers["content-type"] ?? null },
     errors: productionAssets,
   },
   robots: { status: robotsResponse.status, body: robotsResponse.body, headers: robotsResponse.headers },
