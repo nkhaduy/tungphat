@@ -141,6 +141,15 @@ test.describe("Mã màu customer journeys", () => {
     await expect(baThanhRegion.getByRole("article")).toHaveCount(96);
   });
 
+  test("hub Tất cả auto-loads beyond the featured first page", async ({ page }) => {
+    await page.goto("/catalogue/");
+    const region = page.getByRole("region", { name: "Kết quả mã màu" });
+    await expect(region.getByRole("article")).toHaveCount(48);
+    await page.getByTestId("catalogue-load-sentinel").scrollIntoViewIfNeeded();
+    await expect(page.getByText("Đang tải thêm mã màu", { exact: true })).toBeVisible();
+    await expect(region.getByRole("article")).toHaveCount(96);
+  });
+
   test("Ba Thanh exposes both Melamine and Laminate code collections", async ({
     page,
   }) => {
