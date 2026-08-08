@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
+import { fetchAuditResource } from "../lib/http-audit";
 import { parseHtmlSignals } from "../lib/live-seo-audit";
+import { evaluateProductionAssets, evaluateProductionQualityGates, evaluateSecurityHeaders } from "../lib/production-audit";
 
 const origin = (process.env.PRODUCTION_ORIGIN ?? "https://mdftungphat.com").replace(/\/$/u, "");
 const outputPath = process.env.PRODUCTION_AUDIT_JSON ?? "reports/production-crawl.json";
@@ -35,25 +37,19 @@ function visibleTextLength(html: string) {
   return body.replace(/<script\b[\s\S]*?<\/script>/giu, " ").replace(/<style\b[\s\S]*?<\/style>/giu, " ").replace(/<[^>]+>/gu, " ").replace(/\s+/gu, " ").trim().length;
 }
 
-async function get(url: string, userAgent: string) {
-  const response = await fetch(url, { redirect: "manual", headers: { "user-agent": userAgent, accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" } });
-  const body = await response.text();
-  const headers: Record<string, string> = {};
-  ["cache-control", "content-security-policy", "strict-transport-security", "x-content-type-options", "x-robots-tag", "referrer-policy"].forEach((key) => {
-    const value = response.headers.get(key);
-    if (value) headers[key] = value;
-  });
-  return { status: response.status, location: response.headers.get("location"), body, headers };
-}
-
 async function main() {
-const robotsResponse = await get(`${origin}/robots.txt`, userAgents.browser);
-const sitemapResponse = await get(`${origin}/sitemap.xml`, userAgents.browser);
+const [robotsResponse, sitemapResponse, knowledgeResponse, llmsResponse, indexNowKeyResponse] = await Promise.all([
+  fetchAuditResource(`${origin}/robots.txt`, userAgents.browser),
+  fetchAuditResource(`${origin}/sitemap.xml`, userAgents.browser),
+  fetchAuditResource(`${origin}/knowledge.json`, userAgents.browser),
+  fetchAuditResource(`${origin}/llms.txt`, userAgents.browser),
+  fetchAuditResource(`${origin}/indexnow-key.txt`, userAgents.browser),
+]);
 const sitemapUrls = [...sitemapResponse.body.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/giu)].map((match) => match[1].trim());
 const routes = [...new Set(sitemapUrls.map(normalizeRoute))];
 const pages: Array<{ route: string; url: string; status: number; location: string | null; body: string; headers: Record<string, string>; signals: ReturnType<typeof parseHtmlSignals> | null }> = [];
 for (const route of routes) {
-  const response = await get(`${origin}${route}`, userAgents.browser);
+  const response = await fetchAuditResource(`${origin}${route}`, userAgents.browser);
   pages.push({ route, url: `${origin}${route}`, ...response, signals: response.status >= 200 && response.status < 300 ? parseHtmlSignals(response.body, response.headers) : null });
 }
 
@@ -72,7 +68,7 @@ const linkedRoutes = new Set(pages.flatMap((page) => page.signals?.internalLinks
 const extraRoutes = [...linkedRoutes].filter((route) => !knownRoutes.has(route));
 const extraLinkChecks: Array<{ route: string; status: number; location: string | null }> = [];
 for (const route of extraRoutes) {
-  const response = await get(`${origin}${route}`, userAgents.browser);
+  const response = await fetchAuditResource(`${origin}${route}`, userAgents.browser);
   extraLinkChecks.push({ route, status: response.status, location: response.location });
 }
 const brokenLinks = extraLinkChecks.filter((link) => link.status >= 400);
@@ -90,7 +86,7 @@ const sitemapErrors = sitemapResponse.status !== 200
 const bots = [];
 for (const [name, userAgent] of Object.entries(userAgents)) {
   if (name === "browser") continue;
-  const response = await get(`${origin}/`, userAgent);
+  const response = await fetchAuditResource(`${origin}/`, userAgent);
   const signals = response.status >= 200 && response.status < 300 ? parseHtmlSignals(response.body, response.headers) : null;
   bots.push({ bot: name, userAgent, status: response.status, location: response.location, contentReadable: Boolean(signals?.title && signals?.canonical), indexable: signals?.indexable ?? false, blocked: response.status < 200 || response.status >= 400 || !signals?.title || /challenge|captcha|access denied/iu.test(response.body) });
 }
@@ -100,6 +96,14 @@ const statusCounts = pages.reduce<Record<string, number>>((counts, page) => {
   counts[key] = (counts[key] ?? 0) + 1;
   return counts;
 }, {});
+const productionAssets = evaluateProductionAssets({ robots: robotsResponse.status, sitemap: sitemapResponse.status, knowledge: knowledgeResponse.status, llms: llmsResponse.status, indexNowKey: indexNowKeyResponse.status });
+const security = evaluateSecurityHeaders(pages.find((page) => page.route === "/")?.headers ?? {});
+const canonicalErrors = indexable.filter((page) => !page.signals || !canonicalOk(page.signals.canonical, page.route)).length;
+const schemaErrors = pages.reduce((sum, page) => sum + (page.signals?.schemaErrors ?? 0), 0);
+const orphanPages = indexable.filter((page) => page.route !== "/" && (inbound.get(page.route) ?? 0) === 0).length;
+const thinIndexablePages = indexable.filter((page) => visibleTextLength(page.body) < 200).length;
+const aiCrawlerBlockers = bots.filter((bot) => bot.blocked).length;
+const qualityGateFailures = evaluateProductionQualityGates({ canonicalErrors, schemaErrors, brokenLinks: brokenLinks.length, sitemapErrors, aiCrawlerBlockers, thinIndexablePages, orphanPages, retrievalAssetErrors: productionAssets.errors, securityErrors: security.errors });
 const result = {
   checkedAt: new Date().toISOString(),
   origin,
@@ -108,28 +112,40 @@ const result = {
   indexable: indexable.length,
   noindex: noindex.length,
   statusCounts,
-  canonicalErrors: indexable.filter((page) => !page.signals || !canonicalOk(page.signals.canonical, page.route)).length,
+  canonicalErrors,
   duplicateTitles: duplicateCount(titleCounts),
   duplicateDescriptions: duplicateCount(descriptionCounts),
   brokenLinks: brokenLinks.length,
   brokenLinkSamples: brokenLinks.slice(0, 20),
   redirectLinks: redirectLinks.slice(0, 20),
-  orphanPages: indexable.filter((page) => page.route !== "/" && (inbound.get(page.route) ?? 0) === 0).length,
-  thinIndexablePages: indexable.filter((page) => visibleTextLength(page.body) < 200).length,
+  orphanPages,
+  thinIndexablePages,
   directAnswerPages: indexable.filter((page) => page.signals?.directAnswer).length,
-  schemaErrors: pages.reduce((sum, page) => sum + (page.signals?.schemaErrors ?? 0), 0),
+  schemaErrors,
   structuredDataPages: indexable.filter((page) => (page.signals?.schemaCount ?? 0) > 0).length,
   verifiedDataPages: indexable.filter((page) => /nguồn tham chiếu|bảng tham chiếu|bộ dữ liệu/iu.test(page.body)).length,
   sourceProvenancePages: indexable.filter((page) => /nguồn|cập nhật dữ liệu|last verified|source/iu.test(page.body)).length,
   sitemap: { status: sitemapResponse.status, declaredInRobots: /sitemap:\s*https:\/\//iu.test(robotsResponse.body), urls: sitemapUrls.length, errors: sitemapErrors },
+  retrievalAssets: {
+    knowledgeJson: { status: knowledgeResponse.status, contentType: knowledgeResponse.headers["content-type"] ?? null },
+    llmsTxt: { status: llmsResponse.status, contentType: llmsResponse.headers["content-type"] ?? null },
+    indexNowKey: { status: indexNowKeyResponse.status, contentType: indexNowKeyResponse.headers["content-type"] ?? null },
+    errors: productionAssets,
+  },
   robots: { status: robotsResponse.status, body: robotsResponse.body, headers: robotsResponse.headers },
   botSimulation: bots,
-  aiCrawlerBlockers: bots.filter((bot) => bot.blocked).length,
+  aiCrawlerBlockers,
   headers: pages.find((page) => page.route === "/")?.headers ?? {},
+  security,
+  qualityGateFailures,
 };
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 fs.writeFileSync(outputPath, `${JSON.stringify(result, null, 2)}\n`);
 console.log(JSON.stringify(result, null, 2));
+if (qualityGateFailures.length) {
+  console.error(`Production SEO audit failed: ${qualityGateFailures.join(", ")}`);
+  process.exitCode = 1;
+}
 }
 
 main().catch((error) => {

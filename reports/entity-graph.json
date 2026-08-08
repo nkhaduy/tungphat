@@ -2,6 +2,16 @@
   "schemaVersion": "2.0",
   "checkedAt": "2026-08-08T00:00:00+07:00",
   "entity": "Công ty TNHH TMDV Gỗ Tùng Phát",
+  "summary": {
+    "total": 6,
+    "verified": 0,
+    "consistent": 2,
+    "corroborated": 2,
+    "mismatches": 0,
+    "missing": 1,
+    "unverified": 2,
+    "authBlocked": 1
+  },
   "records": [
     {
       "source": "Official website",
@@ -12,7 +22,12 @@
       "address": "14 Tam Bình và 81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
       "phone": "0909 259 160",
       "website": "https://mdftungphat.com/",
-      "categories": ["LocalBusiness", "MDF", "CNC gỗ", "Vật liệu nội thất"],
+      "categories": [
+        "LocalBusiness",
+        "MDF",
+        "CNC gỗ",
+        "Vật liệu nội thất"
+      ],
       "relationship": "first-party source of truth",
       "evidence": "Business settings and the public contact page use the same legal name, phone and two branch addresses.",
       "consistency": "CONSISTENT",
@@ -28,7 +43,9 @@
       "address": "14 Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
       "phone": null,
       "website": null,
-      "categories": ["Cửa hàng vật liệu gỗ"],
+      "categories": [
+        "Cửa hàng vật liệu gỗ"
+      ],
       "relationship": "location listing referenced by the official website",
       "evidence": "The official website stores this Google place ID and address; authenticated profile details were not available through CLI.",
       "consistency": "UNVERIFIED",
@@ -44,7 +61,10 @@
       "address": "81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
       "phone": null,
       "website": null,
-      "categories": ["MDF", "CNC gỗ"],
+      "categories": [
+        "MDF",
+        "CNC gỗ"
+      ],
       "relationship": "location listing referenced by the official website",
       "evidence": "The official website stores this Google place ID and address; authenticated profile details were not available through CLI.",
       "consistency": "UNVERIFIED",
@@ -60,7 +80,9 @@
       "address": null,
       "phone": "0909 259 160",
       "website": null,
-      "categories": ["Business contact"],
+      "categories": [
+        "Business contact"
+      ],
       "relationship": "official contact profile linked by the website",
       "evidence": "The Zalo profile URL encodes the same public phone number used by the website.",
       "consistency": "CONSISTENT",
@@ -99,5 +121,21 @@
       "confidence": "high",
       "checkedAt": "2026-08-08T00:00:00+07:00"
     }
-  ]
+  ],
+  "graph": {
+    "canonicalEntity": "Công ty TNHH TMDV Gỗ Tùng Phát",
+    "firstParty": [
+      "https://mdftungphat.com/lien-he/"
+    ],
+    "corroboratingSources": [
+      "Official website",
+      "Zalo"
+    ],
+    "unresolvedSources": [
+      "Google Maps - branch 1",
+      "Google Maps - branch 2",
+      "Bing Places",
+      "Official Facebook"
+    ]
+  }
 }

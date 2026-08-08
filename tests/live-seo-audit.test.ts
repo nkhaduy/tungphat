@@ -3,7 +3,7 @@ import { parseHtmlSignals } from "@/lib/live-seo-audit";
 
 describe("production HTML signal parser", () => {
   it("extracts canonical, robots, direct answer, H1 and JSON-LD signals", () => {
-    const html = '<html><head><title>Ván MDF | Tùng Phát</title><meta name="description" content="Mô tả"><meta name="robots" content="index, follow"><link rel="canonical" href="https://mdftungphat.com/van-mdf/"><script type="application/ld+json">{"@type":"Product"}</script></head><body><h1>Ván MDF</h1><section data-answer-block>Trả lời</section><a href="/lien-he/">Liên hệ</a></body></html>';
+    const html = '<html><head><title>Ván MDF | Tùng Phát</title><meta name="description" content="Mô tả"><meta name="robots" content="index, follow"><link rel="canonical" href="https://mdftungphat.com/van-mdf/"><script type="application/ld+json">{"@type":"Product"}</script></head><body><h1>Ván MDF</h1><section data-answer-block>Trả lời</section><a href="/lien-he/">Liên hệ</a><a href="/material-reference.csv">CSV</a></body></html>';
 
     expect(parseHtmlSignals(html, { "x-robots-tag": "" })).toMatchObject({
       title: "Ván MDF | Tùng Phát",

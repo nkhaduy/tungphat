@@ -22,4 +22,11 @@ describe("AI search query URL mapping", () => {
       coverage: "comparison-table",
     });
   });
+
+  it("marks evidence-backed quote and existing comparison answers as covered", () => {
+    const result = buildQueryUrlMap(querySet.queries);
+    expect(result.find((entry) => entry.query === "nhận báo giá ván MDF theo số lượng")?.currentStatus).toBe("COVERED");
+    expect(result.find((entry) => entry.query === "gỗ ghép cao su và gỗ ghép tràm")?.currentStatus).toBe("COVERED");
+    expect(result.find((entry) => entry.query === "MDF và plywood khác nhau thế nào")?.currentStatus).toBe("PARTIAL");
+  });
 });
