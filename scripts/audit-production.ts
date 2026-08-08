@@ -30,6 +30,11 @@ function canonicalOk(value: string, route: string) {
   }
 }
 
+function visibleTextLength(html: string) {
+  const body = html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/iu)?.[1] ?? html;
+  return body.replace(/<script\b[\s\S]*?<\/script>/giu, " ").replace(/<style\b[\s\S]*?<\/style>/giu, " ").replace(/<[^>]+>/gu, " ").replace(/\s+/gu, " ").trim().length;
+}
+
 async function get(url: string, userAgent: string) {
   const response = await fetch(url, { redirect: "manual", headers: { "user-agent": userAgent, accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" } });
   const body = await response.text();
@@ -110,6 +115,7 @@ const result = {
   brokenLinkSamples: brokenLinks.slice(0, 20),
   redirectLinks: redirectLinks.slice(0, 20),
   orphanPages: indexable.filter((page) => page.route !== "/" && (inbound.get(page.route) ?? 0) === 0).length,
+  thinIndexablePages: indexable.filter((page) => visibleTextLength(page.body) < 200).length,
   directAnswerPages: indexable.filter((page) => page.signals?.directAnswer).length,
   schemaErrors: pages.reduce((sum, page) => sum + (page.signals?.schemaErrors ?? 0), 0),
   structuredDataPages: indexable.filter((page) => (page.signals?.schemaCount ?? 0) > 0).length,

@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-08-08T09:26:22.983Z",
+  "domain": "mdftungphat.com",
+  "production": {
+    "liveUrl": "https://mdftungphat.com",
+    "commit": "c6785d8cc8ab3f38fba02ec8497722913188f821",
+    "deploymentId": "dpl_EkMxSDbngKVBY4fYY8tnJKXvQnGZ",
+    "target": "production",
+    "readyState": "READY",
+    "verifiedAt": "2026-08-08T09:26:03.139Z"
+  },
+  "indexation": {
+    "indexableCount": 15,
+    "noindexCount": 0,
+    "statusCounts": {
+      "2xx": 15
+    },
+    "sitemapUrlCount": 15,
+    "sitemapErrors": 0
+  },
+  "technical": {
+    "canonicalErrors": 0,
+    "schemaErrors": 0,
+    "brokenLinks": 0,
+    "orphanPages": 0,
+    "thinIndexablePages": 0,
+    "directAnswerPages": 12,
+    "aiCrawlerBlockers": 0
+  },
+  "authority": {
+    "verifiedDataPages": 9,
+    "sourceProvenancePages": 11,
+    "entityRecords": 6,
+    "entityConsistency": {
+      "CONSISTENT": 2,
+      "MISMATCH": 0,
+      "MISSING": 2,
+      "UNVERIFIED": 2
+    }
+  },
+  "searchActivation": {
+    "googleSearchConsole": {
+      "status": "BLOCKED_AUTH",
+      "property": null,
+      "sitemapSubmitted": null,
+      "indexingData": null,
+      "reason": "No browser session and no Google OAuth/service-account credentials were available."
+    },
+    "bingWebmaster": {
+      "status": "BLOCKED_AUTH",
+      "sitemapSubmitted": null,
+      "indexingData": null,
+      "reason": "No browser session or authenticated Bing Webmaster account was available."
+    },
+    "googleBusinessProfile": {
+      "status": "BLOCKED_AUTH",
+      "reason": "No authenticated GUI session was available; public entity records remain evidence-led and unchanged."
+    },
+    "bingPlaces": {
+      "status": "BLOCKED_AUTH",
+      "reason": "No authenticated GUI session was available."
+    },
+    "indexNow": {
+      "status": "PASS",
+      "endpoint": "https://api.indexnow.org/indexnow",
+      "submittedAt": "2026-08-08T09:20:45.748Z",
+      "submittedCount": 15,
+      "failedCount": 0,
+      "retryAttempts": 1,
+      "responseStatus": 202,
+      "unchangedRun": "SKIPPED_HASH_UNCHANGED"
+    }
+  },
+  "queryMapping": {
+    "queryCount": 100,
+    "statusCounts": {
+      "COVERED": 69,
+      "PARTIAL": 21,
+      "GAP": 0,
+      "SHOULD_NOT_TARGET": 10
+    }
+  },
+  "benchmark": {
+    "checkedAt": "2026-08-08T09:23:12.518Z",
+    "surface": "Bing Web Search RSS",
+    "queryCount": 40,
+    "foundCount": 0,
+    "citedCount": 0,
+    "categoryCounts": {
+      "commercial": {
+        "queries": 10,
+        "found": 0,
+        "cited": 0
+      },
+      "informational": {
+        "queries": 10,
+        "found": 0,
+        "cited": 0
+      },
+      "comparison": {
+        "queries": 10,
+        "found": 0,
+        "cited": 0
+      },
+      "local-cnc": {
+        "queries": 10,
+        "found": 0,
+        "cited": 0
+      }
+    },
+    "limitation": "Public Bing RSS observation only; no direct AI-answer citation, Google Search Console, or Bing Webmaster ranking data."
+  },
+  "topCompetitorDomains": [
+    {
+      "domain": "kosmos.vn",
+      "observationCount": 14,
+      "reason": "Observed in Bing RSS top-10 source lists; this is source-selection evidence, not a ranking or AI-citation claim."
+    },
+    {
+      "domain": "en.wikipedia.org",
+      "observationCount": 10,
+      "reason": "Observed in Bing RSS top-10 source lists; this is source-selection evidence, not a ranking or AI-citation claim."
+    },
+    {
+      "domain": "noithatmanhhe.vn",
+      "observationCount": 9,
+      "reason": "Observed in Bing RSS top-10 source lists; this is source-selection evidence, not a ranking or AI-citation claim."
+    },
+    {
+      "domain": "govi.vn",
+      "observationCount": 9,
+      "reason": "Observed in Bing RSS top-10 source lists; this is source-selection evidence, not a ranking or AI-citation claim."
+    },
+    {
+      "domain": "homedit.com",
+      "observationCount": 9,
+      "reason": "Observed in Bing RSS top-10 source lists; this is source-selection evidence, not a ranking or AI-citation claim."
+    },
+    {
+      "domain": "thewoodcarpenter.com",
+      "observationCount": 9,
+      "reason": "Observed in Bing RSS top-10 source lists; this is source-selection evidence, not a ranking or AI-citation claim."
+    },
+    {
+      "domain": "gominhlong.com",
+      "observationCount": 9,
+      "reason": "Observed in Bing RSS top-10 source lists; this is source-selection evidence, not a ranking or AI-citation claim."
+    },
+    {
+      "domain": "hoanmydecor.vn",
+      "observationCount": 9,
+      "reason": "Observed in Bing RSS top-10 source lists; this is source-selection evidence, not a ranking or AI-citation claim."
+    },
+    {
+      "domain": "vi.wikipedia.org",
+      "observationCount": 8,
+      "reason": "Observed in Bing RSS top-10 source lists; this is source-selection evidence, not a ranking or AI-citation claim."
+    },
+    {
+      "domain": "support.microsoft.com",
+      "observationCount": 5,
+      "reason": "Observed in Bing RSS top-10 source lists; this is source-selection evidence, not a ranking or AI-citation claim."
+    }
+  ],
+  "unresolvedBlockers": [
+    "Google Search Console activation and URL inspection require authenticated browser or API credentials.",
+    "Bing Webmaster/Bing Places activation requires authenticated account access.",
+    "GBP branch metadata, Facebook presence, reviews, and exact hours remain unverified.",
+    "Technical product dimensions, thicknesses, machine limits, file formats, and tolerance remain null until primary evidence is supplied."
+  ]
+}
