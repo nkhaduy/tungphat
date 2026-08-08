@@ -11,17 +11,31 @@ import { ViewTracker } from "@/components/ViewTracker";
 import type { ContentEntry } from "@/lib/content";
 import type { ServicePageFrontmatter } from "@/lib/content-schema";
 import { mediaUrl } from "@/lib/media";
-import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, breadcrumbSchema } from "@/lib/seo";
+import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, absolutePageUrl, breadcrumbSchema, schemaPageId, webPageSchema } from "@/lib/seo";
 
 export function ServiceLanding({ page }: { page: ContentEntry<ServicePageFrontmatter> }) {
-  const serviceSchema = { "@context": "https://schema.org", "@type": "Service", "@id": `${SITE_URL}/${page.slug}#service`, name: page.title, description: page.excerpt, serviceType: "Gia công CNC ván gỗ", url: `${SITE_URL}/${page.slug}`, areaServed: { "@type": "City", name: "TP. Hồ Chí Minh" }, provider: { "@id": `${SITE_URL}/#organization` } };
+  const servicePath = `/${page.slug}`;
+  const serviceUrl = absolutePageUrl(servicePath);
+  const serviceId = schemaPageId(servicePath, "service");
+  const serviceSchema = { "@context": "https://schema.org", "@type": "Service", "@id": serviceId, name: page.title, description: page.excerpt, serviceType: "Gia công CNC ván gỗ", url: serviceUrl, areaServed: { "@type": "City", name: "TP. Hồ Chí Minh" }, provider: { "@id": `${SITE_URL}/#organization` } };
+  const pageSchema = webPageSchema({ path: servicePath, name: page.title, description: page.excerpt, primaryEntityId: serviceId, datePublished: page.publishedAt, dateModified: page.updatedAt });
 
   return (
     <>
-      <JsonLd data={[breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Gia công CNC", path: "/gia-cong-cnc" }, { name: page.title, path: `/${page.slug}` }]), serviceSchema]} />
+      <JsonLd data={[pageSchema, breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Gia công CNC", path: "/gia-cong-cnc" }, { name: page.title, path: servicePath }]), serviceSchema]} />
       <SiteShell>
         <ViewTracker event="view_cnc_service" contentType={page.slug} />
         <PageHero breadcrumbs={[{ label: "Trang chủ", href: "/" }, { label: "Gia công CNC", href: "/gia-cong-cnc" }, { label: page.title }]} eyebrow={page.eyebrow} title={page.title} description={page.excerpt} image={{ src: mediaUrl(page.featuredImage), alt: page.featuredImageAlt, priority: true }} actions={<><TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: `${page.slug}_hero` }} className="pressable inline-flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-6 text-sm font-extrabold text-white hover:bg-wood-600"><MessageCircle size={18} aria-hidden="true" />{page.quoteCta}</TrackedLink><TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: `${page.slug}_hero` }} className="pressable inline-flex min-h-14 items-center justify-center gap-2 border border-forest-900/20 bg-white px-6 text-sm font-extrabold text-forest-950"><Phone size={18} aria-hidden="true" />Gọi {PHONE_DISPLAY}</TrackedLink></>} />
+
+        <div className="border-b border-forest-900/10 bg-white"><p className="container-shell py-3 text-xs font-semibold text-slate-500">Cập nhật nội dung: <time dateTime={page.updatedAt}>{page.updatedAt}</time></p></div>
+
+        <section data-answer-block className="border-b border-forest-900/10 bg-[#edf4ef] py-8" aria-labelledby="direct-answer-title">
+          <div className="container-shell max-w-4xl">
+            <p className="text-xs font-extrabold uppercase tracking-[.15em] text-wood-600">Trả lời nhanh</p>
+            <h2 id="direct-answer-title" className="mt-2 text-2xl font-extrabold text-forest-950">{page.title} dùng khi nào?</h2>
+            <p className="mt-3 text-base leading-8 text-slate-700">{page.excerpt} Tùng Phát cần kiểm tra vật liệu, file, kích thước, số lượng và hạng mục gia công trước khi xác nhận khả năng và báo giá.</p>
+          </div>
+        </section>
 
         <section className="section-space bg-white">
           <div className="container-shell grid gap-10 lg:grid-cols-[.8fr_1.2fr]">

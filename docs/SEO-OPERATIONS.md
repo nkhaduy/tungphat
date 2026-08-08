@@ -22,11 +22,27 @@
 
 ## Dữ liệu doanh nghiệp còn cần bổ sung
 
-- Email công khai và giờ làm việc chưa được xác minh nên đang để trống. `serviceAreas`
-  hiện xuất `TP. Hồ Chí Minh` vào LocalBusiness schema; chủ doanh nghiệp phải xác
-  nhận giá trị này trước production hoặc bỏ khỏi schema.
+- Email công khai đã được lấy từ dữ liệu doanh nghiệp hiện tại; giờ làm việc vẫn chưa
+  được xác minh nên không xuất vào schema. `serviceAreas` hiện xuất `TP. Hồ Chí Minh`
+  vào LocalBusiness schema; chủ doanh nghiệp phải xác nhận phạm vi này trước production
+  hoặc bỏ khỏi schema.
 - Xác minh tên, địa chỉ, điện thoại trên Google Business Profile và giữ nhất quán với trang `/lien-he`.
 - Chỉ công bố quan hệ đại lý chính thức hoặc chứng nhận khi có bằng chứng có thể kiểm tra.
+
+## Machine-readable resources và IndexNow
+
+- `/llms.txt` là tài liệu hỗ trợ retrieval, không thay thế robots hoặc sitemap. Nội dung
+  phải trỏ tới các URL đang tồn tại và được rà soát cùng sitemap.
+- `/knowledge.json` là dataset công khai được sinh từ content đã publish; không đưa draft,
+  noindex hoặc dữ liệu riêng tư vào đó.
+- Chạy `npm run audit:seo` sau build để kiểm tra indexability, canonical, sitemap,
+  structured data, liên kết và answer blocks.
+- Chạy `npm run validate:schema` để kiểm tra JSON-LD, URL page canonical, required
+  schema types và các field thương mại chưa được xác minh.
+- Tạo key local bằng `npm run indexnow:prepare-key` (key được ghi vào
+  `public/indexnow-key.txt`, đã nằm trong `.gitignore`) và đặt `INDEXNOW_KEY` trong môi
+  trường deploy. Chạy `npm run indexnow:submit -- --dry-run` để xem URL thay đổi; chỉ
+  submit thật khi key endpoint đã được deploy và URL đã thay đổi.
 
 ## Asset và hiệu năng
 

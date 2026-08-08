@@ -12,7 +12,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import type { ContentEntry } from "@/lib/content";
 import type { ProjectFrontmatter } from "@/lib/content-schema";
 import { absoluteMediaUrl, mediaUrl } from "@/lib/media";
-import { SITE_URL, ZALO_URL, breadcrumbSchema } from "@/lib/seo";
+import { SITE_URL, ZALO_URL, absolutePageUrl, breadcrumbSchema, schemaPageId, webPageSchema } from "@/lib/seo";
 
 type ProjectGalleryProps = { title: string; images: string[]; projectTitle: string };
 
@@ -36,9 +36,13 @@ function ProjectGallery({ title, images, projectTitle }: ProjectGalleryProps) {
 }
 
 export function ProjectLanding({ project }: { project: ContentEntry<ProjectFrontmatter> }) {
+  const projectPath = `/du-an/${project.slug}`;
+  const projectUrl = absolutePageUrl(projectPath);
+  const projectId = schemaPageId(projectPath, "creative-work");
   const projectSchema = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
+    "@id": projectId,
     name: project.title,
     description: project.customerRequirement,
     image: absoluteMediaUrl(project.featuredImage, SITE_URL),
@@ -46,14 +50,15 @@ export function ProjectLanding({ project }: { project: ContentEntry<ProjectFront
     datePublished: project.publishedAt,
     dateModified: project.updatedAt,
     about: [project.materialType, project.processingType],
-    locationCreated: project.area || undefined,
-    url: `${SITE_URL}/du-an/${project.slug}`,
+    ...(project.area ? { locationCreated: project.area } : {}),
+    url: projectUrl,
   };
+  const pageSchema = webPageSchema({ path: projectPath, name: project.title, description: project.customerRequirement, primaryEntityId: projectId, datePublished: project.publishedAt, dateModified: project.updatedAt });
   const facts = [["Vật liệu", project.materialType], ["Gia công", project.processingType], ["Độ dày", project.thickness], ["Khu vực", project.area || "Không công bố"]] as const;
 
   return (
     <>
-      <JsonLd data={[breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Dự án", path: "/du-an" }, { name: project.title, path: `/du-an/${project.slug}` }]), projectSchema]} />
+      <JsonLd data={[pageSchema, breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Dự án", path: "/du-an" }, { name: project.title, path: projectPath }]), projectSchema]} />
       <SiteShell>
         <ViewTracker event="view_project" contentType={project.slug} />
         <article>

@@ -37,7 +37,11 @@ describe("CMS preview security and shell", () => {
 
   it("applies no-store and noindex to the exact trailing-slash preview route", () => {
     const config = JSON.parse(readFileSync("vercel.json", "utf8"));
+    const global = config.headers.find((rule: { source: string }) => rule.source === "/(.*)");
     const exact = config.headers.find((rule: { source: string }) => rule.source === "/cms-preview/");
+    expect(global?.headers).not.toContainEqual({ key: "X-Frame-Options", value: "SAMEORIGIN" });
+    expect(global?.headers.find((header: { key: string }) => header.key === "Content-Security-Policy")?.value).toContain("frame-ancestors 'self' https://cms.mdftungphat.com");
+    expect(readFileSync("public/_headers", "utf8")).not.toContain("X-Frame-Options: SAMEORIGIN");
     expect(exact?.headers).toEqual(expect.arrayContaining([
       { key: "Cache-Control", value: "private, no-store, max-age=0" },
       { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },

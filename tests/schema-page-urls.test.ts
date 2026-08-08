@@ -24,6 +24,7 @@ describe("absolutePageUrl", () => {
   it("rejects file assets", () => {
     expect(() => absolutePageUrl("/images/example.webp")).toThrow(/file asset/u);
     expect(() => absolutePageUrl("https://mdftungphat.com/catalogue.pdf/")).toThrow(/file asset/u);
+    expect(() => absolutePageUrl("https://user:pass@mdftungphat.com/van-mdf/")).toThrow(/credentials/u);
   });
 });
 

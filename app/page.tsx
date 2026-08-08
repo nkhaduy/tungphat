@@ -4,7 +4,8 @@ import { HomeBenefits, HomeHero } from "@/components/home/HomeHero";
 import { RequirementFinder } from "@/components/home/RequirementFinder";
 import { SiteShell } from "@/components/site/SiteShell";
 import { TrackedLink } from "@/components/TrackedLink";
-import { ZALO_URL, createPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/JsonLd";
+import { ZALO_URL, createPageMetadata, webPageSchema } from "@/lib/seo";
 
 const homepageTitle = "Tùng Phát | Ván MDF, MFC, gỗ ghép & gia công CNC TP.HCM";
 
@@ -19,7 +20,9 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <SiteShell thirdMobileAction={{ href: "#requirement-finder", label: "Gửi yêu cầu" }}>
+    <>
+      <JsonLd data={webPageSchema({ path: "/", name: homepageTitle, description: "Tùng Phát cung cấp MDF, MFC, plywood, gỗ ghép, vật liệu bề mặt và nhận gia công CNC theo quy cách tại TP.HCM.", primaryEntityId: "https://mdftungphat.com/#organization" })} />
+      <SiteShell thirdMobileAction={{ href: "#requirement-finder", label: "Gửi yêu cầu" }}>
       <HomeHero />
       <RequirementFinder />
       <HomeBenefits />
@@ -35,6 +38,7 @@ export default function Home() {
       >
         <MessageCircle size={24} aria-hidden="true" />
       </TrackedLink>
-    </SiteShell>
+      </SiteShell>
+    </>
   );
 }

@@ -1,0 +1,24 @@
+# Tùng Phát
+
+> Supporting retrieval index for mdftungphat.com. This file is experimental and does not replace robots.txt, sitemap.xml, or JSON-LD.
+
+## Business
+
+- Công ty TNHH TMDV Gỗ Tùng Phát cung cấp vật liệu gỗ dạng tấm và tiếp nhận gia công CNC theo quy cách hoặc file kỹ thuật.
+- Khu vực được công bố: TP. Hồ Chí Minh.
+- Website: https://mdftungphat.com/
+- Liên hệ: https://mdftungphat.com/lien-he/
+
+## Canonical resources
+
+- Sitemap: https://mdftungphat.com/sitemap.xml
+- Public knowledge index: https://mdftungphat.com/knowledge.json
+- Materials: https://mdftungphat.com/san-pham/
+- CNC service: https://mdftungphat.com/gia-cong-cnc/
+- CNC file guidance: https://mdftungphat.com/cat-cnc-go/
+
+## Retrieval notes
+
+- Use the linked page as the source of truth for product specifications, availability, pricing, and service scope.
+- Product and service pages describe what must be checked before a quote; do not infer fixed price, inventory, tolerance, or delivery promises.
+- Draft and placeholder content is intentionally excluded from the sitemap and public knowledge index.
