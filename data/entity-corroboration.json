@@ -1,6 +1,6 @@
 {
   "schemaVersion": "2.0",
-  "checkedAt": "2026-08-08T00:00:00+07:00",
+  "checkedAt": "2026-08-09T00:00:00+07:00",
   "entity": "Công ty TNHH TMDV Gỗ Tùng Phát",
   "records": [
     {
@@ -66,6 +66,39 @@
       "consistency": "CONSISTENT",
       "confidence": "medium",
       "checkedAt": "2026-08-08T00:00:00+07:00"
+    },
+    {
+      "source": "Public article on dogonoithatmynghe.com",
+      "sourceType": "directory",
+      "url": "https://dogonoithatmynghe.com/cua-hang-go-ghep-tung-phat-uy-tin-cung-cap-go-ghep-gan-day-gia-tot.html",
+      "entity": "Tùng Phát",
+      "branch": null,
+      "address": null,
+      "phone": null,
+      "website": null,
+      "categories": ["Gỗ ghép"],
+      "relationship": "unverified third-party mention",
+      "evidence": "The article mentions the brand but does not provide reliable NAP/domain corroboration and contains unsupported promotional claims.",
+      "evidenceQuality": "P5_UNVERIFIED",
+      "consistency": "UNVERIFIED",
+      "confidence": "low",
+      "checkedAt": "2026-08-09T00:00:00+07:00"
+    },
+    {
+      "source": "Google Business Profile",
+      "sourceType": "maps",
+      "url": null,
+      "entity": null,
+      "branch": null,
+      "address": null,
+      "phone": null,
+      "website": null,
+      "categories": [],
+      "relationship": "owned local business profile",
+      "evidence": "Two Google Maps place IDs are referenced first-party, but ownership, profile fields and hours could not be inspected without an authenticated browser session.",
+      "consistency": "AUTH_BLOCKED",
+      "confidence": "high",
+      "checkedAt": "2026-08-09T00:00:00+07:00"
     },
     {
       "source": "Bing Places",

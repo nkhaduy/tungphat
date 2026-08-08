@@ -1,11 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import raw from "../data/entity-corroboration.json";
+import business from "../content/settings/business.json";
 import { normalizeEntityRecord, summarizeEntityRecords } from "../lib/entity-corroboration";
 
 const records = raw.records.map((record) => normalizeEntityRecord(record as Parameters<typeof normalizeEntityRecord>[0]));
 const result = {
-  schemaVersion: "2.0",
+  schemaVersion: "4.0",
   checkedAt: raw.checkedAt,
   entity: raw.entity,
   summary: summarizeEntityRecords(records),
@@ -15,6 +16,23 @@ const result = {
     firstParty: records.filter((record) => record.sourceType === "website").map((record) => record.url).filter(Boolean),
     corroboratingSources: records.filter((record) => ["CONSISTENT", "VERIFIED"].includes(record.consistency)).map((record) => record.source),
     unresolvedSources: records.filter((record) => !["CONSISTENT", "VERIFIED"].includes(record.consistency)).map((record) => record.source),
+    nodes: [
+      { id: "tung-phat", type: "Organization", label: business.businessName, evidence: "content/settings/business.json" },
+      ...business.locations.map((location) => ({ id: location.id, type: "LocalBusiness", label: location.name, address: location.address, evidence: location.directionsUrl })),
+      { id: "phone", type: "ContactPoint", label: business.phoneDisplay, evidence: "Official website + Zalo URL" },
+      { id: "domain", type: "WebSite", label: business.website, evidence: "Official website" },
+      { id: "zalo", type: "SocialProfile", label: business.zaloUrl, evidence: "Official website socialLinks" },
+      { id: "materials", type: "ProductCategory", label: "MDF, MFC, plywood và gỗ ghép", evidence: "Published product and reference pages" },
+      { id: "cnc", type: "Service", label: "Gia công CNC gỗ", evidence: "Published service pages" },
+    ],
+    edges: [
+      ...business.locations.map((location) => ({ from: "tung-phat", to: location.id, relationship: "branch", evidence: location.directionsUrl, status: "UNVERIFIED_EXTERNAL_DETAILS" })),
+      { from: "tung-phat", to: "phone", relationship: "contact", evidence: "Official website + Zalo", status: "CONSISTENT" },
+      { from: "tung-phat", to: "domain", relationship: "officialWebsite", evidence: "Official website", status: "CONSISTENT" },
+      { from: "tung-phat", to: "zalo", relationship: "contactProfile", evidence: "Official website socialLinks", status: "CONSISTENT" },
+      { from: "tung-phat", to: "materials", relationship: "offersCategory", evidence: "Published material pages", status: "FIRST_PARTY" },
+      { from: "tung-phat", to: "cnc", relationship: "providesService", evidence: "Published CNC pages", status: "FIRST_PARTY" },
+    ],
   },
 };
 const outputPath = process.env.ENTITY_GRAPH_OUTPUT ?? "reports/entity-graph.json";

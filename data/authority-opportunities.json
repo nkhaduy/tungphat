@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-09",
+  "scoring": "Authority x Relevance x Verifiability x Effort efficiency, each normalized to 1-5",
+  "opportunities": [
+    {"rank":1,"opportunity":"Verify Google Search Console domain property","authority":5,"relevance":5,"verifiability":5,"effortEfficiency":4,"score":500,"reason":"Separates indexed, excluded and ranking-outside-window states using first-party search data.","requiresOwnerAction":true},
+    {"rank":2,"opportunity":"Verify Bing Webmaster Tools and submit the production sitemap","authority":5,"relevance":5,"verifiability":5,"effortEfficiency":4,"score":500,"reason":"Provides authenticated crawl/index diagnostics that public RSS cannot supply.","requiresOwnerAction":true},
+    {"rank":3,"opportunity":"Claim and fully verify both Google Business Profile branches","authority":5,"relevance":5,"verifiability":5,"effortEfficiency":3,"score":375,"reason":"Direct local entity, NAP, category and discovery signal for the two real branch place IDs.","requiresOwnerAction":true},
+    {"rank":4,"opportunity":"Create a partner-ready citation note for furniture makers and technical educators","authority":3,"relevance":4,"verifiability":5,"effortEfficiency":4,"score":240,"reason":"Points to source-backed comparisons and caveats instead of asking for an unexplained link.","requiresOwnerAction":false},
+    {"rank":5,"opportunity":"Publish the verified material matrix to woodworking and interior-design communities as a cited reference","authority":3,"relevance":5,"verifiability":5,"effortEfficiency":3,"score":225,"reason":"The CSV/JSON/HTML asset offers a concrete citation reason beyond generic outreach.","requiresOwnerAction":false},
+    {"rank":6,"opportunity":"Request a supplier/dealer listing only where a real commercial relationship can be proven","authority":4,"relevance":5,"verifiability":5,"effortEfficiency":2,"score":200,"reason":"A manufacturer or supplier page can corroborate material relevance without inventing stock or authorization.","requiresOwnerAction":true},
+    {"rank":7,"opportunity":"Verify Bing Places branch listings","authority":4,"relevance":5,"verifiability":5,"effortEfficiency":2,"score":200,"reason":"Completes local entity coverage on Bing after authenticated ownership verification.","requiresOwnerAction":true},
+    {"rank":8,"opportunity":"Resolve and verify the official Facebook page using phone, domain and branch evidence","authority":3,"relevance":4,"verifiability":5,"effortEfficiency":3,"score":180,"reason":"Adds a safe sameAs edge only after ownership and NAP are confirmed.","requiresOwnerAction":true},
+    {"rank":9,"opportunity":"Earn citations from architecture/interior blogs for the CNC pre-flight checklist","authority":3,"relevance":4,"verifiability":4,"effortEfficiency":3,"score":144,"reason":"The checklist distinguishes general file hygiene from unverified machine-specific limits.","requiresOwnerAction":false},
+    {"rank":10,"opportunity":"Add only reputable local/industry listings with full NAP review","authority":2,"relevance":4,"verifiability":4,"effortEfficiency":2,"score":64,"reason":"Useful only when editorially controlled; spam directories and unsupported promotional listings are excluded.","requiresOwnerAction":true}
+  ]
+}

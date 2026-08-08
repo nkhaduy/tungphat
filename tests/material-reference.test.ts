@@ -10,7 +10,7 @@ describe("material reference filters", () => {
 
   it("exports null technical fields as unverified instead of inventing values", () => {
     const csv = toMaterialReferenceCsv(getMaterialDataset());
-    expect(csv).toContain("slug,name,category,materialClass,dimensions,thicknesses,surface,applications,limitations,sourceIds,lastVerified");
+    expect(csv).toContain("id,recordType,slug,name,manufacturer,category,materialClass,dimensions,thicknesses,finish,surface,applications,limitations,sourceIds,lastVerified");
     expect(csv).toContain("Chưa xác minh");
   });
 });
