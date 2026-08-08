@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
-import { extractSitemapUrls, shouldNotifyIndexNow } from "../lib/indexnow.ts";
+import { extractSitemapUrls, shouldNotifyIndexNow, submitIndexNow } from "../lib/indexnow.ts";
 
 const sitemapPath = process.env.INDEXNOW_SITEMAP_PATH ?? "out/sitemap.xml";
 const statePath = process.env.INDEXNOW_STATE_PATH ?? ".indexnow-state.json";
@@ -26,7 +26,6 @@ if (dryRun) {
   process.exit(0);
 }
 
-const response = await fetch("https://api.indexnow.org/indexnow", { method: "POST", headers: { "content-type": "application/json; charset=utf-8" }, body: JSON.stringify(payload) });
-if (!response.ok) throw new Error(`IndexNow returned ${response.status}: ${await response.text()}`);
+const result = await submitIndexNow({ endpoint: "https://api.indexnow.org/indexnow", payload });
 writeFileSync(statePath, JSON.stringify({ hash, submittedAt: new Date().toISOString(), urlCount: urls.length }) + "\n");
-console.log(`IndexNow submitted ${urls.length} URLs.`);
+console.log(`IndexNow submitted ${urls.length} URLs after ${result.attempts} attempt(s), status ${result.status}.`);

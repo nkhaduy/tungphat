@@ -16,6 +16,7 @@
 - Materials: https://mdftungphat.com/san-pham/
 - CNC service: https://mdftungphat.com/gia-cong-cnc/
 - CNC file guidance: https://mdftungphat.com/cat-cnc-go/
+- Material reference center: https://mdftungphat.com/tham-chieu-vat-lieu/
 
 ## Retrieval notes
 

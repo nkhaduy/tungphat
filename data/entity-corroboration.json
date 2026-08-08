@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-08T15:55:00+07:00",
+  "entity": "Công ty TNHH TMDV Gỗ Tùng Phát",
+  "records": [
+    {
+      "source": "Official website",
+      "url": "https://mdftungphat.com/lien-he/",
+      "entityName": "Công ty TNHH TMDV Gỗ Tùng Phát",
+      "phone": "0909 259 160",
+      "address": "14 Tam Bình và 81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
+      "website": "https://mdftungphat.com/",
+      "socialProfile": null,
+      "relationship": "first-party source of truth",
+      "consistencyStatus": "CONSISTENT",
+      "evidence": "Business settings and the public contact page use the same legal name, phone and two branch addresses.",
+      "confidence": "high"
+    },
+    {
+      "source": "Google Maps - branch 1",
+      "url": "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
+      "entityName": "Cửa Hàng Gỗ Ghép Tùng Phát",
+      "phone": null,
+      "address": "14 Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
+      "website": null,
+      "socialProfile": null,
+      "relationship": "location listing referenced by the official website",
+      "consistencyStatus": "UNVERIFIED",
+      "evidence": "The official website stores this Google place ID and address; authenticated profile details were not available through CLI.",
+      "confidence": "medium"
+    },
+    {
+      "source": "Google Maps - branch 2",
+      "url": "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY",
+      "entityName": "MDF - CNC TÙNG PHÁT",
+      "phone": null,
+      "address": "81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
+      "website": null,
+      "socialProfile": null,
+      "relationship": "location listing referenced by the official website",
+      "consistencyStatus": "UNVERIFIED",
+      "evidence": "The official website stores this Google place ID and address; authenticated profile details were not available through CLI.",
+      "confidence": "medium"
+    },
+    {
+      "source": "Zalo",
+      "url": "https://zalo.me/0909259160",
+      "entityName": null,
+      "phone": "0909 259 160",
+      "address": null,
+      "website": null,
+      "socialProfile": "https://zalo.me/0909259160",
+      "relationship": "official contact profile linked by the website",
+      "consistencyStatus": "CONSISTENT",
+      "evidence": "The Zalo profile URL encodes the same public phone number used by the website.",
+      "confidence": "medium"
+    },
+    {
+      "source": "Bing Places",
+      "url": null,
+      "entityName": null,
+      "phone": null,
+      "address": null,
+      "website": null,
+      "socialProfile": null,
+      "relationship": "local business listing",
+      "consistencyStatus": "MISSING",
+      "evidence": "No verified Bing Places listing URL is present in the repository or accessible account context.",
+      "confidence": "high"
+    },
+    {
+      "source": "Official Facebook",
+      "url": null,
+      "entityName": null,
+      "phone": null,
+      "address": null,
+      "website": null,
+      "socialProfile": null,
+      "relationship": "social identity",
+      "consistencyStatus": "MISSING",
+      "evidence": "No verified Facebook URL is present in business settings; no profile was inferred from search results.",
+      "confidence": "high"
+    }
+  ]
+}

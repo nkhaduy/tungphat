@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0",
+  "indexabilityGate": {
+    "requiresRealProject": true,
+    "requiresRealPhotos": true,
+    "requiresConsent": true,
+    "requiresUniqueResult": true,
+    "placeholderNoindex": true
+  },
+  "fields": {
+    "problem": null,
+    "material": null,
+    "dimensions": null,
+    "inputFile": null,
+    "machiningProcess": [],
+    "constraints": [],
+    "result": null,
+    "photos": [],
+    "consentStatus": "UNVERIFIED",
+    "date": null,
+    "projectType": null
+  }
+}

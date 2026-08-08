@@ -74,7 +74,7 @@ export function auditStaticOutput({ rootDir, siteUrl, expectedDirectAnswerRoutes
     });
     const body = html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/iu)?.[1] ?? html;
     const visibleText = body.replace(/<script\b[\s\S]*?<\/script>/giu, " ").replace(/<style\b[\s\S]*?<\/style>/giu, " ").replace(/<[^>]+>/gu, " ").replace(/\s+/gu, " ").trim();
-    const internalLinks = [...html.matchAll(/<a\b[^>]*href=(?:"([^"]*)"|'([^']*)')/giu)].map((match) => match[1] ?? match[2]).filter((href) => href && href.startsWith("/") && !href.startsWith("//") && !href.startsWith("/api/") && !/\.(?:png|jpe?g|webp|svg|pdf|xml|txt)$/iu.test(href));
+    const internalLinks = [...html.matchAll(/<a\b[^>]*href=(?:"([^"]*)"|'([^']*)')/giu)].map((match) => match[1] ?? match[2]).filter((href) => href && href.startsWith("/") && !href.startsWith("//") && !href.startsWith("/api/") && !/\.(?:json|png|jpe?g|webp|svg|pdf|xml|txt)$/iu.test(href));
     return { route, title, description, robots, canonical: canonicalTags.length === 1 ? attribute(canonicalTags[0], "href") : "", canonicalCount: canonicalTags.length, indexable, schemaSources, schemaErrors, visibleText, internalLinks, directAnswer: /data-answer-block/iu.test(html) };
   });
   const routeSet = new Set(pages.map((page) => page.route));

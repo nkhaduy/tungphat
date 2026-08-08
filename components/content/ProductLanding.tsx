@@ -63,7 +63,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
         />
 
         <div className="border-b border-forest-900/10 bg-white">
-          <p className="container-shell py-3 text-xs font-semibold text-slate-500">Cập nhật dữ liệu: <time dateTime={product.updatedAt}>{product.updatedAt}</time></p>
+          <p className="container-shell py-3 text-xs font-semibold text-slate-500">Cập nhật dữ liệu: <time dateTime={product.updatedAt}>{product.updatedAt}</time> · <Link href="/tham-chieu-vat-lieu/" className="text-wood-600 underline underline-offset-4">xem nguồn tham chiếu</Link></p>
         </div>
 
         <section data-answer-block className="border-b border-forest-900/10 bg-[#edf4ef] py-8" aria-labelledby="direct-answer-title">

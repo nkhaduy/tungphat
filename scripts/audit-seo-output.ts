@@ -6,7 +6,7 @@ const siteUrl = process.env.SEO_SITE_URL ?? "https://mdftungphat.com";
 const result = auditStaticOutput({
   rootDir,
   siteUrl,
-  expectedDirectAnswerRoutes: ["/", "/san-pham/", "/gia-cong-cnc/", "/van-mdf/", "/mdf-chong-am/", "/van-go-cong-nghiep/", "/go-ghep/", "/go-ghep-cao-su/", "/go-ghep-tram/", "/cat-cnc-go/", "/gia-cong-cnc-mdf/"],
+  expectedDirectAnswerRoutes: ["/", "/san-pham/", "/tham-chieu-vat-lieu/", "/gia-cong-cnc/", "/van-mdf/", "/mdf-chong-am/", "/van-go-cong-nghiep/", "/go-ghep/", "/go-ghep-cao-su/", "/go-ghep-tram/", "/cat-cnc-go/", "/gia-cong-cnc-mdf/"],
 });
 const outputPath = process.env.SEO_AUDIT_JSON;
 if (outputPath) fs.writeFileSync(outputPath, JSON.stringify(result, null, 2) + "\n");
