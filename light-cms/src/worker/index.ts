@@ -2,8 +2,9 @@ import { collectionSchemas, collectionNames, settingNames, settingSchemas, type 
 import { createContent, getContent, listContent, listVersions, restoreVersion, softDeleteContent, updateContent } from "./repository";
 import { constantTimeEqual, hmac, randomToken } from "./security/crypto";
 import { authorize, type Permission } from "./security/rbac";
-import { AccessAuthorizationError, createAccessCsrf, requireAccessMutation, resolveAccessUser } from "./security/access-auth";
-import { AccessJwksCache, AccessJwtError, verifyAccessJwt, type AccessJwtMetrics } from "./security/access-jwt";
+import { BaogiaJwtError } from "./security/baogia-jwt";
+import { BaogiaSsoError, completeBaogiaSso, startBaogiaSso } from "./security/baogia-sso";
+import { clearSessionCookie, requireMutation, revokeSession, verifySession, type VerifiedSession } from "./security/session";
 import { jsonError, jsonResponse, readBoundedJson, requestId, securityHeaders } from "./http";
 import { isAllowedImageType, matchesMagicBytes } from "./media/mime";
 import { mediaObjectKey } from "./media/object-key";
@@ -13,32 +14,19 @@ export type LightCmsEnv = {
   DB: D1Database;
   MEDIA: R2Bucket;
   APP_SECRET: string;
-  ACCESS_ISSUER: string;
-  ACCESS_AUD: string;
-  ACCESS_JWKS_URL?: string;
+  SESSION_SECRET: string;
+  BAOGIA_SSO_ISSUER: string;
+  BAOGIA_SSO_AUD: string;
+  BAOGIA_SSO_PUBLIC_JWK: string;
+  BAOGIA_SSO_KEY_ID: string;
   ENVIRONMENT?: string;
   ALLOWED_ORIGINS?: string;
   SERVICE_NAME?: string;
 };
 
-type VerifiedSession = {
-  userId: string;
-  accessSubject: string;
-  email: string;
-  name: string;
-  role: "super-admin" | "admin" | "editor";
-  csrf: string;
-  expiresAt: number;
-  accessToken: string;
-};
-
-type RequestState = { authMetrics?: AccessJwtMetrics };
-
 const collectionByRoute = new Map(collectionNames.map((name) => [name, name]));
 const settingByRoute = new Map(settingNames.map((name) => [name, name]));
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/u;
 const maxMediaBytes = 15 * 1024 * 1024;
-const accessJwksCache = new AccessJwksCache();
 
 function allowedOrigins(env: LightCmsEnv) {
   return (env.ALLOWED_ORIGINS || "").split(",").map((value) => value.trim()).filter(Boolean);
@@ -79,97 +67,18 @@ async function authenticate(
   request: Request,
   env: LightCmsEnv,
   id: string,
-  state: RequestState,
-  auditLogin: boolean,
 ): Promise<{ session: VerifiedSession } | { response: Response }> {
-  const accessToken = request.headers.get("Cf-Access-Jwt-Assertion") || "";
-  if (!accessToken) return { response: jsonError(id, 401, "unauthorized", "Phiên xác thực không hợp lệ") } as const;
-  if (!env.ACCESS_ISSUER || !env.ACCESS_AUD || !env.APP_SECRET) return { response: jsonError(id, 503, "internal_error", "Cloudflare Access chưa được cấu hình cho môi trường hiện tại") } as const;
-  try {
-    const verified = await verifyAccessJwt(accessToken, {
-      issuer: env.ACCESS_ISSUER,
-      audience: env.ACCESS_AUD,
-      jwksUrl: env.ACCESS_JWKS_URL || `${env.ACCESS_ISSUER.replace(/\/$/u, "")}/cdn-cgi/access/certs`,
-      maxTokenAgeSeconds: 12 * 60 * 60,
-    }, { cache: accessJwksCache });
-    state.authMetrics = verified.metrics;
-    const user = await resolveAccessUser(env.DB, verified.identity, id, { now: isoNow(), auditLogin });
-    const session: VerifiedSession = {
-      userId: user.id,
-      accessSubject: user.accessSubject,
-      email: user.email,
-      name: user.displayName,
-      role: user.role,
-      csrf: await createAccessCsrf(accessToken, env.APP_SECRET),
-      expiresAt: verified.identity.expiresAt,
-      accessToken,
-    };
-    return { session } as const;
-  } catch (error) {
-    if (error instanceof AccessJwtError) return { response: jsonError(id, 401, "unauthorized", "Phiên xác thực không hợp lệ") } as const;
-    if (error instanceof AccessAuthorizationError) return { response: jsonError(id, 403, "forbidden", "Bạn không được cấp quyền quản trị") } as const;
-    throw error;
-  }
+  if (!env.SESSION_SECRET) return { response: jsonError(id, 503, "internal_error", "Phiên quản trị chưa được cấu hình") } as const;
+  const session = await verifySession(request, env);
+  return session ? { session } as const : { response: jsonError(id, 401, "unauthorized", "Phiên xác thực không hợp lệ") } as const;
 }
 
 async function usersRoute(request: Request, env: LightCmsEnv, id: string, session: VerifiedSession, userId?: string) {
   if (request.method === "GET" && !userId) {
     const denied = requirePermission(session, "users:read", id); if (denied) return denied;
-    const rows = await env.DB.prepare(`SELECT id,email,COALESCE(display_name,name) AS display_name,role,status,
-      CASE WHEN access_subject IS NULL THEN 0 ELSE 1 END AS identity_linked,last_login_at,created_at,updated_at
-      FROM users ORDER BY created_at ASC LIMIT 50`).all();
+    const rows = await env.DB.prepare(`SELECT id,baogia_username,COALESCE(display_name,name) AS display_name,role,status,last_login_at
+      FROM users WHERE baogia_subject IS NOT NULL ORDER BY created_at ASC LIMIT 50`).all();
     return jsonResponse({ ok: true, data: rows.results, requestId: id }, 200, id);
-  }
-  if (request.method === "POST" && !userId) {
-    const denied = requirePermission(session, "users:update-role", id); if (denied) return denied;
-    if (!(await requireAccessMutation(request, allowedOrigins(env), session.accessToken, env.APP_SECRET))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
-    const raw = await readBoundedJson(request); const value = raw && typeof raw === "object" ? raw as Record<string, unknown> : {};
-    const email = typeof value.email === "string" ? value.email.trim().toLowerCase() : "";
-    const displayName = typeof value.displayName === "string" ? value.displayName.trim() : typeof value.name === "string" ? value.name.trim() : "";
-    const role = value.role;
-    if (!emailPattern.test(email) || displayName.length < 2 || !["super-admin", "admin", "editor"].includes(String(role))) return jsonError(id, 422, "validation_failed", "Thông tin người dùng không hợp lệ");
-    const createdId = randomToken(18); const now = isoNow();
-    await env.DB.batch([
-      env.DB.prepare(`INSERT INTO users(id,email,name,display_name,role,password_hash,active,status,access_subject,failed_attempts,created_at,updated_at)
-        VALUES(?1,?2,?3,?3,?4,'!access-only!',1,'active',NULL,0,?5,?5)`).bind(createdId, email, displayName, role, now),
-      env.DB.prepare("INSERT INTO audit_logs(id,actor_id,action,collection_key,record_id,request_id,metadata_json,created_at) VALUES(?1,?2,'user.create','users',?3,?4,?5,?6)").bind(randomToken(18), session.userId, createdId, id, JSON.stringify({ role }), now),
-    ]);
-    return jsonResponse({ ok: true, data: { id: createdId, email, displayName, role, status: "active", identityLinked: false }, requestId: id }, 201, id);
-  }
-  if (request.method === "PATCH" && userId) {
-    const denied = requirePermission(session, "users:update-role", id); if (denied) return denied;
-    if (!(await requireAccessMutation(request, allowedOrigins(env), session.accessToken, env.APP_SECRET))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
-    const raw = await readBoundedJson(request); const value = raw && typeof raw === "object" ? raw as Record<string, unknown> : {};
-    const keys = Object.keys(value); const role = value.role; const status = value.status;
-    if (keys.length === 0 || keys.some((key) => key !== "role" && key !== "status")) return jsonError(id, 422, "validation_failed", "Không thể thay đổi email hoặc định danh Access");
-    if (role !== undefined && !["super-admin", "admin", "editor"].includes(String(role))) return jsonError(id, 422, "validation_failed", "Vai trò không hợp lệ");
-    if (status !== undefined && !["active", "disabled"].includes(String(status))) return jsonError(id, 422, "validation_failed", "Trạng thái không hợp lệ");
-    const target = await env.DB.prepare("SELECT role,status FROM users WHERE id=?1 LIMIT 1").bind(userId).first<{ role: string; status: string }>();
-    if (!target) return jsonError(id, 404, "not_found", "Không tìm thấy người dùng");
-    if (target.role === "super-admin" && userId !== session.userId) return jsonError(id, 403, "forbidden", "Không thể thay đổi super-admin khác");
-    if (status === "disabled" && userId === session.userId) return jsonError(id, 403, "forbidden", "Không thể vô hiệu hóa chính tài khoản đang dùng");
-    const now = isoNow();
-    const nextRole = role === undefined ? target.role : String(role);
-    const nextStatus = status === undefined ? target.status : String(status);
-    await env.DB.batch([
-      env.DB.prepare("UPDATE users SET role=?1,status=?2,active=?3,updated_at=?4 WHERE id=?5").bind(nextRole, nextStatus, nextStatus === "active" ? 1 : 0, now, userId),
-      env.DB.prepare("INSERT INTO audit_logs(id,actor_id,action,collection_key,record_id,request_id,metadata_json,created_at) VALUES(?1,?2,'user.role','users',?3,?4,?5,?6)").bind(randomToken(18), session.userId, userId, id, JSON.stringify({ role: nextRole, status: nextStatus }), now),
-    ]);
-    return jsonResponse({ ok: true, data: { id: userId, role: nextRole, status: nextStatus }, requestId: id }, 200, id);
-  }
-  if (request.method === "DELETE" && userId) {
-    const denied = requirePermission(session, "users:update-role", id); if (denied) return denied;
-    if (!(await requireAccessMutation(request, allowedOrigins(env), session.accessToken, env.APP_SECRET))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
-    if (userId === session.userId) return jsonError(id, 403, "forbidden", "Không thể vô hiệu hóa chính tài khoản đang dùng");
-    const target = await env.DB.prepare("SELECT role FROM users WHERE id=?1 LIMIT 1").bind(userId).first<{ role: string }>();
-    if (!target) return jsonError(id, 404, "not_found", "Không tìm thấy người dùng");
-    if (target.role === "super-admin") return jsonError(id, 403, "forbidden", "Không thể vô hiệu hóa super-admin");
-    const now = isoNow();
-    await env.DB.batch([
-      env.DB.prepare("UPDATE users SET active=0,status='disabled',updated_at=?1 WHERE id=?2").bind(now, userId),
-      env.DB.prepare("INSERT INTO audit_logs(id,actor_id,action,collection_key,record_id,request_id,metadata_json,created_at) VALUES(?1,?2,'user.deactivate','users',?3,?4,'{}',?5)").bind(randomToken(18), session.userId, userId, id, now),
-    ]);
-    return jsonResponse({ ok: true, data: { id: userId, active: false }, requestId: id }, 200, id);
   }
   return jsonError(id, 405, "method_not_allowed");
 }
@@ -179,7 +88,7 @@ async function previewRoute(request: Request, env: LightCmsEnv, id: string, sess
   if (request.method === "POST") {
     if (!session) return jsonError(id, 401, "unauthorized", "Đăng nhập để tiếp tục");
     const denied = requirePermission(session, "preview:create", id); if (denied) return denied;
-    if (!(await requireAccessMutation(request, allowedOrigins(env), session.accessToken, env.APP_SECRET))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
+    if (!(await requireMutation(request, { allowedOrigins: allowedOrigins(env) }, session))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
     const record = await env.DB.prepare("SELECT id,version FROM content_records WHERE id=?1 AND deleted_at IS NULL").bind(recordId).first<{ id: string; version: number }>();
     if (!record) return jsonError(id, 404, "not_found", "Không tìm thấy nội dung");
     const payload = btoa(JSON.stringify({ id: record.id, version: record.version, exp: Math.floor(Date.now() / 1000) + 10 * 60 })).replaceAll("+", "-").replaceAll("/", "_").replace(/=+$/u, "");
@@ -223,7 +132,7 @@ async function contentRoute(request: Request, env: LightCmsEnv, id: string, sess
   }
   if (!recordId && request.method === "POST") {
     const denied = requirePermission(session, "content:create", id); if (denied) return denied;
-    if (!(await requireAccessMutation(request, allowedOrigins(env), session.accessToken, env.APP_SECRET))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
+    if (!(await requireMutation(request, { allowedOrigins: allowedOrigins(env) }, session))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
     const raw = await readBoundedJson(request); const result = collectionSchemas[collection].safeParse(raw);
     if (!result.success) return jsonError(id, 422, "validation_failed", "Dữ liệu nội dung không hợp lệ");
     const data = result.data as Record<string, unknown>;
@@ -233,7 +142,7 @@ async function contentRoute(request: Request, env: LightCmsEnv, id: string, sess
   }
   if (recordId && (request.method === "PATCH" || request.method === "PUT")) {
     const denied = requirePermission(session, "content:update", id); if (denied) return denied;
-    if (!(await requireAccessMutation(request, allowedOrigins(env), session.accessToken, env.APP_SECRET))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
+    if (!(await requireMutation(request, { allowedOrigins: allowedOrigins(env) }, session))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
     const raw = await readBoundedJson(request); const value = raw && typeof raw === "object" ? raw as Record<string, unknown> : {};
     const expectedVersion = Number(value.expectedVersion ?? value.version);
     const result = collectionSchemas[collection].safeParse(value.data ?? value);
@@ -246,7 +155,7 @@ async function contentRoute(request: Request, env: LightCmsEnv, id: string, sess
   }
   if (recordId && request.method === "DELETE") {
     const denied = requirePermission(session, "content:delete", id); if (denied) return denied;
-    if (!(await requireAccessMutation(request, allowedOrigins(env), session.accessToken, env.APP_SECRET))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
+    if (!(await requireMutation(request, { allowedOrigins: allowedOrigins(env) }, session))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
     const raw = await readBoundedJson(request); const version = raw && typeof raw === "object" ? Number((raw as { expectedVersion?: unknown }).expectedVersion) : NaN;
     if (!Number.isInteger(version)) return jsonError(id, 422, "validation_failed", "Thiếu version");
     const outcome = await softDeleteContent(env.DB, recordId, collection, version, session.userId, id, isoNow());
@@ -264,7 +173,7 @@ async function settingsRoute(request: Request, env: LightCmsEnv, id: string, ses
   }
   if (request.method === "PUT") {
     const denied = requirePermission(session, "settings:update", id); if (denied) return denied;
-    if (!(await requireAccessMutation(request, allowedOrigins(env), session.accessToken, env.APP_SECRET))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
+    if (!(await requireMutation(request, { allowedOrigins: allowedOrigins(env) }, session))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
     const raw = await readBoundedJson(request); const value = raw && typeof raw === "object" ? raw as Record<string, unknown> : {};
     const parsed = settingSchemas[setting].safeParse(value.data ?? value); const expected = Number(value.expectedVersion ?? value.version);
     if (!parsed.success || !Number.isInteger(expected)) return jsonError(id, 422, "validation_failed", "Setting hoặc version không hợp lệ");
@@ -311,7 +220,7 @@ async function mediaRoute(request: Request, env: LightCmsEnv, id: string, sessio
   }
   if (request.method === "POST" && !mediaId) {
     const denied = requirePermission(session, "media:create", id); if (denied) return denied;
-    if (!(await requireAccessMutation(request, allowedOrigins(env), session.accessToken, env.APP_SECRET))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
+    if (!(await requireMutation(request, { allowedOrigins: allowedOrigins(env) }, session))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
     const raw = await readBoundedJson(request); const value = raw && typeof raw === "object" ? raw as Record<string, unknown> : {};
     const filename = typeof value.filename === "string" ? value.filename : ""; const mimeType = typeof value.mimeType === "string" ? value.mimeType : ""; const size = Number(value.size); const alt = typeof value.alt === "string" ? value.alt.trim() : "";
     if (!filename || filename.includes("/") || filename.includes("\\") || !isAllowedImageType(mimeType) || !Number.isInteger(size) || size < 1 || size > maxMediaBytes || alt.length < 3) return jsonError(id, 422, "validation_failed", "Metadata media không hợp lệ");
@@ -321,7 +230,7 @@ async function mediaRoute(request: Request, env: LightCmsEnv, id: string, sessio
   }
   if (request.method === "PUT" && mediaId?.endsWith("/file")) {
     const actualId = mediaId.slice(0, -5); const denied = requirePermission(session, "media:create", id); if (denied) return denied;
-    if (!(await requireAccessMutation(request, allowedOrigins(env), session.accessToken, env.APP_SECRET))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
+    if (!(await requireMutation(request, { allowedOrigins: allowedOrigins(env) }, session))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
     const row = await env.DB.prepare("SELECT object_key,mime_type,declared_size,filename FROM media WHERE id=?1 AND state='pending' LIMIT 1").bind(actualId).first<{ object_key: string; mime_type: string; declared_size: number; filename: string }>();
     const contentLength = request.headers.get("Content-Length");
     const length = row?.declared_size || 0;
@@ -355,7 +264,7 @@ async function mediaRoute(request: Request, env: LightCmsEnv, id: string, sessio
   }
   if (request.method === "DELETE" && mediaId && !mediaId.includes("/")) {
     const denied = requirePermission(session, "media:delete", id); if (denied) return denied;
-    if (!(await requireAccessMutation(request, allowedOrigins(env), session.accessToken, env.APP_SECRET))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
+    if (!(await requireMutation(request, { allowedOrigins: allowedOrigins(env) }, session))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
     const row = await env.DB.prepare("SELECT object_key,thumbnail_key FROM media WHERE id=?1 AND deleted_at IS NULL LIMIT 1").bind(mediaId).first<{ object_key: string; thumbnail_key: string | null }>();
     if (!row) return jsonError(id, 404, "not_found", "Không tìm thấy media");
     await env.MEDIA.delete([row.object_key, ...(row.thumbnail_key ? [row.thumbnail_key] : [])]);
@@ -368,7 +277,7 @@ async function mediaRoute(request: Request, env: LightCmsEnv, id: string, sessio
   return jsonError(id, 405, "method_not_allowed");
 }
 
-async function handle(request: Request, env: LightCmsEnv, state: RequestState) {
+async function handle(request: Request, env: LightCmsEnv) {
   const id = requestId(request); const url = new URL(request.url); const origin = request.headers.get("Origin");
   if (request.method === "OPTIONS") {
     const headers = securityHeaders(id, allowedOrigins(env).includes(origin || "") ? origin || undefined : undefined);
@@ -377,25 +286,30 @@ async function handle(request: Request, env: LightCmsEnv, state: RequestState) {
   }
   if (url.pathname === "/health" && request.method === "GET") return jsonResponse({ ok: true, service: env.SERVICE_NAME || "tungphat-light-cms-api-staging", environment: env.ENVIRONMENT || "staging", requestId: id }, 200, id);
   if (!url.pathname.startsWith("/api/")) return jsonError(id, 404, "not_found", "Không tìm thấy endpoint");
-  if (url.pathname.startsWith("/api/auth/") && url.pathname !== "/api/auth/session" && url.pathname !== "/api/auth/logout") {
-    return jsonError(id, 404, "not_found", "Không tìm thấy endpoint");
-  }
   if (url.pathname === "/api/public/snapshot" && request.method === "GET") return publicSnapshot(env, id);
   if (url.pathname.startsWith("/api/public/media/")) return mediaRoute(request, env, id, null, decodeURIComponent(url.pathname.slice("/api/public/media/".length)), true);
+  if (url.pathname === "/api/auth/sso/start" && request.method === "GET") return startBaogiaSso(request);
+  if (url.pathname === "/api/auth/sso/callback" && request.method === "POST") return completeBaogiaSso(request, env);
+  if (url.pathname.startsWith("/api/auth/") && !["/api/auth/session", "/api/auth/logout"].includes(url.pathname)) {
+    return jsonError(id, 404, "not_found", "Không tìm thấy endpoint");
+  }
   if (url.pathname === "/api/auth/session" && request.method === "GET") {
-    const authenticated = await authenticate(request, env, id, state, true);
+    const authenticated = await authenticate(request, env, id);
     if (!("session" in authenticated)) return authenticated.response;
     return jsonResponse({ ok: true, data: { user: currentUser(authenticated.session), csrf: authenticated.session.csrf, expiresAt: authenticated.session.expiresAt }, requestId: id }, 200, id);
   }
-  const authenticated = await authenticate(request, env, id, state, false);
+  const authenticated = await authenticate(request, env, id);
   if (!("session" in authenticated)) return authenticated.response;
   const session = authenticated.session;
   if (url.pathname === "/api/auth/logout" && request.method === "POST") {
-    if (!(await requireAccessMutation(request, allowedOrigins(env), session.accessToken, env.APP_SECRET))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
+    if (!(await requireMutation(request, { allowedOrigins: allowedOrigins(env) }, session))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
     const now = isoNow();
+    await revokeSession(request, env);
     await env.DB.prepare(`INSERT INTO audit_logs(id,actor_id,action,collection_key,record_id,request_id,metadata_json,created_at)
       VALUES(?1,?2,'auth.logout','auth',?2,?3,'{}',?4)`).bind(randomToken(18), session.userId, id, now).run();
-    return jsonResponse({ ok: true, data: { loggedOut: true, logoutUrl: "/cdn-cgi/access/logout" }, requestId: id }, 200, id);
+    const response = jsonResponse({ ok: true, data: { loggedOut: true }, requestId: id }, 200, id);
+    response.headers.append("Set-Cookie", clearSessionCookie(new URL(request.url).protocol === "https:"));
+    return response;
   }
   const parts = url.pathname.slice("/api/".length).split("/").filter(Boolean).map((part) => decodeURIComponent(part));
   if (parts[0] === "dashboard" && request.method === "GET") return dashboard(env, id);
@@ -410,7 +324,7 @@ async function handle(request: Request, env: LightCmsEnv, state: RequestState) {
   }
   if (parts[0] === "versions" && parts[1] && parts[2] === "restore" && request.method === "POST") {
     const denied = requirePermission(session, "version:restore", id); if (denied) return denied;
-    if (!(await requireAccessMutation(request, allowedOrigins(env), session.accessToken, env.APP_SECRET))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
+    if (!(await requireMutation(request, { allowedOrigins: allowedOrigins(env) }, session))) return jsonError(id, 403, "request_rejected", "CSRF hoặc Origin không hợp lệ");
     const raw = await readBoundedJson(request); const value = raw && typeof raw === "object" ? raw as Record<string, unknown> : {};
     const outcome = await restoreVersion(env.DB, parts[1], Number(value.version), Number(value.expectedVersion), session.userId, id, isoNow());
     if (outcome.notFound) return jsonError(id, 404, "not_found", "Không tìm thấy version"); if (outcome.conflict) return jsonError(id, 409, "version_conflict", "Nội dung đã thay đổi"); return jsonResponse({ ok: true, data: outcome, requestId: id }, 200, id);
@@ -427,20 +341,22 @@ async function handle(request: Request, env: LightCmsEnv, state: RequestState) {
 const worker = {
   fetch(request: Request, env: LightCmsEnv) {
     const queryCount = { value: 0 };
-    const state: RequestState = {};
     const db = {
       prepare(sql: string) { queryCount.value += 1; return env.DB.prepare(sql); },
       batch(statements: D1PreparedStatement[]) { return env.DB.batch(statements); },
     } as D1Database;
     const scopedEnv = { ...env, DB: db };
-    return handle(request, scopedEnv, state).then((response) => {
+    return handle(request, scopedEnv).then((response) => {
       const headers = new Headers(response.headers); headers.set("X-D1-Query-Count", String(queryCount.value));
-      if (state.authMetrics) {
-        headers.set("X-Access-JWKS-Cache", state.authMetrics.cacheStatus);
-        headers.set("X-Access-JWKS-Fetches", String(state.authMetrics.jwksFetches));
-      }
       return withCors(new Response(response.body, { status: response.status, statusText: response.statusText, headers }), request.headers.get("Origin"), env);
     }).catch((error: unknown) => {
+      if (error instanceof BaogiaJwtError || error instanceof BaogiaSsoError) {
+        const status = error.status;
+        const code = status === 413 ? "payload_too_large" : status === 403 ? "forbidden" : status === 415 ? "request_rejected" : status === 503 ? "internal_error" : "unauthorized";
+        const response = jsonError(requestId(request), status, code, status === 403 ? "Bạn không được cấp quyền quản trị" : "Yêu cầu đăng nhập không hợp lệ");
+        response.headers.set("X-D1-Query-Count", String(queryCount.value));
+        return response;
+      }
       console.error(JSON.stringify({ message: "worker_request_failed", error: error instanceof Error ? error.message : "unknown" }));
       const response = jsonError(requestId(request), 500, "internal_error", "Lỗi hệ thống"); response.headers.set("X-D1-Query-Count", String(queryCount.value)); return response;
     });

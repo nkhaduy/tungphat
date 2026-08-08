@@ -22,8 +22,11 @@ function env() {
     MEDIA: { head: async () => null, get: async () => null, put: async () => ({ httpEtag: "etag" }) } as unknown as R2Bucket,
     ENVIRONMENT: "test",
     APP_SECRET: "a".repeat(32),
-    ACCESS_ISSUER: "https://test.cloudflareaccess.com",
-    ACCESS_AUD: "light-cms-test",
+    SESSION_SECRET: "s".repeat(32),
+    BAOGIA_SSO_ISSUER: "https://baogia.mdftungphat.com",
+    BAOGIA_SSO_AUD: "tungphat-light-cms",
+    BAOGIA_SSO_PUBLIC_JWK: "{}",
+    BAOGIA_SSO_KEY_ID: "baogia-cms-2026-08",
     ALLOWED_ORIGINS: "https://staging.example",
   };
 }

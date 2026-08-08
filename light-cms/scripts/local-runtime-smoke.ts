@@ -1,12 +1,16 @@
 import fs from "node:fs";
-import http from "node:http";
 import os from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
-import { once } from "node:events";
 import { createHash } from "node:crypto";
-import { AccessJwksCache, verifyAccessJwt } from "../src/worker/security/access-jwt";
-import { accessPublicJwk, signAccessToken } from "../tests/fixtures/access-keys";
+import { verifyBaogiaAssertion } from "../src/worker/security/baogia-jwt";
+import {
+  BAOGIA_TEST_AUDIENCE,
+  BAOGIA_TEST_ISSUER,
+  BAOGIA_TEST_KEY_ID,
+  BAOGIA_TEST_PUBLIC_JWK,
+  signBaogiaTestAssertion,
+} from "../tests/fixtures/baogia-sso-keys";
 import { analyzeSource } from "./analyze-source";
 import { buildMigrationSql } from "./build-migration-sql";
 
@@ -17,10 +21,6 @@ const config = path.join(root, "wrangler.worker.jsonc");
 const database = "tungphat-light-cms-20260805-0855-staging";
 const bucket = "tungphat-light-media-20260805-0855-staging";
 const state = fs.mkdtempSync(path.join(os.tmpdir(), "tungphat-light-runtime-"));
-const jwksServer = http.createServer((_request, response) => {
-  response.writeHead(200, { "Content-Type": "application/json", "Cache-Control": "public, max-age=600" });
-  response.end(JSON.stringify({ keys: [accessPublicJwk] }));
-});
 
 try {
   const analysis = analyzeSource(repositoryRoot);
@@ -51,21 +51,16 @@ try {
   if (!sourceBytes.equals(downloadedBytes)) throw new Error("Local R2 object differs from the source media");
   execFileSync(wrangler, ["r2", "object", "delete", objectPath, "--local", "--persist-to", state, "--config", config, "--force"], { cwd: root, stdio: "ignore" });
 
-  jwksServer.listen(0, "127.0.0.1");
-  await once(jwksServer, "listening");
-  const jwksAddress = jwksServer.address();
-  if (!jwksAddress || typeof jwksAddress === "string") throw new Error("JWKS server did not start");
-  const issuer = `http://127.0.0.1:${jwksAddress.port}`;
-  const audience = "local-light-cms";
   const epoch = Math.floor(Date.now() / 1000);
-  const token = await signAccessToken({ iss: issuer, aud: [audience], sub: "local-access-subject", email: "admin@example.com", iat: epoch, nbf: epoch - 1, exp: epoch + 600 });
-  const cache = new AccessJwksCache();
-  const coldStarted = performance.now();
-  const cold = await verifyAccessJwt(token, { issuer, audience, jwksUrl: `${issuer}/certs` }, { cache, now: epoch });
-  const coldWallMs = performance.now() - coldStarted;
-  const warmStarted = performance.now();
-  const warm = await verifyAccessJwt(token, { issuer, audience, jwksUrl: `${issuer}/certs` }, { cache, now: epoch });
-  const warmWallMs = performance.now() - warmStarted;
+  const assertion = await signBaogiaTestAssertion({ iat: epoch, nbf: epoch - 5, exp: epoch + 30, jti: `smoke_${crypto.randomUUID().replaceAll("-", "")}` });
+  const started = performance.now();
+  const identity = await verifyBaogiaAssertion(assertion, {
+    issuer: BAOGIA_TEST_ISSUER,
+    audience: BAOGIA_TEST_AUDIENCE,
+    publicJwk: BAOGIA_TEST_PUBLIC_JWK,
+    keyId: BAOGIA_TEST_KEY_ID,
+  }, epoch);
+  const verifyWallMs = performance.now() - started;
 
   console.log(JSON.stringify({
     ok: true,
@@ -77,16 +72,8 @@ try {
       get: true,
       delete: true,
     },
-    jwt: {
-      identity: { subject: cold.identity.subject, email: cold.identity.email },
-      coldWallMs,
-      warmWallMs,
-      coldCache: cold.metrics.cacheStatus,
-      warmCache: warm.metrics.cacheStatus,
-      jwksFetches: warm.metrics.jwksFetches,
-    },
+    jwt: { identity: { subject: identity.subject, username: identity.username }, verifyWallMs },
   }, null, 2));
 } finally {
-  jwksServer.close();
   fs.rmSync(state, { recursive: true, force: true });
 }

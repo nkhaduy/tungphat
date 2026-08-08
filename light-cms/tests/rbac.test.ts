@@ -9,9 +9,9 @@ describe("RBAC", () => {
     expect(authorize("editor", "audit:read")).toBe(false);
   });
 
-  it("allows admin publishing but reserves user role changes for super-admin", () => {
+  it("allows admin publishing and keeps identity users readable by administrators", () => {
     expect(authorize("admin", "content:publish")).toBe(true);
-    expect(authorize("admin", "users:update-role")).toBe(false);
-    expect(authorize("super-admin", "users:update-role")).toBe(true);
+    expect(authorize("admin", "users:read")).toBe(true);
+    expect(authorize("super-admin", "users:read")).toBe(true);
   });
 });

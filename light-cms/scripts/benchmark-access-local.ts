@@ -1,11 +1,15 @@
 import fs from "node:fs";
-import http from "node:http";
 import path from "node:path";
-import { once } from "node:events";
 import { onRequest } from "../functions/api/[[path]]";
-import { resolveAccessUser } from "../src/worker/security/access-auth";
-import { AccessJwksCache, verifyAccessJwt } from "../src/worker/security/access-jwt";
-import { accessPublicJwk, signAccessToken } from "../tests/fixtures/access-keys";
+import { verifyBaogiaAssertion } from "../src/worker/security/baogia-jwt";
+import { createSession, verifySession } from "../src/worker/security/session";
+import {
+  BAOGIA_TEST_AUDIENCE,
+  BAOGIA_TEST_ISSUER,
+  BAOGIA_TEST_KEY_ID,
+  BAOGIA_TEST_PUBLIC_JWK,
+  signBaogiaTestAssertion,
+} from "../tests/fixtures/baogia-sso-keys";
 import { createSqliteD1 } from "../tests/helpers/sqlite-d1";
 
 type Stats = { count: number; p50: number; p95: number; p99: number; max: number };
@@ -23,64 +27,43 @@ async function timed<T>(values: number[], operation: () => Promise<T>) {
   return result;
 }
 
-let jwksFetches = 0;
-const server = http.createServer((_request, response) => {
-  jwksFetches += 1;
-  response.writeHead(200, { "Content-Type": "application/json", "Cache-Control": "public, max-age=600" });
-  response.end(JSON.stringify({ keys: [accessPublicJwk] }));
-});
+const epoch = Math.floor(Date.now() / 1000);
+const assertion = await signBaogiaTestAssertion({ iat: epoch, nbf: epoch - 5, exp: epoch + 30, jti: `benchmark_${crypto.randomUUID().replaceAll("-", "")}` });
+const config = { issuer: BAOGIA_TEST_ISSUER, audience: BAOGIA_TEST_AUDIENCE, publicJwk: BAOGIA_TEST_PUBLIC_JWK, keyId: BAOGIA_TEST_KEY_ID };
+const coldValues: number[] = [];
+for (let index = 0; index < 20; index += 1) await timed(coldValues, () => verifyBaogiaAssertion(assertion, config, epoch));
+const warmValues: number[] = [];
+for (let index = 0; index < 300; index += 1) await timed(warmValues, () => verifyBaogiaAssertion(assertion, config, epoch));
 
-try {
-  server.listen(0, "127.0.0.1");
-  await once(server, "listening");
-  const address = server.address();
-  if (!address || typeof address === "string") throw new Error("JWKS benchmark server did not start");
-  const issuer = `http://127.0.0.1:${address.port}`;
-  const audience = "local-access-benchmark";
-  const epoch = Math.floor(Date.now() / 1000);
-  const token = await signAccessToken({ iss: issuer, aud: [audience], sub: "benchmark-subject", email: "benchmark@example.com", iat: epoch, nbf: epoch - 1, exp: epoch + 600 });
-  const config = { issuer, audience, jwksUrl: `${issuer}/certs` };
+const { db, sqlite } = createSqliteD1();
+const now = new Date().toISOString();
+sqlite.prepare(`INSERT INTO users(id,email,name,display_name,role,password_hash,active,status,baogia_subject,baogia_username,created_at,updated_at)
+  VALUES('benchmark-user','benchmark@baogia.invalid','Benchmark User','Benchmark User','super-admin','!baogia-sso!',1,'active','benchmark-subject','benchmark',?,?)`).run(now, now);
+const secret = "s".repeat(32);
+const created = await createSession({ DB: db, SESSION_SECRET: secret, COOKIE_SECURE: true }, { id: "benchmark-user", email: "benchmark@baogia.invalid", name: "Benchmark User", role: "super-admin" }, epoch);
+const sessionRequest = new Request("https://cms.mdftungphat.com/api/auth/session", { headers: { Cookie: created.cookie.split(";")[0] } });
+const sessionValues: number[] = [];
+for (let index = 0; index < 300; index += 1) await timed(sessionValues, () => verifySession(sessionRequest, { DB: db, SESSION_SECRET: secret }, epoch + 1));
 
-  const coldValues: number[] = [];
-  for (let index = 0; index < 20; index += 1) {
-    await timed(coldValues, () => verifyAccessJwt(token, config, { cache: new AccessJwksCache(), now: epoch }));
-  }
-  const warmCache = new AccessJwksCache();
-  await verifyAccessJwt(token, config, { cache: warmCache, now: epoch });
-  const warmValues: number[] = [];
-  for (let index = 0; index < 300; index += 1) {
-    await timed(warmValues, () => verifyAccessJwt(token, config, { cache: warmCache, now: epoch }));
-  }
-
-  const { db: database } = createSqliteD1();
-  const now = new Date().toISOString();
-  await database.prepare(`INSERT INTO users(id,email,name,display_name,role,password_hash,active,status,access_subject,created_at,updated_at)
-    VALUES('benchmark-user','benchmark@example.com','Benchmark User','Benchmark User','admin','!access-only!',1,'active','benchmark-subject',?1,?1)`).bind(now).run();
-  const lookupValues: number[] = [];
-  for (let index = 0; index < 300; index += 1) {
-    await timed(lookupValues, () => resolveAccessUser(database, { subject: "benchmark-subject", email: "benchmark@example.com", issuedAt: epoch, expiresAt: epoch + 600 }, `benchmark-${index}`, { now, auditLogin: false }));
-  }
-
-  const gatewayValues: number[] = [];
-  const gatewayContext = (request: Request) => ({ request, env: { LIGHT_CMS_API: { fetch: async () => new Response("ok", { headers: { "Cache-Control": "no-store" } }) } } }) as unknown as Parameters<typeof onRequest>[0];
-  for (let index = 0; index < 500; index += 1) {
-    await timed(gatewayValues, () => Promise.resolve(onRequest(gatewayContext(new Request("https://staging.example/api/dashboard", { headers: { "Cf-Access-Jwt-Assertion": token, Cookie: "CF_Authorization=opaque" } })))));
-  }
-
-  const report = {
-    generatedAt: new Date().toISOString(),
-    environment: "local-node",
-    cpu: null,
-    jwt: { cold: stats(coldValues), warm: stats(warmValues), jwksFetches, expectedJwksFetches: 21 },
-    d1UserLookup: stats(lookupValues),
-    gateway: stats(gatewayValues),
-    errors: 0,
-    note: "Wall-time diagnostic only; Cloudflare Worker CPU acceptance requires real Access staging and tail metrics.",
-  };
-  const output = path.resolve(import.meta.dirname, "../output/benchmark");
-  fs.mkdirSync(output, { recursive: true });
-  fs.writeFileSync(path.join(output, "local-access-benchmark.json"), JSON.stringify(report, null, 2));
-  console.log(JSON.stringify(report, null, 2));
-} finally {
-  server.close();
+const gatewayValues: number[] = [];
+const gatewayContext = (request: Request) => ({ request, env: { LIGHT_CMS_API: { fetch: async () => new Response("ok", { headers: { "Cache-Control": "no-store" } }) } } }) as unknown as Parameters<typeof onRequest>[0];
+for (let index = 0; index < 500; index += 1) {
+  await timed(gatewayValues, () => Promise.resolve(onRequest(gatewayContext(
+    new Request("https://cms.mdftungphat.com/api/dashboard", { headers: { Cookie: created.cookie.split(";")[0] } }),
+  ))));
 }
+
+const report = {
+  generatedAt: new Date().toISOString(),
+  environment: "local-node",
+  cpu: null,
+  jwt: { cold: stats(coldValues), warm: stats(warmValues), jwksFetches: 0 },
+  sessionCheck: stats(sessionValues),
+  gateway: stats(gatewayValues),
+  errors: 0,
+  note: "Wall-time diagnostic only; Cloudflare Worker CPU acceptance requires the real Baogia SSO staging deployment and tail metrics.",
+};
+const output = path.resolve(import.meta.dirname, "../output/benchmark");
+fs.mkdirSync(output, { recursive: true });
+fs.writeFileSync(path.join(output, "local-sso-benchmark.json"), JSON.stringify(report, null, 2));
+console.log(JSON.stringify(report, null, 2));

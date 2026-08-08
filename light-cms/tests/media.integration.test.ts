@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import worker from "../src/worker/index";
 import { fixedLengthStream } from "../src/worker/media/stream";
-import { accessPublicJwk, signAccessToken } from "./fixtures/access-keys";
+import { createSession } from "../src/worker/security/session";
 import { createSqliteD1 } from "./helpers/sqlite-d1";
 
 afterEach(() => vi.unstubAllGlobals());
@@ -22,8 +22,8 @@ describe("streamed media uploads", () => {
   it("accepts a browser upload when Content-Length is omitted", async () => {
     const { db, sqlite } = createSqliteD1();
     const now = new Date().toISOString();
-    sqlite.prepare(`INSERT INTO users(id,email,name,display_name,role,password_hash,active,status,access_subject,failed_attempts,created_at,updated_at)
-      VALUES('media-admin','admin@example.com','Media admin','Media admin','admin','!access-only!',1,'active','media-subject',0,?,?)`).run(now, now);
+    sqlite.prepare(`INSERT INTO users(id,email,name,display_name,role,password_hash,active,status,baogia_subject,baogia_username,failed_attempts,created_at,updated_at)
+      VALUES('media-admin','admin@example.com','Media admin','Media admin','admin','!baogia-sso!',1,'active','media-subject','admin',0,?,?)`).run(now, now);
     const objects = new Map<string, Uint8Array>();
     const media = {
       put: async (key: string, body: ReadableStream<Uint8Array>) => {
@@ -34,21 +34,22 @@ describe("streamed media uploads", () => {
       get: async () => null,
       delete: async () => undefined,
     } as unknown as R2Bucket;
-    const issuer = `https://media-test-${Date.now()}.cloudflareaccess.com`;
-    const audience = "media-test-audience";
-    vi.stubGlobal("fetch", async () => new Response(JSON.stringify({ keys: [accessPublicJwk] }), { headers: { "Cache-Control": "max-age=600" } }));
+    const secret = "s".repeat(32);
     const env = {
       DB: db,
       MEDIA: media,
       APP_SECRET: "a".repeat(32),
-      ACCESS_ISSUER: issuer,
-      ACCESS_AUD: audience,
-      ACCESS_JWKS_URL: `${issuer}/cdn-cgi/access/certs`,
+      SESSION_SECRET: secret,
+      BAOGIA_SSO_ISSUER: "https://baogia.mdftungphat.com",
+      BAOGIA_SSO_AUD: "tungphat-light-cms",
+      BAOGIA_SSO_PUBLIC_JWK: "{}",
+      BAOGIA_SSO_KEY_ID: "baogia-cms-2026-08",
       ALLOWED_ORIGINS: "https://staging.example",
       SERVICE_NAME: "media-test",
     } as never;
-    const token = await signAccessToken({ iss: issuer, aud: audience, sub: "media-subject", email: "admin@example.com", iat: Math.floor(Date.now() / 1000) - 5, exp: Math.floor(Date.now() / 1000) + 3600 });
-    const call = (path: string, init: RequestInit = {}) => worker.fetch(new Request(`https://staging.example${path}`, { ...init, headers: new Headers({ ...Object.fromEntries(new Headers(init.headers).entries()), "Cf-Access-Jwt-Assertion": token }) }), env);
+    const created = await createSession({ DB: db, SESSION_SECRET: secret, COOKIE_SECURE: true }, { id: "media-admin", email: "admin@example.com", role: "admin" });
+    const cookie = created.cookie.split(";")[0];
+    const call = (path: string, init: RequestInit = {}) => worker.fetch(new Request(`https://staging.example${path}`, { ...init, headers: new Headers({ ...Object.fromEntries(new Headers(init.headers).entries()), Cookie: cookie }) }), env);
     const session = await call("/api/auth/session");
     const csrf = ((await session.json()) as { data: { csrf: string } }).data.csrf;
     const metadata = await call("/api/media", { method: "POST", headers: { Origin: "https://staging.example", "X-CSRF-Token": csrf, "Content-Type": "application/json" }, body: JSON.stringify({ filename: "fixture.png", mimeType: "image/png", size: 16, alt: "Fixture image" }) });
@@ -60,8 +61,8 @@ describe("streamed media uploads", () => {
   it("rejects a streamed body whose size differs from metadata and leaves no R2 object", async () => {
     const { db, sqlite } = createSqliteD1();
     const now = new Date().toISOString();
-    sqlite.prepare(`INSERT INTO users(id,email,name,display_name,role,password_hash,active,status,access_subject,failed_attempts,created_at,updated_at)
-      VALUES('media-admin-2','admin2@example.com','Media admin','Media admin','admin','!access-only!',1,'active','media-subject-2',0,?,?)`).run(now, now);
+    sqlite.prepare(`INSERT INTO users(id,email,name,display_name,role,password_hash,active,status,baogia_subject,baogia_username,failed_attempts,created_at,updated_at)
+      VALUES('media-admin-2','admin2@example.com','Media admin','Media admin','admin','!baogia-sso!',1,'active','media-subject-2','admin2',0,?,?)`).run(now, now);
     const objects = new Map<string, Uint8Array>();
     const media = {
       put: async (key: string, body: ReadableStream<Uint8Array>) => {
@@ -72,12 +73,11 @@ describe("streamed media uploads", () => {
       get: async () => null,
       delete: async (keys: string | string[]) => { for (const key of Array.isArray(keys) ? keys : [keys]) objects.delete(key); },
     } as unknown as R2Bucket;
-    const issuer = `https://media-size-test-${Date.now()}.cloudflareaccess.com`;
-    const audience = "media-size-test-audience";
-    vi.stubGlobal("fetch", async () => new Response(JSON.stringify({ keys: [accessPublicJwk] }), { headers: { "Cache-Control": "max-age=600" } }));
-    const env = { DB: db, MEDIA: media, APP_SECRET: "a".repeat(32), ACCESS_ISSUER: issuer, ACCESS_AUD: audience, ACCESS_JWKS_URL: `${issuer}/cdn-cgi/access/certs`, ALLOWED_ORIGINS: "https://staging.example" } as never;
-    const token = await signAccessToken({ iss: issuer, aud: audience, sub: "media-subject-2", email: "admin2@example.com", iat: Math.floor(Date.now() / 1000) - 5, exp: Math.floor(Date.now() / 1000) + 3600 });
-    const call = (path: string, init: RequestInit = {}) => worker.fetch(new Request(`https://staging.example${path}`, { ...init, headers: new Headers({ ...Object.fromEntries(new Headers(init.headers).entries()), "Cf-Access-Jwt-Assertion": token }) }), env);
+    const secret = "s".repeat(32);
+    const env = { DB: db, MEDIA: media, APP_SECRET: "a".repeat(32), SESSION_SECRET: secret, BAOGIA_SSO_ISSUER: "https://baogia.mdftungphat.com", BAOGIA_SSO_AUD: "tungphat-light-cms", BAOGIA_SSO_PUBLIC_JWK: "{}", BAOGIA_SSO_KEY_ID: "baogia-cms-2026-08", ALLOWED_ORIGINS: "https://staging.example" } as never;
+    const created = await createSession({ DB: db, SESSION_SECRET: secret, COOKIE_SECURE: true }, { id: "media-admin-2", email: "admin2@example.com", role: "admin" });
+    const cookie = created.cookie.split(";")[0];
+    const call = (path: string, init: RequestInit = {}) => worker.fetch(new Request(`https://staging.example${path}`, { ...init, headers: new Headers({ ...Object.fromEntries(new Headers(init.headers).entries()), Cookie: cookie }) }), env);
     const session = await call("/api/auth/session");
     const csrf = ((await session.json()) as { data: { csrf: string } }).data.csrf;
     const metadata = await call("/api/media", { method: "POST", headers: { Origin: "https://staging.example", "X-CSRF-Token": csrf, "Content-Type": "application/json" }, body: JSON.stringify({ filename: "fixture.png", mimeType: "image/png", size: 16, alt: "Fixture image" }) });
