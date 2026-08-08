@@ -3,8 +3,23 @@ import { evaluateProductionAssets, evaluateProductionQualityGates, evaluateSecur
 
 describe("production audit quality gates", () => {
   it("requires all public retrieval and IndexNow endpoints", () => {
-    expect(evaluateProductionAssets({ robots: 200, sitemap: 200, knowledge: 200, llms: 200, indexNowKey: 200 })).toEqual({ errors: 0, missing: [] });
-    expect(evaluateProductionAssets({ robots: 200, sitemap: 200, knowledge: 404, llms: 200, indexNowKey: 404 }).missing).toEqual(["knowledge.json", "indexnow-key.txt"]);
+    expect(evaluateProductionAssets({ robots: 200, sitemap: 200, knowledge: 200, llms: 200, indexNowKey: 200, materialReference: 200, cncPreflight: 200 })).toEqual({ errors: 0, missing: [] });
+    expect(evaluateProductionAssets({ robots: 200, sitemap: 200, knowledge: 404, llms: 200, indexNowKey: 404, materialReference: 404, cncPreflight: 404 }).missing).toEqual(["knowledge.json", "indexnow-key.txt", "material-reference.csv", "cnc-preflight-checklist.csv"]);
+  });
+
+  it("rejects soft-404 HTML returned for machine-readable assets", () => {
+    const html = { status: 200, contentType: "text/html; charset=utf-8", body: "<!doctype html><title>Not found</title>" };
+    const result = evaluateProductionAssets({
+      robots: { status: 200, contentType: "text/plain", body: "User-agent: *\nAllow: /" },
+      sitemap: { status: 200, contentType: "application/xml", body: "<?xml version=\"1.0\"?><urlset></urlset>" },
+      knowledge: html,
+      llms: { status: 200, contentType: "text/plain", body: "# Tùng Phát" },
+      indexNowKey: { status: 200, contentType: "text/plain", body: "1234567890abcdef" },
+      materialReference: { status: 200, contentType: "text/csv", body: "id,brand,category\nmdf,Test,MDF" },
+      cncPreflight: { status: 200, contentType: "text/csv", body: "id,label,check,status\nunits,Đơn vị,Kiểm tra,Cần xác nhận" },
+    });
+
+    expect(result).toMatchObject({ errors: 1, missing: [], invalid: ["knowledge.json"] });
   });
 
   it("checks the complete production security header baseline", () => {

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0",
+  "lastVerified": "2026-08-08",
+  "description": "Checklist chuẩn bị dữ liệu CNC từ phạm vi dịch vụ đã công bố. Đây không phải công cụ xác nhận khả năng sản xuất tự động.",
+  "sourceUrls": [
+    "https://mdftungphat.com/bai-viet/chuan-bi-file-cnc/",
+    "https://mdftungphat.com/cat-cnc-go/",
+    "https://mdftungphat.com/gia-cong-cnc-mdf/"
+  ],
+  "items": [
+    { "id": "material", "label": "Vật liệu", "check": "Ghi loại vật liệu, cốt hoặc loại gỗ và nguồn vật liệu nếu đã xác định.", "status": "Cần Tùng Phát kiểm tra" },
+    { "id": "thickness", "label": "Độ dày", "check": "Ghi độ dày theo bản vẽ hoặc đánh dấu là thông tin cần xác nhận.", "status": "Cần Tùng Phát kiểm tra" },
+    { "id": "units", "label": "Đơn vị đo", "check": "Dùng một đơn vị thống nhất trong file, PDF và danh sách chi tiết.", "status": "Cần Tùng Phát kiểm tra" },
+    { "id": "dimensions", "label": "Kích thước", "check": "Thể hiện kích thước tổng và kích thước từng mã chi tiết.", "status": "Cần Tùng Phát kiểm tra" },
+    { "id": "quantity", "label": "Số lượng", "check": "Ghi số lượng riêng cho từng mã chi tiết và tổng số nếu có.", "status": "Cần Tùng Phát kiểm tra" },
+    { "id": "geometry", "label": "Đường cắt và biên dạng", "check": "Đánh dấu đường bao, đường cắt trong và phần cần giữ lại.", "status": "Cần Tùng Phát kiểm tra" },
+    { "id": "holes-grooves", "label": "Lỗ và rãnh", "check": "Ghi vị trí, mặt thực hiện, hướng và quan hệ với cạnh.", "status": "Cần Tùng Phát kiểm tra" },
+    { "id": "faces", "label": "Mặt gia công", "check": "Phân biệt mặt chính, mặt còn lại và hướng lật chi tiết.", "status": "Cần Tùng Phát kiểm tra" },
+    { "id": "surface-edge", "label": "Bề mặt và cạnh", "check": "Mô tả lớp phủ hiện có, cạnh để lộ và bước hoàn thiện dự kiến.", "status": "Cần Tùng Phát kiểm tra" },
+    { "id": "version", "label": "Phiên bản dữ liệu", "check": "Ghi ngày hoặc mã phiên bản và phần thay đổi gần nhất.", "status": "Cần Tùng Phát kiểm tra" },
+    { "id": "reference", "label": "Bản đối chiếu", "check": "Kèm PDF hoặc ảnh thể hiện kích thước và mặt gia công để đối chiếu.", "status": "Cần Tùng Phát kiểm tra" },
+    { "id": "open-questions", "label": "Thông tin chưa chốt", "check": "Đánh dấu rõ nội dung cần trao đổi thay vì tự điền giả định.", "status": "Cần Tùng Phát kiểm tra" }
+  ]
+}

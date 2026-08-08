@@ -1,9 +1,12 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { attributionFromUrl, attributionParameters } from "@/lib/analytics/attribution";
 import { normalizeCtaLocation, sanitizePath, sanitizeText, shouldTrackLocation } from "@/lib/analytics/sanitize";
 import { generateAnonymousId, SESSION_TIMEOUT_MS } from "@/lib/analytics/session";
 import { analyticsEventNames } from "@/lib/analytics/types";
 import { conversionRate, countLeadSessions, isAssistedConversion, recordMilestone, vietnamDayBounds } from "@/lib/analytics/metrics";
+import { sendGa4Event } from "@/lib/analytics/client";
+
+afterEach(() => vi.unstubAllGlobals());
 
 describe("anonymous analytics primitives", () => {
   it("generates random UUID v4 visitor and session identifiers", () => {
@@ -22,6 +25,12 @@ describe("anonymous analytics primitives", () => {
     expect(analyticsEventNames).toContain("page_view");
     expect(analyticsEventNames).toContain("click_zalo");
     expect(analyticsEventNames).not.toContain("keystroke");
+  });
+
+  it("queues GA4 events until the lazy analytics loader defines gtag", () => {
+    vi.stubGlobal("window", { dataLayer: [] });
+    sendGa4Event("page_view", { page_path: "/" });
+    expect(window.dataLayer).toEqual([["event", "page_view", { page_path: "/" }]]);
   });
 });
 

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/prepare-indexnow-key.mjs && node scripts/generate-material-reference.mjs",
+    "prebuild": "node scripts/prepare-indexnow-key.mjs && node scripts/generate-material-reference.mjs && node scripts/generate-cnc-preflight.mjs",
     "build": "npm run validate:content && npm run images:check && node ./node_modules/next/dist/bin/next build",
     "postbuild": "node scripts/clean-empty-collection-routes.mjs && node scripts/clean-export-image-sources.mjs && node scripts/check-static-output.mjs && node scripts/check-sitemap-output.mjs && node scripts/check-metadata-output.mjs && tsx scripts/audit-seo-output.ts && node scripts/validate-structured-data.mjs",
     "start": "npx serve out",
@@ -26,6 +26,7 @@
     "monitor:search": "tsx scripts/monitor-search.ts",
     "entity:graph": "tsx scripts/build-entity-graph.ts",
     "report:phase3": "tsx scripts/build-phase3-report.ts",
+    "report:phase4": "tsx scripts/build-phase4-report.ts",
     "validate:legacy-redirects": "node scripts/check-legacy-redirects.mjs",
     "validate:homepage-images": "node scripts/check-homepage-images.mjs",
     "validate:cloudflare-config": "node cloudflare-cms/scripts/validate-cloudflare-config.mjs",

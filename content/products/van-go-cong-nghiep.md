@@ -107,6 +107,22 @@ Cốt ảnh hưởng tới độ dày, gia công, liên kết và môi trường
 
 Các tên melamine, laminate, acrylic hoặc veneer trên website chỉ là điểm bắt đầu trao đổi. Loại bề mặt, mã màu, cấu tạo và khả năng cung ứng cần được xác nhận, không suy luận từ ảnh minh họa.
 
+### Melamine và laminate: cần kiểm tra gì trước khi chọn?
+
+Website hiện chưa có catalogue kỹ thuật đủ để công bố một bảng đặc tính cố định cho mọi mã melamine hoặc laminate. Khi so sánh hai hướng bề mặt, khách hàng nên kiểm tra cùng một bộ tiêu chí thay vì chỉ dựa vào tên gọi:
+
+| Tiêu chí | Dữ liệu cần gửi hoặc đối chiếu |
+| --- | --- |
+| Cốt nền | Loại cốt, độ dày và mã vật liệu dự kiến |
+| Mã bề mặt | Thương hiệu, mã màu, tên bộ sưu tập hoặc ảnh mẫu có nguồn |
+| Hai mặt | Mặt nhìn thấy, mặt còn lại và yêu cầu đồng bộ |
+| Cạnh | Cạnh để lộ, cạnh cần hoàn thiện và vật liệu cạnh nếu đã chốt |
+| Hạng mục sử dụng | Tủ, kệ, mặt bàn, vách hoặc chi tiết khác |
+| Gia công | Kích thước, lỗ, rãnh, biên dạng, mặt gia công và số lượng |
+| Khả năng cung ứng | Kiểm tra theo mã và thời điểm yêu cầu; không suy luận từ ảnh minh họa |
+
+Tùng Phát chỉ xác nhận hướng bề mặt sau khi đối chiếu cốt, mã, mẫu và yêu cầu gia công. Trang không gán sẵn độ bền, giá hoặc tình trạng tồn kho cho toàn bộ nhóm melamine hay laminate.
+
 ## Tùng Phát hỗ trợ gia công CNC như thế nào?
 
 Tùng Phát tiếp nhận cắt, khoan, soi rãnh và gia công theo file hoặc kích thước sau khi kiểm tra vật liệu, độ dày, bề mặt và số lượng. Xem quy trình [gia công CNC](/gia-cong-cnc/) hoặc hướng dẫn [gia công CNC MDF](/gia-cong-cnc-mdf/).

@@ -29,6 +29,12 @@ const evidenceBackedAnswers = new Set([
   "ván trơn và ván phủ bề mặt khác nhau gì",
   "MDF thường hay MDF chống ẩm cho nội thất bếp",
   "yếu tố ảnh hưởng giá cắt CNC",
+  "ván nguyên tấm và danh sách chi tiết khác nhau khi báo giá",
+  "cắt CNC MDF và cắt CNC gỗ ghép khác nhau gì",
+  "cắt theo kích thước và CNC theo file khác nhau gì",
+  "file kỹ thuật và bản phác thảo dùng khi nào",
+  "bề mặt melamine và laminate nên kiểm tra gì",
+  "mua tấm nguyên và thuê gia công trọn yêu cầu",
 ]);
 
 function normalizeUrl(value: string) {
