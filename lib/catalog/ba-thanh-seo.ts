@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { absoluteUrl, SITE_NAME } from "@/lib/seo";
 import type { SupplierColorCode } from "@/lib/catalog/types";
-import { baThanhCategories, getBaThanhIndexableCodes } from "@/lib/catalog/ba-thanh";
+import { getBaThanhCanonicalRoute, getBaThanhIndexableCodes } from "@/lib/catalog/ba-thanh";
 
 const brandPath = "/thuong-hieu/ba-thanh/";
-const hubPath = "/ma-mau-melamine/ba-thanh/";
+const hubPath = "/catalogue/ba-thanh/melamine/";
 
 export function buildBaThanhCodeMetadata(record: SupplierColorCode): Metadata {
   const title = `Mã Melamine Ba Thanh ${record.displayName} – Tra mã và báo giá`;
@@ -12,12 +12,12 @@ export function buildBaThanhCodeMetadata(record: SupplierColorCode): Metadata {
   return {
     title,
     description,
-    alternates: { canonical: absoluteUrl(`${hubPath}${record.slug}/`) },
-    robots: record.seoStatus === "READY_TO_INDEX" && record.published ? { index: true, follow: true } : { index: false, follow: true },
+    alternates: { canonical: absoluteUrl(getBaThanhCanonicalRoute(record)) },
+    robots: { index: false, follow: true },
     openGraph: {
       title,
       description,
-      url: absoluteUrl(`${hubPath}${record.slug}/`),
+      url: absoluteUrl(getBaThanhCanonicalRoute(record)),
       siteName: SITE_NAME,
       locale: "vi_VN",
       type: "website",
@@ -37,7 +37,7 @@ export function buildBaThanhProductSchema(record: SupplierColorCode) {
     category: "Melamine",
     image: record.images.map((image) => absoluteUrl(image.src)),
     description,
-    url: absoluteUrl(`${hubPath}${record.slug}/`),
+    url: absoluteUrl(getBaThanhCanonicalRoute(record)),
   };
 }
 
@@ -55,7 +55,7 @@ export function buildBaThanhCollectionSchema(input: { name: string; path: string
         "@type": "ListItem",
         position: index + 1,
         name: `Melamine Ba Thanh ${record.displayName}`,
-        url: absoluteUrl(`${hubPath}${record.slug}/`),
+        url: absoluteUrl(getBaThanhCanonicalRoute(record)),
       })),
     },
   };
@@ -64,8 +64,8 @@ export function buildBaThanhCollectionSchema(input: { name: string; path: string
 export function getBaThanhSitemapPaths() {
   return [
     brandPath,
+    "/catalogue/ba-thanh/",
     hubPath,
-    ...baThanhCategories.filter((category) => category.count > 0).map((category) => `${hubPath}${category.slug}/`),
-    ...getBaThanhIndexableCodes().map((record) => `${hubPath}${record.slug}/`),
+    ...getBaThanhIndexableCodes().map((record) => getBaThanhCanonicalRoute(record)),
   ];
 }

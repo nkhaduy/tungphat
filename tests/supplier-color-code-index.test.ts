@@ -6,8 +6,8 @@ describe("canonical supplier color-code index", () => {
 
   it("reconciles the former mixed catalogue and exposes canonical verified codes only", () => {
     expect(artifact.previousSearchableRecords).toBe(3_558);
-    expect(artifact.records).toHaveLength(3_375);
-    expect(artifact.removedFromPublicColorIndex).toBe(183);
+    expect(artifact.records).toHaveLength(2_826);
+    expect(artifact.removedFromPublicColorIndex).toBe(732);
     expect(artifact.purposeTotals).toEqual({
       "color-code": 3_376,
       "product-family": 156,
@@ -27,9 +27,9 @@ describe("canonical supplier color-code index", () => {
     ).toBe(true);
   });
 
-  it("keeps every canonical supplier code and actual Ba Thanh Laminate map entry", () => {
+  it("keeps every in-scope canonical supplier code and actual Ba Thanh Laminate map entry", () => {
     expect(artifact.totals).toMatchObject({
-      "an-cuong": { verifiedColorCodes: 2_744 },
+      "an-cuong": { verifiedColorCodes: 2_195, scopeExcluded: 549 },
       "thanh-thuy": { verifiedColorCodes: 339 },
       "ba-thanh": { verifiedColorCodes: 292 },
     });
@@ -46,6 +46,27 @@ describe("canonical supplier color-code index", () => {
           record.codeRaw === "MFC - MS 465 SC04",
       ),
     ).toBe(true);
+  });
+
+  it("limits An Cuong public codes to the approved product menu plus edge banding", () => {
+    const anCuongMaterials = new Set(
+      artifact.records
+        .filter((record) => record.supplier === "an-cuong")
+        .map((record) => record.materialType),
+    );
+
+    expect(anCuongMaterials).toEqual(
+      new Set([
+        "melamine",
+        "laminate",
+        "acrylic",
+        "veneer",
+        "ppet",
+        "pvc",
+        "worktop",
+        "edge-banding",
+      ]),
+    );
   });
 
   it("merges duplicate source aliases without discarding provenance or images", () => {
@@ -71,5 +92,20 @@ describe("canonical supplier color-code index", () => {
           !record.canonicalRoute.includes("null"),
       ),
     ).toBe(true);
+  });
+
+  it("includes recovered local previews and excludes invalid Ba Thanh detail images", () => {
+    const anCuong = artifact.records.find(
+      (record) => record.supplier === "an-cuong" && record.codeRaw === "MFC - MS 465 SC04",
+    );
+    expect(anCuong?.images.some((image) => image.role === "swatch" && image.localPath)).toBe(true);
+    const baThanhLaminate = artifact.records.find(
+      (record) => record.supplier === "ba-thanh" && record.codeRaw === "P2052",
+    );
+    expect(baThanhLaminate?.images.some((image) => image.localPath)).toBe(true);
+    const invalidBaThanh = artifact.records.find(
+      (record) => record.supplier === "ba-thanh" && record.codeRaw === "BT171EV",
+    );
+    expect(invalidBaThanh?.images).toEqual([]);
   });
 });

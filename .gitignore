@@ -5,6 +5,7 @@ node_modules/
 .cache/thanh-thuy/
 .cache/ba-thanh/
 .cache/supplier-media/
+.cache/supplier-color-media/
 out/
 .wrangler/
 .dev.vars

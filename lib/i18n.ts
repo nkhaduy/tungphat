@@ -12,7 +12,7 @@ export const vi = {
   /* ── Header ── */
   navHome: "Trang chủ",
   navProducts: "Sản phẩm",
-  navCatalogues: "Catalogue",
+  navCatalogues: "Mã màu",
   navCNC: "Gia công CNC",
   navLibrary: "Thư viện",
   navContact: "Liên hệ",
@@ -136,7 +136,7 @@ export const vi = {
   footerServices: "Dịch vụ",
   footerContact: "Liên hệ",
   footerCNC: "Gia công CNC",
-  footerCatalogue: "Catalogue",
+  footerCatalogue: "Mã màu",
   footerLibrary: "Thư viện xưởng",
   footerProcess: "Quy trình đặt hàng",
   footerLegal: "Pháp lý",
@@ -156,8 +156,8 @@ export const vi = {
   breadcrumbProducts: "Sản phẩm",
 
   /* ── Catalogue pages ── */
-  catalogueTitle: "Catalogue",
-  catalogueDescription: "Catalogue sản phẩm chính thức từ",
+  catalogueTitle: "Mã màu",
+  catalogueDescription: "Mã màu và mã bề mặt đã xác minh từ",
   cataloguePlaceholder: "Catalogue đang được cập nhật. Vui lòng liên hệ để nhận file catalogue mới nhất.",
   catalogueRequestCta: "Yêu cầu catalogue",
   catalogueThumbnails: {

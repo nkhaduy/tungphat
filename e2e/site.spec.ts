@@ -31,6 +31,9 @@ const publicRoutes = [
   "/chinh-sach-bao-mat/",
   "/dieu-khoan-su-dung/",
 ];
+const canonicalRouteOverrides: Record<string, string> = {
+  "/ma-mau-melamine/ba-thanh/": "/catalogue/ba-thanh/melamine/",
+};
 const representativeRoutes = [
   "/",
   "/go-ghep-cao-su/",
@@ -90,7 +93,9 @@ test("các route chính trả về trang có H1, canonical và không có lỗi 
       .locator('link[rel="canonical"]')
       .getAttribute("href");
     expect(canonical, route).not.toBeNull();
-    expect(normalizedPath(canonical || "/"), route).toBe(route);
+    expect(normalizedPath(canonical || "/"), route).toBe(
+      canonicalRouteOverrides[route] ?? route,
+    );
   }
   expect(errors).toEqual([]);
 });
@@ -439,11 +444,16 @@ test("robots, sitemap, Vercel admin redirect và 404 đúng", async ({
     "/san-pham/thanh-thuy",
     "/san-pham/ba-thanh",
     "/san-pham/kes",
+  ])
+    expect(xml).not.toContain(
+      `<loc>https://mdftungphat.com${route}/</loc>`,
+    );
+  for (const route of [
     "/catalogue/an-cuong",
     "/catalogue/thanh-thuy",
     "/catalogue/ba-thanh",
   ])
-    expect(xml).not.toContain(
+    expect(xml).toContain(
       `<loc>https://mdftungphat.com${route}/</loc>`,
     );
   for (const route of ["melamine", "laminate", "acrylic"])

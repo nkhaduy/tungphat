@@ -16,9 +16,10 @@ export type CatalogSearchEntry = {
   supplierId: SupplierId;
   supplierName: string;
   kind: SupplierRecordKind;
+  recordType?: "sku" | "family" | "document" | "color-code";
   code: string;
   normalizedCode?: string;
-  recordType?: "sku" | "family" | "document";
+  aliases?: string[];
   name: string;
   thumbnail: string;
   canonicalRoute: string;

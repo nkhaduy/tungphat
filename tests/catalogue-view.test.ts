@@ -28,7 +28,7 @@ describe("CatalogueView", () => {
 
     expect(html).not.toContain("Xem file");
     expect(html).not.toContain("Tải PDF");
-    expect(html).toContain("Chưa có file catalogue được publish");
+    expect(html).toContain("Mã màu Test Brand");
   });
 
   it("puts the complete An Cuong search in the first content section without sample-only wording", () => {
@@ -39,8 +39,8 @@ describe("CatalogueView", () => {
       html.indexOf("</section>") + "</section>".length,
     );
 
-    expect(firstSection).toContain("Tìm mã, tên hoặc dòng vật liệu An Cường");
-    expect(firstSection).toMatch(/[1-9][0-9]{3} mục tra cứu/);
+    expect(firstSection).toContain("Tìm mã màu, tên màu hoặc thương hiệu");
+    expect(firstSection).toMatch(/[1-9][0-9]{3} mã màu/);
     expect(firstSection.toLowerCase()).not.toContain("dữ liệu mẫu");
   });
 
@@ -62,7 +62,7 @@ describe("CatalogueView", () => {
     const html = renderToStaticMarkup(createElement(AnCuongCatalogueSearch, { entries }));
 
     expect((html.match(/<article/g) ?? [])).toHaveLength(48);
-    expect(html).toContain("100 mục phù hợp");
+    expect(html).toContain("100 mã màu · 100 mã phù hợp");
   });
 
   it("shows unavailable swatches and a direct An Cuong inquiry action", () => {
@@ -81,7 +81,7 @@ describe("CatalogueView", () => {
       material: "melamine",
     };
     const html = renderToStaticMarkup(createElement(AnCuongCatalogueSearch, { entries: [entry] }));
-    expect(html).toContain("Chưa có swatch cục bộ");
-    expect(html).toContain("Gửi mã qua Zalo");
+    expect(html).toContain("Nguồn chưa cung cấp ảnh màu");
+    expect(html).toContain("Gửi Zalo");
   });
 });

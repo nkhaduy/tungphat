@@ -38,7 +38,9 @@ export async function generateMetadata({
   return createPageMetadata({
     title: `Mã Melamine Ba Thanh ${category.label} – Bảng màu và ứng dụng`,
     description: `${category.intro} Tra cứu ${category.count} mã và gửi yêu cầu cho Tùng Phát kiểm tra quy cách.`,
-    path: `/ma-mau-melamine/ba-thanh/${category.slug}/`,
+    path: "/catalogue/ba-thanh/melamine/",
+    noIndex: true,
+    followWhenNoIndex: true,
   });
 }
 
@@ -70,7 +72,7 @@ export default async function BaThanhCategoryPage({ params }: RouteProps) {
   );
   const schema = buildBaThanhCollectionSchema({
     name: `Mã Melamine Ba Thanh ${category.label}`,
-    path: `/ma-mau-melamine/ba-thanh/${category.slug}/`,
+    path: "/catalogue/ba-thanh/melamine/",
     items: sourceRecords,
   });
   return (

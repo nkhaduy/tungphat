@@ -28,7 +28,10 @@ export function SiteHeader() {
   const pathname = (usePathname() || "/").replace(/\/$/, "") || "/";
   const [menuOpen, setMenuOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const languageLabel = lang === "vi" ? "Chuyển ngôn ngữ" : "Switch language";
+  const languageLabel =
+    lang === "vi"
+      ? "Chuyển ngôn ngữ VI | EN"
+      : "Switch language VI | EN";
   const navConfig = [
     {
       label: lang === "vi" ? "Vật liệu" : "Materials",
@@ -55,7 +58,7 @@ export function SiteHeader() {
       match: (path: string) => path.startsWith("/du-an"),
     },
     {
-      label: "Catalogue",
+      label: "Mã màu",
       href: "/catalogue",
       match: (path: string) =>
         path === "/catalogue" ||
