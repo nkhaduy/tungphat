@@ -4,10 +4,12 @@ import { getListingIndexability } from "@/lib/listing-indexability";
 import { absoluteUrl } from "@/lib/seo";
 import { isReservedRootSlug } from "@/lib/reserved-slugs";
 import staticPages from "@/content/settings/static-pages.json";
+import { getMaterialDataset } from "@/lib/materials";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const materialDataset = getMaterialDataset();
   const articles = getPublishedArticles();
   const projects = getPublishedProjects();
   const staticRouteRules = [
@@ -23,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ] as const;
   const staticEntries: MetadataRoute.Sitemap = staticRouteRules
     .filter(({ include }) => include)
-    .map(({ route }) => ({ url: absoluteUrl(route), lastModified: staticPages.updatedAt, changeFrequency: route === "/" ? "weekly" : "monthly", priority: route === "/" ? 1 : 0.7 }));
+    .map(({ route }) => ({ url: absoluteUrl(route), lastModified: route === "/tham-chieu-vat-lieu/" ? materialDataset.lastVerified : staticPages.updatedAt, changeFrequency: route === "/" ? "weekly" : "monthly", priority: route === "/" ? 1 : 0.7 }));
   const rootContent = (slug: string) => !isReservedRootSlug(slug);
   const products: MetadataRoute.Sitemap = getProducts().filter((entry) => rootContent(entry.slug)).map((entry) => ({ url: absoluteUrl(`/${entry.slug}/`), lastModified: entry.updatedAt, changeFrequency: "weekly", priority: 0.9 }));
   const services: MetadataRoute.Sitemap = getServicePages().filter((entry) => rootContent(entry.slug)).map((entry) => ({ url: absoluteUrl(`/${entry.slug}/`), lastModified: entry.updatedAt, changeFrequency: "weekly", priority: 0.9 }));

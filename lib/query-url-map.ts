@@ -15,7 +15,13 @@ export type QueryUrlMapEntry = QueryInput & {
   cannibalizationKey: string;
 };
 
-const referenceComparisons = ["MDF thường và MDF chống ẩm khác nhau thế nào", "MDF chống ẩm và chống nước khác nhau thế nào"];
+const referenceComparisons = [
+  "MDF thường và MDF chống ẩm khác nhau thế nào",
+  "MDF chống ẩm và chống nước khác nhau thế nào",
+  "MDF và plywood khác nhau thế nào",
+  "MDF và MFC khác nhau thế nào",
+  "MDF và HDF khác nhau thế nào",
+];
 const evidenceBackedAnswers = new Set([
   "nhận báo giá ván MDF theo số lượng",
   "báo giá MDF chống ẩm theo mã hàng",

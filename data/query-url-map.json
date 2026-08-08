@@ -772,9 +772,9 @@
         "dữ liệu cần xác nhận"
       ],
       "priority": "P1",
-      "targetUrl": "/van-go-cong-nghiep/",
-      "currentStatus": "PARTIAL",
-      "coverage": "answer-with-verification-caveat",
+      "targetUrl": "/tham-chieu-vat-lieu/",
+      "currentStatus": "COVERED",
+      "coverage": "comparison-table",
       "missingAnswerElements": [],
       "cannibalizationKey": "vật-liệu-dạng-tấm"
     },
@@ -790,9 +790,9 @@
         "dữ liệu cần xác nhận"
       ],
       "priority": "P1",
-      "targetUrl": "/van-go-cong-nghiep/",
-      "currentStatus": "PARTIAL",
-      "coverage": "answer-with-verification-caveat",
+      "targetUrl": "/tham-chieu-vat-lieu/",
+      "currentStatus": "COVERED",
+      "coverage": "comparison-table",
       "missingAnswerElements": [],
       "cannibalizationKey": "vật-liệu-dạng-tấm"
     },
@@ -808,9 +808,9 @@
         "dữ liệu cần xác nhận"
       ],
       "priority": "P2",
-      "targetUrl": "/van-go-cong-nghiep/",
-      "currentStatus": "PARTIAL",
-      "coverage": "answer-with-verification-caveat",
+      "targetUrl": "/tham-chieu-vat-lieu/",
+      "currentStatus": "COVERED",
+      "coverage": "comparison-table",
       "missingAnswerElements": [],
       "cannibalizationKey": "vật-liệu-dạng-tấm"
     },

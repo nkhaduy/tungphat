@@ -4,13 +4,13 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import { useDeferredValue, useMemo, useState } from "react";
 import { filterMaterials } from "@/lib/material-reference";
-import type { Material } from "@/lib/materials";
+import type { Material, MaterialSource } from "@/lib/materials";
 
 function displayValue(value: string | string[] | null) {
   return value && value.length ? (Array.isArray(value) ? value.join("; ") : value) : "Chưa xác minh trong dữ liệu hiện tại";
 }
 
-export function MaterialReferenceTable({ materials, categories, lastVerified }: { materials: Material[]; categories: string[]; lastVerified: string }) {
+export function MaterialReferenceTable({ materials, sources, categories, lastVerified }: { materials: Material[]; sources: MaterialSource[]; categories: string[]; lastVerified: string }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const deferredSearch = useDeferredValue(search);
@@ -38,8 +38,8 @@ export function MaterialReferenceTable({ materials, categories, lastVerified }: 
       <div className="overflow-x-auto">
         <table className="min-w-[920px] w-full border-collapse text-left text-sm">
           <caption className="sr-only">Bảng tham chiếu vật liệu đã lọc</caption>
-          <thead><tr className="border-b border-forest-900/15 text-xs uppercase tracking-wide text-slate-500"><th className="p-3">Vật liệu</th><th className="p-3">Nhóm</th><th className="p-3">Ứng dụng đã công bố</th><th className="p-3">Kích thước</th><th className="p-3">Độ dày</th><th className="p-3">Bề mặt</th><th className="p-3">CNC</th></tr></thead>
-          <tbody>{filteredMaterials.map((material) => <tr key={material.slug} className="border-b border-forest-900/10 align-top"><th scope="row" className="p-3 font-extrabold text-forest-950"><Link href={`/${material.slug}/`} className="underline decoration-wood-400 underline-offset-4">{material.name}</Link><span className="mt-1 block text-[11px] font-normal uppercase tracking-wide text-slate-500">Nguồn: {material.sourceIds.join(", ")}</span></th><td className="p-3 text-slate-700">{material.category}</td><td className="p-3 text-slate-700">{material.applications.join(", ")}</td><td className="p-3 text-slate-500">{displayValue(material.dimensions)}</td><td className="p-3 text-slate-500">{displayValue(material.thicknesses)}</td><td className="p-3 text-slate-500">{displayValue(material.surface)}</td><td className="p-3 text-slate-700">Kiểm tra theo file, vật liệu và số lượng</td></tr>)}</tbody>
+          <thead><tr className="border-b border-forest-900/15 text-xs uppercase tracking-wide text-slate-500"><th className="p-3">Vật liệu</th><th className="p-3">Nhóm</th><th className="p-3">Ứng dụng đã công bố</th><th className="p-3">Kích thước</th><th className="p-3">Độ dày</th><th className="p-3">Bề mặt</th><th className="p-3">Nguồn</th></tr></thead>
+          <tbody>{filteredMaterials.map((material) => <tr id={material.id} key={material.id} className="scroll-mt-28 border-b border-forest-900/10 align-top"><th scope="row" className="p-3 font-extrabold text-forest-950"><Link href={material.detailUrl} className="underline decoration-wood-400 underline-offset-4">{material.name}</Link><span className="mt-1 block text-[11px] font-normal uppercase tracking-wide text-slate-500">{material.recordType === "PRODUCT_CODE" ? "Mã sản phẩm" : "Nhóm vật liệu"} · kiểm tra {material.checkedAt}</span></th><td className="p-3 text-slate-700">{material.category}</td><td className="p-3 text-slate-700">{material.applications.join(", ")}</td><td className="p-3 text-slate-500">{displayValue(material.dimensions)}</td><td className="p-3 text-slate-500">{displayValue(material.thicknesses)}</td><td className="p-3 text-slate-500">{displayValue(material.surface)}</td><td className="p-3 text-slate-700">{material.sourceIds.map((sourceId) => { const source = sources.find((item) => item.id === sourceId); return source ? <a key={sourceId} href={source.sourceUrl} rel="noreferrer" className="mb-1 block font-bold text-wood-600 underline">{source.qualityTier}</a> : null; })}</td></tr>)}</tbody>
         </table>
       </div>
     </div>

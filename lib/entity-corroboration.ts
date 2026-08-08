@@ -12,6 +12,7 @@ export type EntityRecord = {
   categories: string[];
   relationship: string | null;
   evidence: string | null;
+  evidenceQuality?: string | null;
   consistency: EntityConsistency;
   confidence: "low" | "medium" | "high";
   checkedAt: string | null;
@@ -47,6 +48,7 @@ export function normalizeEntityRecord(record: LegacyEntityRecord): EntityRecord 
     categories: record.categories ?? [],
     relationship: record.relationship ?? null,
     evidence: record.evidence ?? null,
+    evidenceQuality: record.evidenceQuality ?? null,
     consistency: record.consistency ?? record.consistencyStatus ?? "UNVERIFIED",
     confidence: record.confidence ?? "low",
     checkedAt: record.checkedAt ?? null,

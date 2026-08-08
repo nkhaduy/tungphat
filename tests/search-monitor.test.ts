@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { annotateSearchRecords, compareSearchReports, summarizeSearchRecords, type SearchMonitorRecord } from "@/lib/search-monitor";
+import { annotateSearchRecords, appendSearchRunHistory, compareSearchReports, selectPriorityQueries, summarizeSearchRecords, type SearchMonitorRecord } from "@/lib/search-monitor";
+import querySet from "@/data/ai-search-query-set.json";
 
 const record = (overrides: Partial<SearchMonitorRecord> = {}): SearchMonitorRecord => ({
   query: "ván MDF là gì",
@@ -66,5 +67,34 @@ describe("search monitor reports", () => {
       previousPresence: null,
       changeState: "UNAVAILABLE",
     });
+  });
+
+  it("keeps a fixed 15-query priority sample", () => {
+    const selected = selectPriorityQueries(querySet.queries);
+    expect(selected).toHaveLength(15);
+    expect(selected.map((item) => item.query)).toEqual([
+      "mua ván MDF tại TP.HCM",
+      "đơn vị cung cấp MDF chống ẩm TP.HCM",
+      "đặt ván MDF theo danh sách cắt",
+      "cửa hàng vật liệu gỗ Tam Bình",
+      "liên hệ Tùng Phát báo giá vật liệu",
+      "ván MDF là gì",
+      "MDF chống ẩm có chịu nước không",
+      "ván gỗ công nghiệp là gì",
+      "MDF thường và MDF chống ẩm khác nhau thế nào",
+      "MDF và plywood khác nhau thế nào",
+      "Tùng Phát MDF ở đâu",
+      "cắt CNC Thủ Đức",
+      "cắt CNC MDF theo file",
+      "file CNC cần chuẩn bị gì",
+      "quy trình kiểm tra file trước khi chạy CNC",
+    ]);
+  });
+
+  it("appends immutable search history and ignores duplicate run IDs", () => {
+    const first = { runId: "run-1", checkedAt: "2026-08-09T00:00:00Z", summary: { foundCount: 0 } };
+    const second = { runId: "run-2", checkedAt: "2026-08-09T01:00:00Z", summary: { foundCount: 1 } };
+    expect(appendSearchRunHistory([first], second)).toEqual([first, second]);
+    expect(appendSearchRunHistory([first], first)).toEqual([first]);
   });
 });

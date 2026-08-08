@@ -7,9 +7,14 @@ function cell(value) {
   return `"${String(printable).replaceAll('"', '""')}"`;
 }
 
-const header = ["slug", "name", "category", "materialClass", "dimensions", "thicknesses", "surface", "applications", "limitations", "sourceIds", "lastVerified"];
-const rows = dataset.materials.map((material) => [material.slug, material.name, material.category, material.materialClass, material.dimensions, material.thicknesses, material.surface, material.applications, material.limitations, material.sourceIds, dataset.lastVerified]);
+const header = ["id", "recordType", "slug", "name", "manufacturer", "category", "materialClass", "dimensions", "thicknesses", "finish", "surface", "applications", "limitations", "sourceIds", "lastVerified"];
+const rows = dataset.materials.map((material) => [material.id, material.recordType, material.slug, material.name, material.manufacturer, material.category, material.materialClass, material.dimensions, material.thicknesses, material.finish, material.surface, material.applications, material.limitations, material.sourceIds, dataset.lastVerified]);
 const csv = [header.join(","), ...rows.map((row) => row.map(cell).join(","))].join("\n") + "\n";
 fs.mkdirSync(path.dirname("public/material-reference.csv"), { recursive: true });
 fs.writeFileSync("public/material-reference.csv", csv);
-console.log(`Generated public/material-reference.csv (${dataset.materials.length} records)`);
+const comparisonHeader = ["id", "name", "composition", "density", "moistureBehavior", "machining", "surfaceFinish", "typicalApplications", "choiceGuidance", "sourceIds"];
+const comparisonRows = dataset.comparisonMatrix.map((record) => [record.id, record.name, record.composition, record.density, record.moistureBehavior, record.machining, record.surfaceFinish, record.typicalApplications, record.choiceGuidance, record.sourceIds]);
+const comparisonCsv = [comparisonHeader.join(","), ...comparisonRows.map((row) => row.map(cell).join(","))].join("\n") + "\n";
+fs.writeFileSync("public/material-comparison-matrix.csv", comparisonCsv);
+fs.writeFileSync("public/material-comparison-matrix.json", `${JSON.stringify({ schemaVersion: dataset.schemaVersion, lastVerified: dataset.lastVerified, caveat: "Family-level comparison only; no stock, SKU, machine-limit or universal performance claim is implied.", records: dataset.comparisonMatrix }, null, 2)}\n`);
+console.log(`Generated material reference assets (${dataset.materials.length} records; ${dataset.comparisonMatrix.length} comparison rows)`);
