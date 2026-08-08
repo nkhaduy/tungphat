@@ -128,20 +128,17 @@ describe("supplier catalogue search", () => {
     });
   });
 
-  it("uses transparent merchandising to put high-intent Melamine codes first by default", () => {
+  it("groups default mixed results by the requested supplier priority", () => {
     const ordered = searchSupplierCatalog(entries, "");
 
     expect(ordered[0]).toMatchObject({
-      supplierId: "ba-thanh",
-      code: "BT 111",
+      supplierId: "thanh-thuy",
+      code: "BT 111 Plus",
     });
-    expect(catalogMerchandisingScore(ordered[0])).toBeGreaterThan(
-      catalogMerchandisingScore(ordered[1]),
-    );
-    expect(ordered.map((entry) => entry.code)).not.toEqual(
-      [...ordered.map((entry) => entry.code)].sort((left, right) =>
-        left.localeCompare(right, "vi"),
-      ),
+    expect(ordered[1]?.supplierId).toBe("ba-thanh");
+    expect(ordered[2]?.supplierId).toBe("an-cuong");
+    expect(catalogMerchandisingScore(ordered[1])).toBeGreaterThan(
+      catalogMerchandisingScore(ordered[2]),
     );
   });
 
@@ -281,7 +278,7 @@ describe("supplier sitemap composition", () => {
 
 describe("supplier adapters", () => {
   it("preserves supplier-specific record counts and SEO gates", () => {
-    expect(thanhThuyAdapter.getSearchEntries()).toHaveLength(339);
+    expect(thanhThuyAdapter.getSearchEntries()).toHaveLength(342);
     expect(baThanhAdapter.getSearchEntries()).toHaveLength(292);
     expect(anCuongAdapter.getSearchEntries()).toHaveLength(2_195);
 

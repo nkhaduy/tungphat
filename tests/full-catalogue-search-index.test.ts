@@ -10,12 +10,20 @@ describe("full supplier compact search index", () => {
   it("indexes every verified public color code exactly once", () => {
     const index = getSupplierSearchIndex();
 
-    expect(index.records).toHaveLength(2_826);
-    expect(new Set(index.records.map((record) => record.id)).size).toBe(2_826);
+    expect(index.records).toHaveLength(2_829);
+    expect(new Set(index.records.map((record) => record.id)).size).toBe(2_829);
     expect(index.records.filter((record) => record.supplierId === "an-cuong")).toHaveLength(2_195);
-    expect(index.records.filter((record) => record.supplierId === "thanh-thuy")).toHaveLength(339);
+    expect(index.records.filter((record) => record.supplierId === "thanh-thuy")).toHaveLength(342);
     expect(index.records.filter((record) => record.supplierId === "ba-thanh")).toHaveLength(292);
     expect(index.records.every((record) => record.recordType === "color-code" && record.code.trim())).toBe(true);
+  });
+
+  it("groups default mixed results by Thanh Thuy, Ba Thanh, then An Cuong", () => {
+    const results = searchSupplierCatalog(getSupplierSearchIndex().records, "");
+    const priority = { "thanh-thuy": 0, "ba-thanh": 1, "an-cuong": 2 } as const;
+    const supplierRanks = results.map((record) => priority[record.supplierId]);
+
+    expect(supplierRanks).toEqual([...supplierRanks].sort((left, right) => left - right));
   });
 
   it("ranks an exact normalized code before names and partial matches", () => {
@@ -53,7 +61,7 @@ describe("full supplier compact search index", () => {
   it("derives supplier totals only from verified public color codes", () => {
     const totals = getSupplierTotals();
     expect(totals["an-cuong"]).toMatchObject({ total: 2_195, colorCodes: 2_195, family: 0, document: 0, withLocalPreview: 2_195 });
-    expect(totals["thanh-thuy"]).toMatchObject({ total: 339, colorCodes: 339, family: 0, document: 0 });
+    expect(totals["thanh-thuy"]).toMatchObject({ total: 342, colorCodes: 342, family: 0, document: 0, withLocalPreview: 342 });
     expect(totals["ba-thanh"]).toMatchObject({ total: 292, colorCodes: 292, family: 0, document: 0, retainedMelamineCodes: 259, withLocalPreview: 269, sourceMediaMissing: 23 });
   });
 

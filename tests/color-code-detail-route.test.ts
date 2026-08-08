@@ -19,4 +19,18 @@ describe("supplier color-code detail route", () => {
     expect(html).toContain("MFC - MS 465 SC04");
     expect(html).toContain("Media rights: UNCONFIRMED");
   });
+
+  it("renders an official Thanh Thuy Veneer surface route with its local swatch", async () => {
+    const page = await SupplierColorCodeRoute({
+      params: Promise.resolve({
+        supplier: "thanh-thuy",
+        material: "veneer",
+        code: "veneer-cheery",
+      }),
+    });
+    const html = renderToStaticMarkup(createElement(() => page));
+
+    expect(html).toContain("VENEER CHEERY");
+    expect(html).toContain("/catalog/thanh-thuy/veneer-cheery-");
+  });
 });

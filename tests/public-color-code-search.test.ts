@@ -6,7 +6,7 @@ import { getSupplierSearchIndex, getSupplierTotals } from "@/lib/catalog/supplie
 describe("public Mã màu search index", () => {
   it("contains only verified color-code records with exact codes", () => {
     const records = getSupplierSearchIndex().records;
-    expect(records).toHaveLength(2_826);
+    expect(records).toHaveLength(2_829);
     expect(records.every((record) => record.kind === "color-code")).toBe(true);
     expect(records.every((record) => record.recordType === "color-code")).toBe(true);
     expect(records.every((record) => record.code.trim() && record.normalizedCode?.trim())).toBe(true);
@@ -16,8 +16,21 @@ describe("public Mã màu search index", () => {
   it("keeps supplier counts on verified color codes only", () => {
     expect(getSupplierTotals()).toMatchObject({
       "an-cuong": { total: 2_195, colorCodes: 2_195 },
-      "thanh-thuy": { total: 339, colorCodes: 339 },
+      "thanh-thuy": { total: 342, colorCodes: 342 },
       "ba-thanh": { total: 292, colorCodes: 292 },
+    });
+  });
+
+  it.each([
+    ["VENEER CHEERY", "/catalogue/thanh-thuy/veneer/veneer-cheery/"],
+    ["VENEER OAK", "/catalogue/thanh-thuy/veneer/veneer-oak/"],
+    ["VENEER WALNUT", "/catalogue/thanh-thuy/veneer/veneer-walnut/"],
+  ])("finds official Thanh Thuy Veneer identifier %s", (query, route) => {
+    expect(searchSupplierCatalog(getSupplierSearchIndex().records, query)[0]).toMatchObject({
+      supplierId: "thanh-thuy",
+      code: query,
+      thumbnail: expect.stringMatching(/^\/catalog\/thanh-thuy\/veneer-/),
+      canonicalRoute: route,
     });
   });
 
