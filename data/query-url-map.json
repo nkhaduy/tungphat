@@ -197,11 +197,9 @@
       ],
       "priority": "P0",
       "targetUrl": "/van-mdf/",
-      "currentStatus": "PARTIAL",
-      "coverage": "answer-with-verification-caveat",
-      "missingAnswerElements": [
-        "cách nhận báo giá"
-      ],
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-with-evidence-caveat",
+      "missingAnswerElements": [],
       "cannibalizationKey": "ván-mdf"
     },
     {
@@ -217,11 +215,9 @@
       ],
       "priority": "P0",
       "targetUrl": "/mdf-chong-am/",
-      "currentStatus": "PARTIAL",
-      "coverage": "answer-with-verification-caveat",
-      "missingAnswerElements": [
-        "cách nhận báo giá"
-      ],
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-with-evidence-caveat",
+      "missingAnswerElements": [],
       "cannibalizationKey": "mdf-chống-ẩm"
     },
     {
@@ -237,11 +233,9 @@
       ],
       "priority": "P0",
       "targetUrl": "/go-ghep-cao-su/",
-      "currentStatus": "PARTIAL",
-      "coverage": "answer-with-verification-caveat",
-      "missingAnswerElements": [
-        "cách nhận báo giá"
-      ],
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-with-evidence-caveat",
+      "missingAnswerElements": [],
       "cannibalizationKey": "gỗ-ghép-cao-su"
     },
     {
@@ -257,11 +251,9 @@
       ],
       "priority": "P0",
       "targetUrl": "/go-ghep-tram/",
-      "currentStatus": "PARTIAL",
-      "coverage": "answer-with-verification-caveat",
-      "missingAnswerElements": [
-        "cách nhận báo giá"
-      ],
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-with-evidence-caveat",
+      "missingAnswerElements": [],
       "cannibalizationKey": "gỗ-ghép-tràm"
     },
     {
@@ -367,11 +359,9 @@
       ],
       "priority": "P0",
       "targetUrl": "/lien-he/",
-      "currentStatus": "PARTIAL",
-      "coverage": "answer-with-verification-caveat",
-      "missingAnswerElements": [
-        "cách nhận báo giá"
-      ],
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-with-evidence-caveat",
+      "missingAnswerElements": [],
       "cannibalizationKey": "tùng-phát"
     },
     {
@@ -621,8 +611,8 @@
       ],
       "priority": "P1",
       "targetUrl": "/van-mdf/",
-      "currentStatus": "PARTIAL",
-      "coverage": "answer-with-verification-caveat",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-with-evidence-caveat",
       "missingAnswerElements": [],
       "cannibalizationKey": "ván-mdf"
     },
@@ -729,8 +719,8 @@
       ],
       "priority": "P1",
       "targetUrl": "/san-pham/",
-      "currentStatus": "PARTIAL",
-      "coverage": "answer-with-verification-caveat",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-with-evidence-caveat",
       "missingAnswerElements": [],
       "cannibalizationKey": "vật-liệu-gỗ"
     },
@@ -837,8 +827,8 @@
       ],
       "priority": "P1",
       "targetUrl": "/van-go-cong-nghiep/",
-      "currentStatus": "PARTIAL",
-      "coverage": "answer-with-verification-caveat",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-with-evidence-caveat",
       "missingAnswerElements": [],
       "cannibalizationKey": "mdf-và-gỗ-ghép"
     },
@@ -855,8 +845,8 @@
       ],
       "priority": "P0",
       "targetUrl": "/go-ghep/",
-      "currentStatus": "PARTIAL",
-      "coverage": "answer-with-verification-caveat",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-with-evidence-caveat",
       "missingAnswerElements": [],
       "cannibalizationKey": "gỗ-ghép"
     },
@@ -963,8 +953,8 @@
       ],
       "priority": "P1",
       "targetUrl": "/van-mdf/",
-      "currentStatus": "PARTIAL",
-      "coverage": "answer-with-verification-caveat",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-with-evidence-caveat",
       "missingAnswerElements": [],
       "cannibalizationKey": "bề-mặt-ván"
     },
@@ -999,8 +989,8 @@
       ],
       "priority": "P0",
       "targetUrl": "/mdf-chong-am/",
-      "currentStatus": "PARTIAL",
-      "coverage": "answer-with-verification-caveat",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-with-evidence-caveat",
       "missingAnswerElements": [],
       "cannibalizationKey": "mdf"
     },
@@ -1593,8 +1583,8 @@
       ],
       "priority": "P0",
       "targetUrl": "/cat-cnc-go/",
-      "currentStatus": "PARTIAL",
-      "coverage": "answer-with-verification-caveat",
+      "currentStatus": "COVERED",
+      "coverage": "direct-answer-with-evidence-caveat",
       "missingAnswerElements": [],
       "cannibalizationKey": "báo-giá-cnc"
     },

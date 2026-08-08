@@ -61,7 +61,9 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
                   <span className="inline-flex items-center gap-2"><CalendarDays size={17} className="text-wood-600" aria-hidden="true" />Cập nhật {article.updatedAt}</span>
                   <span className="inline-flex items-center gap-2"><UserRound size={17} className="text-wood-600" aria-hidden="true" />{article.author}</span>
                 </div>
-                <MarkdownContent className="text-[1rem] leading-7 sm:text-[1.0625rem] sm:leading-8 prose-p:my-0 prose-p:mb-6 prose-headings:font-extrabold prose-h2:mb-4 prose-h2:mt-10 prose-h2:text-2xl prose-h2:leading-tight sm:prose-h2:text-[1.75rem] prose-h3:mb-3 prose-h3:mt-8 prose-h3:text-xl prose-h3:leading-snug prose-li:my-2">{article.body}</MarkdownContent>
+                <div data-answer-block>
+                  <MarkdownContent className="text-[1rem] leading-7 sm:text-[1.0625rem] sm:leading-8 prose-p:my-0 prose-p:mb-6 prose-headings:font-extrabold prose-h2:mb-4 prose-h2:mt-10 prose-h2:text-2xl prose-h2:leading-tight sm:prose-h2:text-[1.75rem] prose-h3:mb-3 prose-h3:mt-8 prose-h3:text-xl prose-h3:leading-snug prose-li:my-2">{article.body}</MarkdownContent>
+                </div>
               </div>
 
               <aside className="h-fit border border-forest-900/10 bg-[#f7f8f5] p-6 lg:sticky lg:top-32">
