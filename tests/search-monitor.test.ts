@@ -58,4 +58,13 @@ describe("search monitor reports", () => {
       { query: "absent", runId: "phase4-20260809", previousPresence: null, changeState: "NOT_FOUND" },
     ]);
   });
+
+  it("labels rate-limited or timed-out observations as unavailable", () => {
+    const unavailable = record({ searchAvailable: false, responseStatus: 429, found: false });
+
+    expect(annotateSearchRecords([unavailable], [], "phase4-20260809")[0]).toMatchObject({
+      previousPresence: null,
+      changeState: "UNAVAILABLE",
+    });
+  });
 });
