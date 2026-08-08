@@ -1,84 +1,59 @@
-# Light CMS Access security review
+# Light CMS Baogia SSO security review
 
-- Review time: `2026-08-09 00:38 +07`
-- Scope: Worker identity middleware, Pages gateways, D1 identity/RBAC model, SPA login/logout, generated bundles, Access configuration, public bypass routes, and live staging/production verification.
-- Verdict: `PASS`
+- Review time: `2026-08-09 03:29 +07`
+- Scope: Baogia assertion issuer, CMS ES256 verification, replay protection, CMS session/CSRF, D1 authorization, Pages gateway, SPA login/logout, generated bundles, and local browser coverage.
+- Local verdict: `PASS`.
+- Remote Cloudflare verdict: pending deployment and real acceptance.
 
 ## Findings summary
 
-| Severity | Open findings |
+| Severity | Open local findings |
 |---|---:|
 | Critical | 0 |
 | High | 0 |
 | Medium | 0 |
 | Low | 0 |
-| Info | 2 |
+| Info | 1 |
 
-- Root and Light CMS dependency audits report `0 vulnerabilities`.
-- The secret scan found no credential or private-key material. Its only matches are expected PEM delimiter parser regexes in existing Google/GitHub integrations.
-- The generated SPA/Worker scan found no `PBKDF2`, `/api/auth/login`, password field, or legacy password session marker.
+The remaining informational item is deployment state: the accepted Cloudflare Access runtime is still live until the Baogia SSO deployment is verified on the canonical hostname. Access removal is not performed before that checkpoint.
 
-## JWT and JWKS verification
+## Authentication and assertion verification
 
-- Missing, malformed, alternate-algorithm, invalid-signature, wrong-issuer, wrong-audience, expired, future-`nbf`, invalid-`iat`, excessive-age, missing-subject/email, and unknown-`kid` tokens fail closed.
-- Only `RS256` is allowed. Real signed RSA fixtures exercise Web Crypto signature verification rather than decode-only mocks.
-- The issuer is `https://broken-river-6fe3.cloudflareaccess.com`.
-- The production audience is `425f831d635f338ccd1ae478e177399fad5e572170c08c52955fa19ec8706d51`; the staging audience remains isolated in its separate configuration.
-- JWKS caching is isolate-local with bounded TTL, imported-key reuse, concurrent fetch deduplication, unknown-`kid` refresh, and refresh cooldown.
-- A live staging 50-request probe recorded `50/50` cache hits and one observed JWKS fetch in the active isolate.
+- Baogia remains the credential authority; CMS never receives a Baogia password, password hash, session cookie, or Baogia `SESSION_SECRET`.
+- Only an active, non-deleted Baogia `ADMIN` session may issue a CMS assertion. `EMPLOYEE` is denied and forced password-change users must complete the change first.
+- Assertions use ES256 with a dedicated P-256 key and fixed `kid`, issuer, audience, callback, 30-second maximum lifetime, `jti`, `sub`, username, display name, and role.
+- CMS accepts only three non-empty JWT segments, `alg=ES256`, `typ=JWT`, the configured `kid`, a 64-byte signature, exact issuer/audience, valid `iat`/`nbf`/`exp`, non-empty subject, and `role=ADMIN`.
+- Verification uses Web Crypto with a real P-256 fixture. Missing, malformed, alternate-algorithm, invalid-signature, wrong-issuer, wrong-audience, expired, future-`nbf`, future-`iat`, excessive-lifetime, missing-subject, wrong-role, and wrong-`kid` assertions fail closed.
+- The assertion `jti` is SHA-256 hashed and inserted once in D1. Replay fails on the unique key and is audited.
 
-## Identity and RBAC
+## CMS sessions, authorization, and gateway
 
-- D1 is the authorization source of truth on each private request; role/status data is not cached.
-- Unknown, disabled, subject-colliding, and email-mismatched identities are denied.
-- Login does not auto-create or auto-promote a super-admin. The production user was explicitly provisioned and linked to a verified Access subject.
-- `access_subject` is unique, email is normalized/case-insensitive, and public mutations cannot change identity fields.
-- Editors cannot publish, restore, delete content, change settings, delete media, read audit logs, or manage users.
-- Admins cannot elevate themselves or another user to super-admin; only a super-admin can manage roles/status.
-- Login, denied identity, subject binding, logout, role/status changes, and content actions are audited.
+- CMS issues its own host-only, HttpOnly, Secure, SameSite=Lax, fixed 30-minute session after assertion verification and replay consumption.
+- Session verification requires the signed cookie, an unrevoked D1 session row, and an active local Baogia shadow identity.
+- Mutations require exact `Origin=https://cms.mdftungphat.com` and a session-bound CSRF token.
+- Private responses are `Cache-Control: no-store`; the public snapshot remains explicitly cacheable.
+- The Pages gateway makes one service-binding request, strips browser-supplied `Cf-Access-*`, `X-Auth-Request-*`, `X-Baogia-*`, and internal identity headers, and preserves cookies, status, body, 1102, and 5xx responses without retry.
+- CMS users are read-only projections of Baogia identities. CMS exposes no role mutation, user creation, or identity editing endpoint.
+- CMS logout revokes only the CMS session. Full logout is an explicit second navigation to Baogia.
 
-The live production D1 audit confirms one active approved super-admin. The migration actor remains disabled, has no Access subject, and uses the non-secret marker `!access-only!`.
+## Password and Access isolation
 
-## Access applications and policy
+- Migration `0004_remove_password_runtime.sql` removes `password_hash` from the active users schema.
+- The production Worker dry-run bundle and SPA scan contain no `Cf-Access-Jwt-Assertion`, Access audience/issuer, `/cdn-cgi/access`, `/api/auth/login`, `PBKDF2`, `password_hash`, or password-form labels.
+- Required SSO callback, ES256 verification, CSRF, and session-revocation markers are present.
+- Secret-scan matches are limited to test-only repeated strings, runtime PEM delimiter parsers, and generated P-256 test keys; no live private key or session secret is in the repository.
 
-- Production application: `Tung Phat Light CMS Production` (`704abf69-5b27-4a09-85ce-4ed7dea94a86`).
-- Protected destination: `tungphat-light-cms-production.pages.dev`.
-- Policy: one exact approved email, no `Allow everyone`, 12-hour session.
-- Public bypass application: `58092738-c486-4537-b589-343b51573d63`.
-- Bypass destinations are limited to contact, quote, analytics, public API, and legacy video paths on `cms.mdftungphat.com`.
-- The custom admin root does not bypass Access; it redirects to the protected Pages origin with `no-store`.
+## Fresh local evidence
 
-## Session, CSRF, gateway, and cache
+- Full Light CMS suite: `22 files`, `81/81`.
+- Security-focused suite: `11 files`, `53/53`.
+- Baogia suite: `12 files`, `42/42`.
+- Root suite: `14 files`, `60/60`.
+- Light CMS browser/Axe suite: `8/8`, including 1440, 1024, 768, and 390 widths with zero serious, critical, or color-contrast findings.
+- Decap rollback CMS browser suite: `5/5`.
+- Worker production dry-run: `626.61 KiB`, gzip `98.93 KiB`.
+- Bundle scan: forbidden `0`, required SSO markers missing `0`.
+- Local SSO benchmark errors: `0`; assertion replay rejected; D1 queries `314`.
+- `git diff --check`: pass.
 
-- Access mode creates no internal password session and stores no bearer token in localStorage.
-- Mutations require the configured Origin and an HMAC-derived CSRF token bound to the verified Access assertion.
-- Cross-origin mutations, malformed CSRF, and forged `Cf-Access-*` convenience headers are rejected.
-- The Pages gateway strips untrusted identity convenience headers and forwards the assertion through one service-binding request.
-- The gateway does not retry, change upstream status, hide 1102, or cache private responses.
-- Private responses are `Cache-Control: no-store`; the public snapshot alone is explicitly cacheable.
-- Direct Worker access without a valid signed assertion returns `401`.
-- Logout clears the SPA's in-memory CSRF value and returns the Cloudflare Access logout URL.
-
-## Media and public-route integrity
-
-- Metadata size/type/alt validation remains server-side.
-- Uploads validate declared size, actual bytes, magic bytes, and stream length before R2 finalize.
-- The Worker uses platform `FixedLengthStream` for real browser uploads.
-- Public form probes accept only the website Origin and reject invalid input with `400`.
-- Legacy video range forwarding preserves `206`, `Content-Range`, immutable caching, and cross-origin media headers.
-
-## Test evidence
-
-- Full Light CMS suite: `20 files`, `79/79`.
-- Security-focused suite: `12 files`, `61/61`.
-- JWT/JWKS suite: `16/16`.
-- Light CMS Axe/UI: `6/6`, with 0 serious, 0 critical, and 0 color-contrast violations at 1440, 1024, 768, and 390 widths.
-- Website Playwright: `17/17`.
-- Decap rollback CMS Playwright: `5/5`.
-- Access bundle scan, production Worker dry-run, dependency audits, secret scan, and `git diff --check`: pass.
-- Authenticated production browser verification reached dashboard, content sections, settings, users, and audit as the approved super-admin.
-
-## Informational notes
-
-1. The accepted identity flow uses the Cloudflare account identity method available to this account; the application policy still restricts authorization to one exact approved email.
-2. Legacy password modules remain isolated for local rollback/debugging only and are absent from deployed request bundles and route tables.
+Remote security acceptance, canonical-domain SSO, Cloudflare CPU evidence, and Access removal remain gated on Tasks 10-12.

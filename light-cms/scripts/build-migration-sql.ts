@@ -3,9 +3,21 @@ import type { SourceAnalysis } from "./analyze-source";
 
 const quote = (value: unknown) => `'${String(value ?? "").replaceAll("'", "''")}'`;
 
+function sourceTimestamp(analysis: SourceAnalysis) {
+  const values = [
+    ...analysis.records.flatMap((record) => [record.data.updatedAt, record.data.publishedAt, record.data.completedAt]),
+    ...analysis.settings.map((setting) => setting.data.updatedAt),
+  ];
+  const timestamps = values
+    .filter((value): value is string => typeof value === "string")
+    .map((value) => Date.parse(value))
+    .filter(Number.isFinite);
+  return new Date(Math.max(0, ...timestamps)).toISOString();
+}
+
 export function buildMigrationSql(analysis: SourceAnalysis) {
   const actor = "light-cms-migration";
-  const now = analysis.generatedAt;
+  const now = sourceTimestamp(analysis);
   const sql: string[] = [
     "PRAGMA foreign_keys=ON;",
     `INSERT INTO users(id,email,name,display_name,role,active,status,access_subject,created_at,updated_at)

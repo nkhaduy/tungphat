@@ -1,11 +1,11 @@
 # Light CMS migration report
 
-- Report time: `2026-08-08 22:45 +07`
+- Report time: `2026-08-09 03:29 +07`
 - Source of truth: current Decap content and referenced public media.
-- Production mutation: none.
-- Acceptance status: `PASS`.
+- Production mutation during this local run: none.
+- Local acceptance status: `PASS`.
 
-## Source analysis
+## Current source analysis
 
 | Data group | Count |
 |---|---:|
@@ -17,19 +17,17 @@
 | Settings contracts | 5 |
 | Referenced media files | 9 |
 
-The requested historical value `Media 10` does not match the current source tree, Payload verification, migration manifest, or local D1/R2 smoke. All available sources consistently contain 9 media records/files, so the report preserves 9 rather than manufacturing a tenth entry.
+The historical value `Media 10` does not match the current source tree, migration analysis, local D1/R2 smoke, or current production snapshot evidence. The verified baseline is 9 media; no synthetic tenth record is created.
 
 ## Identity-safe migration
 
-- The migration actor remains present for foreign-key ownership but is not a login identity.
-- `active = 0`.
-- `status = disabled`.
-- `access_subject = NULL`.
-- `password_hash = !access-only!`.
-- No password hash was converted or deleted.
-- No login creates or promotes a user.
+- The migration actor exists only for foreign-key ownership and remains `active=0`, `status=disabled`, with no Access or Baogia subject.
+- Migration `0004_remove_password_runtime.sql` removes `password_hash` from the active runtime schema.
+- The generated migration SQL inserts no password hash and cannot create a login identity.
+- Baogia subjects and assertion `jti` hashes are unique at the database layer.
+- Remote deployment must apply both pending migrations `0003_baogia_sso.sql` and `0004_remove_password_runtime.sql`; the older plan text saying only `0003` is obsolete.
 
-## Fresh local D1/R2 smoke
+## Fresh local D1/R2 and idempotency evidence
 
 | Check | Result |
 |---|---|
@@ -37,17 +35,15 @@ The requested historical value `Media 10` does not match the current source tree
 | D1 settings | 5 |
 | D1 media | 9 |
 | Initial versions | 12 |
-| Migration idempotent runs | 2 |
+| Migration actor | disabled |
+| Local migration applications | 4/4 pass |
+| Runtime idempotent runs | 2 |
 | R2 put/get/delete | pass |
 | R2 fixture bytes | 133,314 |
 | R2 SHA-256 | `369a5bea2769efe083e7d50957cfd72c65f971e24d053a3bab3251e9f4c412c6` |
+| Generated SQL SHA-256 | `e8d74bb4b3edb15c6f0b0bd924f52cb7e61c35bc16e2d0c3b34b6f446e2ae7e3` |
+| Media manifest SHA-256 | `8982e26438ebfd14f08d13615cec025f2a12d66d340de2cbb7693ec56c20118e` |
 
-Generated artifacts remain in `light-cms/output/migration/`. No remote D1/R2 write was performed during this identity change.
+A regression test now proves migration SQL is byte-identical when only analysis wall-clock time changes. The timestamp embedded in SQL is derived from source content dates, so repeated dry runs produce identical SQL and media manifest checksums.
 
-## Fresh remote staging verification
-
-- Remote D1 read-only audit after the Access benchmark reports `12` active content records, `5` settings, and `9` ready media records.
-- The benchmark fixture has `0` active content rows and `0` active media rows after cleanup; its content row and media metadata rows remain soft-deleted for auditability.
-- Remote D1 audit query wrote `0` rows. No production database or bucket was queried for mutation.
-
-Migration and idempotency pass locally, and the migrated staging baseline remains intact after the real Access workflow.
+Generated artifacts remain under `light-cms/output/migration/`. No remote D1 or R2 write occurred in this local acceptance run.

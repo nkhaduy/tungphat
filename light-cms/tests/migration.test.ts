@@ -14,6 +14,14 @@ describe("Decap to Light CMS source analysis", () => {
     expect(new Set(analysis.records.map((record) => `${record.collection}:${record.slug}`)).size).toBe(12);
   });
 
+  it("generates byte-identical SQL when only the analysis time changes", () => {
+    const analysis = analyzeSource();
+    const first = buildMigrationSql({ ...analysis, generatedAt: "2026-08-08T00:00:00.000Z" });
+    const second = buildMigrationSql({ ...analysis, generatedAt: "2026-08-09T00:00:00.000Z" });
+
+    expect(second).toBe(first);
+  });
+
   it("keeps the non-human migration actor disabled in identity mode", () => {
     const database = new DatabaseSync(":memory:");
     database.exec(fs.readFileSync(new URL("../migrations/0001_light_cms.sql", import.meta.url), "utf8"));

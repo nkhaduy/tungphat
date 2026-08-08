@@ -1,145 +1,92 @@
 # Light CMS session resume audit
 
-- Previous acceptance audit time: `2026-08-09 00:38 +07`
-- SSO continuation audit time: `2026-08-09 01:43 +07`
+- Audit time: `2026-08-09 03:29 +07`
 - Worktree: `/Users/khaduy/Downloads/tungphat-light-cms-worktree`
 - Branch: `codex/light-cms-staging`
-- Pre-SSO implementation base: `5565f4035115e47c75b53a70545a649bf2e6fe00`
-- SSO design commit: `8d01cf6`
-- SSO implementation-plan commit: `13c9bc0`
-- Worktree isolation: linked worktree; the repository root was not switched, reset, cleaned, stashed, or modified.
+- HEAD before local-acceptance commit: `d2f3338`
+- Worktree type: linked worktree; the repository root was not switched, reset, cleaned, or stashed.
 
-## Dirty state
+## Dirty files at audit checkpoint
 
-The worktree remains intentionally dirty with the Light CMS implementation, reports, tests, provider facade, existing root integration changes, and the restored Baogia source. This continuation did not reset, clean, stash, push, or overwrite another worktree. The SSO design and plan were committed separately before the implementation snapshot.
+Intended source/config/evidence changes:
 
-A new `light-cms/src/vite-env.d.ts` reference was added because the root strict TypeScript project intentionally includes `light-cms`; this resolves the root `ImportMeta.env` type error without excluding the package.
+- `eslint.config.mjs`
+- `tsconfig.json`
+- `light-cms/scripts/build-migration-sql.ts`
+- `light-cms/tests/migration.test.ts`
+- `light-cms/output/acceptance/local-playwright.json`
+- `light-cms/output/benchmark/local-sso-benchmark.json`
+- `light-cms/output/migration/analysis.json`
+- `light-cms/output/migration/migration.sql`
+- `docs/free-light-cms/*.md` updated by this acceptance run
 
-## Auth classification
+Excluded/unrelated generated files remain unstaged: `.DS_Store`, `public/.DS_Store`, `light-cms/dist/`, and local Wrangler state.
+
+## Implementation classification
 
 ```text
-E. Identity auth và staging acceptance đã hoàn tất.
+F. Một phương án khác đã được triển khai thay Cloudflare Access:
+Baogia internal ES256 SSO is implemented and locally accepted, but not yet deployed.
 ```
 
-Evidence:
+The earlier Cloudflare Access implementation had reached staging/production acceptance, but the owner explicitly rejected Access for the final CMS. The replacement implementation is now complete locally through plan Task 9.
 
-- Cloudflare Access staging and production applications exist with exact-email policies and no broad allow.
-- The Worker verifies signature, algorithm, issuer, audience, time claims, `kid`, subject, and email before D1 authorization.
-- Real staging E2E/security/benchmark acceptance passed.
-- A real authenticated production browser session reaches the dashboard as the explicitly provisioned super-admin.
-- Deployed bundles expose no legacy password route, PBKDF2 implementation, or password form.
-
-## Owner-directed replacement now in progress
-
-The owner explicitly rejected Cloudflare Access for Light CMS and approved a replacement using the existing Baogia account/session authority:
+## Desired authentication strategy
 
 ```text
-Baogia ADMIN session
-  -> short-lived ES256 assertion
+Existing Baogia ADMIN session
+  -> 30-second ES256 assertion
   -> Light CMS callback
-  -> CMS D1 replay protection
+  -> D1 one-time jti consumption
   -> independent 30-minute CMS session
+  -> server-side authorization and CSRF
 ```
 
-Only active Baogia `ADMIN` accounts are authorized; `EMPLOYEE` accounts are denied. The custom CMS hostname must serve directly and the production Pages hostname must redirect toward it, never the reverse. The approved design is `docs/superpowers/specs/2026-08-09-baogia-sso-light-cms-ui-design.md`.
+- Identity authority: Tùng Phát Báo Giá.
+- Allowed identity: active, non-deleted `ADMIN` only.
+- Denied identity: `EMPLOYEE`, disabled/deleted users, forced-password-change users until completion, malformed assertions, replay, and unknown subjects.
+- CMS user management: read-only projection with a link back to Báo Giá.
+- Password authentication in CMS: absent from UI, routes, runtime schema, and production bundle.
 
-Until the replacement is deployed and accepted, the runtime facts in the historical Access sections below remain the currently deployed state rather than the desired final state.
+## Current deployed runtime before cutover
 
-## Current auth strategy
+The remote CMS still uses the previously accepted Cloudflare Access deployment. It remains in place as the rollback-safe runtime until real Baogia SSO succeeds on `https://cms.mdftungphat.com/#/`.
 
-```text
-Cloudflare Access
-  -> Cf-Access-Jwt-Assertion
-  -> Pages same-origin gateway
-  -> RS256/JWKS verification
-  -> D1 identity/status/role lookup
-  -> server-side RBAC
-```
+- Production Pages project: `tungphat-light-cms-production`.
+- Last recorded Pages deployment: `4433ca8c-4553-4b04-abf5-a22cbb96a586`.
+- Production Worker: `tungphat-light-cms-api-production`.
+- Last recorded Worker version: `58b856bb-27d5-4045-9416-4311d1a94396`.
+- Production D1: `tungphat-light-cms-production` (`c46b5fa3-6db7-4de4-b797-99fc07158506`).
+- Production R2: `tungphat-light-media-production`.
+- Access application IDs remain recorded as `704abf69-5b27-4a09-85ce-4ed7dea94a86` and `58092738-c486-4537-b589-343b51573d63` until the pre-removal checkpoint passes.
 
-- Accepted identity provider: Cloudflare account OAuth.
-- Production Access application: `704abf69-5b27-4a09-85ce-4ed7dea94a86`.
-- Production audience: `425f831d635f338ccd1ae478e177399fad5e572170c08c52955fa19ec8706d51`.
-- Issuer/team domain: `https://broken-river-6fe3.cloudflareaccess.com`.
-- Policy: exact approved identity `nkhaduy@gmail.com`, no `Allow everyone`.
-- Session duration: 12 hours.
+These identifiers are historical evidence and must be refreshed read-only before mutation.
 
-## Current Cloudflare plan
-
-- Workers: `Workers Free`, active.
-- Access: `Zero Trust Teams Free Base`, active.
-- Existing R2 service: `R2 Paid`, not created by this work.
-- Billing page: no invoices.
-- Additional payment method: none on file.
-- Current observed monthly/invoiced cost: `$0.00`.
-- Payment/billing mutation: none.
-
-## Staging resources and acceptance
-
-- Pages: `tungphat-light-cms-20260805-0855-staging`.
-- Worker: `tungphat-light-cms-api-20260805-0855-staging`.
-- Worker version: `7c0cb022-6fcb-41dc-b027-aff64c2a21e3`.
-- D1: `tungphat-light-cms-20260805-0855-staging`.
-- R2: `tungphat-light-media-20260805-0855-staging`.
-- Accepted benchmark: CPU p50/p95/p99/max `2/3/5/8 ms`, 1102 `0`, 5xx `0`.
-
-## Production resources and last deployment
-
-- CMS entry: `https://cms.mdftungphat.com/#/`.
-- Pages project: `tungphat-light-cms-production`.
-- Latest Pages deployment: `4433ca8c-4553-4b04-abf5-a22cbb96a586`.
-- Deployment URL: `https://4433ca8c.tungphat-light-cms-production.pages.dev`.
-- Worker: `tungphat-light-cms-api-production`.
-- Worker version: `58b856bb-27d5-4045-9416-4311d1a94396`.
-- D1: `tungphat-light-cms-production` (`c46b5fa3-6db7-4de4-b797-99fc07158506`).
-- R2: `tungphat-light-media-production`.
-- Public bypass application: `58092738-c486-4537-b589-343b51573d63`.
-
-All three authoritative Tenten nameservers return the new production Pages CNAME. Cloudflare Pages lists the custom domain as active with SSL.
-
-## Runtime and data state
-
-- Custom root: `302` to the Access-protected Pages origin.
-- Unauthenticated protected origin: `302` to Cloudflare Access.
-- Authenticated admin: `Quản trị Tùng Phát`, `super-admin`.
-- Production D1: 12 active content, 8 published, 5 settings, 9 ready media, 1 active approved user.
-- Read-only production D1 probe: `rows_written=0`.
-- Public snapshot: `200`, matching 8 published records, 5 settings, and 9 media.
-- Public form/analytics invalid-input probes: expected `400`.
-- Legacy video range: `206`, `Content-Range: bytes 0-10/6369723`.
-
-## Fresh tests and reports
+## Fresh local verification
 
 - Root lint/typecheck/build/link validation: pass.
 - Root tests: `60/60`.
-- Website E2E: `17/17`.
-- Decap CMS E2E: `5/5`.
+- Baogia lint/typecheck/build: pass.
+- Baogia tests: `42/42`.
 - Light CMS lint/typecheck/production build: pass.
-- Light CMS tests: `79/79`.
-- Security-focused tests: `61/61`.
+- Light CMS tests: `81/81`.
+- Security-focused tests: `53/53`.
 - Provider parity: `5/5`.
-- Light CMS Axe/UI: `6/6`, with no serious, critical, or color-contrast violations.
-- Worker production dry-run, local D1/R2/JWT smoke, bundle scan, dependency audits, secret scan, and `git diff --check`: pass.
-- SSO continuation baseline: Light CMS `79/79` tests and typecheck pass.
-- Restored Baogia baseline: `33/33` tests pass; generated Wrangler environment types restore strict typecheck to pass.
+- Light CMS browser/Axe: `8/8`, with zero serious, critical, and color-contrast findings at 1440, 1024, 768, and 390 widths.
+- Decap rollback CMS browser: `5/5`.
+- Local D1/R2/JWT smoke: pass with 12 content, 5 settings, 9 media, 12 initial versions, and 2 idempotent runs.
+- Migration SQL/media manifest repeated checksums: pass.
+- Worker production dry-run: pass, upload `626.61 KiB`, gzip `98.93 KiB`.
+- Bundle scan: forbidden `0`, required markers missing `0`.
+- Local SSO diagnostic: 0 errors, replay rejected, 314 D1 queries; it is wall time and not Cloudflare CPU acceptance.
+- Secret scan and `git diff --check`: pass; matches are parser/test fixtures only.
 
-Updated reports:
+## Remaining work
 
-- `IMPLEMENTATION_REPORT.md`
-- `SECURITY_REVIEW.md`
-- `BENCHMARK_REPORT.md`
-- `STAGING_DEPLOYMENT_REPORT.md`
-- `SESSION_RESUME_AUDIT.md`
+1. Re-audit website, Decap fallback, provider, billing/plan, DNS, Payload, Cloudflare deployments/resources, and Access configuration read-only.
+2. Generate a P-256 keypair outside the repository and configure only remote secret names/values required by Báo Giá and Light CMS.
+3. Deploy backward-compatible Báo Giá SSO, apply CMS migrations `0003` and `0004`, deploy Worker and Pages, and verify canonical-domain SSO before Access removal.
+4. Remove only the two Light CMS Access applications after the safe checkpoint.
+5. Run real Cloudflare E2E/security/parity/accessibility and CPU acceptance, then update final reports.
 
-## Production boundary after explicit cutover request
-
-- CMS production admin entry: Light CMS.
-- Website production content provider: Decap.
-- Website production HTTP: `200`.
-- Immutable Decap rollback deployment: `200`.
-- Payload data/resources: preserved.
-- Billing/payment mutation: none.
-- DNS mutation: only the user-authorized `cms` CNAME.
-
-## Remaining scope
-
-No website provider cutover, Decap removal, Payload removal, production website DNS change, Workers Paid activation, or paid subscription is authorized or required for this deployment.
+No Workers Paid activation, billing mutation, website provider cutover, unrelated DNS mutation, Decap/Payload deletion, or Báo Giá D1/R2 write is authorized.
