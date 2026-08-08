@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { accessLoginUrl, logout, session, type AdminUser } from "./api";
+import { ApiRequestError, logout, session, ssoLoginUrl, type AdminUser } from "./api";
 import { Layout } from "./components/Layout";
 import { LoginScreen } from "./screens/LoginScreen";
 import { DashboardScreen } from "./screens/DashboardScreen";
@@ -10,14 +10,23 @@ import { DataScreen } from "./screens/DataScreen";
 
 export function App() {
   const [user, setUser] = useState<AdminUser | null>(null); const [loading, setLoading] = useState(true); const [error, setError] = useState(""); const [route, setRoute] = useState("dashboard");
-  useEffect(() => { session().then((result) => setUser(result.user)).catch(() => setError("Tài khoản chưa được cấp quyền quản trị hoặc đã bị vô hiệu hóa.")).finally(() => setLoading(false)); }, []);
-  function beginLogin() { window.location.assign(accessLoginUrl()); }
-  async function leave() { const result = await logout(); setUser(null); setRoute("dashboard"); window.location.assign(result.logoutUrl); }
+  useEffect(() => {
+    const authError = new URLSearchParams(window.location.search).get("auth_error");
+    void session().then((result) => setUser(result.user)).catch((reason: unknown) => {
+      if (reason instanceof ApiRequestError && reason.status === 401 && !authError) {
+        window.location.assign(ssoLoginUrl());
+        return;
+      }
+      setError(reason instanceof ApiRequestError && reason.status === 403 ? "Bạn chưa được cấp quyền quản trị." : "Không thể hoàn tất đăng nhập. Vui lòng thử lại.");
+    }).finally(() => setLoading(false));
+  }, []);
+  function beginLogin() { window.location.assign(ssoLoginUrl()); }
+  async function leave() { await logout(); setUser(null); setRoute("dashboard"); }
   if (!user) return <LoginScreen onLogin={beginLogin} error={error} busy={loading} />;
   let screen = <DashboardScreen />;
   if (["products", "articles", "projects", "pages"].includes(route)) screen = <ContentScreen collection={route} />;
   else if (route === "media") screen = <MediaScreen />;
-  else if (["business-settings", "seo-defaults"].includes(route)) screen = <SettingsScreen setting={route} />;
-  else if (route === "users" || route === "audit") screen = <DataScreen kind={route} />;
+  else if (route === "business-settings") screen = <SettingsScreen setting="business-settings" />;
+  else if (route === "users" || route === "versions" || route === "audit") screen = <DataScreen kind={route} />;
   return <Layout user={user} route={route} onRoute={setRoute} onLogout={leave}>{screen}</Layout>;
 }

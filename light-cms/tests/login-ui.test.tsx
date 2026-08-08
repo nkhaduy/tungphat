@@ -3,14 +3,16 @@ import "@testing-library/jest-dom/vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { LoginScreen } from "../src/admin/screens/LoginScreen";
-import { accessLoginUrl } from "../src/admin/api";
+import { ssoLoginUrl } from "../src/admin/api";
 
 afterEach(cleanup);
 
-describe("Cloudflare Access login UI", () => {
-  it("shows one Access login action and no email or password form", () => {
+describe("Baogia SSO login UI", () => {
+  it("matches the Baogia login shell without an email or password form", () => {
     render(<LoginScreen onLogin={() => undefined} error="" busy={false} />);
-    expect(screen.getByRole("button", { name: "Đăng nhập quản trị" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Tùng Phát" })).toHaveAttribute("src", "/logo-horizontal.png");
+    expect(screen.getByRole("heading", { name: "Đăng nhập" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Đăng nhập bằng tài khoản Báo Giá" })).toBeInTheDocument();
     expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
     expect(screen.queryByLabelText("Mật khẩu")).not.toBeInTheDocument();
   });
@@ -18,7 +20,7 @@ describe("Cloudflare Access login UI", () => {
   it("invokes the identity login flow from the button", () => {
     const onLogin = vi.fn();
     render(<LoginScreen onLogin={onLogin} error="" busy={false} />);
-    fireEvent.click(screen.getByRole("button", { name: "Đăng nhập quản trị" }));
+    fireEvent.click(screen.getByRole("button", { name: "Đăng nhập bằng tài khoản Báo Giá" }));
     expect(onLogin).toHaveBeenCalledTimes(1);
   });
 
@@ -28,7 +30,7 @@ describe("Cloudflare Access login UI", () => {
     expect(screen.getByRole("alert")).not.toHaveTextContent("admin@example.com");
   });
 
-  it("uses the protected staging root to start Access authentication", () => {
-    expect(accessLoginUrl()).toBe("/");
+  it("starts authentication at the same-origin SSO endpoint", () => {
+    expect(ssoLoginUrl()).toBe("/api/auth/sso/start");
   });
 });

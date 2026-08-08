@@ -1,6 +1,14 @@
 export type AdminUser = { id: string; email: string; name: string; role: "super-admin" | "admin" | "editor" };
+export type BaogiaUser = { id: string; baogia_username: string; display_name: string; role: AdminUser["role"]; status: "active" | "disabled"; last_login_at?: string | null };
 type ApiError = { ok: false; error: { code: string; message: string; requestId: string; fields?: Record<string, string> } };
 type ApiSuccess<T> = { ok: true; data: T; requestId?: string };
+
+export class ApiRequestError extends Error {
+  constructor(message: string, public readonly status: number, public readonly code: string) {
+    super(message);
+    this.name = "ApiRequestError";
+  }
+}
 
 let csrfToken = "";
 
@@ -11,7 +19,7 @@ async function request<T>(path: string, init: RequestInit = {}) {
   if (!["GET", "HEAD", "OPTIONS"].includes(method) && csrfToken) headers.set("X-CSRF-Token", csrfToken);
   const response = await fetch(path, { ...init, headers, credentials: "include" });
   const payload = await response.json() as ApiSuccess<T> | ApiError;
-  if (!response.ok || !payload.ok) throw new Error(payload.ok ? `HTTP ${response.status}` : payload.error.message);
+  if (!response.ok || !payload.ok) throw new ApiRequestError(payload.ok ? `HTTP ${response.status}` : payload.error.message, response.status, payload.ok ? "http_error" : payload.error.code);
   return payload.data;
 }
 
@@ -22,10 +30,10 @@ export async function session() {
 }
 
 export async function logout() {
-  try { return await request<{ loggedOut: true; logoutUrl: string }>("/api/auth/logout", { method: "POST" }); } finally { csrfToken = ""; }
+  try { return await request<{ loggedOut: true }>("/api/auth/logout", { method: "POST" }); } finally { csrfToken = ""; }
 }
 
-export function accessLoginUrl() { return "/"; }
+export function ssoLoginUrl() { return "/api/auth/sso/start"; }
 
 export const api = {
   dashboard: () => request<{ counts: Record<string, number>; published: number }>("/api/dashboard"),
@@ -40,6 +48,6 @@ export const api = {
     const response = await fetch(url, { method: "PUT", body: file, credentials: "include", headers: { "Content-Type": file.type, "X-CSRF-Token": csrfToken } });
     if (!response.ok) throw new Error((await response.json() as ApiError).error?.message || "Upload thất bại");
   },
-  users: () => request<AdminUser[]>("/api/users"),
+  users: () => request<BaogiaUser[]>("/api/users"),
   audit: () => request<unknown[]>("/api/audit"),
 };

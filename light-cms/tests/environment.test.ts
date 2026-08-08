@@ -7,7 +7,7 @@ describe("Light CMS environment copy", () => {
     expect(copy.environmentLabel).toBe("Production");
     expect(copy.brandSubtitle).toBe("Light CMS");
     expect(copy.headerSubtitle).toBe("Production · quản trị nội dung trực tiếp");
-    expect(copy.loginNote).toBe("Môi trường production · dữ liệu được bảo vệ bởi Cloudflare Access");
+    expect(copy.loginNote).toBe("Môi trường production · đăng nhập bằng tài khoản Báo Giá");
     expect(copy.dashboardLoading).toContain("production");
     expect(copy.dashboardTitle).toBe("Nguyên tắc production");
     expect(copy.dashboardLead).not.toContain("Decap");

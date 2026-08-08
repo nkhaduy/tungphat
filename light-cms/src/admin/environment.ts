@@ -10,7 +10,7 @@ export function getLightCmsUiCopy(environment: LightCmsEnvironment) {
       environmentLabel: "Production",
       brandSubtitle: "Light CMS",
       headerSubtitle: "Production · quản trị nội dung trực tiếp",
-      loginNote: "Môi trường production · dữ liệu được bảo vệ bởi Cloudflare Access",
+      loginNote: "Môi trường production · đăng nhập bằng tài khoản Báo Giá",
       dashboardLoading: "Light CMS đang đọc số liệu thật từ production.",
       dashboardTitle: "Nguyên tắc production",
       dashboardLead: "Light CMS đang phục vụ production.",
