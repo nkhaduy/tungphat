@@ -32,7 +32,7 @@ export function formatCatalogCardTitle(
   const cleanedName =
     entry.supplierId === "ba-thanh"
       ? entry.name
-          .replace(/^(?:MELAMINE|LAMINATE)\s+BA\s+THANH\s*[–—-]\s*/iu, "")
+          .replace(/^(?:MELAMINE|LAMINATE)\s+BA\s+THANH(?:\s*[–—-]\s*|\s+)/iu, "")
           .trim()
       : entry.name.trim();
   const code = entry.code.trim();

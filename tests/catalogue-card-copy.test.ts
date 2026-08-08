@@ -30,6 +30,13 @@ describe("catalogue card copy", () => {
         name: "LAMINATE BA THANH - P2052",
       }),
     ).toBe("P2052");
+    expect(
+      formatCatalogCardTitle({
+        supplierId: "ba-thanh",
+        code: "BT 111",
+        name: "Melamine Ba Thanh BT 111",
+      }),
+    ).toBe("BT 111");
   });
 
   it("prefixes and deduplicates taxonomy labels", () => {
