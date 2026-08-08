@@ -8,6 +8,10 @@ import type {
   SourceCatalogueRecord,
 } from "../../lib/catalog/color-codes/classify";
 import { classifyThanhThuyRecord } from "../../lib/catalog/color-codes/thanh-thuy";
+import {
+  applyColorMediaToIndex,
+} from "./merge-color-media";
+import type { ColorMediaDiscoveryArtifact } from "./color-media";
 import type {
   CatalogueRecordPurpose,
   PublicSupplierColorCode,
@@ -18,12 +22,24 @@ import type {
 type SupplierAuditTotal = {
   previousRecords: number;
   verifiedColorCodes: number;
+  scopeExcluded: number;
   productFamiliesRemoved: number;
   technicalRemoved: number;
   documentsRemoved: number;
   otherRemoved: number;
   duplicateAliases: number;
 };
+
+const anCuongPublicMaterialTypes = new Set<SupplierColorCode["materialType"]>([
+  "melamine",
+  "laminate",
+  "acrylic",
+  "veneer",
+  "ppet",
+  "pvc",
+  "worktop",
+  "edge-banding",
+]);
 
 export type SupplierColorCodeIndexArtifact = {
   schemaVersion: 1;
@@ -143,12 +159,20 @@ function emptySupplierTotal(): SupplierAuditTotal {
   return {
     previousRecords: 0,
     verifiedColorCodes: 0,
+    scopeExcluded: 0,
     productFamiliesRemoved: 0,
     technicalRemoved: 0,
     documentsRemoved: 0,
     otherRemoved: 0,
     duplicateAliases: 0,
   };
+}
+
+function readColorMediaArtifacts(root: string): ColorMediaDiscoveryArtifact[] {
+  return ["an-cuong", "ba-thanh"]
+    .map((supplier) => path.join(root, `data/imports/${supplier}/color-media-discovery.json`))
+    .filter((file) => fs.existsSync(file))
+    .map((file) => JSON.parse(fs.readFileSync(file, "utf8")) as ColorMediaDiscoveryArtifact);
 }
 
 export function buildSupplierColorCodeIndex(root = process.cwd()): SupplierColorCodeIndexArtifact {
@@ -187,6 +211,13 @@ export function buildSupplierColorCodeIndex(root = process.cwd()): SupplierColor
         else totals[supplier].otherRemoved += 1;
         continue;
       }
+      if (
+        supplier === "an-cuong" &&
+        !anCuongPublicMaterialTypes.has(result.colorCode.materialType)
+      ) {
+        totals[supplier].scopeExcluded += 1;
+        continue;
+      }
       const key = `${supplier}:${result.colorCode.codeNormalized}`;
       const existing = canonical.get(key);
       if (existing) {
@@ -203,12 +234,13 @@ export function buildSupplierColorCodeIndex(root = process.cwd()): SupplierColor
   consume("thanh-thuy", sources.thanhThuy, classifyThanhThuyRecord);
   consume("ba-thanh", sources.baThanh, classifyBaThanhRecord);
 
-  const records = [...canonical.values()].sort(
+  let records = [...canonical.values()].sort(
     (left, right) =>
       right.demandScore - left.demandScore ||
       left.supplier.localeCompare(right.supplier) ||
       left.codeNormalized.localeCompare(right.codeNormalized),
   );
+  records = applyColorMediaToIndex(records, readColorMediaArtifacts(root));
   for (const supplier of Object.keys(totals) as SupplierColorCodeSupplier[]) {
     totals[supplier].verifiedColorCodes = records.filter((record) => record.supplier === supplier).length;
   }

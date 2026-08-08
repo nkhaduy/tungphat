@@ -7,6 +7,10 @@ const catalogueLabels: Record<string, string> = {
   "van-da": "Vân đá",
   "van-vai": "Vân vải",
   "pvc-film": "PVC Film",
+  worktop: "Mặt Top (Compact)",
+  "edge-banding": "Chỉ Dán Cạnh",
+  ppet: "PPET",
+  pvc: "PVC",
 };
 
 export function humanizeCatalogLabel(value: string): string {
@@ -29,7 +33,11 @@ export function findExactCatalogCodeMatch(
   const normalizedQuery = normalizeCatalogSearch(query);
   if (!normalizedQuery) return undefined;
   const matches = entries.filter(
-    (entry) => normalizeCatalogSearch(entry.code) === normalizedQuery,
+    (entry) =>
+      normalizeCatalogSearch(entry.code) === normalizedQuery ||
+      (entry.aliases ?? []).some(
+        (alias) => normalizeCatalogSearch(alias) === normalizedQuery,
+      ),
   );
   return matches.length === 1 ? matches[0] : undefined;
 }

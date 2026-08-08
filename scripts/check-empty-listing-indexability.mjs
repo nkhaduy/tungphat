@@ -339,9 +339,6 @@ for (const listing of listings) {
 
 const legalRoutes = ["/chinh-sach-bao-mat/", "/dieu-khoan-su-dung/"];
 const placeholderRoutes = [
-  "/catalogue/an-cuong/",
-  "/catalogue/ba-thanh/",
-  "/catalogue/thanh-thuy/",
   "/san-pham/an-cuong/",
   "/san-pham/ba-thanh/",
   "/san-pham/kes/",

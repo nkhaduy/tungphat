@@ -1,5 +1,7 @@
-import data from "@/data/catalogs/ba-thanh.json";
+import legacyData from "@/data/catalogs/ba-thanh.json";
+import publicArtifact from "@/data/catalogs/supplier-color-codes.json";
 import type { SupplierColorCode } from "@/lib/catalog/types";
+import type { PublicSupplierColorCode, SupplierColorImageRole } from "@/lib/catalog/color-codes/types";
 
 export type BaThanhCategory = {
   slug: string;
@@ -67,9 +69,85 @@ const categoryCopy: Record<string, Omit<BaThanhCategory, "slug" | "count">> = {
     choosing:
       "Nên đối chiếu mẫu vật liệu và thống nhất chiều vân trước khi đặt cắt, dán cạnh hoặc gia công CNC.",
   },
+  khac: {
+    label: "Khác",
+    sourceLabel: "MÃ CÔNG KHAI KHÁC",
+    intro:
+      "Nhóm này giữ các mã Melamine được supplier công khai nhưng chưa gắn vào nhóm vân gỗ, đơn sắc, vân đá hoặc vân vải.",
+    applications: ["Đối chiếu mã supplier", "Gửi mã để kiểm tra mẫu thực tế"],
+    choosing:
+      "Không suy ra nhóm vân hoặc màu từ ảnh; hãy gửi nguyên mã để Tùng Phát kiểm tra lại với supplier.",
+  },
 };
 
-const records = data as SupplierColorCode[];
+const legacyRecords = legacyData as SupplierColorCode[];
+const legacyByCode = new Map(legacyRecords.map((record) => [record.codeNormalized, record]));
+const publicRecords = (publicArtifact.records as PublicSupplierColorCode[])
+  .filter((record) => record.supplier === "ba-thanh" && record.materialType === "melamine");
+
+function categoryForPattern(pattern?: string): string {
+  const value = (pattern ?? "").toLowerCase();
+  if (value.includes("vân gỗ")) return "van-go";
+  if (value.includes("đơn sắc")) return "don-sac";
+  if (value.includes("vân đá")) return "van-da";
+  if (value.includes("vân vải")) return "van-vai";
+  return "khac";
+}
+
+function legacyImageType(role: SupplierColorImageRole): SupplierColorCode["images"][number]["type"] {
+  if (role === "swatch") return "swatch";
+  if (role === "application" || role === "actual-photo") return "real-photo";
+  return "other";
+}
+
+function toLegacyRecord(record: PublicSupplierColorCode): SupplierColorCode {
+  const legacy = legacyByCode.get(record.codeNormalized);
+  const displayName = legacy?.displayName ?? record.searchAliases.find((alias) => alias !== record.codeRaw && /\s/.test(alias)) ?? record.codeRaw;
+  return {
+    ...(legacy ?? {
+      id: record.id,
+      supplier: "ba-thanh" as const,
+      brandName: "Ba Thanh" as const,
+      codeRaw: record.codeRaw,
+      codeNormalized: record.codeNormalized,
+      displayName,
+      slug: record.slug,
+      category: categoryForPattern(record.patternType),
+      sourceUrl: record.sourceUrl,
+      sourceIndexUrl: record.sourceColorMapUrl ?? "https://bathanh.com.vn/map-ma-melamine",
+      sourceImportedAt: "2026-08-07T00:00:00.000Z",
+      sourceChecksum: "",
+      sourceData: {},
+      images: [],
+      seoStatus: "NEEDS_ENRICHMENT" as const,
+      published: false,
+    }),
+    id: record.id,
+    codeRaw: record.codeRaw,
+    codeNormalized: record.codeNormalized,
+    displayName,
+    slug: record.slug,
+    category: categoryForPattern(record.patternType),
+    patternGroup: record.patternType,
+    sourceUrl: record.sourceUrl,
+    sourceIndexUrl: record.sourceColorMapUrl ?? "https://bathanh.com.vn/map-ma-melamine",
+    images: record.images
+      .filter((image) => image.localPath)
+      .map((image) => ({
+        type: legacyImageType(image.role),
+        src: image.localPath!,
+        localPath: image.localPath,
+        checksum: image.checksum,
+        alt: `${displayName} Ba Thanh`,
+        width: image.width,
+        height: image.height,
+      })),
+    seoStatus: record.seoStatus === "READY_TO_INDEX" ? "READY_TO_INDEX" : "NEEDS_ENRICHMENT",
+    published: record.seoStatus === "READY_TO_INDEX",
+  };
+}
+
+const records = publicRecords.map(toLegacyRecord);
 
 export const baThanhCategories: BaThanhCategory[] = Object.entries(
   categoryCopy,
@@ -84,7 +162,8 @@ export function getBaThanhCodes() {
 }
 
 export function getBaThanhCode(slug: string) {
-  return records.find((record) => record.slug === slug);
+  const normalized = normalizeBaThanhSearch(slug);
+  return records.find((record) => record.slug === slug || record.codeNormalized === normalized);
 }
 
 export function getBaThanhCategory(slug: string) {
@@ -99,6 +178,11 @@ export function getBaThanhIndexableCodes() {
 
 export function getBaThanhHubFeaturedCodes() {
   return sortBaThanhCodesByDemand(getBaThanhIndexableCodes());
+}
+
+export function getBaThanhCanonicalRoute(record: SupplierColorCode): string {
+  const canonical = publicRecords.find((item) => item.codeNormalized === record.codeNormalized);
+  return canonical?.canonicalRoute ?? `/catalogue/ba-thanh/melamine/${record.slug}/`;
 }
 
 type BaThanhMerchandisingRecord = Pick<

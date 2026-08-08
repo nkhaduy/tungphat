@@ -1,9 +1,3 @@
-import {
-  getThanhThuyCatalog,
-  getThanhThuyTopCategories,
-  isThanhThuyIndexable,
-  thanhThuyPath,
-} from "@/lib/thanh-thuy";
 import { supplierRegistry } from "../core/registry";
 import type { SupplierCatalogAdapter } from "../core/types";
 import { getSupplierSearchIndex } from "./search-index";
@@ -17,20 +11,22 @@ export const thanhThuyAdapter: SupplierCatalogAdapter = {
     return getSupplierSearchIndex().records.filter((record) => record.supplierId === definition.id);
   },
   getRouteClaims() {
-    const catalog = getThanhThuyCatalog();
+    const entries = this.getSearchEntries();
+    const materials = [...new Set(entries.map((entry) => entry.category).filter(Boolean))] as string[];
     return [
       { supplierId: definition.id, path: definition.brandPath, kind: "brand" as const, indexable: true },
-      ...getThanhThuyTopCategories().map((category) => ({
+      { supplierId: definition.id, path: definition.cataloguePath, kind: "catalogue" as const, indexable: true },
+      ...materials.map((material) => ({
         supplierId: definition.id,
-        path: thanhThuyPath(category.slug),
+        path: `${definition.cataloguePath}${material}/`,
         kind: "category" as const,
-        indexable: category.productCount > 0,
+        indexable: true,
       })),
-      ...catalog.products.map((product) => ({
+      ...entries.map((entry) => ({
         supplierId: definition.id,
-        path: thanhThuyPath(product.categorySlug, product.slug),
+        path: entry.canonicalRoute,
         kind: "detail" as const,
-        indexable: isThanhThuyIndexable(product),
+        indexable: Boolean(entry.indexable),
       })),
     ];
   },

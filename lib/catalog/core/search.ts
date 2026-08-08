@@ -29,6 +29,8 @@ export function normalizeCatalogSearch(value: string): string {
 
 function rank(entry: CatalogSearchEntry, query: string): number {
   const code = normalizeCatalogSearch(entry.normalizedCode ?? entry.code);
+  const rawCode = normalizeCatalogSearch(entry.code);
+  const aliases = (entry.aliases ?? []).map(normalizeCatalogSearch);
   const name = normalizeCatalogSearch(entry.name);
   const supplier = normalizeCatalogSearch(entry.supplierName);
   const category = normalizeCatalogSearch(entry.category ?? "");
@@ -40,9 +42,9 @@ function rank(entry: CatalogSearchEntry, query: string): number {
       .join(" "),
   );
 
-  if (code && code === query) return 1_000;
+  if ((code && code === query) || (rawCode && rawCode === query) || aliases.includes(query)) return 1_000;
   if (name === query) return 900;
-  if (code && code.startsWith(query)) return 800;
+  if ((code && code.startsWith(query)) || aliases.some((alias) => alias.startsWith(query))) return 800;
   if (supplier === query) return 700;
   if (category === query || series === query || group === query || normalizeCatalogSearch(entry.material ?? "") === query) return 600;
   if (code && code.includes(query)) return 500;

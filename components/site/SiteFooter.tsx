@@ -17,7 +17,7 @@ const serviceLinks = [
   ["Gia công CNC", "/gia-cong-cnc"],
   ["Cắt CNC gỗ", "/cat-cnc-go"],
   ["Xưởng thực tế", "/du-an"],
-  ["Catalogue", "/catalogue"],
+  ["Mã màu", "/catalogue"],
   ["Kiến thức", "/bai-viet"],
 ] as const;
 

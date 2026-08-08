@@ -1,7 +1,3 @@
-import {
-  baThanhCategories,
-  getBaThanhCodes,
-} from "@/lib/catalog/ba-thanh";
 import { supplierRegistry } from "../core/registry";
 import type { SupplierCatalogAdapter } from "../core/types";
 import { getSupplierSearchIndex } from "./search-index";
@@ -9,14 +5,14 @@ import { getSupplierSearchIndex } from "./search-index";
 const definition = supplierRegistry.get("ba-thanh");
 if (!definition) throw new Error("Ba Thanh supplier definition is missing");
 
-const codePath = (slug: string) => `${definition.cataloguePath}${slug}/`;
-
 export const baThanhAdapter: SupplierCatalogAdapter = {
   definition,
   getSearchEntries() {
     return getSupplierSearchIndex().records.filter((record) => record.supplierId === definition.id);
   },
   getRouteClaims() {
+    const entries = this.getSearchEntries();
+    const materials = [...new Set(entries.map((entry) => entry.category).filter(Boolean))] as string[];
     return [
       {
         supplierId: definition.id,
@@ -30,17 +26,17 @@ export const baThanhAdapter: SupplierCatalogAdapter = {
         kind: "catalogue" as const,
         indexable: true,
       },
-      ...baThanhCategories.map((category) => ({
+      ...materials.map((material) => ({
         supplierId: definition.id,
-        path: codePath(category.slug),
+        path: `${definition.cataloguePath}${material}/`,
         kind: "category" as const,
-        indexable: category.count > 0,
+        indexable: true,
       })),
-      ...getBaThanhCodes().map((record) => ({
+      ...entries.map((record) => ({
         supplierId: definition.id,
-        path: codePath(record.slug),
+        path: record.canonicalRoute,
         kind: "detail" as const,
-        indexable: record.published && record.seoStatus === "READY_TO_INDEX",
+        indexable: Boolean(record.indexable),
       })),
     ];
   },

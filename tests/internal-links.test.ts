@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { classifyNavigationalHref } from "../scripts/check-internal-links.mjs";
+import { createServer } from "node:http";
+import { classifyNavigationalHref, requestTargets } from "../scripts/check-internal-links.mjs";
 
 function classify(rawHref: string, anchorTag = `<a href="${rawHref}">`) {
   return classifyNavigationalHref({ rawHref, sourcePath: "/van-mdf/", anchorTag });
@@ -36,5 +37,32 @@ describe("internal navigational link classification", () => {
 
   it("skips download links even when the path has no extension", () => {
     expect(classify("/download/catalogue", '<a href="/download/catalogue" download>').kind).toBe("skip");
+  });
+
+  it("bounds concurrent output checks so large exports do not exhaust fetches", async () => {
+    let active = 0;
+    let peak = 0;
+    const server = createServer(async (_request, response) => {
+      active += 1;
+      peak = Math.max(peak, active);
+      await new Promise((resolve) => setTimeout(resolve, 5));
+      active -= 1;
+      response.writeHead(200).end("ok");
+    });
+    await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", () => resolve()));
+    const address = server.address();
+    if (!address || typeof address === "string") throw new Error("test server did not bind");
+
+    try {
+      const result = await requestTargets(
+        new Set(Array.from({ length: 60 }, (_, index) => `/route-${index}/`)),
+        `http://127.0.0.1:${address.port}`,
+      );
+      expect(result.size).toBe(60);
+      expect([...result.values()].every((item) => item.status === 200)).toBe(true);
+      expect(peak).toBeLessThanOrEqual(24);
+    } finally {
+      await new Promise<void>((resolve) => server.close(() => resolve()));
+    }
   });
 });

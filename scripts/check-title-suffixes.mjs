@@ -220,7 +220,7 @@ for (const [route, outputPath] of routes) {
 const sitemapResponse = await directRequest("/sitemap.xml");
 const sitemapUrls = [...sitemapResponse.body.matchAll(/<loc>([^<]+)<\/loc>/gu)].map((match) => match[1]);
 if (sitemapResponse.status !== 200 || sitemapResponse.location) errors.push("/sitemap.xml phải trả 200 trực tiếp.");
-if (sitemapUrls.length !== 14) errors.push(`Sitemap phải giữ 14 URL, nhận ${sitemapUrls.length}.`);
+if (sitemapUrls.length < 14) errors.push(`Sitemap phải có ít nhất 14 URL, nhận ${sitemapUrls.length}.`);
 if (sitemapUrls.includes(`${siteUrl}/bai-viet/`) || sitemapUrls.includes(`${siteUrl}/du-an/`)) {
   errors.push("Hai empty listing không được xuất hiện trong sitemap.");
 }
@@ -234,11 +234,14 @@ for (const route of ["/chinh-sach-bao-mat/", "/dieu-khoan-su-dung/"]) {
   checkRobots(route, row?.robots || "", true, true);
 }
 for (const route of [
-  "/catalogue/an-cuong/", "/catalogue/ba-thanh/", "/catalogue/thanh-thuy/",
   "/san-pham/an-cuong/", "/san-pham/ba-thanh/", "/san-pham/kes/", "/san-pham/thanh-thuy/",
 ]) {
   const row = rows.find((entry) => entry.route === route);
   checkRobots(route, row?.robots || "", false, true);
+}
+for (const route of ["/catalogue/an-cuong/", "/catalogue/ba-thanh/", "/catalogue/thanh-thuy/"]) {
+  const row = rows.find((entry) => entry.route === route);
+  checkRobots(route, row?.robots || "", true, true);
 }
 
 const representativeRoutes = ["/", "/van-mdf/", "/cat-cnc-go/", "/bai-viet/", "/san-pham/an-cuong/"];

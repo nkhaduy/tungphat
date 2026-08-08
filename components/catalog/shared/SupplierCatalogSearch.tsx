@@ -25,9 +25,9 @@ import {
 } from "@/lib/catalog/url-state";
 
 const kindLabels: Record<CatalogSearchEntry["kind"], string> = {
-  product: "Sản phẩm",
+  product: "Mã màu",
   "color-code": "Mã màu",
-  "catalogue-item": "Mục catalogue",
+  "catalogue-item": "Mã màu",
 };
 
 type PrimarySelection = {
@@ -179,11 +179,11 @@ export function SupplierCatalogSearch({
   return (
     <section aria-labelledby="supplier-search-title">
       <h2 id="supplier-search-title" className="sr-only">
-        Tìm mã vật liệu và catalogue
+        Tìm mã màu
       </h2>
       <div className="border border-forest-900/10 bg-white p-4 shadow-card sm:p-6">
         <label className="relative block">
-          <span className="sr-only">Tìm catalogue nhà cung cấp</span>
+          <span className="sr-only">Tìm mã màu, tên màu hoặc thương hiệu</span>
           <Search
             aria-hidden="true"
             className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-forest-900/55"
@@ -196,7 +196,7 @@ export function SupplierCatalogSearch({
             type="search"
             autoComplete="off"
             spellCheck={false}
-            placeholder="Tìm mã BT 111, tên sản phẩm hoặc thương hiệu"
+            placeholder="Tìm mã màu, tên màu hoặc thương hiệu"
             className="min-h-14 w-full border border-forest-900/20 bg-[#fbfaf6] py-3 pl-12 pr-4 text-base font-semibold text-forest-950 outline-none transition focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
           />
         </label>
@@ -277,7 +277,7 @@ export function SupplierCatalogSearch({
             </p>
           </div>
           <span className="mt-4 inline-flex min-h-11 shrink-0 items-center gap-2 text-sm font-extrabold text-forest-950 sm:mt-0">
-            Mở catalogue <ArrowRight size={16} aria-hidden="true" />
+            Mở mã màu <ArrowRight size={16} aria-hidden="true" />
           </span>
         </Link>
       ) : showSupplierDirectory ? (
@@ -295,7 +295,7 @@ export function SupplierCatalogSearch({
                 {supplier.displayName}
               </h3>
               <span className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-950">
-                Mở catalogue <ArrowRight size={16} aria-hidden="true" />
+                Mở mã màu <ArrowRight size={16} aria-hidden="true" />
               </span>
             </Link>
           ))}
@@ -350,7 +350,7 @@ export function SupplierCatalogSearch({
                       />
                     ) : (
                       <span className="grid h-full place-items-center px-3 text-center text-xs font-bold text-slate-600">
-                        {entry.supplierName}
+                        Nguồn chưa cung cấp ảnh màu
                       </span>
                     )}
                   </Link>
@@ -360,7 +360,7 @@ export function SupplierCatalogSearch({
                         {entry.supplierName}
                       </span>
                       <span className="text-slate-500">
-                      {entry.recordType === "family" ? "Dòng sản phẩm" : entry.recordType === "document" ? "Tài liệu" : kindLabels[entry.kind]}
+                      {kindLabels[entry.kind]}
                       </span>
                     </div>
                     {entry.code ? (
@@ -386,7 +386,7 @@ export function SupplierCatalogSearch({
                           className="pressable inline-flex min-h-11 items-center justify-center gap-2 border border-forest-900/15 px-3 text-xs font-extrabold text-forest-950 hover:border-wood-500"
                         >
                           <Copy size={15} aria-hidden="true" />
-                          Copy
+                          Sao chép mã
                         </button>
                       ) : null}
                       <Link

@@ -32,7 +32,7 @@ function brandPageHref(slug: string) {
 
 function brandCatalogueHref(slug: string) {
   if (slug === "thanh-thuy") return "/thuong-hieu/thanh-thuy/";
-  if (slug === "ba-thanh") return "/ma-mau-melamine/ba-thanh/";
+  if (slug === "ba-thanh") return "/catalogue/ba-thanh/";
   return `/catalogue/${slug}/`;
 }
 

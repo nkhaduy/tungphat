@@ -160,13 +160,13 @@ export function auditSupplierPages(
       errors.push(`${route}: duplicate terminal title suffix`);
     }
     if (route === "/catalogue/an-cuong/") {
-      if (metadata.title !== "Catalogue An Cường | Tùng Phát") {
+      if (metadata.title !== "Mã màu An Cường | Tùng Phát") {
         errors.push(
-          `${route}: required title is "Catalogue An Cường | Tùng Phát"`,
+          `${route}: required title is "Mã màu An Cường | Tùng Phát"`,
         );
       }
-      if (metadata.h1 !== "Catalogue An Cường") {
-        errors.push(`${route}: required H1 is "Catalogue An Cường"`);
+      if (metadata.h1 !== "Mã màu An Cường") {
+        errors.push(`${route}: required H1 is "Mã màu An Cường"`);
       }
     }
     const isNoindex = /(?:^|[,\s])noindex(?:[,\s]|$)/i.test(metadata.robots);

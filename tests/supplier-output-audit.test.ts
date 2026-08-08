@@ -51,22 +51,22 @@ describe("supplier static output audit", () => {
         route: "/catalogue/an-cuong/",
         supplierId: "an-cuong",
         brand: "An Cường",
-        title: "Catalogue An Cường | Tùng Phát",
-        description: "Catalogue An Cường tại Tùng Phát.",
-        indexable: false,
+        title: "Mã màu An Cường | Tùng Phát",
+        description: "Tra cứu mã màu An Cường tại Tùng Phát.",
       }),
     ];
 
     const result = auditSupplierPages(pages, [
       "/san-pham/laminate/thanh-thuy-lp-101/",
       "/ma-mau-melamine/ba-thanh/bt-111/",
+      "/catalogue/an-cuong/",
     ]);
 
     expect(result.errors).toEqual([]);
     expect(result.summary).toMatchObject({
       pages: 3,
-      indexable: 2,
-      noindex: 1,
+      indexable: 3,
+      noindex: 0,
       uniqueTitles: 3,
       uniqueDescriptions: 3,
       canonicalsChecked: 3,
@@ -112,17 +112,16 @@ describe("supplier static output audit", () => {
     expect(result.errors.join("\n")).toMatch(/no matching page/i);
   });
 
-  it("enforces the pinned An Cuong catalogue title and H1", () => {
+  it("enforces the pinned An Cuong Mã màu title and H1", () => {
     const anCuong = page({
       route: "/catalogue/an-cuong/",
       supplierId: "an-cuong",
       brand: "An Cường",
-      title: "Catalogue vật liệu An Cường | Tùng Phát",
-      description: "Catalogue An Cường tại Tùng Phát.",
-      indexable: false,
+      title: "Mã bề mặt An Cường | Tùng Phát",
+      description: "Tra cứu mã màu An Cường tại Tùng Phát.",
     });
 
-    const result = auditSupplierPages([anCuong], []);
+    const result = auditSupplierPages([anCuong], ["/catalogue/an-cuong/"]);
 
     expect(result.errors.join("\n")).toMatch(/required title/i);
     expect(result.errors.join("\n")).toMatch(/required H1/i);

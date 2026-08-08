@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import {
+  canonicalMetadataRoutes,
   indexableMetadataRoutes,
   noindexMetadataRoutes,
 } from "./lib/metadata-route-policy.mjs";
@@ -37,7 +38,8 @@ for (const route of [...indexableMetadataRoutes, ...noindexMetadataRoutes]) {
     continue;
   }
 
-  const expectedUrl = `${siteUrl}${route}`;
+  const canonicalRoute = canonicalMetadataRoutes[route] ?? route;
+  const expectedUrl = `${siteUrl}${canonicalRoute}`;
   const { canonicals, robots, openGraphUrls } = metadataTags(
     readFileSync(outputPath, "utf8"),
   );

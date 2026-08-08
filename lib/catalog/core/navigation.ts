@@ -13,7 +13,7 @@ export const supplierNavigation: {
 } = {
   catalogue: supplierDefinitions.map((supplier) => ({
     supplierId: supplier.id,
-    label: `Catalogue ${supplier.displayName}`,
+    label: `Mã màu ${supplier.displayName}`,
     href: supplier.cataloguePath,
   })),
   brands: supplierDefinitions.map((supplier) => ({
