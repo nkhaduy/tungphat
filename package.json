@@ -13,6 +13,7 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test --reporter=list",
     "test:e2e:cms": "playwright test --config=playwright.cms.config.ts",
+    "test:e2e:light": "playwright test --config=playwright.light-cms.config.ts",
     "validate:content": "tsx scripts/validate-content.ts",
     "validate:links": "node scripts/check-internal-links.mjs && node scripts/check-sitemap-output.mjs",
     "validate:cloudflare-config": "node cloudflare-cms/scripts/validate-cloudflare-config.mjs",
@@ -35,10 +36,11 @@
     "analytics:maintenance:deploy": "wrangler deploy --env=\"\" --config workers/analytics-maintenance/wrangler.jsonc"
   },
   "dependencies": {
+    "@noble/hashes": "^2.2.0",
     "framer-motion": "^12.42.2",
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.24.0",
-    "next": "15.5.20",
+    "next": "15.5.22",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-markdown": "^10.1.0",
@@ -57,8 +59,8 @@
     "@vitest/coverage-v8": "^4.1.10",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.39.5",
-    "eslint-config-next": "^15.5.20",
-    "postcss": "^8.5.20",
+    "eslint-config-next": "^15.5.22",
+    "postcss": "^8.5.25",
     "prettier": "^3.9.5",
     "serve": "^14.2.6",
     "sharp": "^0.35.3",
@@ -66,13 +68,22 @@
     "tsx": "^4.23.1",
     "typescript": "^5.9.3",
     "vitest": "^4.1.10",
-    "wrangler": "^4.112.0",
+    "wrangler": "^4.115.0",
     "yaml": "^2.9.0"
   },
   "engines": {
     "node": ">=20.19 <27"
   },
   "overrides": {
-    "postcss": "$postcss"
+    "@eslint/eslintrc": {
+      "js-yaml": "4.3.1"
+    },
+    "gray-matter": {
+      "js-yaml": "3.15.1"
+    },
+    "nanoid": "3.3.17",
+    "postcss": "$postcss",
+    "sharp": "$sharp",
+    "undici": "7.29.0"
   }
 }

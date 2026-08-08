@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-08-05T17:28:30.000Z",
+  "status": "superseded",
+  "environment": "cloudflare-access-staging",
+  "requests": 0,
+  "cpu": null,
+  "worker1102": null,
+  "worker5xx": null,
+  "jwksCacheMetrics": null,
+  "reason": "Historical checkpoint. Cloudflare Access Teams Free Base was subsequently activated without a billing mutation by this implementation, and remote acceptance is recorded in remote-access-acceptance.json.",
+  "gate": {
+    "p99CpuMsAtMost": 8,
+    "maxCpuMsAtMost": 9,
+    "worker1102": 0,
+    "worker5xx": 0
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-08-08T17:38:00.000Z",
+  "status": "passed",
+  "identityProvider": "Cloudflare Access",
+  "accessApplicationCreated": true,
+  "realAccessSessionTested": true,
+  "stagingAcceptance": "passed",
+  "productionAdminVerified": true,
+  "productionAdminUrl": "https://cms.mdftungphat.com/#/",
+  "approvedRole": "super-admin",
+  "failed": null,
+  "note": "Contains no Access token, cookie, password, or secret. Benchmark details remain in remote-access-acceptance.json."
+}

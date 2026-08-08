@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tungphat-light-cms-20260805-0855-staging",
+  "pages_build_output_dir": "dist",
+  "compatibility_date": "2026-07-18",
+  "services": [
+    { "binding": "LIGHT_CMS_API", "service": "tungphat-light-cms-api-20260805-0855-staging" }
+  ]
+}

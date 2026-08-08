@@ -1,0 +1,73 @@
+{
+  "generatedAt": "2026-08-08T15:45:00.000Z",
+  "status": "passed",
+  "environment": "cloudflare-access-staging",
+  "worker": "tungphat-light-cms-api-20260805-0855-staging",
+  "workerVersion": "7c0cb022-6fcb-41dc-b027-aff64c2a21e3",
+  "requests": 1055,
+  "statuses": {
+    "200": 1014,
+    "201": 41
+  },
+  "outcomes": {
+    "ok": 1055
+  },
+  "routes": {
+    "authSession": 354,
+    "dashboard": 202,
+    "contentList": 53,
+    "contentDetailMutationCleanup": 122,
+    "publicSnapshot": 203,
+    "versionList": 1,
+    "versionRestore": 20,
+    "mediaMetadata": 40,
+    "mediaUpload": 20,
+    "mediaDelete": 40
+  },
+  "cpuMs": {
+    "p50": 2,
+    "p95": 3,
+    "p99": 5,
+    "max": 8
+  },
+  "wallMs": {
+    "p50": 177,
+    "p95": 1222,
+    "p99": 2651,
+    "max": 16580
+  },
+  "worker1102": 0,
+  "worker5xx": 0,
+  "exceptions": 0,
+  "jwks": {
+    "warmProbeRequests": 50,
+    "warmProbeHits": 50,
+    "maxObservedIsolateFetches": 1
+  },
+  "d1": {
+    "sessionProbeRequests": 50,
+    "sessionProbeQueryOperations": 150,
+    "representativeQueryOperations": {
+      "session": 3,
+      "dashboard": 6,
+      "contentList": 2,
+      "publicSnapshot": 3
+    },
+    "postRunAuditRowsRead": 1064,
+    "postRunAuditRowsWritten": 0
+  },
+  "postCleanupBaseline": {
+    "activeContent": 12,
+    "publishedContent": 8,
+    "settings": 5,
+    "readyMedia": 9,
+    "activeBenchmarkContent": 0,
+    "activeBenchmarkMedia": 0
+  },
+  "gate": {
+    "p99CpuMsAtMost": 8,
+    "maxCpuMsAtMost": 9,
+    "worker1102": 0,
+    "worker5xx": 0
+  }
+}

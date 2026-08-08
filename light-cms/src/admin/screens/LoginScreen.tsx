@@ -1,0 +1,5 @@
+import { lightCmsUiCopy } from "../environment";
+
+export function LoginScreen({ onLogin, error, busy }: { onLogin: () => void; error: string; busy: boolean }) {
+  return <main className="login-page"><section className="login-panel"><div className="brand login-brand"><span className="brand-mark" aria-hidden="true">TP</span><span><strong>Tùng Phát</strong><small>{lightCmsUiCopy.brandSubtitle}</small></span></div><p className="eyebrow">QUẢN TRỊ NỘI DUNG</p><h1>Đăng nhập để quản lý website</h1><p className="lead">Cloudflare Access xác thực danh tính; quyền quản trị được kiểm tra riêng trong Light CMS.</p>{error ? <p className="form-error" role="alert">{error}</p> : null}<button type="button" className="primary wide" disabled={busy} onClick={onLogin}>{busy ? "Đang kiểm tra phiên…" : "Đăng nhập quản trị"}</button><p className="access-note">Bạn sẽ được chuyển tới trang đăng nhập bảo mật của Cloudflare.</p><small className="staging-note">{lightCmsUiCopy.loginNote}</small></section><aside className="login-art" aria-hidden="true"><div className="grain"></div><p>Danh tính xác minh.<br />Phân quyền tức thời.<br />Không lưu mật khẩu.</p></aside></main>;
+}

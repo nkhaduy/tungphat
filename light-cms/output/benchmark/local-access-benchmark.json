@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-08-08T09:11:47.700Z",
+  "environment": "local-node",
+  "cpu": null,
+  "jwt": {
+    "cold": {
+      "count": 20,
+      "p50": 4.945791999999983,
+      "p95": 10.866000000000042,
+      "p99": 10.866000000000042,
+      "max": 40.03966699999998
+    },
+    "warm": {
+      "count": 300,
+      "p50": 0.17591700000002675,
+      "p95": 0.428875000000005,
+      "p99": 0.7459169999999631,
+      "max": 1.1166670000000067
+    },
+    "jwksFetches": 21,
+    "expectedJwksFetches": 21
+  },
+  "d1UserLookup": {
+    "count": 300,
+    "p50": 0.036291000000005624,
+    "p95": 0.1917079999999487,
+    "p99": 0.32099999999996953,
+    "max": 1.331124999999986
+  },
+  "gateway": {
+    "count": 500,
+    "p50": 0.040000000000020464,
+    "p95": 0.2485409999999888,
+    "p99": 0.8385000000000105,
+    "max": 3.0634169999999585
+  },
+  "errors": 0,
+  "note": "Wall-time diagnostic only; Cloudflare Worker CPU acceptance requires real Access staging and tail metrics."
+}

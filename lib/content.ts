@@ -2,6 +2,7 @@ import "server-only";
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { activeCmsProvider, normalizeLightRecord, normalizePayloadRecord, readLightSnapshot, readPayloadSnapshot } from "@/lib/cms-provider";
 import {
   articleSchema,
   productSchema,
@@ -15,7 +16,7 @@ import {
 
 export type ContentEntry<T> = T & { body: string; sourcePath: string };
 
-function readCollection<T>(folder: string, schema: { parse: (value: unknown) => T }): ContentEntry<T>[] {
+function readDecapCollection<T>(folder: string, schema: { parse: (value: unknown) => T }): ContentEntry<T>[] {
   const directory = path.join(process.cwd(), "content", folder);
   if (!fs.existsSync(directory)) return [];
 
@@ -28,6 +29,36 @@ function readCollection<T>(folder: string, schema: { parse: (value: unknown) => 
       const frontmatter = schema.parse(parsed.data);
       return { ...frontmatter, body: parsed.content.trim(), sourcePath };
     });
+}
+
+function readLightCollection<T>(folder: "articles" | "products" | "projects" | "pages", schema: { parse: (value: unknown) => T }): ContentEntry<T>[] {
+  const snapshot = readLightSnapshot();
+  return snapshot.records.filter((record) => record.collection === folder).map((record) => {
+    const frontmatter = schema.parse(normalizeLightRecord(record));
+    return { ...frontmatter, body: typeof record.data.body === "string" ? record.data.body.trim() : "", sourcePath: `light:${folder}:${record.slug}` };
+  });
+}
+
+function readPayloadCollection<T>(folder: string, schema: { parse: (value: unknown) => T }): ContentEntry<T>[] {
+  const snapshot = readPayloadSnapshot();
+  if (!snapshot) {
+    console.warn("CMS_PROVIDER=payload nhưng chưa có snapshot; dùng Decap fallback.");
+    return readDecapCollection(folder, schema);
+  }
+  return snapshot
+    .filter((record) => record.collection === folder && record._status === "published")
+    .map((record) => {
+      const normalized = normalizePayloadRecord(record);
+      const frontmatter = schema.parse(normalized);
+      return { ...frontmatter, body: typeof normalized.body === "string" ? normalized.body : "", sourcePath: `payload:${record.collection}:${String(normalized.slug ?? "")}` };
+    });
+}
+
+function readCollection<T>(folder: "articles" | "products" | "projects" | "pages", schema: { parse: (value: unknown) => T }): ContentEntry<T>[] {
+  const provider = activeCmsProvider();
+  if (provider === "light") return readLightCollection(folder, schema);
+  if (provider === "payload") return readPayloadCollection(folder, schema);
+  return readDecapCollection(folder, schema);
 }
 
 export function getArticles(options: { includeDrafts?: boolean } = {}) {

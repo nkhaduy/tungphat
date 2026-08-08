@@ -1,0 +1,74 @@
+[
+  {
+    "publicPath": "/images/cnc-service.webp",
+    "sourcePath": "public/images/cnc-service.webp",
+    "size": 133314,
+    "checksum": "369a5bea2769efe083e7d50957cfd72c65f971e24d053a3bab3251e9f4c412c6",
+    "mimeType": "image/webp",
+    "alt": "Máy CNC gia công ván tại xưởng Tùng Phát"
+  },
+  {
+    "publicPath": "/images/contact/chi-nhanh-1.webp",
+    "sourcePath": "public/images/contact/chi-nhanh-1.webp",
+    "size": 86820,
+    "checksum": "45250a15fd44bdd41b4c884249050fe204eae5833602bd71ef4b4978992b3218",
+    "mimeType": "image/webp",
+    "alt": "Mặt tiền cửa hàng Tùng Phát tại 14 Tam Bình"
+  },
+  {
+    "publicPath": "/images/contact/chi-nhanh-2.webp",
+    "sourcePath": "public/images/contact/chi-nhanh-2.webp",
+    "size": 142596,
+    "checksum": "eb67be210ee851a11b76855725bd890239f42e8cb31eef7ac113e2ff7b572af3",
+    "mimeType": "image/webp",
+    "alt": "Mặt tiền chi nhánh Tùng Phát tại 81B Tam Bình"
+  },
+  {
+    "publicPath": "/images/hero-workshop4.webp",
+    "sourcePath": "public/images/hero-workshop4.webp",
+    "size": 164510,
+    "checksum": "708390c4625ef2bc3a755c82c12f64d15554ff01a42c29b88f1ae9dae6319cde",
+    "mimeType": "image/webp",
+    "alt": "Bề mặt và tấm gỗ tại khu vực vật liệu Tùng Phát"
+  },
+  {
+    "publicPath": "/images/hero-workshop5.webp",
+    "sourcePath": "public/images/hero-workshop5.webp",
+    "size": 116464,
+    "checksum": "d2bc03efb4cec0fd9e42feff1149ff77ca781af91f1c5daae627fceb3aa0da86",
+    "mimeType": "image/webp",
+    "alt": "Các tấm gỗ và vật liệu tại xưởng Tùng Phát"
+  },
+  {
+    "publicPath": "/images/hero-workshop6.webp",
+    "sourcePath": "public/images/hero-workshop6.webp",
+    "size": 159118,
+    "checksum": "70a9a6b91801421da8ec478df03c5d1796fa3027cd13fc21a923de684c040857",
+    "mimeType": "image/webp",
+    "alt": "Khu vực máy và quá trình gia công CNC MDF tại Tùng Phát"
+  },
+  {
+    "publicPath": "/images/wood-panels.webp",
+    "sourcePath": "public/images/wood-panels.webp",
+    "size": 128502,
+    "checksum": "2fc3b45affd9ecde6665d7cbbb376e6d82d2a86313618c1b57f5ad0c9737e4bc",
+    "mimeType": "image/webp",
+    "alt": "Các tấm vật liệu gỗ được xếp tại khu vực kho Tùng Phát"
+  },
+  {
+    "publicPath": "/wood/mdfmfc.webp",
+    "sourcePath": "public/wood/mdfmfc.webp",
+    "size": 102068,
+    "checksum": "6591c520fdc000c86eda1428c2166c29fc941e8a9cfa80c22be461a4b005e4d0",
+    "mimeType": "image/webp",
+    "alt": "Bề mặt ván MDF và MFC dùng để tham khảo vật liệu"
+  },
+  {
+    "publicPath": "/wood/vanchongam.webp",
+    "sourcePath": "public/wood/vanchongam.webp",
+    "size": 100402,
+    "checksum": "11da3f5183f649dd218c3b70e8505a8253a9b5a2ede9b0771a9b108f35dd23a4",
+    "mimeType": "image/webp",
+    "alt": "Tấm ván chống ẩm dùng làm hình ảnh tham khảo vật liệu"
+  }
+]

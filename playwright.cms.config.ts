@@ -1,5 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const port = Number(process.env.PLAYWRIGHT_CMS_PORT || 4174);
+
 export default defineConfig({
   testDir: "./e2e-cms",
   fullyParallel: false,
@@ -11,15 +13,15 @@ export default defineConfig({
   expect: { timeout: 12_000 },
   use: {
     ...devices["Desktop Chrome"],
-    baseURL: "http://127.0.0.1:4174",
+    baseURL: `http://127.0.0.1:${port}`,
     locale: "vi-VN",
     timezoneId: "Asia/Ho_Chi_Minh",
     trace: "on-first-retry",
     screenshot: "only-on-failure",
   },
   webServer: {
-    command: "npx serve cloudflare-cms/public -l 4174",
-    url: "http://127.0.0.1:4174",
+    command: `npx serve cloudflare-cms/public -l ${port}`,
+    url: `http://127.0.0.1:${port}`,
     reuseExistingServer: false,
     timeout: 60_000,
     stdout: "pipe",

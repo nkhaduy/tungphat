@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+coverage/
+worker-configuration.d.ts
+.DS_Store
+artifacts/
+playwright-report/
+test-results/
+*.log

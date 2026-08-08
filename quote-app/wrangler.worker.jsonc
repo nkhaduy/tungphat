@@ -1,0 +1,37 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "tung-phat-quotes",
+  "main": "src/worker/index.ts",
+  "compatibility_date": "2026-07-22",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist/client",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "tung-phat-quotes",
+      "database_id": "c531441e-5410-4a16-8607-ba983f50b215",
+      "migrations_dir": "./migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "PDF_BUCKET",
+      "bucket_name": "tung-phat-quotes-pdf"
+    }
+  ],
+  "vars": {
+    "ENVIRONMENT": "production",
+    "APP_ORIGIN": "https://baogia.mdftungphat.com",
+    "TIMEZONE": "Asia/Ho_Chi_Minh"
+  },
+  "observability": {
+    "enabled": true,
+    "logs": { "head_sampling_rate": 1 },
+    "traces": { "enabled": true, "head_sampling_rate": 0.05 }
+  }
+}
