@@ -1,4 +1,5 @@
 import { MessageCircle } from "lucide-react";
+import Link from "next/link";
 import { SupplierColorCodeSearch } from "@/components/catalog/AnCuongCatalogueSearch";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ContactCTA } from "@/components/ui/ContactCTA";
@@ -6,6 +7,8 @@ import { PageContainer } from "@/components/ui/PageContainer";
 import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
 import type { SupplierId } from "@/lib/catalog/core/types";
 import { getSupplierSearchIndex } from "@/lib/catalog/suppliers/search-index";
+import { getPublicColorCodeMaterials } from "@/lib/catalog/color-codes/public";
+import { humanizeCatalogLabel } from "@/lib/catalog/ui";
 import type { Brand } from "@/lib/brands";
 import { ZALO_URL } from "@/lib/seo";
 
@@ -13,6 +16,11 @@ export function CatalogueView({ brand }: { brand: Brand }) {
   const entries = getSupplierSearchIndex().records.filter((record) => record.supplierId === brand.slug);
   const supplierId = brand.slug as SupplierId;
   const inquiryUrl = buildSupplierZaloInquiryUrl(ZALO_URL, brand.name);
+  const materialLinks = getPublicColorCodeMaterials(supplierId).map((slug) => ({
+    slug,
+    label: humanizeCatalogLabel(slug),
+    count: entries.filter((entry) => entry.category === slug).length,
+  }));
 
   return (
     <>
@@ -25,6 +33,13 @@ export function CatalogueView({ brand }: { brand: Brand }) {
             <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700 sm:text-base">Chỉ hiển thị mã màu và mã bề mặt đã xác minh từ nguồn công khai của {brand.name}. Ảnh swatch/fullsheet được giữ nguyên nguồn để đối chiếu thực tế.</p>
             <a href={inquiryUrl} target="_blank" rel="noopener noreferrer" className="pressable mt-5 inline-flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-5 text-sm font-extrabold text-white hover:bg-wood-600"><MessageCircle size={17} aria-hidden="true" />Gửi mã qua Zalo</a>
           </div>
+          <nav aria-label={`Nhóm vật liệu ${brand.name}`} className="mt-6 flex flex-wrap gap-2">
+            {materialLinks.map((material) => (
+              <Link key={material.slug} href={`/catalogue/${supplierId}/${material.slug}/`} className="pressable inline-flex min-h-11 items-center border border-forest-900/15 bg-white px-4 text-sm font-bold text-forest-950 hover:border-wood-500">
+                {material.label} ({material.count})
+              </Link>
+            ))}
+          </nav>
           <SupplierColorCodeSearch entries={entries} supplierId={supplierId} supplierLabel={brand.name} />
         </PageContainer>
       </section>
