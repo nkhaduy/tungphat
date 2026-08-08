@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-08T21:01:24Z",
+  "result": "PASS",
+  "local": {
+    "lint": {
+      "status": "PASS",
+      "command": "npm run lint",
+      "errors": 0,
+      "warnings": 0
+    },
+    "typecheck": {
+      "status": "PASS",
+      "command": "npm run typecheck",
+      "errors": 0
+    },
+    "appTests": {
+      "status": "PASS",
+      "command": "npm test -- --reporter=json --outputFile=/tmp/tungphat-phase5-vitest.json",
+      "passed": 525,
+      "failed": 0,
+      "skipped": 0
+    },
+    "cms": {
+      "lint": "PASS",
+      "typecheck": "PASS",
+      "tests": {
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0
+      },
+      "build": "PASS",
+      "dryRun": "PASS"
+    },
+    "e2e": {
+      "status": "PASS",
+      "command": "npm run test:e2e",
+      "passed": 57,
+      "failed": 0,
+      "duration": "6.2m"
+    },
+    "cmsE2e": {
+      "status": "PASS",
+      "command": "npm run test:e2e:cms",
+      "passed": 5,
+      "failed": 0,
+      "duration": "9.7s"
+    },
+    "productionBuild": {
+      "status": "PASS",
+      "command": "npm run build",
+      "staticPagesGenerated": 3505,
+      "sharedJsKb": 103,
+      "indexableUrls": 54,
+      "noindexUrls": 3440
+    },
+    "seoAudit": {
+      "status": "PASS",
+      "htmlPages": 3494,
+      "indexableUrls": 54,
+      "noindexUrls": 3440,
+      "canonicalErrors": 0,
+      "schemaErrors": 0,
+      "brokenLinks": 0,
+      "orphanPages": 0,
+      "thinIndexables": 0,
+      "aiCrawlerBlockers": 0
+    },
+    "structuredData": {
+      "status": "PASS",
+      "documentsChecked": 3495,
+      "errors": 0
+    },
+    "internalLinks": {
+      "status": "PASS",
+      "htmlFiles": 3496,
+      "linksChecked": 93183,
+      "relationships": 67196,
+      "targets": 942,
+      "redirects": 0,
+      "httpErrors": 0,
+      "trailingSlashErrors": 0
+    },
+    "sitemap": {
+      "status": "PASS",
+      "urls": 54,
+      "errors": 0
+    },
+    "provenance": {
+      "status": "PASS",
+      "records": 9,
+      "sources": 10,
+      "publishedFactsBackedByP5": 0
+    },
+    "dependencyAudit": {
+      "rootVulnerabilities": 0,
+      "cmsVulnerabilities": 0
+    },
+    "securityArtifacts": {
+      "sourceMapsOrPrivateArtifacts": 0,
+      "credentialMatches": 0,
+      "parserLiteralMatches": 2,
+      "caveat": "The two text matches are private-key parser delimiters, not stored credentials."
+    }
+  },
+  "production": {
+    "crawl": {
+      "status": "PASS",
+      "checkedAt": "2026-08-08T21:00:29.594Z",
+      "pages": 54,
+      "http2xx": 54,
+      "qualityGateFailures": 0,
+      "canonicalErrors": 0,
+      "schemaErrors": 0,
+      "brokenLinks": 0,
+      "orphanPages": 0,
+      "thinIndexables": 0
+    },
+    "bots": {
+      "status": "PASS",
+      "passed": 7,
+      "total": 7,
+      "blocked": 0
+    },
+    "securityHeaders": {
+      "status": "PASS",
+      "errors": 0,
+      "csp": true,
+      "hsts": true,
+      "xContentTypeOptions": true,
+      "referrerPolicy": true,
+      "permissionsPolicy": true
+    },
+    "lighthouse": {
+      "status": "PASS_WITH_VARIANCE",
+      "samples": 3,
+      "mobileScoreMedian": 77,
+      "lcpMedianMs": 2563.84912,
+      "fcpMedianMs": 1581.39504,
+      "clsMedian": 0,
+      "tbtMedianMs": 695.5,
+      "ttfbMedianMs": 37,
+      "lcpRangeMs": [
+        2558.83,
+        3372.351
+      ],
+      "tbtRangeMs": [
+        583,
+        801.5
+      ]
+    }
+  },
+  "ci": {
+    "runId": 31276790799,
+    "url": "https://github.com/nkhaduy/tungphat/actions/runs/31276790799",
+    "headSha": "0aa20762f583aab5e9fbc4adb113fc2573027a38",
+    "conclusion": "success",
+    "appTestFilesPassed": 99,
+    "appTestsPassed": 525,
+    "cmsTestFilesPassed": 6,
+    "cmsTestsPassed": 32,
+    "e2ePassed": 57
+  },
+  "diagnosticNote": "One app test exceeded its 5-second timeout only while app and CMS verification commands were intentionally run concurrently. The isolated test passed in 0.96s and the full sequential suite then passed 525/525; no code change was required."
+}
