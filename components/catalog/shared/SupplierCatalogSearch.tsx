@@ -76,6 +76,7 @@ export function SupplierCatalogSearch({
   const hasSearchIntent =
     isCatalogFilterStateActive(currentState) && type !== "supplier";
   const showSupplierDirectory = type === "supplier" && !query.trim();
+  const showAllResults = !query.trim() && !supplierId && type === "all" && !group;
 
   useEffect(() => {
     const restoreFromUrl = () => {
@@ -144,7 +145,9 @@ export function SupplierCatalogSearch({
       ? supplierMatch
       : undefined;
   const visibleResults =
-    hasSearchIntent && !exactSupplier ? results.slice(0, visibleLimit) : featured;
+    (hasSearchIntent || showAllResults) && !exactSupplier
+      ? results.slice(0, visibleLimit)
+      : featured;
 
   function updateQuery(value: string) {
     setQuery(value);
@@ -318,12 +321,12 @@ export function SupplierCatalogSearch({
                   : "Mã Melamine được quan tâm"}
               </p>
               <h3 className="mt-2 text-2xl font-extrabold text-forest-950">
-                {hasSearchIntent
+                {hasSearchIntent || showAllResults
                   ? `${results.length} mục phù hợp`
                   : "Bắt đầu từ các mã có dữ liệu đầy đủ"}
               </h3>
             </div>
-            {!hasSearchIntent ? (
+            {!hasSearchIntent && !showAllResults ? (
               <Link
                 href="/ma-mau-melamine/ba-thanh/"
                 className="inline-flex min-h-11 items-center gap-2 text-sm font-extrabold text-forest-950 hover:text-wood-600"
@@ -335,7 +338,11 @@ export function SupplierCatalogSearch({
           </div>
 
           {visibleResults.length ? (
-            <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div
+              role="region"
+              aria-label="Kết quả mã màu"
+              className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
+            >
               {visibleResults.map((entry) => (
                 <article
                   key={entry.id ?? `${entry.supplierId}:${entry.code}:${entry.canonicalRoute}`}
@@ -424,7 +431,7 @@ export function SupplierCatalogSearch({
               </p>
             </div>
           )}
-          {hasSearchIntent && visibleResults.length < results.length ? (
+          {(hasSearchIntent || showAllResults) && visibleResults.length < results.length ? (
             <AutoLoadMore
               hasMore={visibleResults.length < results.length}
               onLoadMore={() => setVisibleLimit((value) => value + PAGE_SIZE)}
