@@ -6,6 +6,7 @@ import {
   ColorCodeCard,
   type ColorCardRecord,
 } from "@/components/catalog/ColorCodeCard";
+import { AutoLoadMore } from "@/components/catalog/shared/AutoLoadMore";
 import { useCatalogFilterRobots } from "@/components/catalog/useCatalogFilterRobots";
 import {
   normalizeBaThanhSearch,
@@ -144,7 +145,7 @@ export function ColorCodeSearch({
           <div
             role="group"
             aria-label="Lọc nhóm màu"
-            className="-mx-1 mt-3 flex gap-2 overflow-x-auto px-1 pb-2 [scrollbar-width:thin]"
+            className="mt-3 flex flex-wrap gap-2 pb-1"
           >
             {!fixedCategory ? (
               <button
@@ -155,7 +156,7 @@ export function ColorCodeSearch({
                   setPage(1);
                   updateUrl({ category: "all" }, "push");
                 }}
-                className={`min-h-11 shrink-0 border px-4 text-sm font-extrabold ${category === "all" ? "border-forest-900 bg-forest-900 text-white" : "border-forest-900/15 bg-white text-forest-950 hover:border-wood-500"}`}
+                className={`min-h-11 min-w-0 max-w-full whitespace-normal border px-4 text-left text-sm font-extrabold ${category === "all" ? "border-forest-900 bg-forest-900 text-white" : "border-forest-900/15 bg-white text-forest-950 hover:border-wood-500"}`}
               >
                 Tất cả
               </button>
@@ -171,7 +172,7 @@ export function ColorCodeSearch({
                   setPage(1);
                   updateUrl({ category: option.slug }, "push");
                 }}
-                className={`min-h-11 shrink-0 border px-4 text-sm font-extrabold disabled:cursor-default ${category === option.slug ? "border-forest-900 bg-forest-900 text-white" : "border-forest-900/15 bg-white text-forest-950 hover:border-wood-500"}`}
+                className={`min-h-11 min-w-0 max-w-full whitespace-normal border px-4 text-left text-sm font-extrabold disabled:cursor-default ${category === option.slug ? "border-forest-900 bg-forest-900 text-white" : "border-forest-900/15 bg-white text-forest-950 hover:border-wood-500"}`}
               >
                 {option.label}
               </button>
@@ -206,15 +207,14 @@ export function ColorCodeSearch({
               />
             ))}
           </div>
-          {hasMore && (
-            <button
-              type="button"
-              onClick={() => setPage((current) => current + 1)}
-              className="mx-auto mt-8 flex min-h-12 touch-manipulation items-center justify-center border border-forest-900/20 px-5 text-sm font-extrabold text-forest-950 transition-[transform,border-color] duration-[180ms] ease-out hover:-translate-y-0.5 hover:border-wood-500 focus-visible:ring-2 focus-visible:ring-wood-500 active:scale-[.97] motion-reduce:transform-none motion-reduce:transition-none"
-            >
-              Xem thêm mã
-            </button>
-          )}
+          {hasMore ? (
+            <AutoLoadMore
+              hasMore={hasMore}
+              onLoadMore={() => setPage((current) => current + 1)}
+              remaining={filtered.length - visible.length}
+              pageSize={PAGE_SIZE}
+            />
+          ) : null}
         </>
       ) : (
         <div className="mt-6 border border-dashed border-forest-900/25 bg-[#f7f8f5] px-6 py-12 text-center">

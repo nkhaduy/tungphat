@@ -10,6 +10,7 @@ import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
 import { materialTaxonomyOptions } from "@/lib/catalog/material-taxonomy";
 import { buildCatalogCollectionSearchParams, parseCatalogCollectionUrlState } from "@/lib/catalog/url-state";
 import { ZALO_URL } from "@/lib/seo";
+import { AutoLoadMore } from "@/components/catalog/shared/AutoLoadMore";
 
 const PAGE_SIZE = 48;
 
@@ -37,6 +38,10 @@ export function SupplierColorCodeSearch({
   );
   const visibleResults = results.slice(0, visibleLimit);
   const label = supplierLabel ?? (supplierId === "an-cuong" ? "An Cường" : supplierId === "ba-thanh" ? "Ba Thanh" : supplierId === "thanh-thuy" ? "Thanh Thuỳ" : "các nhà cung cấp");
+
+  useEffect(() => {
+    setVisibleLimit(PAGE_SIZE);
+  }, [deferredQuery, material]);
 
   useEffect(() => {
     const restoreFromUrl = () => {
@@ -81,11 +86,11 @@ export function SupplierColorCodeSearch({
             className="min-h-14 w-full border border-forest-900/15 bg-[#fbfaf6] pl-11 pr-4 text-base font-semibold text-forest-950 outline-none focus-visible:border-wood-500 focus-visible:ring-2 focus-visible:ring-wood-500/20"
           />
         </label>
-        <div role="group" aria-label="Lọc mã màu theo vật liệu" className="-mx-1 mt-4 flex snap-x gap-2 overflow-x-auto px-1 pb-2 [scrollbar-width:thin]">
+        <div role="group" aria-label="Lọc mã màu theo vật liệu" className="mt-4 flex flex-wrap gap-2 pb-1">
           {materialOptions.map((option) => {
             const value = option.slug === "all" ? "" : option.slug;
             const active = material === value;
-            return <button key={option.slug} type="button" aria-pressed={active} onClick={() => { setMaterial(value); setVisibleLimit(PAGE_SIZE); }} className={`pressable min-h-11 shrink-0 snap-start border px-4 text-sm font-extrabold ${active ? "border-forest-900 bg-forest-900 text-white" : "border-forest-900/15 bg-white text-forest-950"}`}>{option.label} ({option.count})</button>;
+            return <button key={option.slug} type="button" aria-pressed={active} onClick={() => { setMaterial(value); setVisibleLimit(PAGE_SIZE); }} className={`pressable min-h-11 min-w-0 max-w-full whitespace-normal border px-4 text-left text-sm font-extrabold ${active ? "border-forest-900 bg-forest-900 text-white" : "border-forest-900/15 bg-white text-forest-950"}`}>{option.label} ({option.count})</button>;
           })}
         </div>
       </div>
@@ -117,7 +122,14 @@ export function SupplierColorCodeSearch({
         </div>
       ) : <div className="mt-6 border border-dashed border-forest-900/20 bg-white px-6 py-10 text-center"><Search className="mx-auto text-wood-600" size={24} aria-hidden="true" /><p className="mt-4 font-extrabold text-forest-950">Chưa tìm thấy mã màu phù hợp</p><p className="mt-2 text-sm leading-6 text-slate-700">Thử một phần mã hoặc gửi mã cho Tùng Phát để kiểm tra thêm.</p></div>}
 
-      {visibleResults.length < results.length ? <button type="button" onClick={() => setVisibleLimit((value) => value + PAGE_SIZE)} className="pressable mx-auto mt-6 flex min-h-12 items-center justify-center border border-forest-900/20 bg-white px-6 text-sm font-extrabold text-forest-950">Xem thêm {Math.min(PAGE_SIZE, results.length - visibleResults.length)} mã</button> : null}
+      {visibleResults.length < results.length ? (
+        <AutoLoadMore
+          hasMore={visibleResults.length < results.length}
+          onLoadMore={() => setVisibleLimit((value) => value + PAGE_SIZE)}
+          remaining={results.length - visibleResults.length}
+          pageSize={PAGE_SIZE}
+        />
+      ) : null}
     </section>
   );
 }

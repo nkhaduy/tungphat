@@ -23,6 +23,9 @@ import {
   isCatalogFilterStateActive,
   parseCatalogUrlState,
 } from "@/lib/catalog/url-state";
+import { AutoLoadMore } from "@/components/catalog/shared/AutoLoadMore";
+
+const PAGE_SIZE = 48;
 
 const kindLabels: Record<CatalogSearchEntry["kind"], string> = {
   product: "Mã màu",
@@ -51,6 +54,7 @@ export function SupplierCatalogSearch({
   const [type, setType] = useState<CatalogSearchIntent>("all");
   const [group, setGroup] = useState("");
   const [copyStatus, setCopyStatus] = useState("");
+  const [visibleLimit, setVisibleLimit] = useState(PAGE_SIZE);
   const deferredQuery = useDeferredValue(query);
   const primarySelections: PrimarySelection[] = useMemo(() => [
     ...materialTaxonomyOptionsForSupplier(entries, supplierId).map((option) => ({
@@ -87,6 +91,10 @@ export function SupplierCatalogSearch({
     window.addEventListener("popstate", restoreFromUrl);
     return () => window.removeEventListener("popstate", restoreFromUrl);
   }, []);
+
+  useEffect(() => {
+    setVisibleLimit(PAGE_SIZE);
+  }, [group, query, supplierId, type]);
 
   useCatalogFilterRobots(hasSearchIntent || showSupplierDirectory);
 
@@ -136,7 +144,7 @@ export function SupplierCatalogSearch({
       ? supplierMatch
       : undefined;
   const visibleResults =
-    hasSearchIntent && !exactSupplier ? results.slice(0, 48) : featured;
+    hasSearchIntent && !exactSupplier ? results.slice(0, visibleLimit) : featured;
 
   function updateQuery(value: string) {
     setQuery(value);
@@ -208,7 +216,7 @@ export function SupplierCatalogSearch({
           <div
             role="group"
             aria-label="Chọn loại vật liệu"
-            className="-mx-1 mt-3 flex snap-x gap-2 overflow-x-auto px-1 pb-2 [scrollbar-width:thin]"
+            className="mt-3 flex flex-wrap gap-2 pb-1"
           >
             {primarySelections.map((selection) => {
               const active = activeSelection === selection.value;
@@ -218,7 +226,7 @@ export function SupplierCatalogSearch({
                   type="button"
                   aria-pressed={active}
                   onClick={() => selectPrimary(selection)}
-                  className={`pressable min-h-11 shrink-0 snap-start border px-4 text-sm font-extrabold ${active ? "border-forest-900 bg-forest-900 text-white" : "border-forest-900/15 bg-white text-forest-950 hover:border-wood-500"}`}
+                  className={`pressable min-h-11 min-w-0 max-w-full whitespace-normal border px-4 text-left text-sm font-extrabold ${active ? "border-forest-900 bg-forest-900 text-white" : "border-forest-900/15 bg-white text-forest-950 hover:border-wood-500"}`}
                 >
                   {selection.label}
                 </button>
@@ -416,6 +424,14 @@ export function SupplierCatalogSearch({
               </p>
             </div>
           )}
+          {hasSearchIntent && visibleResults.length < results.length ? (
+            <AutoLoadMore
+              hasMore={visibleResults.length < results.length}
+              onLoadMore={() => setVisibleLimit((value) => value + PAGE_SIZE)}
+              remaining={results.length - visibleResults.length}
+              pageSize={PAGE_SIZE}
+            />
+          ) : null}
         </>
       )}
 

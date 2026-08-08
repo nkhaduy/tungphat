@@ -123,6 +123,24 @@ test.describe("Mã màu customer journeys", () => {
     await expect(result.getByRole("img", { name: "Swatch MFC - MS 465 SC04" })).toBeVisible();
   });
 
+  test("supplier lists auto-load the next page near the bottom", async ({ page }) => {
+    await page.goto("/catalogue/an-cuong/");
+    const region = page.getByRole("region", { name: "Kết quả mã màu An Cường" });
+    await expect(region.getByRole("article")).toHaveCount(48);
+
+    const sentinel = page.getByTestId("catalogue-load-sentinel");
+    await sentinel.scrollIntoViewIfNeeded();
+    await expect(page.getByText("Đang tải thêm mã màu", { exact: true })).toBeVisible();
+    await expect(region.getByRole("article")).toHaveCount(96);
+
+    await page.goto("/catalogue/ba-thanh/melamine/");
+    const baThanhRegion = page.getByRole("region", { name: "Kết quả mã màu Ba Thanh" });
+    await expect(baThanhRegion.getByRole("article")).toHaveCount(48);
+    await page.getByTestId("catalogue-load-sentinel").scrollIntoViewIfNeeded();
+    await expect(page.getByText("Đang tải thêm mã màu", { exact: true })).toBeVisible();
+    await expect(baThanhRegion.getByRole("article")).toHaveCount(96);
+  });
+
   test("Ba Thanh exposes both Melamine and Laminate code collections", async ({
     page,
   }) => {
@@ -261,5 +279,12 @@ test.describe("Mã màu mobile navigation", () => {
           document.documentElement.clientWidth,
       ),
     ).toBeLessThanOrEqual(1);
+
+    for (const group of await page.getByRole("group").all()) {
+      const overflow = await group.evaluate(
+        (element) => element.scrollWidth - element.clientWidth,
+      );
+      expect(overflow).toBeLessThanOrEqual(1);
+    }
   });
 });
