@@ -5,12 +5,13 @@ async function installApiFixtures(page: Page) {
     const request = route.request();
     const path = new URL(request.url()).pathname;
     const payload = (() => {
-      if (path === "/api/auth/session") return { ok: true, data: { user: { id: "local-e2e-admin", email: "admin@example.com", name: "Quản trị E2E", role: "super-admin" }, csrf: "fixture-csrf", expiresAt: Math.floor(Date.now() / 1000) + 600 } };
+      if (path === "/api/auth/session") return { ok: true, data: { user: { id: "local-e2e-admin", email: "sso@example.invalid", name: "Quản trị E2E", role: "super-admin" }, csrf: "fixture-csrf", expiresAt: Math.floor(Date.now() / 1000) + 600 } };
       if (path === "/api/dashboard") return { ok: true, data: { counts: { products: 6, articles: 2, projects: 2, pages: 2 }, published: 8 } };
       if (/^\/api\/products\/?$/u.test(path)) return { ok: true, data: { items: [{ id: "product-van-mdf", title: "Ván MDF chống ẩm", slug: "van-mdf-chong-am", status: "published", version: 1, updatedAt: "2026-08-08T00:00:00.000Z" }] } };
       if (path === "/api/products/product-van-mdf") return { ok: true, data: { id: "product-van-mdf", title: "Ván MDF chống ẩm", status: "published", version: 1, content_json: JSON.stringify({ title: "Ván MDF chống ẩm", slug: "van-mdf-chong-am", excerpt: "Fixture" }) } };
       if (path === "/api/media") return { ok: true, data: { results: [] } };
-      if (path === "/api/users" || path === "/api/audit") return { ok: true, data: [] };
+      if (path === "/api/users") return { ok: true, data: [{ id: "local-e2e-admin", baogia_username: "admin", display_name: "Quản trị E2E", role: "super-admin", status: "active" }] };
+      if (path === "/api/audit") return { ok: true, data: [] };
       if (path === "/api/settings/business-settings" || path === "/api/settings/seo-defaults") return { ok: true, data: { data: {}, version: 1 } };
       return { ok: true, data: {} };
     })();
@@ -23,15 +24,7 @@ async function checkA11y(page: Page) {
   expect(results.violations.filter((violation) => ["critical", "serious"].includes(violation.impact || "critical"))).toEqual([]);
 }
 
-test.describe("Light CMS identity UI", () => {
-  test("unauthenticated screen exposes only Cloudflare Access login", async ({ page }) => {
-    await page.goto("/");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("Đăng nhập");
-    await expect(page.getByRole("button", { name: "Đăng nhập quản trị" })).toBeVisible();
-    await expect(page.locator("input, textarea, select")).toHaveCount(0);
-    await checkA11y(page);
-  });
-
+test.describe("Light CMS Baogia identity UI", () => {
   for (const viewport of [
     { name: "desktop", width: 1440, height: 900 },
     { name: "laptop", width: 1024, height: 800 },
@@ -42,10 +35,10 @@ test.describe("Light CMS identity UI", () => {
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
       await installApiFixtures(page);
       await page.goto("/");
-      await expect(page.getByRole("heading", { name: "Nội dung Tùng Phát" })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "Quản trị nội dung" })).toBeVisible();
       await checkA11y(page);
 
-      const menu = page.getByRole("button", { name: "Menu" });
+      const menu = page.getByRole("button", { name: "Mở menu" });
       if (viewport.width < 901) {
         await expect(menu).toBeVisible();
         await menu.click();
@@ -53,7 +46,7 @@ test.describe("Light CMS identity UI", () => {
         await expect(sidebar).toHaveAttribute("id", "admin-sidebar");
         await expect(sidebar).toHaveClass(/is-open/);
         await expect(page.getByRole("navigation")).toBeVisible();
-        await expect(page.getByRole("button", { name: "Thư viện" })).toBeVisible();
+        await expect(page.getByRole("button", { name: "Media" })).toBeVisible();
         await page.getByRole("button", { name: "Tổng quan" }).click();
         await expect(sidebar).not.toHaveClass(/is-open/);
         await expect(sidebar).toBeHidden();
@@ -61,7 +54,7 @@ test.describe("Light CMS identity UI", () => {
         await expect(menu).toBeHidden();
       }
 
-      if (viewport.width < 901) await menu.click();
+      if (viewport.width < 901) await page.getByRole("button", { name: "Mở menu" }).click();
       await page.getByRole("button", { name: "Sản phẩm" }).click();
       await expect(page.getByRole("heading", { name: "products" })).toBeVisible();
       await checkA11y(page);
@@ -77,7 +70,7 @@ test.describe("Light CMS identity UI", () => {
     });
     await page.goto("/");
     await expect(page.getByRole("alert")).toContainText("chưa được cấp quyền quản trị");
-    await expect(page.getByRole("alert")).not.toContainText("admin@example.com");
+    await expect(page.getByRole("alert")).not.toContainText("sso@example.invalid");
     await checkA11y(page);
   });
 });

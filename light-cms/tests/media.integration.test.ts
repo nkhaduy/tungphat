@@ -22,8 +22,8 @@ describe("streamed media uploads", () => {
   it("accepts a browser upload when Content-Length is omitted", async () => {
     const { db, sqlite } = createSqliteD1();
     const now = new Date().toISOString();
-    sqlite.prepare(`INSERT INTO users(id,email,name,display_name,role,password_hash,active,status,baogia_subject,baogia_username,failed_attempts,created_at,updated_at)
-      VALUES('media-admin','admin@example.com','Media admin','Media admin','admin','!baogia-sso!',1,'active','media-subject','admin',0,?,?)`).run(now, now);
+    sqlite.prepare(`INSERT INTO users(id,email,name,display_name,role,active,status,baogia_subject,baogia_username,failed_attempts,created_at,updated_at)
+      VALUES('media-admin','admin@example.com','Media admin','Media admin','admin',1,'active','media-subject','admin',0,?,?)`).run(now, now);
     const objects = new Map<string, Uint8Array>();
     const media = {
       put: async (key: string, body: ReadableStream<Uint8Array>) => {
@@ -61,8 +61,8 @@ describe("streamed media uploads", () => {
   it("rejects a streamed body whose size differs from metadata and leaves no R2 object", async () => {
     const { db, sqlite } = createSqliteD1();
     const now = new Date().toISOString();
-    sqlite.prepare(`INSERT INTO users(id,email,name,display_name,role,password_hash,active,status,baogia_subject,baogia_username,failed_attempts,created_at,updated_at)
-      VALUES('media-admin-2','admin2@example.com','Media admin','Media admin','admin','!baogia-sso!',1,'active','media-subject-2','admin2',0,?,?)`).run(now, now);
+    sqlite.prepare(`INSERT INTO users(id,email,name,display_name,role,active,status,baogia_subject,baogia_username,failed_attempts,created_at,updated_at)
+      VALUES('media-admin-2','admin2@example.com','Media admin','Media admin','admin',1,'active','media-subject-2','admin2',0,?,?)`).run(now, now);
     const objects = new Map<string, Uint8Array>();
     const media = {
       put: async (key: string, body: ReadableStream<Uint8Array>) => {

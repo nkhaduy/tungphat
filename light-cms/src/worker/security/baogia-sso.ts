@@ -148,8 +148,8 @@ export async function completeBaogiaSso(
     await env.DB.batch([
       env.DB.prepare("DELETE FROM sso_assertion_uses WHERE expires_at<?1").bind(now),
       env.DB.prepare("INSERT INTO sso_assertion_uses(jti_hash,subject,expires_at,used_at) VALUES(?1,?2,?3,?4)").bind(jtiHash, identity.subject, identity.expiresAt, now),
-      env.DB.prepare(`INSERT INTO users(id,email,name,display_name,role,password_hash,active,status,baogia_subject,baogia_username,failed_attempts,created_at,updated_at,last_login_at)
-        VALUES(?1,?2,?3,?3,'super-admin','!baogia-sso!',1,'active',?4,?5,0,?6,?6,?6)
+      env.DB.prepare(`INSERT INTO users(id,email,name,display_name,role,active,status,baogia_subject,baogia_username,failed_attempts,created_at,updated_at,last_login_at)
+        VALUES(?1,?2,?3,?3,'super-admin',1,'active',?4,?5,0,?6,?6,?6)
         ON CONFLICT(id) DO UPDATE SET name=excluded.name,display_name=excluded.display_name,role='super-admin',baogia_username=excluded.baogia_username,updated_at=excluded.updated_at,last_login_at=excluded.last_login_at
         WHERE users.baogia_subject=excluded.baogia_subject AND users.active=1 AND users.status='active'`)
         .bind(userId, email, identity.displayName, identity.subject, identity.username, isoNow),

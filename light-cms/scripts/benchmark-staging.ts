@@ -1,10 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
-import { applyAccessSession, readAccessSession } from "./access-session-input";
+import { applySsoSession, readSsoSession } from "./sso-session-input";
 
-const baseUrl = process.env.LIGHT_CMS_STAGING_URL || "https://tungphat-light-cms-20260805-0855-staging.pages.dev";
-const accessSession = readAccessSession(process.env, "ADMIN");
-type Sample = { route: string; method: string; status: number; wallMs: number; responseBytes: number; d1Queries: number; jwksCache: string; jwksFetches: number; error?: string };
+const baseUrl = process.env.LIGHT_CMS_STAGING_URL || "https://cms.mdftungphat.com";
+const ssoSession = readSsoSession(process.env);
+type Sample = { route: string; method: string; status: number; wallMs: number; responseBytes: number; d1Queries: number; error?: string };
 const samples: Sample[] = [];
 
 class Client {
@@ -12,18 +12,18 @@ class Client {
   async call<T>(route: string, init: RequestInit = {}, expected = 200): Promise<T> {
     const started = performance.now(); const method = (init.method || "GET").toUpperCase(); const headers = new Headers(init.headers);
     if (init.body && typeof init.body === "string") headers.set("Content-Type", "application/json");
-    applyAccessSession(headers, accessSession);
+    applySsoSession(headers, ssoSession);
     if (!["GET", "HEAD", "OPTIONS"].includes(method)) { headers.set("Origin", baseUrl); if (this.csrf) headers.set("X-CSRF-Token", this.csrf); }
     let response: Response | null = null; let text = "";
     try {
       response = await fetch(`${baseUrl}${route}`, { ...init, headers }); text = await response.text();
       const parsed = text ? JSON.parse(text) as { ok?: boolean; data?: T; error?: { message?: string } } : {};
       const ok = response.status === expected;
-      samples.push({ route, method, status: response.status, wallMs: performance.now() - started, responseBytes: new TextEncoder().encode(text).byteLength, d1Queries: Number(response.headers.get("X-D1-Query-Count") || 0), jwksCache: response.headers.get("X-Access-JWKS-Cache") || "none", jwksFetches: Number(response.headers.get("X-Access-JWKS-Fetches") || 0), ...(ok ? {} : { error: parsed.error?.message || text.slice(0, 180) }) });
+      samples.push({ route, method, status: response.status, wallMs: performance.now() - started, responseBytes: new TextEncoder().encode(text).byteLength, d1Queries: Number(response.headers.get("X-D1-Query-Count") || 0), ...(ok ? {} : { error: parsed.error?.message || text.slice(0, 180) }) });
       if (!ok) throw new Error(`${method} ${route}: ${response.status}`);
       return (parsed.data === undefined ? parsed : parsed.data) as T;
     } catch (error) {
-      if (!response) samples.push({ route, method, status: 0, wallMs: performance.now() - started, responseBytes: 0, d1Queries: 0, jwksCache: "none", jwksFetches: 0, error: String(error) });
+      if (!response) samples.push({ route, method, status: 0, wallMs: performance.now() - started, responseBytes: 0, d1Queries: 0, error: String(error) });
       throw error;
     }
   }
@@ -62,8 +62,7 @@ try {
 
 const byRoute = new Map<string, Sample[]>(); for (const sample of samples) byRoute.set(sample.route, [...(byRoute.get(sample.route) || []), sample]);
 const percentile = (values: number[], p: number) => { const sorted = [...values].sort((a, b) => a - b); return sorted[Math.min(sorted.length - 1, Math.floor((sorted.length - 1) * p))] || 0; };
-const routeStats = Object.fromEntries([...byRoute.entries()].map(([route, routeSamples]) => { const walls = routeSamples.map((sample) => sample.wallMs); return [route, { count: routeSamples.length, wallP50: percentile(walls, .5), wallP95: percentile(walls, .95), wallP99: percentile(walls, .99), wallMax: Math.max(...walls), maxD1Queries: Math.max(...routeSamples.map((sample) => sample.d1Queries)), jwksCache: Object.fromEntries([...new Set(routeSamples.map((sample) => sample.jwksCache))].map((status) => [status, routeSamples.filter((sample) => sample.jwksCache === status).length])), maxJwksFetches: Math.max(...routeSamples.map((sample) => sample.jwksFetches)), statuses: Object.fromEntries([...new Set(routeSamples.map((sample) => sample.status))].map((status) => [status, routeSamples.filter((sample) => sample.status === status).length])) }]; }));
-const jwksCacheMetrics = Object.fromEntries([...new Set(samples.map((sample) => sample.jwksCache))].map((status) => [status, samples.filter((sample) => sample.jwksCache === status).length]));
-const report = { generatedAt: new Date().toISOString(), baseUrl, requests: samples.length, errors: samples.filter((sample) => sample.status >= 500 || sample.status === 0).length, worker1102: null, cpu: null, jwksCacheMetrics, maxJwksFetches: Math.max(...samples.map((sample) => sample.jwksFetches)), routeStats, samples };
+const routeStats = Object.fromEntries([...byRoute.entries()].map(([route, routeSamples]) => { const walls = routeSamples.map((sample) => sample.wallMs); return [route, { count: routeSamples.length, wallP50: percentile(walls, .5), wallP95: percentile(walls, .95), wallP99: percentile(walls, .99), wallMax: Math.max(...walls), maxD1Queries: Math.max(...routeSamples.map((sample) => sample.d1Queries)), statuses: Object.fromEntries([...new Set(routeSamples.map((sample) => sample.status))].map((status) => [status, routeSamples.filter((sample) => sample.status === status).length])) }]; }));
+const report = { generatedAt: new Date().toISOString(), baseUrl, auth: "baogia-sso-cms-session", requests: samples.length, errors: samples.filter((sample) => sample.status >= 500 || sample.status === 0).length, worker1102: null, cpu: null, routeStats, samples };
 const output = path.resolve(import.meta.dirname, "../output/benchmark"); fs.mkdirSync(output, { recursive: true }); fs.writeFileSync(path.join(output, "benchmark.json"), JSON.stringify(report, null, 2));
 console.log(JSON.stringify({ requests: report.requests, errors: report.errors, routes: Object.keys(routeStats).length }, null, 2)); if (report.errors > 0) process.exitCode = 1;

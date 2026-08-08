@@ -18,13 +18,15 @@ describe("Decap to Light CMS source analysis", () => {
     const database = new DatabaseSync(":memory:");
     database.exec(fs.readFileSync(new URL("../migrations/0001_light_cms.sql", import.meta.url), "utf8"));
     database.exec(fs.readFileSync(new URL("../migrations/0002_access_identity.sql", import.meta.url), "utf8"));
+    database.exec(fs.readFileSync(new URL("../migrations/0003_baogia_sso.sql", import.meta.url), "utf8"));
+    database.exec(fs.readFileSync(new URL("../migrations/0004_remove_password_runtime.sql", import.meta.url), "utf8"));
     database.exec(buildMigrationSql(analyzeSource()));
-    expect(database.prepare("SELECT active,status,access_subject,password_hash FROM users WHERE id='light-cms-migration'").get()).toEqual({
+    expect(database.prepare("SELECT active,status,access_subject FROM users WHERE id='light-cms-migration'").get()).toEqual({
       active: 0,
       status: "disabled",
       access_subject: null,
-      password_hash: "!access-only!",
     });
+    expect(database.prepare("PRAGMA table_info(users)").all().map((column) => String(column.name))).not.toContain("password_hash");
   });
 
   it("enforces unique Baogia subjects and one-time assertion identifiers", () => {
@@ -32,8 +34,9 @@ describe("Decap to Light CMS source analysis", () => {
     database.exec(fs.readFileSync(new URL("../migrations/0001_light_cms.sql", import.meta.url), "utf8"));
     database.exec(fs.readFileSync(new URL("../migrations/0002_access_identity.sql", import.meta.url), "utf8"));
     database.exec(fs.readFileSync(new URL("../migrations/0003_baogia_sso.sql", import.meta.url), "utf8"));
-    const insertUser = database.prepare(`INSERT INTO users(id,email,name,display_name,role,password_hash,active,status,baogia_subject,created_at,updated_at)
-      VALUES(?,?,?,?,?,'!sso!',1,'active',?,?,?)`);
+    database.exec(fs.readFileSync(new URL("../migrations/0004_remove_password_runtime.sql", import.meta.url), "utf8"));
+    const insertUser = database.prepare(`INSERT INTO users(id,email,name,display_name,role,active,status,baogia_subject,created_at,updated_at)
+      VALUES(?,?,?,?,?,1,'active',?,?,?)`);
     insertUser.run("user-1", "one@baogia.invalid", "One", "One", "super-admin", "subject-1", "2026-08-09", "2026-08-09");
     expect(() => insertUser.run("user-2", "two@baogia.invalid", "Two", "Two", "super-admin", "subject-1", "2026-08-09", "2026-08-09")).toThrow(/UNIQUE/u);
 

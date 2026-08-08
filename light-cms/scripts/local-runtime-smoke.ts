@@ -33,7 +33,7 @@ try {
   }
   const d1Output = execFileSync(wrangler, [
     "d1", "execute", database, "--local", "--persist-to", state, "--config", config,
-    "--command", "SELECT (SELECT COUNT(*) FROM content_records) AS records,(SELECT COUNT(*) FROM settings_records) AS settings,(SELECT COUNT(*) FROM media) AS media,(SELECT COUNT(*) FROM versions) AS versions; SELECT active,status,access_subject,password_hash FROM users WHERE id='light-cms-migration';",
+    "--command", "SELECT (SELECT COUNT(*) FROM content_records) AS records,(SELECT COUNT(*) FROM settings_records) AS settings,(SELECT COUNT(*) FROM media) AS media,(SELECT COUNT(*) FROM versions) AS versions; SELECT active,status,access_subject FROM users WHERE id='light-cms-migration';",
     "--json",
   ], { cwd: root, encoding: "utf8" });
   const d1 = JSON.parse(d1Output) as Array<{ results: Array<Record<string, unknown>> }>;

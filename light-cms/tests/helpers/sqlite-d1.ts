@@ -6,6 +6,7 @@ export function createSqliteD1() {
   sqlite.exec(fs.readFileSync(new URL("../../migrations/0001_light_cms.sql", import.meta.url), "utf8"));
   sqlite.exec(fs.readFileSync(new URL("../../migrations/0002_access_identity.sql", import.meta.url), "utf8"));
   sqlite.exec(fs.readFileSync(new URL("../../migrations/0003_baogia_sso.sql", import.meta.url), "utf8"));
+  sqlite.exec(fs.readFileSync(new URL("../../migrations/0004_remove_password_runtime.sql", import.meta.url), "utf8"));
   const prepare = (sql: string) => {
     let values: SQLInputValue[] = [];
     const statement = {

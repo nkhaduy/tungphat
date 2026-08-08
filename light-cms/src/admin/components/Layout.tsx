@@ -18,7 +18,7 @@ export function Layout({ user, route, onRoute, onLogout, children }: { user: Adm
   return <div className="app-shell">
     <aside id="admin-sidebar" className={open ? "sidebar is-open" : "sidebar"} aria-label="Điều hướng quản trị">
       <div className="brand-lockup"><img src="/logo-horizontal.png" alt="Tùng Phát" /><span>LIGHT CMS TÙNG PHÁT</span></div>
-      <nav aria-label="Điều hướng chính">{nav.map(([key, label]) => <button key={key} type="button" className={route === key ? "nav-link active" : "nav-link"} onClick={() => { onRoute(key); setOpen(false); }}><NavIcon route={key} /><span>{label}</span></button>)}</nav>
+      <nav aria-label="Điều hướng chính">{nav.map(([key, label]) => <button key={key} type="button" aria-label={label} className={route === key ? "nav-link active" : "nav-link"} onClick={() => { onRoute(key); setOpen(false); }}><NavIcon route={key} /><span>{label}</span></button>)}</nav>
       <div className="sidebar-user"><div className="avatar" aria-hidden="true">{user.name.slice(0, 1).toUpperCase()}</div><div><strong>{user.name}</strong><span>{roleLabels[user.role]}</span></div><button type="button" className="icon-button" onClick={onLogout} aria-label="Đăng xuất"><LogOut size={18} /></button></div>
     </aside>
     {open ? <button type="button" className="sidebar-backdrop" aria-label="Đóng menu" onClick={() => setOpen(false)} /> : null}

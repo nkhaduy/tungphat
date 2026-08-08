@@ -17,8 +17,8 @@
     "worker:production:dry-run": "wrangler deploy --dry-run --config wrangler.worker.production.jsonc",
     "worker:production:deploy": "wrangler deploy --config wrangler.worker.production.jsonc",
     "runtime:local-smoke": "tsx scripts/local-runtime-smoke.ts",
-    "benchmark:access-local": "tsx scripts/benchmark-access-local.ts",
-    "scan:access-bundle": "tsx scripts/scan-access-bundle.ts dist .wrangler/access-bundle",
+    "benchmark:sso-local": "tsx scripts/benchmark-sso-local.ts",
+    "scan:sso-bundle": "wrangler deploy --dry-run --outdir .wrangler/sso-bundle --config wrangler.worker.production.jsonc && tsx scripts/scan-sso-bundle.ts dist .wrangler/sso-bundle",
     "pages:dev": "wrangler pages dev dist --config wrangler.pages.jsonc",
     "pages:production:deploy": "cd deploy/production-pages && wrangler pages deploy ../../dist --project-name tungphat-light-cms-production --branch main --commit-dirty=true",
     "d1:local": "wrangler d1 migrations apply tungphat-light-cms-20260805-0855-staging --local --config wrangler.worker.jsonc"

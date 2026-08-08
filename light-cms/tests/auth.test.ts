@@ -57,8 +57,8 @@ describe("Light CMS authentication", () => {
 
   it("rejects tampered, expired, revoked, and disabled-user sessions", async () => {
     const { db, sqlite } = createSqliteD1();
-    sqlite.prepare(`INSERT INTO users(id,email,name,display_name,role,password_hash,active,status,created_at,updated_at)
-      VALUES('user-1','admin@example.com','Admin','Admin','super-admin','!sso!',1,'active','2026-08-09T00:00:00.000Z','2026-08-09T00:00:00.000Z')`).run();
+    sqlite.prepare(`INSERT INTO users(id,email,name,display_name,role,active,status,created_at,updated_at)
+      VALUES('user-1','admin@example.com','Admin','Admin','super-admin',1,'active','2026-08-09T00:00:00.000Z','2026-08-09T00:00:00.000Z')`).run();
     const created = await createSession({ DB: db, SESSION_SECRET: "s".repeat(32), COOKIE_SECURE: true }, { id: "user-1", email: "admin@example.com", role: "super-admin" }, 1_700_000_000);
     const cookie = created.cookie.split(";")[0];
     const request = new Request("https://cms.mdftungphat.com/api/auth/session", { headers: { Cookie: cookie } });

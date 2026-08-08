@@ -8,9 +8,9 @@ export function buildMigrationSql(analysis: SourceAnalysis) {
   const now = analysis.generatedAt;
   const sql: string[] = [
     "PRAGMA foreign_keys=ON;",
-    `INSERT INTO users(id,email,name,display_name,role,password_hash,active,status,access_subject,created_at,updated_at)
-VALUES(${quote(actor)},'migration@staging.invalid','Light CMS Migration','Light CMS Migration','super-admin','!access-only!',0,'disabled',NULL,${quote(now)},${quote(now)})
-ON CONFLICT(id) DO UPDATE SET name=excluded.name,display_name=excluded.display_name,password_hash=excluded.password_hash,active=0,status='disabled',access_subject=NULL,updated_at=excluded.updated_at;`,
+    `INSERT INTO users(id,email,name,display_name,role,active,status,access_subject,created_at,updated_at)
+VALUES(${quote(actor)},'migration@staging.invalid','Light CMS Migration','Light CMS Migration','super-admin',0,'disabled',NULL,${quote(now)},${quote(now)})
+ON CONFLICT(id) DO UPDATE SET name=excluded.name,display_name=excluded.display_name,active=0,status='disabled',access_subject=NULL,updated_at=excluded.updated_at;`,
   ];
   for (const record of analysis.records) {
     const id = `${record.collection}-${record.slug}`;

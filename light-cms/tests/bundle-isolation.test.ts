@@ -1,16 +1,29 @@
 import { describe, expect, it } from "vitest";
-import { scanAccessBundleText } from "../scripts/scan-access-bundle";
+import { scanSsoBundleText } from "../scripts/scan-sso-bundle";
 
-describe("Access staging bundle isolation", () => {
-  it("flags password authentication and PBKDF2 code in a production bundle", () => {
-    expect(scanAccessBundleText("crypto.subtle.deriveBits({ name: 'PBKDF2' }); /api/auth/login tp_light_session")).toEqual([
-      "PBKDF2",
+describe("Baogia SSO staging bundle isolation", () => {
+  it("flags Access and password authentication markers in production artifacts", () => {
+    expect(scanSsoBundleText("Cf-Access-Jwt-Assertion ACCESS_AUD /cdn-cgi/access PBKDF2 /api/auth/login password_hash Mật khẩu").forbidden).toEqual([
+      "Cf-Access-Jwt-Assertion",
+      "ACCESS_AUD",
+      "/cdn-cgi/access",
       "/api/auth/login",
-      "tp_light_session",
+      "PBKDF2",
+      "password_hash",
+      "Mật khẩu",
     ]);
   });
 
-  it("accepts a bundle containing only Access JWT authentication", () => {
-    expect(scanAccessBundleText("Cf-Access-Jwt-Assertion RSASSA-PKCS1-v1_5 /api/auth/session")).toEqual([]);
+  it("requires SSO callback, ES256 verification, CSRF, and session revocation", () => {
+    expect(scanSsoBundleText("ordinary application bundle").missing).toEqual([
+      "/api/auth/sso/callback",
+      "ES256",
+      "X-CSRF-Token",
+      "UPDATE sessions SET revoked_at",
+    ]);
+  });
+
+  it("accepts a complete Baogia SSO Worker and SPA artifact set", () => {
+    expect(scanSsoBundleText("/api/auth/sso/callback ES256 X-CSRF-Token UPDATE sessions SET revoked_at")).toEqual({ forbidden: [], missing: [] });
   });
 });

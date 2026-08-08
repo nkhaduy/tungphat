@@ -71,20 +71,20 @@
   },
   "suites": [
     {
-      "title": "ui-accessibility.spec.ts",
-      "file": "ui-accessibility.spec.ts",
+      "title": "sso.spec.ts",
+      "file": "sso.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Light CMS identity UI",
-          "file": "ui-accessibility.spec.ts",
-          "line": 26,
+          "title": "Baogia SSO entry and logout",
+          "file": "sso.spec.ts",
+          "line": 4,
           "column": 6,
           "specs": [
             {
-              "title": "unauthenticated screen exposes only Cloudflare Access login",
+              "title": "logged-out startup navigates to the same-origin SSO start route",
               "ok": true,
               "tags": [],
               "tests": [
@@ -99,12 +99,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2413,
+                      "duration": 918,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T17:23:33.799Z",
+                      "startTime": "2026-08-08T20:12:48.354Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -112,11 +112,96 @@
                   "status": "expected"
                 }
               ],
-              "id": "24daab1d49704ab9eb2d-14c40730b04a4fb4f471",
-              "file": "ui-accessibility.spec.ts",
-              "line": 27,
+              "id": "ddfd9b00dc423c089564-b8f6ddbaddd8c3af5fa0",
+              "file": "sso.spec.ts",
+              "line": 5,
               "column": 7
             },
+            {
+              "title": "failed SSO shows the Baogia-branded retry screen without credentials",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1570,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-08T20:12:51.133Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ddfd9b00dc423c089564-e4b594fce32c4db9339a",
+              "file": "sso.spec.ts",
+              "line": 14,
+              "column": 7
+            },
+            {
+              "title": "CMS logout revokes only the CMS session and stays on the canonical origin",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1095,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-08T20:12:52.723Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ddfd9b00dc423c089564-3915806efc7860dd0de3",
+              "file": "sso.spec.ts",
+              "line": 25,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui-accessibility.spec.ts",
+      "file": "ui-accessibility.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Light CMS Baogia identity UI",
+          "file": "ui-accessibility.spec.ts",
+          "line": 27,
+          "column": 6,
+          "specs": [
             {
               "title": "dashboard and navigation are usable at desktop",
               "ok": true,
@@ -133,12 +218,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4391,
+                      "duration": 3694,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T17:23:37.967Z",
+                      "startTime": "2026-08-08T20:12:53.860Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -146,9 +231,9 @@
                   "status": "expected"
                 }
               ],
-              "id": "24daab1d49704ab9eb2d-0615f92f2551a0cdda99",
+              "id": "24daab1d49704ab9eb2d-41295909e90c517714fd",
               "file": "ui-accessibility.spec.ts",
-              "line": 41,
+              "line": 34,
               "column": 9
             },
             {
@@ -167,12 +252,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3562,
+                      "duration": 3541,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T17:23:42.380Z",
+                      "startTime": "2026-08-08T20:12:57.585Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -180,9 +265,9 @@
                   "status": "expected"
                 }
               ],
-              "id": "24daab1d49704ab9eb2d-89cfea4631401fc7622a",
+              "id": "24daab1d49704ab9eb2d-6ee2b7ff60604495a763",
               "file": "ui-accessibility.spec.ts",
-              "line": 41,
+              "line": 34,
               "column": 9
             },
             {
@@ -201,12 +286,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3322,
+                      "duration": 4181,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T17:23:45.964Z",
+                      "startTime": "2026-08-08T20:13:01.150Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -214,9 +299,9 @@
                   "status": "expected"
                 }
               ],
-              "id": "24daab1d49704ab9eb2d-fdee239533b69b33cc14",
+              "id": "24daab1d49704ab9eb2d-68b46973fac0543b050e",
               "file": "ui-accessibility.spec.ts",
-              "line": 41,
+              "line": 34,
               "column": 9
             },
             {
@@ -235,12 +320,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3251,
+                      "duration": 4147,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T17:23:49.306Z",
+                      "startTime": "2026-08-08T20:13:05.353Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -248,9 +333,9 @@
                   "status": "expected"
                 }
               ],
-              "id": "24daab1d49704ab9eb2d-f35e347b3cf27165a7ff",
+              "id": "24daab1d49704ab9eb2d-d704d1fde377a02675c1",
               "file": "ui-accessibility.spec.ts",
-              "line": 41,
+              "line": 34,
               "column": 9
             },
             {
@@ -269,12 +354,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1877,
+                      "duration": 1553,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T17:23:52.574Z",
+                      "startTime": "2026-08-08T20:13:09.520Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -282,9 +367,9 @@
                   "status": "expected"
                 }
               ],
-              "id": "24daab1d49704ab9eb2d-0e1e54d4277032f3ade7",
+              "id": "24daab1d49704ab9eb2d-7a52847176c7c434ae46",
               "file": "ui-accessibility.spec.ts",
-              "line": 74,
+              "line": 67,
               "column": 7
             }
           ]
@@ -294,9 +379,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-08-08T17:23:26.411Z",
-    "duration": 28333.211000000003,
-    "expected": 6,
+    "startTime": "2026-08-08T20:12:40.903Z",
+    "duration": 44580.975,
+    "expected": 8,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0
