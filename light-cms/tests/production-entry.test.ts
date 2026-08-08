@@ -2,26 +2,36 @@ import { describe, expect, it } from "vitest";
 import { onRequest } from "../functions/index";
 
 describe("production admin entry", () => {
-  it("redirects the external-DNS custom hostname to the Access-protected Pages hostname", async () => {
-    const next = () => Promise.resolve(new Response("asset"));
+  it("serves the canonical custom hostname without changing the URL", async () => {
+    let calls = 0;
     const response = await onRequest({
-      request: new Request("https://cms.mdftungphat.com/"),
-      env: { ACCESS_ADMIN_ORIGIN: "https://tungphat-light-cms-production.pages.dev" },
-      next,
+      request: new Request("https://cms.mdftungphat.com/anything?x=1"),
+      env: {},
+      next: () => { calls += 1; return Promise.resolve(new Response("asset")); },
     } as never);
 
-    expect(response.status).toBe(302);
-    expect(response.headers.get("Location")).toBe("https://tungphat-light-cms-production.pages.dev/");
-    expect(response.headers.get("Cache-Control")).toBe("no-store");
+    expect(calls).toBe(1);
+    expect(await response.text()).toBe("asset");
   });
 
-  it("serves the SPA normally on the Access-protected Pages hostname", async () => {
+  it("redirects only the production Pages hostname to the canonical custom hostname", async () => {
     const response = await onRequest({
-      request: new Request("https://tungphat-light-cms-production.pages.dev/"),
-      env: { ACCESS_ADMIN_ORIGIN: "https://tungphat-light-cms-production.pages.dev" },
+      request: new Request("https://tungphat-light-cms-production.pages.dev/anything?x=1"),
+      env: {},
       next: () => Promise.resolve(new Response("asset")),
     } as never);
 
-    expect(await response.text()).toBe("asset");
+    expect(response.status).toBe(308);
+    expect(response.headers.get("Location")).toBe("https://cms.mdftungphat.com/anything?x=1");
+    expect(response.headers.get("Cache-Control")).toBe("no-store");
+  });
+
+  it("serves preview branch hostnames normally", async () => {
+    const response = await onRequest({
+      request: new Request("https://preview-branch.tungphat-light-cms-production.pages.dev/"),
+      env: {},
+      next: () => Promise.resolve(new Response("preview")),
+    } as never);
+    expect(await response.text()).toBe("preview");
   });
 });

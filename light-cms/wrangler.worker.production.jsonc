@@ -8,10 +8,10 @@
   "vars": {
     "ENVIRONMENT": "production",
     "SERVICE_NAME": "tungphat-light-cms-api-production",
-    "ALLOWED_ORIGINS": "https://tungphat-light-cms-production.pages.dev,https://cms.mdftungphat.com",
-    "ACCESS_ISSUER": "https://broken-river-6fe3.cloudflareaccess.com",
-    "ACCESS_AUD": "425f831d635f338ccd1ae478e177399fad5e572170c08c52955fa19ec8706d51",
-    "COOKIE_SECURE": "true"
+    "ALLOWED_ORIGINS": "https://cms.mdftungphat.com",
+    "BAOGIA_SSO_ISSUER": "https://baogia.mdftungphat.com",
+    "BAOGIA_SSO_AUD": "tungphat-light-cms",
+    "BAOGIA_SSO_KEY_ID": "baogia-cms-2026-08"
   },
   "d1_databases": [
     { "binding": "DB", "database_name": "tungphat-light-cms-production", "database_id": "c46b5fa3-6db7-4de4-b797-99fc07158506", "migrations_dir": "migrations" }

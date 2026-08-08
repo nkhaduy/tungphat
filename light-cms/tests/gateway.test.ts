@@ -5,25 +5,29 @@ function context(request: Request, fetcher: (request: Request) => Promise<Respon
   return { request, env: { LIGHT_CMS_API: { fetch: fetcher }, LEGACY_CMS_ORIGIN: legacyOrigin } } as unknown as Parameters<typeof onRequest>[0];
 }
 
-describe("Pages same-origin Access gateway", () => {
+describe("Pages same-origin SSO gateway", () => {
   afterEach(() => vi.unstubAllGlobals());
 
-  it("forwards the Access JWT and cookie while stripping unverified identity headers", async () => {
+  it("preserves the CMS session while stripping every browser-supplied identity header", async () => {
     const upstream: Request[] = [];
     await onRequest(context(new Request("https://staging.example/api/dashboard", { headers: {
       "Cf-Access-Jwt-Assertion": "signed.jwt.token",
       "Cf-Access-Authenticated-User-Email": "forged@example.com",
       "X-Auth-Request-Email": "forged@example.com",
       "X-Forwarded-Email": "forged@example.com",
-      Cookie: "CF_Authorization=opaque",
+      "X-Baogia-User": "admin",
+      "X-Light-CMS-Internal-User": "admin",
+      Cookie: "CF_Authorization=opaque; tp_light_session=signed-session",
     } }), async (request) => { upstream.push(request); return new Response("ok"); }));
     expect(upstream).toHaveLength(1);
     const forwarded = upstream[0];
-    expect(forwarded.headers.get("Cf-Access-Jwt-Assertion")).toBe("signed.jwt.token");
-    expect(forwarded.headers.get("Cookie")).toBe("CF_Authorization=opaque");
+    expect(forwarded.headers.get("Cf-Access-Jwt-Assertion")).toBeNull();
+    expect(forwarded.headers.get("Cookie")).toBe("tp_light_session=signed-session");
     expect(forwarded.headers.get("Cf-Access-Authenticated-User-Email")).toBeNull();
     expect(forwarded.headers.get("X-Auth-Request-Email")).toBeNull();
     expect(forwarded.headers.get("X-Forwarded-Email")).toBeNull();
+    expect(forwarded.headers.get("X-Baogia-User")).toBeNull();
+    expect(forwarded.headers.get("X-Light-CMS-Internal-User")).toBeNull();
     expect(forwarded.headers.get("X-Light-CMS-Gateway")).toBe("pages-staging");
   });
 
@@ -62,6 +66,21 @@ describe("Pages same-origin Access gateway", () => {
     expect(lightCalls).toBe(1);
     expect(legacyFetch).not.toHaveBeenCalled();
     expect(await response.text()).toBe("light");
+  });
+
+  it("keeps both SSO endpoints on the service binding", async () => {
+    const legacyFetch = vi.fn(async () => new Response("legacy"));
+    vi.stubGlobal("fetch", legacyFetch);
+    let lightCalls = 0;
+    for (const path of ["/api/auth/sso/start", "/api/auth/sso/callback"]) {
+      const response = await onRequest(context(new Request(`https://cms.mdftungphat.com${path}`), async () => {
+        lightCalls += 1;
+        return new Response("light");
+      }, "https://immutable-legacy.pages.dev"));
+      expect(await response.text()).toBe("light");
+    }
+    expect(lightCalls).toBe(2);
+    expect(legacyFetch).not.toHaveBeenCalled();
   });
 
   it("proxies non-Light APIs to the immutable legacy origin without leaking Access credentials", async () => {

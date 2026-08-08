@@ -3,6 +3,8 @@ import { cloneGatewayRequest, gatewayHeaders, proxyLegacyRequest } from "../_sha
 interface PagesEnv { LIGHT_CMS_API: Fetcher; LEGACY_CMS_ORIGIN?: string; LIGHT_CMS_GATEWAY?: string }
 
 const lightCmsPrefixes = [
+  "/api/auth/sso/start",
+  "/api/auth/sso/callback",
   "/api/auth/session",
   "/api/auth/logout",
   "/api/dashboard",
@@ -30,5 +32,5 @@ export const onRequest: PagesFunction<PagesEnv> = async ({ request, env }) => {
   if (env.LEGACY_CMS_ORIGIN && !isLightCmsPath(url.pathname)) {
     return proxyLegacyRequest(request, env.LEGACY_CMS_ORIGIN, gateway);
   }
-  return env.LIGHT_CMS_API.fetch(cloneGatewayRequest(request, request.url, gatewayHeaders(request, gateway, true)));
+  return env.LIGHT_CMS_API.fetch(cloneGatewayRequest(request, request.url, gatewayHeaders(request, gateway)));
 };

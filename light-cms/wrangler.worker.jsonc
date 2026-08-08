@@ -9,9 +9,9 @@
     "ENVIRONMENT": "staging",
     "SERVICE_NAME": "tungphat-light-cms-api-20260805-0855-staging",
     "ALLOWED_ORIGINS": "https://tungphat-light-cms-20260805-0855-staging.pages.dev",
-    "ACCESS_ISSUER": "https://broken-river-6fe3.cloudflareaccess.com",
-    "ACCESS_AUD": "398a4dda22dbf233412e6576851cb9e647763df596c8e7440dc90c002bf7d8de",
-    "COOKIE_SECURE": "true"
+    "BAOGIA_SSO_ISSUER": "https://baogia.mdftungphat.com",
+    "BAOGIA_SSO_AUD": "tungphat-light-cms",
+    "BAOGIA_SSO_KEY_ID": "baogia-cms-2026-08"
   },
   "d1_databases": [
     { "binding": "DB", "database_name": "tungphat-light-cms-20260805-0855-staging", "database_id": "746333af-3306-4567-9f56-636c6fb1966b", "migrations_dir": "migrations" }

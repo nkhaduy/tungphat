@@ -4,7 +4,6 @@
   "pages_build_output_dir": "../../dist",
   "compatibility_date": "2026-08-08",
   "vars": {
-    "ACCESS_ADMIN_ORIGIN": "https://tungphat-light-cms-production.pages.dev",
     "LEGACY_CMS_ORIGIN": "https://d9e520d2.tungphat-cms.pages.dev",
     "LIGHT_CMS_GATEWAY": "pages-production"
   },
