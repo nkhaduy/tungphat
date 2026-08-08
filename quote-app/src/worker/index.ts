@@ -21,10 +21,11 @@ import {
   requireAdmin,
   requireMutation,
   requirePasswordChanged,
+  resolveAuthenticatedUser,
   sessionInfo,
   type AppBindings,
 } from "./auth";
-import { HttpError } from "./http";
+import { HttpError, noStore } from "./http";
 import { listCustomersHandler } from "./customers";
 import { downloadVersionHandler, exportPdfHandler, listVersionsHandler } from "./pdf";
 import {
@@ -39,8 +40,9 @@ import {
   updateQuoteHandler,
 } from "./quotes";
 import { getSettings, getSettingsHandler, serveLogoHandler, updateSettingsHandler, uploadLogoHandler } from "./settings";
+import { CMS_SSO_CALLBACK, cmsSsoForm, signCmsAssertion } from "./sso";
 
-const app = new Hono<AppBindings>();
+export const app = new Hono<AppBindings>();
 
 app.use("/api/*", bodyLimit({
   maxSize: 3 * 1024 * 1024,
@@ -61,6 +63,17 @@ app.use("/api/*", async (c, next) => {
 app.get("/api/health", (c) => c.json({ ok: true, service: "tung-phat-quotes" }));
 app.get("/api/auth/csrf", issueLoginCsrf);
 app.post("/api/auth/login", login);
+app.get("/api/auth/sso/cms", async (c) => {
+  noStore(c);
+  const state = c.req.query("state") ?? "";
+  if (!/^[A-Za-z0-9_-]{32,128}$/u.test(state)) throw new HttpError(422, "Yêu cầu đăng nhập CMS không hợp lệ.");
+  const continuation = `/api/auth/sso/cms?state=${state}`;
+  const resolved = await resolveAuthenticatedUser(c.req.raw, c.env);
+  if (!resolved) return c.redirect(`/login?returnTo=${encodeURIComponent(continuation)}`, 302);
+  if (resolved.user.mustChangePassword) return c.redirect(`/doi-mat-khau?returnTo=${encodeURIComponent(continuation)}`, 302);
+  if (resolved.user.role !== "ADMIN") throw new HttpError(403, "Bạn chưa được cấp quyền quản trị CMS.");
+  return cmsSsoForm(await signCmsAssertion(resolved.user, c.env), state, CMS_SSO_CALLBACK);
+});
 
 app.use("/api/*", authenticate);
 app.get("/api/auth/session", sessionInfo);

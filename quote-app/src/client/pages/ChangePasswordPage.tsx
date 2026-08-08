@@ -3,6 +3,7 @@ import { useState, type FormEvent } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { api } from "../api";
 import { useAuth } from "../auth";
+import { safeSsoReturn } from "../sso-return";
 
 export function ChangePasswordPage() {
   const { user, refresh } = useAuth();
@@ -12,8 +13,9 @@ export function ChangePasswordPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const returnTo = safeSsoReturn(window.location.search);
 
-  if (!user) return <Navigate to="/login" replace />;
+  if (!user) return <Navigate to={returnTo ? `/login?returnTo=${encodeURIComponent(returnTo)}` : "/login"} replace />;
 
   const submit = async (event: FormEvent) => {
     event.preventDefault();
@@ -29,7 +31,8 @@ export function ChangePasswordPage() {
         body: JSON.stringify({ currentPassword, newPassword }),
       });
       await refresh();
-      void navigate(user.role === "ADMIN" ? "/admin" : "/bao-gia", { replace: true });
+      if (returnTo) window.location.assign(returnTo);
+      else void navigate(user.role === "ADMIN" ? "/admin" : "/bao-gia", { replace: true });
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Không thể đổi mật khẩu.");
     } finally {

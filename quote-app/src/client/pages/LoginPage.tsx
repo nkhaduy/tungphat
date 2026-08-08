@@ -1,8 +1,9 @@
 import { LockKeyhole, UserRound } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { Navigate } from "react-router-dom";
 import { api, setCsrfToken } from "../api";
 import { useAuth } from "../auth";
+import { safeSsoReturn } from "../sso-return";
 import type { SessionUser } from "../../shared/types";
 
 export function LoginPage() {
@@ -11,7 +12,15 @@ export function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  if (user) return <Navigate to={user.mustChangePassword ? "/doi-mat-khau" : user.role === "ADMIN" ? "/admin" : "/bao-gia"} replace />;
+  const returnTo = safeSsoReturn(window.location.search);
+
+  useEffect(() => {
+    if (user && !user.mustChangePassword && returnTo) window.location.assign(returnTo);
+  }, [returnTo, user]);
+
+  if (user?.mustChangePassword) return <Navigate to={returnTo ? `/doi-mat-khau?returnTo=${encodeURIComponent(returnTo)}` : "/doi-mat-khau"} replace />;
+  if (user && !returnTo) return <Navigate to={user.role === "ADMIN" ? "/admin" : "/bao-gia"} replace />;
+  if (user) return <main className="login-page" aria-busy="true" />;
 
   const submit = async (event: FormEvent) => {
     event.preventDefault();

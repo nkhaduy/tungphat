@@ -19,6 +19,7 @@ type TokenPayload = { v: 1; sid: string; csrf: string; iat: number; exp: number 
 type LoginCsrfPayload = { v: 1; token: string; iat: number; exp: number };
 type AuthVariables = { user: SessionUser; csrf: string; sessionHash: string; requestId: string };
 export type AppBindings = { Bindings: QuoteAppEnv; Variables: AuthVariables };
+export type ResolvedSession = { user: SessionUser; csrf: string; sessionHash: string };
 
 async function encodeSigned(payload: TokenPayload | LoginCsrfPayload, secret: string): Promise<string> {
   const encoded = base64UrlEncode(new TextEncoder().encode(JSON.stringify(payload)));
@@ -44,6 +45,11 @@ function cookieOptions(env: QuoteAppEnv, maxAge: number, path = "/") {
     path,
     maxAge,
   };
+}
+
+function requestCookie(request: Request, name: string): string {
+  return (request.headers.get("Cookie") ?? "").split(";").map((part) => part.trim())
+    .find((part) => part.startsWith(`${name}=`))?.slice(name.length + 1) ?? "";
 }
 
 async function loginKeys(request: Request, secret: string, username: string): Promise<[string, string]> {
@@ -157,28 +163,37 @@ function mapSessionUser(row: {
 
 export async function authenticate(c: Context<AppBindings>, next: Next): Promise<void> {
   noStore(c);
-  const token = getCookie(c, SESSION_COOKIE) ?? "";
-  const payload = await decodeSigned<TokenPayload>(token, c.env.SESSION_SECRET);
-  const now = Math.floor(Date.now() / 1000);
-  if (!payload || payload.v !== 1 || payload.exp <= now || payload.iat > now + 60) throw new HttpError(401, "Vui lòng đăng nhập.");
+  const resolved = await resolveAuthenticatedUser(c.req.raw, c.env);
+  if (!resolved) {
+    if (getCookie(c, SESSION_COOKIE)) deleteCookie(c, SESSION_COOKIE, { path: "/" });
+    throw new HttpError(401, "Vui lòng đăng nhập.");
+  }
+  c.set("user", resolved.user);
+  c.set("csrf", resolved.csrf);
+  c.set("sessionHash", resolved.sessionHash);
+  await next();
+}
+
+export async function resolveAuthenticatedUser(
+  request: Request,
+  env: Pick<QuoteAppEnv, "DB" | "SESSION_SECRET">,
+  now = Math.floor(Date.now() / 1000),
+): Promise<ResolvedSession | null> {
+  const token = requestCookie(request, SESSION_COOKIE);
+  const payload = await decodeSigned<TokenPayload>(token, env.SESSION_SECRET);
+  if (!payload || payload.v !== 1 || payload.exp <= now || payload.iat > now + 60) return null;
   const sessionHash = await sha256(payload.sid);
-  const row = await c.env.DB.prepare(`
+  const row = await env.DB.prepare(`
     SELECT u.id, u.username, u.full_name, u.phone, u.role, u.branch_id, u.is_active, u.must_change_password,
            b.code AS branch_code, b.name AS branch_name, s.csrf_hash, s.expires_at
     FROM sessions s JOIN users u ON u.id=s.user_id LEFT JOIN branches b ON b.id=u.branch_id
     WHERE s.id_hash=?1 AND s.expires_at>?2 AND u.deleted_at IS NULL
-  `).bind(sessionHash, new Date().toISOString()).first<{
+  `).bind(sessionHash, new Date(now * 1000).toISOString()).first<{
     id: string; username: string; full_name: string; phone: string; role: "ADMIN" | "EMPLOYEE"; branch_id: string | null;
     is_active: number; must_change_password: number; branch_code: string | null; branch_name: string | null; csrf_hash: string; expires_at: string;
   }>();
-  if (!row || row.is_active !== 1 || !(await constantTimeEqual(row.csrf_hash, await sha256(payload.csrf)))) {
-    deleteCookie(c, SESSION_COOKIE, { path: "/" });
-    throw new HttpError(401, "Phiên đăng nhập không còn hiệu lực.");
-  }
-  c.set("user", mapSessionUser(row));
-  c.set("csrf", payload.csrf);
-  c.set("sessionHash", sessionHash);
-  await next();
+  if (!row || row.is_active !== 1 || !(await constantTimeEqual(row.csrf_hash, await sha256(payload.csrf)))) return null;
+  return { user: mapSessionUser(row), csrf: payload.csrf, sessionHash };
 }
 
 export function sessionInfo(c: Context<AppBindings>): Response {

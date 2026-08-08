@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { SessionUser } from "../src/shared/types";
-import { base64UrlDecode } from "../src/worker/crypto";
+import { app } from "../src/worker/index";
+import { base64UrlDecode, base64UrlEncode, hmac } from "../src/worker/crypto";
 import {
   CMS_SSO_AUDIENCE,
   CMS_SSO_CALLBACK,
@@ -42,11 +43,56 @@ async function keyPair() {
   };
 }
 
+async function quoteSessionCookie(values: { role?: SessionUser["role"]; mustChangePassword?: boolean } = {}) {
+  const nowSeconds = Math.floor(Date.now() / 1000);
+  const payload = { v: 1, sid: "session-id", csrf: "csrf-token", iat: nowSeconds - 10, exp: nowSeconds + 3600 };
+  const encoded = base64UrlEncode(new TextEncoder().encode(JSON.stringify(payload)));
+  return {
+    cookie: `tp_quote_session=${encoded}.${await hmac(encoded, "s".repeat(32))}`,
+    row: {
+      id: "user-admin",
+      username: "admin",
+      full_name: "Quản trị Tùng Phát",
+      phone: "0909259160",
+      role: values.role ?? "ADMIN",
+      branch_id: "branch-tp81",
+      is_active: 1,
+      must_change_password: values.mustChangePassword ? 1 : 0,
+      branch_code: "TP81",
+      branch_name: "Chi nhánh Tam Bình",
+      csrf_hash: await crypto.subtle.digest("SHA-256", new TextEncoder().encode("csrf-token")).then((bytes) => Array.from(new Uint8Array(bytes), (byte) => byte.toString(16).padStart(2, "0")).join("")),
+      expires_at: new Date((nowSeconds + 3600) * 1000).toISOString(),
+    },
+  };
+}
+
+async function routeEnv(row: Record<string, unknown> | null = null) {
+  const { privateJwk } = await keyPair();
+  return {
+    DB: {
+      prepare() {
+        return {
+          bind() {
+            return { first: () => Promise.resolve(row) };
+          },
+        };
+      },
+    },
+    ASSETS: { fetch: () => Promise.resolve(new Response("asset")) },
+    PDF_BUCKET: {},
+    ENVIRONMENT: "test",
+    APP_ORIGIN: "https://baogia.mdftungphat.com",
+    TIMEZONE: "Asia/Ho_Chi_Minh",
+    SESSION_SECRET: "s".repeat(32),
+    CMS_SSO_PRIVATE_JWK: JSON.stringify(privateJwk),
+  };
+}
+
 describe("Baogia Light CMS SSO assertion", () => {
   it("signs a 30-second ES256 assertion for an active admin", async () => {
     const { privateJwk, publicKey } = await keyPair();
 
-    const assertion = await signCmsAssertion(admin, { CMS_SSO_PRIVATE_JWK: JSON.stringify(privateJwk) } as QuoteAppEnv, now);
+    const assertion = await signCmsAssertion(admin, { CMS_SSO_PRIVATE_JWK: JSON.stringify(privateJwk) }, now);
     const parts = assertion.split(".");
 
     expect(parts).toHaveLength(3);
@@ -75,13 +121,13 @@ describe("Baogia Light CMS SSO assertion", () => {
 
   it("refuses to mint a CMS assertion for an employee", async () => {
     const { privateJwk } = await keyPair();
-    await expect(signCmsAssertion({ ...admin, role: "EMPLOYEE" }, { CMS_SSO_PRIVATE_JWK: JSON.stringify(privateJwk) } as QuoteAppEnv, now))
+    await expect(signCmsAssertion({ ...admin, role: "EMPLOYEE" }, { CMS_SSO_PRIVATE_JWK: JSON.stringify(privateJwk) }, now))
       .rejects.toMatchObject({ status: 403 });
   });
 
   it("fails closed when the signing key is missing or malformed", async () => {
-    await expect(signCmsAssertion(admin, { CMS_SSO_PRIVATE_JWK: "" } as QuoteAppEnv, now)).rejects.toMatchObject({ status: 503 });
-    await expect(signCmsAssertion(admin, { CMS_SSO_PRIVATE_JWK: "not-json" } as QuoteAppEnv, now)).rejects.toMatchObject({ status: 503 });
+    await expect(signCmsAssertion(admin, { CMS_SSO_PRIVATE_JWK: "" }, now)).rejects.toMatchObject({ status: 503 });
+    await expect(signCmsAssertion(admin, { CMS_SSO_PRIVATE_JWK: "not-json" }, now)).rejects.toMatchObject({ status: 503 });
   });
 
   it("returns a no-store form post to the fixed CMS callback", async () => {
@@ -95,5 +141,59 @@ describe("Baogia Light CMS SSO assertion", () => {
     expect(html).toContain(`action="${CMS_SSO_CALLBACK}"`);
     expect(html).toContain('name="assertion" value="header.payload.signature"');
     expect(html).toContain('name="state" value="state_abcdefghijklmnopqrstuvwxyz123456"');
+  });
+
+  it("redirects an unauthenticated SSO request to the Baogia login page", async () => {
+    const state = "abcdefghijklmnopqrstuvwxyzABCDEF123456";
+    const response = await app.request(
+      new Request(`https://baogia.mdftungphat.com/api/auth/sso/cms?state=${state}`),
+      undefined,
+      await routeEnv(),
+    );
+
+    expect(response.status).toBe(302);
+    expect(response.headers.get("Location")).toBe(`/login?returnTo=${encodeURIComponent(`/api/auth/sso/cms?state=${state}`)}`);
+    expect(response.headers.get("Cache-Control")).toBe("no-store, private");
+  });
+
+  it("denies employees and forced-password accounts before assertion issuance", async () => {
+    const state = "abcdefghijklmnopqrstuvwxyzABCDEF123456";
+    const employee = await quoteSessionCookie({ role: "EMPLOYEE" });
+    const denied = await app.request(
+      new Request(`https://baogia.mdftungphat.com/api/auth/sso/cms?state=${state}`, { headers: { Cookie: employee.cookie } }),
+      undefined,
+      await routeEnv(employee.row),
+    );
+    expect(denied.status).toBe(403);
+
+    const forced = await quoteSessionCookie({ mustChangePassword: true });
+    const redirect = await app.request(
+      new Request(`https://baogia.mdftungphat.com/api/auth/sso/cms?state=${state}`, { headers: { Cookie: forced.cookie } }),
+      undefined,
+      await routeEnv(forced.row),
+    );
+    expect(redirect.status).toBe(302);
+    expect(redirect.headers.get("Location")).toBe(`/doi-mat-khau?returnTo=${encodeURIComponent(`/api/auth/sso/cms?state=${state}`)}`);
+  });
+
+  it("returns the signed form only for an authenticated admin and rejects invalid state", async () => {
+    const invalid = await app.request(
+      new Request("https://baogia.mdftungphat.com/api/auth/sso/cms?state=short"),
+      undefined,
+      await routeEnv(),
+    );
+    expect(invalid.status).toBe(422);
+
+    const state = "abcdefghijklmnopqrstuvwxyzABCDEF123456";
+    const adminSession = await quoteSessionCookie();
+    const accepted = await app.request(
+      new Request(`https://baogia.mdftungphat.com/api/auth/sso/cms?state=${state}`, { headers: { Cookie: adminSession.cookie } }),
+      undefined,
+      await routeEnv(adminSession.row),
+    );
+    const html = await accepted.text();
+    expect(accepted.status).toBe(200);
+    expect(html).toContain(`action="${CMS_SSO_CALLBACK}"`);
+    expect(html).toContain('name="assertion"');
   });
 });
