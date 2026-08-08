@@ -44,6 +44,7 @@ describe("AI search query URL mapping", () => {
     for (const query of coveredQueries) {
       expect(result.find((entry) => entry.query === query)?.currentStatus, query).toBe("COVERED");
     }
+    expect(result.find((entry) => entry.query === "bề mặt melamine và laminate nên kiểm tra gì")?.targetUrl).toBe("/van-go-cong-nghiep/");
     expect(result.filter((entry) => entry.currentStatus === "PARTIAL")).toHaveLength(3);
   });
 });

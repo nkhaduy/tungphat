@@ -66,6 +66,15 @@ function sendFirstParty(payload: AnalyticsPayload, preferBeacon = false) {
   }).catch(() => undefined);
 }
 
+export function sendGa4Event(eventName: string, properties: Record<string, unknown>) {
+  const args: ["event", string, Record<string, unknown>] = ["event", eventName, properties];
+  if (typeof window.gtag === "function") window.gtag(...args);
+  else {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(args);
+  }
+}
+
 export function sendAnalyticsEvent(
   eventName: FirstPartyAnalyticsEvent,
   properties: AnalyticsProperties = {},
@@ -79,7 +88,7 @@ export function sendAnalyticsEvent(
   else globalThis.setTimeout(dispatch, 0);
 
   if (options.ga4 !== false) {
-    window.gtag?.("event", eventName, {
+    sendGa4Event(eventName, {
       page_path: payload.path,
       content_type: payload.content_type,
       content_id: payload.content_id,

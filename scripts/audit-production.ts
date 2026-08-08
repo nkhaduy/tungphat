@@ -98,7 +98,20 @@ const statusCounts = pages.reduce<Record<string, number>>((counts, page) => {
   counts[key] = (counts[key] ?? 0) + 1;
   return counts;
 }, {});
-const productionAssets = evaluateProductionAssets({ robots: robotsResponse.status, sitemap: sitemapResponse.status, knowledge: knowledgeResponse.status, llms: llmsResponse.status, indexNowKey: indexNowKeyResponse.status, materialReference: materialReferenceResponse.status, cncPreflight: cncPreflightResponse.status });
+const assetEvidence = (response: typeof robotsResponse) => ({
+  status: response.status,
+  contentType: response.headers["content-type"] ?? null,
+  body: response.body,
+});
+const productionAssets = evaluateProductionAssets({
+  robots: assetEvidence(robotsResponse),
+  sitemap: assetEvidence(sitemapResponse),
+  knowledge: assetEvidence(knowledgeResponse),
+  llms: assetEvidence(llmsResponse),
+  indexNowKey: assetEvidence(indexNowKeyResponse),
+  materialReference: assetEvidence(materialReferenceResponse),
+  cncPreflight: assetEvidence(cncPreflightResponse),
+});
 const security = evaluateSecurityHeaders(pages.find((page) => page.route === "/")?.headers ?? {});
 const canonicalErrors = indexable.filter((page) => !page.signals || !canonicalOk(page.signals.canonical, page.route)).length;
 const schemaErrors = pages.reduce((sum, page) => sum + (page.signals?.schemaErrors ?? 0), 0);

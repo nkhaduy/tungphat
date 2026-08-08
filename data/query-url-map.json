@@ -926,7 +926,7 @@
       "query": "bề mặt melamine và laminate nên kiểm tra gì",
       "intent": "comparison",
       "targetEntity": "Bề mặt ván",
-      "idealLandingUrl": "/san-pham/#catalogue",
+      "idealLandingUrl": "/van-go-cong-nghiep/",
       "expectedAnswerElements": [
         "tiêu chí so sánh",
         "khi nên chọn mỗi loại",
@@ -934,7 +934,7 @@
         "dữ liệu cần xác nhận"
       ],
       "priority": "P2",
-      "targetUrl": "/san-pham/#catalogue",
+      "targetUrl": "/van-go-cong-nghiep/",
       "currentStatus": "COVERED",
       "coverage": "direct-answer-with-evidence-caveat",
       "missingAnswerElements": [],

@@ -16,7 +16,7 @@ export type SearchMonitorRecord = {
   limitation: string;
 };
 
-export type SearchChangeState = "NEW" | "SAME" | "LOST" | "NOT_FOUND";
+export type SearchChangeState = "NEW" | "SAME" | "LOST" | "NOT_FOUND" | "UNAVAILABLE";
 export type AnnotatedSearchMonitorRecord = SearchMonitorRecord & {
   runId: string;
   previousPresence: boolean | null;
@@ -28,9 +28,11 @@ export function annotateSearchRecords(current: SearchMonitorRecord[], previous: 
   return current.map((record) => {
     const prior = previousByQuery.get(record.query);
     const previousPresence = prior ? prior.found : null;
-    const changeState: SearchChangeState = record.searchAvailable && record.found
+    const changeState: SearchChangeState = !record.searchAvailable
+      ? "UNAVAILABLE"
+      : record.found
       ? prior?.found ? "SAME" : "NEW"
-      : record.searchAvailable && prior?.found ? "LOST" : "NOT_FOUND";
+      : prior?.found ? "LOST" : "NOT_FOUND";
     return { ...record, runId, previousPresence, changeState };
   });
 }
