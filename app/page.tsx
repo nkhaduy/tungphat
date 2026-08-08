@@ -41,7 +41,7 @@ export default function Home() {
           alt=""
           width={64}
           height={64}
-          className="floating-zalo__logo h-full w-full rounded-full object-contain"
+          className="h-full w-full rounded-full object-contain"
           aria-hidden="true"
         />
       </TrackedLink>
