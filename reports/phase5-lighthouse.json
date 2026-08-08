@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-08T20:43:21.518Z",
+  "url": "https://mdftungphat.com",
+  "deploymentId": "dpl_GjZwz5vtRqi47GUDG9CPGVtrX86z",
+  "methodology": "Lighthouse 13.4.1 mobile simulated throttling, three sequential production runs after the final Phase 5 deployment",
+  "samples": [
+    {
+      "run": 1,
+      "fetchTime": "2026-08-08T20:41:45.726Z",
+      "score": 79,
+      "lcpMs": 2558.83,
+      "fcpMs": 1793.83,
+      "cls": 0,
+      "tbtMs": 695.5,
+      "ttfbMs": 37
+    },
+    {
+      "run": 2,
+      "fetchTime": "2026-08-08T20:42:14.310Z",
+      "score": 77,
+      "lcpMs": 2563.8491199999994,
+      "fcpMs": 1581.3950399999999,
+      "cls": 0,
+      "tbtMs": 801.5,
+      "ttfbMs": 37
+    },
+    {
+      "run": 3,
+      "fetchTime": "2026-08-08T20:42:37.692Z",
+      "score": 76,
+      "lcpMs": 3372.351,
+      "fcpMs": 1427.351,
+      "cls": 0,
+      "tbtMs": 583,
+      "ttfbMs": 40
+    }
+  ],
+  "median": {
+    "score": 77,
+    "lcpMs": 2563.8491199999994,
+    "fcpMs": 1581.3950399999999,
+    "cls": 0,
+    "tbtMs": 695.5,
+    "ttfbMs": 37
+  },
+  "range": {
+    "score": [
+      76,
+      79
+    ],
+    "lcpMs": [
+      2558.83,
+      3372.351
+    ],
+    "tbtMs": [
+      583,
+      801.5
+    ]
+  },
+  "caveat": "Lab results retain every sample and report the median; CPU/main-thread variance is visible in the range."
+}
