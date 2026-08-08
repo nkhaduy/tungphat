@@ -144,6 +144,20 @@ test("homepage có hero tĩnh sáng, CTA chính và chỉ ưu tiên ảnh CNC m�
   await expect(hero.locator("picture")).toHaveCount(0);
 });
 
+test("homepage uses the branded floating Zalo control only outside mobile", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("/");
+
+  const floatingZalo = page.getByRole("link", { name: "Mở Zalo Tùng Phát" });
+  await expect(floatingZalo).toBeVisible();
+  await expect(floatingZalo.locator('img[src="/images/zalo-contact.png"]')).toHaveCount(1);
+  await expect(floatingZalo).toHaveClass(/floating-zalo/);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(floatingZalo).toBeHidden();
+  await expect(page.getByRole("navigation", { name: "Liên hệ nhanh" })).toBeVisible();
+});
+
 test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
