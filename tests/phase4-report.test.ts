@@ -25,7 +25,7 @@ describe("Phase 4 snapshot", () => {
     expect(report).toMatchObject({ phase: "4", production: { deployedSha: "test-sha", deploymentId: "test-deployment" } });
     expect(report.performance.before.mobileScore).toBe(78);
     expect(report.performance.after).toMatchObject({ mobileScore: 91, lcpMs: 2400 });
-    expect(report.queryMap).toMatchObject({ queryCount: 100, covered: 87, partial: 3, gap: 0, shouldNotTarget: 10 });
+    expect(report.queryMap).toMatchObject({ queryCount: 100, covered: 90, partial: 0, gap: 0, shouldNotTarget: 10 });
     expect(report.authentication.googleSearchConsole).toMatchObject({ status: "BLOCKED_AUTH", clicks: null, impressions: null });
     expect(report.searchBenchmark.phase4).toBeNull();
     expect(report.verification.productionCrawl).toBeNull();

@@ -1,13 +1,72 @@
 import rawDataset from "@/data/materials/materials.json";
+import { validatePublishedProvenance, type SourceQualityTier } from "@/lib/source-quality";
 
-export type Material = (typeof rawDataset.materials)[number];
-export type MaterialSource = (typeof rawDataset.sources)[number];
+export type Material = {
+  id: string;
+  recordType: "MATERIAL_FAMILY" | "PRODUCT_CODE";
+  slug: string;
+  detailUrl: string;
+  name: string;
+  manufacturer: string | null;
+  brand: string | null;
+  code: string | null;
+  sku: string | null;
+  category: string;
+  materialFamily: string;
+  materialClass: string;
+  dimensions: string | string[] | null;
+  thicknesses: string | string[] | null;
+  finish: string | null;
+  surface: string | null;
+  substrate: string | null;
+  composition: string | null;
+  density: string | null;
+  moistureBehavior: string | null;
+  machining: string | null;
+  typicalApplications: string[];
+  availabilityStatus: string;
+  moistureProfile: string;
+  finishProfile: string;
+  cncSuitability: string;
+  applications: string[];
+  limitations: string[];
+  sourceIds: string[];
+  fieldSourceIds: Record<string, string[]>;
+  checkedAt: string;
+  confidence: "low" | "medium" | "high";
+};
+
+export type MaterialComparisonRecord = {
+  id: string;
+  name: string;
+  composition: string | null;
+  density: string | null;
+  moistureBehavior: string | null;
+  machining: string | null;
+  surfaceFinish: string | null;
+  typicalApplications: string | null;
+  choiceGuidance: string | null;
+  sourceIds: string[];
+};
+
+export type MaterialSource = {
+  id: string;
+  sourceType: string;
+  qualityTier: SourceQualityTier;
+  sourceTitle: string;
+  sourceUrl: string;
+  sourceFile: string | null;
+  retrievedAt: string;
+  publisher: string;
+  confidence: "low" | "medium" | "high";
+};
 
 export type MaterialDataset = {
   schemaVersion: string;
   lastVerified: string;
   description: string;
   materials: Material[];
+  comparisonMatrix: MaterialComparisonRecord[];
   sources: MaterialSource[];
 };
 
@@ -20,10 +79,26 @@ export type MaterialSelectorInput = {
 
 export type MaterialRecommendation = Material & { score: number; reasons: string[]; caveats: string[] };
 
-const dataset = rawDataset as MaterialDataset;
+const dataset = rawDataset as unknown as MaterialDataset;
 
 export function getMaterialDataset(): MaterialDataset {
   return dataset;
+}
+
+export function validateMaterialDatasetProvenance(input: MaterialDataset) {
+  const materialFields = input.materials.flatMap((material) => Object.entries(material.fieldSourceIds).map(([field, sourceIds]) => ({
+    recordId: material.id,
+    field,
+    value: material[field as keyof Material],
+    sourceIds,
+  })));
+  const matrixFields = input.comparisonMatrix.flatMap((record) => ["composition", "density", "moistureBehavior", "machining", "surfaceFinish", "typicalApplications", "choiceGuidance"].map((field) => ({
+    recordId: record.id,
+    field,
+    value: record[field as keyof MaterialComparisonRecord],
+    sourceIds: record.sourceIds,
+  })));
+  return validatePublishedProvenance({ sources: input.sources, fields: [...materialFields, ...matrixFields] });
 }
 
 export function recommendMaterials(input: MaterialSelectorInput): MaterialRecommendation[] {

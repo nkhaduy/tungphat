@@ -20,6 +20,21 @@ export function shouldNotifyIndexNow(previousHash: string | undefined, currentHa
   return force || !previousHash || previousHash !== currentHash;
 }
 
+export function selectIndexNowDelta({ previous, current, force = false }: { previous: Record<string, string>; current: Record<string, string>; force?: boolean }) {
+  const changed = Object.keys(current).filter((url) => force || previous[url] !== current[url]).sort();
+  const deleted = Object.keys(previous).filter((url) => !(url in current)).sort();
+  return { changed, deleted, urlList: [...new Set([...changed, ...deleted])].sort() };
+}
+
+export function normalizeIndexNowHtml(html: string) {
+  return html
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/giu, "")
+    .replace(/<link\b[^>]*href=["'][^"']*\/_next\/[^"']*["'][^>]*>/giu, "")
+    .replace(/<!--[\s\S]*?-->/gu, "")
+    .replace(/\s+/gu, " ")
+    .trim();
+}
+
 export type IndexNowPayload = {
   host: string;
   key: string;

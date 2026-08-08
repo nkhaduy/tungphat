@@ -27,7 +27,7 @@ describe("AI search query URL mapping", () => {
     const result = buildQueryUrlMap(querySet.queries);
     expect(result.find((entry) => entry.query === "nhận báo giá ván MDF theo số lượng")?.currentStatus).toBe("COVERED");
     expect(result.find((entry) => entry.query === "gỗ ghép cao su và gỗ ghép tràm")?.currentStatus).toBe("COVERED");
-    expect(result.find((entry) => entry.query === "MDF và plywood khác nhau thế nào")?.currentStatus).toBe("PARTIAL");
+    expect(result.find((entry) => entry.query === "MDF và plywood khác nhau thế nào")?.currentStatus).toBe("COVERED");
   });
 
   it("marks process comparisons covered when the existing service pages answer them", () => {
@@ -45,6 +45,7 @@ describe("AI search query URL mapping", () => {
       expect(result.find((entry) => entry.query === query)?.currentStatus, query).toBe("COVERED");
     }
     expect(result.find((entry) => entry.query === "bề mặt melamine và laminate nên kiểm tra gì")?.targetUrl).toBe("/van-go-cong-nghiep/");
-    expect(result.filter((entry) => entry.currentStatus === "PARTIAL")).toHaveLength(3);
+    expect(result.filter((entry) => entry.currentStatus === "PARTIAL")).toHaveLength(0);
+    expect(result.filter((entry) => entry.currentStatus === "COVERED")).toHaveLength(90);
   });
 });
