@@ -16,7 +16,8 @@ import { materialTaxonomyOptionsForSupplier } from "@/lib/catalog/material-taxon
 import {
   findExactCatalogCodeMatch,
   findExactSupplierMatch,
-  humanizeCatalogLabel,
+  formatCatalogCardTaxonomy,
+  formatCatalogCardTitle,
 } from "@/lib/catalog/ui";
 import {
   buildCatalogSearchParams,
@@ -26,12 +27,6 @@ import {
 import { AutoLoadMore } from "@/components/catalog/shared/AutoLoadMore";
 
 const PAGE_SIZE = 48;
-
-const kindLabels: Record<CatalogSearchEntry["kind"], string> = {
-  product: "Mã màu",
-  "color-code": "Mã màu",
-  "catalogue-item": "Mã màu",
-};
 
 type PrimarySelection = {
   value: string;
@@ -370,28 +365,15 @@ export function SupplierCatalogSearch({
                     )}
                   </Link>
                   <div className="flex flex-1 flex-col p-4">
-                    <div className="flex flex-wrap gap-2 text-[.65rem] font-extrabold uppercase tracking-[.12em]">
-                      <span className="text-wood-600">
-                        {entry.supplierName}
-                      </span>
-                      <span className="text-slate-500">
-                      {kindLabels[entry.kind]}
-                      </span>
-                    </div>
-                    {entry.code ? (
-                      <p className="mt-3 break-words font-mono text-lg font-extrabold text-forest-950" translate="no">
-                        {entry.code}
-                      </p>
-                    ) : null}
-                    <h4 className="mt-1 line-clamp-2 text-sm font-bold leading-6 text-slate-700">
-                      <Link href={entry.canonicalRoute}>{entry.name}</Link>
-                    </h4>
-                    <p className="mt-3 text-xs leading-5 text-slate-500">
-                      {[entry.category, entry.series, entry.group]
-                        .filter(Boolean)
-                        .map((value) => humanizeCatalogLabel(value!))
-                        .join(" · ")}
+                    <p className="text-[.65rem] font-extrabold uppercase tracking-[.12em] text-wood-600">
+                      {entry.supplierName}
                     </p>
+                    <h4 className="mt-2 line-clamp-2 text-lg font-extrabold leading-6 text-forest-950">
+                      <Link href={entry.canonicalRoute} translate="no">
+                        {formatCatalogCardTitle(entry)}
+                      </Link>
+                    </h4>
+                    <p className="mt-3 text-xs leading-5 text-slate-500">{formatCatalogCardTaxonomy(entry)}</p>
                     <div className={`mt-auto grid gap-2 pt-5 ${entry.code ? "grid-cols-2" : "grid-cols-1"}`}>
                       {entry.code ? (
                         <button

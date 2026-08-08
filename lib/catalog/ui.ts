@@ -26,6 +26,43 @@ export function humanizeCatalogLabel(value: string): string {
     .join(" ");
 }
 
+export function formatCatalogCardTitle(
+  entry: Pick<CatalogSearchEntry, "supplierId" | "code" | "name">,
+): string {
+  const cleanedName =
+    entry.supplierId === "ba-thanh"
+      ? entry.name
+          .replace(/^(?:MELAMINE|LAMINATE)\s+BA\s+THANH\s*[–—-]\s*/iu, "")
+          .trim()
+      : entry.name.trim();
+  const code = entry.code.trim();
+  if (!code) return cleanedName;
+  if (normalizeCatalogSearch(cleanedName).startsWith(normalizeCatalogSearch(code))) {
+    return cleanedName;
+  }
+  return `${code} ${cleanedName}`.trim();
+}
+
+export function formatCatalogCardTaxonomy(
+  entry: Pick<CatalogSearchEntry, "category" | "series" | "group" | "material">,
+): string {
+  const seen = new Set<string>();
+  const labels = [entry.category ?? entry.material, entry.series, entry.group]
+    .filter((value): value is string => Boolean(value?.trim()))
+    .map((value) => {
+      const label = humanizeCatalogLabel(value);
+      return label.charAt(0).toLocaleUpperCase("vi") + label.slice(1);
+    })
+    .filter((label) => {
+      const normalized = normalizeCatalogSearch(label);
+      if (seen.has(normalized)) return false;
+      seen.add(normalized);
+      return true;
+    });
+
+  return `Danh mục: ${labels.join(" · ") || "Chưa phân nhóm"}`;
+}
+
 export function findExactCatalogCodeMatch(
   entries: CatalogSearchEntry[],
   query: string,
