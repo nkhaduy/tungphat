@@ -5,11 +5,11 @@ describe("verified material knowledge", () => {
   it("keeps unsupported specifications null and links every published claim to provenance", () => {
     const dataset = getMaterialDataset();
 
-    expect(dataset.materials).toHaveLength(6);
+    expect(dataset.materials).toHaveLength(9);
     expect(dataset.materials.every((material) => material.sourceIds.length > 0)).toBe(true);
     expect(dataset.materials.every((material) => material.dimensions === null)).toBe(true);
     expect(dataset.materials.every((material) => material.thicknesses === null)).toBe(true);
-    expect(dataset.sources.every((source) => source.retrievedAt === "2026-08-08")).toBe(true);
+    expect(dataset.sources.every((source) => source.retrievedAt === "2026-08-09")).toBe(true);
   });
 
   it("recommends moisture-resistant MDF conditionally without treating it as waterproof", () => {

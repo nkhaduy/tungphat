@@ -3,15 +3,17 @@ import path from "node:path";
 import querySet from "../data/ai-search-query-set.json";
 import { parseBingRss, selectBenchmarkQueries } from "../lib/search-benchmark";
 import { parseHtmlSignals } from "../lib/live-seo-audit";
-import { annotateSearchRecords, compareSearchReports, summarizeSearchRecords, type SearchMonitorRecord } from "../lib/search-monitor";
+import { annotateSearchRecords, appendSearchRunHistory, compareSearchReports, selectPriorityQueries, summarizeSearchRecords, type SearchMonitorRecord } from "../lib/search-monitor";
 
 const origin = (process.env.PRODUCTION_ORIGIN ?? "https://mdftungphat.com").replace(/\/$/u, "");
-const outputPath = process.env.SEARCH_MONITOR_OUTPUT ?? `reports/search-monitor-${new Date().toISOString().slice(0, 10)}.json`;
+const now = new Date();
+const outputPath = process.env.SEARCH_MONITOR_OUTPUT ?? `reports/search-monitor-${now.toISOString().replace(/[:.]/gu, "-")}.json`;
+const historyPath = process.env.SEARCH_MONITOR_HISTORY ?? "reports/search-monitor-history.json";
 const limitation = "Public Bing RSS observation only; not a direct ChatGPT/Perplexity citation, ranking guarantee, or indexation guarantee.";
 
 function readPreviousReport() {
   const directory = path.dirname(outputPath);
-  const files = fs.existsSync(directory) ? fs.readdirSync(directory).filter((file) => /^search-monitor-\d{4}-\d{2}-\d{2}\.json$/u.test(file)).sort() : [];
+  const files = fs.existsSync(directory) ? fs.readdirSync(directory).filter((file) => /^search-monitor-\d{4}-\d{2}-\d{2}(?:T[^/]+)?\.json$/u.test(file)).sort() : [];
   const previousPath = files.filter((file) => path.join(directory, file) !== outputPath).at(-1);
   if (previousPath) {
     const parsed = JSON.parse(fs.readFileSync(path.join(directory, previousPath), "utf8"));
@@ -80,10 +82,15 @@ async function main() {
     await new Promise((resolve) => setTimeout(resolve, 250));
   }
   const annotatedRecords = annotateSearchRecords(records, previous.records, runId);
-  const result = { schemaVersion: "2.0", runId, checkedAt, domain: querySet.domain, surface: "Bing Web Search RSS + public target inspection", queryCount: annotatedRecords.length, records: annotatedRecords, summary: summarizeSearchRecords(annotatedRecords), comparison: compareSearchReports(annotatedRecords, previous.records), previousReport: previous.path };
+  const priorityQueries = new Set(selectPriorityQueries(querySet.queries).map((query) => query.query));
+  const priorityRecords = annotatedRecords.filter((record) => priorityQueries.has(record.query));
+  const result = { schemaVersion: "3.0", runId, checkedAt, domain: querySet.domain, surface: "Bing Web Search RSS + public target inspection", queryCount: annotatedRecords.length, priorityQueryCount: priorityRecords.length, records: annotatedRecords, summary: summarizeSearchRecords(annotatedRecords), prioritySummary: summarizeSearchRecords(priorityRecords), comparison: compareSearchReports(annotatedRecords, previous.records), previousReport: previous.path };
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, `${JSON.stringify(result, null, 2)}\n`);
-  console.log(JSON.stringify({ outputPath, queryCount: records.length, found: result.summary.foundCount, previousReport: previous.path, comparison: result.comparison }, null, 2));
+  const history = fs.existsSync(historyPath) ? JSON.parse(fs.readFileSync(historyPath, "utf8")) : { schemaVersion: "1.0", runs: [] };
+  history.runs = appendSearchRunHistory(history.runs, { runId, checkedAt, outputPath, summary: result.summary, prioritySummary: result.prioritySummary });
+  fs.writeFileSync(historyPath, `${JSON.stringify(history, null, 2)}\n`);
+  console.log(JSON.stringify({ outputPath, historyPath, queryCount: records.length, priorityQueryCount: priorityRecords.length, found: result.summary.foundCount, previousReport: previous.path, comparison: result.comparison }, null, 2));
 }
 
 main().catch((error) => { console.error(error); process.exitCode = 1; });

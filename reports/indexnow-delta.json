@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "2.0",
+  "checkedAt": "2026-08-08T18:55:55.430Z",
+  "dryRun": true,
+  "reason": "INDEXNOW_KEY is not configured",
+  "changed": [
+    "https://mdftungphat.com/bai-viet/chuan-bi-file-cnc/",
+    "https://mdftungphat.com/bai-viet/go-ghep-la-gi/",
+    "https://mdftungphat.com/bai-viet/mdf-thuong-va-chong-am/",
+    "https://mdftungphat.com/tham-chieu-vat-lieu/"
+  ],
+  "deleted": [],
+  "urlCount": 4,
+  "response": null
+}
