@@ -34,7 +34,7 @@ export function parseHtmlSignals(html: string, headers: Record<string, string> =
   });
   const internalLinks = [...html.matchAll(/<a\b[^>]*href=(?:"([^"]*)"|'([^']*)')/giu)]
     .map((match) => match[1] ?? match[2] ?? "")
-    .filter((href) => href.startsWith("/") && !href.startsWith("//") && !href.startsWith("#") && !/\.(?:json|png|jpe?g|webp|svg|pdf|xml|txt)$/iu.test(href));
+    .filter((href) => href.startsWith("/") && !href.startsWith("//") && !href.startsWith("#") && !/\.(?:csv|json|png|jpe?g|webp|svg|pdf|xml|txt)$/iu.test(href));
   return {
     title: textContent(html.match(/<title[^>]*>([\s\S]*?)<\/title>/iu)?.[1] ?? ""),
     description: attribute(descriptionTag ?? "", "content"),
