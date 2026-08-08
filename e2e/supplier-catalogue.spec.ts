@@ -150,6 +150,30 @@ test.describe("Mã màu customer journeys", () => {
     await expect(region.getByRole("article")).toHaveCount(96);
   });
 
+  test("catalogue cards use compact supplier copy without duplicate taxonomy", async ({ page }) => {
+    await page.goto("/catalogue/?supplier=thanh-thuy&query=301");
+    const thanhThuyCard = page
+      .getByRole("region", { name: "Kết quả mã màu" })
+      .getByRole("article")
+      .filter({ hasText: "301 Artistic Stripe" });
+    await expect(thanhThuyCard).toHaveCount(1);
+    await expect(thanhThuyCard.getByText("Thanh Thuỳ", { exact: true })).toBeVisible();
+    await expect(thanhThuyCard.getByText("Mã màu", { exact: true })).toHaveCount(0);
+    await expect(thanhThuyCard.getByText("301", { exact: true })).toHaveCount(0);
+    await expect(thanhThuyCard.getByText("301 Artistic Stripe", { exact: true })).toHaveCount(1);
+    await expect(
+      thanhThuyCard.getByText("Danh mục: Melamine · Vân Gỗ", { exact: true }),
+    ).toBeVisible();
+
+    await page.goto("/catalogue/?supplier=ba-thanh&query=BT111");
+    const baThanhCard = page
+      .getByRole("region", { name: "Kết quả mã màu" })
+      .getByRole("article")
+      .first();
+    await expect(baThanhCard.getByText("BT 111", { exact: true })).toBeVisible();
+    await expect(baThanhCard).not.toContainText("MELAMINE BA THANH");
+  });
+
   test("Ba Thanh exposes both Melamine and Laminate code collections", async ({
     page,
   }) => {

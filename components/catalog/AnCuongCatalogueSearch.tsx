@@ -9,6 +9,7 @@ import type { CatalogSearchEntry, SupplierId } from "@/lib/catalog/core/types";
 import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
 import { materialTaxonomyOptions } from "@/lib/catalog/material-taxonomy";
 import { buildCatalogCollectionSearchParams, parseCatalogCollectionUrlState } from "@/lib/catalog/url-state";
+import { formatCatalogCardTaxonomy, formatCatalogCardTitle } from "@/lib/catalog/ui";
 import { ZALO_URL } from "@/lib/seo";
 import { AutoLoadMore } from "@/components/catalog/shared/AutoLoadMore";
 
@@ -108,10 +109,9 @@ export function SupplierColorCodeSearch({
                 {item.thumbnail ? <Image src={item.thumbnail} alt={`Swatch ${item.code}`} fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover" /> : <span className="grid h-full place-items-center px-3 text-center text-xs font-bold text-slate-600">Nguồn chưa cung cấp ảnh màu</span>}
               </Link>
               <div className="flex flex-1 flex-col p-4">
-                <p className="text-[.65rem] font-extrabold uppercase tracking-[.13em] text-wood-600">{item.supplierName} · Mã màu</p>
-                <p className="mt-2 break-words font-mono text-lg font-extrabold text-forest-950" translate="no">{item.code}</p>
-                <h3 className="mt-1 line-clamp-2 text-sm font-bold leading-6 text-slate-700"><Link href={item.canonicalRoute}>{item.name}</Link></h3>
-                <p className="mt-2 text-xs leading-5 text-slate-500">{[item.category, item.series, item.group].filter(Boolean).join(" · ")}</p>
+                <p className="text-[.65rem] font-extrabold uppercase tracking-[.13em] text-wood-600">{item.supplierName}</p>
+                <h3 className="mt-2 line-clamp-2 text-lg font-extrabold leading-6 text-forest-950"><Link href={item.canonicalRoute} translate="no">{formatCatalogCardTitle(item)}</Link></h3>
+                <p className="mt-2 text-xs leading-5 text-slate-500">{formatCatalogCardTaxonomy(item)}</p>
                 <div className="mt-auto grid gap-2 pt-4 sm:grid-cols-2">
                   <button type="button" onClick={() => copyCode(item.code)} className="pressable inline-flex min-h-11 items-center justify-center gap-2 border border-forest-900/15 px-3 text-xs font-extrabold text-forest-950"><Copy size={15} aria-hidden="true" />Sao chép mã</button>
                   <a href={buildSupplierZaloInquiryUrl(ZALO_URL, item.supplierName, item.code)} target="_blank" rel="noopener noreferrer" className="pressable inline-flex min-h-11 items-center justify-center gap-2 bg-wood-500 px-3 text-xs font-extrabold text-white hover:bg-wood-600"><MessageCircle size={15} aria-hidden="true" />Gửi Zalo</a>
