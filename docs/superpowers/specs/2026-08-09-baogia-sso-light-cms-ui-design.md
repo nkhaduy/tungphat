@@ -82,9 +82,9 @@ The published content API remains independent of the admin session and does not 
 
 1. Add and test Baogia SSO support without changing its existing login or quote behavior.
 2. Deploy the backward-compatible Baogia change and configure the dedicated signing secret without billing changes.
-3. Deploy Light CMS SSO to an existing non-canonical staging/preview endpoint and verify the session, gateway, RBAC, UI, and cryptographic flow before touching the custom-domain route.
-4. Snapshot the existing Access application and redirect configuration for audit, remove the CMS Access applications/policies, remove the custom-domain redirect, and attach the tested deployment directly to `cms.mdftungphat.com`.
-5. Run real custom-domain acceptance, including Baogia regression tests and CMS security, E2E, accessibility, provider parity, migration, and CPU gates.
+3. Deploy the Light CMS Worker, snapshot the existing Access and redirect configuration, then deploy the Pages build that serves SSO directly on `cms.mdftungphat.com`. The Access applications remain temporarily unchanged and continue protecting only their existing Pages hostnames.
+4. Verify the real custom-domain session, gateway, RBAC, UI, and cryptographic flow. If it fails, roll Pages back immediately to the saved deployment before changing Access.
+5. Remove the CMS Access applications/policies, then run full custom-domain acceptance including Baogia regression tests and CMS security, E2E, accessibility, provider parity, migration, and CPU gates.
 6. Recheck that `cms.mdftungphat.com` stays canonical and that the public website remains Decap.
 
 Before the custom-domain switch, rollback restores the previous CMS deployment without changing Access. After Access removal, rollback restores the last tested SSO deployment rather than re-enabling Access automatically; the saved Access configuration is audit evidence only. Reverting the Baogia deployment remains possible and requires no Baogia data rollback because the SSO feature creates no Baogia D1/R2 records.
