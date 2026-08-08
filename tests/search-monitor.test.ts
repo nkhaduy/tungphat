@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { compareSearchReports, summarizeSearchRecords, type SearchMonitorRecord } from "@/lib/search-monitor";
+import { annotateSearchRecords, compareSearchReports, summarizeSearchRecords, type SearchMonitorRecord } from "@/lib/search-monitor";
 
 const record = (overrides: Partial<SearchMonitorRecord> = {}): SearchMonitorRecord => ({
   query: "ván MDF là gì",
@@ -45,5 +45,17 @@ describe("search monitor reports", () => {
     const previous = [record({ found: true, sourcePosition: 2 })];
     const current = [record({ searchAvailable: false, responseStatus: 429, found: false, targetAvailable: false, targetStatus: null, targetIndexable: null })];
     expect(compareSearchReports(current, previous)).toMatchObject({ lostPresence: [], indexabilityChanges: [] });
+  });
+
+  it("adds comparable per-query change states and previous presence", () => {
+    const previous = [record({ query: "gained", found: false }), record({ query: "same", found: true }), record({ query: "lost", found: true })];
+    const current = [record({ query: "gained", found: true }), record({ query: "same", found: true }), record({ query: "lost", found: false }), record({ query: "absent", found: false })];
+
+    expect(annotateSearchRecords(current, previous, "phase4-20260809").map(({ query, runId, previousPresence, changeState }) => ({ query, runId, previousPresence, changeState }))).toEqual([
+      { query: "gained", runId: "phase4-20260809", previousPresence: false, changeState: "NEW" },
+      { query: "same", runId: "phase4-20260809", previousPresence: true, changeState: "SAME" },
+      { query: "lost", runId: "phase4-20260809", previousPresence: true, changeState: "LOST" },
+      { query: "absent", runId: "phase4-20260809", previousPresence: null, changeState: "NOT_FOUND" },
+    ]);
   });
 });

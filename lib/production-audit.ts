@@ -4,6 +4,8 @@ export type ProductionAssetStatuses = {
   knowledge: number;
   llms: number;
   indexNowKey: number;
+  materialReference: number;
+  cncPreflight: number;
 };
 
 export function evaluateProductionAssets(statuses: ProductionAssetStatuses) {
@@ -13,6 +15,8 @@ export function evaluateProductionAssets(statuses: ProductionAssetStatuses) {
     ["knowledge", "knowledge.json"],
     ["llms", "llms.txt"],
     ["indexNowKey", "indexnow-key.txt"],
+    ["materialReference", "material-reference.csv"],
+    ["cncPreflight", "cnc-preflight-checklist.csv"],
   ];
   const missing = names.filter(([key]) => statuses[key] < 200 || statuses[key] >= 300).map(([, name]) => name);
   return { errors: missing.length, missing };

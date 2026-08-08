@@ -4,8 +4,9 @@ import matter from "gray-matter";
 import business from "@/content/settings/business.json";
 import seo from "@/content/settings/seo.json";
 import { articleSchema, productSchema, projectSchema, servicePageSchema } from "@/lib/content-schema";
-import { absolutePageUrl } from "@/lib/seo";
+import { absolutePageUrl, absoluteUrl } from "@/lib/seo";
 import materialDataset from "@/data/materials/materials.json";
+import cncPreflight from "@/data/cnc-preflight-checklist.json";
 
 type KnowledgePage = {
   url: string;
@@ -97,6 +98,14 @@ export function buildKnowledgeIndex() {
         updatedAt: materialDataset.lastVerified,
         recordCount: materialDataset.materials.length,
         sourceCount: materialDataset.sources.length,
+      },
+      {
+        url: absoluteUrl("/cnc-preflight-checklist.csv"),
+        type: "DataDownload",
+        name: "Checklist chuẩn bị dữ liệu CNC",
+        updatedAt: cncPreflight.lastVerified,
+        recordCount: cncPreflight.items.length,
+        sourceCount: cncPreflight.sourceUrls.length,
       },
     ],
     pages: [...products, ...services, ...articles, ...projects],

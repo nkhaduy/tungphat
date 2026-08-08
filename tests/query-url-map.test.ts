@@ -29,4 +29,21 @@ describe("AI search query URL mapping", () => {
     expect(result.find((entry) => entry.query === "gỗ ghép cao su và gỗ ghép tràm")?.currentStatus).toBe("COVERED");
     expect(result.find((entry) => entry.query === "MDF và plywood khác nhau thế nào")?.currentStatus).toBe("PARTIAL");
   });
+
+  it("marks process comparisons covered when the existing service pages answer them", () => {
+    const result = buildQueryUrlMap(querySet.queries);
+    const coveredQueries = [
+      "ván nguyên tấm và danh sách chi tiết khác nhau khi báo giá",
+      "cắt CNC MDF và cắt CNC gỗ ghép khác nhau gì",
+      "cắt theo kích thước và CNC theo file khác nhau gì",
+      "file kỹ thuật và bản phác thảo dùng khi nào",
+      "bề mặt melamine và laminate nên kiểm tra gì",
+      "mua tấm nguyên và thuê gia công trọn yêu cầu",
+    ];
+
+    for (const query of coveredQueries) {
+      expect(result.find((entry) => entry.query === query)?.currentStatus, query).toBe("COVERED");
+    }
+    expect(result.filter((entry) => entry.currentStatus === "PARTIAL")).toHaveLength(3);
+  });
 });
