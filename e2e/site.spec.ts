@@ -205,6 +205,21 @@ test("homepage uses the branded floating Zalo control only outside mobile", asyn
   await expect(page.getByRole("navigation", { name: "Liên hệ nhanh" })).toBeVisible();
 });
 
+test("floating Zalo stays still until the pointer hovers it", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("/");
+
+  const floatingZalo = page.getByRole("link", { name: "Mở Zalo Tùng Phát" });
+  const idleAnimationCount = await floatingZalo.evaluate((element) =>
+    element.getAnimations({ subtree: true }).filter((animation) => animation.playState !== "finished").length
+  );
+  expect(idleAnimationCount).toBe(0);
+
+  const restingTransform = await floatingZalo.evaluate((element) => getComputedStyle(element).transform);
+  await floatingZalo.hover();
+  await expect.poll(() => floatingZalo.evaluate((element) => getComputedStyle(element).transform)).not.toBe(restingTransform);
+});
+
 test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
