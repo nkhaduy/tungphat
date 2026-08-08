@@ -1,1 +1,2 @@
 SESSION_SECRET=replace-with-at-least-32-random-characters
+CMS_SSO_PRIVATE_JWK={}
