@@ -2,7 +2,9 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { CatalogueView } from "@/components/CatalogueView";
-import type { Brand } from "@/lib/brands";
+import { AnCuongCatalogueSearch } from "@/components/catalog/AnCuongCatalogueSearch";
+import type { CatalogSearchEntry } from "@/lib/catalog/core/types";
+import { getBrand, type Brand } from "@/lib/brands";
 
 describe("CatalogueView", () => {
   it("does not render file actions for catalogue records without a verified PDF URL", () => {
@@ -12,18 +14,74 @@ describe("CatalogueView", () => {
       logo: "",
       description: "Test catalogue data",
       products: [],
-      catalogues: [{
-        name: "Draft catalogue",
-        thumbnail: "",
-        description: "No verified file yet",
-        pdfUrl: ""
-      }]
+      catalogues: [
+        {
+          name: "Draft catalogue",
+          thumbnail: "",
+          description: "No verified file yet",
+          pdfUrl: "",
+        },
+      ],
     };
 
     const html = renderToStaticMarkup(createElement(CatalogueView, { brand }));
 
     expect(html).not.toContain("Xem file");
     expect(html).not.toContain("Tải PDF");
-    expect(html).toContain("Chưa có file catalogue được publish");
+    expect(html).toContain("Mã màu Test Brand");
+  });
+
+  it("puts the complete An Cuong search in the first content section without sample-only wording", () => {
+    const brand = getBrand("an-cuong")!;
+    const html = renderToStaticMarkup(createElement(CatalogueView, { brand }));
+    const firstSection = html.slice(
+      html.indexOf("<section"),
+      html.indexOf("</section>") + "</section>".length,
+    );
+
+    expect(firstSection).toContain("Tìm mã màu, tên màu hoặc thương hiệu");
+    expect(firstSection).toMatch(/[1-9][0-9]{3} mã màu/);
+    expect(firstSection.toLowerCase()).not.toContain("dữ liệu mẫu");
+  });
+
+  it("bounds An Cuong result rendering for mobile and large catalogues", () => {
+    const entries: CatalogSearchEntry[] = Array.from({ length: 100 }, (_, index) => ({
+      id: `an-cuong:sku:${index}`,
+      supplierId: "an-cuong",
+      supplierName: "An Cường",
+      kind: "catalogue-item",
+      recordType: "sku",
+      code: `AC ${index}`,
+      normalizedCode: `AC${index}`,
+      name: `Vật liệu ${index}`,
+      thumbnail: "",
+      canonicalRoute: "/catalogue/an-cuong/",
+      category: "Melamine",
+      material: "melamine",
+    }));
+    const html = renderToStaticMarkup(createElement(AnCuongCatalogueSearch, { entries }));
+
+    expect((html.match(/<article/g) ?? [])).toHaveLength(48);
+    expect(html).toContain("100 mã màu · 100 mã phù hợp");
+  });
+
+  it("shows unavailable swatches and a direct An Cuong inquiry action", () => {
+    const entry: CatalogSearchEntry = {
+      id: "an-cuong:sku:swatch-check",
+      supplierId: "an-cuong",
+      supplierName: "An Cường",
+      kind: "catalogue-item",
+      recordType: "sku",
+      code: "MFC - MS 01012 T",
+      normalizedCode: "MFCMS01012T",
+      name: "Laricio Pine",
+      thumbnail: "",
+      canonicalRoute: "/catalogue/an-cuong/melamine/",
+      category: "Melamine",
+      material: "melamine",
+    };
+    const html = renderToStaticMarkup(createElement(AnCuongCatalogueSearch, { entries: [entry] }));
+    expect(html).toContain("Nguồn chưa cung cấp ảnh màu");
+    expect(html).toContain("Gửi Zalo");
   });
 });

@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { filterPublishedContent, getListingIndexability } from "@/lib/listing-indexability";
+import {
+  filterPublishedContent,
+  getListingIndexability,
+} from "@/lib/listing-indexability";
 
 const draft = { slug: "draft-entry", draft: true, noindex: true };
 const noindex = { slug: "noindex-entry", draft: false, noindex: true };
@@ -20,6 +23,14 @@ describe("listing indexability", () => {
     const entries = filterPublishedContent([draft, noindex, published]);
     expect(entries).toEqual([published]);
     expect(getListingIndexability(entries.length)).toEqual({
+      index: true,
+      follow: true,
+      includeInSitemap: true,
+    });
+  });
+
+  it("indexes a useful standalone hub even before detail entries are published", () => {
+    expect(getListingIndexability(0, { hasStandaloneContent: true })).toEqual({
       index: true,
       follow: true,
       includeInSitemap: true,

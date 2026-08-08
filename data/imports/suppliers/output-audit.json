@@ -1,0 +1,20 @@
+{
+  "errors": [],
+  "findings": {
+    "duplicateIndexableTitles": [],
+    "duplicateIndexableDescriptions": [],
+    "duplicateNoindexTitles": [],
+    "duplicateNoindexDescriptions": []
+  },
+  "summary": {
+    "pages": 2849,
+    "indexable": 27,
+    "noindex": 2822,
+    "uniqueTitles": 2849,
+    "uniqueDescriptions": 2849,
+    "canonicalsChecked": 2849,
+    "invalidJsonLd": 0,
+    "brandMismatches": 0,
+    "orphanIndexablePages": 0
+  }
+}
