@@ -11,6 +11,7 @@ export type NavigationItem = {
   label: string;
   href: string;
   active: boolean;
+  prefetch?: boolean;
 };
 
 type MobileNavigationProps = {
@@ -85,6 +86,7 @@ export function MobileNavigation({ open, items, lang, languageLabel, onClose, on
             key={`${item.label}-${item.href}`}
             ref={index === 0 ? firstLinkRef : undefined}
             href={item.href}
+            prefetch={item.prefetch}
             aria-current={item.active ? "page" : undefined}
             onClick={() => onClose(false)}
             className={`flex min-h-14 items-center justify-between border-b border-forest-900/10 px-1 text-base font-bold ${item.active ? "text-wood-600" : "text-forest-950"}`}
