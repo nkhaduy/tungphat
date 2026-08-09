@@ -27,6 +27,8 @@
     "benchmark:search": "tsx scripts/benchmark-search-visibility.ts",
     "monitor:search": "tsx scripts/monitor-search.ts",
     "observe:indexation": "tsx scripts/observe-indexation.ts",
+    "phase7:indexation-status": "tsx scripts/build-phase7-indexation-status.ts",
+    "phase7:search-presence": "tsx scripts/collect-phase7-search-presence.ts",
     "entity:graph": "tsx scripts/build-entity-graph.ts",
     "audit:internal-graph": "tsx scripts/audit-internal-link-graph.ts",
     "validate:provenance": "tsx scripts/validate-material-provenance.ts",

@@ -17,6 +17,7 @@ import {
 } from "@/lib/seo";
 import { twitterSocialImage } from "@/lib/social-images";
 import { locations } from "@/lib/locations";
+import { buildVerifiedMapIdentity } from "@/lib/entity-schema";
 import business from "@/content/settings/business.json";
 import seo from "@/content/settings/seo.json";
 import { montserratVariables } from "@/app/fonts";
@@ -100,27 +101,32 @@ const siteSchema = {
         "@id": schemaPageId("/", location.id),
       })),
     },
-    ...locations.map((location) => ({
-      "@type": business.localBusinessType,
-      "@id": schemaPageId("/", location.id),
-      name: location.name,
-      url: schemaPageId("/lien-he", location.id),
-      image: absoluteUrl(location.image),
-      telephone: PHONE_E164,
-      email: business.email,
-      parentOrganization: { "@id": schemaPageId("/", "organization") },
-      areaServed: business.serviceAreas,
-      ...(business.openingHours.length
-        ? { openingHours: business.openingHours }
-        : {}),
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: location.streetAddress,
-        addressLocality: location.addressLocality,
-        addressRegion: location.addressRegion,
-        addressCountry: location.addressCountry,
-      },
-    })),
+    ...locations.map((location) => {
+      const mapIdentity = buildVerifiedMapIdentity(location.directionsUrl);
+      return {
+        "@type": business.localBusinessType,
+        "@id": schemaPageId("/", location.id),
+        name: location.name,
+        url: schemaPageId("/lien-he", location.id),
+        image: absoluteUrl(location.image),
+        telephone: PHONE_E164,
+        email: business.email,
+        parentOrganization: { "@id": schemaPageId("/", "organization") },
+        areaServed: business.serviceAreas,
+        sameAs: mapIdentity.sameAs,
+        ...(mapIdentity.identifier ? { identifier: mapIdentity.identifier } : {}),
+        ...(business.openingHours.length
+          ? { openingHours: business.openingHours }
+          : {}),
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: location.streetAddress,
+          addressLocality: location.addressLocality,
+          addressRegion: location.addressRegion,
+          addressCountry: location.addressCountry,
+        },
+      };
+    }),
   ],
 };
 

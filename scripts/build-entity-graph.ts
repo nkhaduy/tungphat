@@ -2,11 +2,16 @@ import fs from "node:fs";
 import path from "node:path";
 import raw from "../data/entity-corroboration.json";
 import business from "../content/settings/business.json";
-import { normalizeEntityRecord, summarizeEntityRecords } from "../lib/entity-corroboration";
+import { buildExternalEntityEdges, normalizeEntityRecord, summarizeEntityRecords } from "../lib/entity-corroboration";
 
 const records = raw.records.map((record) => normalizeEntityRecord(record as Parameters<typeof normalizeEntityRecord>[0]));
+const externalEdges = buildExternalEntityEdges(records);
+const externalNodes = externalEdges.map((edge) => {
+  const record = records.find((item) => item.url === edge.evidence)!;
+  return { id: edge.to, type: record.sourceType, label: record.source, url: record.url, evidence: record.evidence };
+});
 const result = {
-  schemaVersion: "4.0",
+  schemaVersion: "5.0",
   checkedAt: raw.checkedAt,
   entity: raw.entity,
   summary: summarizeEntityRecords(records),
@@ -24,6 +29,7 @@ const result = {
       { id: "zalo", type: "SocialProfile", label: business.zaloUrl, evidence: "Official website socialLinks" },
       { id: "materials", type: "ProductCategory", label: "MDF, MFC, plywood và gỗ ghép", evidence: "Published product and reference pages" },
       { id: "cnc", type: "Service", label: "Gia công CNC gỗ", evidence: "Published service pages" },
+      ...externalNodes,
     ],
     edges: [
       ...business.locations.map((location) => ({ from: "tung-phat", to: location.id, relationship: "branch", evidence: location.directionsUrl, status: "UNVERIFIED_EXTERNAL_DETAILS" })),
@@ -32,6 +38,7 @@ const result = {
       { from: "tung-phat", to: "zalo", relationship: "contactProfile", evidence: "Official website socialLinks", status: "CONSISTENT" },
       { from: "tung-phat", to: "materials", relationship: "offersCategory", evidence: "Published material pages", status: "FIRST_PARTY" },
       { from: "tung-phat", to: "cnc", relationship: "providesService", evidence: "Published CNC pages", status: "FIRST_PARTY" },
+      ...externalEdges,
     ],
   },
 };

@@ -1,0 +1,413 @@
+{
+  "schemaVersion": "5.0",
+  "checkedAt": "2026-08-10T00:19:07+07:00",
+  "entity": "Công ty TNHH TMDV Gỗ Tùng Phát",
+  "summary": {
+    "total": 10,
+    "verified": 3,
+    "consistent": 4,
+    "corroborated": 7,
+    "mismatches": 0,
+    "missing": 0,
+    "unverified": 1,
+    "authBlocked": 2
+  },
+  "records": [
+    {
+      "source": "Official website",
+      "sourceType": "website",
+      "url": "https://mdftungphat.com/lien-he/",
+      "entity": "Công ty TNHH TMDV Gỗ Tùng Phát",
+      "branch": null,
+      "address": "14 Tam Bình và 81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
+      "phone": "0909 259 160",
+      "website": "https://mdftungphat.com/",
+      "categories": [
+        "LocalBusiness",
+        "MDF",
+        "CNC gỗ",
+        "Vật liệu nội thất"
+      ],
+      "relationship": "first-party source of truth",
+      "evidence": "Business settings and the public contact page use the same legal name, phone and two branch addresses.",
+      "evidenceQuality": null,
+      "consistency": "CONSISTENT",
+      "confidence": "high",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
+    },
+    {
+      "source": "Google Maps - branch 1",
+      "sourceType": "maps",
+      "url": "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
+      "entity": "Tùng Phát 1 - Ván gỗ công nghiệp & CNC",
+      "branch": "14 Tam Bình",
+      "address": "14 Đ. Tam Bình, Kp7, Hiệp Bình, Hồ Chí Minh 721400",
+      "phone": "0909 259 160",
+      "website": "https://mdftungphat.com/",
+      "categories": [
+        "Nhà cung cấp gỗ"
+      ],
+      "relationship": "public branch listing linked by the official website",
+      "evidence": "The first-party Google Maps embed payload confirms the place ID, branch name, address, phone, canonical website and category.",
+      "evidenceQuality": null,
+      "consistency": "VERIFIED",
+      "confidence": "high",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
+    },
+    {
+      "source": "Google Maps - branch 2",
+      "sourceType": "maps",
+      "url": "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY",
+      "entity": "Tùng Phát 2 - Ván gỗ công nghiệp & CNC",
+      "branch": "81B Tam Bình",
+      "address": "81B Đ. Tam Bình, Tam Bình, Hồ Chí Minh",
+      "phone": "0909 259 160",
+      "website": "https://mdftungphat.com/",
+      "categories": [
+        "Nhà cung cấp gỗ"
+      ],
+      "relationship": "public branch listing linked by the official website",
+      "evidence": "The first-party Google Maps embed payload confirms the place ID, branch name, address, phone, canonical website and category.",
+      "evidenceQuality": null,
+      "consistency": "VERIFIED",
+      "confidence": "high",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
+    },
+    {
+      "source": "Zalo",
+      "sourceType": "social",
+      "url": "https://zalo.me/0909259160",
+      "entity": null,
+      "branch": null,
+      "address": null,
+      "phone": "0909 259 160",
+      "website": null,
+      "categories": [
+        "Business contact"
+      ],
+      "relationship": "official contact profile linked by the website",
+      "evidence": "The Zalo profile URL encodes the same public phone number used by the website.",
+      "evidenceQuality": null,
+      "consistency": "CONSISTENT",
+      "confidence": "medium",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
+    },
+    {
+      "source": "Gỗ Thanh Thùy distributor directory",
+      "sourceType": "manufacturer-directory",
+      "url": "https://www.gothanhthuy.com/distributor/cua-hang-tung-phat/",
+      "entity": "Cửa Hàng Tùng Phát",
+      "branch": "14 Tam Bình",
+      "address": "14 Đ. Tam Bình, Hiệp Bình Chánh, Thủ Đức, Thành phố Hồ Chí Minh",
+      "phone": null,
+      "website": null,
+      "categories": [
+        "Distributor directory"
+      ],
+      "relationship": "explicit public distributor-directory entry; no broader authorization claim inferred",
+      "evidence": "Manufacturer website page title and meta description align with the branch-1 name and address.",
+      "evidenceQuality": null,
+      "consistency": "VERIFIED",
+      "confidence": "high",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
+    },
+    {
+      "source": "Daily Chữ Ký Số business record",
+      "sourceType": "business-directory",
+      "url": "https://dailychukyso.com.vn/tt-doanh-nghiep/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat/",
+      "entity": "CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ GỖ TÙNG PHÁT",
+      "branch": null,
+      "address": null,
+      "phone": null,
+      "website": null,
+      "categories": [
+        "Legal entity citation"
+      ],
+      "relationship": "public legal-name and tax-ID citation",
+      "evidence": "Direct public page returned HTTP 200 and matched the legal name and tax ID 0319115830.",
+      "evidenceQuality": null,
+      "consistency": "CONSISTENT",
+      "confidence": "high",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
+    },
+    {
+      "source": "Infocom B2B business record",
+      "sourceType": "business-directory",
+      "url": "https://infocom.vn/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat-0319115830.html",
+      "entity": "CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ GỖ TÙNG PHÁT",
+      "branch": null,
+      "address": null,
+      "phone": null,
+      "website": null,
+      "categories": [
+        "Legal entity citation"
+      ],
+      "relationship": "public legal-name, tax-ID and active-status citation",
+      "evidence": "Direct public page returned HTTP 200 and matched the legal name, tax ID 0319115830 and active status.",
+      "evidenceQuality": null,
+      "consistency": "CONSISTENT",
+      "confidence": "high",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
+    },
+    {
+      "source": "Facebook candidate",
+      "sourceType": "social",
+      "url": "https://www.facebook.com/p/MDF-CNC-T%C3%B9ng-Ph%C3%A1t-61572168615156/",
+      "entity": "MDF - CNC Tùng Phát",
+      "branch": null,
+      "address": null,
+      "phone": null,
+      "website": null,
+      "categories": [
+        "Business page candidate"
+      ],
+      "relationship": "candidate social identity",
+      "evidence": "Public search aligned the name and domain context, but Facebook returned a JS/error shell and ownership was not authenticated.",
+      "evidenceQuality": null,
+      "consistency": "UNVERIFIED",
+      "confidence": "medium",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
+    },
+    {
+      "source": "Google Business Profile",
+      "sourceType": "maps",
+      "url": null,
+      "entity": null,
+      "branch": null,
+      "address": null,
+      "phone": null,
+      "website": null,
+      "categories": [],
+      "relationship": "owned local business profiles for two public place IDs",
+      "evidence": "Public listing facts were verified, but GBP ownership, editing and verification status require authenticated account access.",
+      "evidenceQuality": null,
+      "consistency": "AUTH_BLOCKED",
+      "confidence": "high",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
+    },
+    {
+      "source": "Bing Places",
+      "sourceType": "maps",
+      "url": null,
+      "entity": null,
+      "branch": null,
+      "address": null,
+      "phone": null,
+      "website": null,
+      "categories": [],
+      "relationship": "local business listing",
+      "evidence": "No authenticated Bing Places account or confirmed public branch listing was available.",
+      "evidenceQuality": null,
+      "consistency": "AUTH_BLOCKED",
+      "confidence": "high",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
+    }
+  ],
+  "graph": {
+    "canonicalEntity": "Công ty TNHH TMDV Gỗ Tùng Phát",
+    "firstParty": [
+      "https://mdftungphat.com/lien-he/"
+    ],
+    "corroboratingSources": [
+      "Official website",
+      "Google Maps - branch 1",
+      "Google Maps - branch 2",
+      "Zalo",
+      "Gỗ Thanh Thùy distributor directory",
+      "Daily Chữ Ký Số business record",
+      "Infocom B2B business record"
+    ],
+    "unresolvedSources": [
+      "Facebook candidate",
+      "Google Business Profile",
+      "Bing Places"
+    ],
+    "nodes": [
+      {
+        "id": "tung-phat",
+        "type": "Organization",
+        "label": "Công ty TNHH TMDV Gỗ Tùng Phát",
+        "evidence": "content/settings/business.json"
+      },
+      {
+        "id": "chi-nhanh-1",
+        "type": "LocalBusiness",
+        "label": "Tùng Phát – Chi nhánh 1",
+        "address": "14 Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
+        "evidence": "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M"
+      },
+      {
+        "id": "chi-nhanh-2",
+        "type": "LocalBusiness",
+        "label": "Tùng Phát – Chi nhánh 2",
+        "address": "81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
+        "evidence": "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY"
+      },
+      {
+        "id": "phone",
+        "type": "ContactPoint",
+        "label": "0909 259 160",
+        "evidence": "Official website + Zalo URL"
+      },
+      {
+        "id": "domain",
+        "type": "WebSite",
+        "label": "https://mdftungphat.com",
+        "evidence": "Official website"
+      },
+      {
+        "id": "zalo",
+        "type": "SocialProfile",
+        "label": "https://zalo.me/0909259160",
+        "evidence": "Official website socialLinks"
+      },
+      {
+        "id": "materials",
+        "type": "ProductCategory",
+        "label": "MDF, MFC, plywood và gỗ ghép",
+        "evidence": "Published product and reference pages"
+      },
+      {
+        "id": "cnc",
+        "type": "Service",
+        "label": "Gia công CNC gỗ",
+        "evidence": "Published service pages"
+      },
+      {
+        "id": "external-google-maps-branch-1",
+        "type": "maps",
+        "label": "Google Maps - branch 1",
+        "url": "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
+        "evidence": "The first-party Google Maps embed payload confirms the place ID, branch name, address, phone, canonical website and category."
+      },
+      {
+        "id": "external-google-maps-branch-2",
+        "type": "maps",
+        "label": "Google Maps - branch 2",
+        "url": "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY",
+        "evidence": "The first-party Google Maps embed payload confirms the place ID, branch name, address, phone, canonical website and category."
+      },
+      {
+        "id": "external-zalo",
+        "type": "social",
+        "label": "Zalo",
+        "url": "https://zalo.me/0909259160",
+        "evidence": "The Zalo profile URL encodes the same public phone number used by the website."
+      },
+      {
+        "id": "external-go-thanh-thuy-distributor-directory",
+        "type": "manufacturer-directory",
+        "label": "Gỗ Thanh Thùy distributor directory",
+        "url": "https://www.gothanhthuy.com/distributor/cua-hang-tung-phat/",
+        "evidence": "Manufacturer website page title and meta description align with the branch-1 name and address."
+      },
+      {
+        "id": "external-daily-chu-ky-so-business-record",
+        "type": "business-directory",
+        "label": "Daily Chữ Ký Số business record",
+        "url": "https://dailychukyso.com.vn/tt-doanh-nghiep/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat/",
+        "evidence": "Direct public page returned HTTP 200 and matched the legal name and tax ID 0319115830."
+      },
+      {
+        "id": "external-infocom-b2b-business-record",
+        "type": "business-directory",
+        "label": "Infocom B2B business record",
+        "url": "https://infocom.vn/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat-0319115830.html",
+        "evidence": "Direct public page returned HTTP 200 and matched the legal name, tax ID 0319115830 and active status."
+      }
+    ],
+    "edges": [
+      {
+        "from": "tung-phat",
+        "to": "chi-nhanh-1",
+        "relationship": "branch",
+        "evidence": "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
+        "status": "UNVERIFIED_EXTERNAL_DETAILS"
+      },
+      {
+        "from": "tung-phat",
+        "to": "chi-nhanh-2",
+        "relationship": "branch",
+        "evidence": "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY",
+        "status": "UNVERIFIED_EXTERNAL_DETAILS"
+      },
+      {
+        "from": "tung-phat",
+        "to": "phone",
+        "relationship": "contact",
+        "evidence": "Official website + Zalo",
+        "status": "CONSISTENT"
+      },
+      {
+        "from": "tung-phat",
+        "to": "domain",
+        "relationship": "officialWebsite",
+        "evidence": "Official website",
+        "status": "CONSISTENT"
+      },
+      {
+        "from": "tung-phat",
+        "to": "zalo",
+        "relationship": "contactProfile",
+        "evidence": "Official website socialLinks",
+        "status": "CONSISTENT"
+      },
+      {
+        "from": "tung-phat",
+        "to": "materials",
+        "relationship": "offersCategory",
+        "evidence": "Published material pages",
+        "status": "FIRST_PARTY"
+      },
+      {
+        "from": "tung-phat",
+        "to": "cnc",
+        "relationship": "providesService",
+        "evidence": "Published CNC pages",
+        "status": "FIRST_PARTY"
+      },
+      {
+        "from": "tung-phat",
+        "to": "external-google-maps-branch-1",
+        "relationship": "externalCorroboration",
+        "evidence": "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
+        "status": "VERIFIED"
+      },
+      {
+        "from": "tung-phat",
+        "to": "external-google-maps-branch-2",
+        "relationship": "externalCorroboration",
+        "evidence": "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY",
+        "status": "VERIFIED"
+      },
+      {
+        "from": "tung-phat",
+        "to": "external-zalo",
+        "relationship": "externalCorroboration",
+        "evidence": "https://zalo.me/0909259160",
+        "status": "CONSISTENT"
+      },
+      {
+        "from": "tung-phat",
+        "to": "external-go-thanh-thuy-distributor-directory",
+        "relationship": "externalCorroboration",
+        "evidence": "https://www.gothanhthuy.com/distributor/cua-hang-tung-phat/",
+        "status": "VERIFIED"
+      },
+      {
+        "from": "tung-phat",
+        "to": "external-daily-chu-ky-so-business-record",
+        "relationship": "externalCorroboration",
+        "evidence": "https://dailychukyso.com.vn/tt-doanh-nghiep/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat/",
+        "status": "CONSISTENT"
+      },
+      {
+        "from": "tung-phat",
+        "to": "external-infocom-b2b-business-record",
+        "relationship": "externalCorroboration",
+        "evidence": "https://infocom.vn/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat-0319115830.html",
+        "status": "CONSISTENT"
+      }
+    ]
+  }
+}
