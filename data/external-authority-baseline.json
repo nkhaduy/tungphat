@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T00:19:07+07:00",
+  "domain": "mdftungphat.com",
+  "coverage": "Point-in-time public sources only; not a complete backlink graph.",
+  "verifiedReferringDomains": [
+    {
+      "sourceDomain": "google.com",
+      "sourceUrl": "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
+      "targetUrl": "https://mdftungphat.com/",
+      "context": "Public Google Maps branch payload links the canonical website.",
+      "linkStatus": "PRESENT",
+      "followed": "UNKNOWN",
+      "relevance": "HIGH",
+      "quality": "HIGH",
+      "confidence": "high",
+      "firstObserved": "2026-08-10"
+    }
+  ],
+  "businessCitations": [
+    {
+      "sourceDomain": "google.com",
+      "sourceUrl": "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
+      "targetUrl": "https://mdftungphat.com/",
+      "context": "Branch 1 public Maps entity with name, address, phone, website and category.",
+      "linkStatus": "PRESENT",
+      "relevance": "HIGH",
+      "quality": "HIGH",
+      "confidence": "high"
+    },
+    {
+      "sourceDomain": "google.com",
+      "sourceUrl": "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY",
+      "targetUrl": "https://mdftungphat.com/",
+      "context": "Branch 2 public Maps entity with name, address, phone, website and category.",
+      "linkStatus": "PRESENT",
+      "relevance": "HIGH",
+      "quality": "HIGH",
+      "confidence": "high"
+    },
+    {
+      "sourceDomain": "dailychukyso.com.vn",
+      "sourceUrl": "https://dailychukyso.com.vn/tt-doanh-nghiep/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat/",
+      "targetUrl": null,
+      "context": "Public legal-name and tax-ID record for Công ty TNHH Thương mại Dịch vụ Gỗ Tùng Phát, with 19-08-2025 operating-date evidence.",
+      "linkStatus": "NO_LINK_TO_TARGET",
+      "relevance": "MEDIUM",
+      "quality": "MEDIUM",
+      "confidence": "high"
+    },
+    {
+      "sourceDomain": "infocom.vn",
+      "sourceUrl": "https://infocom.vn/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat-0319115830.html",
+      "targetUrl": null,
+      "context": "Public B2B legal-name, tax-ID and active-status record; no canonical website link observed.",
+      "linkStatus": "NO_LINK_TO_TARGET",
+      "relevance": "MEDIUM",
+      "quality": "MEDIUM",
+      "confidence": "high"
+    }
+  ],
+  "manufacturerSupplierReferences": [
+    {
+      "sourceDomain": "gothanhthuy.com",
+      "sourceUrl": "https://www.gothanhthuy.com/distributor/cua-hang-tung-phat/",
+      "targetUrl": null,
+      "context": "Gỗ Thanh Thùy publishes a distributor-directory page titled Cửa Hàng Tùng Phát and lists 14 Đ. Tam Bình, Hiệp Bình Chánh, Thủ Đức, Hồ Chí Minh.",
+      "relationshipState": "EXPLICIT_PUBLIC_LISTING",
+      "linkStatus": "NO_LINK_TO_TARGET",
+      "relevance": "HIGH",
+      "quality": "HIGH",
+      "confidence": "high",
+      "ownerAction": "Request canonical website and phone link only after confirming listing facts with Thanh Thùy."
+    }
+  ],
+  "unlinkedMentions": [
+    {
+      "sourceUrl": "https://www.gothanhthuy.com/distributor/cua-hang-tung-phat/",
+      "sourceDomain": "gothanhthuy.com",
+      "status": "LEGITIMATE_RECLAMATION_OPPORTUNITY",
+      "confidence": "high"
+    },
+    {
+      "sourceUrl": "https://dailychukyso.com.vn/tt-doanh-nghiep/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat/",
+      "sourceDomain": "dailychukyso.com.vn",
+      "status": "LEGITIMATE_CITATION_NO_TARGET_LINK",
+      "confidence": "high"
+    },
+    {
+      "sourceUrl": "https://infocom.vn/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat-0319115830.html",
+      "sourceDomain": "infocom.vn",
+      "status": "LEGITIMATE_CITATION_NO_TARGET_LINK",
+      "confidence": "high"
+    },
+    {
+      "sourceUrl": "https://dogonoithatmynghe.com/cua-hang-go-ghep-tung-phat-uy-tin-cung-cap-go-ghep-gan-day-gia-tot.html",
+      "sourceDomain": "dogonoithatmynghe.com",
+      "status": "LOW_QUALITY_UNVERIFIED_CLAIMS_DO_NOT_RECLAIM_AUTOMATICALLY",
+      "confidence": "low"
+    }
+  ],
+  "socialCandidates": [
+    {
+      "sourceUrl": "https://www.facebook.com/p/MDF-CNC-T%C3%B9ng-Ph%C3%A1t-61572168615156/",
+      "status": "UNVERIFIED_CANDIDATE",
+      "signals": ["name aligns with public display identity", "DuckDuckGo domain search surfaced the page", "public photo URL uses MDF-CNC Tùng Phát"],
+      "linkStatus": "UNVERIFIABLE_JS",
+      "confidence": "medium",
+      "sameAsEligible": false
+    }
+  ],
+  "commonCrawl": {
+    "source": "cc-main-2026-jan-feb-mar",
+    "inCrawl": false,
+    "referringDomainsObserved": 0,
+    "note": "Domain not found in Common Crawl graph; this is a coverage limitation, not proof of zero live backlinks."
+  },
+  "counts": {
+    "verifiedReferringDomains": 1,
+    "verifiedBusinessCitations": 4,
+    "manufacturerSupplierReferences": 1,
+    "legitimateUnlinkedMentions": 3,
+    "lowQualityUnverifiedMentions": 1,
+    "actualProfilesChangedOrClaimed": 0
+  }
+}

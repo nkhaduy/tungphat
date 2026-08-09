@@ -63,6 +63,13 @@ export function toMaterialComparisonJson(dataset: MaterialDataset) {
       lastVerified: dataset.lastVerified,
       caveat:
         "Family-level comparison only; no stock, SKU, machine-limit or universal performance claim is implied.",
+      methodology: {
+        includedData: "Normalized family-level material definitions, comparison fields, source IDs and verification dates.",
+        sourceHierarchy: ["P1_PRIMARY_MANUFACTURER", "P3_FIRST_PARTY_BUSINESS", "P4_REPUTABLE_SECONDARY"],
+        unknownHandling: "Unknown or insufficiently supported values remain null in JSON and are rendered as unverified in human-readable exports.",
+        lastVerified: dataset.lastVerified,
+        factBoundary: "Manufacturer and technical-source facts remain attributed; Tùng Phát recommendations are practical selection guidance, not manufacturer specifications.",
+      },
       records: dataset.comparisonMatrix,
       sources: dataset.sources,
     },

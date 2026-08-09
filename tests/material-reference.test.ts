@@ -24,6 +24,13 @@ describe("material reference filters", () => {
     expect(json).toMatchObject({
       schemaVersion: "2.0",
       caveat: expect.stringContaining("Family-level comparison"),
+      methodology: {
+        includedData: expect.stringContaining("family-level"),
+        sourceHierarchy: ["P1_PRIMARY_MANUFACTURER", "P3_FIRST_PARTY_BUSINESS", "P4_REPUTABLE_SECONDARY"],
+        unknownHandling: expect.stringContaining("null"),
+        lastVerified: getMaterialDataset().lastVerified,
+        factBoundary: expect.stringContaining("manufacturer"),
+      },
     });
     expect(json.sources).toHaveLength(10);
     expect(json.records[0]).toMatchObject({
