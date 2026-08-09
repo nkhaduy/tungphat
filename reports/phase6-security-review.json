@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-09T08:18:00.000Z",
+  "scope": "Entire tracked Next.js, Cloudflare CMS, Worker, script and configuration source; dependency lockfile; Phase 6 diff",
+  "languages": ["TypeScript", "JavaScript", "JSON", "Shell"],
+  "frameworks": ["Next.js 15.5.21", "React 19", "Cloudflare Workers"],
+  "findings": { "critical": 0, "high": 0, "medium": 0, "low": 0, "info": 0, "total": 0 },
+  "dependencyAudit": {
+    "command": "npm audit --json",
+    "productionDependencies": 139,
+    "totalDependencies": 745,
+    "vulnerabilities": 0
+  },
+  "secretsScan": {
+    "exposedCredentials": 0,
+    "trackedEnvironmentFiles": [".env.example"],
+    "privateKeys": 0,
+    "notes": "Private-key parsing code reads runtime bindings; no key material is committed."
+  },
+  "sourceReview": {
+    "dangerousSinkFindings": 0,
+    "notes": [
+      "JsonLd escapes less-than characters before using dangerouslySetInnerHTML.",
+      "Analytics dashboard HTML interpolations escape external string values before insertion.",
+      "Math.random is used only for non-security sampling/backoff, not identifiers or tokens.",
+      "Phase 6 output-audit scripts consume local build artifacts and do not create public runtime endpoints."
+    ]
+  },
+  "headers": {
+    "csp": "present",
+    "hsts": "present",
+    "xContentTypeOptions": "present",
+    "referrerPolicy": "present",
+    "permissionsPolicy": "present"
+  },
+  "result": "NO_VULNERABILITIES_FOUND"
+}

@@ -16,5 +16,5 @@ const comparisonHeader = ["id", "name", "composition", "density", "moistureBehav
 const comparisonRows = dataset.comparisonMatrix.map((record) => [record.id, record.name, record.composition, record.density, record.moistureBehavior, record.machining, record.surfaceFinish, record.typicalApplications, record.choiceGuidance, record.sourceIds]);
 const comparisonCsv = [comparisonHeader.join(","), ...comparisonRows.map((row) => row.map(cell).join(","))].join("\n") + "\n";
 fs.writeFileSync("public/material-comparison-matrix.csv", comparisonCsv);
-fs.writeFileSync("public/material-comparison-matrix.json", `${JSON.stringify({ schemaVersion: dataset.schemaVersion, lastVerified: dataset.lastVerified, caveat: "Family-level comparison only; no stock, SKU, machine-limit or universal performance claim is implied.", records: dataset.comparisonMatrix }, null, 2)}\n`);
+fs.writeFileSync("public/material-comparison-matrix.json", `${JSON.stringify({ schemaVersion: dataset.schemaVersion, lastVerified: dataset.lastVerified, caveat: "Family-level comparison only; no stock, SKU, machine-limit or universal performance claim is implied.", records: dataset.comparisonMatrix, sources: dataset.sources }, null, 2)}\n`);
 console.log(`Generated material reference assets (${dataset.materials.length} records; ${dataset.comparisonMatrix.length} comparison rows)`);

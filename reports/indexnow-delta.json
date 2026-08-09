@@ -1,7 +1,8 @@
 {
   "schemaVersion": "2.0",
-  "checkedAt": "2026-08-08T20:41:12.142Z",
-  "dryRun": false,
+  "checkedAt": "2026-08-09T08:16:14.877Z",
+  "dryRun": true,
+  "reason": "INDEXNOW_KEY is not configured",
   "changed": [
     "https://mdftungphat.com/",
     "https://mdftungphat.com/bai-viet/",
@@ -60,8 +61,5 @@
   ],
   "deleted": [],
   "urlCount": 54,
-  "response": {
-    "attempts": 1,
-    "status": 200
-  }
+  "response": null
 }

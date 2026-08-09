@@ -1,0 +1,428 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-09T08:51:16.293Z",
+  "configurationErrors": [],
+  "summary": {
+    "total": 26,
+    "passed": 26,
+    "failed": 0
+  },
+  "pages": [
+    {
+      "url": "https://mdftungphat.com/catalogue/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/melamine/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/acrylic/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/laminate/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/pvc/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/veneer/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/laminate/lp-101-104g/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/laminate/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/bt111/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/bt143/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/bt184/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/bts14g/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/sc028m/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/sc029m/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/an-cuong/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/an-cuong/melamine/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/an-cuong/acrylic/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/an-cuong/ppet/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/an-cuong/laminate/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/an-cuong/worktop/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/an-cuong/edge-banding/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/an-cuong/veneer/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    },
+    {
+      "url": "https://mdftungphat.com/catalogue/an-cuong/pvc/",
+      "status": "PASS",
+      "score": 8,
+      "signals": {
+        "identifyingData": true,
+        "metadata": true,
+        "canonical": true,
+        "visual": true,
+        "provenance": true,
+        "categoryContext": true,
+        "commercialUtility": true,
+        "structuredData": true
+      },
+      "issues": []
+    }
+  ]
+}

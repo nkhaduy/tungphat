@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { filterMaterials, toMaterialReferenceCsv } from "@/lib/material-reference";
+import {
+  filterMaterials,
+  toMaterialComparisonJson,
+  toMaterialReferenceCsv,
+} from "@/lib/material-reference";
 import { getMaterialDataset } from "@/lib/materials";
 
 describe("material reference filters", () => {
@@ -12,5 +16,23 @@ describe("material reference filters", () => {
     const csv = toMaterialReferenceCsv(getMaterialDataset());
     expect(csv).toContain("id,recordType,slug,name,manufacturer,category,materialClass,dimensions,thicknesses,finish,surface,applications,limitations,sourceIds,lastVerified");
     expect(csv).toContain("Chưa xác minh");
+  });
+
+  it("keeps machine-readable comparison rows connected to their source records", () => {
+    const json = JSON.parse(toMaterialComparisonJson(getMaterialDataset()));
+
+    expect(json).toMatchObject({
+      schemaVersion: "2.0",
+      caveat: expect.stringContaining("Family-level comparison"),
+    });
+    expect(json.sources).toHaveLength(10);
+    expect(json.records[0]).toMatchObject({
+      id: "family-mdf",
+      sourceIds: ["epf-mdf"],
+    });
+    expect(json.sources.find((source: { id: string }) => source.id === "epf-mdf")).toMatchObject({
+      sourceTitle: "Medium density fibreboard",
+      sourceUrl: expect.stringContaining("europanels.org"),
+    });
   });
 });

@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-09T00:00:00+07:00",
+  "entity": "Công ty TNHH TMDV Gỗ Tùng Phát",
+  "formula": "Authority x Relevance x Evidence x Feasibility",
+  "scale": "Each factor is scored 1-5. Higher total means higher legitimate priority.",
+  "opportunities": [
+    {
+      "rank": 1,
+      "category": "linkable technical resource",
+      "opportunity": "Use the Material Reference Center as the single editorial citation target for architecture, interior and woodworking resources that already publish material-selection guidance.",
+      "evidence": [
+        "https://mdftungphat.com/tham-chieu-vat-lieu/",
+        "https://mdftungphat.com/material-comparison-matrix.csv",
+        "https://mdftungphat.com/material-comparison-matrix.json"
+      ],
+      "scores": { "authority": 4, "relevance": 5, "evidence": 5, "feasibility": 4, "total": 400 },
+      "status": "READY_FOR_SELECTIVE_EDITORIAL_OUTREACH",
+      "guardrail": "Target only relevant editors or communities; do not mass-submit or exchange links."
+    },
+    {
+      "rank": 2,
+      "category": "GBP",
+      "opportunity": "Claim or confirm ownership of both existing Google Maps locations and make branch name, address, phone, website, category and hours consistent without keyword stuffing.",
+      "evidence": [
+        "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
+        "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY",
+        "https://mdftungphat.com/lien-he/"
+      ],
+      "scores": { "authority": 5, "relevance": 5, "evidence": 4, "feasibility": 2, "total": 200 },
+      "status": "BLOCKED_AUTH_OWNER_VERIFICATION"
+    },
+    {
+      "rank": 3,
+      "category": "official social",
+      "opportunity": "Complete and verify the Zalo business identity so the existing phone-linked profile also displays the canonical website and matching business facts.",
+      "evidence": ["https://zalo.me/0909259160", "https://mdftungphat.com/lien-he/"],
+      "scores": { "authority": 3, "relevance": 5, "evidence": 3, "feasibility": 3, "total": 135 },
+      "status": "PROFILE_IDENTITY_NOT_EXTERNALLY_VERIFIED"
+    },
+    {
+      "rank": 4,
+      "category": "Bing Places",
+      "opportunity": "Create or verify Bing Places listings for the two branches using the first-party NAP baseline and distinct branch identities.",
+      "evidence": ["https://mdftungphat.com/lien-he/"],
+      "scores": { "authority": 4, "relevance": 5, "evidence": 2, "feasibility": 2, "total": 80 },
+      "status": "BLOCKED_AUTH"
+    },
+    {
+      "rank": 5,
+      "category": "supplier/manufacturer reference",
+      "opportunity": "Request an official dealer or reseller listing only where Tùng Phát can provide documentary authorization to the manufacturer.",
+      "evidence": [
+        "No explicit public authorized-dealer, reseller or partner listing was found for Tùng Phát in the Phase 6 search."
+      ],
+      "scores": { "authority": 5, "relevance": 5, "evidence": 1, "feasibility": 1, "total": 25 },
+      "status": "CONDITIONAL_NO_RELATIONSHIP_CLAIM"
+    },
+    {
+      "rank": 6,
+      "category": "official social",
+      "opportunity": "Identify an existing owner-controlled Facebook page or create one before adding sameAs; keep it absent from schema until identity is verified.",
+      "evidence": ["No verified Facebook URL is present in first-party business settings or reliable public evidence."],
+      "scores": { "authority": 3, "relevance": 4, "evidence": 1, "feasibility": 2, "total": 24 },
+      "status": "MISSING_UNVERIFIED"
+    }
+  ],
+  "excluded": [
+    "Generic SEO directories without editorial or local-business value",
+    "Paid backlink packages",
+    "Reciprocal-link networks",
+    "Unverified manufacturer partnership claims",
+    "The unsupported promotional article on dogonoithatmynghe.com as an authority source"
+  ]
+}
