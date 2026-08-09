@@ -1,6 +1,7 @@
 {
   "schemaVersion": "1.0",
-  "checkedAt": "2026-08-09T08:25:39.460Z",
+  "checkedAt": "2026-08-09T08:51:16.293Z",
+  "configurationErrors": [],
   "summary": {
     "total": 26,
     "passed": 26,

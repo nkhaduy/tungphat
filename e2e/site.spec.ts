@@ -191,6 +191,19 @@ test("homepage có hero tĩnh sáng, CTA chính và chỉ ưu tiên ảnh CNC m�
   await expect(hero.locator("picture")).toHaveCount(0);
 });
 
+test("homepage does not prefetch the catalogue payload before user intent", async ({ page }) => {
+  const catalogueRequests: string[] = [];
+  page.on("request", (request) => {
+    if (/\/catalogue\/(?:index\.txt|.*\.js)(?:\?|$)/.test(request.url())) {
+      catalogueRequests.push(request.url());
+    }
+  });
+
+  await page.goto("/");
+  await page.waitForTimeout(1500);
+  expect(catalogueRequests).toEqual([]);
+});
+
 test("homepage uses the branded floating Zalo control only outside mobile", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/");

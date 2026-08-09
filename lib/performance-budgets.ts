@@ -29,18 +29,31 @@ function measureFiles(files: string[], sizeOf: (file: string) => number) {
   };
 }
 
+function requireJavaScriptFiles(files: string[] | undefined, label: string) {
+  const javascriptFiles = files?.filter((file) => file.endsWith(".js")) ?? [];
+  if (!javascriptFiles.length) throw new Error(label);
+  return javascriptFiles;
+}
+
 export function measureRouteBundles(
   manifest: BuildManifest,
   sizeOf: (file: string) => number,
 ): JsBundleMeasurements {
+  const sharedFiles = requireJavaScriptFiles(
+    manifest.rootMainFiles,
+    "Missing shared JavaScript bundle entry",
+  );
+  const routeFiles = (route: string) =>
+    requireJavaScriptFiles(
+      manifest.pages[route],
+      `Missing required route bundle entry: ${route}`,
+    );
+
   return {
-    shared: measureFiles(manifest.rootMainFiles, sizeOf),
-    homepage: measureFiles(manifest.pages["/page"] ?? [], sizeOf),
-    referenceCenter: measureFiles(
-      manifest.pages["/tham-chieu-vat-lieu/page"] ?? [],
-      sizeOf,
-    ),
-    catalogue: measureFiles(manifest.pages["/catalogue/page"] ?? [], sizeOf),
+    shared: measureFiles(sharedFiles, sizeOf),
+    homepage: measureFiles(routeFiles("/page"), sizeOf),
+    referenceCenter: measureFiles(routeFiles("/tham-chieu-vat-lieu/page"), sizeOf),
+    catalogue: measureFiles(routeFiles("/catalogue/page"), sizeOf),
   };
 }
 

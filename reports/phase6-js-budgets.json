@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0",
-  "checkedAt": "2026-08-09T07:52:54.397Z",
+  "checkedAt": "2026-08-09T08:51:09.741Z",
   "methodology": "Parsed production JavaScript bytes from Next.js app-build-manifest.json; budgets allow about 10% growth over the recovered Phase 6 build.",
   "budgets": {
     "sharedParsedBytes": 390000,
@@ -10,16 +10,16 @@
   },
   "measured": {
     "shared": {
-      "parsedBytes": 350825
+      "parsedBytes": 350814
     },
     "homepage": {
-      "parsedBytes": 410365
+      "parsedBytes": 410278
     },
     "referenceCenter": {
-      "parsedBytes": 435533
+      "parsedBytes": 435446
     },
     "catalogue": {
-      "parsedBytes": 421069
+      "parsedBytes": 420981
     }
   },
   "failures": []
