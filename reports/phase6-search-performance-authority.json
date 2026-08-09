@@ -1,0 +1,377 @@
+{
+  "schemaVersion": "1.0",
+  "phase": "6",
+  "generatedAt": "2026-08-09T10:23:59Z",
+  "result": "SEARCH PERFORMANCE & AUTHORITY: PARTIAL",
+  "production": {
+    "url": "https://mdftungphat.com",
+    "sha": "5cb5416715f11fb336a35ba6230813ec6b40bc88",
+    "deploymentId": "dpl_89L9MAGHPrW63MG8Moqq5Z8CBCqs",
+    "status": "READY",
+    "aliases": [
+      "https://mdftungphat.com",
+      "https://www.mdftungphat.com",
+      "https://tungphat.vercel.app"
+    ],
+    "crawl": {
+      "checkedAt": "2026-08-09T10:23:16.247Z",
+      "urls": 54,
+      "http2xx": 54,
+      "canonicalErrors": 0,
+      "schemaErrors": 0,
+      "brokenLinks": 0,
+      "orphanPages": 0,
+      "thinIndexables": 0,
+      "aiCrawlerBlockers": 0
+    }
+  },
+  "performance": {
+    "methodology": "Lighthouse mobile simulated throttling, three sequential production runs after deployment; medians include all samples.",
+    "samples": [
+      {
+        "run": 1,
+        "score": 93,
+        "fcpMs": 1620.773,
+        "lcpMs": 2693.773,
+        "tbtMs": 138,
+        "cls": 0,
+        "mainThreadMs": 909.376,
+        "scriptEvaluationMs": 382.384,
+        "styleAndLayoutMs": 172.92,
+        "renderingMs": 33.26,
+        "longTasksOver50Ms": 5,
+        "transferBytes": 484347
+      },
+      {
+        "run": 2,
+        "score": 80,
+        "fcpMs": 1313.36286,
+        "lcpMs": 4695.739595,
+        "tbtMs": 47.5,
+        "cls": 0,
+        "mainThreadMs": 668.984,
+        "scriptEvaluationMs": 327.804,
+        "styleAndLayoutMs": 108.436,
+        "renderingMs": 22.66,
+        "longTasksOver50Ms": 4,
+        "transferBytes": 484407
+      },
+      {
+        "run": 3,
+        "score": 95,
+        "fcpMs": 1089.2785,
+        "lcpMs": 2372.2785,
+        "tbtMs": 179.5,
+        "cls": 0,
+        "mainThreadMs": 1056.26,
+        "scriptEvaluationMs": 400.264,
+        "styleAndLayoutMs": 235.932,
+        "renderingMs": 36.62,
+        "longTasksOver50Ms": 6,
+        "transferBytes": 484197
+      }
+    ],
+    "median": {
+      "score": 93,
+      "fcpMs": 1313.36286,
+      "lcpMs": 2693.773,
+      "tbtMs": 138,
+      "cls": 0,
+      "mainThreadMs": 909.376,
+      "scriptEvaluationMs": 382.384,
+      "styleAndLayoutMs": 172.92,
+      "renderingMs": 33.26,
+      "longTasksOver50Ms": 5,
+      "transferBytes": 484347
+    },
+    "phaseComparison": {
+      "phase4": {
+        "score": 97,
+        "fcpMs": 1037,
+        "lcpMs": 2463,
+        "tbtMs": 96,
+        "cls": 0
+      },
+      "phase5": {
+        "score": 77,
+        "fcpMs": 1581.39504,
+        "lcpMs": 2563.84912,
+        "tbtMs": 695.5,
+        "cls": 0
+      },
+      "phase6": {
+        "score": 93,
+        "fcpMs": 1313.36286,
+        "lcpMs": 2693.773,
+        "tbtMs": 138,
+        "cls": 0
+      }
+    },
+    "variance": "Run 2 LCP was 4.696 s because the LCP element render delay increased to 2.094 s. Its TBT remained 47.5 ms and the catalogue prefetch regression did not recur."
+  },
+  "rootCause": {
+    "primary": "Next.js Link prefetch from catalogue links in the global shell and homepage fetched /catalogue/index.txt?_rsc=... and catalogue JavaScript before user intent.",
+    "evidence": {
+      "catalogueRscTransferBytes": 91237,
+      "catalogueRscResourceBytes": 1538722,
+      "relatedSharedChunkTransferBytes": 46512,
+      "relatedSharedChunkParsedBytes": 173820,
+      "relatedLongTaskMs": 55,
+      "relatedScriptingMs": 203.556,
+      "phase4ToPhase5HomepageParsedJsDeltaBytes": 441
+    },
+    "changes": [
+      "Disabled catalogue prefetch in desktop navigation, mobile navigation, homepage CTA and footer.",
+      "Kept catalogue data route-scoped and out of homepage/global layout payloads.",
+      "Added a browser regression test that rejects catalogue payload requests before user intent.",
+      "Added deterministic fail-closed shared and route JavaScript budgets."
+    ],
+    "analytics": "One deferred GA script, one js initialization and one config call were observed. No duplicate initialization, client reinjection, route-event loop or console error was observed."
+  },
+  "bundle": {
+    "comparison": {
+      "phase4HomepageParsedBytes": 409818,
+      "phase5HomepageParsedBytes": 410259,
+      "phase4ToPhase5DeltaBytes": 441,
+      "conclusion": "Bundle growth was negligible; the regression was runtime prefetch and processing cost."
+    },
+    "phase6MeasuredParsedBytes": {
+      "shared": 350814,
+      "homepage": 410278,
+      "referenceCenter": 435446,
+      "catalogue": 420981
+    },
+    "budgetsParsedBytes": {
+      "shared": 390000,
+      "homepage": 455000,
+      "referenceCenter": 485000,
+      "catalogue": 470000
+    },
+    "budgetFailures": 0,
+    "largestDeferredOrPrevented": [
+      "Catalogue RSC payload before intent",
+      "Catalogue route chunk before intent",
+      "Catalogue-related shared chunk execution before intent"
+    ]
+  },
+  "buildScale": {
+    "generatedRoutes": 3505,
+    "htmlFiles": 3494,
+    "indexableUrls": 54,
+    "noindexUrls": 3440,
+    "outputFiles": 13713,
+    "outputBytes": 2021746814,
+    "assessment": "The noindex catalogue remains a material 1.88 GiB deployment cost. No bulk deletion was justified because Phase 6 established a runtime prefetch cause independently of route count."
+  },
+  "indexation": {
+    "authentication": {
+      "browserAvailability": "NO_AVAILABLE_BROWSER_SESSION",
+      "googleSearchConsole": "BLOCKED_AUTH",
+      "bingWebmaster": "BLOCKED_AUTH",
+      "googleBusinessProfile": "BLOCKED_AUTH",
+      "bingPlaces": "BLOCKED_AUTH"
+    },
+    "google": {
+      "observed": 0,
+      "notObserved": 0,
+      "unknown": 54,
+      "confirmedIndexed": null,
+      "notes": "Public observation only; authenticated confirmation unavailable."
+    },
+    "bing": {
+      "observed": 0,
+      "notObserved": 54,
+      "unknown": 0,
+      "confirmedIndexed": null,
+      "notes": "NOT_OBSERVED is not equivalent to NOT_INDEXED."
+    },
+    "crawlerLogs": {
+      "verifiedCrawlerVisits": null,
+      "notes": "The available Vercel log query returned zero rows; no crawler identity claim was made."
+    }
+  },
+  "catalogueQuality": {
+    "expectedPromptCount": 35,
+    "actualIndexableSitemapPopulation": 26,
+    "passed": 26,
+    "failed": 0,
+    "enriched": 0,
+    "noindexed": 0,
+    "merged": 0,
+    "configurationErrors": 0,
+    "notes": "The prompt count was stale. Every actual indexable catalogue URL passed the page-main-scoped quality gate with identifying data, metadata, self-canonical, visual, provenance, category context, commercial utility and structured data."
+  },
+  "seoGeo": {
+    "indexableUrls": 54,
+    "canonicalErrors": 0,
+    "schemaErrors": 0,
+    "brokenLinks": 0,
+    "thinIndexables": 0,
+    "orphanPages": 0,
+    "directAnswerPages": 15,
+    "verifiedDataPages": 10,
+    "provenancePages": 41,
+    "aiCrawlerBlockers": 0,
+    "materialRecords": 9,
+    "provenanceSources": 10,
+    "queryCovered": 90,
+    "queryPartial": 0,
+    "queryGap": 0,
+    "queryShouldNotTarget": 10
+  },
+  "entityAuthority": {
+    "verifiedOrConsistent": 2,
+    "maps": "Two public Google Maps locations exist; ownership and full fields remain unverified.",
+    "googleBusinessProfile": "BLOCKED_AUTH_OWNER_VERIFICATION",
+    "bingPlaces": "BLOCKED_AUTH",
+    "facebook": "MISSING_UNVERIFIED",
+    "zalo": "Phone matches the first-party phone; full business profile identity is unverified.",
+    "manufacturerSupplierCorroboration": "No explicit public authorized-dealer, reseller or partner relationship was found; manufacturer sources are used only as technical provenance.",
+    "opportunities": {
+      "count": 6,
+      "top": "Selective editorial citation of the Material Reference Center",
+      "report": "reports/external-authority-opportunities.json"
+    }
+  },
+  "strongestInformationAsset": {
+    "url": "https://mdftungphat.com/tham-chieu-vat-lieu/",
+    "name": "Material Reference Center and six-material comparison matrix",
+    "changes": [
+      "Added stable row anchors for direct citations.",
+      "Added direct row-level links to source records.",
+      "Included source records in the downloadable JSON.",
+      "Kept CSV and JSON machine-readable formats and explicit null/verification caveats."
+    ],
+    "formats": [
+      "HTML",
+      "CSV",
+      "JSON"
+    ],
+    "sources": 10,
+    "crawlable": true,
+    "informationGain": "A reader or retrieval system can cite a specific material row, inspect its exact evidence, and download the same source-backed structure without inferring unsupported values."
+  },
+  "searchBenchmark": {
+    "surface": "Bing Web Search RSS",
+    "checkedAt": "2026-08-09T09:25:23.179Z",
+    "queryCount": 40,
+    "phaseHistory": {
+      "commercial": {
+        "phase2": 0,
+        "phase3": 0,
+        "phase4": 0,
+        "phase5": 0,
+        "phase6": 0
+      },
+      "informational": {
+        "phase2": 0,
+        "phase3": 0,
+        "phase4": 0,
+        "phase5": 0,
+        "phase6": 0
+      },
+      "comparison": {
+        "phase2": 0,
+        "phase3": 0,
+        "phase4": 0,
+        "phase5": 0,
+        "phase6": 0
+      },
+      "localCnc": {
+        "phase2": 0,
+        "phase3": 0,
+        "phase4": 0,
+        "phase5": 0,
+        "phase6": 0
+      }
+    },
+    "directAiCitations": null,
+    "aiSourceRetrieval": null
+  },
+  "indexNow": {
+    "checkedAt": "2026-08-09T09:31:13.593Z",
+    "changedCanonicalUrls": [
+      "https://mdftungphat.com/tham-chieu-vat-lieu/"
+    ],
+    "count": 1,
+    "attempts": 1,
+    "status": 200,
+    "failures": 0
+  },
+  "authorityDiagnosis": "Technical crawlability, schema, internal linking and content coverage are healthy, while public search observation remains 0/40 and authenticated indexation data is unavailable. The remaining bottleneck is external discovery/entity corroboration and search-engine processing time, not another large on-site page expansion.",
+  "verification": {
+    "local": {
+      "lint": "PASS",
+      "typecheck": "PASS",
+      "appTests": {
+        "filesPassed": 101,
+        "testsPassed": 535,
+        "failed": 0
+      },
+      "cmsE2e": {
+        "passed": 5,
+        "failed": 0
+      },
+      "productionBuild": "PASS",
+      "defaultE2e": {
+        "passed": 30,
+        "failed": 2,
+        "notes": "Two 30-second environment timeouts passed individually with a 90-second timeout; main CI passed the full E2E suite."
+      },
+      "structuredData": {
+        "documentsPassed": 3495,
+        "errors": 0
+      },
+      "catalogueQuality": {
+        "passed": 26,
+        "failed": 0
+      },
+      "provenance": {
+        "records": 9,
+        "sources": 10,
+        "publishedP5Facts": 0
+      },
+      "bundleBudgetFailures": 0,
+      "changedJsonValidation": "PASS",
+      "dependencyVulnerabilities": 0,
+      "exposedCredentials": 0
+    },
+    "ci": {
+      "runId": 31305036304,
+      "headSha": "2528787cd3a38871826a9b53e9e14271cc2cef30",
+      "verify": "SUCCESS",
+      "e2e": {
+        "status": "SUCCESS",
+        "passed": 58
+      }
+    },
+    "production": {
+      "crawl": "PASS",
+      "cataloguePrefetchRegression": "PASS_1_OF_1",
+      "productionPlaywrightSmoke": "PASS_2_OF_2",
+      "analyticsSmoke": "PASS",
+      "botAccess": "PASS_7_OF_7",
+      "securityHeaders": "PASS",
+      "lighthouse": "PASS_WITH_LCP_VARIANCE"
+    }
+  },
+  "git": {
+    "repo": "https://github.com/nkhaduy/tungphat",
+    "worktree": "/Users/khaduy/Downloads/tungphat-seo-phase6-worktree",
+    "branch": "codex/seo-phase6-authority-performance-20260809",
+    "startingSha": "c441030c82a80dca31c3f00d0737f54c96e6bbd7",
+    "featureCommits": [
+      "53dce68b9adbe166d07032c1f6437ade60f99386",
+      "2528787cd3a38871826a9b53e9e14271cc2cef30"
+    ],
+    "mainSha": "5cb5416715f11fb336a35ba6230813ec6b40bc88",
+    "pullRequest": "https://github.com/nkhaduy/tungphat/pull/26",
+    "merged": true,
+    "forcePush": false
+  },
+  "blockers": [
+    "Google Search Console and Google Business Profile require an authenticated owner session; no in-app browser session was available.",
+    "Bing Webmaster and Bing Places require an authenticated owner session; no in-app browser session was available.",
+    "Maps ownership/profile fields, official Facebook identity, full Zalo identity and supplier/dealer relationships remain unverified."
+  ]
+}
