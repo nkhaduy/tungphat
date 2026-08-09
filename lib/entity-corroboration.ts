@@ -70,3 +70,24 @@ export function summarizeEntityRecords(records: EntityRecord[]) {
     authBlocked: count("AUTH_BLOCKED"),
   };
 }
+
+function externalNodeId(source: string) {
+  const ascii = source
+    .toLocaleLowerCase("vi-VN")
+    .replace(/đ/gu, "d")
+    .normalize("NFD")
+    .replace(/\p{M}+/gu, "");
+  return `external-${ascii.replace(/[^a-z0-9]+/gu, "-").replace(/^-|-$/gu, "")}`;
+}
+
+export function buildExternalEntityEdges(records: EntityRecord[]) {
+  return records
+    .filter((record) => record.sourceType !== "website" && record.url && ["VERIFIED", "CONSISTENT"].includes(record.consistency))
+    .map((record) => ({
+      from: "tung-phat",
+      to: externalNodeId(record.source),
+      relationship: "externalCorroboration",
+      evidence: record.url as string,
+      status: record.consistency as "VERIFIED" | "CONSISTENT",
+    }));
+}
