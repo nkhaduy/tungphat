@@ -89,5 +89,117 @@
         "site-go-ghep"
       ]
     }
+  ],
+  "sources": [
+    {
+      "id": "epf-mdf",
+      "sourceType": "technical-association",
+      "qualityTier": "P4_REPUTABLE_SECONDARY",
+      "sourceTitle": "Medium density fibreboard",
+      "sourceUrl": "https://europanels.org/the-wood-based-panel-industry/types-of-wood-based-panels-economic-impact/medium-density-fibreboard/",
+      "sourceFile": null,
+      "retrievedAt": "2026-08-09",
+      "publisher": "European Panel Federation",
+      "confidence": "high"
+    },
+    {
+      "id": "epf-particleboard",
+      "sourceType": "technical-association",
+      "qualityTier": "P4_REPUTABLE_SECONDARY",
+      "sourceTitle": "Particleboard",
+      "sourceUrl": "https://europanels.org/the-wood-based-panel-industry/types-of-wood-based-panels-economic-impact/particleboard/",
+      "sourceFile": null,
+      "retrievedAt": "2026-08-09",
+      "publisher": "European Panel Federation",
+      "confidence": "high"
+    },
+    {
+      "id": "epf-plywood",
+      "sourceType": "technical-association",
+      "qualityTier": "P4_REPUTABLE_SECONDARY",
+      "sourceTitle": "Plywood",
+      "sourceUrl": "https://europanels.org/the-wood-based-panel-industry/types-of-wood-based-panels-economic-impact/plywood/",
+      "sourceFile": null,
+      "retrievedAt": "2026-08-09",
+      "publisher": "European Panel Federation",
+      "confidence": "high"
+    },
+    {
+      "id": "ancuong-mfc",
+      "sourceType": "manufacturer-product-page",
+      "qualityTier": "P1_PRIMARY_MANUFACTURER",
+      "sourceTitle": "Melamine-Faced Chipboard (MFC)",
+      "sourceUrl": "https://ancuong.com/melamine-panel/melamine-faced-chipboard-mfc.html",
+      "sourceFile": null,
+      "retrievedAt": "2026-08-09",
+      "publisher": "An Cường",
+      "confidence": "high"
+    },
+    {
+      "id": "site-van-mdf",
+      "sourceType": "repo-content",
+      "qualityTier": "P3_FIRST_PARTY_BUSINESS",
+      "sourceTitle": "Ván MDF tại TP.HCM",
+      "sourceUrl": "https://mdftungphat.com/van-mdf/",
+      "sourceFile": "content/products/van-mdf.md",
+      "retrievedAt": "2026-08-09",
+      "publisher": "Tùng Phát",
+      "confidence": "medium"
+    },
+    {
+      "id": "site-mdf-chong-am",
+      "sourceType": "repo-content",
+      "qualityTier": "P3_FIRST_PARTY_BUSINESS",
+      "sourceTitle": "MDF chống ẩm tại TP.HCM",
+      "sourceUrl": "https://mdftungphat.com/mdf-chong-am/",
+      "sourceFile": "content/products/mdf-chong-am.md",
+      "retrievedAt": "2026-08-09",
+      "publisher": "Tùng Phát",
+      "confidence": "medium"
+    },
+    {
+      "id": "site-go-ghep",
+      "sourceType": "repo-content",
+      "qualityTier": "P3_FIRST_PARTY_BUSINESS",
+      "sourceTitle": "Gỗ ghép: cách chọn cao su, tràm theo nhu cầu",
+      "sourceUrl": "https://mdftungphat.com/go-ghep/",
+      "sourceFile": "content/products/go-ghep.md",
+      "retrievedAt": "2026-08-09",
+      "publisher": "Tùng Phát",
+      "confidence": "medium"
+    },
+    {
+      "id": "site-go-ghep-cao-su",
+      "sourceType": "repo-content",
+      "qualityTier": "P3_FIRST_PARTY_BUSINESS",
+      "sourceTitle": "Gỗ ghép cao su tại TP.HCM",
+      "sourceUrl": "https://mdftungphat.com/go-ghep-cao-su/",
+      "sourceFile": "content/products/go-ghep-cao-su.md",
+      "retrievedAt": "2026-08-09",
+      "publisher": "Tùng Phát",
+      "confidence": "medium"
+    },
+    {
+      "id": "site-go-ghep-tram",
+      "sourceType": "repo-content",
+      "qualityTier": "P3_FIRST_PARTY_BUSINESS",
+      "sourceTitle": "Gỗ ghép tràm tại TP.HCM",
+      "sourceUrl": "https://mdftungphat.com/go-ghep-tram/",
+      "sourceFile": "content/products/go-ghep-tram.md",
+      "retrievedAt": "2026-08-09",
+      "publisher": "Tùng Phát",
+      "confidence": "medium"
+    },
+    {
+      "id": "site-van-go-cong-nghiep",
+      "sourceType": "repo-content",
+      "qualityTier": "P3_FIRST_PARTY_BUSINESS",
+      "sourceTitle": "Ván gỗ công nghiệp: cách chọn nhóm phù hợp",
+      "sourceUrl": "https://mdftungphat.com/van-go-cong-nghiep/",
+      "sourceFile": "content/products/van-go-cong-nghiep.md",
+      "retrievedAt": "2026-08-09",
+      "publisher": "Tùng Phát",
+      "confidence": "medium"
+    }
   ]
 }

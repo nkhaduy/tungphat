@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08T20:22:05.930Z",
+  "generatedAt": "2026-08-09T08:30:27.413Z",
   "pageCount": 3496,
   "byUrl": {
     "/404/": {
@@ -24195,8 +24195,8 @@
     },
     "/go-ghep/": {
       "clickDepth": 1,
-      "internalInlinks": 3511,
-      "contextualInlinks": 14,
+      "internalInlinks": 3512,
+      "contextualInlinks": 15,
       "navigationInlinks": 3497,
       "breadcrumbInlinks": 0,
       "anchorVariation": [
@@ -26702,8 +26702,8 @@
     },
     "/mdf-chong-am/": {
       "clickDepth": 1,
-      "internalInlinks": 3523,
-      "contextualInlinks": 26,
+      "internalInlinks": 3524,
+      "contextualInlinks": 27,
       "navigationInlinks": 3497,
       "breadcrumbInlinks": 0,
       "anchorVariation": [

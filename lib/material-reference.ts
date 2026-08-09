@@ -55,3 +55,18 @@ export function toMaterialComparisonCsv(records: MaterialComparisonRecord[]) {
   const rows = records.map((record) => [record.id, record.name, printable(record.composition), printable(record.density), printable(record.moistureBehavior), printable(record.machining), printable(record.surfaceFinish), printable(record.typicalApplications), printable(record.choiceGuidance), record.sourceIds.join("; ")]);
   return [header.join(","), ...rows.map((row) => row.map(csvCell).join(","))].join("\n") + "\n";
 }
+
+export function toMaterialComparisonJson(dataset: MaterialDataset) {
+  return `${JSON.stringify(
+    {
+      schemaVersion: dataset.schemaVersion,
+      lastVerified: dataset.lastVerified,
+      caveat:
+        "Family-level comparison only; no stock, SKU, machine-limit or universal performance claim is implied.",
+      records: dataset.comparisonMatrix,
+      sources: dataset.sources,
+    },
+    null,
+    2,
+  )}\n`;
+}

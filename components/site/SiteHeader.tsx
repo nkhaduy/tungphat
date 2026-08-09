@@ -60,6 +60,7 @@ export function SiteHeader() {
     {
       label: "Mã màu",
       href: "/catalogue",
+      prefetch: false,
       match: (path: string) =>
         path === "/catalogue" ||
         path.startsWith("/catalogue/") ||
@@ -80,6 +81,7 @@ export function SiteHeader() {
     label: item.label,
     href: item.href,
     active: item.match(pathname),
+    prefetch: "prefetch" in item ? item.prefetch : undefined,
   }));
 
   const closeMenu = useCallback((restoreFocus = false) => {
@@ -171,6 +173,7 @@ export function SiteHeader() {
               <Link
                 key={`${item.label}-${item.href}`}
                 href={item.href}
+                prefetch={item.prefetch}
                 aria-current={item.active ? "page" : undefined}
                 className={`relative inline-flex min-h-11 items-center text-[12px] font-extrabold transition-colors 2xl:text-[13px] ${item.active ? "text-wood-600 after:absolute after:inset-x-0 after:bottom-1 after:h-0.5 after:bg-wood-500" : "text-forest-950 hover:text-wood-600"}`}
               >

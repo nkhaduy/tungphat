@@ -450,6 +450,231 @@
           }
         ]
       }
+    },
+    {
+      "runId": "bing-rss-2026-08-09T07-40-29-772Z",
+      "checkedAt": "2026-08-09T07:40:29.772Z",
+      "outputPath": "reports/search-monitor-2026-08-09T07-40-29-769Z.json",
+      "summary": {
+        "queryCount": 40,
+        "foundCount": 0,
+        "citedCount": null,
+        "directAiCitationAvailable": false,
+        "categoryCounts": {
+          "commercial": {
+            "queries": 10,
+            "found": 0,
+            "cited": 0
+          },
+          "informational": {
+            "queries": 10,
+            "found": 0,
+            "cited": 0
+          },
+          "comparison": {
+            "queries": 10,
+            "found": 0,
+            "cited": 0
+          },
+          "local-cnc": {
+            "queries": 10,
+            "found": 0,
+            "cited": 0
+          }
+        },
+        "topCompetitors": [
+          {
+            "domain": "ancuong.com",
+            "observationCount": 12
+          },
+          {
+            "domain": "gosaigon.vn",
+            "observationCount": 12
+          },
+          {
+            "domain": "hoangphatwood.vn",
+            "observationCount": 12
+          },
+          {
+            "domain": "shopee.vn",
+            "observationCount": 12
+          },
+          {
+            "domain": "bati-expert.fr",
+            "observationCount": 10
+          },
+          {
+            "domain": "codeve.fr",
+            "observationCount": 10
+          },
+          {
+            "domain": "facebook.com",
+            "observationCount": 10
+          },
+          {
+            "domain": "fr.wikipedia.org",
+            "observationCount": 10
+          },
+          {
+            "domain": "linternaute.com",
+            "observationCount": 10
+          },
+          {
+            "domain": "mdf.nc",
+            "observationCount": 10
+          },
+          {
+            "domain": "mdfitalia.com",
+            "observationCount": 10
+          },
+          {
+            "domain": "mutualite.fr",
+            "observationCount": 10
+          },
+          {
+            "domain": "portail.mdf.nc",
+            "observationCount": 10
+          },
+          {
+            "domain": "service-public.nc",
+            "observationCount": 10
+          },
+          {
+            "domain": "vi.wikipedia.org",
+            "observationCount": 9
+          },
+          {
+            "domain": "kesgroup.vn",
+            "observationCount": 7
+          },
+          {
+            "domain": "theptriviet.com.vn",
+            "observationCount": 7
+          },
+          {
+            "domain": "vietnamplywood.com.vn",
+            "observationCount": 7
+          },
+          {
+            "domain": "youtube.com",
+            "observationCount": 7
+          },
+          {
+            "domain": "chotot.com",
+            "observationCount": 5
+          }
+        ]
+      },
+      "prioritySummary": {
+        "queryCount": 10,
+        "foundCount": 0,
+        "citedCount": null,
+        "directAiCitationAvailable": false,
+        "categoryCounts": {
+          "commercial": {
+            "queries": 3,
+            "found": 0,
+            "cited": 0
+          },
+          "informational": {
+            "queries": 3,
+            "found": 0,
+            "cited": 0
+          },
+          "comparison": {
+            "queries": 2,
+            "found": 0,
+            "cited": 0
+          },
+          "local-cnc": {
+            "queries": 2,
+            "found": 0,
+            "cited": 0
+          }
+        },
+        "topCompetitors": [
+          {
+            "domain": "bati-expert.fr",
+            "observationCount": 3
+          },
+          {
+            "domain": "codeve.fr",
+            "observationCount": 3
+          },
+          {
+            "domain": "facebook.com",
+            "observationCount": 3
+          },
+          {
+            "domain": "fr.wikipedia.org",
+            "observationCount": 3
+          },
+          {
+            "domain": "linternaute.com",
+            "observationCount": 3
+          },
+          {
+            "domain": "mdf.nc",
+            "observationCount": 3
+          },
+          {
+            "domain": "mdfitalia.com",
+            "observationCount": 3
+          },
+          {
+            "domain": "mutualite.fr",
+            "observationCount": 3
+          },
+          {
+            "domain": "portail.mdf.nc",
+            "observationCount": 3
+          },
+          {
+            "domain": "service-public.nc",
+            "observationCount": 3
+          },
+          {
+            "domain": "shopee.vn",
+            "observationCount": 3
+          },
+          {
+            "domain": "ancuong.com",
+            "observationCount": 2
+          },
+          {
+            "domain": "gosaigon.vn",
+            "observationCount": 2
+          },
+          {
+            "domain": "hoangphatwood.vn",
+            "observationCount": 2
+          },
+          {
+            "domain": "kesgroup.vn",
+            "observationCount": 2
+          },
+          {
+            "domain": "theptriviet.com.vn",
+            "observationCount": 2
+          },
+          {
+            "domain": "vietnamplywood.com.vn",
+            "observationCount": 2
+          },
+          {
+            "domain": "abay.vn",
+            "observationCount": 1
+          },
+          {
+            "domain": "agoda.com",
+            "observationCount": 1
+          },
+          {
+            "domain": "app.meinvoice.vn",
+            "observationCount": 1
+          }
+        ]
+      }
     }
   ]
 }
