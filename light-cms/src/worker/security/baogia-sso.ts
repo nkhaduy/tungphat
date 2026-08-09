@@ -33,11 +33,13 @@ function secureCookie(request: Request, configured?: boolean): boolean {
 }
 
 function stateCookie(state: string, secure: boolean): string {
-  return `${SSO_STATE_COOKIE}=${state}; HttpOnly; ${secure ? "Secure; " : ""}SameSite=Lax; Path=/api/auth/sso/callback; Max-Age=${SSO_STATE_SECONDS}`;
+  const sameSite = secure ? "SameSite=None" : "SameSite=Lax";
+  return `${SSO_STATE_COOKIE}=${state}; HttpOnly; ${secure ? "Secure; " : ""}${sameSite}; Path=/api/auth/sso/callback; Max-Age=${SSO_STATE_SECONDS}`;
 }
 
 function clearStateCookie(secure: boolean): string {
-  return `${SSO_STATE_COOKIE}=; HttpOnly; ${secure ? "Secure; " : ""}SameSite=Lax; Path=/api/auth/sso/callback; Max-Age=0`;
+  const sameSite = secure ? "SameSite=None" : "SameSite=Lax";
+  return `${SSO_STATE_COOKIE}=; HttpOnly; ${secure ? "Secure; " : ""}${sameSite}; Path=/api/auth/sso/callback; Max-Age=0`;
 }
 
 function readCookie(request: Request, name: string): string {

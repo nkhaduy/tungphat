@@ -52,7 +52,7 @@ describe("Baogia SSO completion", () => {
     expect(cookie).toContain(`tp_light_sso_state=${state}`);
     expect(cookie).toContain("HttpOnly");
     expect(cookie).toContain("Secure");
-    expect(cookie).toContain("SameSite=Lax");
+    expect(cookie).toContain("SameSite=None");
     expect(cookie).toContain("Max-Age=600");
     expect(cookie).not.toContain("Domain=");
   });
@@ -70,6 +70,7 @@ describe("Baogia SSO completion", () => {
     expect(setCookie).toContain("tp_light_session=");
     expect(setCookie).toContain("Max-Age=1800");
     expect(setCookie).toContain("tp_light_sso_state=; ");
+    expect(setCookie).toContain("tp_light_sso_state=; HttpOnly; Secure; SameSite=None");
     expect(sqlite.prepare("SELECT baogia_subject,baogia_username,display_name,role,status FROM users WHERE baogia_subject=?").get("baogia-admin-1")).toEqual({
       baogia_subject: "baogia-admin-1",
       baogia_username: "admin",
