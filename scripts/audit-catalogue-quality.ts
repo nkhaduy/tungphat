@@ -22,4 +22,4 @@ const report = auditCataloguePages({
 const reportPath = process.env.CATALOGUE_QUALITY_OUTPUT;
 if (reportPath) writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`);
 console.log(JSON.stringify(report.summary, null, 2));
-if (report.summary.failed) process.exitCode = 1;
+if (report.summary.failed || report.configurationErrors.length) process.exitCode = 1;

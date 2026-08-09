@@ -6,7 +6,7 @@
     "dev": "next dev",
     "prebuild": "node scripts/prepare-indexnow-key.mjs && node scripts/generate-material-reference.mjs && node scripts/generate-cnc-preflight.mjs",
     "build": "npm run validate:content && npm run images:check && node ./node_modules/next/dist/bin/next build",
-    "postbuild": "node scripts/clean-empty-collection-routes.mjs && node scripts/clean-export-image-sources.mjs && node scripts/check-static-output.mjs && node scripts/check-cloudflare-pages-capacity.mjs && tsx scripts/check-js-budgets.ts && node scripts/check-sitemap-output.mjs && node scripts/check-metadata-output.mjs && tsx scripts/audit-seo-output.ts && CATALOGUE_QUALITY_OUTPUT=reports/phase6-catalogue-quality.json tsx scripts/audit-catalogue-quality.ts && node scripts/validate-structured-data.mjs",
+    "postbuild": "node scripts/clean-empty-collection-routes.mjs && node scripts/clean-export-image-sources.mjs && node scripts/check-static-output.mjs && node scripts/check-cloudflare-pages-capacity.mjs && JS_BUDGET_OUTPUT=reports/phase6-js-budgets.json tsx scripts/check-js-budgets.ts && node scripts/check-sitemap-output.mjs && node scripts/check-metadata-output.mjs && tsx scripts/audit-seo-output.ts && CATALOGUE_QUALITY_OUTPUT=reports/phase6-catalogue-quality.json tsx scripts/audit-catalogue-quality.ts && node scripts/validate-structured-data.mjs",
     "start": "npx serve out",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.cloudflare.json --noEmit",

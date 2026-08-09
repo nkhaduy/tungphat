@@ -48,4 +48,29 @@ describe("route JavaScript budgets", () => {
       expect.stringContaining("shared"),
     ]);
   });
+
+  it("fails closed when a required route disappears from the manifest", () => {
+    expect(() =>
+      measureRouteBundles(
+        { rootMainFiles: ["shared.js"], pages: { "/page": ["home.js"] } },
+        () => 1,
+      ),
+    ).toThrow("Missing required route bundle entry");
+  });
+
+  it("fails closed when shared JavaScript is missing", () => {
+    expect(() =>
+      measureRouteBundles(
+        {
+          rootMainFiles: [],
+          pages: {
+            "/page": ["home.js"],
+            "/tham-chieu-vat-lieu/page": ["reference.js"],
+            "/catalogue/page": ["catalogue.js"],
+          },
+        },
+        () => 1,
+      ),
+    ).toThrow("Missing shared JavaScript bundle entry");
+  });
 });

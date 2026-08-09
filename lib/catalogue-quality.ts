@@ -9,6 +9,7 @@ export type CatalogueQualityPage = {
 export type CatalogueQualityReport = {
   schemaVersion: "1.0";
   checkedAt: string;
+  configurationErrors: string[];
   summary: { total: number; passed: number; failed: number };
   pages: CatalogueQualityPage[];
 };
@@ -37,6 +38,10 @@ function bodyText(html: string) {
     .trim();
 }
 
+function mainContent(html: string) {
+  return html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1] ?? "";
+}
+
 function hasTag(html: string, tag: string) {
   return new RegExp(`<${tag}\\b`, "i").test(html);
 }
@@ -57,20 +62,42 @@ function hasCanonical(html: string, expectedUrl: string) {
   }
 }
 
+function hasIdentifyingData(html: string, url: string) {
+  const heading = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1];
+  if (!heading) return false;
+
+  const normalizeIdentity = (value: string) =>
+    value
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/đ/g, "d")
+      .replace(/Đ/g, "D")
+      .replace(/[^a-z0-9]+/gi, "")
+      .toLowerCase();
+  const text = bodyText(html);
+  const pathname = new URL(url).pathname;
+  if (pathname === "/catalogue/") return /mã màu|ma mau|catalogue/i.test(text);
+
+  const slug = decodeURIComponent(pathname.split("/").filter(Boolean).at(-1) ?? "");
+  return Boolean(slug) && normalizeIdentity(text).includes(normalizeIdentity(slug));
+}
+
 export function auditCataloguePages({ sitemapUrls, readHtml, checkedAt = new Date().toISOString() }: AuditInput): CatalogueQualityReport {
   const urls = sitemapUrls.filter((url) => new URL(url).pathname.startsWith("/catalogue/"));
+  const configurationErrors = urls.length ? [] : ["noCatalogueTargets"];
   const pages = urls.map((url): CatalogueQualityPage => {
     const canonicalUrl = normalizeUrl(url);
     const html = readHtml(url);
-    const text = bodyText(html);
+    const main = mainContent(html);
+    const text = bodyText(main);
     const signals = {
-      identifyingData: hasTag(html, "h1") && /<h1\b[^>]*>[^<\s][\s\S]*<\/h1>/i.test(html),
+      identifyingData: hasIdentifyingData(main, canonicalUrl),
       metadata: hasTag(html, "title") && hasMeta(html, "description"),
       canonical: hasCanonical(html, canonicalUrl),
-      visual: hasTag(html, "img"),
+      visual: hasTag(main, "img"),
       provenance: /nguồn|nguon|source|supplier|official|chính thức|doi chieu/i.test(text),
-      categoryContext: /aria-label=["']Breadcrumb|href=["']\/catalogue\//i.test(html),
-      commercialUtility: /zalo\.me|tel:|data-track-event|bao-gia|lien-he/i.test(html),
+      categoryContext: /aria-label=["']Breadcrumb|href=["']\/catalogue\//i.test(main),
+      commercialUtility: /zalo\.me|tel:|data-track-event|bao-gia|lien-he/i.test(main),
       structuredData: /<script\b[^>]*type=["']application\/ld\+json["']/i.test(html),
     };
     const issues = Object.entries(signals)
@@ -88,6 +115,7 @@ export function auditCataloguePages({ sitemapUrls, readHtml, checkedAt = new Dat
   return {
     schemaVersion: "1.0",
     checkedAt,
+    configurationErrors,
     summary: { total: pages.length, passed, failed: pages.length - passed },
     pages,
   };

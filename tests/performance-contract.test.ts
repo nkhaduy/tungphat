@@ -18,10 +18,11 @@ describe("homepage performance contracts", () => {
     const hero = readFileSync("components/home/HomeHero.tsx", "utf8");
     const footer = readFileSync("components/site/SiteFooter.tsx", "utf8");
 
-    expect(header).toContain('href: "/catalogue"');
+    expect(header).toMatch(
+      /href:\s*"\/catalogue",\s*prefetch:\s*false,/,
+    );
     expect(header).toContain("prefetch={item.prefetch}");
     expect(mobileNavigation).toContain("prefetch={item.prefetch}");
-    expect(header).toContain("prefetch: false");
     expect(hero).toContain('href="/catalogue"');
     expect(hero).toContain("prefetch={false}");
     expect(footer).toContain('["Mã màu", "/catalogue"]');
