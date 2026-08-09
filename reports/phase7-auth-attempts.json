@@ -5,7 +5,9 @@
     "status": "UNAVAILABLE",
     "availableInstances": 0,
     "blocker": "AUTH_BLOCKED_BROWSER_UNAVAILABLE",
-    "evidence": "Browser runtime discovery returned no connected browser instances; no cookies, tokens, or session stores were inspected."
+    "evidence": "Browser runtime discovery returned no connected browser instances; no cookies, tokens, or session stores were inspected.",
+    "retryAt": "2026-08-09T18:03:45Z",
+    "retryEvidence": "A fresh browser-runtime discovery returned an empty browser list; no authenticated GUI workflow could be opened."
   },
   "googleSearchConsole": {
     "status": "AUTH_BLOCKED",

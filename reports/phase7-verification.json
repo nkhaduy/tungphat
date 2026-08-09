@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-09T18:08:00Z",
+  "production": {
+    "origin": "https://mdftungphat.com",
+    "deployment": "dpl_ccThe3CzsWW7CDuUwwhiTa25cgto",
+    "status": "READY",
+    "crawl": "reports/production-crawl-phase7.json"
+  },
+  "commands": {
+    "npmCi": { "status": "PASS", "packagesAdded": 631, "auditVulnerabilities": 0 },
+    "lint": { "status": "PASS", "errors": 0, "warnings": 0 },
+    "typecheck": { "status": "PASS", "errors": 0 },
+    "appTests": { "status": "PASS", "testFiles": 104, "tests": 544, "failed": 0 },
+    "cmsTests": { "status": "PASS", "testFiles": 6, "tests": 32, "failed": 0 },
+    "appE2E": { "status": "PASS", "tests": 58, "failed": 0 },
+    "cmsE2E": { "status": "PASS", "tests": 5, "failed": 0 },
+    "build": {
+      "status": "PASS",
+      "staticPagesGenerated": 3505,
+      "htmlPages": 3494,
+      "indexableUrls": 54,
+      "noindexUrls": 3440,
+      "staticOutputFiles": 13713,
+      "staticOutputBytes": 2028413506,
+      "fileCountGate": "PASS",
+      "maxFileGate": "PASS"
+    },
+    "links": { "status": "PASS", "html": 3496, "internalLinks": 93185, "httpErrors": 0, "redirects": 0, "missingTrailingSlash": 0 },
+    "schema": { "status": "PASS", "documents": 3495, "productionSchemaErrors": 0 },
+    "catalogue": { "status": "PASS", "total": 26, "passed": 26, "failed": 0 },
+    "provenance": { "status": "PASS", "records": 9, "sources": 10, "p5BackedPublishedFacts": 0 },
+    "productionCrawl": { "status": "PASS", "pages": 54, "http2xx": 54, "canonicalErrors": 0, "brokenLinks": 0, "orphanPages": 0, "thinIndexablePages": 0, "aiCrawlerBlockers": 0 },
+    "botAccess": { "status": "PASS", "botsChecked": 7, "blocked": 0 },
+    "security": { "status": "PASS", "headerErrors": 0, "sourceMapsExposed": 0, "localSourceMaps": 0, "homeEnvLikeSecretHits": 0 },
+    "vulnerabilities": { "status": "PASS", "productionAuditTotal": 0, "fullNpmCiAuditTotal": 0 }
+  },
+  "performance": {
+    "runs": 3,
+    "median": { "lighthouseMobile": 96, "lcpMs": 2308.94436, "fcpMs": 1047.02988, "cls": 0, "tbtMs": 153.5 },
+    "phase6": { "lighthouseMobile": 93, "lcpMs": 2694, "fcpMs": 1313, "cls": 0, "tbtMs": 138 },
+    "maintenanceGate": "PASS"
+  },
+  "evidenceFiles": [
+    "reports/production-crawl-phase7.json",
+    "reports/indexation-observations-phase7.json",
+    "reports/indexation-status.json",
+    "reports/phase7-search-benchmark.json",
+    "reports/phase7-search-presence.json",
+    "reports/phase7-lighthouse-1.json",
+    "reports/phase7-lighthouse-2.json",
+    "reports/phase7-lighthouse-3.json",
+    "reports/indexnow-delta.json"
+  ]
+}
