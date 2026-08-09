@@ -85,6 +85,7 @@ export function SiteFooter() {
               <Link
                 key={label}
                 href={href}
+                prefetch={href === "/catalogue" ? false : undefined}
                 className="flex min-h-11 items-center text-sm text-slate-700 hover:text-wood-600"
               >
                 {label}

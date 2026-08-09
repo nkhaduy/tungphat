@@ -8,4 +8,23 @@ describe("homepage performance contracts", () => {
     expect(analytics).toContain('strategy="lazyOnload"');
     expect(analytics).not.toContain('strategy="afterInteractive"');
   });
+
+  it("does not prefetch catalogue-scale routes from the initial shell", () => {
+    const header = readFileSync("components/site/SiteHeader.tsx", "utf8");
+    const mobileNavigation = readFileSync(
+      "components/site/MobileNavigation.tsx",
+      "utf8",
+    );
+    const hero = readFileSync("components/home/HomeHero.tsx", "utf8");
+    const footer = readFileSync("components/site/SiteFooter.tsx", "utf8");
+
+    expect(header).toContain('href: "/catalogue"');
+    expect(header).toContain("prefetch={item.prefetch}");
+    expect(mobileNavigation).toContain("prefetch={item.prefetch}");
+    expect(header).toContain("prefetch: false");
+    expect(hero).toContain('href="/catalogue"');
+    expect(hero).toContain("prefetch={false}");
+    expect(footer).toContain('["Mã màu", "/catalogue"]');
+    expect(footer).toContain('prefetch={href === "/catalogue" ? false : undefined}');
+  });
 });

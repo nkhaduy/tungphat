@@ -67,6 +67,7 @@ export function HomeHero() {
             </TrackedLink>
             <Link
               href="/catalogue"
+              prefetch={false}
               className="inline-flex min-h-14 items-center justify-center gap-2 rounded-md border border-forest-900/25 bg-white px-6 text-sm font-extrabold text-forest-950 transition hover:border-forest-900 hover:bg-forest-950 hover:text-white"
             >
               Xem catalogue <ArrowRight size={17} aria-hidden="true" />
