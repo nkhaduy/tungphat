@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "2.0",
-  "checkedAt": "2026-08-09T00:00:00+07:00",
+  "schemaVersion": "2.1",
+  "checkedAt": "2026-08-10T00:19:07+07:00",
   "entity": "Công ty TNHH TMDV Gỗ Tùng Phát",
   "records": [
     {
@@ -17,39 +17,39 @@
       "evidence": "Business settings and the public contact page use the same legal name, phone and two branch addresses.",
       "consistency": "CONSISTENT",
       "confidence": "high",
-      "checkedAt": "2026-08-08T00:00:00+07:00"
+      "checkedAt": "2026-08-10T00:19:07+07:00"
     },
     {
       "source": "Google Maps - branch 1",
       "sourceType": "maps",
       "url": "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
-      "entity": "Cửa Hàng Gỗ Ghép Tùng Phát",
-      "branch": "branch 1",
-      "address": "14 Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
-      "phone": null,
-      "website": null,
-      "categories": ["Cửa hàng vật liệu gỗ"],
-      "relationship": "location listing referenced by the official website",
-      "evidence": "The official website stores this Google place ID and address; authenticated profile details were not available through CLI.",
-      "consistency": "UNVERIFIED",
-      "confidence": "medium",
-      "checkedAt": "2026-08-08T00:00:00+07:00"
+      "entity": "Tùng Phát 1 - Ván gỗ công nghiệp & CNC",
+      "branch": "14 Tam Bình",
+      "address": "14 Đ. Tam Bình, Kp7, Hiệp Bình, Hồ Chí Minh 721400",
+      "phone": "0909 259 160",
+      "website": "https://mdftungphat.com/",
+      "categories": ["Nhà cung cấp gỗ"],
+      "relationship": "public branch listing linked by the official website",
+      "evidence": "The first-party Google Maps embed payload confirms the place ID, branch name, address, phone, canonical website and category.",
+      "consistency": "VERIFIED",
+      "confidence": "high",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
     },
     {
       "source": "Google Maps - branch 2",
       "sourceType": "maps",
       "url": "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY",
-      "entity": "MDF - CNC TÙNG PHÁT",
-      "branch": "branch 2",
-      "address": "81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
-      "phone": null,
-      "website": null,
-      "categories": ["MDF", "CNC gỗ"],
-      "relationship": "location listing referenced by the official website",
-      "evidence": "The official website stores this Google place ID and address; authenticated profile details were not available through CLI.",
-      "consistency": "UNVERIFIED",
-      "confidence": "medium",
-      "checkedAt": "2026-08-08T00:00:00+07:00"
+      "entity": "Tùng Phát 2 - Ván gỗ công nghiệp & CNC",
+      "branch": "81B Tam Bình",
+      "address": "81B Đ. Tam Bình, Tam Bình, Hồ Chí Minh",
+      "phone": "0909 259 160",
+      "website": "https://mdftungphat.com/",
+      "categories": ["Nhà cung cấp gỗ"],
+      "relationship": "public branch listing linked by the official website",
+      "evidence": "The first-party Google Maps embed payload confirms the place ID, branch name, address, phone, canonical website and category.",
+      "consistency": "VERIFIED",
+      "confidence": "high",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
     },
     {
       "source": "Zalo",
@@ -65,24 +65,71 @@
       "evidence": "The Zalo profile URL encodes the same public phone number used by the website.",
       "consistency": "CONSISTENT",
       "confidence": "medium",
-      "checkedAt": "2026-08-08T00:00:00+07:00"
+      "checkedAt": "2026-08-10T00:19:07+07:00"
     },
     {
-      "source": "Public article on dogonoithatmynghe.com",
-      "sourceType": "directory",
-      "url": "https://dogonoithatmynghe.com/cua-hang-go-ghep-tung-phat-uy-tin-cung-cap-go-ghep-gan-day-gia-tot.html",
-      "entity": "Tùng Phát",
+      "source": "Gỗ Thanh Thùy distributor directory",
+      "sourceType": "manufacturer-directory",
+      "url": "https://www.gothanhthuy.com/distributor/cua-hang-tung-phat/",
+      "entity": "Cửa Hàng Tùng Phát",
+      "branch": "14 Tam Bình",
+      "address": "14 Đ. Tam Bình, Hiệp Bình Chánh, Thủ Đức, Thành phố Hồ Chí Minh",
+      "phone": null,
+      "website": null,
+      "categories": ["Distributor directory"],
+      "relationship": "explicit public distributor-directory entry; no broader authorization claim inferred",
+      "evidence": "Manufacturer website page title and meta description align with the branch-1 name and address.",
+      "consistency": "VERIFIED",
+      "confidence": "high",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
+    },
+    {
+      "source": "Daily Chữ Ký Số business record",
+      "sourceType": "business-directory",
+      "url": "https://dailychukyso.com.vn/tt-doanh-nghiep/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat/",
+      "entity": "CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ GỖ TÙNG PHÁT",
       "branch": null,
       "address": null,
       "phone": null,
       "website": null,
-      "categories": ["Gỗ ghép"],
-      "relationship": "unverified third-party mention",
-      "evidence": "The article mentions the brand but does not provide reliable NAP/domain corroboration and contains unsupported promotional claims.",
-      "evidenceQuality": "P5_UNVERIFIED",
+      "categories": ["Legal entity citation"],
+      "relationship": "public legal-name and tax-ID citation",
+      "evidence": "Direct public page returned HTTP 200 and matched the legal name and tax ID 0319115830.",
+      "consistency": "CONSISTENT",
+      "confidence": "high",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
+    },
+    {
+      "source": "Infocom B2B business record",
+      "sourceType": "business-directory",
+      "url": "https://infocom.vn/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat-0319115830.html",
+      "entity": "CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ GỖ TÙNG PHÁT",
+      "branch": null,
+      "address": null,
+      "phone": null,
+      "website": null,
+      "categories": ["Legal entity citation"],
+      "relationship": "public legal-name, tax-ID and active-status citation",
+      "evidence": "Direct public page returned HTTP 200 and matched the legal name, tax ID 0319115830 and active status.",
+      "consistency": "CONSISTENT",
+      "confidence": "high",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
+    },
+    {
+      "source": "Facebook candidate",
+      "sourceType": "social",
+      "url": "https://www.facebook.com/p/MDF-CNC-T%C3%B9ng-Ph%C3%A1t-61572168615156/",
+      "entity": "MDF - CNC Tùng Phát",
+      "branch": null,
+      "address": null,
+      "phone": null,
+      "website": null,
+      "categories": ["Business page candidate"],
+      "relationship": "candidate social identity",
+      "evidence": "Public search aligned the name and domain context, but Facebook returned a JS/error shell and ownership was not authenticated.",
       "consistency": "UNVERIFIED",
-      "confidence": "low",
-      "checkedAt": "2026-08-09T00:00:00+07:00"
+      "confidence": "medium",
+      "checkedAt": "2026-08-10T00:19:07+07:00"
     },
     {
       "source": "Google Business Profile",
@@ -94,11 +141,11 @@
       "phone": null,
       "website": null,
       "categories": [],
-      "relationship": "owned local business profile",
-      "evidence": "Two Google Maps place IDs are referenced first-party, but ownership, profile fields and hours could not be inspected without an authenticated browser session.",
+      "relationship": "owned local business profiles for two public place IDs",
+      "evidence": "Public listing facts were verified, but GBP ownership, editing and verification status require authenticated account access.",
       "consistency": "AUTH_BLOCKED",
       "confidence": "high",
-      "checkedAt": "2026-08-09T00:00:00+07:00"
+      "checkedAt": "2026-08-10T00:19:07+07:00"
     },
     {
       "source": "Bing Places",
@@ -111,26 +158,10 @@
       "website": null,
       "categories": [],
       "relationship": "local business listing",
-      "evidence": "No verified Bing Places listing URL is present in the repository or accessible account context.",
+      "evidence": "No authenticated Bing Places account or confirmed public branch listing was available.",
       "consistency": "AUTH_BLOCKED",
       "confidence": "high",
-      "checkedAt": "2026-08-08T00:00:00+07:00"
-    },
-    {
-      "source": "Official Facebook",
-      "sourceType": "social",
-      "url": null,
-      "entity": null,
-      "branch": null,
-      "address": null,
-      "phone": null,
-      "website": null,
-      "categories": [],
-      "relationship": "social identity",
-      "evidence": "No verified Facebook URL is present in business settings; no profile was inferred from search results.",
-      "consistency": "MISSING",
-      "confidence": "high",
-      "checkedAt": "2026-08-08T00:00:00+07:00"
+      "checkedAt": "2026-08-10T00:19:07+07:00"
     }
   ]
 }

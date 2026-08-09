@@ -1,7 +1,27 @@
 import { describe, expect, it } from "vitest";
-import { summarizeEntityRecords, normalizeEntityRecord } from "@/lib/entity-corroboration";
+import { buildExternalEntityEdges, summarizeEntityRecords, normalizeEntityRecord } from "@/lib/entity-corroboration";
 
 describe("entity corroboration", () => {
+  it("adds graph edges only for verified or consistent external URLs", () => {
+    const records = [
+      normalizeEntityRecord({ source: "Google Maps", sourceType: "maps", url: "https://maps.example/branch", consistency: "VERIFIED", confidence: "high" }),
+      normalizeEntityRecord({ source: "Zalo", sourceType: "social", url: "https://zalo.me/0909259160", consistency: "CONSISTENT", confidence: "medium" }),
+      normalizeEntityRecord({ source: "Facebook", sourceType: "social", url: "https://facebook.com/candidate", consistency: "UNVERIFIED", confidence: "medium" }),
+    ];
+
+    expect(buildExternalEntityEdges(records)).toEqual([
+      { from: "tung-phat", to: "external-google-maps", relationship: "externalCorroboration", evidence: "https://maps.example/branch", status: "VERIFIED" },
+      { from: "tung-phat", to: "external-zalo", relationship: "externalCorroboration", evidence: "https://zalo.me/0909259160", status: "CONSISTENT" },
+    ]);
+  });
+
+  it("normalizes Vietnamese source names into stable ASCII node identifiers", () => {
+    const records = [
+      normalizeEntityRecord({ source: "Gỗ Thanh Thùy distributor directory", sourceType: "manufacturer-directory", url: "https://example.com/tung-phat", consistency: "VERIFIED", confidence: "high" }),
+    ];
+
+    expect(buildExternalEntityEdges(records)[0].to).toBe("external-go-thanh-thuy-distributor-directory");
+  });
   it("normalizes legacy record fields into the Phase 3 schema", () => {
     const record = normalizeEntityRecord({
       source: "Google Maps - branch 1",

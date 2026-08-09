@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T00:19:07+07:00",
+  "sourceOfTruth": "https://mdftungphat.com/lien-he/",
+  "canonicalNap": {
+    "businessName": "Công ty TNHH TMDV Gỗ Tùng Phát",
+    "displayName": "MDF - CNC TÙNG PHÁT",
+    "phone": "0909 259 160",
+    "website": "https://mdftungphat.com/"
+  },
+  "branches": [
+    {
+      "branch": "14 Tam Bình",
+      "placeId": "ChIJ6dw2A6YndTERr5eaiym-l-M",
+      "mapsUrl": "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
+      "publicName": "Tùng Phát 1 - Ván gỗ công nghiệp & CNC",
+      "publicAddress": "14 Đ. Tam Bình, Kp7, Hiệp Bình, Hồ Chí Minh 721400",
+      "phone": "0909 259 160",
+      "website": "https://mdftungphat.com/",
+      "category": "Nhà cung cấp gỗ",
+      "publicStatus": "PUBLIC_LISTING_ACTIVE",
+      "hoursObserved": { "mondayToSaturday": "07:00-17:30", "sunday": "07:00-09:00" },
+      "ratingObserved": 5,
+      "consistency": "CONSISTENT",
+      "ownership": "AUTH_BLOCKED",
+      "evidence": "First-party embed URL resolves to the public Google Maps embed payload containing place ID, branch name, address, phone, canonical website and category. Ownership/edit access was not authenticated."
+    },
+    {
+      "branch": "81B Tam Bình",
+      "placeId": "ChIJjWMBUikndTERNFK1M-j02ZY",
+      "mapsUrl": "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY",
+      "publicName": "Tùng Phát 2 - Ván gỗ công nghiệp & CNC",
+      "publicAddress": "81B Đ. Tam Bình, Tam Bình, Hồ Chí Minh",
+      "phone": "0909 259 160",
+      "website": "https://mdftungphat.com/",
+      "category": "Nhà cung cấp gỗ",
+      "publicStatus": "PUBLIC_LISTING_ACTIVE",
+      "hoursObserved": { "mondayToSaturday": "07:00-17:00", "sunday": "CLOSED" },
+      "ratingObserved": 4.7,
+      "consistency": "CONSISTENT",
+      "ownership": "AUTH_BLOCKED",
+      "evidence": "First-party embed URL resolves to the public Google Maps embed payload containing place ID, branch name, address, phone, canonical website and category. Ownership/edit access was not authenticated."
+    }
+  ],
+  "napNotes": [
+    "Maps uses historic/local sublocality strings (Hiệp Bình Chánh, Tam Bình) while the first-party source uses the current phường Hiệp Bình form; this is a legitimate address variation, not a material mismatch.",
+    "Maps public hours are recorded as observations only; the first-party business settings contain no verified opening-hours values, so no website or schema mutation was made.",
+    "Maps public branch names distinguish the locations and include the same website and phone; GBP ownership remains unconfirmed."
+  ]
+}
