@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-09T18:08:00Z",
+  "result": "INDEXATION & AUTHORITY ACTIVATION: PARTIAL",
+  "production": {
+    "url": "https://mdftungphat.com",
+    "mainSha": "2596e4ebd5e0ed5da16a0aeef96fbfe2496b9c19",
+    "deployment": "dpl_ccThe3CzsWW7CDuUwwhiTa25cgto",
+    "status": "READY",
+    "crawl": { "pages": 54, "http2xx": 54, "sitemapUrls": 54, "catalogueRoute": 200 },
+    "publicCodeChanged": true,
+    "scope": "No new indexable URLs; existing material reference and entity/schema/evidence tooling only."
+  },
+  "googleSearchConsole": {
+    "auth": "AUTH_BLOCKED",
+    "property": "sc-domain:mdftungphat.com",
+    "sitemap": null,
+    "confirmedIndexedCount": null,
+    "inspectedCount": 0,
+    "indexingProblems": null,
+    "impressions": null,
+    "clicks": null,
+    "queries": null,
+    "blocker": "AUTH_BLOCKED_CREDENTIALS_UNAVAILABLE"
+  },
+  "bing": {
+    "webmasterAuth": "AUTH_BLOCKED",
+    "sitemap": null,
+    "urlInspection": { "inspected": 0, "indexed": null },
+    "performance": null,
+    "indexNow": { "submittedDeltaUrls": 1, "status": 200, "accepted": true, "note": "Receipt is not indexation." },
+    "blocker": "AUTH_BLOCKED_CREDENTIALS_UNAVAILABLE"
+  },
+  "searchPresenceLadder": {
+    "googleBrand": { "level": 0, "label": "Not observed / Google response unavailable", "foundQueries": 0, "queryCount": 5 },
+    "bingBrand": { "level": 0, "label": "Not observed", "foundQueries": 0, "queryCount": 5 },
+    "googleGeneric": { "level": 0, "label": "Not observed / Google response unavailable" },
+    "bingGeneric": { "level": 0, "label": "Not observed", "foundQueries": 0, "queryCount": 40 },
+    "aiRetrieval": { "level": 0, "value": null },
+    "aiCitation": { "level": 0, "value": null }
+  },
+  "localEntity": {
+    "gbpBranch1": { "status": "AUTH_BLOCKED", "evidence": "Public Maps place ID ChIJ6dw2A6YndTERr5eaiym-l-M; ownership/edit access unavailable." },
+    "gbpBranch2": { "status": "AUTH_BLOCKED", "evidence": "Public Maps place ID ChIJjWMBUikndTERNFK1M-j02ZY; ownership/edit access unavailable." },
+    "googleMapsBranch1": { "status": "VERIFIED", "evidence": "Place ID, name, address, phone, website and category observed in public first-party Maps payload." },
+    "googleMapsBranch2": { "status": "VERIFIED", "evidence": "Place ID, name, address, phone, website and category observed in public first-party Maps payload." },
+    "bingPlaces": { "status": "AUTH_BLOCKED", "evidence": "No authenticated Microsoft listing account or confirmed public listing." },
+    "facebook": { "status": "UNVERIFIED", "evidence": "High-confidence candidate found, but JS shell and ownership could not be verified." },
+    "zalo": { "status": "CONSISTENT", "evidence": "Official website link and public phone agree." }
+  },
+  "externalAuthority": {
+    "verifiedReferringDomains": 1,
+    "verifiedBusinessCitations": 4,
+    "manufacturerSupplierReferences": 1,
+    "legitimateUnlinkedMentions": 3,
+    "legitimateOpportunitiesIdentified": 20,
+    "actualProfilesChangedOrClaimed": 0,
+    "baseline": "data/external-authority-baseline.json"
+  },
+  "entityGraph": {
+    "before": { "verified": 0, "consistent": 2, "unverified": 3, "missing": 1, "mismatch": 0, "authBlocked": 2 },
+    "after": { "verified": 3, "consistent": 4, "unverified": 1, "missing": 0, "mismatch": 0, "authBlocked": 2, "corroborated": 7 },
+    "report": "reports/entity-graph-v5.json"
+  },
+  "strongestLinkableAsset": {
+    "url": "https://mdftungphat.com/tham-chieu-vat-lieu/",
+    "improvements": ["concise methodology", "P1/P3/P4 source hierarchy", "null/unknown handling", "stable comparison row anchors", "CSV and JSON downloads", "citation instructions and verification date"],
+    "cncChecklist": "Existing checklist retained; no unsupported machine-specific claims added."
+  },
+  "searchBenchmark": {
+    "method": "Exact Phase 2-6 40-query Bing Web Search RSS benchmark",
+    "commercial": { "p2": 0, "p3": 0, "p4": 0, "p5": 0, "p6": 0, "p7": 0 },
+    "informational": { "p2": 0, "p3": 0, "p4": 0, "p5": 0, "p6": 0, "p7": 0 },
+    "comparison": { "p2": 0, "p3": 0, "p4": 0, "p5": 0, "p6": 0, "p7": 0 },
+    "localCnc": { "p2": 0, "p3": 0, "p4": 0, "p5": 0, "p6": 0, "p7": 0 },
+    "queryCount": 40,
+    "report": "reports/phase7-search-benchmark.json"
+  },
+  "authorityBottleneck": "Technical crawlability is passing, but authenticated indexation/ownership is unavailable and independent authority remains sparse: only one referring domain was observed, no public benchmark query returned the site, and no GBP/Bing/Facebook profile was claimed or verified.",
+  "nextAuthorityActions": [
+    "Verify the GSC domain property and inspect the nine priority URLs.",
+    "Submit/confirm the sitemap in GSC without blind repeated requests.",
+    "Claim and verify the 14 Tam Bình GBP branch.",
+    "Claim and verify the 81B Tam Bình GBP branch.",
+    "Verify Bing Webmaster and inspect the same priority URL set.",
+    "Claim/import the two real branches into Bing Places.",
+    "Request a fact-checked canonical website and phone link on the Thanh Thùy directory.",
+    "Verify Facebook ownership and only then sync NAP/sameAs.",
+    "Request factual website fields on the two legal-entity citations.",
+    "Run focused editorial outreach using the material matrix and CNC checklist, not generic link requests."
+  ],
+  "blockers": [
+    "AUTH_BLOCKED_BROWSER_UNAVAILABLE: browser discovery returned zero connected sessions.",
+    "AUTH_BLOCKED_CREDENTIALS_UNAVAILABLE: no GSC OAuth/service account/API key.",
+    "AUTH_BLOCKED_CREDENTIALS_UNAVAILABLE: no Bing Webmaster/Bing Places authenticated account.",
+    "BLOCKED_OWNER_VERIFICATION: GBP ownership/edit flow requires owner verification.",
+    "UNVERIFIED: Facebook candidate ownership and profile facts remain unconfirmed."
+  ],
+  "handoff": {
+    "repo": "https://github.com/nkhaduy/tungphat",
+    "worktree": "/Users/khaduy/Downloads/tungphat-release-20260718/.worktrees/phase7-indexation-authority",
+    "branch": "codex/phase7-indexation-authority-20260810",
+    "startingSha": "5cb5416715f11fb336a35ba6230813ec6b40bc88",
+    "implementationCommit": "53e67a6ae496a9fd00f35b2d09ded28277866ed9",
+    "mergeCommit": "2596e4ebd5e0ed5da16a0aeef96fbfe2496b9c19",
+    "pr": "https://github.com/nkhaduy/tungphat/pull/27",
+    "deployId": "dpl_ccThe3CzsWW7CDuUwwhiTa25cgto",
+    "externalActions": { "gsc": "AUTH_BLOCKED", "gbp": "AUTH_BLOCKED", "bingWebmaster": "AUTH_BLOCKED", "bingPlaces": "AUTH_BLOCKED", "facebook": "UNVERIFIED", "indexNow": "1 delta accepted" }
+  }
+}
