@@ -10,8 +10,22 @@ describe("entity corroboration", () => {
     ];
 
     expect(buildExternalEntityEdges(records)).toEqual([
-      { from: "tung-phat", to: "external-google-maps", relationship: "externalCorroboration", evidence: "https://maps.example/branch", status: "VERIFIED" },
-      { from: "tung-phat", to: "external-zalo", relationship: "externalCorroboration", evidence: "https://zalo.me/0909259160", status: "CONSISTENT" },
+      { from: "tung-phat", to: "external-google-maps", relationship: "externalCorroboration", edgeType: "platformIdentity", evidence: "https://maps.example/branch", status: "VERIFIED" },
+      { from: "tung-phat", to: "external-zalo", relationship: "externalCorroboration", edgeType: "platformIdentity", evidence: "https://zalo.me/0909259160", status: "CONSISTENT" },
+    ]);
+  });
+
+  it("keeps supplier, directory and editorial corroboration edges distinct", () => {
+    const records = [
+      normalizeEntityRecord({ source: "Supplier", sourceType: "manufacturer-directory", url: "https://supplier.example/tung-phat", consistency: "VERIFIED" }),
+      normalizeEntityRecord({ source: "Directory", sourceType: "business-directory", url: "https://directory.example/tung-phat", consistency: "CONSISTENT" }),
+      normalizeEntityRecord({ source: "Editorial", sourceType: "editorial", url: "https://publisher.example/reference", consistency: "VERIFIED" }),
+    ];
+
+    expect(buildExternalEntityEdges(records).map((edge) => edge.edgeType)).toEqual([
+      "supplierManufacturer",
+      "externalCitation",
+      "editorialCitation",
     ]);
   });
 

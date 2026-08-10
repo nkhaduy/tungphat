@@ -80,6 +80,13 @@ function externalNodeId(source: string) {
   return `external-${ascii.replace(/[^a-z0-9]+/gu, "-").replace(/^-|-$/gu, "")}`;
 }
 
+function externalEdgeType(sourceType: string) {
+  if (["maps", "social"].includes(sourceType)) return "platformIdentity" as const;
+  if (sourceType === "manufacturer-directory") return "supplierManufacturer" as const;
+  if (sourceType === "editorial") return "editorialCitation" as const;
+  return "externalCitation" as const;
+}
+
 export function buildExternalEntityEdges(records: EntityRecord[]) {
   return records
     .filter((record) => record.sourceType !== "website" && record.url && ["VERIFIED", "CONSISTENT"].includes(record.consistency))
@@ -87,6 +94,7 @@ export function buildExternalEntityEdges(records: EntityRecord[]) {
       from: "tung-phat",
       to: externalNodeId(record.source),
       relationship: "externalCorroboration",
+      edgeType: externalEdgeType(record.sourceType),
       evidence: record.url as string,
       status: record.consistency as "VERIFIED" | "CONSISTENT",
     }));

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0",
-  "checkedAt": "2026-08-10T00:19:07+07:00",
+  "checkedAt": "2026-08-10T10:43:42+07:00",
   "domain": "mdftungphat.com",
   "coverage": "Point-in-time public sources only; not a complete backlink graph.",
   "verifiedReferringDomains": [
@@ -57,6 +57,16 @@
       "relevance": "MEDIUM",
       "quality": "MEDIUM",
       "confidence": "high"
+    },
+    {
+      "sourceDomain": "facebook.com",
+      "sourceUrl": "https://www.facebook.com/p/MDF-CNC-T%C3%B9ng-Ph%C3%A1t-61572168615156/",
+      "targetUrl": "https://mdftungphat.com/",
+      "context": "Public Facebook business Page and historical post/photo search results match the canonical domain, phone and both Tam Bình branches.",
+      "linkStatus": "PRESENT_IN_PUBLIC_SEARCH_EVIDENCE_JS_UNVERIFIABLE",
+      "relevance": "HIGH",
+      "quality": "MEDIUM",
+      "confidence": "high"
     }
   ],
   "manufacturerSupplierReferences": [
@@ -64,13 +74,13 @@
       "sourceDomain": "gothanhthuy.com",
       "sourceUrl": "https://www.gothanhthuy.com/distributor/cua-hang-tung-phat/",
       "targetUrl": null,
-      "context": "Gỗ Thanh Thùy publishes a distributor-directory page titled Cửa Hàng Tùng Phát and lists 14 Đ. Tam Bình, Hiệp Bình Chánh, Thủ Đức, Hồ Chí Minh.",
+      "context": "Gỗ Thanh Thùy publishes a distributor-directory page titled Cửa Hàng Tùng Phát and lists 14 Đ. Tam Bình plus phone 0909259160.",
       "relationshipState": "EXPLICIT_PUBLIC_LISTING",
       "linkStatus": "NO_LINK_TO_TARGET",
       "relevance": "HIGH",
       "quality": "HIGH",
       "confidence": "high",
-      "ownerAction": "Request canonical website and phone link only after confirming listing facts with Thanh Thùy."
+      "ownerAction": "Canonical website addition requested through the official contact form on 2026-08-10; response pending."
     }
   ],
   "unlinkedMentions": [
@@ -102,11 +112,12 @@
   "socialCandidates": [
     {
       "sourceUrl": "https://www.facebook.com/p/MDF-CNC-T%C3%B9ng-Ph%C3%A1t-61572168615156/",
-      "status": "UNVERIFIED_CANDIDATE",
-      "signals": ["name aligns with public display identity", "DuckDuckGo domain search surfaced the page", "public photo URL uses MDF-CNC Tùng Phát"],
-      "linkStatus": "UNVERIFIABLE_JS",
-      "confidence": "medium",
-      "sameAsEligible": false
+      "status": "VERIFIED_PUBLIC_IDENTITY",
+      "signals": ["Facebook Page Plugin confirms the page identity", "Bing canonical-domain query exposes the exact phone, 81B Tam Bình and canonical website", "DuckDuckGo phone query exposes the exact phone, 14 Tam Bình and canonical website", "historical Facebook photo/post results repeat the canonical website and phone"],
+      "linkStatus": "PRESENT_IN_PUBLIC_SEARCH_EVIDENCE_JS_UNVERIFIABLE",
+      "confidence": "high",
+      "sameAsEligible": true,
+      "ownership": "AUTH_BLOCKED"
     }
   ],
   "commonCrawl": {
@@ -117,10 +128,11 @@
   },
   "counts": {
     "verifiedReferringDomains": 1,
-    "verifiedBusinessCitations": 4,
+    "verifiedBusinessCitations": 5,
     "manufacturerSupplierReferences": 1,
     "legitimateUnlinkedMentions": 3,
     "lowQualityUnverifiedMentions": 1,
-    "actualProfilesChangedOrClaimed": 0
+    "actualProfilesChangedOrClaimed": 0,
+    "canonicalLinkReclamationsSubmitted": 1
   }
 }
