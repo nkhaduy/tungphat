@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T13:35:00+07:00",
+  "sourceOfTruth": "data/canonical-business-identity.json",
+  "newRecords": [
+    {
+      "source": "DauThau.Net legal entity profile",
+      "url": "https://dauthau.net/vi/dn/CONG-TY-TNHH-THUONG-MAI-DICH-VU-GO-TUNG-PHAT/",
+      "fields": {
+        "name": {"status": "EXACT", "observed": "CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ GỖ TÙNG PHÁT"},
+        "taxId": {"status": "EXACT", "observed": "0319115830"},
+        "address": {"status": "ACCEPTABLE_VARIANT", "observed": "14 đường Tam Bình, Phường Hiệp Bình, TP.Hồ Chí Minh"},
+        "phone": {"status": "FIELD_MISSING", "observed": null},
+        "website": {"status": "FIELD_MISSING", "observed": null}
+      },
+      "overall": "CONSISTENT",
+      "contactability": "OWNER_LOGIN_REQUIRED"
+    },
+    {
+      "source": "MaSoThue legal-record search pointer",
+      "url": "https://masothue.com/0319115830-cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat",
+      "overall": "UNVERIFIED_ACCESS_RESTRICTED",
+      "evidence": "Exact legal-name search result observed; direct page returned Cloudflare 403 challenge."
+    },
+    {
+      "source": "Thư Viện Pháp Luật legal-record search pointer",
+      "url": "https://thuvienphapluat.vn/ma-so-thue/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat-mst-0319115830.html",
+      "overall": "UNVERIFIED_ACCESS_RESTRICTED",
+      "evidence": "Exact legal-name and tax-ID search result observed; direct page returned a security block."
+    }
+  ],
+  "summary": {
+    "materialMismatches": 0,
+    "wrongPhones": 0,
+    "wrongAddresses": 0,
+    "wrongWebsites": 0,
+    "newConsistentRecords": 1,
+    "newRestrictedPointersExcluded": 2
+  }
+}
