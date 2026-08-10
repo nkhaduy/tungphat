@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T03:50:35.399Z",
+  "sitemap": {
+    "url": "https://mdftungphat.com/sitemap.xml",
+    "discovered": true,
+    "urlCount": 54
+  },
+  "authentication": {
+    "google": "BLOCKED_AUTH",
+    "bing": "BLOCKED_AUTH"
+  },
+  "confirmedIndexed": {
+    "google": null,
+    "bing": null
+  },
+  "summary": {
+    "google": {
+      "observed": 0,
+      "notObserved": 0,
+      "unknown": 54
+    },
+    "bing": {
+      "observed": 0,
+      "notObserved": 54,
+      "unknown": 0
+    }
+  },
+  "caveat": "Public search observation cannot confirm index status. NOT_OBSERVED is not NOT_INDEXED.",
+  "observations": [
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/san-pham/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/san-pham/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/tham-chieu-vat-lieu/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/tham-chieu-vat-lieu/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/gia-cong-cnc/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/gia-cong-cnc/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/bai-viet/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/bai-viet/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/lien-he/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/lien-he/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/chinh-sach-bao-mat/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/chinh-sach-bao-mat/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/dieu-khoan-su-dung/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/dieu-khoan-su-dung/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/go-ghep-cao-su/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/go-ghep-cao-su/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/go-ghep-tram/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/go-ghep-tram/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/go-ghep/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/go-ghep/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/mdf-chong-am/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/mdf-chong-am/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/van-go-cong-nghiep/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/van-go-cong-nghiep/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/van-mdf/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/van-mdf/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/cat-cnc-go/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/cat-cnc-go/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/gia-cong-cnc-mdf/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/gia-cong-cnc-mdf/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/bai-viet/chuan-bi-file-cnc/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/bai-viet/chuan-bi-file-cnc/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/bai-viet/go-ghep-la-gi/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/bai-viet/go-ghep-la-gi/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/bai-viet/mdf-thuong-va-chong-am/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/bai-viet/mdf-thuong-va-chong-am/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/thuong-hieu/thanh-thuy/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/thuong-hieu/thanh-thuy/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/melamine/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/melamine/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/acrylic/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/acrylic/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/laminate/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/laminate/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/pvc/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/pvc/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/veneer/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/veneer/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/laminate/lp-101-104g/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/thanh-thuy/laminate/lp-101-104g/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/thuong-hieu/ba-thanh/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/thuong-hieu/ba-thanh/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/laminate/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/laminate/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/bt111/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/bt111/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/bt143/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/bt143/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/bt184/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/bt184/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/bts14g/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/bts14g/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/sc028m/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/sc028m/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/sc029m/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/ba-thanh/melamine/sc029m/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/melamine/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/melamine/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/acrylic/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/acrylic/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/ppet/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/ppet/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/laminate/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/laminate/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/worktop/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/worktop/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/edge-banding/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/edge-banding/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/veneer/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/veneer/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/pvc/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/catalogue/an-cuong/pvc/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/san-pham/acrylic/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/san-pham/acrylic/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/san-pham/laminate/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/san-pham/laminate/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/san-pham/pvc-film/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/san-pham/pvc-film/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/san-pham/melamine/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/san-pham/melamine/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/san-pham/chi-nep-nhua/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/san-pham/chi-nep-nhua/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/san-pham/veneer/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/san-pham/veneer/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    },
+    {
+      "engine": "GOOGLE",
+      "url": "https://mdftungphat.com/san-pham/laminate/thanh-thuy-lp-101-104g-white/",
+      "state": "UNKNOWN",
+      "confirmedIndexed": null,
+      "method": "Google public site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "none",
+      "caveat": "Public search response was unavailable or could not be interpreted; authenticated index status is unknown."
+    },
+    {
+      "engine": "BING",
+      "url": "https://mdftungphat.com/san-pham/laminate/thanh-thuy-lp-101-104g-white/",
+      "state": "NOT_OBSERVED",
+      "confirmedIndexed": null,
+      "method": "Bing public RSS site/URL search",
+      "checkedAt": "2026-08-10T03:50:35.399Z",
+      "confidence": "low",
+      "caveat": "The canonical URL was not present in this limited public result sample; NOT_OBSERVED does not mean NOT_INDEXED."
+    }
+  ]
+}

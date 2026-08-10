@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T10:43:42+07:00",
+  "sourceOfTruth": "data/canonical-business-identity.json",
+  "classification": ["EXACT", "ACCEPTABLE_VARIANT", "MATERIAL_MISMATCH", "FIELD_MISSING", "UNVERIFIED"],
+  "records": [
+    {
+      "source": "Official website",
+      "url": "https://mdftungphat.com/lien-he/",
+      "branch": "CN1 and CN2",
+      "fields": {
+        "name": {"status": "EXACT", "observed": "Công ty TNHH TMDV Gỗ Tùng Phát"},
+        "address": {"status": "EXACT", "observed": "14 Tam Bình and 81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh"},
+        "phone": {"status": "EXACT", "observed": "0909 259 160"},
+        "website": {"status": "EXACT", "observed": "https://mdftungphat.com/"},
+        "category": {"status": "EXACT", "observed": "Vật liệu gỗ công nghiệp and CNC gỗ"}
+      },
+      "priority": "SOURCE_OF_TRUTH"
+    },
+    {
+      "source": "Google Maps branch 1",
+      "url": "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
+      "branch": "CN1",
+      "fields": {
+        "name": {"status": "ACCEPTABLE_VARIANT", "observed": "Tùng Phát 1 - Ván gỗ công nghiệp & CNC"},
+        "address": {"status": "ACCEPTABLE_VARIANT", "observed": "14 Đ. Tam Bình, Kp7, Hiệp Bình, Hồ Chí Minh 721400"},
+        "phone": {"status": "EXACT", "observed": "0909 259 160"},
+        "website": {"status": "EXACT", "observed": "https://mdftungphat.com/"},
+        "category": {"status": "ACCEPTABLE_VARIANT", "observed": "Nhà cung cấp gỗ"}
+      },
+      "priority": "NO_CORRECTION_REQUIRED"
+    },
+    {
+      "source": "Google Maps branch 2",
+      "url": "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY",
+      "branch": "CN2",
+      "fields": {
+        "name": {"status": "ACCEPTABLE_VARIANT", "observed": "Tùng Phát 2 - Ván gỗ công nghiệp & CNC"},
+        "address": {"status": "ACCEPTABLE_VARIANT", "observed": "81B Đ. Tam Bình, Tam Bình, Hồ Chí Minh"},
+        "phone": {"status": "EXACT", "observed": "0909 259 160"},
+        "website": {"status": "EXACT", "observed": "https://mdftungphat.com/"},
+        "category": {"status": "ACCEPTABLE_VARIANT", "observed": "Nhà cung cấp gỗ"}
+      },
+      "priority": "NO_CORRECTION_REQUIRED"
+    },
+    {
+      "source": "Gỗ Thanh Thùy distributor directory",
+      "url": "https://www.gothanhthuy.com/distributor/cua-hang-tung-phat/",
+      "branch": "CN1",
+      "fields": {
+        "name": {"status": "ACCEPTABLE_VARIANT", "observed": "Cửa Hàng Tùng Phát"},
+        "address": {"status": "ACCEPTABLE_VARIANT", "observed": "14 Đ. Tam Bình, Hiệp Bình Chánh, Thủ Đức, Thành phố Hồ Chí Minh"},
+        "phone": {"status": "EXACT", "observed": "0909259160"},
+        "website": {"status": "FIELD_MISSING", "observed": null},
+        "category": {"status": "ACCEPTABLE_VARIANT", "observed": "Distributor directory"}
+      },
+      "priority": "P0_WEBSITE_RECLAMATION_SUBMITTED"
+    },
+    {
+      "source": "Daily Chữ Ký Số business record",
+      "url": "https://dailychukyso.com.vn/tt-doanh-nghiep/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat/",
+      "branch": null,
+      "fields": {
+        "name": {"status": "ACCEPTABLE_VARIANT", "observed": "CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ GỖ TÙNG PHÁT"},
+        "taxId": {"status": "EXACT", "observed": "0319115830"},
+        "address": {"status": "FIELD_MISSING", "observed": null},
+        "phone": {"status": "FIELD_MISSING", "observed": null},
+        "website": {"status": "FIELD_MISSING", "observed": null},
+        "category": {"status": "UNVERIFIED", "observed": null}
+      },
+      "priority": "P1_BLOCKED_CHANNEL"
+    },
+    {
+      "source": "Infocom B2B business record",
+      "url": "https://infocom.vn/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat-0319115830.html",
+      "branch": "CN1",
+      "fields": {
+        "name": {"status": "ACCEPTABLE_VARIANT", "observed": "CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ GỖ TÙNG PHÁT"},
+        "taxId": {"status": "EXACT", "observed": "0319115830"},
+        "address": {"status": "ACCEPTABLE_VARIANT", "observed": "14 đường Tam Bình, Phường Hiệp Bình, Thành phố Hồ Chí Minh"},
+        "phone": {"status": "UNVERIFIED", "observed": "partially hidden by publisher"},
+        "website": {"status": "FIELD_MISSING", "observed": null},
+        "category": {"status": "UNVERIFIED", "observed": null}
+      },
+      "priority": "P1_READY_TO_SEND"
+    },
+    {
+      "source": "Facebook business page",
+      "url": "https://www.facebook.com/p/MDF-CNC-T%C3%B9ng-Ph%C3%A1t-61572168615156/",
+      "branch": "CN1 and CN2",
+      "fields": {
+        "name": {"status": "ACCEPTABLE_VARIANT", "observed": "Tùng Phát - Ván gỗ công nghiệp & CNC"},
+        "address": {"status": "ACCEPTABLE_VARIANT", "observed": "14 Tam Bình and 81B Đường Tam Bình in public page/post results"},
+        "phone": {"status": "EXACT", "observed": "0909 259 160"},
+        "website": {"status": "EXACT", "observed": "http://mdftungphat.com"},
+        "category": {"status": "ACCEPTABLE_VARIANT", "observed": "MDF, CNC and ván gỗ công nghiệp"}
+      },
+      "priority": "VERIFIED_PUBLIC_IDENTITY_ADMIN_AUTH_BLOCKED"
+    },
+    {
+      "source": "Zalo",
+      "url": "https://zalo.me/0909259160",
+      "branch": null,
+      "fields": {
+        "name": {"status": "UNVERIFIED", "observed": null},
+        "address": {"status": "UNVERIFIED", "observed": null},
+        "phone": {"status": "EXACT", "observed": "0909259160"},
+        "website": {"status": "FIELD_MISSING", "observed": null},
+        "category": {"status": "UNVERIFIED", "observed": null}
+      },
+      "priority": "NO_CORRECTION_REQUIRED"
+    }
+  ],
+  "summary": {
+    "materialMismatches": 0,
+    "wrongPhones": 0,
+    "wrongAddresses": 0,
+    "wrongWebsites": 0,
+    "missingWebsiteFields": 3
+  }
+}

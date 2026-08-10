@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T10:43:42+07:00",
+  "domain": "mdftungphat.com",
+  "countingRule": "Count a domain once only when a live source directly exposes a canonical link and is independently verifiable. JS-only social evidence and automated scanner mentions are retained but excluded from verified authority growth.",
+  "records": [
+    {
+      "domain": "google.com",
+      "sourceUrl": "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
+      "targetUrl": "https://mdftungphat.com/",
+      "anchorContext": "Google Maps website field for both Tùng Phát branches",
+      "relation": "UNKNOWN",
+      "firstSeen": "2026-08-10",
+      "lastSeen": "2026-08-10",
+      "status": "VERIFIED_LIVE",
+      "counted": true
+    },
+    {
+      "domain": "facebook.com",
+      "sourceUrl": "https://www.facebook.com/p/MDF-CNC-T%C3%B9ng-Ph%C3%A1t-61572168615156/",
+      "targetUrl": "https://mdftungphat.com/",
+      "anchorContext": "Facebook business Page website field observed in Bing and DuckDuckGo page/post results",
+      "relation": "UNKNOWN",
+      "firstSeen": "2026-08-10",
+      "lastSeen": "2026-08-10",
+      "status": "OBSERVED_JS_UNVERIFIABLE",
+      "counted": false
+    },
+    {
+      "domain": "subdomainfinder.c99.nl",
+      "sourceUrl": "https://subdomainfinder.c99.nl/scans/2026-07-23/mdftungphat.com",
+      "targetUrl": "https://mdftungphat.com/",
+      "anchorContext": "Automated infrastructure scan mention",
+      "relation": "UNKNOWN",
+      "firstSeen": "2026-08-10",
+      "lastSeen": "2026-08-10",
+      "status": "AUTOMATED_SCAN_EXCLUDED",
+      "counted": false
+    }
+  ],
+  "summary": {
+    "verifiedReferringDomains": 1,
+    "observedNotCounted": 2,
+    "commonCrawlReferringDomains": 0,
+    "commonCrawlLimitation": "Domain absent from cached cc-main-2026-jan-feb-mar graph; absence is not proof of zero live links."
+  }
+}
