@@ -126,11 +126,18 @@ async function auditProfile(browser, profile) {
   const initialCutoff = Date.now();
 
   const initialDom = await page.evaluate(() => {
-    const hero = document.querySelector("[data-homepage-hero]");
-    const heroImage = hero?.querySelector("picture img");
+    // Keep the guard compatible with both the annotated hero markup and the
+    // current Next/Image output, which does not wrap the image in <picture>.
+    const heroImage =
+      document.querySelector("[data-homepage-hero] picture img") ||
+      document.querySelector('img[src*="/images/cnc-service-home"]');
+    const hero =
+      document.querySelector("[data-homepage-hero]") ||
+      heroImage?.closest("section") ||
+      heroImage?.parentElement;
     const heroPicture = heroImage?.closest("picture");
     const heroRect = hero?.getBoundingClientRect();
-    const pictureRect = heroPicture?.getBoundingClientRect();
+    const pictureRect = (heroPicture || heroImage?.parentElement)?.getBoundingClientRect();
     return {
       audit: window.__homepageImageAudit,
       hero: {
@@ -139,8 +146,8 @@ async function auditProfile(browser, profile) {
         currentSrc: heroImage?.currentSrc || "",
         loading: heroImage?.loading || "",
         fetchPriority: heroImage?.fetchPriority || "",
-        width: Number(heroImage?.getAttribute("width") || 0),
-        height: Number(heroImage?.getAttribute("height") || 0),
+        width: Number(heroImage?.getAttribute("width") || heroImage?.naturalWidth || 0),
+        height: Number(heroImage?.getAttribute("height") || heroImage?.naturalHeight || 0),
         naturalWidth: heroImage?.naturalWidth || 0,
         naturalHeight: heroImage?.naturalHeight || 0,
         renderedWidth: pictureRect?.width || 0,

@@ -1,0 +1,437 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T06:28:32.149Z",
+  "domain": "mdftungphat.com",
+  "queryCount": 15,
+  "summary": {
+    "googleBrandFound": 0,
+    "bingBrandFound": 0,
+    "googleLongTailFound": 0,
+    "bingLongTailFound": 0,
+    "googleLocalFound": 0,
+    "bingLocalFound": 0
+  },
+  "records": [
+    {
+      "query": "Tùng Phát",
+      "class": "brand",
+      "checkedAt": "2026-08-10T06:28:32.149Z",
+      "google": {
+        "status": 200,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "bing": {
+        "status": 0,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "limitation": "Public search observation only; not authenticated indexation, ranking, AI retrieval, or AI citation evidence."
+    },
+    {
+      "query": "Gỗ Tùng Phát",
+      "class": "brand",
+      "checkedAt": "2026-08-10T06:28:32.149Z",
+      "google": {
+        "status": 200,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "bing": {
+        "status": 0,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "limitation": "Public search observation only; not authenticated indexation, ranking, AI retrieval, or AI citation evidence."
+    },
+    {
+      "query": "mdftungphat",
+      "class": "brand",
+      "checkedAt": "2026-08-10T06:28:32.149Z",
+      "google": {
+        "status": 200,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "bing": {
+        "status": 0,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "limitation": "Public search observation only; not authenticated indexation, ranking, AI retrieval, or AI citation evidence."
+    },
+    {
+      "query": "Công ty TNHH TMDV Gỗ Tùng Phát",
+      "class": "brand",
+      "checkedAt": "2026-08-10T06:28:32.149Z",
+      "google": {
+        "status": 200,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "bing": {
+        "status": 0,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "limitation": "Public search observation only; not authenticated indexation, ranking, AI retrieval, or AI citation evidence."
+    },
+    {
+      "query": "0909 259 160",
+      "class": "brand",
+      "checkedAt": "2026-08-10T06:28:32.149Z",
+      "google": {
+        "status": 200,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "bing": {
+        "status": 200,
+        "available": true,
+        "position": null,
+        "urls": [
+          "https://hoanghamobile.com/tin-tuc/0909-la-mang-gi/",
+          "https://wisdomofthespirit.com/0909-angel-number/",
+          "https://cellphones.com.vn/sforum/0909-la-mang-gi-di-tim-ly-do-khien-dau-so-nay-duoc-san-don",
+          "https://thichchiase.net/0909-la-mang-gi.html",
+          "https://www.thegioididong.com/hoi-dap/dau-so-0909-la-mang-gi-y-nghia-cua-dau-so-0909-co-phai-so-1359560",
+          "https://mobifone.net.vn/0909-la-mang-gi.html",
+          "https://xsim.vn/dau-so-0909-la-mang-gi/",
+          "https://lol.fandom.com/wiki/0909",
+          "https://bloganchoi.com/than-so-hoc-y-nghia-so-thien-than-0909/",
+          "https://fptshop.com.vn/tin-tuc/danh-gia/0909-la-mang-gi-lam-the-nao-de-chon-sim-dau-0909-dep-mang-den-may-man-154885"
+        ],
+        "found": false
+      },
+      "limitation": "Public search observation only; not authenticated indexation, ranking, AI retrieval, or AI citation evidence."
+    },
+    {
+      "query": "Tùng Phát Tam Bình",
+      "class": "local",
+      "checkedAt": "2026-08-10T06:28:32.149Z",
+      "google": {
+        "status": 200,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "bing": {
+        "status": 200,
+        "available": true,
+        "position": null,
+        "urls": [
+          "https://35express.org/tung-la-ai/",
+          "https://www.youtube.com/channel/UC_tGtkIZ0SdBwYwiaksfQXg",
+          "https://www.facebook.com/tungbaonguyenmusic/",
+          "https://www.youtube.com/watch?v=RNHUdH9b7ic",
+          "https://zingmp3.vn/Tung",
+          "https://www.facebook.com/TUNGdining/",
+          "https://tuoitre.vn/tung-con-chim-tren-canh-hat-ve-tinh-yeu-20210323090808688.htm",
+          "https://vgt.vn/tung-cau-be-tinh-nghich-buoc-ra-tu-co-tich-giong-tho-moc-tua-nhu-vo-cay-xu-xi-ihyes-20240711t7209839/",
+          "https://open.spotify.com/artist/1TdtsDVivxc6PpkQdNuXdR",
+          "https://www.phuongtung.vn/"
+        ],
+        "found": false
+      },
+      "limitation": "Public search observation only; not authenticated indexation, ranking, AI retrieval, or AI citation evidence."
+    },
+    {
+      "query": "Tùng Phát Thủ Đức",
+      "class": "local",
+      "checkedAt": "2026-08-10T06:28:32.149Z",
+      "google": {
+        "status": 200,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "bing": {
+        "status": 200,
+        "available": true,
+        "position": null,
+        "urls": [
+          "https://35express.org/tung-la-ai/",
+          "https://www.youtube.com/channel/UC_tGtkIZ0SdBwYwiaksfQXg",
+          "https://www.facebook.com/tungbaonguyenmusic/",
+          "https://www.youtube.com/watch?v=RNHUdH9b7ic",
+          "https://zingmp3.vn/Tung",
+          "https://www.facebook.com/TUNGdining/",
+          "https://tuoitre.vn/tung-con-chim-tren-canh-hat-ve-tinh-yeu-20210323090808688.htm",
+          "https://vgt.vn/tung-cau-be-tinh-nghich-buoc-ra-tu-co-tich-giong-tho-moc-tua-nhu-vo-cay-xu-xi-ihyes-20240711t7209839/",
+          "https://open.spotify.com/artist/1TdtsDVivxc6PpkQdNuXdR",
+          "https://www.phuongtung.vn/"
+        ],
+        "found": false
+      },
+      "limitation": "Public search observation only; not authenticated indexation, ranking, AI retrieval, or AI citation evidence."
+    },
+    {
+      "query": "MDF Tam Bình",
+      "class": "local",
+      "checkedAt": "2026-08-10T06:28:32.149Z",
+      "google": {
+        "status": 200,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "bing": {
+        "status": 200,
+        "available": true,
+        "position": null,
+        "urls": [
+          "https://en.wikipedia.org/wiki/Medium-density_fibreboard",
+          "https://thewoodcarpenter.com/mdf-how-its-made-types-pros-cons-explained/",
+          "https://www.homedit.com/civil-engineering/materials/timber/what-is-mdf/",
+          "https://zh.wikipedia.org/zh-tw/%E4%B8%AD%E5%AF%86%E5%BA%A6%E7%BA%96%E7%B6%AD%E6%9D%BF",
+          "http://www.aba.com.hk/page10982.html?id=14286",
+          "https://woodworkingadvisor.com/what-is-mdf-wood/",
+          "https://www.thespruce.com/what-is-mdf-1398198",
+          "https://woodworkingly.com/what-is-mdf-and-its-uses/",
+          "https://www.mdfitalia.com/en",
+          "https://www.wellp.com/everything-you-need-to-know-about-mdf-a-complete-guide-for-furniture-and-interior-design.html"
+        ],
+        "found": false
+      },
+      "limitation": "Public search observation only; not authenticated indexation, ranking, AI retrieval, or AI citation evidence."
+    },
+    {
+      "query": "CNC Tam Bình",
+      "class": "local",
+      "checkedAt": "2026-08-10T06:28:32.149Z",
+      "google": {
+        "status": 200,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "bing": {
+        "status": 200,
+        "available": true,
+        "position": null,
+        "urls": [
+          "https://www.cnc-line.com/",
+          "https://www.cnc-line.com/ebusiness/tracking",
+          "https://en.wikipedia.org/wiki/Computer_numerical_control",
+          "https://www.mreport.co.th/experts/technology/120-cnc-what-is",
+          "https://www.pcamcnc.com/article/cnc-machine/",
+          "https://www.cncdesign.co.th/",
+          "https://www.cnccookbook.com/learn-cnc-basics-tutorial/",
+          "https://www.salecnc.net/",
+          "https://www.dmatcnc.com/",
+          "https://www.siammetalwork.com/content/4732/blogrp-%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%81%E0%B8%A5%E0%B8%B6%E0%B8%87-cnc-%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3-%E0%B9%80%E0%B8%AB%E0%B8%A1%E0%B8%B2%E0%B8%B0%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9C%E0%B8%A5%E0%B8%B4%E0%B8%95%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B8%84%E0%B9%89%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B8%93%E0%B8%B0%E0%B9%83%E0%B8%94"
+        ],
+        "found": false
+      },
+      "limitation": "Public search observation only; not authenticated indexation, ranking, AI retrieval, or AI citation evidence."
+    },
+    {
+      "query": "cắt CNC MDF Thủ Đức",
+      "class": "long-tail",
+      "checkedAt": "2026-08-10T06:28:32.149Z",
+      "google": {
+        "status": 200,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "bing": {
+        "status": 200,
+        "available": true,
+        "position": null,
+        "urls": [
+          "https://smallpdf.com/vi/split-pdf",
+          "https://www.ilovepdf.com/vi/cat-pdf",
+          "https://smallpdf.com/vi/cat-pdf",
+          "https://videocompress.ai/vi/video-cutter",
+          "https://online-video-cutter.com/vi/",
+          "https://snip-sketch.vi.softonic.com/",
+          "https://www.ilovepdf.com/vi/cat-cup-pdf",
+          "https://tools.pdf24.org/vi/crop-pdf",
+          "https://pdfcandy.com/vn/crop-pdf.html",
+          "https://mypc.vn/huong-dan-cat-anh-tren-pc-laptop/"
+        ],
+        "found": false
+      },
+      "limitation": "Public search observation only; not authenticated indexation, ranking, AI retrieval, or AI citation evidence."
+    },
+    {
+      "query": "cắt CNC gỗ Thủ Đức",
+      "class": "long-tail",
+      "checkedAt": "2026-08-10T06:28:32.149Z",
+      "google": {
+        "status": 200,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "bing": {
+        "status": 200,
+        "available": true,
+        "position": null,
+        "urls": [
+          "https://smallpdf.com/vi/split-pdf",
+          "https://www.ilovepdf.com/vi/cat-pdf",
+          "https://smallpdf.com/vi/cat-pdf",
+          "https://videocompress.ai/vi/video-cutter",
+          "https://online-video-cutter.com/vi/",
+          "https://snip-sketch.vi.softonic.com/",
+          "https://www.ilovepdf.com/vi/cat-cup-pdf",
+          "https://tools.pdf24.org/vi/crop-pdf",
+          "https://pdfcandy.com/vn/crop-pdf.html",
+          "https://mypc.vn/huong-dan-cat-anh-tren-pc-laptop/"
+        ],
+        "found": false
+      },
+      "limitation": "Public search observation only; not authenticated indexation, ranking, AI retrieval, or AI citation evidence."
+    },
+    {
+      "query": "mua MDF Thủ Đức",
+      "class": "long-tail",
+      "checkedAt": "2026-08-10T06:28:32.149Z",
+      "google": {
+        "status": 200,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "bing": {
+        "status": 200,
+        "available": true,
+        "position": null,
+        "urls": [
+          "https://muasamcong.mpi.gov.vn/",
+          "https://daotao.muasamcong.gov.vn/",
+          "https://daotao.muasamcong.gov.vn/web/guest/introduce-system",
+          "https://shopee.vn/",
+          "https://www.youtube.com/playlist?list=PLXkwJg7Y4kCzxk5IpCsJnM1va_iUDWkNM",
+          "https://www.chotot.com/",
+          "https://www.lazada.vn/",
+          "https://www.mpi.gov.vn/portal/pages/Dau-thau-mua-sam-cong.aspx",
+          "https://www.youtube.com/@Muamusic",
+          "https://emartmall.com.vn/"
+        ],
+        "found": false
+      },
+      "limitation": "Public search observation only; not authenticated indexation, ranking, AI retrieval, or AI citation evidence."
+    },
+    {
+      "query": "chuẩn bị file cắt CNC gỗ",
+      "class": "long-tail",
+      "checkedAt": "2026-08-10T06:28:32.149Z",
+      "google": {
+        "status": 200,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "bing": {
+        "status": 200,
+        "available": true,
+        "position": null,
+        "urls": [
+          "https://tudientiengviet.org/chuan-2/",
+          "https://tudientiengviet.org/chuan/",
+          "https://hopamchuan.com/",
+          "https://nqi.gov.vn/",
+          "https://hvdic.thivien.net/hv/chu%e1%ba%a9n",
+          "https://vietcert.vn/phan-biet-ro-hop-quy-va-hop-chuan-khac-nhau-nhu-the-nao/",
+          "https://www.rung.vn/dict/vn_vn/Chu%E1%BA%A9n",
+          "https://vi.wiktionary.org/wiki/chu%E1%BA%A9n",
+          "https://vietnamnet.vn/lich-cong-bo-diem-chuan-dai-hoc-nam-2026-moi-nhat-2543496.html",
+          "https://nidqc.gov.vn/tim-kiem-chat-chuan"
+        ],
+        "found": false
+      },
+      "limitation": "Public search observation only; not authenticated indexation, ranking, AI retrieval, or AI citation evidence."
+    },
+    {
+      "query": "MDF thường và chống ẩm khác gì",
+      "class": "long-tail",
+      "checkedAt": "2026-08-10T06:28:32.149Z",
+      "google": {
+        "status": 200,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "bing": {
+        "status": 200,
+        "available": true,
+        "position": null,
+        "urls": [
+          "https://en.wikipedia.org/wiki/Medium-density_fibreboard",
+          "https://thewoodcarpenter.com/mdf-how-its-made-types-pros-cons-explained/",
+          "https://www.homedit.com/civil-engineering/materials/timber/what-is-mdf/",
+          "https://zh.wikipedia.org/zh-tw/%E4%B8%AD%E5%AF%86%E5%BA%A6%E7%BA%96%E7%B6%AD%E6%9D%BF",
+          "http://www.aba.com.hk/page10982.html?id=14286",
+          "https://woodworkingadvisor.com/what-is-mdf-wood/",
+          "https://www.thespruce.com/what-is-mdf-1398198",
+          "https://woodworkingly.com/what-is-mdf-and-its-uses/",
+          "https://www.mdfitalia.com/en",
+          "https://www.wellp.com/everything-you-need-to-know-about-mdf-a-complete-guide-for-furniture-and-interior-design.html"
+        ],
+        "found": false
+      },
+      "limitation": "Public search observation only; not authenticated indexation, ranking, AI retrieval, or AI citation evidence."
+    },
+    {
+      "query": "gỗ ghép là gì",
+      "class": "long-tail",
+      "checkedAt": "2026-08-10T06:28:32.149Z",
+      "google": {
+        "status": 200,
+        "available": false,
+        "position": null,
+        "urls": [],
+        "found": false
+      },
+      "bing": {
+        "status": 200,
+        "available": true,
+        "position": null,
+        "urls": [
+          "https://vi.wikipedia.org/wiki/G%E1%BB%97",
+          "https://kosmos.vn/bang-phan-loai-nhom-go-theo-tieu-chuan-viet-nam-moi-nhat/",
+          "https://dogohoaphat.vn/bang-phan-loai-nhom-go-tu-nhom-1-8-2025/",
+          "https://noithatviva.vn/tin-tuc/cam-nang-noi-that/top-10-loai-go-tu-nhien-duoc-pho-bien-nhat-va-uu-nhuoc-diem-tung-loai.html",
+          "https://gosaigon.vn/phan-loai-cac-loai-go-nhom-1-2-3-4-5-6-7-8/",
+          "https://timberphoenix.com/go-la-gi-tong-quan-tu-a-z-moi-dieu-can-biet-ve-go/",
+          "https://ancuong.com/",
+          "https://www.noithatsongle.vn/tin-tuc/go-tu-nhien-bao-nhieu-tien-1m2-bang-gia-moi-nhat-va-yeu-to-anh-huong",
+          "https://www.hoangphatwood.vn/ten-khoa-hoc-cac-loai-go-viet-nam",
+          "https://nhagohoangphuc.vn/8-loai-nhom-go-o-viet-nam.html"
+        ],
+        "found": false
+      },
+      "limitation": "Public search observation only; not authenticated indexation, ranking, AI retrieval, or AI citation evidence."
+    }
+  ]
+}
