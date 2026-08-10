@@ -1,0 +1,8 @@
+{
+  "schemaVersion":"1.0",
+  "checkedAt":"2026-08-10T10:50:00+07:00",
+  "phase7":{"verifiedReferringDomains":1,"verifiedBusinessCitations":4,"verifiedEntityRecords":3,"consistentEntityRecords":4,"brandResults":{"google":0,"bing":0},"longTailResults":{"google":0,"bing":0},"confirmedIndexation":{"google":null,"bing":null}},
+  "phase8":{"verifiedReferringDomains":1,"verifiedBusinessCitations":5,"verifiedEntityRecords":4,"consistentEntityRecords":4,"brandResults":{"google":0,"bing":0},"longTailResults":{"google":0,"bing":0},"confirmedIndexation":{"google":null,"bing":null}},
+  "delta":{"verifiedReferringDomains":0,"verifiedBusinessCitations":1,"verifiedEntityRecords":1,"consistentEntityRecords":0,"brandResults":0,"longTailResults":0,"confirmedIndexation":null},
+  "additionalObservation":"A Bing exact-domain query surfaced the verified Facebook entity result, but the stable first-party branded monitor still found 0 official-domain results and remains the benchmark source."
+}

@@ -11,7 +11,7 @@ const externalNodes = externalEdges.map((edge) => {
   return { id: edge.to, type: record.sourceType, label: record.source, url: record.url, evidence: record.evidence };
 });
 const result = {
-  schemaVersion: "5.0",
+  schemaVersion: "6.0",
   checkedAt: raw.checkedAt,
   entity: raw.entity,
   summary: summarizeEntityRecords(records),

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T10:50:00+07:00",
+  "queries": [
+    {"query":"\"Tùng Phát\" \"Tam Bình\"","linked":1,"unlinked":1,"ambiguous":0,"evidence":["Facebook public search result matches the canonical domain, phone and Tam Bình addresses","Gỗ Thanh Thùy distributor entry identifies Cửa Hàng Tùng Phát at 14 Tam Bình without a website link"]},
+    {"query":"\"Gỗ Tùng Phát\"","linked":0,"unlinked":2,"ambiguous":1,"evidence":["Infocom and Daily Chữ Ký Số match legal name and tax ID but do not link the canonical site","Nội Thất Mỹ Nghệ result remains identity-ambiguous and is excluded from authority counts"]},
+    {"query":"\"mdftungphat.com\"","linked":1,"unlinked":0,"ambiguous":0,"evidence":["Bing exact-domain result exposes the verified Facebook Page entity and canonical domain"]},
+    {"query":"\"0909 259 160\"","linked":1,"unlinked":1,"ambiguous":0,"evidence":["DuckDuckGo exact-phone result exposes the official website and Facebook entity","Gỗ Thanh Thùy lists the normalized phone without the canonical website"]},
+    {"query":"\"Công ty TNHH Thương mại Dịch vụ Gỗ Tùng Phát\"","linked":0,"unlinked":2,"ambiguous":0,"evidence":["Infocom and Daily Chữ Ký Số match tax ID 0319115830"]}
+  ],
+  "uniqueMentions":{"linked":1,"legitimateUnlinked":3,"ambiguous":1},
+  "countingCaveat":"Counts are deduplicated by source URL; search-result snippets are evidence pointers, not guaranteed live backlinks."
+}

@@ -44,6 +44,13 @@ Use the branch-specific public Maps place IDs when a platform asks for a locatio
 
 ## Short templates
 
+## Phase 8 execution status
+
+- Gỗ Thanh Thùy: `SUBMITTED` on 2026-08-10 through the official contact form. The request asked only for the canonical website on the existing 14 Tam Bình listing. The form returned HTTP 200 with `success=true`; publisher acceptance and live-link addition are still pending.
+- Infocom: `READY_TO_SEND` through `hello@infocom.vn` or `https://zalo.me/0588001001`. No authenticated email or Zalo session was available, so it was not marked sent.
+- Daily Chữ Ký Số: `BLOCKED_CHANNEL`. The public form is for digital-signature sales rather than record corrections; the relevant Zalo channel requires authentication.
+- Nội Thất Mỹ Nghệ: `NOT_APPROPRIATE`. The page contains unsupported claims and does not establish the same entity with enough confidence for reclamation.
+
 ### Editorial resource note
 
 > Subject: Source-backed material/CNC reference for your readers

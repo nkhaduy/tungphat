@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0",
+  "verifiedAt": "2026-08-10T10:43:42+07:00",
+  "entity": {
+    "legalName": "Công ty TNHH TMDV Gỗ Tùng Phát",
+    "displayName": "MDF - CNC TÙNG PHÁT",
+    "taxId": "0319115830",
+    "canonicalWebsite": "https://mdftungphat.com/",
+    "canonicalPhone": "0909 259 160",
+    "canonicalPhoneE164": "+84909259160",
+    "canonicalEmail": "mdftungphat@gmail.com",
+    "verifiedSources": [
+      "content/settings/business.json",
+      "https://mdftungphat.com/lien-he/"
+    ]
+  },
+  "branches": [
+    {
+      "branchIdentifier": "CN1",
+      "displayName": "Tùng Phát - Chi nhánh 1",
+      "canonicalAddress": "14 Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
+      "canonicalPhone": "0909 259 160",
+      "website": "https://mdftungphat.com/",
+      "mapPlaceId": "ChIJ6dw2A6YndTERr5eaiym-l-M",
+      "mapUrl": "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
+      "verifiedSources": [
+        "https://mdftungphat.com/lien-he/#chi-nhanh-1",
+        "content/settings/business.json",
+        "Google Maps embed payload for place ID ChIJ6dw2A6YndTERr5eaiym-l-M"
+      ]
+    },
+    {
+      "branchIdentifier": "CN2",
+      "displayName": "Tùng Phát - Chi nhánh 2",
+      "canonicalAddress": "81B Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh",
+      "canonicalPhone": "0909 259 160",
+      "website": "https://mdftungphat.com/",
+      "mapPlaceId": "ChIJjWMBUikndTERNFK1M-j02ZY",
+      "mapUrl": "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY",
+      "verifiedSources": [
+        "https://mdftungphat.com/lien-he/#chi-nhanh-2",
+        "content/settings/business.json",
+        "Google Maps embed payload for place ID ChIJjWMBUikndTERNFK1M-j02ZY"
+      ]
+    }
+  ],
+  "excludedUnverifiedFields": ["openingHours", "legalRepresentative", "business certifications", "authorized dealer status"]
+}

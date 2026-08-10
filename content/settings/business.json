@@ -39,7 +39,10 @@
       "directionsUrl": "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY"
     }
   ],
-  "socialLinks": ["https://zalo.me/0909259160"],
+  "socialLinks": [
+    "https://zalo.me/0909259160",
+    "https://www.facebook.com/p/MDF-CNC-T%C3%B9ng-Ph%C3%A1t-61572168615156/"
+  ],
   "footerDescription": "Cung cấp vật liệu gỗ công nghiệp và nhận gia công CNC theo quy cách, số lượng và file kỹ thuật đã được xác nhận.",
   "primaryCtaLabel": "Liên hệ trực tiếp",
   "primaryCtaUrl": "/lien-he",
