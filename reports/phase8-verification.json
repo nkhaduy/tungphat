@@ -3,8 +3,9 @@
   "checkedAt":"2026-08-10T11:10:00+07:00",
   "production":{"url":"https://mdftungphat.com","crawl":"PASS","pages":54,"http2xx":54,"canonicalErrors":0,"schemaErrors":0,"brokenLinks":0,"orphanPages":0,"thinIndexablePages":0,"aiCrawlerBlockers":0},
   "commands":{"npmCi":"PASS (0 vulnerabilities)","lint":"PASS (0 errors, 0 warnings)","typecheck":"PASS","appTests":"PASS (104 files, 545 tests)","cmsTests":"PASS (6 files, 32 tests)","appE2E":"PASS (58 tests, last-run status passed)","cmsE2E":"PASS (5 tests)","build":"PASS (Next production build completed)","links":"PASS (3496 HTML; 0 errors)","schema":"PASS (3495 documents)","catalogue":"PASS (26/26)","provenance":"PASS (9 records, 10 sources)","security":"PASS (production audit 0 header/source-map/secret-like hits; npm audit 0 high vulnerabilities)","secretScan":"PASS (no credential pattern hits; PEM parser code matches are implementation literals only)"},
-  "performance":{"status":"MAINTENANCE_ONLY","phase7Median":{"lighthouseMobile":96,"lcpMs":2309,"fcpMs":1047,"cls":0,"tbtMs":153.5},"newThirdPartyWidget":false,"postDeployLighthouse":null},
+  "performance":{"status":"OBSERVED_VARIANCE","phase7Median":{"lighthouseMobile":96,"lcpMs":2309,"fcpMs":1047,"cls":0,"tbtMs":153.5},"postDeploySequentialSamples":[{"lighthouseMobile":78,"lcpMs":4981,"fcpMs":1488,"cls":0,"tbtMs":137},{"lighthouseMobile":98,"lcpMs":2269,"fcpMs":1210,"cls":0,"tbtMs":79},{"lighthouseMobile":80,"lcpMs":4857,"fcpMs":1200,"cls":0,"tbtMs":90}],"sampleMedian":{"lighthouseMobile":80,"lcpMs":4857,"fcpMs":1200,"cls":0,"tbtMs":90},"newThirdPartyWidget":false,"outlier":"Two of three sequential samples had LCP near 4.9s; this is a maintenance risk and was not hidden. The only public output change is sameAs JSON-LD."},
   "authorityEvidence":"PASS: JSON datasets validate, counts are deduplicated, and submitted/blocked statuses match observed channels.",
   "indexation":{"google":"AUTH_BLOCKED","bing":"AUTH_BLOCKED","confirmedIndexed":{"google":null,"bing":null}},
-  "publicCodeChange":"Facebook sameAs addition and typed authority graph edges; no page-count increase."
+  "publicCodeChange":"Facebook sameAs addition and typed authority graph edges; no page-count increase.",
+  "indexNow":{"status":"PASS","urls":2,"httpStatus":200}
 }
