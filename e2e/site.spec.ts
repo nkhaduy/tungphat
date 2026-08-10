@@ -191,7 +191,9 @@ test("homepage có hero tĩnh sáng, CTA chính và chỉ ưu tiên ảnh CNC m�
   await expect(hero.locator("picture")).toHaveCount(0);
 });
 
-test("homepage does not prefetch the catalogue payload before user intent", async ({ page }) => {
+test("homepage does not prefetch the catalogue payload before user intent", async ({
+  page,
+}) => {
   const catalogueRequests: string[] = [];
   page.on("request", (request) => {
     if (/\/catalogue\/(?:index\.txt|.*\.js)(?:\?|$)/.test(request.url())) {
@@ -204,36 +206,55 @@ test("homepage does not prefetch the catalogue payload before user intent", asyn
   expect(catalogueRequests).toEqual([]);
 });
 
-test("homepage uses the branded floating Zalo control only outside mobile", async ({ page }) => {
+test("homepage uses the branded floating Zalo control only outside mobile", async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/");
 
   const floatingZalo = page.getByRole("link", { name: "Mở Zalo Tùng Phát" });
   await expect(floatingZalo).toBeVisible();
-  await expect(floatingZalo.locator('img[src="/images/zalo-contact.png"]')).toHaveCount(1);
+  await expect(
+    floatingZalo.locator('img[src="/images/zalo-contact.png"]'),
+  ).toHaveCount(1);
   await expect(floatingZalo).toHaveClass(/floating-zalo/);
 
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(floatingZalo).toBeHidden();
-  await expect(page.getByRole("navigation", { name: "Liên hệ nhanh" })).toBeVisible();
+  await expect(
+    page.getByRole("navigation", { name: "Liên hệ nhanh" }),
+  ).toBeVisible();
 });
 
-test("floating Zalo stays still until the pointer hovers it", async ({ page }) => {
+test("floating Zalo stays still until the pointer hovers it", async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/");
 
   const floatingZalo = page.getByRole("link", { name: "Mở Zalo Tùng Phát" });
-  const idleAnimationCount = await floatingZalo.evaluate((element) =>
-    element.getAnimations({ subtree: true }).filter((animation) => animation.playState !== "finished").length
+  const idleAnimationCount = await floatingZalo.evaluate(
+    (element) =>
+      element
+        .getAnimations({ subtree: true })
+        .filter((animation) => animation.playState !== "finished").length,
   );
   expect(idleAnimationCount).toBe(0);
 
-  const restingTransform = await floatingZalo.evaluate((element) => getComputedStyle(element).transform);
+  const restingTransform = await floatingZalo.evaluate(
+    (element) => getComputedStyle(element).transform,
+  );
   await floatingZalo.hover();
-  await expect.poll(() => floatingZalo.evaluate((element) => getComputedStyle(element).transform)).not.toBe(restingTransform);
+  await expect
+    .poll(() =>
+      floatingZalo.evaluate((element) => getComputedStyle(element).transform),
+    )
+    .not.toBe(restingTransform);
 });
 
-test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", async ({ page }) => {
+test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", async ({
+  page,
+}) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
   for (const heading of [
@@ -485,17 +506,13 @@ test("robots, sitemap, Vercel admin redirect và 404 đúng", async ({
     "/san-pham/ba-thanh",
     "/san-pham/kes",
   ])
-    expect(xml).not.toContain(
-      `<loc>https://mdftungphat.com${route}/</loc>`,
-    );
+    expect(xml).not.toContain(`<loc>https://mdftungphat.com${route}/</loc>`);
   for (const route of [
     "/catalogue/an-cuong",
     "/catalogue/thanh-thuy",
     "/catalogue/ba-thanh",
   ])
-    expect(xml).toContain(
-      `<loc>https://mdftungphat.com${route}/</loc>`,
-    );
+    expect(xml).toContain(`<loc>https://mdftungphat.com${route}/</loc>`);
   for (const route of ["melamine", "laminate", "acrylic"])
     expect(xml).toContain(
       `<loc>https://mdftungphat.com/catalogue/an-cuong/${route}/</loc>`,
@@ -548,6 +565,8 @@ test("404 chỉ hiện footer sau khi người dùng cuộn trên desktop và mo
 }) => {
   for (const viewport of [
     { width: 1280, height: 800 },
+    { width: 1024, height: 768 },
+    { width: 768, height: 1024 },
     { width: 390, height: 844 },
   ]) {
     await page.setViewportSize(viewport);
@@ -562,6 +581,109 @@ test("404 chỉ hiện footer sau khi người dùng cuộn trên desktop và mo
     await footer.scrollIntoViewIfNeeded();
     await expect(footer).toBeInViewport();
   }
+});
+
+test("404 dùng ảnh responsive và có hai đường thoát rõ ràng", async ({
+  page,
+}) => {
+  const response = await page.goto("/khong-ton-tai/");
+
+  expect(response?.status()).toBe(404);
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: "Trang này không tồn tại",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Về trang chủ" }),
+  ).toHaveAttribute("href", "/");
+  await expect(
+    page.getByRole("link", { name: "Xem catalogue" }),
+  ).toHaveAttribute("href", "/catalogue/");
+  await expect(page.locator("main picture source")).toHaveAttribute(
+    "srcset",
+    "/images/404-mobile.webp",
+  );
+  await expect(page.locator("main picture img")).toHaveAttribute(
+    "src",
+    "/images/404-desktop.webp",
+  );
+});
+
+test("404 căn giữa tiêu đề và giữ nền đứng yên khi cuộn", async ({ page }) => {
+  for (const viewport of [
+    { width: 390, height: 844 },
+    { width: 768, height: 1024 },
+    { width: 1280, height: 800 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto("/khong-ton-tai/");
+
+    const stage = page.getByTestId("not-found-stage");
+    const heading = page.getByRole("heading", {
+      level: 1,
+      name: "Trang này không tồn tại",
+      exact: true,
+    });
+    const stageBox = await stage.boundingBox();
+    const headingBox = await heading.boundingBox();
+
+    expect(stageBox).not.toBeNull();
+    expect(headingBox).not.toBeNull();
+    const stageCenter = stageBox!.y + stageBox!.height / 2;
+    const headingCenter = headingBox!.y + headingBox!.height / 2;
+    expect(
+      Math.abs(stageCenter - headingCenter),
+      `${viewport.width}x${viewport.height}`,
+    ).toBeLessThanOrEqual(3);
+  }
+
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("/khong-ton-tai/");
+
+  const stage = page.getByTestId("not-found-stage");
+  const heading = page.getByRole("heading", {
+    level: 1,
+    name: "Trang này không tồn tại",
+    exact: true,
+  });
+  const footer = page.getByRole("contentinfo");
+  const stageTopBefore = await stage.evaluate(
+    (element) => element.getBoundingClientRect().top,
+  );
+  const headingTopBefore = await heading.evaluate(
+    (element) => element.getBoundingClientRect().top,
+  );
+
+  await page.evaluate(() => window.scrollTo(0, 200));
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(200);
+
+  const stageTopDuring = await stage.evaluate(
+    (element) => element.getBoundingClientRect().top,
+  );
+  const headingTopDuring = await heading.evaluate(
+    (element) => element.getBoundingClientRect().top,
+  );
+  expect(Math.abs(stageTopDuring - stageTopBefore)).toBeLessThanOrEqual(3);
+  expect(
+    Math.abs(headingTopDuring - (headingTopBefore - 200)),
+  ).toBeLessThanOrEqual(2);
+
+  const headerBottom = await page
+    .getByRole("banner")
+    .evaluate((element) => element.getBoundingClientRect().bottom);
+  const revealScroll = Math.max(0, headingTopBefore - headerBottom);
+  await page.evaluate(
+    (scrollTop) => window.scrollTo(0, scrollTop),
+    revealScroll,
+  );
+  await expect
+    .poll(() =>
+      footer.evaluate((element) => element.getBoundingClientRect().top),
+    )
+    .toBeLessThanOrEqual(801);
 });
 
 test("trang liên hệ trực tiếp không có lỗi accessibility nghiêm trọng", async ({
