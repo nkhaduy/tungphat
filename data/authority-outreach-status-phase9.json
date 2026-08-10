@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T13:35:00+07:00",
+  "maximumNewSubmissions": 5,
+  "phase9MessagesActuallySent": 0,
+  "phase9FormsSubmitted": 0,
+  "records": [
+    {
+      "target": "Gỗ Thanh Thùy - Cửa Hàng Tùng Phát",
+      "domain": "gothanhthuy.com",
+      "targetUrl": "https://www.gothanhthuy.com/distributor/cua-hang-tung-phat/",
+      "proposedTungPhatUrl": "https://mdftungphat.com/",
+      "status": "STILL_PENDING",
+      "submittedAt": "2026-08-10T10:38:00+07:00",
+      "recheckedAt": "2026-08-10T13:21:52+07:00",
+      "recheckEvidence": "HTTP 200 live page still lists Cửa Hàng Tùng Phát, 14 Đ. Tam Bình and phone 0909259160; no mdftungphat.com link is present.",
+      "nextAction": "Do not resubmit without a publisher response or explicit submission failure."
+    },
+    {
+      "target": "Infocom B2B legal entity record",
+      "domain": "infocom.vn",
+      "targetUrl": "https://infocom.vn/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat-0319115830.html",
+      "proposedTungPhatUrl": "https://mdftungphat.com/",
+      "status": "READY_TO_SEND",
+      "channel": "hello@infocom.vn or publisher Zalo 0588001001",
+      "evidence": "Legal name, tax ID and 14 Tam Bình match; no authenticated email or Zalo route was available."
+    },
+    {
+      "target": "Daily Chữ Ký Số legal entity record",
+      "domain": "dailychukyso.com.vn",
+      "targetUrl": "https://dailychukyso.com.vn/tt-doanh-nghiep/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat/",
+      "proposedTungPhatUrl": "https://mdftungphat.com/",
+      "status": "BLOCKED_CHANNEL",
+      "channel": "Publisher Zalo 0338000800",
+      "evidence": "Correction requires authenticated Zalo; the public form is an unrelated sales lead form and was not used."
+    },
+    {
+      "target": "DauThau.Net legal entity profile",
+      "domain": "dauthau.net",
+      "targetUrl": "https://dauthau.net/vi/dn/CONG-TY-TNHH-THUONG-MAI-DICH-VU-GO-TUNG-PHAT/",
+      "proposedTungPhatUrl": "https://mdftungphat.com/",
+      "status": "BLOCKED_OWNER_LOGIN",
+      "evidence": "Live HTTP 200 page exactly matches the legal name, tax ID 0319115830 and 14 đường Tam Bình. The profile exposes owner-confirmation and login-gated update controls; no public correction transmission was attempted."
+    },
+    {
+      "target": "Ashui material reference fit",
+      "domain": "ashui.com",
+      "targetUrl": "https://ashui.com/an-cuong-he-sinh-thai-vat-lieu-va-giai-phap-toan-dien-tu-go-cong-nghiep/",
+      "proposedTungPhatUrl": "https://mdftungphat.com/tham-chieu-vat-lieu/",
+      "status": "READY_TO_SEND",
+      "evidence": "Existing Vietnamese material/ecosystem article is a concrete context for a source hierarchy and caveat reference; no authenticated editorial channel was available."
+    },
+    {
+      "target": "Kiến Việt material reference fit",
+      "domain": "kienviet.net",
+      "targetUrl": "https://kienviet.net/2026/1/29/plg-complex-tai-dinh-nghia-khong-gian-song-cho-cong-nhan-tu-vat-lieu-tai-che-d2-architects",
+      "proposedTungPhatUrl": "https://mdftungphat.com/tham-chieu-vat-lieu/",
+      "status": "READY_TO_SEND",
+      "evidence": "Existing Vietnamese architecture/material article provides a possible non-promotional provenance reference; no authenticated editorial channel was available."
+    }
+  ],
+  "summary": {
+    "reviewed": 7,
+    "actuallySent": 0,
+    "formsSubmitted": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "pending": 1,
+    "readyToSend": 3,
+    "blocked": 2,
+    "notAppropriate": 0,
+    "ownerLoginBlocked": 1
+  }
+}
