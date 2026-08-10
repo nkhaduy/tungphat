@@ -1,0 +1,10 @@
+{
+  "schemaVersion":"1.0",
+  "checkedAt":"2026-08-10T10:20:00+07:00",
+  "singleAttemptPolicy":true,
+  "browser":{"status":"AUTH_BLOCKED","connectedInstances":0,"evidence":"Browser discovery returned an empty instance list."},
+  "google":{"gsc":"AUTH_BLOCKED","gbp":"AUTH_BLOCKED","apiTier":-1,"evidence":"No connected browser, OAuth credential, service account or API key."},
+  "microsoft":{"bingWebmaster":"AUTH_BLOCKED","bingPlaces":"AUTH_BLOCKED","evidence":"No connected browser or authenticated Microsoft session/API access."},
+  "facebook":{"administration":"AUTH_BLOCKED","publicIdentity":"VERIFIED","evidence":"Public Page identity corroborated, but no authenticated Meta administration session."},
+  "retry":"Not repeated after the required intelligent capability check."
+}

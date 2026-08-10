@@ -1,0 +1,17 @@
+{
+  "schemaVersion":"1.0",
+  "checkedAt":"2026-08-10T10:50:00+07:00",
+  "actions":[
+    {"surface":"GSC","status":"AUTH_BLOCKED","mutation":false},
+    {"surface":"GBP branch 1","status":"AUTH_BLOCKED","mutation":false},
+    {"surface":"GBP branch 2","status":"AUTH_BLOCKED","mutation":false},
+    {"surface":"Bing Webmaster","status":"AUTH_BLOCKED","mutation":false},
+    {"surface":"Bing Places","status":"AUTH_BLOCKED","mutation":false},
+    {"surface":"Facebook","status":"VERIFIED_PUBLIC_IDENTITY_ADMIN_AUTH_BLOCKED","mutation":false},
+    {"surface":"Gỗ Thanh Thùy","status":"SUBMITTED","mutation":true,"submittedAt":"2026-08-10T10:38:00+07:00","response":"HTTP 200, JSON success=true"},
+    {"surface":"Infocom","status":"READY_TO_SEND","mutation":false},
+    {"surface":"Daily Chữ Ký Số","status":"BLOCKED_CHANNEL","mutation":false},
+    {"surface":"Nội Thất Mỹ Nghệ","status":"NOT_APPROPRIATE","mutation":false}
+  ],
+  "summary":{"messagesSent":0,"formsSubmitted":1,"accepted":0,"profilesClaimedOrUpdated":0}
+}

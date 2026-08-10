@@ -1,6 +1,6 @@
 {
   "schemaVersion": "2.1",
-  "checkedAt": "2026-08-10T00:19:07+07:00",
+  "checkedAt": "2026-08-10T10:43:42+07:00",
   "entity": "Công ty TNHH TMDV Gỗ Tùng Phát",
   "records": [
     {
@@ -74,11 +74,11 @@
       "entity": "Cửa Hàng Tùng Phát",
       "branch": "14 Tam Bình",
       "address": "14 Đ. Tam Bình, Hiệp Bình Chánh, Thủ Đức, Thành phố Hồ Chí Minh",
-      "phone": null,
+      "phone": "0909 259 160, 0909 557 312",
       "website": null,
       "categories": ["Distributor directory"],
       "relationship": "explicit public distributor-directory entry; no broader authorization claim inferred",
-      "evidence": "Manufacturer website page title and meta description align with the branch-1 name and address.",
+      "evidence": "The live manufacturer directory page returned HTTP 200 and lists Cửa Hàng Tùng Phát, 14 Đ. Tam Bình and phone 0909259160; no canonical website link was present.",
       "consistency": "VERIFIED",
       "confidence": "high",
       "checkedAt": "2026-08-10T00:19:07+07:00"
@@ -116,20 +116,20 @@
       "checkedAt": "2026-08-10T00:19:07+07:00"
     },
     {
-      "source": "Facebook candidate",
+      "source": "Facebook business page",
       "sourceType": "social",
       "url": "https://www.facebook.com/p/MDF-CNC-T%C3%B9ng-Ph%C3%A1t-61572168615156/",
-      "entity": "MDF - CNC Tùng Phát",
-      "branch": null,
-      "address": null,
-      "phone": null,
-      "website": null,
-      "categories": ["Business page candidate"],
-      "relationship": "candidate social identity",
-      "evidence": "Public search aligned the name and domain context, but Facebook returned a JS/error shell and ownership was not authenticated.",
-      "consistency": "UNVERIFIED",
-      "confidence": "medium",
-      "checkedAt": "2026-08-10T00:19:07+07:00"
+      "entity": "Tùng Phát - Ván gỗ công nghiệp & CNC",
+      "branch": "14 Tam Bình and 81B Tam Bình",
+      "address": "14 Tam Bình, Phường Hiệp Bình, TPHCM; 81B Đường Tam Bình, TPHCM",
+      "phone": "0909 259 160",
+      "website": "https://mdftungphat.com/",
+      "categories": ["Business Page", "MDF", "CNC gỗ", "Ván gỗ công nghiệp"],
+      "relationship": "public business profile linking the canonical website",
+      "evidence": "Facebook Page Plugin confirms the stable public page identity. Independent Bing and DuckDuckGo results for the canonical domain and phone expose matching page name, hotline, canonical website, 14 Tam Bình and 81B Tam Bình across the page and historical photo/post results. Direct page HTML remains JS/error-shell inaccessible and admin ownership was not authenticated.",
+      "consistency": "VERIFIED",
+      "confidence": "high",
+      "checkedAt": "2026-08-10T10:43:42+07:00"
     },
     {
       "source": "Google Business Profile",
