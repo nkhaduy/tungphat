@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T21:34:29+07:00",
+  "sourceOfTruth": "data/canonical-business-identity.json",
+  "checks": [
+    {"source": "Gỗ Thanh Thùy", "status": "CONSISTENT_UNLINKED", "evidence": "HTTP 200; exact entity name and 14 Đ. Tam Bình remain visible; no canonical website link."},
+    {"source": "Infocom", "status": "CONSISTENT_UNLINKED", "evidence": "HTTP 200; legal name, tax ID 0319115830 and 14 đường Tam Bình remain visible; website field not linked."},
+    {"source": "Daily Chữ Ký Số", "status": "CONSISTENT_UNLINKED", "evidence": "HTTP 200; legal name and tax ID 0319115830 remain visible; no website link."},
+    {"source": "DauThau.Net", "status": "CONSISTENT_UNLINKED", "evidence": "Live entity-correct profile; legal name, tax ID 0319115830 and 14 đường Tam Bình; website update owner-gated."},
+    {"source": "Google Maps Branch 1", "status": "VERIFIED_PLACE_ID_CURRENT_DETAILS_JS_UNVERIFIABLE", "evidence": "Place ID ChIJ6dw2A6YndTERr5eaiym-l-M resolves HTTP 200; public details are JS-rendered."},
+    {"source": "Google Maps Branch 2", "status": "VERIFIED_PLACE_ID_CURRENT_DETAILS_JS_UNVERIFIABLE", "evidence": "Place ID ChIJjWMBUikndTERNFK1M-j02ZY resolves HTTP 200; public details are JS-rendered."},
+    {"source": "Facebook", "status": "PUBLIC_IDENTITY_VERIFIED_ADMIN_BLOCKED", "evidence": "Public page responds HTTP 200 and retains Tùng Phát identity; admin/link fields are not exposed reliably."},
+    {"source": "Zalo", "status": "PREVIOUSLY_CONSISTENT_CURRENT_LOGIN_REDIRECT", "evidence": "Canonical profile URL redirects to id.zalo.me account login; no mismatch inferred."}
+  ],
+  "summary": {"materialMismatches": 0, "wrongPhones": 0, "wrongAddresses": 0, "wrongWebsites": 0, "newConsistentRecords": 0, "restrictedPointersExcluded": 2}
+}

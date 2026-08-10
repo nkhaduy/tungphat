@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T21:52:00+07:00",
+  "result": "PARTIAL",
+  "publicCodeChanged": false,
+  "checks": {
+    "productionCrawl": {"status": "PASS", "pagesChecked": 54, "indexable": 54, "http2xx": 54, "canonicalErrors": 0, "brokenLinks": 0, "orphanPages": 0, "thinPages": 0, "schemaErrors": 0, "sitemapErrors": 0, "aiCrawlerBlockers": 0, "securityHeaderErrors": 0},
+    "retrievalAssets": {"status": "PASS", "robots": 200, "sitemap": 200, "knowledgeJson": 200, "llmsTxt": 200, "indexNowKey": 200, "materialReference": 200, "cncPreflight": 200},
+    "catalogueQuality": {"status": "PASS", "passed": 26, "total": 26, "failed": 0, "source": "live production HTML"},
+    "authenticatedIndexation": {"status": "AUTH_BLOCKED", "googleConfirmedIndexed": null, "bingConfirmedIndexed": null, "inspected": 0, "impressions": null, "clicks": null},
+    "publicIndexationObservation": {"status": "PASS_WITH_LIMITATION", "sitemapUrls": 54, "googleUnknown": 54, "bingNotObserved": 54, "caveat": "Public absence is not authenticated non-indexation evidence."},
+    "searchPresence": {"status": "PASS", "bingExactDomainPosition": 1, "bingExactDomainState": "SAME", "brandSetFirstParty": 0, "localFirstParty": 0, "longTailFirstParty": 0, "benchmark40": "0/40"},
+    "authority": {"status": "PASS_NO_CONVERSION", "knownSourcesRechecked": 8, "newIndependentVerifiedSources": 0, "verifiedReferringDomains": 1, "reclamationsAccepted": 0, "profilesClaimedOrUpdated": 0, "lostEdges": 0},
+    "outreach": {"status": "PASS_TRUTHFUL_STATE", "actuallySent": 0, "formsSubmitted": 0, "accepted": 0, "pending": 1, "readyToSend": 3, "blocked": 6},
+    "performance": {"status": "LAB_TARGET_NOT_MET", "runs": 5, "medianScore": 81, "medianLcpMs": 4686.707, "medianFcpMs": 1317.784, "medianTbtMs": 78, "medianCls": 0, "diagnosis": "ENVIRONMENTAL_LAB_CONTENTION; NO ISOLATED PUBLIC CODE DEFECT", "publicCodeDecision": "NO_PUBLIC_CODE_CHANGE_REQUIRED"},
+    "security": {"status": "PASS", "dependencyVulnerabilities": 0, "sourceMapsExposed": 0, "sourceMapsChecked": 10, "credentialPatternFindings": 0, "securityHeaderErrors": 0},
+    "tests": {"status": "PASS", "files": 104, "tests": 545},
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "jsonValidation": "PASS: all Phase 10 JSON parsed and indexation/search/authority/outreach/performance cross-checks matched source reports"
+  },
+  "notRun": {
+    "gscBingWebmasterGbpBingPlacesFacebookAdmin": "No authenticated browser/API/owner session was available at the one-time capability check.",
+    "aiRetrievalCitation": "No legitimate direct AI retrieval/citation test surface was available; values remain null.",
+    "buildAndE2e": "No public code changed; live production crawl, catalogue audit, lint, typecheck and 545 unit tests were used as the regression gate.",
+    "indexNow": "SKIPPED_NO_CANONICAL_CHANGE",
+    "deployment": "No public output changed; existing READY production deployment retained."
+  }
+}
