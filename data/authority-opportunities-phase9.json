@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T13:35:00+07:00",
+  "scoringRule": "Internal priority only: relevance x authority x entity certainty x user benefit x contactability. Not a Google metric.",
+  "opportunities": [
+    {
+      "rank": 1,
+      "target": "Gỗ Thanh Thùy distributor listing",
+      "class": "supplierManufacturer",
+      "sourceUrl": "https://www.gothanhthuy.com/distributor/cua-hang-tung-phat/",
+      "state": "STILL_PENDING",
+      "score": 500,
+      "action": "Monitor; do not resubmit without failure evidence."
+    },
+    {
+      "rank": 2,
+      "target": "DauThau.Net legal entity profile",
+      "class": "businessCitation",
+      "sourceUrl": "https://dauthau.net/vi/dn/CONG-TY-TNHH-THUONG-MAI-DICH-VU-GO-TUNG-PHAT/",
+      "state": "UNLINKED_OWNER_LOGIN_BLOCKED",
+      "score": 225,
+      "action": "Use owner login/verification only; no generic form submission."
+    },
+    {
+      "rank": 3,
+      "target": "Infocom legal entity website field",
+      "class": "businessCitation",
+      "sourceUrl": "https://infocom.vn/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat-0319115830.html",
+      "state": "READY_TO_SEND",
+      "score": 200,
+      "action": "Send one factual website-field correction through authenticated publisher email or Zalo."
+    },
+    {
+      "rank": 4,
+      "target": "Ashui article-level material reference",
+      "class": "editorialCitation",
+      "sourceUrl": "https://ashui.com/an-cuong-he-sinh-thai-vat-lieu-va-giai-phap-toan-dien-tu-go-cong-nghiep/",
+      "state": "READY_TO_SEND",
+      "score": 160,
+      "action": "Offer the existing reference center only if an authenticated editor contact route exists."
+    },
+    {
+      "rank": 5,
+      "target": "Kiến Việt article-level material reference",
+      "class": "editorialCitation",
+      "sourceUrl": "https://kienviet.net/2026/1/29/plg-complex-tai-dinh-nghia-khong-gian-song-cho-cong-nhan-tu-vat-lieu-tai-che-d2-architects",
+      "state": "READY_TO_SEND",
+      "score": 144,
+      "action": "Offer the existing reference center only with a specific factual citation rationale."
+    },
+    {
+      "rank": 6,
+      "target": "MaSoThue and Thư Viện Pháp Luật legal-record pointers",
+      "class": "businessCitation",
+      "sourceUrl": null,
+      "state": "RESTRICTED_PUBLIC_POINTERS",
+      "score": 100,
+      "action": "Keep as discovery evidence; direct pages returned anti-bot/blocked responses, so do not count as live verified links or submit."
+    }
+  ],
+  "newHighConfidenceOpportunities": 1,
+  "newOutreachSubmissions": 0
+}
