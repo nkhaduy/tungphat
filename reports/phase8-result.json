@@ -3,13 +3,14 @@
   "phase":"8",
   "result":"EXTERNAL AUTHORITY GROWTH: PARTIAL",
   "reason":"One legitimate high-confidence reclamation was submitted and entity corroboration increased, but acceptance, authenticated indexation, and owner-managed local profiles remain unavailable.",
-  "production":{"url":"https://mdftungphat.com","mainSha":"9791f42393b8cf9108f98b661a06c9e10e48a822","deployment":"dpl_FQUSpgNGLWt8wqLaBKCK3rRPQoiV","status":"READY","publicCodeChanged":true},
+  "production":{"url":"https://mdftungphat.com","mainSha":"b8a2e1c86370dee7c3b90cf962a22eec67ce9dee","deployment":"dpl_AX4irh7FRRuQUvjEuWMvgCCEzUSr","status":"READY","publicCodeChanged":true},
   "authorityBeforeAfter":{"verifiedReferringDomains":[1,1],"verifiedBusinessCitations":[4,5],"verifiedEntityRecords":[3,4],"consistentEntityRecords":[4,4],"unlinkedMentions":[3,3],"canonicalReclamationsCompleted":[0,0],"canonicalReclamationFormsSubmitted":[0,1],"externalProfilesClaimedOrUpdated":[0,0]},
   "indexation":{"google":{"auth":"AUTH_BLOCKED","confirmedIndexed":null,"inspected":0,"searchData":null},"bing":{"auth":"AUTH_BLOCKED","confirmedIndexed":null,"inspected":0,"searchData":null}},
   "searchPresenceLadder":{"google":{"brand":0,"longTail":0,"competitive":0,"aiRetrieval":0,"aiCitation":0},"bing":{"brand":0,"longTail":0,"competitive":0,"aiRetrieval":0,"aiCitation":0},"note":"Bing exact-domain search surfaced the verified Facebook entity, separately from the stable first-party monitor."},
   "benchmark":{"commercial":0,"informational":0,"comparison":0,"localCnc":0,"queryCount":40},
   "entityGraph":{"verified":4,"consistent":4,"unverified":0,"mismatch":0,"authBlocked":2,"corroborated":8},
   "externalMutations":{"thanhThuy":"SUBMITTED","infocom":"READY_TO_SEND","dailyChuKySo":"BLOCKED_CHANNEL","facebook":"AUTH_BLOCKED_ADMIN","gsc":"AUTH_BLOCKED","gbp":"AUTH_BLOCKED","bing":"AUTH_BLOCKED"},
-  "performance":{"lighthouseMobile":null,"lcp":null,"fcp":null,"cls":null,"tbt":null,"phase7Baseline":{"lighthouseMobile":96,"lcp":2.309,"fcp":1.047,"cls":0,"tbt":153.5}},
+  "performance":{"lighthouseMobile":80,"lcp":4.857,"fcp":1.200,"cls":0,"tbt":90,"sample":"three sequential post-deploy mobile Lighthouse runs; two LCP outliers near 4.9s and one 98 score","phase7Baseline":{"lighthouseMobile":96,"lcp":2.309,"fcp":1.047,"cls":0,"tbt":153.5}},
+  "indexNow":{"status":"SUBMITTED","urls":2,"responseStatus":200},
   "noNewIndexablePages":true
 }
