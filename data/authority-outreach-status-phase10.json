@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T21:34:29+07:00",
+  "maximumNewSubmissions": 2,
+  "phase10MessagesActuallySent": 0,
+  "phase10FormsSubmitted": 0,
+  "records": [
+    {
+      "target": "Gỗ Thanh Thùy - Cửa Hàng Tùng Phát",
+      "domain": "gothanhthuy.com",
+      "targetUrl": "https://www.gothanhthuy.com/distributor/cua-hang-tung-phat/",
+      "proposedTungPhatUrl": "https://mdftungphat.com/",
+      "status": "STILL_PENDING",
+      "recheckedAt": "2026-08-10T21:30:06+07:00",
+      "recheckEvidence": "HTTP 200 live page still exposes Cửa Hàng Tùng Phát and 14 Đ. Tam Bình; direct HTML contains no mdftungphat.com canonical link. The page remains supplier/entity corroboration, not an accepted reclamation.",
+      "nextAction": "Do not resubmit without publisher response or explicit submission failure."
+    },
+    {
+      "target": "Infocom B2B legal entity record",
+      "domain": "infocom.vn",
+      "targetUrl": "https://infocom.vn/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat-0319115830.html",
+      "proposedTungPhatUrl": "https://mdftungphat.com/",
+      "status": "READY_TO_SEND",
+      "verifiedFacts": ["legal name", "tax ID 0319115830", "14 đường Tam Bình"],
+      "channel": "hello@infocom.vn or publisher Zalo 0588001001",
+      "evidence": "HTTP 200 entity record remains live; no controlled authenticated sender channel was available."
+    },
+    {
+      "target": "Daily Chữ Ký Số legal entity record",
+      "domain": "dailychukyso.com.vn",
+      "targetUrl": "https://dailychukyso.com.vn/tt-doanh-nghiep/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat/",
+      "proposedTungPhatUrl": "https://mdftungphat.com/",
+      "status": "BLOCKED_CHANNEL",
+      "channel": "Publisher Zalo 0338000800",
+      "evidence": "HTTP 200 entity record remains live; correction requires authenticated Zalo and the public form is unrelated lead generation."
+    },
+    {
+      "target": "DauThau.Net legal entity profile",
+      "domain": "dauthau.net",
+      "targetUrl": "https://dauthau.net/vi/dn/CONG-TY-TNHH-THUONG-MAI-DICH-VU-GO-TUNG-PHAT/",
+      "proposedTungPhatUrl": "https://mdftungphat.com/",
+      "status": "BLOCKED_OWNER_LOGIN",
+      "evidence": "Live page remains entity-correct (legal name, tax ID, 14 đường Tam Bình); the website field is absent and owner/login controls gate updates."
+    },
+    {
+      "target": "Ashui material reference fit",
+      "domain": "ashui.com",
+      "targetUrl": "https://ashui.com/an-cuong-he-sinh-thai-vat-lieu-va-giai-phap-toan-dien-tu-go-cong-nghiep/",
+      "proposedTungPhatUrl": "https://mdftungphat.com/tham-chieu-vat-lieu/",
+      "status": "READY_TO_SEND",
+      "evidence": "HTTP 200 article remains a plausible editorial context; no authenticated editorial sender was available."
+    },
+    {
+      "target": "Kiến Việt material reference fit",
+      "domain": "kienviet.net",
+      "targetUrl": "https://kienviet.net/2026/1/29/plg-complex-tai-dinh-nghia-khong-gian-song-cho-cong-nhan-tu-vat-lieu-tai-che-d2-architects",
+      "proposedTungPhatUrl": "https://mdftungphat.com/tham-chieu-vat-lieu/",
+      "status": "READY_TO_SEND",
+      "evidence": "HTTP 200 article remains a plausible factual context; no authenticated editorial sender was available."
+    }
+  ],
+  "summary": {
+    "reviewed": 6,
+    "actuallySent": 0,
+    "formsSubmitted": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "pending": 1,
+    "readyToSend": 3,
+    "blocked": 2,
+    "ownerLoginBlocked": 1
+  }
+}
