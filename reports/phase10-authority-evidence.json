@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T21:34:29+07:00",
+  "counts": {
+    "verifiedReferringDomains": 1,
+    "verifiedBusinessCitations": 6,
+    "verifiedEntityRecords": 4,
+    "consistentEntityRecords": 5,
+    "unlinkedMentions": 4,
+    "reclamationsAccepted": 0,
+    "profilesClaimedOrUpdated": 0
+  },
+  "phase9ToPhase10": {
+    "verifiedReferringDomains": [1, 1],
+    "verifiedBusinessCitations": [6, 6],
+    "verifiedEntityRecords": [4, 4],
+    "consistentEntityRecords": [5, 5],
+    "unlinkedMentions": [4, 4],
+    "reclamationsAccepted": [0, 0],
+    "profilesClaimedOrUpdated": [0, 0]
+  },
+  "sourceEvidenceScores": {
+    "purpose": "Internal evidence prioritization only; not a Google score, DR, or DA.",
+    "maximum": 35,
+    "records": [
+      {"source": "Google Maps branches", "score": 32, "state": "PREVIOUSLY_VERIFIED_CURRENT_JS_UNVERIFIABLE", "reason": "Strong branch-specific NAP and canonical website evidence; current public detail extraction is JS-limited."},
+      {"source": "Gỗ Thanh Thùy distributor entry", "score": 29, "state": "VERIFIED_UNLINKED", "reason": "Highly topical, entity-specific supplier listing; canonical website remains absent."},
+      {"source": "Facebook business Page", "score": 25, "state": "VERIFIED_PUBLIC_IDENTITY_ADMIN_BLOCKED", "reason": "Strong entity alignment; direct link/admin fields remain JS/auth blocked."},
+      {"source": "Infocom legal entity record", "score": 22, "state": "CONSISTENT_UNLINKED", "reason": "Legal name, tax ID and address corroboration; website absent."},
+      {"source": "DauThau.Net legal entity profile", "score": 21, "state": "CONSISTENT_UNLINKED_OWNER_BLOCKED", "reason": "Legal name, tax ID and address corroboration; website absent and correction owner-gated."},
+      {"source": "Daily Chữ Ký Số record", "score": 18, "state": "CONSISTENT_UNLINKED", "reason": "Legal entity corroboration with limited NAP and no website."},
+      {"source": "Zalo contact profile", "score": 12, "state": "PREVIOUSLY_CONSISTENT_CURRENT_LOGIN_REDIRECT", "reason": "Phone-consistent platform edge with limited public entity detail."}
+    ]
+  },
+  "discovery": {
+    "commonCrawl": {"release": "cc-main-2026-jan-feb-mar", "inCrawl": false, "referringDomainsSample": 0, "limitation": "Coverage absence is not proof of zero live backlinks."},
+    "newIndependentVerifiedSources": 0,
+    "restrictedPointers": 2,
+    "excludedAutomatedOrLowQualitySources": ["subdomainfinder.c99.nl", "dogonoithatmynghe.com"]
+  },
+  "materialReferenceCenter": "NO_PUBLIC_CHANGE_REQUIRED",
+  "sameAsDecision": "NO_CHANGE"
+}

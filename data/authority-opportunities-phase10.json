@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T21:34:29+07:00",
+  "scoringRule": "Internal priority only: relevance x authority x entity certainty x user benefit x contactability. Not a Google metric.",
+  "newCandidateLimit": 10,
+  "newHighConfidenceCandidates": 0,
+  "opportunities": [
+    {"rank": 1, "target": "Gỗ Thanh Thùy distributor listing", "class": "supplierManufacturer", "sourceUrl": "https://www.gothanhthuy.com/distributor/cua-hang-tung-phat/", "state": "STILL_PENDING", "action": "Monitor once per phase; do not resubmit without failure evidence."},
+    {"rank": 2, "target": "DauThau.Net legal entity profile", "class": "businessCitation", "sourceUrl": "https://dauthau.net/vi/dn/CONG-TY-TNHH-THUONG-MAI-DICH-VU-GO-TUNG-PHAT/", "state": "UNLINKED_OWNER_LOGIN_BLOCKED", "action": "Use owner login/verification only; do not use a generic form."},
+    {"rank": 3, "target": "Infocom legal entity website field", "class": "businessCitation", "sourceUrl": "https://infocom.vn/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat-0319115830.html", "state": "READY_TO_SEND", "action": "Send one factual website correction when an authenticated publisher route exists."},
+    {"rank": 4, "target": "Ashui article-level material reference", "class": "editorialCitation", "sourceUrl": "https://ashui.com/an-cuong-he-sinh-thai-vat-lieu-va-giai-phap-toan-dien-tu-go-cong-nghiep/", "state": "READY_TO_SEND", "action": "Offer the existing reference center only through an authenticated editor channel."},
+    {"rank": 5, "target": "Kiến Việt article-level material reference", "class": "editorialCitation", "sourceUrl": "https://kienviet.net/2026/1/29/plg-complex-tai-dinh-nghia-khong-gian-song-cho-cong-nhan-tu-vat-lieu-tai-che-d2-architects", "state": "READY_TO_SEND", "action": "Offer the existing reference center only with a specific factual citation rationale."},
+    {"rank": 6, "target": "MaSoThue legal-record pointer", "class": "businessCitation", "sourceUrl": "https://masothue.com/0319115830-cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat", "state": "RESTRICTED_PUBLIC_POINTER", "action": "Keep excluded from live counts because direct access returns HTTP 403."},
+    {"rank": 7, "target": "Thư Viện Pháp Luật legal-record pointer", "class": "businessCitation", "sourceUrl": "https://thuvienphapluat.vn/ma-so-thue/cong-ty-tnhh-thuong-mai-dich-vu-go-tung-phat-mst-0319115830.html", "state": "RESTRICTED_PUBLIC_POINTER", "action": "Keep excluded from live counts because direct access returns HTTP 403."}
+  ],
+  "discovery": {
+    "queries": ["exact legal name", "0319115830", "mdftungphat.com", "0909 259 160", "0909259160", "14 Tam Bình Tùng Phát", "81B Tam Bình Tùng Phát", "MDF CNC Tùng Phát"],
+    "newIndependentVerifiedSources": 0,
+    "excluded": ["C99 automated scan", "unrelated results", "scraper/mirror candidates"]
+  }
+}

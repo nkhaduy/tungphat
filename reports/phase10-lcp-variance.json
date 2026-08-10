@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T21:45:00+07:00",
+  "runs": 5,
+  "samples": [
+    {"file": "reports/phase10-lighthouse-1.json", "score": 97, "lcpMs": 2223.729, "fcpMs": 1122.729, "tbtMs": 135.5, "cls": 0, "ttfbAuditMs": 34, "lcpResourceLoadMs": 255.419, "lcpElementRenderDelayMs": 63.158},
+    {"file": "reports/phase10-lighthouse-2.json", "score": 80, "lcpMs": 4739.896, "fcpMs": 1335.396, "tbtMs": 78, "cls": 0, "ttfbAuditMs": 36, "lcpResourceLoadMs": 55.142, "lcpElementRenderDelayMs": 2119.524},
+    {"file": "reports/phase10-lighthouse-3.json", "score": 81, "lcpMs": 4686.707, "fcpMs": 1317.784, "tbtMs": 59.5, "cls": 0, "ttfbAuditMs": 37, "lcpResourceLoadMs": 49.092, "lcpElementRenderDelayMs": 2145.59},
+    {"file": "reports/phase10-lighthouse-4.json", "score": 79, "lcpMs": 4917.7185, "fcpMs": 1346.1825, "tbtMs": 81.5, "cls": 0, "ttfbAuditMs": 37, "lcpResourceLoadMs": 82.067, "lcpElementRenderDelayMs": 2097.931},
+    {"file": "reports/phase10-lighthouse-5.json", "score": 98, "lcpMs": 2362.926, "fcpMs": 1012.926, "tbtMs": 31, "cls": 0, "ttfbAuditMs": 39, "lcpResourceLoadMs": 75.085, "lcpElementRenderDelayMs": 1082.77}
+  ],
+  "median": {"score": 81, "lcpMs": 4686.707, "fcpMs": 1317.784, "tbtMs": 78, "cls": 0},
+  "thresholds": {"scoreMinimum": 90, "lcpMaximumMs": 2800, "tbtMaximumMs": 200, "clsMaximum": 0},
+  "thresholdResult": "LAB_SCORE_AND_LCP_NOT_MET",
+  "rootCauseEvidence": {
+    "homepageCodeChangedSincePhase9": false,
+    "homeHeroSha256Phase9": "e5e1cb575e253251f952c4b3f709d396bbce11d2d487c6f1a98e44aab1f93447",
+    "homeHeroSha256Phase10": "e5e1cb575e253251f952c4b3f709d396bbce11d2d487c6f1a98e44aab1f93447",
+    "lcpElement": "https://mdftungphat.com/images/cnc-service-home.webp",
+    "discovery": "fetchpriority=high, initial-document discoverable, eager",
+    "slowRunNetworkFinding": "The LCP image completed in 49-82ms on the three slow runs, faster than the 255ms first good run; the regression signal is render scheduling, not server/image transfer.",
+    "slowRunRenderDelayMs": [2119.524, 2145.59, 2097.931],
+    "machineLoad": "Load average 7.99 with an unrelated bash process consuming about 99% CPU since 2026-08-09 and multiple concurrent Chrome/Next/Codex processes.",
+    "remotePsi": "HTTP 429 quota response without API key"
+  },
+  "diagnosis": "ENVIRONMENTAL_LAB_CONTENTION; NO ISOLATED PUBLIC CODE DEFECT",
+  "publicCodeDecision": "NO_PUBLIC_CODE_CHANGE_REQUIRED",
+  "confidence": "medium",
+  "caveat": "The recorded five-run median does not meet the maintenance target and is reported as-is; it is not promoted to a production performance pass."
+}
