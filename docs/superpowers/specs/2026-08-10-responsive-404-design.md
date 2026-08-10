@@ -16,10 +16,12 @@ Two alternatives were considered and rejected:
 ## Layout
 
 - Keep the existing site header, footer, skip link, and mobile quick actions.
-- Make the 404 hero tall enough that the footer starts below the initial viewport on desktop, tablet, and mobile.
+- Make the 404 scene taller than the viewport and keep its visual stage sticky below the site header.
 - Render the artwork as a responsive `<picture>` background using `/images/404-mobile.webp` below the tablet breakpoint and `/images/404-desktop.webp` from tablet upward.
 - Let the artwork cover the available hero area with a centered focal point. Use a slightly adjusted mobile position so all three digits remain visible.
-- Place the content near the lower center of the hero, separated from the image with a vertical gradient rather than a card.
+- Place the heading's visual center exactly at the vertical center of the sticky stage on initial load; position the two actions beneath it without shifting that heading anchor.
+- While scrolling, keep the artwork fixed in the sticky stage and let the heading/actions move upward with document flow.
+- Size the outer scene so the footer begins entering the viewport when the heading approaches the bottom edge of the sticky header; at that point the visual stage releases and scrolls away.
 
 ## Content And Actions
 
@@ -46,6 +48,7 @@ Two alternatives were considered and rejected:
 
 - Add an end-to-end assertion for the exact heading and both recovery links.
 - Check that the responsive `<picture>` exposes both image sources.
+- Assert that the visual stage keeps the same viewport position while the heading moves upward, then releases as the footer enters.
 - Extend the existing 404 viewport coverage to include tablet.
 - Run the focused Playwright 404 tests, lint, typecheck, production build, and `git diff --check` before pushing `main`.
 - After the Vercel Git deployment starts, verify the production 404 response, copy, CTA destinations, and deployed commit.
