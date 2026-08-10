@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-10T13:35:00+07:00",
+  "domain": "mdftungphat.com",
+  "countingRule": "Count a domain once only when a live source directly exposes a canonical link and is independently verifiable. Unlinked citations and JS-only social evidence are retained separately.",
+  "records": [
+    {
+      "domain": "google.com",
+      "sourceUrl": "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
+      "targetUrl": "https://mdftungphat.com/",
+      "sourceClass": "platformIdentity",
+      "firstSeen": "2026-08-10",
+      "lastSeen": "2026-08-10",
+      "status": "LIVE",
+      "countedAsVerifiedReferringDomain": true,
+      "note": "Google Maps website field for the two verified branches."
+    },
+    {
+      "domain": "facebook.com",
+      "sourceUrl": "https://www.facebook.com/p/MDF-CNC-T%C3%B9ng-Ph%C3%A1t-61572168615156/",
+      "targetUrl": "https://mdftungphat.com/",
+      "sourceClass": "platformIdentity",
+      "firstSeen": "2026-08-10",
+      "lastSeen": "2026-08-10",
+      "status": "UNKNOWN",
+      "countedAsVerifiedReferringDomain": false,
+      "note": "Public identity is corroborated, but direct Page HTML/link remains JS or error-shell inaccessible."
+    },
+    {
+      "domain": "gothanhthuy.com",
+      "sourceUrl": "https://www.gothanhthuy.com/distributor/cua-hang-tung-phat/",
+      "targetUrl": null,
+      "sourceClass": "supplierManufacturer",
+      "firstSeen": "2026-08-10",
+      "lastSeen": "2026-08-10",
+      "status": "UNLINKED",
+      "countedAsVerifiedReferringDomain": false,
+      "note": "Live exact entity listing; canonical website field remains absent after one recheck."
+    },
+    {
+      "domain": "dauthau.net",
+      "sourceUrl": "https://dauthau.net/vi/dn/CONG-TY-TNHH-THUONG-MAI-DICH-VU-GO-TUNG-PHAT/",
+      "targetUrl": null,
+      "sourceClass": "businessCitation",
+      "firstSeen": "2026-08-10",
+      "lastSeen": "2026-08-10",
+      "status": "UNLINKED",
+      "countedAsVerifiedReferringDomain": false,
+      "note": "Live exact legal-entity profile; website update is login/owner gated."
+    },
+    {
+      "domain": "subdomainfinder.c99.nl",
+      "sourceUrl": "https://subdomainfinder.c99.nl/scans/2026-07-23/mdftungphat.com",
+      "targetUrl": "https://mdftungphat.com/",
+      "sourceClass": "automatedScan",
+      "firstSeen": "2026-08-10",
+      "lastSeen": "2026-08-10",
+      "status": "EXCLUDED",
+      "countedAsVerifiedReferringDomain": false,
+      "note": "Automated infrastructure scan; excluded from authority counts."
+    }
+  ],
+  "summary": {
+    "verifiedReferringDomains": 1,
+    "liveCanonicalLinks": 1,
+    "unlinkedVerifiedEntitySources": 2,
+    "observedNotCounted": 2,
+    "lost": 0,
+    "pending": 1
+  }
+}
