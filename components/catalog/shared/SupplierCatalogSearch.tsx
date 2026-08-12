@@ -2,7 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, Copy, Search } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  ChevronDown,
+  CircleAlert,
+  Copy,
+  Info,
+  Search,
+} from "lucide-react";
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { useCatalogFilterRobots } from "@/components/catalog/useCatalogFilterRobots";
 import {
@@ -31,6 +39,7 @@ const PAGE_SIZE = 48;
 type PrimarySelection = {
   value: string;
   label: string;
+  count?: number;
   type: CatalogSearchIntent;
   group: string;
 };
@@ -54,7 +63,8 @@ export function SupplierCatalogSearch({
   const primarySelections: PrimarySelection[] = useMemo(() => [
     ...materialTaxonomyOptionsForSupplier(entries, supplierId).map((option) => ({
       value: option.slug,
-      label: `${option.label} (${option.count})`,
+      label: option.label,
+      count: option.count,
       type: "all" as const,
       group: option.slug === "all" ? "" : option.slug,
     })),
@@ -187,34 +197,40 @@ export function SupplierCatalogSearch({
       <h2 id="supplier-search-title" className="sr-only">
         Tìm mã màu
       </h2>
-      <div className="border border-forest-900/10 bg-white p-4 shadow-card sm:p-6">
-        <label className="relative block">
-          <span className="sr-only">Tìm mã màu, tên màu hoặc thương hiệu</span>
-          <Search
-            aria-hidden="true"
-            className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-forest-900/55"
-            size={20}
-          />
-          <input
-            value={query}
-            onChange={(event) => updateQuery(event.target.value)}
-            onKeyDown={handleSearchKeyDown}
-            type="search"
-            autoComplete="off"
-            spellCheck={false}
-            placeholder="Tìm mã màu, tên màu hoặc thương hiệu"
-            className="min-h-14 w-full border border-forest-900/20 bg-[#fbfaf6] py-3 pl-12 pr-4 text-base font-semibold text-forest-950 outline-none transition focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
-          />
+      <div className="rounded-xl border border-forest-900/10 bg-white p-4 shadow-[0_18px_50px_rgba(7,59,40,.08)] sm:p-6 lg:p-7">
+        <label className="block">
+          <span className="mb-2.5 block text-xs font-extrabold uppercase tracking-[.15em] text-forest-900">
+            Tra cứu mã màu
+          </span>
+          <span className="relative block">
+            <Search
+              aria-hidden="true"
+              className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 text-wood-600"
+              size={22}
+              strokeWidth={1.8}
+            />
+            <input
+              value={query}
+              onChange={(event) => updateQuery(event.target.value)}
+              onKeyDown={handleSearchKeyDown}
+              type="search"
+              aria-label="Nhập mã màu, tên màu hoặc thương hiệu..."
+              autoComplete="off"
+              spellCheck={false}
+              placeholder="Nhập mã màu, tên màu hoặc thương hiệu..."
+              className="min-h-16 w-full rounded-lg border border-forest-900/20 bg-[#fbfaf6] py-4 pl-14 pr-5 text-base font-semibold text-forest-950 shadow-inner shadow-forest-950/[.025] outline-none transition-[border-color,box-shadow,background-color] placeholder:font-medium placeholder:text-slate-500 focus:border-wood-500 focus:bg-white focus:ring-2 focus:ring-wood-500/20"
+            />
+          </span>
         </label>
 
-        <div className="mt-5">
+        <div className="mt-6">
           <p className="text-xs font-extrabold uppercase tracking-[.15em] text-slate-600">
             Chọn nhóm vật liệu
           </p>
           <div
             role="group"
             aria-label="Chọn loại vật liệu"
-            className="mt-3 flex flex-wrap gap-2 pb-1"
+            className="mt-3 flex flex-wrap gap-2.5 pb-1"
           >
             {primarySelections.map((selection) => {
               const active = activeSelection === selection.value;
@@ -224,43 +240,71 @@ export function SupplierCatalogSearch({
                   type="button"
                   aria-pressed={active}
                   onClick={() => selectPrimary(selection)}
-                  className={`pressable min-h-11 min-w-0 max-w-full whitespace-normal border px-4 text-left text-sm font-extrabold ${active ? "border-forest-900 bg-forest-900 text-white" : "border-forest-900/15 bg-white text-forest-950 hover:border-wood-500"}`}
+                  className={`pressable inline-flex min-h-11 min-w-0 max-w-full items-center gap-2 rounded-full border px-4 text-left text-sm font-extrabold ${active ? "border-forest-900 bg-forest-900 text-white shadow-sm" : "border-forest-900/15 bg-white text-forest-950 hover:border-wood-500 hover:bg-[#fffaf3]"}`}
                 >
-                  {selection.label}
+                  <span>{selection.label}</span>
+                  {selection.count !== undefined ? (
+                    <span
+                      className={`text-xs tabular-nums ${active ? "text-white/70" : "text-slate-500"}`}
+                    >
+                      {selection.count.toLocaleString("vi-VN")}
+                    </span>
+                  ) : null}
                 </button>
               );
             })}
           </div>
         </div>
 
-        <div className="mt-4 grid gap-3 border-t border-forest-900/10 pt-4 sm:grid-cols-[minmax(0,260px)_1fr] sm:items-center">
-          <label>
-            <span className="sr-only">Lọc theo nhà cung cấp</span>
-            <select
-              value={supplierId}
-              onChange={(event) => {
-                const value = event.target.value as SupplierId | "";
-                setSupplierId(value);
-                updateUrl({ supplierId: value }, "push");
-              }}
-              className="min-h-12 w-full border border-forest-900/20 bg-white px-4 text-sm font-bold text-forest-950 outline-none focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
-            >
-              <option value="">Tất cả nhà cung cấp</option>
-              {supplierOptions.map((supplier) => (
-                <option key={supplier.value} value={supplier.value}>
-                  {supplier.label}
-                </option>
-              ))}
-            </select>
+        <div className="mt-5 grid gap-4 border-t border-forest-900/10 pt-5 md:grid-cols-[minmax(0,280px)_1fr] md:items-end">
+          <label className="block">
+            <span className="mb-2 block text-xs font-extrabold uppercase tracking-[.14em] text-slate-600">
+              Lọc theo nhà cung cấp
+            </span>
+            <span className="relative block">
+              <select
+                value={supplierId}
+                onChange={(event) => {
+                  const value = event.target.value as SupplierId | "";
+                  setSupplierId(value);
+                  updateUrl({ supplierId: value }, "push");
+                }}
+                className="min-h-12 w-full appearance-none rounded-lg border border-forest-900/20 bg-white px-4 pr-11 text-sm font-bold text-forest-950 outline-none focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
+              >
+                <option value="">Tất cả nhà cung cấp</option>
+                {supplierOptions.map((supplier) => (
+                  <option key={supplier.value} value={supplier.value}>
+                    {supplier.label}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown
+                className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-forest-900/60"
+                size={17}
+                aria-hidden="true"
+              />
+            </span>
           </label>
-          <p className="text-xs leading-5 text-slate-600">
-            Mặc định ưu tiên ý định tra mã Melamine, nhóm bề mặt và mức độ đầy
-            đủ của dữ liệu. A–Z chỉ dùng khi các mục có cùng điểm.
-          </p>
+          <div className="flex min-h-12 items-start gap-3 rounded-lg border border-forest-900/10 bg-[#f5f7f3] px-4 py-3 text-xs leading-5 text-slate-600">
+            <Info
+              className="mt-0.5 shrink-0 text-forest-800"
+              size={16}
+              aria-hidden="true"
+            />
+            <p>
+              Mặc định ưu tiên ý định tra mã Melamine, nhóm bề mặt và mức độ
+              đầy đủ của dữ liệu. A–Z chỉ dùng khi các mục có cùng điểm.
+            </p>
+          </div>
         </div>
       </div>
 
-      <p className="sr-only" aria-live="polite">
+      <p
+        className="sr-only"
+        role="status"
+        aria-label="Phản hồi sao chép mã"
+        aria-live="polite"
+      >
         {copyStatus}
       </p>
 
@@ -308,16 +352,16 @@ export function SupplierCatalogSearch({
         </div>
       ) : (
         <>
-          <div className="mt-7 flex flex-wrap items-end justify-between gap-4">
+          <div className="mt-10 flex flex-wrap items-end justify-between gap-4 sm:mt-12">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">
-                {hasSearchIntent
-                  ? "Kết quả tra cứu"
-                  : "Mã Melamine được quan tâm"}
-              </p>
-              <h3 className="mt-2 text-2xl font-extrabold text-forest-950">
                 {hasSearchIntent || showAllResults
-                  ? `${results.length} mục phù hợp`
+                  ? "Kết quả phù hợp"
+                  : "Gợi ý bắt đầu"}
+              </p>
+              <h3 className="mt-2 text-2xl font-extrabold tracking-[-.025em] text-forest-950 sm:text-3xl">
+                {hasSearchIntent || showAllResults
+                  ? `${results.length.toLocaleString("vi-VN")} mã màu`
                   : "Bắt đầu từ các mã có dữ liệu đầy đủ"}
               </h3>
             </div>
@@ -336,27 +380,27 @@ export function SupplierCatalogSearch({
             <div
               role="region"
               aria-label="Kết quả mã màu"
-              className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
+              className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-5"
             >
               {visibleResults.map((entry) => (
                 <article
                   key={entry.id ?? `${entry.supplierId}:${entry.code}:${entry.canonicalRoute}`}
-                  className="group flex min-w-0 flex-col overflow-hidden border border-forest-900/10 bg-white shadow-sm transition hover:border-wood-500/50 hover:shadow-card"
+                  className="catalogue-material-card group flex min-w-0 flex-col overflow-hidden rounded-xl border border-forest-900/10 bg-white shadow-[0_1px_2px_rgba(7,59,40,.04),0_9px_24px_rgba(7,59,40,.055)] transition-[transform,border-color,box-shadow] duration-200 motion-reduce:transition-none"
                 >
                   <Link
                     href={entry.canonicalRoute}
                     aria-label={entry.code
                       ? `${entry.supplierName}, mã ${entry.code}, xem chi tiết`
                       : `${entry.supplierName}, ${entry.name}, xem chi tiết`}
-                    className="relative block aspect-[16/9] overflow-hidden bg-[#eef1ed] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-wood-600"
+                    className="relative block aspect-[4/3] overflow-hidden rounded-none bg-[#e9ede8] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-wood-600"
                   >
                     {entry.thumbnail ? (
                       <Image
                         src={entry.thumbnail}
                         alt=""
                         fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
-                        className="object-cover"
+                        sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw"
+                        className="object-cover transition-transform duration-300 motion-reduce:transition-none"
                       />
                     ) : (
                       <span className="grid h-full place-items-center px-3 text-center text-xs font-bold text-slate-600">
@@ -364,23 +408,29 @@ export function SupplierCatalogSearch({
                       </span>
                     )}
                   </Link>
-                  <div className="flex flex-1 flex-col p-4">
-                    <p className="text-[.65rem] font-extrabold uppercase tracking-[.12em] text-wood-600">
+                  <div className="flex flex-1 flex-col p-4 sm:p-5">
+                    <p className="text-[.68rem] font-extrabold uppercase tracking-[.14em] text-wood-600">
                       {entry.supplierName}
                     </p>
-                    <h4 className="mt-2 line-clamp-2 text-lg font-extrabold leading-6 text-forest-950">
-                      <Link href={entry.canonicalRoute} translate="no">
+                    <h4 className="mt-2 line-clamp-2 min-h-12 text-lg font-extrabold leading-6 tracking-[-.018em] text-forest-950">
+                      <Link
+                        href={entry.canonicalRoute}
+                        translate="no"
+                        className="rounded-sm hover:text-wood-600"
+                      >
                         {formatCatalogCardTitle(entry)}
                       </Link>
                     </h4>
-                    <p className="mt-3 text-xs leading-5 text-slate-500">{formatCatalogCardTaxonomy(entry)}</p>
+                    <p className="mt-3 min-h-10 text-xs leading-5 text-slate-600">
+                      {formatCatalogCardTaxonomy(entry)}
+                    </p>
                     <div className={`mt-auto grid gap-2 pt-5 ${entry.code ? "grid-cols-2" : "grid-cols-1"}`}>
                       {entry.code ? (
                         <button
                           type="button"
                           onClick={() => copyCode(entry.code)}
                           aria-label={`Sao chép mã ${entry.code}`}
-                          className="pressable inline-flex min-h-11 items-center justify-center gap-2 border border-forest-900/15 px-3 text-xs font-extrabold text-forest-950 hover:border-wood-500"
+                          className="pressable inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-forest-900/15 bg-white px-3 text-xs font-extrabold text-forest-950 hover:border-wood-500 hover:bg-[#fffaf3]"
                         >
                           <Copy size={15} aria-hidden="true" />
                           Sao chép mã
@@ -388,7 +438,7 @@ export function SupplierCatalogSearch({
                       ) : null}
                       <Link
                         href={entry.canonicalRoute}
-                        className="pressable inline-flex min-h-11 items-center justify-center gap-2 bg-forest-900 px-3 text-xs font-extrabold text-white hover:bg-forest-950"
+                        className="pressable inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-forest-900 px-3 text-xs font-extrabold text-white shadow-sm hover:bg-forest-950"
                       >
                         Chi tiết <ArrowRight size={15} aria-hidden="true" />
                       </Link>
@@ -398,7 +448,7 @@ export function SupplierCatalogSearch({
               ))}
             </div>
           ) : (
-            <div className="mt-5 border border-dashed border-forest-900/20 bg-white px-6 py-12 text-center text-sm text-slate-700">
+            <div className="mt-6 rounded-xl border border-dashed border-forest-900/20 bg-white px-6 py-14 text-center text-sm text-slate-700">
               <Search
                 className="mx-auto text-wood-600"
                 size={24}
@@ -426,10 +476,14 @@ export function SupplierCatalogSearch({
 
       {copyStatus ? (
         <p
-          className="fixed bottom-20 left-1/2 z-50 -translate-x-1/2 border border-forest-900/10 bg-white px-4 py-3 text-sm font-bold text-forest-950 shadow-card"
+          className="fixed bottom-20 left-1/2 z-50 flex max-w-[calc(100vw-2rem)] -translate-x-1/2 items-center gap-2 rounded-lg border border-forest-900/10 bg-white px-4 py-3 text-sm font-bold text-forest-950 shadow-card"
           aria-hidden="true"
         >
-          <Check className="mr-2 inline text-wood-600" size={16} />
+          {copyStatus.startsWith("Đã sao chép") ? (
+            <Check className="shrink-0 text-wood-600" size={16} />
+          ) : (
+            <CircleAlert className="shrink-0 text-wood-600" size={16} />
+          )}
           {copyStatus}
         </p>
       ) : null}

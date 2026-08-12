@@ -60,23 +60,32 @@ export default function SupplierCataloguePage() {
     >
       <section
         id="tra-cuu-catalogue"
-        className="scroll-mt-28 border-b border-forest-900/10 bg-[#f7f8f5] py-8 sm:py-10 lg:py-12"
+        className="catalogue-page scroll-mt-28 overflow-clip border-b border-forest-900/10 bg-[#f5f4ef] py-7 sm:py-9 lg:py-11"
       >
-        <PageContainer>
+        <PageContainer className="relative">
           <Breadcrumbs
             items={[{ label: "Trang chủ", href: "/" }, { label: "Mã màu" }]}
           />
-          <div className="mt-4 max-w-4xl">
+          <div
+            className="catalogue-hero-panels pointer-events-none absolute right-2 top-9 hidden h-40 w-[30rem] lg:block"
+            aria-hidden="true"
+          >
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="relative mt-5 max-w-3xl lg:pr-12">
             <p className="eyebrow">Tra cứu theo mã thực tế</p>
-            <h1 className="mt-4 text-balance text-3xl font-extrabold leading-tight tracking-[-.035em] text-forest-950 sm:text-4xl lg:text-5xl">
+            <h1 className="mt-4 text-balance text-4xl font-extrabold leading-[1.08] tracking-[-.045em] text-forest-950 sm:text-5xl">
               Mã màu vật liệu
             </h1>
-            <p className="mt-4 max-w-3xl text-pretty text-sm leading-7 text-slate-700 sm:text-base">
-              Tìm nhanh mã màu, tên màu hoặc thương hiệu. Liên hệ Tùng Phát
-              để kiểm tra cốt ván, quy cách và tình trạng hàng thực tế.
+            <p className="mt-4 max-w-2xl text-pretty text-[15px] leading-7 text-slate-700 sm:text-base">
+              Tra nhanh mã, tên màu và thương hiệu từ thư viện vật liệu đã xác
+              minh. Tùng Phát hỗ trợ kiểm tra cốt ván, quy cách và tình trạng
+              hàng thực tế.
             </p>
           </div>
-          <div className="mt-6">
+          <div className="relative mt-7 lg:mt-9">
             <SupplierCatalogSearch entries={entries} />
           </div>
         </PageContainer>
