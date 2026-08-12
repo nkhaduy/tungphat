@@ -41,7 +41,9 @@ describe("catalogue hub customer journey", () => {
     );
     expect(markup).toContain('fetchPriority="high"');
     expect(markup).toContain("Mã màu vật liệu");
-    expect(markup).not.toContain('aria-label="Breadcrumb"');
+    expect(markup).toContain('aria-label="Breadcrumb"');
+    expect(markup).toContain("catalogue-hero-breadcrumb");
+    expect(markup).toContain("whitespace-nowrap");
     expect(markup).not.toContain("Tra cứu theo mã thực tế");
     expect(markup).not.toContain(
       "Tra nhanh mã, tên màu và thương hiệu từ thư viện vật liệu đã xác minh.",
