@@ -65,7 +65,7 @@ describe("CatalogueView", () => {
     expect(html).toContain("100 mã màu · 100 mã phù hợp");
   });
 
-  it("shows unavailable swatches and a direct An Cuong inquiry action", () => {
+  it("shows unavailable swatches without adding card-level commerce actions", () => {
     const entry: CatalogSearchEntry = {
       id: "an-cuong:sku:swatch-check",
       supplierId: "an-cuong",
@@ -82,6 +82,6 @@ describe("CatalogueView", () => {
     };
     const html = renderToStaticMarkup(createElement(AnCuongCatalogueSearch, { entries: [entry] }));
     expect(html).toContain("Nguồn chưa cung cấp ảnh màu");
-    expect(html).toContain("Gửi Zalo");
+    expect(html).not.toContain("Gửi Zalo");
   });
 });

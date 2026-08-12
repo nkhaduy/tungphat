@@ -1,6 +1,7 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import SupplierCataloguePage from "@/app/catalogue/page";
+import { supplierDefinitions } from "@/lib/catalog/core/registry";
 
 describe("catalogue hub customer journey", () => {
   it("renders search and primary selectors before supplier browsing", () => {
@@ -37,7 +38,19 @@ describe("catalogue hub customer journey", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
 
     expect(markup).toContain('aria-label="Chuyển ngôn ngữ VI | EN"');
-    expect(markup).toContain("Sao chép mã");
-    expect(markup).not.toContain(">Copy</button>");
+    expect(markup).not.toContain("Sao chép mã");
+    expect(markup).not.toContain(">Chi tiết<");
+  });
+
+  it("renders reusable supplier logos inside compact catalogue cards", () => {
+    const markup = renderToStaticMarkup(SupplierCataloguePage());
+
+    expect(markup).toContain("%2Fpartners%2Fthanh-thuy-logo.png");
+    expect(supplierDefinitions.map((supplier) => supplier.logoSrc)).toEqual([
+      "/partners/thanh-thuy-logo.png",
+      "/partners/ba-thanh-logo.png",
+      "/partners/an-cuong-logo.png",
+    ]);
+    expect(markup).toContain('data-testid="catalogue-card-link"');
   });
 });

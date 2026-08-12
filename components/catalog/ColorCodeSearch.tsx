@@ -33,7 +33,6 @@ export function ColorCodeSearch({
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState(fixedCategory || "all");
   const [page, setPage] = useState(1);
-  const [copied, setCopied] = useState("");
   const needle = normalizeBaThanhSearch(query);
   const categorySlugs = useMemo(
     () => categoryOptions.map((option) => option.slug),
@@ -97,16 +96,6 @@ export function ColorCodeSearch({
   );
   const visible = filtered.slice(0, page * PAGE_SIZE);
   const hasMore = visible.length < filtered.length;
-
-  async function copyCode(code: string) {
-    try {
-      await navigator.clipboard.writeText(code);
-      setCopied(code);
-      window.setTimeout(() => setCopied(""), 1600);
-    } catch {
-      setCopied("Không thể sao chép mã");
-    }
-  }
 
   function updateQuery(value: string) {
     setQuery(value);
@@ -188,22 +177,14 @@ export function ColorCodeSearch({
           <strong className="text-forest-950">{filtered.length}</strong> mã phù
           hợp{query ? ` với “${query}”` : ""}
         </p>
-        {copied && (
-          <p className="font-bold text-wood-700">
-            {copied === "Không thể sao chép mã"
-              ? copied
-              : `Đã sao chép mã ${copied}`}
-          </p>
-        )}
       </div>
       {filtered.length ? (
         <>
-          <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
             {visible.map((record) => (
               <ColorCodeCard
                 key={record.slug}
                 record={record}
-                onCopy={copyCode}
               />
             ))}
           </div>

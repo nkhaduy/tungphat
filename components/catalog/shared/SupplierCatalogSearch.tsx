@@ -1,17 +1,20 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  Check,
   ChevronDown,
-  CircleAlert,
-  Copy,
   Info,
   Search,
 } from "lucide-react";
-import { useDeferredValue, useEffect, useMemo, useState } from "react";
+import {
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { CatalogueMaterialCard } from "@/components/catalog/CatalogueMaterialCard";
 import { useCatalogFilterRobots } from "@/components/catalog/useCatalogFilterRobots";
 import {
   getCatalogSearchOptionsForSelection,
@@ -57,8 +60,12 @@ export function SupplierCatalogSearch({
   const [supplierId, setSupplierId] = useState<SupplierId | "">("");
   const [type, setType] = useState<CatalogSearchIntent>("all");
   const [group, setGroup] = useState("");
-  const [copyStatus, setCopyStatus] = useState("");
   const [visibleLimit, setVisibleLimit] = useState(PAGE_SIZE);
+  const [isFloating, setIsFloating] = useState(false);
+  const [floatingFiltersOpen, setFloatingFiltersOpen] = useState(false);
+  const searchBoundaryRef = useRef<HTMLDivElement>(null);
+  const originalSearchRef = useRef<HTMLInputElement>(null);
+  const floatingSearchRef = useRef<HTMLInputElement>(null);
   const deferredQuery = useDeferredValue(query);
   const primarySelections: PrimarySelection[] = useMemo(() => [
     ...materialTaxonomyOptionsForSupplier(entries, supplierId).map((option) => ({
@@ -101,6 +108,29 @@ export function SupplierCatalogSearch({
   useEffect(() => {
     setVisibleLimit(PAGE_SIZE);
   }, [group, query, supplierId, type]);
+
+  useEffect(() => {
+    const boundary = searchBoundaryRef.current;
+    if (!boundary || typeof window.IntersectionObserver !== "function") return;
+    const headerHeight = document.querySelector("header")?.getBoundingClientRect().height ?? 72;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        const nextFloating = !entry.isIntersecting && entry.boundingClientRect.top < headerHeight;
+        const focusWasOriginal = document.activeElement === originalSearchRef.current;
+        const focusWasFloating = document.activeElement === floatingSearchRef.current;
+        setIsFloating(nextFloating);
+        if (!nextFloating) setFloatingFiltersOpen(false);
+        if (nextFloating && focusWasOriginal) {
+          window.requestAnimationFrame(() => floatingSearchRef.current?.focus({ preventScroll: true }));
+        } else if (!nextFloating && focusWasFloating) {
+          window.requestAnimationFrame(() => originalSearchRef.current?.focus({ preventScroll: true }));
+        }
+      },
+      { rootMargin: `-${Math.ceil(headerHeight)}px 0px 0px` },
+    );
+    observer.observe(boundary);
+    return () => observer.disconnect();
+  }, []);
 
   useCatalogFilterRobots(hasSearchIntent || showSupplierDirectory);
 
@@ -182,22 +212,17 @@ export function SupplierCatalogSearch({
     window.location.assign(exact.canonicalRoute);
   }
 
-  async function copyCode(code: string) {
-    try {
-      await navigator.clipboard.writeText(code);
-      setCopyStatus(`Đã sao chép mã ${code}`);
-      window.setTimeout(() => setCopyStatus(""), 1800);
-    } catch {
-      setCopyStatus("Không thể sao chép mã. Hãy chọn và sao chép thủ công.");
-    }
-  }
-
   return (
     <section aria-labelledby="supplier-search-title">
       <h2 id="supplier-search-title" className="sr-only">
         Tìm mã màu
       </h2>
-      <div className="rounded-xl border border-forest-900/10 bg-white p-4 shadow-[0_18px_50px_rgba(7,59,40,.08)] sm:p-6 lg:p-7">
+      <div
+        data-testid="catalogue-search-original"
+        aria-hidden={isFloating || undefined}
+        inert={isFloating ? true : undefined}
+        className="rounded-xl border border-forest-900/10 bg-white p-4 shadow-[0_18px_50px_rgba(7,59,40,.08)] sm:p-6 lg:p-7"
+      >
         <label className="block">
           <span className="mb-2.5 block text-xs font-extrabold uppercase tracking-[.15em] text-forest-900">
             Tra cứu mã màu
@@ -210,6 +235,7 @@ export function SupplierCatalogSearch({
               strokeWidth={1.8}
             />
             <input
+              ref={originalSearchRef}
               value={query}
               onChange={(event) => updateQuery(event.target.value)}
               onKeyDown={handleSearchKeyDown}
@@ -222,6 +248,7 @@ export function SupplierCatalogSearch({
             />
           </span>
         </label>
+        <div ref={searchBoundaryRef} className="h-px" aria-hidden="true" />
 
         <div className="mt-6">
           <p className="text-xs font-extrabold uppercase tracking-[.15em] text-slate-600">
@@ -299,14 +326,94 @@ export function SupplierCatalogSearch({
         </div>
       </div>
 
-      <p
-        className="sr-only"
-        role="status"
-        aria-label="Phản hồi sao chép mã"
-        aria-live="polite"
+      <div
+        data-testid="catalogue-search-floating"
+        aria-hidden={!isFloating || undefined}
+        inert={!isFloating ? true : undefined}
+        className={`catalogue-floating-controls fixed inset-x-4 top-[80px] z-40 transition-[opacity,transform] duration-300 ease-[cubic-bezier(.23,1,.32,1)] md:top-[126px] xl:inset-x-auto xl:left-4 xl:top-36 xl:w-52 ${isFloating ? "pointer-events-auto translate-y-0 opacity-100 xl:translate-x-0" : "pointer-events-none -translate-y-3 opacity-0 xl:-translate-x-4"}`}
       >
-        {copyStatus}
-      </p>
+        <div className="border border-forest-900/15 bg-white p-2 shadow-[0_12px_34px_rgba(7,59,40,.14)]">
+          <div className="flex gap-2 xl:grid">
+            <label className="relative min-w-0 flex-1">
+              <span className="sr-only">Tìm mã màu, tên màu hoặc thương hiệu</span>
+              <Search
+                aria-hidden="true"
+                className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-wood-600"
+                size={18}
+              />
+              <input
+                ref={floatingSearchRef}
+                value={query}
+                onChange={(event) => updateQuery(event.target.value)}
+                onKeyDown={handleSearchKeyDown}
+                type="search"
+                aria-label="Nhập mã màu, tên màu hoặc thương hiệu..."
+                autoComplete="off"
+                spellCheck={false}
+                placeholder="Tìm mã màu..."
+                className="min-h-11 w-full border border-forest-900/15 bg-[#fbfaf6] py-2 pl-10 pr-3 text-sm font-semibold text-forest-950 outline-none focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
+              />
+            </label>
+            <button
+              type="button"
+              aria-expanded={floatingFiltersOpen}
+              aria-controls="catalogue-floating-filters"
+              onClick={() => setFloatingFiltersOpen((open) => !open)}
+              className="pressable inline-flex min-h-11 shrink-0 items-center justify-center gap-1.5 border border-forest-900/15 bg-white px-3 text-xs font-extrabold text-forest-950 hover:border-wood-500 xl:w-full"
+            >
+              Danh mục
+              <ChevronDown
+                size={15}
+                aria-hidden="true"
+                className={`transition-transform duration-200 ${floatingFiltersOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+          </div>
+          <div
+            id="catalogue-floating-filters"
+            hidden={!floatingFiltersOpen}
+            className="mt-2 max-h-[min(55vh,25rem)] overflow-y-auto border-t border-forest-900/10 pt-2"
+          >
+            <div role="group" aria-label="Chọn loại vật liệu" className="grid gap-1.5">
+              {primarySelections.map((selection) => (
+                <button
+                  key={`floating-${selection.value}`}
+                  type="button"
+                  aria-pressed={activeSelection === selection.value}
+                  onClick={() => {
+                    selectPrimary(selection);
+                    setFloatingFiltersOpen(false);
+                  }}
+                  className={`min-h-11 border px-3 text-left text-xs font-extrabold ${activeSelection === selection.value ? "border-forest-900 bg-forest-900 text-white" : "border-forest-900/10 bg-white text-forest-950 hover:border-wood-500"}`}
+                >
+                  {selection.label}
+                  {selection.count !== undefined ? ` (${selection.count.toLocaleString("vi-VN")})` : ""}
+                </button>
+              ))}
+            </div>
+            <label className="mt-2 block">
+              <span className="sr-only">Lọc theo nhà cung cấp</span>
+              <select
+                value={supplierId}
+                onChange={(event) => {
+                  const value = event.target.value as SupplierId | "";
+                  setSupplierId(value);
+                  updateUrl({ supplierId: value }, "push");
+                  setFloatingFiltersOpen(false);
+                }}
+                className="min-h-11 w-full border border-forest-900/15 bg-white px-3 text-xs font-bold text-forest-950"
+              >
+                <option value="">Tất cả nhà cung cấp</option>
+                {supplierOptions.map((supplier) => (
+                  <option key={`floating-${supplier.value}`} value={supplier.value}>
+                    {supplier.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
 
       {exactSupplier ? (
         <Link
@@ -352,7 +459,7 @@ export function SupplierCatalogSearch({
         </div>
       ) : (
         <>
-          <div className="mt-10 flex flex-wrap items-end justify-between gap-4 sm:mt-12">
+          <div className={`mt-10 flex flex-wrap items-end justify-between gap-4 transition-[margin,padding] duration-300 sm:mt-12 ${isFloating ? "xl:ml-20 xl:pl-56" : ""}`}>
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">
                 {hasSearchIntent || showAllResults
@@ -380,71 +487,19 @@ export function SupplierCatalogSearch({
             <div
               role="region"
               aria-label="Kết quả mã màu"
-              className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-5"
+              className={`mt-6 grid gap-4 transition-[margin,padding] duration-300 sm:grid-cols-2 lg:grid-cols-3 xl:gap-5 ${isFloating ? "xl:ml-20 xl:grid-cols-3 xl:pl-56" : "xl:grid-cols-4"}`}
             >
               {visibleResults.map((entry) => (
-                <article
+                <CatalogueMaterialCard
                   key={entry.id ?? `${entry.supplierId}:${entry.code}:${entry.canonicalRoute}`}
-                  className="catalogue-material-card group flex min-w-0 flex-col overflow-hidden rounded-xl border border-forest-900/10 bg-white shadow-[0_1px_2px_rgba(7,59,40,.04),0_9px_24px_rgba(7,59,40,.055)] transition-[transform,border-color,box-shadow] duration-200 motion-reduce:transition-none"
-                >
-                  <Link
-                    href={entry.canonicalRoute}
-                    aria-label={entry.code
-                      ? `${entry.supplierName}, mã ${entry.code}, xem chi tiết`
-                      : `${entry.supplierName}, ${entry.name}, xem chi tiết`}
-                    className="relative block aspect-[4/3] overflow-hidden rounded-none bg-[#e9ede8] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-wood-600"
-                  >
-                    {entry.thumbnail ? (
-                      <Image
-                        src={entry.thumbnail}
-                        alt=""
-                        fill
-                        sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw"
-                        className="object-cover transition-transform duration-300 motion-reduce:transition-none"
-                      />
-                    ) : (
-                      <span className="grid h-full place-items-center px-3 text-center text-xs font-bold text-slate-600">
-                        Nguồn chưa cung cấp ảnh màu
-                      </span>
-                    )}
-                  </Link>
-                  <div className="flex flex-1 flex-col p-4 sm:p-5">
-                    <p className="text-[.68rem] font-extrabold uppercase tracking-[.14em] text-wood-600">
-                      {entry.supplierName}
-                    </p>
-                    <h4 className="mt-2 line-clamp-2 min-h-12 text-lg font-extrabold leading-6 tracking-[-.018em] text-forest-950">
-                      <Link
-                        href={entry.canonicalRoute}
-                        translate="no"
-                        className="rounded-sm hover:text-wood-600"
-                      >
-                        {formatCatalogCardTitle(entry)}
-                      </Link>
-                    </h4>
-                    <p className="mt-3 min-h-10 text-xs leading-5 text-slate-600">
-                      {formatCatalogCardTaxonomy(entry)}
-                    </p>
-                    <div className={`mt-auto grid gap-2 pt-5 ${entry.code ? "grid-cols-2" : "grid-cols-1"}`}>
-                      {entry.code ? (
-                        <button
-                          type="button"
-                          onClick={() => copyCode(entry.code)}
-                          aria-label={`Sao chép mã ${entry.code}`}
-                          className="pressable inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-forest-900/15 bg-white px-3 text-xs font-extrabold text-forest-950 hover:border-wood-500 hover:bg-[#fffaf3]"
-                        >
-                          <Copy size={15} aria-hidden="true" />
-                          Sao chép mã
-                        </button>
-                      ) : null}
-                      <Link
-                        href={entry.canonicalRoute}
-                        className="pressable inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-forest-900 px-3 text-xs font-extrabold text-white shadow-sm hover:bg-forest-950"
-                      >
-                        Chi tiết <ArrowRight size={15} aria-hidden="true" />
-                      </Link>
-                    </div>
-                  </div>
-                </article>
+                  href={entry.canonicalRoute}
+                  supplierId={entry.supplierId}
+                  supplierName={entry.supplierName}
+                  code={entry.code}
+                  title={formatCatalogCardTitle(entry)}
+                  taxonomy={formatCatalogCardTaxonomy(entry)}
+                  thumbnail={entry.thumbnail}
+                />
               ))}
             </div>
           ) : (
@@ -473,20 +528,6 @@ export function SupplierCatalogSearch({
           ) : null}
         </>
       )}
-
-      {copyStatus ? (
-        <p
-          className="fixed bottom-20 left-1/2 z-50 flex max-w-[calc(100vw-2rem)] -translate-x-1/2 items-center gap-2 rounded-lg border border-forest-900/10 bg-white px-4 py-3 text-sm font-bold text-forest-950 shadow-card"
-          aria-hidden="true"
-        >
-          {copyStatus.startsWith("Đã sao chép") ? (
-            <Check className="shrink-0 text-wood-600" size={16} />
-          ) : (
-            <CircleAlert className="shrink-0 text-wood-600" size={16} />
-          )}
-          {copyStatus}
-        </p>
-      ) : null}
     </section>
   );
 }

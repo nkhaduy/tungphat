@@ -1,16 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { Copy, MessageCircle, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
+import { CatalogueMaterialCard } from "@/components/catalog/CatalogueMaterialCard";
 import { searchSupplierCatalog } from "@/lib/catalog/core/search";
 import type { CatalogSearchEntry, SupplierId } from "@/lib/catalog/core/types";
-import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
 import { materialTaxonomyOptions } from "@/lib/catalog/material-taxonomy";
 import { buildCatalogCollectionSearchParams, parseCatalogCollectionUrlState } from "@/lib/catalog/url-state";
 import { formatCatalogCardTaxonomy, formatCatalogCardTitle } from "@/lib/catalog/ui";
-import { ZALO_URL } from "@/lib/seo";
 import { AutoLoadMore } from "@/components/catalog/shared/AutoLoadMore";
 
 const PAGE_SIZE = 48;
@@ -61,14 +58,6 @@ export function SupplierColorCodeSearch({
     window.history.replaceState(window.history.state, "", `${window.location.pathname}${search ? `?${search}` : ""}${window.location.hash}`);
   }
 
-  async function copyCode(code: string) {
-    try {
-      await navigator.clipboard.writeText(code);
-    } catch {
-      // Clipboard permission is optional; the code remains selectable.
-    }
-  }
-
   return (
     <section aria-labelledby="color-code-search-title" className="mt-6">
       <h2 id="color-code-search-title" className="sr-only">Tra cứu mã màu {label}</h2>
@@ -102,22 +91,19 @@ export function SupplierColorCodeSearch({
       </div>
 
       {visibleResults.length ? (
-        <div role="region" aria-label={`Kết quả mã màu ${label}`} className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div role="region" aria-label={`Kết quả mã màu ${label}`} className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {visibleResults.map((item) => (
-            <article key={item.id ?? `${item.supplierId}:${item.code}`} className="flex min-h-[270px] flex-col overflow-hidden border border-forest-900/10 bg-white shadow-sm">
-              <Link href={item.canonicalRoute} aria-label={`${item.supplierName}, mã ${item.code}, xem chi tiết`} className="relative block aspect-[16/9] overflow-hidden bg-[#eef1ed] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-wood-600">
-                {item.thumbnail ? <Image src={item.thumbnail} alt={`Swatch ${item.code}`} fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover" /> : <span className="grid h-full place-items-center px-3 text-center text-xs font-bold text-slate-600">Nguồn chưa cung cấp ảnh màu</span>}
-              </Link>
-              <div className="flex flex-1 flex-col p-4">
-                <p className="text-[.65rem] font-extrabold uppercase tracking-[.13em] text-wood-600">{item.supplierName}</p>
-                <h3 className="mt-2 line-clamp-2 text-lg font-extrabold leading-6 text-forest-950"><Link href={item.canonicalRoute} translate="no">{formatCatalogCardTitle(item)}</Link></h3>
-                <p className="mt-2 text-xs leading-5 text-slate-500">{formatCatalogCardTaxonomy(item)}</p>
-                <div className="mt-auto grid gap-2 pt-4 sm:grid-cols-2">
-                  <button type="button" onClick={() => copyCode(item.code)} className="pressable inline-flex min-h-11 items-center justify-center gap-2 border border-forest-900/15 px-3 text-xs font-extrabold text-forest-950"><Copy size={15} aria-hidden="true" />Sao chép mã</button>
-                  <a href={buildSupplierZaloInquiryUrl(ZALO_URL, item.supplierName, item.code)} target="_blank" rel="noopener noreferrer" className="pressable inline-flex min-h-11 items-center justify-center gap-2 bg-wood-500 px-3 text-xs font-extrabold text-white hover:bg-wood-600"><MessageCircle size={15} aria-hidden="true" />Gửi Zalo</a>
-                </div>
-              </div>
-            </article>
+            <CatalogueMaterialCard
+              key={item.id ?? `${item.supplierId}:${item.code}`}
+              href={item.canonicalRoute}
+              supplierId={item.supplierId}
+              supplierName={item.supplierName}
+              code={item.code}
+              title={formatCatalogCardTitle(item)}
+              taxonomy={formatCatalogCardTaxonomy(item)}
+              thumbnail={item.thumbnail}
+              thumbnailAlt={`Swatch ${item.code}`}
+            />
           ))}
         </div>
       ) : <div className="mt-6 border border-dashed border-forest-900/20 bg-white px-6 py-10 text-center"><Search className="mx-auto text-wood-600" size={24} aria-hidden="true" /><p className="mt-4 font-extrabold text-forest-950">Chưa tìm thấy mã màu phù hợp</p><p className="mt-2 text-sm leading-6 text-slate-700">Thử một phần mã hoặc gửi mã cho Tùng Phát để kiểm tra thêm.</p></div>}

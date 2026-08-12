@@ -6,6 +6,7 @@ export type SupplierDefinition = {
   id: SupplierId;
   displayName: string;
   brandName: string;
+  logoSrc?: string;
   recordKind: SupplierRecordKind;
   brandPath: string;
   cataloguePath: string;

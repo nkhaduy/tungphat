@@ -182,27 +182,6 @@ test.describe("Mã màu customer journeys", () => {
     ).toBeVisible();
   });
 
-  test("copy action announces success without shifting the material grid", async ({
-    page,
-  }) => {
-    await page.context().grantPermissions(["clipboard-read", "clipboard-write"]);
-    await page.goto("/catalogue/?supplier=thanh-thuy&query=301");
-    const region = page.getByRole("region", { name: "Kết quả mã màu" });
-    const before = await region.evaluate((element) =>
-      Math.round(element.getBoundingClientRect().top + window.scrollY),
-    );
-
-    await page.getByRole("button", { name: "Sao chép mã 301" }).click();
-    await expect(
-      page.getByRole("status", { name: "Phản hồi sao chép mã" }),
-    ).toContainText("Đã sao chép mã 301");
-
-    const after = await region.evaluate((element) =>
-      Math.round(element.getBoundingClientRect().top + window.scrollY),
-    );
-    expect(after).toBe(before);
-  });
-
   test("empty searches explain how to recover", async ({ page }) => {
     await page.goto("/catalogue/");
     await page.getByRole("searchbox", { name: catalogueSearchName }).fill(
@@ -224,13 +203,20 @@ test.describe("Mã màu customer journeys", () => {
       .getByRole("article")
       .filter({ hasText: "301 Artistic Stripe" });
     await expect(thanhThuyCard).toHaveCount(1);
-    await expect(thanhThuyCard.getByText("Thanh Thuỳ", { exact: true })).toBeVisible();
+    await expect(thanhThuyCard.getByText("Thanh Thuỳ", { exact: true })).toHaveCount(0);
+    await expect(thanhThuyCard.locator('img[src*="thanh-thuy-logo"]')).toBeVisible();
     await expect(thanhThuyCard.getByText("Mã màu", { exact: true })).toHaveCount(0);
     await expect(thanhThuyCard.getByText("301", { exact: true })).toHaveCount(0);
     await expect(thanhThuyCard.getByText("301 Artistic Stripe", { exact: true })).toHaveCount(1);
     await expect(
       thanhThuyCard.getByText("Danh mục: Melamine · Vân Gỗ", { exact: true }),
     ).toBeVisible();
+    await expect(thanhThuyCard.getByRole("button")).toHaveCount(0);
+    await expect(thanhThuyCard.getByText("Chi tiết", { exact: true })).toHaveCount(0);
+    await expect(thanhThuyCard.getByTestId("catalogue-card-link")).toHaveAttribute(
+      "href",
+      /\/catalogue\/thanh-thuy\/melamine\/301\/?$/,
+    );
 
     await page.goto("/catalogue/?supplier=ba-thanh&query=BT111");
     const baThanhCard = page
@@ -239,6 +225,77 @@ test.describe("Mã màu customer journeys", () => {
       .first();
     await expect(baThanhCard.getByText("BT 111", { exact: true })).toBeVisible();
     await expect(baThanhCard).not.toContainText("MELAMINE BA THANH");
+  });
+
+  test("desktop search becomes a left compact control and restores its query", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/catalogue/");
+
+    const original = page.getByTestId("catalogue-search-original");
+    const floating = page.getByTestId("catalogue-search-floating");
+    const search = original.getByRole("searchbox", { name: catalogueSearchName });
+    await search.fill("0330");
+    await expect(floating).toHaveAttribute("aria-hidden", "true");
+
+    await page.mouse.wheel(0, 700);
+    await expect(floating).toBeVisible();
+    await expect(floating.getByRole("searchbox", { name: catalogueSearchName })).toHaveValue("0330");
+    await expect(floating.getByRole("button", { name: "Danh mục" })).toBeVisible();
+    await expect(original).toHaveAttribute("inert", "");
+
+    const firstCard = page
+      .getByRole("region", { name: "Kết quả mã màu" })
+      .getByRole("article")
+      .first();
+    const floatingBox = await floating.boundingBox();
+    const cardBox = await firstCard.boundingBox();
+    expect(
+      floatingBox &&
+        cardBox &&
+        (floatingBox.x + floatingBox.width <= cardBox.x ||
+          floatingBox.y + floatingBox.height <= cardBox.y),
+    ).toBeTruthy();
+
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+    await expect(floating).toHaveAttribute("aria-hidden", "true");
+    await expect(search).toHaveValue("0330");
+  });
+
+  test("mobile search sticks below the header without duplicating the active input", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/catalogue/");
+    const original = page.getByTestId("catalogue-search-original");
+    await original.getByRole("searchbox", { name: catalogueSearchName }).fill("BT99");
+
+    await page.getByRole("heading", { name: "1 mã màu" }).scrollIntoViewIfNeeded();
+    await page.mouse.wheel(0, 600);
+    const floating = page.getByTestId("catalogue-search-floating");
+    await expect(floating).toBeVisible();
+    await expect(floating.getByRole("searchbox", { name: catalogueSearchName })).toHaveValue("BT99");
+    await expect(page.getByRole("searchbox", { name: catalogueSearchName })).toHaveCount(1);
+
+    const headerBox = await page.locator("header").boundingBox();
+    const floatingBox = await floating.boundingBox();
+    expect(headerBox && floatingBox && floatingBox.y >= headerBox.y + headerBox.height - 16).toBeTruthy();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(390);
+  });
+
+  test("tablet compact controls stay clear of the material grid", async ({ page }) => {
+    await page.setViewportSize({ width: 834, height: 1112 });
+    await page.goto("/catalogue/");
+    await page.getByTestId("catalogue-search-original").getByRole("searchbox", { name: catalogueSearchName }).fill("301");
+    await page.mouse.wheel(0, 750);
+
+    const floating = page.getByTestId("catalogue-search-floating");
+    await expect(floating).toBeVisible();
+    const floatingBox = await floating.boundingBox();
+    const cardBox = await page.getByRole("region", { name: "Kết quả mã màu" }).getByRole("article").first().boundingBox();
+    expect(floatingBox && cardBox && floatingBox.y + floatingBox.height <= cardBox.y + 1).toBeTruthy();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(834);
   });
 
   test("Ba Thanh exposes both Melamine and Laminate code collections", async ({

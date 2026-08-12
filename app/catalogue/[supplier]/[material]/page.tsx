@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SupplierColorCodeSearch } from "@/components/catalog/AnCuongCatalogueSearch";
+import { ProductInquiryCTA } from "@/components/catalog/ProductInquiryCTA";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { getPublicColorCodeMaterials } from "@/lib/catalog/color-codes/public";
@@ -55,6 +56,12 @@ export default async function SupplierMaterialRoute({ params }: RouteProps) {
           </nav>
         ) : null}
         <SupplierColorCodeSearch entries={entries} supplierId={supplier as "an-cuong" | "ba-thanh" | "thanh-thuy"} supplierLabel={definition.displayName} />
+        <div className="mt-8 border-t border-forest-900/10 pt-6">
+          <ProductInquiryCTA
+            supplierName={definition.displayName}
+            trackingLocation="supplier_material_catalogue"
+          />
+        </div>
       </PageContainer>
     </section>
   </SiteShell>;
