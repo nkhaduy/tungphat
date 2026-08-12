@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowRight, MessageCircle, Phone } from "lucide-react";
 import { SupplierCatalogSearch } from "@/components/catalog/shared/SupplierCatalogSearch";
 import { SiteShell } from "@/components/site/SiteShell";
-import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
@@ -61,13 +60,10 @@ export default function SupplierCataloguePage() {
     >
       <section
         id="tra-cuu-catalogue"
-        className="catalogue-page scroll-mt-28 overflow-clip border-b border-forest-900/10 bg-[#f5f4ef] py-6 sm:py-8 lg:py-10"
+        className="catalogue-page scroll-mt-28 overflow-clip border-b border-forest-900/10 bg-[#f5f4ef] pb-6 pt-3 sm:pb-8 sm:pt-4 lg:pb-10 lg:pt-5"
       >
         <PageContainer className="relative">
-          <Breadcrumbs
-            items={[{ label: "Trang chủ", href: "/" }, { label: "Mã màu" }]}
-          />
-          <div className="catalogue-material-hero relative mt-4 isolate flex min-h-[410px] overflow-hidden rounded-[1.35rem] border border-white/15 bg-forest-950 shadow-[0_18px_45px_rgba(6,43,29,.14)] sm:mt-5 sm:min-h-[450px] sm:rounded-[1.6rem] lg:min-h-[500px]">
+          <div className="catalogue-material-hero relative isolate flex min-h-[300px] overflow-hidden rounded-[1.2rem] border border-white/15 bg-forest-950 shadow-[0_16px_38px_rgba(6,43,29,.13)] sm:min-h-[350px] sm:rounded-[1.4rem] lg:min-h-[390px]">
             <Image
               src="/images/material-color-hero.webp"
               alt="Các tấm ván MDF phủ bề mặt với nhiều màu và vân gỗ"
@@ -82,23 +78,15 @@ export default function SupplierCataloguePage() {
               className="catalogue-material-hero-shade absolute inset-0 z-10"
               aria-hidden="true"
             />
-            <div className="relative z-20 flex w-full items-start px-5 pb-9 pt-11 sm:px-9 sm:pb-11 sm:pt-14 lg:items-center lg:px-14 lg:py-14 xl:px-16">
-              <div className="max-w-[34rem] text-white">
-                <p className="eyebrow eyebrow-on-dark">
-                  Tra cứu theo mã thực tế
-                </p>
-                <h1 className="mt-4 max-w-[12ch] text-balance text-[2.25rem] font-extrabold leading-[1.08] tracking-[-.045em] text-[#fffdf8] [text-shadow:0_2px_16px_rgba(0,0,0,.16)] sm:text-5xl lg:text-[3.25rem]">
+            <div className="relative z-20 flex w-full items-center px-5 py-8 sm:px-9 sm:py-10 lg:px-14 lg:py-12 xl:px-16">
+              <div className="text-white">
+                <h1 className="max-w-[12ch] text-balance text-[2.15rem] font-extrabold leading-[1.08] tracking-[-.045em] text-[#fffdf8] [text-shadow:0_2px_16px_rgba(0,0,0,.16)] sm:text-5xl lg:text-[3.1rem]">
                   Mã màu vật liệu
                 </h1>
-                <p className="mt-5 max-w-[34rem] text-pretty text-[15px] font-medium leading-7 text-white/84 [text-shadow:0_1px_10px_rgba(0,0,0,.2)] sm:text-base sm:leading-8">
-                  Tra nhanh mã, tên màu và thương hiệu từ thư viện vật liệu đã
-                  xác minh. Tùng Phát hỗ trợ kiểm tra cốt ván, quy cách và tình
-                  trạng hàng thực tế.
-                </p>
               </div>
             </div>
           </div>
-          <div className="relative mt-6 sm:mt-7 lg:mt-8">
+          <div className="relative mt-4 sm:mt-5 lg:mt-6">
             <SupplierCatalogSearch entries={entries} />
           </div>
         </PageContainer>

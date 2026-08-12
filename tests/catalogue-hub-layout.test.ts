@@ -32,7 +32,7 @@ describe("catalogue hub customer journey", () => {
     expect(markup).not.toContain("inert=");
   });
 
-  it("uses the supplied material image as the prioritized semantic hero", () => {
+  it("uses the supplied material image as a compact title-only hero", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
 
     expect(markup).toContain("%2Fimages%2Fmaterial-color-hero.webp");
@@ -40,9 +40,10 @@ describe("catalogue hub customer journey", () => {
       'alt="Các tấm ván MDF phủ bề mặt với nhiều màu và vân gỗ"',
     );
     expect(markup).toContain('fetchPriority="high"');
-    expect(markup).toContain("Tra cứu theo mã thực tế");
     expect(markup).toContain("Mã màu vật liệu");
-    expect(markup).toContain(
+    expect(markup).not.toContain('aria-label="Breadcrumb"');
+    expect(markup).not.toContain("Tra cứu theo mã thực tế");
+    expect(markup).not.toContain(
       "Tra nhanh mã, tên màu và thương hiệu từ thư viện vật liệu đã xác minh.",
     );
   });
