@@ -227,76 +227,31 @@ test.describe("Mã màu customer journeys", () => {
     await expect(baThanhCard).not.toContainText("MELAMINE BA THANH");
   });
 
-  test("desktop search becomes a left compact control and restores its query", async ({
-    page,
-  }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/catalogue/");
+  for (const viewport of [
+    { name: "desktop", width: 1440, height: 900 },
+    { name: "tablet", width: 834, height: 1112 },
+    { name: "mobile", width: 390, height: 844 },
+  ]) {
+    test(`${viewport.name} keeps one search in its original position while scrolling`, async ({
+      page,
+    }) => {
+      await page.setViewportSize(viewport);
+      await page.goto("/catalogue/");
 
-    const original = page.getByTestId("catalogue-search-original");
-    const floating = page.getByTestId("catalogue-search-floating");
-    const search = original.getByRole("searchbox", { name: catalogueSearchName });
-    await search.fill("0330");
-    await expect(floating).toHaveAttribute("aria-hidden", "true");
+      const original = page.getByTestId("catalogue-search-original");
+      const search = page.getByRole("searchbox", { name: catalogueSearchName });
+      await search.fill("0330");
+      await page.mouse.wheel(0, 900);
 
-    await page.mouse.wheel(0, 700);
-    await expect(floating).toBeVisible();
-    await expect(floating.getByRole("searchbox", { name: catalogueSearchName })).toHaveValue("0330");
-    await expect(floating.getByRole("button", { name: "Danh mục" })).toBeVisible();
-    await expect(original).toHaveAttribute("inert", "");
-
-    const firstCard = page
-      .getByRole("region", { name: "Kết quả mã màu" })
-      .getByRole("article")
-      .first();
-    const floatingBox = await floating.boundingBox();
-    const cardBox = await firstCard.boundingBox();
-    expect(
-      floatingBox &&
-        cardBox &&
-        (floatingBox.x + floatingBox.width <= cardBox.x ||
-          floatingBox.y + floatingBox.height <= cardBox.y),
-    ).toBeTruthy();
-
-    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
-    await expect(floating).toHaveAttribute("aria-hidden", "true");
-    await expect(search).toHaveValue("0330");
-  });
-
-  test("mobile search sticks below the header without duplicating the active input", async ({
-    page,
-  }) => {
-    await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/catalogue/");
-    const original = page.getByTestId("catalogue-search-original");
-    await original.getByRole("searchbox", { name: catalogueSearchName }).fill("BT99");
-
-    await page.getByRole("heading", { name: "1 mã màu" }).scrollIntoViewIfNeeded();
-    await page.mouse.wheel(0, 600);
-    const floating = page.getByTestId("catalogue-search-floating");
-    await expect(floating).toBeVisible();
-    await expect(floating.getByRole("searchbox", { name: catalogueSearchName })).toHaveValue("BT99");
-    await expect(page.getByRole("searchbox", { name: catalogueSearchName })).toHaveCount(1);
-
-    const headerBox = await page.locator("header").boundingBox();
-    const floatingBox = await floating.boundingBox();
-    expect(headerBox && floatingBox && floatingBox.y >= headerBox.y + headerBox.height - 16).toBeTruthy();
-    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(390);
-  });
-
-  test("tablet compact controls stay clear of the material grid", async ({ page }) => {
-    await page.setViewportSize({ width: 834, height: 1112 });
-    await page.goto("/catalogue/");
-    await page.getByTestId("catalogue-search-original").getByRole("searchbox", { name: catalogueSearchName }).fill("301");
-    await page.mouse.wheel(0, 750);
-
-    const floating = page.getByTestId("catalogue-search-floating");
-    await expect(floating).toBeVisible();
-    const floatingBox = await floating.boundingBox();
-    const cardBox = await page.getByRole("region", { name: "Kết quả mã màu" }).getByRole("article").first().boundingBox();
-    expect(floatingBox && cardBox && floatingBox.y + floatingBox.height <= cardBox.y + 1).toBeTruthy();
-    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(834);
-  });
+      await expect(search).toHaveCount(1);
+      await expect(search).toHaveValue("0330");
+      await expect(original).not.toHaveAttribute("inert", "");
+      await expect(page.getByTestId("catalogue-search-floating")).toHaveCount(0);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(
+        viewport.width,
+      );
+    });
+  }
 
   test("Ba Thanh exposes both Melamine and Laminate code collections", async ({
     page,

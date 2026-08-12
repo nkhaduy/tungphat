@@ -19,6 +19,18 @@ describe("catalogue hub customer journey", () => {
     expect(markup.indexOf(selector)).toBeLessThan(markup.indexOf(supplier));
   });
 
+  it("renders only one catalogue search interface", () => {
+    const markup = renderToStaticMarkup(SupplierCataloguePage());
+
+    expect(
+      markup.match(
+        /aria-label="Nhập mã màu, tên màu hoặc thương hiệu\.\.\."/g,
+      ),
+    ).toHaveLength(1);
+    expect(markup).not.toContain('data-testid="catalogue-search-floating"');
+    expect(markup).not.toContain("inert=");
+  });
+
   it("renders matching results before supplier sections", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
 

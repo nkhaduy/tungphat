@@ -11,7 +11,6 @@ import {
   useDeferredValue,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from "react";
 import { CatalogueMaterialCard } from "@/components/catalog/CatalogueMaterialCard";
@@ -61,11 +60,6 @@ export function SupplierCatalogSearch({
   const [type, setType] = useState<CatalogSearchIntent>("all");
   const [group, setGroup] = useState("");
   const [visibleLimit, setVisibleLimit] = useState(PAGE_SIZE);
-  const [isFloating, setIsFloating] = useState(false);
-  const [floatingFiltersOpen, setFloatingFiltersOpen] = useState(false);
-  const searchBoundaryRef = useRef<HTMLDivElement>(null);
-  const originalSearchRef = useRef<HTMLInputElement>(null);
-  const floatingSearchRef = useRef<HTMLInputElement>(null);
   const deferredQuery = useDeferredValue(query);
   const primarySelections: PrimarySelection[] = useMemo(() => [
     ...materialTaxonomyOptionsForSupplier(entries, supplierId).map((option) => ({
@@ -108,29 +102,6 @@ export function SupplierCatalogSearch({
   useEffect(() => {
     setVisibleLimit(PAGE_SIZE);
   }, [group, query, supplierId, type]);
-
-  useEffect(() => {
-    const boundary = searchBoundaryRef.current;
-    if (!boundary || typeof window.IntersectionObserver !== "function") return;
-    const headerHeight = document.querySelector("header")?.getBoundingClientRect().height ?? 72;
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        const nextFloating = !entry.isIntersecting && entry.boundingClientRect.top < headerHeight;
-        const focusWasOriginal = document.activeElement === originalSearchRef.current;
-        const focusWasFloating = document.activeElement === floatingSearchRef.current;
-        setIsFloating(nextFloating);
-        if (!nextFloating) setFloatingFiltersOpen(false);
-        if (nextFloating && focusWasOriginal) {
-          window.requestAnimationFrame(() => floatingSearchRef.current?.focus({ preventScroll: true }));
-        } else if (!nextFloating && focusWasFloating) {
-          window.requestAnimationFrame(() => originalSearchRef.current?.focus({ preventScroll: true }));
-        }
-      },
-      { rootMargin: `-${Math.ceil(headerHeight)}px 0px 0px` },
-    );
-    observer.observe(boundary);
-    return () => observer.disconnect();
-  }, []);
 
   useCatalogFilterRobots(hasSearchIntent || showSupplierDirectory);
 
@@ -219,8 +190,6 @@ export function SupplierCatalogSearch({
       </h2>
       <div
         data-testid="catalogue-search-original"
-        aria-hidden={isFloating || undefined}
-        inert={isFloating ? true : undefined}
         className="rounded-xl border border-forest-900/10 bg-white p-4 shadow-[0_18px_50px_rgba(7,59,40,.08)] sm:p-6 lg:p-7"
       >
         <label className="block">
@@ -235,7 +204,6 @@ export function SupplierCatalogSearch({
               strokeWidth={1.8}
             />
             <input
-              ref={originalSearchRef}
               value={query}
               onChange={(event) => updateQuery(event.target.value)}
               onKeyDown={handleSearchKeyDown}
@@ -248,7 +216,6 @@ export function SupplierCatalogSearch({
             />
           </span>
         </label>
-        <div ref={searchBoundaryRef} className="h-px" aria-hidden="true" />
 
         <div className="mt-6">
           <p className="text-xs font-extrabold uppercase tracking-[.15em] text-slate-600">
@@ -326,95 +293,6 @@ export function SupplierCatalogSearch({
         </div>
       </div>
 
-      <div
-        data-testid="catalogue-search-floating"
-        aria-hidden={!isFloating || undefined}
-        inert={!isFloating ? true : undefined}
-        className={`catalogue-floating-controls fixed inset-x-4 top-[80px] z-40 transition-[opacity,transform] duration-300 ease-[cubic-bezier(.23,1,.32,1)] md:top-[126px] xl:inset-x-auto xl:left-4 xl:top-36 xl:w-52 ${isFloating ? "pointer-events-auto translate-y-0 opacity-100 xl:translate-x-0" : "pointer-events-none -translate-y-3 opacity-0 xl:-translate-x-4"}`}
-      >
-        <div className="border border-forest-900/15 bg-white p-2 shadow-[0_12px_34px_rgba(7,59,40,.14)]">
-          <div className="flex gap-2 xl:grid">
-            <label className="relative min-w-0 flex-1">
-              <span className="sr-only">Tìm mã màu, tên màu hoặc thương hiệu</span>
-              <Search
-                aria-hidden="true"
-                className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-wood-600"
-                size={18}
-              />
-              <input
-                ref={floatingSearchRef}
-                value={query}
-                onChange={(event) => updateQuery(event.target.value)}
-                onKeyDown={handleSearchKeyDown}
-                type="search"
-                aria-label="Nhập mã màu, tên màu hoặc thương hiệu..."
-                autoComplete="off"
-                spellCheck={false}
-                placeholder="Tìm mã màu..."
-                className="min-h-11 w-full border border-forest-900/15 bg-[#fbfaf6] py-2 pl-10 pr-3 text-sm font-semibold text-forest-950 outline-none focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
-              />
-            </label>
-            <button
-              type="button"
-              aria-expanded={floatingFiltersOpen}
-              aria-controls="catalogue-floating-filters"
-              onClick={() => setFloatingFiltersOpen((open) => !open)}
-              className="pressable inline-flex min-h-11 shrink-0 items-center justify-center gap-1.5 border border-forest-900/15 bg-white px-3 text-xs font-extrabold text-forest-950 hover:border-wood-500 xl:w-full"
-            >
-              Danh mục
-              <ChevronDown
-                size={15}
-                aria-hidden="true"
-                className={`transition-transform duration-200 ${floatingFiltersOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-          </div>
-          <div
-            id="catalogue-floating-filters"
-            hidden={!floatingFiltersOpen}
-            className="mt-2 max-h-[min(55vh,25rem)] overflow-y-auto border-t border-forest-900/10 pt-2"
-          >
-            <div role="group" aria-label="Chọn loại vật liệu" className="grid gap-1.5">
-              {primarySelections.map((selection) => (
-                <button
-                  key={`floating-${selection.value}`}
-                  type="button"
-                  aria-pressed={activeSelection === selection.value}
-                  onClick={() => {
-                    selectPrimary(selection);
-                    setFloatingFiltersOpen(false);
-                  }}
-                  className={`min-h-11 border px-3 text-left text-xs font-extrabold ${activeSelection === selection.value ? "border-forest-900 bg-forest-900 text-white" : "border-forest-900/10 bg-white text-forest-950 hover:border-wood-500"}`}
-                >
-                  {selection.label}
-                  {selection.count !== undefined ? ` (${selection.count.toLocaleString("vi-VN")})` : ""}
-                </button>
-              ))}
-            </div>
-            <label className="mt-2 block">
-              <span className="sr-only">Lọc theo nhà cung cấp</span>
-              <select
-                value={supplierId}
-                onChange={(event) => {
-                  const value = event.target.value as SupplierId | "";
-                  setSupplierId(value);
-                  updateUrl({ supplierId: value }, "push");
-                  setFloatingFiltersOpen(false);
-                }}
-                className="min-h-11 w-full border border-forest-900/15 bg-white px-3 text-xs font-bold text-forest-950"
-              >
-                <option value="">Tất cả nhà cung cấp</option>
-                {supplierOptions.map((supplier) => (
-                  <option key={`floating-${supplier.value}`} value={supplier.value}>
-                    {supplier.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-        </div>
-      </div>
-
       {exactSupplier ? (
         <Link
           href={exactSupplier.cataloguePath}
@@ -459,7 +337,7 @@ export function SupplierCatalogSearch({
         </div>
       ) : (
         <>
-          <div className={`mt-10 flex flex-wrap items-end justify-between gap-4 transition-[margin,padding] duration-300 sm:mt-12 ${isFloating ? "xl:ml-20 xl:pl-56" : ""}`}>
+          <div className="mt-10 flex flex-wrap items-end justify-between gap-4 sm:mt-12">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">
                 {hasSearchIntent || showAllResults
@@ -487,7 +365,7 @@ export function SupplierCatalogSearch({
             <div
               role="region"
               aria-label="Kết quả mã màu"
-              className={`mt-6 grid gap-4 transition-[margin,padding] duration-300 sm:grid-cols-2 lg:grid-cols-3 xl:gap-5 ${isFloating ? "xl:ml-20 xl:grid-cols-3 xl:pl-56" : "xl:grid-cols-4"}`}
+              className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-5"
             >
               {visibleResults.map((entry) => (
                 <CatalogueMaterialCard

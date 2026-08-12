@@ -198,12 +198,6 @@ textarea:focus-visible {
   }
 }
 
-@media (min-width: 1280px) {
-  .catalogue-floating-controls {
-    left: max(1rem, calc((100vw - var(--container-max)) / 2));
-  }
-}
-
 .floating-zalo {
   box-shadow:
     0 12px 30px rgba(0, 104, 255, 0.28),
