@@ -1,0 +1,361 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-12T09:36:00+07:00",
+  "property": "sc-domain:mdftungphat.com",
+  "period": {
+    "start": "2026-07-15",
+    "end": "2026-08-09",
+    "label": "2026-07-15 to 2026-08-09"
+  },
+  "source": "Authenticated Google Search Console UI",
+  "rows": [
+    {
+      "query": "tùng phát",
+      "clicks": 2,
+      "impressions": 28,
+      "ctr": 7.1,
+      "position": 3.7
+    },
+    {
+      "query": "ván mdf phủ melamine thủ đức",
+      "clicks": 0,
+      "impressions": 36,
+      "ctr": 0,
+      "position": 27.8
+    },
+    {
+      "query": "gỗ ghép",
+      "clicks": 0,
+      "impressions": 11,
+      "ctr": 0,
+      "position": 6.6
+    },
+    {
+      "query": "ván mdf trơn",
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 21.5
+    },
+    {
+      "query": "gỗ mdf",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 5.3
+    },
+    {
+      "query": "gỗ tùng",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 7.7
+    },
+    {
+      "query": "cnc gỗ",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 2.8
+    },
+    {
+      "query": "ván mdf trắng",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 45.8
+    },
+    {
+      "query": "mdf",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 3.2
+    },
+    {
+      "query": "ván ép nguyên tấm",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 58
+    },
+    {
+      "query": "ván osb",
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 61.5
+    },
+    {
+      "query": "mdf cnc",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 2.7
+    },
+    {
+      "query": "ván mdf phủ melamine trắng",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 56
+    },
+    {
+      "query": "ván gỗ mdf",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 1
+    },
+    {
+      "query": "ván gỗ",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 1.5
+    },
+    {
+      "query": "cnc mdf",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "query": "ván lạng veneer",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 18
+    },
+    {
+      "query": "gỗ osb",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 64
+    },
+    {
+      "query": "custom wood working",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1
+    },
+    {
+      "query": "cửa hàng ván gỗ gần đây",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1
+    },
+    {
+      "query": "go cnc",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "mdf printing",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
+    },
+    {
+      "query": "gỗ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "query": "ván gỗ ghép",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 4
+    },
+    {
+      "query": "1go",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6
+    },
+    {
+      "query": "gỗ cnc",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "query": "tủ mdf",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "query": "ván mdf gần đây",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
+    },
+    {
+      "query": "gỗ mdf giá",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "query": "tu go mdf",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10
+    },
+    {
+      "query": "custom wood cnc",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11
+    },
+    {
+      "query": "mdf a osb",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 13
+    },
+    {
+      "query": "cửa hàng ván ép gần đây",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 21
+    },
+    {
+      "query": "giá ván gỗ",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 21
+    },
+    {
+      "query": "gỗ cao su ghép thanh",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 21
+    },
+    {
+      "query": "osb 17mm",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 25
+    },
+    {
+      "query": "ván plywood phủ pvc",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 27
+    },
+    {
+      "query": "plancha osb 8mm",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 34
+    },
+    {
+      "query": "ván dăm osb",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 53
+    },
+    {
+      "query": "ván lạng",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 56
+    },
+    {
+      "query": "ván obs",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 58
+    },
+    {
+      "query": "van ep mdf",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 59
+    }
+  ],
+  "reportedRowCount": 42,
+  "privacyNote": "Anonymized queries are omitted by Google, so these rows cannot be summed to the overview totals.",
+  "segments": {
+    "brandQueries": [
+      "tùng phát"
+    ],
+    "localQueries": [
+      "ván mdf phủ melamine thủ đức",
+      "cửa hàng ván gỗ gần đây",
+      "ván mdf gần đây",
+      "cửa hàng ván ép gần đây"
+    ],
+    "commercialQueries": [
+      "ván mdf phủ melamine thủ đức",
+      "gỗ ghép",
+      "ván mdf trơn",
+      "gỗ mdf",
+      "gỗ tùng",
+      "cnc gỗ",
+      "ván mdf trắng",
+      "mdf",
+      "ván ép nguyên tấm",
+      "ván osb",
+      "mdf cnc",
+      "ván mdf phủ melamine trắng",
+      "ván gỗ mdf",
+      "ván gỗ",
+      "cnc mdf",
+      "ván lạng veneer",
+      "gỗ osb",
+      "cửa hàng ván gỗ gần đây",
+      "go cnc",
+      "mdf printing",
+      "gỗ",
+      "ván gỗ ghép",
+      "gỗ cnc",
+      "tủ mdf",
+      "ván mdf gần đây",
+      "gỗ mdf giá",
+      "tu go mdf",
+      "custom wood cnc",
+      "mdf a osb",
+      "cửa hàng ván ép gần đây",
+      "giá ván gỗ",
+      "gỗ cao su ghép thanh",
+      "osb 17mm",
+      "ván plywood phủ pvc",
+      "plancha osb 8mm",
+      "ván dăm osb",
+      "ván lạng",
+      "ván obs",
+      "van ep mdf"
+    ]
+  }
+}

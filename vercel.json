@@ -21,6 +21,96 @@
       "permanent": true
     },
     {
+      "source": "/danh-muc-san-pham/van-cong-nghiep",
+      "destination": "/van-go-cong-nghiep/",
+      "permanent": true
+    },
+    {
+      "source": "/danh-muc-san-pham/van-cong-nghiep/",
+      "destination": "/van-go-cong-nghiep/",
+      "permanent": true
+    },
+    {
+      "source": "/danh-muc-san-pham/go-ghep",
+      "destination": "/go-ghep/",
+      "permanent": true
+    },
+    {
+      "source": "/danh-muc-san-pham/go-ghep/",
+      "destination": "/go-ghep/",
+      "permanent": true
+    },
+    {
+      "source": "/danh-muc-san-pham/van-mdf",
+      "destination": "/van-mdf/",
+      "permanent": true
+    },
+    {
+      "source": "/danh-muc-san-pham/van-mdf/",
+      "destination": "/van-mdf/",
+      "permanent": true
+    },
+    {
+      "source": "/danh-muc-san-pham/van-ep",
+      "destination": "/van-go-cong-nghiep/",
+      "permanent": true
+    },
+    {
+      "source": "/danh-muc-san-pham/van-ep/",
+      "destination": "/van-go-cong-nghiep/",
+      "permanent": true
+    },
+    {
+      "source": "/san-pham/van-mdf-tron",
+      "destination": "/van-mdf/",
+      "permanent": true
+    },
+    {
+      "source": "/san-pham/van-mdf-tron/",
+      "destination": "/van-mdf/",
+      "permanent": true
+    },
+    {
+      "source": "/danh-muc-san-pham/tung-phat",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/danh-muc-san-pham/tung-phat/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/danh-muc-san-pham/go-ghep-thanh",
+      "destination": "/go-ghep/",
+      "permanent": true
+    },
+    {
+      "source": "/danh-muc-san-pham/go-ghep-thanh/",
+      "destination": "/go-ghep/",
+      "permanent": true
+    },
+    {
+      "source": "/san-pham/go-ghep-thanh",
+      "destination": "/go-ghep/",
+      "permanent": true
+    },
+    {
+      "source": "/san-pham/go-ghep-thanh/",
+      "destination": "/go-ghep/",
+      "permanent": true
+    },
+    {
+      "source": "/go-ghep-go-ghep-thanh-la-gi-dac-diem-ung-dung-quy-trinh-san-xuat",
+      "destination": "/bai-viet/go-ghep-la-gi/",
+      "permanent": true
+    },
+    {
+      "source": "/go-ghep-go-ghep-thanh-la-gi-dac-diem-ung-dung-quy-trinh-san-xuat/",
+      "destination": "/bai-viet/go-ghep-la-gi/",
+      "permanent": true
+    },
+    {
       "source": "/admin/analytics",
       "destination": "https://cms.mdftungphat.com/?view=analytics",
       "permanent": false
