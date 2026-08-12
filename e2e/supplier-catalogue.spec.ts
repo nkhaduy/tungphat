@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
-const colorSearchName = "Tìm mã màu, tên màu hoặc thương hiệu";
+const catalogueSearchName = "Nhập mã màu, tên màu hoặc thương hiệu...";
+const supplierSearchName = "Tìm mã màu, tên màu hoặc thương hiệu";
 
 test.describe("Mã màu customer journeys", () => {
   test("site navigation exposes the public Mã màu experience", async ({
@@ -24,7 +25,7 @@ test.describe("Mã màu customer journeys", () => {
     page,
   }) => {
     await page.goto("/catalogue/");
-    const search = page.getByRole("searchbox", { name: colorSearchName });
+    const search = page.getByRole("searchbox", { name: catalogueSearchName });
 
     await search.fill("MS465SC04");
     await expect(page).toHaveURL(/query=MS465SC04/);
@@ -70,7 +71,7 @@ test.describe("Mã màu customer journeys", () => {
     ] as const;
 
     await page.goto("/catalogue/");
-    const search = page.getByRole("searchbox", { name: colorSearchName });
+    const search = page.getByRole("searchbox", { name: catalogueSearchName });
 
     for (const item of cases) {
       await search.fill(item.query);
@@ -99,7 +100,7 @@ test.describe("Mã màu customer journeys", () => {
         }),
       ).toBeVisible();
       await expect(
-        page.getByRole("searchbox", { name: colorSearchName }),
+        page.getByRole("searchbox", { name: supplierSearchName }),
       ).toBeVisible();
       await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
         "content",
@@ -112,7 +113,7 @@ test.describe("Mã màu customer journeys", () => {
     page,
   }) => {
     await page.goto("/catalogue/an-cuong/");
-    const search = page.getByRole("searchbox", { name: colorSearchName });
+    const search = page.getByRole("searchbox", { name: supplierSearchName });
 
     await search.fill("MFC - MS 465 SC04");
     const result = page
@@ -145,11 +146,75 @@ test.describe("Mã màu customer journeys", () => {
 
   test("hub Tất cả auto-loads beyond the featured first page", async ({ page }) => {
     await page.goto("/catalogue/");
+    await expect(
+      page.getByText("Kết quả phù hợp", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "2.829 mã màu", exact: true }),
+    ).toBeVisible();
     const region = page.getByRole("region", { name: "Kết quả mã màu" });
     await expect(region.getByRole("article")).toHaveCount(48);
     await page.getByTestId("catalogue-load-sentinel").scrollIntoViewIfNeeded();
     await expect(page.getByText("Đang tải thêm mã màu", { exact: true })).toBeVisible();
     await expect(region.getByRole("article")).toHaveCount(96);
+  });
+
+  test("catalogue filters expose clear selected states and supplier filtering", async ({
+    page,
+  }) => {
+    await page.goto("/catalogue/");
+
+    const laminate = page.getByRole("button", { name: "Laminate 1.222" });
+    await expect(laminate).toHaveAttribute("aria-pressed", "false");
+    await laminate.click();
+    await expect(laminate).toHaveAttribute("aria-pressed", "true");
+    await expect(
+      page.getByRole("heading", { name: "1.222 mã màu", exact: true }),
+    ).toBeVisible();
+
+    const supplier = page.getByRole("combobox", {
+      name: "Lọc theo nhà cung cấp",
+    });
+    await supplier.selectOption("ba-thanh");
+    await expect(supplier).toHaveValue("ba-thanh");
+    await expect(
+      page.getByRole("heading", { name: "33 mã màu", exact: true }),
+    ).toBeVisible();
+  });
+
+  test("copy action announces success without shifting the material grid", async ({
+    page,
+  }) => {
+    await page.context().grantPermissions(["clipboard-read", "clipboard-write"]);
+    await page.goto("/catalogue/?supplier=thanh-thuy&query=301");
+    const region = page.getByRole("region", { name: "Kết quả mã màu" });
+    const before = await region.evaluate((element) =>
+      Math.round(element.getBoundingClientRect().top + window.scrollY),
+    );
+
+    await page.getByRole("button", { name: "Sao chép mã 301" }).click();
+    await expect(
+      page.getByRole("status", { name: "Phản hồi sao chép mã" }),
+    ).toContainText("Đã sao chép mã 301");
+
+    const after = await region.evaluate((element) =>
+      Math.round(element.getBoundingClientRect().top + window.scrollY),
+    );
+    expect(after).toBe(before);
+  });
+
+  test("empty searches explain how to recover", async ({ page }) => {
+    await page.goto("/catalogue/");
+    await page.getByRole("searchbox", { name: catalogueSearchName }).fill(
+      "MA-KHONG-TON-TAI-999999",
+    );
+
+    await expect(
+      page.getByText("Chưa tìm thấy mã phù hợp", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByText(/Thử bỏ khoảng trắng hoặc dấu gạch/i),
+    ).toBeVisible();
   });
 
   test("catalogue cards use compact supplier copy without duplicate taxonomy", async ({ page }) => {
@@ -193,7 +258,7 @@ test.describe("Mã màu customer journeys", () => {
       }),
     ).toBeVisible();
 
-    const search = page.getByRole("searchbox", { name: colorSearchName });
+    const search = page.getByRole("searchbox", { name: supplierSearchName });
     await search.fill("P2052");
     await expect(
       page.getByRole("link", { name: /Ba Thanh, mã P2052, xem chi tiết/i }),
@@ -300,7 +365,7 @@ test.describe("Mã màu mobile navigation", () => {
   }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/catalogue/");
-    const search = page.getByRole("searchbox", { name: colorSearchName });
+    const search = page.getByRole("searchbox", { name: catalogueSearchName });
 
     expect((await search.boundingBox())?.height).toBeGreaterThanOrEqual(44);
     await search.fill("BT99");
