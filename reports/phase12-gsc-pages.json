@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-12T09:36:00+07:00",
+  "property": "sc-domain:mdftungphat.com",
+  "period": {
+    "start": "2026-07-15",
+    "end": "2026-08-09",
+    "label": "2026-07-15 to 2026-08-09"
+  },
+  "source": "Authenticated Google Search Console UI",
+  "rows": [
+    {
+      "url": "https://mdftungphat.com/",
+      "clicks": 11,
+      "impressions": 239,
+      "ctr": 4.6,
+      "position": 4.5
+    },
+    {
+      "url": "https://www.mdftungphat.com/",
+      "clicks": 9,
+      "impressions": 97,
+      "ctr": 9.3,
+      "position": 4.3
+    },
+    {
+      "url": "https://mdftungphat.com/van-lang-veneer-vat-lieu-hien-dai-cho-nganh-noi-that/",
+      "clicks": 4,
+      "impressions": 22,
+      "ctr": 18.2,
+      "position": 17.4
+    },
+    {
+      "url": "https://mdftungphat.com/san-pham/van-dam-osb/",
+      "clicks": 3,
+      "impressions": 39,
+      "ctr": 7.7,
+      "position": 20.9
+    },
+    {
+      "url": "https://mdftungphat.com/lien-he/",
+      "clicks": 2,
+      "impressions": 47,
+      "ctr": 4.3,
+      "position": 3.8
+    },
+    {
+      "url": "https://mdftungphat.com/san-pham/van-ep-phu-phim-film/",
+      "clicks": 2,
+      "impressions": 23,
+      "ctr": 8.7,
+      "position": 11.1
+    },
+    {
+      "url": "https://mdftungphat.com/go-ghep-go-ghep-thanh-la-gi-dac-diem-ung-dung-quy-trinh-san-xuat/",
+      "clicks": 2,
+      "impressions": 8,
+      "ctr": 25,
+      "position": 7.1
+    },
+    {
+      "url": "https://mdftungphat.com/tin-tuc/",
+      "clicks": 1,
+      "impressions": 69,
+      "ctr": 1.4,
+      "position": 4.4
+    },
+    {
+      "url": "https://mdftungphat.com/danh-muc-san-pham/van-cong-nghiep/",
+      "clicks": 1,
+      "impressions": 55,
+      "ctr": 1.8,
+      "position": 20.3
+    },
+    {
+      "url": "https://mdftungphat.com/danh-muc-san-pham/go-ghep/",
+      "clicks": 1,
+      "impressions": 46,
+      "ctr": 2.2,
+      "position": 5.1
+    },
+    {
+      "url": "https://mdftungphat.com/danh-muc-san-pham/van-mdf/",
+      "clicks": 1,
+      "impressions": 30,
+      "ctr": 3.3,
+      "position": 4.6
+    },
+    {
+      "url": "https://mdftungphat.com/danh-muc-san-pham/van-ep/",
+      "clicks": 1,
+      "impressions": 26,
+      "ctr": 3.8,
+      "position": 16.2
+    },
+    {
+      "url": "https://mdftungphat.com/go-ghep-tram/",
+      "clicks": 1,
+      "impressions": 25,
+      "ctr": 4,
+      "position": 4
+    },
+    {
+      "url": "https://mdftungphat.com/van-mdf/",
+      "clicks": 1,
+      "impressions": 20,
+      "ctr": 5,
+      "position": 12.2
+    },
+    {
+      "url": "https://mdftungphat.com/go-ghep-tram",
+      "clicks": 1,
+      "impressions": 17,
+      "ctr": 5.9,
+      "position": 5.6
+    },
+    {
+      "url": "https://mdftungphat.com/danh-muc-san-pham/tung-phat/",
+      "clicks": 1,
+      "impressions": 16,
+      "ctr": 6.3,
+      "position": 5.6
+    },
+    {
+      "url": "https://mdftungphat.com/huong-dan-chon-ban-lam-viec-van-phong-phu-hop-mdf-go-tu-nhien-mfc/",
+      "clicks": 1,
+      "impressions": 10,
+      "ctr": 10,
+      "position": 7.9
+    },
+    {
+      "url": "https://mdftungphat.com/san-pham/van-mdf-tron/",
+      "clicks": 0,
+      "impressions": 38,
+      "ctr": 0,
+      "position": 8.7
+    },
+    {
+      "url": "https://mdftungphat.com/danh-muc-san-pham/go-ghep-thanh/",
+      "clicks": 0,
+      "impressions": 19,
+      "ctr": 0,
+      "position": 4.2
+    },
+    {
+      "url": "https://mdftungphat.com/san-pham/van-phu-poly-keo-trang-bong/",
+      "clicks": 0,
+      "impressions": 14,
+      "ctr": 0,
+      "position": 33.5
+    },
+    {
+      "url": "https://mdftungphat.com/san-pham/go-ghep-thanh/",
+      "clicks": 0,
+      "impressions": 13,
+      "ctr": 0,
+      "position": 6.2
+    },
+    {
+      "url": "https://mdftungphat.com/danh-muc-san-pham/chi-nep-trang-tri/",
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 8.6
+    },
+    {
+      "url": "https://mdftungphat.com/van-mdf",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 6.3
+    },
+    {
+      "url": "https://mdftungphat.com/san-pham/van-ep-plywood/",
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 8.5
+    },
+    {
+      "url": "https://mdftungphat.com/san-pham/go-cao-su-ghep-thanh/",
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 8.1
+    }
+  ],
+  "reportedPageCount": 25,
+  "topPageSignals": [
+    {
+      "url": "https://mdftungphat.com/",
+      "clicks": 11,
+      "impressions": 239,
+      "ctr": 4.6,
+      "position": 4.5
+    },
+    {
+      "url": "https://www.mdftungphat.com/",
+      "clicks": 9,
+      "impressions": 97,
+      "ctr": 9.3,
+      "position": 4.3
+    },
+    {
+      "url": "https://mdftungphat.com/van-lang-veneer-vat-lieu-hien-dai-cho-nganh-noi-that/",
+      "clicks": 4,
+      "impressions": 22,
+      "ctr": 18.2,
+      "position": 17.4
+    },
+    {
+      "url": "https://mdftungphat.com/san-pham/van-dam-osb/",
+      "clicks": 3,
+      "impressions": 39,
+      "ctr": 7.7,
+      "position": 20.9
+    },
+    {
+      "url": "https://mdftungphat.com/lien-he/",
+      "clicks": 2,
+      "impressions": 47,
+      "ctr": 4.3,
+      "position": 3.8
+    },
+    {
+      "url": "https://mdftungphat.com/san-pham/van-ep-phu-phim-film/",
+      "clicks": 2,
+      "impressions": 23,
+      "ctr": 8.7,
+      "position": 11.1
+    },
+    {
+      "url": "https://mdftungphat.com/go-ghep-go-ghep-thanh-la-gi-dac-diem-ung-dung-quy-trinh-san-xuat/",
+      "clicks": 2,
+      "impressions": 8,
+      "ctr": 25,
+      "position": 7.1
+    },
+    {
+      "url": "https://mdftungphat.com/tin-tuc/",
+      "clicks": 1,
+      "impressions": 69,
+      "ctr": 1.4,
+      "position": 4.4
+    },
+    {
+      "url": "https://mdftungphat.com/danh-muc-san-pham/van-cong-nghiep/",
+      "clicks": 1,
+      "impressions": 55,
+      "ctr": 1.8,
+      "position": 20.3
+    },
+    {
+      "url": "https://mdftungphat.com/danh-muc-san-pham/go-ghep/",
+      "clicks": 1,
+      "impressions": 46,
+      "ctr": 2.2,
+      "position": 5.1
+    }
+  ],
+  "privacyNote": "Page rows are reported UI rows; www and apex variants are shown separately as returned by GSC."
+}

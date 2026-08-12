@@ -6,6 +6,30 @@ const mappings = [
   { legacyPath: "/gia-cong-cnc-go/", destinationPath: "/cat-cnc-go/" },
   { legacyPath: "/cnc-mdf", destinationPath: "/gia-cong-cnc-mdf/" },
   { legacyPath: "/cnc-mdf/", destinationPath: "/gia-cong-cnc-mdf/" },
+  { legacyPath: "/danh-muc-san-pham/van-cong-nghiep", destinationPath: "/van-go-cong-nghiep/" },
+  { legacyPath: "/danh-muc-san-pham/van-cong-nghiep/", destinationPath: "/van-go-cong-nghiep/" },
+  { legacyPath: "/danh-muc-san-pham/go-ghep", destinationPath: "/go-ghep/" },
+  { legacyPath: "/danh-muc-san-pham/go-ghep/", destinationPath: "/go-ghep/" },
+  { legacyPath: "/danh-muc-san-pham/van-mdf", destinationPath: "/van-mdf/" },
+  { legacyPath: "/danh-muc-san-pham/van-mdf/", destinationPath: "/van-mdf/" },
+  { legacyPath: "/danh-muc-san-pham/van-ep", destinationPath: "/van-go-cong-nghiep/" },
+  { legacyPath: "/danh-muc-san-pham/van-ep/", destinationPath: "/van-go-cong-nghiep/" },
+  { legacyPath: "/san-pham/van-mdf-tron", destinationPath: "/van-mdf/" },
+  { legacyPath: "/san-pham/van-mdf-tron/", destinationPath: "/van-mdf/" },
+  { legacyPath: "/danh-muc-san-pham/tung-phat", destinationPath: "/" },
+  { legacyPath: "/danh-muc-san-pham/tung-phat/", destinationPath: "/" },
+  { legacyPath: "/danh-muc-san-pham/go-ghep-thanh", destinationPath: "/go-ghep/" },
+  { legacyPath: "/danh-muc-san-pham/go-ghep-thanh/", destinationPath: "/go-ghep/" },
+  { legacyPath: "/san-pham/go-ghep-thanh", destinationPath: "/go-ghep/" },
+  { legacyPath: "/san-pham/go-ghep-thanh/", destinationPath: "/go-ghep/" },
+  {
+    legacyPath: "/go-ghep-go-ghep-thanh-la-gi-dac-diem-ung-dung-quy-trinh-san-xuat",
+    destinationPath: "/bai-viet/go-ghep-la-gi/",
+  },
+  {
+    legacyPath: "/go-ghep-go-ghep-thanh-la-gi-dac-diem-ung-dung-quy-trinh-san-xuat/",
+    destinationPath: "/bai-viet/go-ghep-la-gi/",
+  },
 ];
 
 const runtimeOrigin = process.env.LEGACY_REDIRECT_CHECK_ORIGIN ?? process.argv[2];
@@ -157,4 +181,6 @@ for (const result of results) {
     `${result.legacyPath}: ${result.status} -> ${result.location}; ${result.hops} hop; destination HTTP ${result.destinationStatus}`,
   );
 }
-console.log("Legacy redirect validation pass: 4/4 path redirect vĩnh viễn trực tiếp; 2/2 destination HTTP 200, self-canonical, indexable; 0 loop.");
+console.log(
+  `Legacy redirect validation pass: ${mappings.length}/${mappings.length} path redirect vĩnh viễn trực tiếp; ${destinationChecks.size}/${destinationChecks.size} destination HTTP 200, self-canonical, indexable; 0 loop.`,
+);

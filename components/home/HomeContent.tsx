@@ -55,6 +55,7 @@ const materials = [
   { name: "MDF chống ẩm", href: "/mdf-chong-am", image: "/wood/vanchongam.webp", alt: "Tấm MDF chống ẩm lõi xanh dùng để tham khảo vật liệu" },
   { name: "Ván MFC", href: "/van-go-cong-nghiep", image: "/wood/melamine.webp", alt: "Bề mặt phủ melamine dùng trên nhóm ván MFC" },
   { name: "Plywood", href: "/van-go-cong-nghiep", image: "/wood/plywood.webp", alt: "Các lớp vật liệu của tấm plywood" },
+  { name: "Gỗ ghép", href: "/go-ghep", image: "/images/wood-panels.webp", alt: "Các tấm gỗ ghép dùng để tham khảo nhóm vật liệu" },
   { name: "Gỗ ghép cao su", href: "/go-ghep-cao-su", image: "/images/wood-panels.webp", alt: "Các tấm gỗ ghép dùng để tham khảo vật liệu" },
   { name: "Gỗ ghép tràm", href: "/go-ghep-tram", image: "/wood/veneer.webp", alt: "Bề mặt vân gỗ dùng để tham khảo nhóm gỗ ghép tràm" },
   { name: "Melamine", href: "/san-pham#catalogue", image: "/wood/melamine.webp", alt: "Mẫu bề mặt melamine vân gỗ" },

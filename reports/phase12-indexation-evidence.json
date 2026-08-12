@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-12T09:36:00+07:00",
+  "sitemap": {
+    "url": "https://www.mdftungphat.com/sitemap.xml",
+    "status": "SUCCESS",
+    "submittedAt": "2026-07-16",
+    "lastRead": "2026-08-09",
+    "discoveredUrls": 54
+  },
+  "priority": {
+    "total": 9,
+    "phase11Indexed": 3,
+    "phase12Indexed": 6,
+    "indexedUrls": [
+      "/",
+      "/san-pham/",
+      "/van-go-cong-nghiep/",
+      "/gia-cong-cnc/",
+      "/cat-cnc-go/",
+      "/tham-chieu-vat-lieu/"
+    ],
+    "discoveredNotIndexed": [
+      "/bai-viet/mdf-thuong-va-chong-am/",
+      "/bai-viet/go-ghep-la-gi/",
+      "/bai-viet/chuan-bi-file-cnc/"
+    ]
+  },
+  "broader": {
+    "knownPopulation": 63,
+    "indexed": 18,
+    "notIndexed": 45,
+    "reasons": {
+      "server5xx": 13,
+      "discoveredNotIndexed": 10,
+      "notFound404": 8,
+      "noindex": 6,
+      "redirect": 4,
+      "crawledNotIndexed": 4,
+      "duplicateCanonicalConflict": 0
+    }
+  },
+  "inspectionRequests": {
+    "made": 0,
+    "reason": "No blind repeat requests; changed canonical URLs will be selectively requested after production deploy."
+  }
+}
