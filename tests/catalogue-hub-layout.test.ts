@@ -5,8 +5,8 @@ import SupplierCataloguePage from "@/app/catalogue/page";
 describe("catalogue hub customer journey", () => {
   it("renders search and primary selectors before supplier browsing", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
-    const heading = "Tìm mã màu";
-    const placeholder = "Tìm mã màu, tên màu hoặc thương hiệu";
+    const heading = "Tra cứu mã màu";
+    const placeholder = "Nhập mã màu, tên màu hoặc thương hiệu...";
     const selector = "Melamine";
     const supplier = "Thanh Thuỳ";
 
@@ -18,10 +18,10 @@ describe("catalogue hub customer journey", () => {
     expect(markup.indexOf(selector)).toBeLessThan(markup.indexOf(supplier));
   });
 
-  it("renders Melamine discovery before supplier sections", () => {
+  it("renders matching results before supplier sections", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
 
-    expect(markup.indexOf("Mã Melamine được quan tâm")).toBeLessThan(markup.indexOf("Theo nhà cung cấp"));
+    expect(markup.indexOf("Kết quả phù hợp")).toBeLessThan(markup.indexOf("Theo nhà cung cấp"));
   });
 
   it("distinguishes Thanh Thuy searchable imports from public product pages", () => {
