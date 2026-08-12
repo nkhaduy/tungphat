@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-12T12:38:00+07:00",
+  "origin": "https://mdftungphat.com",
+  "urls": [
+    "https://mdftungphat.com/",
+    "https://mdftungphat.com/van-go-cong-nghiep/",
+    "https://mdftungphat.com/go-ghep/",
+    "https://mdftungphat.com/van-mdf/",
+    "https://mdftungphat.com/bai-viet/go-ghep-la-gi/"
+  ],
+  "status": "SKIPPED_NO_INDEXNOW_KEY",
+  "reason": "INDEXNOW_KEY is not configured in this environment; no submission was attempted.",
+  "googleNote": "Google indexing is handled separately through authenticated Search Console UI."
+}

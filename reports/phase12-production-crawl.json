@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "1.0",
+  "checkedAt": "2026-08-12T05:38:22.968Z",
+  "origin": "https://mdftungphat.com",
+  "scope": "Phase 12 changed canonical URLs",
+  "deployment": {
+    "id": "dpl_GExaBfKiUijmNnL8a3FABNNq2xqS",
+    "status": "READY",
+    "mainSha": "54ddedfc099e1ebd6b87de06026c3708821aae1a"
+  },
+  "browserVerification": {
+    "desktop": {
+      "path": "/van-go-cong-nghiep/",
+      "viewportWidth": 1280,
+      "correctTitleAndH1": true,
+      "localAnswerPresent": true,
+      "horizontalOverflow": false,
+      "consoleErrors": 0,
+      "failedNetworkRequests": 0
+    },
+    "mobileProduction": {
+      "status": "NOT_INDEPENDENTLY_VERIFIED",
+      "reason": "The in-app browser viewport override did not change the production tab from 1280 CSS pixels; merged-tree Playwright E2E remains the responsive test evidence."
+    }
+  },
+  "limitations": [
+    "The broad production audit was bounded because the full catalogue crawl did not finish in a practical window; targeted canonical, redirect, schema, link, and changed-URL checks were used instead."
+  ],
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "bytes": 234822,
+      "canonical": "https://mdftungphat.com/",
+      "hasNoindex": false,
+      "jsonLd": 4
+    },
+    {
+      "path": "/van-go-cong-nghiep/",
+      "status": 200,
+      "bytes": 137013,
+      "canonical": "https://mdftungphat.com/van-go-cong-nghiep/",
+      "hasNoindex": false,
+      "jsonLd": 6
+    },
+    {
+      "path": "/go-ghep/",
+      "status": 200,
+      "bytes": 132392,
+      "canonical": "https://mdftungphat.com/go-ghep/",
+      "hasNoindex": false,
+      "jsonLd": 6
+    },
+    {
+      "path": "/van-mdf/",
+      "status": 200,
+      "bytes": 129332,
+      "canonical": "https://mdftungphat.com/van-mdf/",
+      "hasNoindex": false,
+      "jsonLd": 6
+    },
+    {
+      "path": "/bai-viet/go-ghep-la-gi/",
+      "status": 200,
+      "bytes": 102626,
+      "canonical": "https://mdftungphat.com/bai-viet/go-ghep-la-gi/",
+      "hasNoindex": false,
+      "jsonLd": 6
+    }
+  ]
+}

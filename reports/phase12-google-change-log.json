@@ -1,7 +1,10 @@
 {
   "schemaVersion": "1.0",
-  "checkedAt": "2026-08-12T09:36:00+07:00",
+  "checkedAt": "2026-08-12T15:45:00+07:00",
   "startingSha": "c3291761956cdc6208da68b0fe1297f5ed160e07",
+  "finalMainSha": "54ddedfc099e1ebd6b87de06026c3708821aae1a",
+  "productionDeploymentId": "dpl_GExaBfKiUijmNnL8a3FABNNq2xqS",
+  "productionStatus": "READY",
   "changes": [
     {
       "url": "https://mdftungphat.com/van-go-cong-nghiep/",
@@ -15,7 +18,7 @@
       },
       "change": "Added a concise Thủ Đức/Melamine MDF answer with required request fields and factual availability caveat.",
       "reason": "High-impression local commercial query was ranking to a legacy 404 and lacked a direct local answer.",
-      "indexingRequest": "pending post-deploy selective request"
+      "indexingRequest": "SKIPPED_ALREADY_INDEXED"
     },
     {
       "url": "https://mdftungphat.com/go-ghep/",
@@ -29,7 +32,8 @@
       },
       "change": "Added homepage material-card discovery link to canonical gỗ ghép hub; consolidated legacy gỗ ghép URLs.",
       "reason": "Position 4-10 generic commercial query had legacy URL competition and weak canonical discovery from homepage.",
-      "indexingRequest": "pending post-deploy selective request"
+      "indexingRequest": "NOT_CONFIRMED_UI_ACTION_FAILED",
+      "postDeployInspection": "DISCOVERED_CURRENTLY_NOT_INDEXED"
     },
     {
       "url": "https://mdftungphat.com/van-mdf/",
@@ -43,7 +47,7 @@
       },
       "change": "Consolidated legacy ván MDF trơn URL to canonical MDF page.",
       "reason": "Position 11-20 product query was served from a live 404 legacy URL.",
-      "indexingRequest": "pending post-deploy selective request"
+      "indexingRequest": "SKIPPED_ALREADY_INDEXED_WITH_PRODUCT_SNIPPET_ISSUE"
     },
     {
       "url": "https://mdftungphat.com/bai-viet/go-ghep-la-gi/",
@@ -57,7 +61,8 @@
       },
       "change": "Consolidated the reported legacy gỗ ghép article URL to the existing article.",
       "reason": "Google generative AI and organic page rows exposed the legacy URL despite an existing canonical article.",
-      "indexingRequest": "pending post-deploy selective request"
+      "indexingRequest": "NOT_CONFIRMED_UI_ACTION_FAILED",
+      "postDeployInspection": "DISCOVERED_CURRENTLY_NOT_INDEXED"
     },
     {
       "url": "https://mdftungphat.com/",
@@ -68,7 +73,13 @@
       },
       "change": "Added canonical gỗ ghép material link in homepage card grid.",
       "reason": "Homepage is the strongest page signal and already receives generic gỗ ghép impressions.",
-      "indexingRequest": "pending post-deploy selective request"
+      "indexingRequest": "SKIPPED_ALREADY_INDEXED"
     }
-  ]
+  ],
+  "indexingRequestSummary": {
+    "requestedAndConfirmed": 0,
+    "skippedAlreadyIndexed": 3,
+    "notConfirmedUiActionFailed": 2,
+    "note": "Authenticated URL Inspection succeeded. The request controls for the two non-indexed URLs were visible and enabled, but the browser interaction did not produce a Google success confirmation, so no request is reported as successful."
+  }
 }
