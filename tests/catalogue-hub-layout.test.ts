@@ -1,4 +1,5 @@
 import { renderToStaticMarkup } from "react-dom/server";
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import SupplierCataloguePage from "@/app/catalogue/page";
 import { supplierDefinitions } from "@/lib/catalog/core/registry";
@@ -29,6 +30,37 @@ describe("catalogue hub customer journey", () => {
     ).toHaveLength(1);
     expect(markup).not.toContain('data-testid="catalogue-search-floating"');
     expect(markup).not.toContain("inert=");
+  });
+
+  it("uses the supplied material image as the prioritized semantic hero", () => {
+    const markup = renderToStaticMarkup(SupplierCataloguePage());
+
+    expect(markup).toContain("%2Fimages%2Fmaterial-color-hero.webp");
+    expect(markup).toContain(
+      'alt="Các tấm ván MDF phủ bề mặt với nhiều màu và vân gỗ"',
+    );
+    expect(markup).toContain('fetchPriority="high"');
+    expect(markup).toContain("Tra cứu theo mã thực tế");
+    expect(markup).toContain("Mã màu vật liệu");
+    expect(markup).toContain(
+      "Tra nhanh mã, tên màu và thương hiệu từ thư viện vật liệu đã xác minh.",
+    );
+  });
+
+  it("keeps the requested ma-mau URL as a permanent alias", () => {
+    const config = JSON.parse(readFileSync("vercel.json", "utf8")) as {
+      redirects: Array<{
+        source: string;
+        destination: string;
+        permanent: boolean;
+      }>;
+    };
+
+    expect(config.redirects).toContainEqual({
+      source: "/ma-mau/",
+      destination: "/catalogue/",
+      permanent: true,
+    });
   });
 
   it("renders matching results before supplier sections", () => {
