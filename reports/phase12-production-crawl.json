@@ -19,8 +19,21 @@
       "failedNetworkRequests": 0
     },
     "mobileProduction": {
-      "status": "NOT_INDEPENDENTLY_VERIFIED",
-      "reason": "The in-app browser viewport override did not change the production tab from 1280 CSS pixels; merged-tree Playwright E2E remains the responsive test evidence."
+      "status": "PASS",
+      "path": "/van-go-cong-nghiep/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "correctTitleAndH1": true,
+      "localAnswerPresent": true,
+      "horizontalOverflow": false,
+      "canonical": "https://mdftungphat.com/van-go-cong-nghiep/",
+      "robots": "index, follow",
+      "jsonLd": 3,
+      "consoleErrors": 0,
+      "failedNetworkRequests": 0,
+      "evidence": "Fresh headless Chromium production check plus the production-targeted mobile navigation Playwright test."
     }
   },
   "limitations": [
