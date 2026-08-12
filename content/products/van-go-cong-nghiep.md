@@ -28,7 +28,7 @@ gallery: []
 status: "guide"
 quoteCta: "Yêu cầu tư vấn vật liệu"
 publishedAt: "2026-07-16"
-updatedAt: "2026-07-22"
+updatedAt: "2026-08-12"
 draft: false
 seoTitle: "Ván gỗ công nghiệp: cách chọn theo nhu cầu"
 seoDescription: "Hướng dẫn hiểu ván gỗ công nghiệp, phân biệt MDF, MDF chống ẩm và gỗ ghép, chọn theo nhu cầu, chuẩn bị quy cách, CNC và thông tin kiểm tra báo giá."
@@ -122,6 +122,12 @@ Website hiện chưa có catalogue kỹ thuật đủ để công bố một b�
 | Khả năng cung ứng | Kiểm tra theo mã và thời điểm yêu cầu; không suy luận từ ảnh minh họa |
 
 Tùng Phát chỉ xác nhận hướng bề mặt sau khi đối chiếu cốt, mã, mẫu và yêu cầu gia công. Trang không gán sẵn độ bền, giá hoặc tình trạng tồn kho cho toàn bộ nhóm melamine hay laminate.
+
+### MDF phủ melamine tại Thủ Đức: cần gửi gì để kiểm tra?
+
+Khách đang tìm MDF phủ melamine tại Thủ Đức có thể liên hệ hai chi nhánh Tùng Phát trên đường Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh để kiểm tra theo nhu cầu thực tế. Trước khi hỏi hàng hoặc báo giá, cần gửi riêng cốt MDF, mã màu hoặc mẫu bề mặt, độ dày, kích thước tấm/chi tiết, số lượng và yêu cầu dán cạnh hoặc CNC nếu có.
+
+Website không công bố tồn kho hay giá cố định cho toàn bộ nhóm MDF phủ melamine. Mã bề mặt, khả năng phối với cốt MDF, quy cách và thời điểm cung ứng chỉ được xác nhận sau khi đối chiếu dữ liệu cụ thể; xem [thông tin hai chi nhánh và kênh liên hệ](/lien-he/) khi đã chuẩn bị đủ thông tin.
 
 ## Tùng Phát hỗ trợ gia công CNC như thế nào?
 
