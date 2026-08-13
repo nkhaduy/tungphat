@@ -14,6 +14,7 @@
     <script src="/preview.js" defer></script>
     <script src="/cms-guard.js" defer></script>
     <script src="/analytics/dashboard.js" defer></script>
+    <script src="/gbp/dashboard.js" defer></script>
     <script src="/admin-shell.js" defer></script>
   </head>
   <body>
@@ -49,12 +50,21 @@
           <button id="content-tab" type="button" data-view="content">Quản lý nội dung</button>
           <button id="preview-tab" type="button" data-view="preview">Xem trước</button>
           <button id="analytics-tab" type="button" data-view="analytics">Thống kê</button>
+          <button id="gbp-tab" type="button" data-view="gbp">Google Business Profile</button>
         </nav>
         <button id="logout-button" class="logout-button" type="button">Đăng xuất</button>
       </header>
 
       <section id="content-view" class="admin-view" aria-label="Quản lý nội dung">
         <div id="nc-root"></div>
+      </section>
+
+      <section id="gbp-view" class="admin-view" aria-label="Google Business Profile" hidden>
+        <div class="analytics-main">
+          <header class="analytics-heading"><div><h1>Google Business Profile</h1><p>Đánh giá và hiệu suất hồ sơ Tùng Phát. Dữ liệu API được giữ tạm thời tối đa 30 ngày theo chính sách Google.</p></div></header>
+          <div id="gbp-status-message" class="message" hidden></div>
+          <section id="gbp-panel" class="gbp-grid" aria-live="polite" aria-busy="true"><div class="skeleton-grid" aria-hidden="true"><div></div><div></div><div></div><div></div></div></section>
+        </div>
       </section>
 
       <section id="preview-view" class="admin-view preview-view" aria-label="Xem trước nội dung" hidden>

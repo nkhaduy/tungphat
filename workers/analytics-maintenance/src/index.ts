@@ -3,6 +3,8 @@ const VIETNAM_OFFSET_SECONDS = 7 * 3_600;
 
 type Env = {
   DB: D1Database;
+  GBP_SYNC_URL?: string;
+  GBP_CRON_SECRET?: string;
 };
 
 export function previousVietnamDay(nowMs: number) {
@@ -108,14 +110,22 @@ export async function runMaintenance(db: D1Database, nowMs: number) {
   };
 }
 
+export async function runGbpSync(env: Env) {
+  if (!env.GBP_SYNC_URL || !env.GBP_CRON_SECRET) return { status: "not_configured" };
+  const response = await fetch(env.GBP_SYNC_URL, { method: "POST", headers: { Authorization: `Bearer ${env.GBP_CRON_SECRET}` } });
+  if (!response.ok) throw new Error(`gbp_sync_${response.status}`);
+  return { status: "ok" };
+}
+
 export default {
   async scheduled(controller: ScheduledController, env: Env) {
-    const result = await runMaintenance(env.DB, controller.scheduledTime);
+    const [result, gbp] = await Promise.all([runMaintenance(env.DB, controller.scheduledTime), runGbpSync(env)]);
     console.log(JSON.stringify({
       message: "analytics_maintenance_complete",
       date: result.date,
       statements: result.statements,
       rowsWritten: result.rowsWritten,
+      gbp: gbp.status,
     }));
   },
   fetch() {

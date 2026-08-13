@@ -13,6 +13,9 @@
   "triggers": {
     "crons": ["15 18 * * *"]
   },
+  "vars": {
+    "GBP_SYNC_URL": "https://cms.mdftungphat.com/api/gbp/cron"
+  },
   "observability": {
     "enabled": true,
     "logs": {

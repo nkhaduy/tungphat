@@ -15,6 +15,7 @@
     content: document.querySelector("#content-view"),
     preview: document.querySelector("#preview-view"),
     analytics: document.querySelector("#analytics-view"),
+    gbp: document.querySelector("#gbp-view"),
   };
   const previewFrame = document.querySelector("#preview-frame");
 
@@ -27,7 +28,7 @@
 
   function requestedView() {
     const value = new URLSearchParams(location.search).get("view");
-    return value === "analytics" || value === "preview" ? value : "content";
+    return value === "analytics" || value === "preview" || value === "gbp" ? value : "content";
   }
 
   function publishedUrl(draft) {
@@ -71,7 +72,7 @@
 
   function setView(view) {
     if (!state.authenticated) return;
-    state.view = view === "analytics" || view === "preview" ? view : "content";
+    state.view = view === "analytics" || view === "preview" || view === "gbp" ? view : "content";
     Object.entries(views).forEach(([name, element]) => { element.hidden = name !== state.view; });
     document.querySelectorAll("[data-view]").forEach((button) => {
       const active = button.dataset.view === state.view;
@@ -80,6 +81,7 @@
       if (active) button.setAttribute("aria-current", "page");
     });
     if (state.view === "analytics") window.dispatchEvent(new CustomEvent("tpcms:analytics-ready"));
+    if (state.view === "gbp") window.dispatchEvent(new CustomEvent("tpcms:gbp-ready"));
     if (state.view === "preview") {
       renderPreviewMeta();
       postPreviewDraft();

@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "tungphat-cms",
+  "name": "tungphat-light-cms-production",
   "pages_build_output_dir": "./public",
   "compatibility_date": "2026-07-18",
   "compatibility_flags": ["nodejs_compat"],
@@ -25,11 +25,13 @@
     "TURNSTILE_ALLOWED_HOSTNAMES": "mdftungphat.com,www.mdftungphat.com",
     "TURNSTILE_ALLOWED_HOSTNAME_SUFFIXES": "",
     "TURNSTILE_EXPECTED_ACTION": "tung-phat-lead",
-    "CMS_ALLOWED_ORIGINS": "https://cms.mdftungphat.com,https://tungphat-cms.pages.dev",
-    "CMS_SITE_IDS": "cms.mdftungphat.com,tungphat-cms.pages.dev",
+    "CMS_ALLOWED_ORIGINS": "https://cms.mdftungphat.com,https://tungphat-light-cms-production.pages.dev",
+    "CMS_SITE_IDS": "cms.mdftungphat.com,tungphat-light-cms-production.pages.dev",
     "OAUTH_CALLBACK_URL": "https://cms.mdftungphat.com/callback",
     "OAUTH_ALLOWED_EMAIL": "nkhaduy@gmail.com",
-    "GITHUB_REPO_PRIVATE": "0"
+    "GITHUB_REPO_PRIVATE": "0",
+    "GBP_GOOGLE_PROJECT_ID": "stable-inn-503413-e2",
+    "GBP_GOOGLE_REDIRECT_URI": "https://cms.mdftungphat.com/api/gbp/oauth/callback"
   },
   "env": {
     "preview": {
@@ -58,7 +60,9 @@
         "CMS_SITE_IDS": "preview.tungphat-cms.pages.dev",
         "OAUTH_CALLBACK_URL": "https://preview.tungphat-cms.pages.dev/callback",
         "OAUTH_ALLOWED_EMAIL": "nkhaduy@gmail.com",
-        "GITHUB_REPO_PRIVATE": "0"
+        "GITHUB_REPO_PRIVATE": "0",
+        "GBP_GOOGLE_PROJECT_ID": "stable-inn-503413-e2",
+        "GBP_GOOGLE_REDIRECT_URI": "https://preview.tungphat-cms.pages.dev/api/gbp/oauth/callback"
       }
     }
   }

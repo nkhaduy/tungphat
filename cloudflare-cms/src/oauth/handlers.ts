@@ -1,8 +1,11 @@
 type OAuthTokenResponse = { access_token?: string; error?: string; error_description?: string };
 type GitHubEmail = { email?: string; primary?: boolean; verified?: boolean };
-import { clearAdminSessionCookie, createAdminSessionCookie } from "./admin-session";
+import { createSession } from "../auth/session";
 
 export type OAuthEnv = {
+  DB: D1Database;
+  CMS_ADMIN_USERNAME: string;
+  CMS_SESSION_SECRET: string;
   CMS_ALLOWED_ORIGINS: string;
   CMS_SITE_IDS: string;
   OAUTH_CALLBACK_URL: string;
@@ -103,7 +106,7 @@ function responseHeaders(extra: HeadersInit = {}) {
   };
 }
 
-function htmlResponse(status: "success" | "error", token: string, origin: string, clearCookie = false, adminCookie?: string) {
+function htmlResponse(status: "success" | "error", token: string, origin: string, clearCookie = false, sessionCookie?: string) {
   const message = `authorization:github:${status}:${JSON.stringify({ token })}`;
   const nonce = base64Url(crypto.randomUUID());
   const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>Decap OAuth</title></head><body><p>Đang hoàn tất đăng nhập…</p><script nonce="${nonce}">const origin=${JSON.stringify(origin)};const message=${JSON.stringify(message)};function receive(){window.opener.postMessage(message,origin);window.removeEventListener('message',receive);window.close()}window.addEventListener('message',receive);window.opener.postMessage('authorizing:github',origin);setTimeout(receive,800);</script></body></html>`;
@@ -112,16 +115,16 @@ function htmlResponse(status: "success" | "error", token: string, origin: string
     "Content-Security-Policy": `default-src 'none'; script-src 'nonce-${nonce}'; style-src 'none'; img-src 'none'; frame-ancestors 'none'; base-uri 'none'`,
   }));
   if (clearCookie) headers.append("Set-Cookie", `${STATE_COOKIE}=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0`);
-  if (adminCookie) headers.append("Set-Cookie", adminCookie);
+  if (sessionCookie) headers.append("Set-Cookie", sessionCookie);
   return new Response(html, { headers });
 }
 
-function analyticsResponse(origin: string, adminCookie: string) {
+function analyticsResponse(origin: string, sessionCookie: string) {
   const headers = new Headers(responseHeaders({
     Location: new URL("/analytics/", origin).toString(),
   }));
   headers.append("Set-Cookie", `${STATE_COOKIE}=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0`);
-  headers.append("Set-Cookie", adminCookie);
+  headers.append("Set-Cookie", sessionCookie);
   return new Response(null, { status: 302, headers });
 }
 
@@ -223,9 +226,9 @@ export async function handleCallback(request: Request, env: OAuthEnv) {
     if (statePayload.purpose === "analytics") return analyticsError(origin, "unauthorized_account");
     return htmlResponse("error", "unauthorized_account", origin, true);
   }
-  const adminCookie = await createAdminSessionCookie(env.OAUTH_STATE_SECRET);
-  if (statePayload.purpose === "analytics") return analyticsResponse(origin, adminCookie);
-  return htmlResponse("success", result.access_token, origin, true, adminCookie);
+  const session = await createSession(env, env.CMS_ADMIN_USERNAME || env.OAUTH_ALLOWED_EMAIL);
+  if (statePayload.purpose === "analytics") return analyticsResponse(origin, session.cookie);
+  return htmlResponse("success", result.access_token, origin, true, session.cookie);
 }
 
 export function handleHealth(request: Request) {
@@ -240,7 +243,6 @@ export function handleLogout(request: Request, env: OAuthEnv) {
     Location: `${origin}/`,
   }));
   headers.append("Set-Cookie", `${STATE_COOKIE}=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0`);
-  headers.append("Set-Cookie", clearAdminSessionCookie());
   return new Response(null, {
     status: 302,
     headers,

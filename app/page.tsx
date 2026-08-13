@@ -6,6 +6,7 @@ import { SiteShell } from "@/components/site/SiteShell";
 import { TrackedLink } from "@/components/TrackedLink";
 import { JsonLd } from "@/components/JsonLd";
 import { ZALO_URL, createPageMetadata, webPageSchema } from "@/lib/seo";
+import { GoogleReviews } from "@/components/reviews/GoogleReviews";
 
 const homepageTitle = "Tùng Phát | Ván MDF, MFC, gỗ ghép & gia công CNC TP.HCM";
 
@@ -26,6 +27,7 @@ export default function Home() {
       <HomeHero />
       <RequirementFinder />
       <HomeBenefits />
+      <GoogleReviews />
       <HomeContent />
       <TrackedLink
         href={ZALO_URL}

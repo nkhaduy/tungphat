@@ -11,7 +11,9 @@ const requiredFiles = [
   "functions/git-gateway/github/[[path]].ts", "functions/api/contact.ts", "functions/api/quote.ts",
   "functions/api/analytics/track.ts", "functions/api/admin/analytics/[[path]].ts",
   "migrations/0005_create_cms_auth.sql",
-  "migrations/0006_create_cms_git_objects.sql"
+  "migrations/0006_create_cms_git_objects.sql", "migrations/0007_create_gbp.sql",
+  "functions/api/gbp/reviews.ts", "functions/api/gbp/oauth/start.ts", "functions/api/gbp/oauth/callback.ts",
+  "functions/api/admin/gbp/[[path]].ts", "public/gbp/dashboard.js"
 ];
 for (const file of requiredFiles) {
   if (!existsSync(new URL(`../${file}`, import.meta.url))) throw new Error(`Thiếu CMS build input: ${file}`);
