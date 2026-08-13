@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   ArrowRight,
   ChevronDown,
-  Info,
   Search,
 } from "lucide-react";
 import {
@@ -190,7 +189,7 @@ export function SupplierCatalogSearch({
       <h2 id="supplier-search-title" className="sr-only">
         Tìm mã màu
       </h2>
-      <div className="catalogue-material-hero relative isolate flex min-h-[690px] overflow-hidden rounded-[1.2rem] border border-white/15 bg-forest-950 shadow-[0_18px_46px_rgba(6,43,29,.16)] sm:min-h-[650px] sm:rounded-[1.4rem] lg:min-h-[620px]">
+      <div className="catalogue-material-hero relative isolate flex min-h-[600px] overflow-hidden rounded-[1.2rem] border border-white/15 bg-forest-950 shadow-[0_18px_46px_rgba(6,43,29,.16)] sm:min-h-[570px] sm:rounded-[1.4rem] lg:min-h-[520px]">
         <Image
           src="/images/material-color-hero.webp"
           alt="Các tấm ván MDF phủ bề mặt với nhiều màu và vân gỗ"
@@ -205,7 +204,7 @@ export function SupplierCatalogSearch({
           className="catalogue-material-hero-shade absolute inset-0 z-10"
           aria-hidden="true"
         />
-        <div className="relative z-20 flex w-full flex-col px-5 pb-5 pt-4 sm:px-9 sm:pb-8 sm:pt-5 lg:px-14 lg:pb-10 lg:pt-6 xl:px-16">
+        <div className="relative z-20 flex w-full flex-col px-5 pb-4 pt-4 sm:px-9 sm:pb-6 sm:pt-5 lg:px-14 lg:pb-7 lg:pt-6 xl:px-16">
           <Breadcrumbs
             compact
             tone="onDark"
@@ -213,10 +212,10 @@ export function SupplierCatalogSearch({
             items={[{ label: "Trang chủ", href: "/" }, { label: "Mã màu" }]}
           />
           <div className="mt-auto">
-            <h1 className="whitespace-nowrap text-[clamp(2rem,9.1vw,2.35rem)] font-extrabold leading-none tracking-[-.045em] text-[#fffdf8] [text-shadow:0_2px_16px_rgba(0,0,0,.18)] sm:text-5xl lg:text-[3.5rem]">
-              Mã màu vật liệu
+            <h1 className="whitespace-nowrap text-[clamp(2.15rem,10vw,2.75rem)] font-extrabold leading-none tracking-[-.045em] text-[#fffdf8] [text-shadow:0_2px_16px_rgba(0,0,0,.18)] sm:text-5xl lg:text-[3.5rem]">
+              Mã màu
             </h1>
-            <div className="catalogue-liquid-glass relative mt-5 overflow-hidden rounded-[1.1rem] p-3.5 sm:mt-6 sm:p-5 lg:p-6">
+            <div className="catalogue-liquid-glass relative mt-4 overflow-hidden rounded-[1.1rem] p-3 sm:mt-5 sm:p-4 lg:p-5">
               <label className="catalogue-hero-search block max-w-4xl">
                 <span className="sr-only">Tra cứu mã màu</span>
                 <span className="relative block rounded-[0.9rem] border border-white/75 bg-white/90 p-1 shadow-[0_10px_28px_rgba(2,18,12,.18)]">
@@ -235,22 +234,22 @@ export function SupplierCatalogSearch({
                     autoComplete="off"
                     spellCheck={false}
                     placeholder="Nhập mã màu, tên màu hoặc thương hiệu..."
-                    className="min-h-14 w-full rounded-[0.65rem] border border-forest-900/10 bg-white/95 py-3 pl-12 pr-4 text-sm font-semibold text-forest-950 outline-none transition-[border-color,box-shadow] placeholder:font-medium placeholder:text-slate-500 focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20 sm:min-h-16 sm:pl-14 sm:pr-5 sm:text-base"
+                    className="min-h-12 w-full rounded-[0.65rem] border border-forest-900/10 bg-white/95 py-2.5 pl-12 pr-4 text-sm font-semibold text-forest-950 outline-none transition-[border-color,box-shadow] placeholder:font-medium placeholder:text-slate-500 focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20 sm:min-h-14 sm:pl-14 sm:pr-5 sm:text-base"
                   />
                 </span>
               </label>
 
               <div
                 data-testid="catalogue-search-original"
-                className="catalogue-filter-deck mt-4 border-t border-white/35 pt-4 sm:mt-5 sm:pt-5"
+                className="catalogue-filter-deck mt-3 border-t border-white/35 pt-3 sm:mt-4 sm:pt-4"
               >
                 <p className="text-xs font-extrabold uppercase tracking-[.15em] text-white/85 [text-shadow:0_1px_8px_rgba(0,0,0,.18)]">
-                  Chọn nhóm vật liệu
+                  Phân loại
                 </p>
                 <div
                   role="group"
                   aria-label="Chọn loại vật liệu"
-                  className="mt-3 flex flex-wrap gap-2 pb-1"
+                  className="mt-2 flex flex-wrap gap-1.5 pb-0.5 sm:gap-2"
                 >
                   {primarySelections.map((selection) => {
                     const active = activeSelection === selection.value;
@@ -260,7 +259,7 @@ export function SupplierCatalogSearch({
                         type="button"
                         aria-pressed={active}
                         onClick={() => selectPrimary(selection)}
-                        className={`pressable inline-flex min-h-10 min-w-0 max-w-full items-center gap-2 rounded-full border px-3.5 text-left text-[13px] font-extrabold sm:min-h-11 sm:px-4 sm:text-sm ${active ? "border-white/35 bg-forest-900 text-white shadow-[0_6px_18px_rgba(2,18,12,.22)]" : "border-white/55 bg-white/80 text-forest-950 shadow-sm hover:border-white hover:bg-white/95"}`}
+                        className={`pressable inline-flex min-h-11 min-w-0 max-w-full items-center gap-1.5 rounded-full border px-3 text-left text-[13px] font-extrabold sm:px-3.5 sm:text-sm ${active ? "border-white/35 bg-forest-900 text-white shadow-[0_6px_18px_rgba(2,18,12,.22)]" : "border-white/55 bg-white/80 text-forest-950 shadow-sm hover:border-white hover:bg-white/95"}`}
                       >
                         <span>{selection.label}</span>
                         {selection.count !== undefined ? (
@@ -275,10 +274,10 @@ export function SupplierCatalogSearch({
                   })}
                 </div>
 
-                <div className="mt-4 grid gap-3 border-t border-white/30 pt-4 md:grid-cols-[minmax(0,280px)_1fr] md:items-end">
-                  <label className="block">
-                    <span className="mb-2 block text-xs font-extrabold uppercase tracking-[.14em] text-white/80 [text-shadow:0_1px_8px_rgba(0,0,0,.18)]">
-                      Lọc theo nhà cung cấp
+                <div className="mt-3 border-t border-white/30 pt-3 sm:mt-4 sm:pt-4">
+                  <label className="block max-w-[320px]">
+                    <span className="mb-1.5 block text-xs font-extrabold uppercase tracking-[.14em] text-white/80 [text-shadow:0_1px_8px_rgba(0,0,0,.18)]">
+                      Theo thương hiệu
                     </span>
                     <span className="relative block">
                       <select
@@ -288,9 +287,9 @@ export function SupplierCatalogSearch({
                           setSupplierId(value);
                           updateUrl({ supplierId: value }, "push");
                         }}
-                        className="min-h-12 w-full appearance-none rounded-lg border border-white/60 bg-white/88 px-4 pr-11 text-sm font-bold text-forest-950 shadow-sm outline-none focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
+                        className="min-h-11 w-full appearance-none rounded-lg border border-white/60 bg-white/88 px-4 pr-11 text-sm font-bold text-forest-950 shadow-sm outline-none focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
                       >
-                        <option value="">Tất cả nhà cung cấp</option>
+                        <option value="">Tất cả thương hiệu</option>
                         {supplierOptions.map((supplier) => (
                           <option key={supplier.value} value={supplier.value}>
                             {supplier.label}
@@ -304,18 +303,6 @@ export function SupplierCatalogSearch({
                       />
                     </span>
                   </label>
-                  <div className="flex min-h-12 items-start gap-3 rounded-lg border border-white/35 bg-forest-950/35 px-4 py-3 text-xs leading-5 text-white/80">
-                    <Info
-                      className="mt-0.5 shrink-0 text-orange-200"
-                      size={16}
-                      aria-hidden="true"
-                    />
-                    <p>
-                      Mặc định ưu tiên ý định tra mã Melamine, nhóm bề mặt và
-                      mức độ đầy đủ của dữ liệu. A–Z chỉ dùng khi các mục có cùng
-                      điểm.
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>

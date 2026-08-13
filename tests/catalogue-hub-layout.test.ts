@@ -40,7 +40,8 @@ describe("catalogue hub customer journey", () => {
       'alt="Các tấm ván MDF phủ bề mặt với nhiều màu và vân gỗ"',
     );
     expect(markup).toContain('fetchPriority="high"');
-    expect(markup).toContain("Mã màu vật liệu");
+    expect(markup).toContain(">Mã màu</h1>");
+    expect(markup).not.toContain(">Mã màu vật liệu</h1>");
     expect(markup).toContain('aria-label="Breadcrumb"');
     expect(markup).toContain("catalogue-hero-breadcrumb");
     expect(markup).toContain("catalogue-hero-search");
@@ -63,6 +64,17 @@ describe("catalogue hub customer journey", () => {
     expect(markup).not.toContain(
       "Tra nhanh mã, tên màu và thương hiệu từ thư viện vật liệu đã xác minh.",
     );
+  });
+
+  it("uses compact customer-facing labels without the ranking note", () => {
+    const markup = renderToStaticMarkup(SupplierCataloguePage());
+
+    expect(markup).toContain(">Phân loại</p>");
+    expect(markup).toContain(">Theo thương hiệu</span>");
+    expect(markup).toContain(">Tất cả thương hiệu</option>");
+    expect(markup).not.toContain("Chọn nhóm vật liệu");
+    expect(markup).not.toContain("Lọc theo nhà cung cấp");
+    expect(markup).not.toContain("Mặc định ưu tiên ý định tra mã Melamine");
   });
 
   it("keeps the requested ma-mau URL as a permanent alias", () => {
