@@ -158,6 +158,9 @@ export function searchSupplierCatalog(
         const leftPrimaryMatch = left.matchScore >= 600 ? left.matchScore : 0;
         const rightPrimaryMatch = right.matchScore >= 600 ? right.matchScore : 0;
         return rightPrimaryMatch - leftPrimaryMatch ||
+        (!normalizedQuery
+          ? Number(Boolean(right.entry.thumbnail)) - Number(Boolean(left.entry.thumbnail))
+          : 0) ||
         supplierPriority(left.entry.supplierId) - supplierPriority(right.entry.supplierId) ||
         right.merchandisingScore - left.merchandisingScore ||
         right.matchScore - left.matchScore ||

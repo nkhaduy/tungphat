@@ -4,9 +4,44 @@ import {
   getSupplierTotals,
   getMaterialTaxonomyOptions,
 } from "@/lib/catalog/suppliers/search-index";
+import { getAllSupplierSearchEntriesForCatalogue } from "@/lib/catalog/suppliers/search";
 import { searchSupplierCatalog } from "@/lib/catalog/core/search";
 
 describe("full supplier compact search index", () => {
+  it("excludes Panel and Khác families from the shared catalogue surface", () => {
+    const entries = getAllSupplierSearchEntriesForCatalogue();
+
+    expect(entries).toHaveLength(2_911);
+    expect(entries.some((record) => record.material === "panel")).toBe(false);
+    expect(entries.some((record) => record.material === "other-decorative")).toBe(false);
+    expect(
+      entries.some(
+        (record) =>
+          record.supplierId === "ba-thanh" &&
+          record.material === "edge-banding" &&
+          /chỉ dán cạnh/i.test(record.name),
+      ),
+    ).toBe(true);
+    expect(
+      entries.some(
+        (record) =>
+          record.supplierId === "an-cuong" && /nẹp nhôm/i.test(record.name),
+      ),
+    ).toBe(false);
+  });
+
+  it("sorts records without images after every record with an image", () => {
+    const results = searchSupplierCatalog(
+      getAllSupplierSearchEntriesForCatalogue(),
+      "",
+    );
+    const firstMissingImage = results.findIndex((record) => !record.thumbnail);
+
+    expect(firstMissingImage).toBeGreaterThan(-1);
+    expect(results.slice(0, firstMissingImage).every((record) => record.thumbnail)).toBe(true);
+    expect(results.slice(firstMissingImage).every((record) => !record.thumbnail)).toBe(true);
+  });
+
   it("indexes every verified public color code plus unique non-code families", () => {
     const index = getSupplierSearchIndex();
     const records = index.allRecords;
@@ -17,12 +52,21 @@ describe("full supplier compact search index", () => {
     expect(records.filter((record) => record.recordType === "document")).toHaveLength(0);
   });
 
-  it("groups default mixed results by Thanh Thuy, Ba Thanh, then An Cuong", () => {
+  it("keeps supplier priority within image and no-image result buckets", () => {
     const results = searchSupplierCatalog(getSupplierSearchIndex().allRecords, "");
     const priority = { "thanh-thuy": 0, "ba-thanh": 1, "an-cuong": 2 } as const;
-    const supplierRanks = results.map((record) => priority[record.supplierId]);
+    const firstMissingImage = results.findIndex((record) => !record.thumbnail);
+    const imageRanks = results
+      .slice(0, firstMissingImage)
+      .map((record) => priority[record.supplierId]);
+    const missingImageRanks = results
+      .slice(firstMissingImage)
+      .map((record) => priority[record.supplierId]);
 
-    expect(supplierRanks).toEqual([...supplierRanks].sort((left, right) => left - right));
+    expect(imageRanks).toEqual([...imageRanks].sort((left, right) => left - right));
+    expect(missingImageRanks).toEqual(
+      [...missingImageRanks].sort((left, right) => left - right),
+    );
   });
 
   it("ranks an exact normalized code before names and partial matches", () => {
@@ -89,9 +133,11 @@ describe("full supplier compact search index", () => {
   });
 
   it("returns only non-empty material taxonomy choices in the requested order", () => {
-    const options = getMaterialTaxonomyOptions(getSupplierSearchIndex().allRecords);
+    const options = getMaterialTaxonomyOptions(
+      getAllSupplierSearchEntriesForCatalogue(),
+    );
     expect(options.map((option) => option.slug)).toEqual([
-      "all", "melamine", "laminate", "acrylic", "veneer", "pvc-ppet", "worktop", "edge-banding", "panel", "other-decorative",
+      "all", "melamine", "laminate", "acrylic", "veneer", "pvc-ppet", "worktop", "edge-banding",
     ]);
     expect(options.find((option) => option.slug === "worktop")?.label).toBe("Mặt Top (Compact)");
     expect(options.every((option) => option.count > 0)).toBe(true);

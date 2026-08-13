@@ -155,12 +155,17 @@ if (uniqueFamilyRecords.some((record) => colorCodeIds.has(record.id))) {
   throw new Error("Supplier family index collides with a public color-code ID");
 }
 const records = [...colorCodeRecords, ...uniqueFamilyRecords];
+const sharedCatalogueRecords = records.filter(
+  (record) =>
+    record.material !== "panel" && record.material !== "other-decorative",
+);
 const index = {
   schemaVersion: 1 as const,
   checksum: source.checksum,
   // Keep `records` backward-compatible for supplier hubs; shared catalogue uses allRecords.
   records: colorCodeRecords,
   allRecords: records,
+  sharedCatalogueRecords,
   totals: buildTotals(colorCodeRecords),
 };
 
@@ -169,7 +174,7 @@ export function getSupplierSearchIndex() {
 }
 
 export function getAllSupplierSearchEntries(): SearchIndexRecord[] {
-  return index.allRecords;
+  return index.sharedCatalogueRecords;
 }
 
 export function getSupplierTotals(): SupplierTotals {
