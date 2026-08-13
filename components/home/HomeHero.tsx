@@ -37,7 +37,7 @@ export function HomeHero() {
   return (
     <section
       id="trang-chu"
-      className="home-hero relative isolate overflow-hidden border-b border-forest-900/10 bg-[#f1ede7]"
+      className="home-hero relative isolate overflow-hidden border-b border-forest-900/10 bg-white"
     >
       <div className="home-hero-image-layer absolute inset-0 z-0" aria-hidden="true">
         <picture>
@@ -93,7 +93,7 @@ export function HomeHero() {
               rel="noopener noreferrer"
               eventName="request_quote"
               eventProperties={{ location: "home_hero", channel: "zalo" }}
-              className="pressable inline-flex min-h-12 items-center justify-center gap-2 border border-forest-900/25 bg-[#f7f3ed]/90 px-5 text-sm font-extrabold text-forest-950 hover:border-wood-500 hover:bg-white"
+              className="pressable inline-flex min-h-12 items-center justify-center gap-2 border border-forest-900/25 bg-white/90 px-5 text-sm font-extrabold text-forest-950 hover:border-wood-500 hover:bg-white"
             >
               <Image
                 src="/images/logo-zalo.webp"

@@ -141,7 +141,7 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
                 href={item.href}
                 prefetch={item.prefetch}
                 aria-current={item.active ? "page" : undefined}
-                className={`site-header-nav-link relative inline-flex min-h-11 items-center text-[12px] font-extrabold transition-colors 2xl:text-[13px] ${item.active ? "site-header-nav-link--active after:absolute after:inset-x-0 after:bottom-1 after:h-0.5 after:bg-wood-500" : "hover:text-wood-600"}`}
+                className={`site-header-nav-link relative inline-flex min-h-11 items-center text-[14px] font-extrabold transition-colors ${item.active ? "site-header-nav-link--active after:absolute after:inset-x-0 after:bottom-1 after:h-0.5 after:bg-wood-500" : "hover:text-wood-600"}`}
               >
                 {item.label}
               </Link>
@@ -163,10 +163,11 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
             rel="noopener noreferrer"
             eventName="request_quote"
             eventProperties={{ location: "site_header", channel: "zalo" }}
-            className="pressable hidden min-h-[52px] items-center justify-center gap-2 bg-wood-500 px-5 text-xs font-extrabold text-white shadow-[0_8px_20px_rgba(184,77,0,.2)] hover:bg-wood-600 xl:inline-flex"
+            aria-label="Liên hệ Zalo qua số 0909 259 160"
+            className="pressable hidden min-h-[52px] items-center justify-center gap-2 bg-wood-500 px-5 text-sm font-extrabold tabular-nums text-white shadow-[0_8px_20px_rgba(184,77,0,.2)] hover:bg-wood-600 xl:inline-flex"
           >
             <MessageCircle size={16} aria-hidden="true" />
-            Liên hệ Zalo
+            0909 259 160
           </TrackedLink>
           <button
             ref={triggerRef}
