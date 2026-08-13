@@ -150,7 +150,7 @@ test.describe("Mã màu customer journeys", () => {
       page.getByText("Kết quả phù hợp", { exact: true }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: "2.982 sản phẩm", exact: true }),
+      page.getByRole("heading", { name: "2.911 sản phẩm", exact: true }),
     ).toBeVisible();
     const region = page.getByRole("region", { name: "Kết quả mã màu" });
     await expect(region.getByRole("article")).toHaveCount(48);
@@ -199,6 +199,21 @@ test.describe("Mã màu customer journeys", () => {
     await expect(
       page.getByText("Danh mục: Melamine · Vân gỗ", { exact: false }).first(),
     ).toBeVisible();
+  });
+
+  test("shared catalogue hides Panel and Khác but keeps Ba Thanh edge banding", async ({
+    page,
+  }) => {
+    await page.goto("/catalogue/");
+
+    await expect(page.getByRole("button", { name: "Panel", exact: true })).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Khác", exact: true })).toHaveCount(0);
+
+    await page
+      .getByRole("combobox", { name: "Theo thương hiệu" })
+      .selectOption("ba-thanh");
+    await page.getByRole("button", { name: "Mã cạnh", exact: true }).click();
+    await expect(page.getByText("Chỉ dán cạnh Veneer/PVC", { exact: true })).toBeVisible();
   });
 
   test("catalogue filters expose clear selected states and supplier filtering", async ({
