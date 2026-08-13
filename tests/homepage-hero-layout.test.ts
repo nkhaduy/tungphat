@@ -28,4 +28,17 @@ describe("homepage editorial material hero", () => {
     expect(catalogue).toContain("/images/material-color-hero.webp");
     expect(catalogue).not.toContain("material-panels-hero");
   });
+
+  it("uses the color-code and Zalo language in the primary hero actions", () => {
+    expect(hero).toContain("Xem mã màu");
+    expect(hero).toContain("Liên hệ Zalo");
+    expect(hero).not.toContain("Xem catalogue");
+    expect(hero).not.toContain("Nhận tư vấn");
+  });
+
+  it("keeps the hero image slightly inset so the material scene has breathing room", () => {
+    const styles = readFileSync("app/globals.css", "utf8");
+    expect(styles).toContain(".material-panels-hero-image");
+    expect(styles).toContain("transform: scale(0.985)");
+  });
 });

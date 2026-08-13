@@ -180,8 +180,8 @@ test("homepage có hero vật liệu editorial, CTA gọn và một ảnh LCP ư
       name: "Ván gỗ công nghiệp & gia công CNC tại TP.HCM",
     }),
   ).toBeVisible();
-  await expect(hero.getByRole("link", { name: "Nhận tư vấn" })).toBeVisible();
-  await expect(hero.getByRole("link", { name: "Xem catalogue" })).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Liên hệ Zalo" })).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Xem mã màu" })).toBeVisible();
   await expect(hero.locator(".material-panels-hero-image")).toBeVisible();
   await expect(hero.locator('source[type="image/avif"]')).toHaveAttribute(
     "srcset",

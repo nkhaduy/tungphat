@@ -1,9 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
   Boxes,
   MapPinned,
-  MessageCircle,
   Ruler,
   Settings2,
 } from "lucide-react";
@@ -67,7 +67,7 @@ export function HomeHero() {
       </div>
 
       <div className="container-shell relative z-10 grid lg:min-h-[560px] lg:grid-cols-[minmax(0,47rem)_1fr] lg:items-center">
-        <div className="home-hero-copy max-w-[47rem] pb-10 pt-[calc(2.5rem+4.5rem)] sm:pb-12 sm:pt-[calc(3rem+4.5rem)] lg:pb-14 lg:pt-[calc(3.5rem+4.5rem)]">
+        <div className="home-hero-copy max-w-[47rem] pb-10 pt-[calc(3.25rem+var(--site-header-height))] sm:pb-12 sm:pt-[calc(3.75rem+var(--site-header-height))] lg:pb-14 lg:pt-[calc(4.25rem+var(--site-header-height))]">
           <p className="eyebrow">Vật liệu gỗ &amp; gia công tại xưởng</p>
           <h1 className="text-balance mt-4 font-display text-[clamp(2.7rem,8vw,4.75rem)] font-extrabold leading-[.98] tracking-[-.05em] text-forest-950">
             Ván gỗ công nghiệp
@@ -85,7 +85,7 @@ export function HomeHero() {
               prefetch={false}
               className="pressable inline-flex min-h-12 items-center justify-center gap-2 bg-forest-900 px-5 text-sm font-extrabold text-white hover:bg-forest-800"
             >
-              Xem catalogue <ArrowRight size={17} aria-hidden="true" />
+              Xem mã màu <ArrowRight size={17} aria-hidden="true" />
             </Link>
             <TrackedLink
               href={ZALO_URL}
@@ -95,8 +95,16 @@ export function HomeHero() {
               eventProperties={{ location: "home_hero", channel: "zalo" }}
               className="pressable inline-flex min-h-12 items-center justify-center gap-2 border border-forest-900/25 bg-[#f7f3ed]/90 px-5 text-sm font-extrabold text-forest-950 hover:border-wood-500 hover:bg-white"
             >
-              <MessageCircle size={17} aria-hidden="true" />
-              Nhận tư vấn
+              <Image
+                src="/images/logo-zalo.webp"
+                alt=""
+                width={1200}
+                height={420}
+                sizes="36px"
+                className="h-auto w-9"
+                aria-hidden="true"
+              />
+              Liên hệ Zalo
             </TrackedLink>
           </div>
         </div>

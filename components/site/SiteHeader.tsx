@@ -107,17 +107,17 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
         data-scrolled={scrolled ? "true" : "false"}
         data-tone={tone}
       >
-        <div className="container-shell flex h-[72px] items-center justify-between gap-4">
+        <div className="container-shell flex h-[80px] items-center justify-between gap-4">
           <Link
             href="/"
             aria-label="Tùng Phát - Trang chủ"
-            className="relative block h-[46px] w-[196px] shrink-0 sm:w-[220px]"
+            className="relative block h-[50px] w-[210px] shrink-0 sm:w-[236px]"
           >
             <Image
               src="/logo-horizontal.webp"
               alt="Tùng Phát"
               fill
-              sizes="220px"
+              sizes="236px"
               loading="eager"
               className="site-header-logo site-header-logo--default object-contain object-left"
             />
@@ -125,7 +125,7 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
               src="/logo-horizontal-white.png"
               alt=""
               fill
-              sizes="220px"
+              sizes="236px"
               loading="eager"
               className="site-header-logo site-header-logo--inverse object-contain object-left"
               aria-hidden="true"
@@ -163,10 +163,10 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
             rel="noopener noreferrer"
             eventName="request_quote"
             eventProperties={{ location: "site_header", channel: "zalo" }}
-            className="pressable hidden min-h-12 items-center justify-center gap-2 bg-wood-500 px-5 text-xs font-extrabold text-white shadow-[0_8px_20px_rgba(184,77,0,.2)] hover:bg-wood-600 xl:inline-flex"
+            className="pressable hidden min-h-[52px] items-center justify-center gap-2 bg-wood-500 px-5 text-xs font-extrabold text-white shadow-[0_8px_20px_rgba(184,77,0,.2)] hover:bg-wood-600 xl:inline-flex"
           >
             <MessageCircle size={16} aria-hidden="true" />
-            Gửi quy cách nhận báo giá
+            Liên hệ Zalo
           </TrackedLink>
           <button
             ref={triggerRef}
@@ -175,7 +175,7 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
             aria-expanded={menuOpen}
             aria-controls="site-mobile-navigation"
             onClick={() => setMenuOpen(true)}
-            className="site-header-menu pressable grid h-11 w-11 place-items-center border hover:border-wood-500 hover:text-wood-600 xl:hidden"
+            className="site-header-menu pressable grid h-12 w-12 place-items-center border hover:border-wood-500 hover:text-wood-600 xl:hidden"
           >
             <Menu size={22} aria-hidden="true" />
           </button>
