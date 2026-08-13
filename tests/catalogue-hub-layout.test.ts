@@ -72,6 +72,7 @@ describe("catalogue hub customer journey", () => {
     expect(markup).not.toContain("Lọc theo nhà cung cấp");
     expect(markup).not.toContain("Mặc định ưu tiên ý định tra mã Melamine");
     expect(markup).toContain("catalogue-filter-row");
+    expect(markup).not.toContain("Kiểu vân / màu");
     expect(markup).not.toContain("2.829</span>");
     expect(markup).not.toContain("846</span>");
   });

@@ -1,11 +1,15 @@
 import artifact from "@/data/catalogs/supplier-color-codes.json";
-import { materialTaxonomyOptions } from "../material-taxonomy";
+import fullArtifact from "@/data/catalogs/supplier-search-index.json";
+import {
+  classifyCatalogGroup,
+  materialTaxonomyOptions,
+} from "../material-taxonomy";
 import type { PublicSupplierColorCode } from "../color-codes/types";
 import type { CatalogSearchEntry, SupplierId } from "../core/types";
 
 type SearchIndexRecord = CatalogSearchEntry & {
   id: string;
-  recordType: "color-code";
+  recordType: "color-code" | "family";
 };
 
 type SupplierTotals = Record<
@@ -82,6 +86,12 @@ function toSearchRecord(record: PublicSupplierColorCode): SearchIndexRecord {
     category: record.materialType,
     series: record.collection,
     group: record.patternType,
+    sourceGroup: record.patternType,
+    canonicalGroup: classifyCatalogGroup([
+      record.patternType,
+      record.collection,
+      record.displayName,
+    ]),
     material: materialSlug(record),
     seoStatus: record.seoStatus,
     indexable: record.seoStatus === "READY_TO_INDEX",
@@ -109,16 +119,57 @@ function buildTotals(records: SearchIndexRecord[]): SupplierTotals {
   ) as SupplierTotals;
 }
 
-const records = source.records.map(toSearchRecord);
+const colorCodeRecords = source.records.map(toSearchRecord);
+const fullRecords = (fullArtifact as {
+  records: Array<CatalogSearchEntry & { id: string; recordType: string }>;
+}).records;
+const familyRecords: SearchIndexRecord[] = fullRecords
+  .filter((record) => record.recordType === "family")
+  .map((record) => ({
+    ...record,
+    recordType: "family",
+    sourceGroup: record.sourceGroup ?? record.group,
+    canonicalGroup:
+      record.canonicalGroup ??
+      classifyCatalogGroup([
+        record.sourceGroup,
+        record.group,
+        record.series,
+        record.name,
+      ]),
+  }));
+const colorCodeIds = new Set(colorCodeRecords.map((record) => record.id));
+const familySourceUrls = new Set(
+  colorCodeRecords.flatMap((record) =>
+    record.supplierId === "thanh-thuy" && record.canonicalRoute
+      ? [record.canonicalRoute]
+      : [],
+  ),
+);
+const uniqueFamilyRecords = familyRecords.filter((record) => {
+  if (record.supplierId !== "thanh-thuy") return true;
+  if (/^VENEER (?:CHEERY|OAK|WALNUT)$/i.test(record.name)) return false;
+  return !familySourceUrls.has(record.canonicalRoute);
+});
+if (uniqueFamilyRecords.some((record) => colorCodeIds.has(record.id))) {
+  throw new Error("Supplier family index collides with a public color-code ID");
+}
+const records = [...colorCodeRecords, ...uniqueFamilyRecords];
 const index = {
   schemaVersion: 1 as const,
   checksum: source.checksum,
-  records,
-  totals: buildTotals(records),
+  // Keep `records` backward-compatible for supplier hubs; shared catalogue uses allRecords.
+  records: colorCodeRecords,
+  allRecords: records,
+  totals: buildTotals(colorCodeRecords),
 };
 
 export function getSupplierSearchIndex() {
   return index;
+}
+
+export function getAllSupplierSearchEntries(): SearchIndexRecord[] {
+  return index.allRecords;
 }
 
 export function getSupplierTotals(): SupplierTotals {

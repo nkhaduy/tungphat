@@ -5,8 +5,8 @@ import { getSupplierSearchIndex } from "./search-index";
 const definition = supplierRegistry.get("an-cuong");
 if (!definition) throw new Error("An Cuong supplier definition is missing");
 
-const entries = getSupplierSearchIndex().records.filter((record) => record.supplierId === "an-cuong");
-const materials = [...new Set(entries.map((entry) => entry.category).filter(Boolean))] as string[];
+const entries = getSupplierSearchIndex().allRecords.filter((record) => record.supplierId === "an-cuong");
+const colorCodeEntries = entries.filter((record) => record.recordType === "color-code");
 
 export const anCuongAdapter: SupplierCatalogAdapter = {
   definition,
@@ -21,13 +21,13 @@ export const anCuongAdapter: SupplierCatalogAdapter = {
         kind: "catalogue" as const,
         indexable: true,
       },
-      ...materials.map((material) => ({
+      ...[...new Set(colorCodeEntries.map((entry) => entry.category).filter(Boolean))].map((material) => ({
           supplierId: definition.id,
           path: `${definition.cataloguePath}${material}/`,
           kind: "category" as const,
           indexable: true,
         })),
-      ...entries.map((entry) => ({
+      ...colorCodeEntries.map((entry) => ({
         supplierId: definition.id,
         path: entry.canonicalRoute,
         kind: "detail" as const,

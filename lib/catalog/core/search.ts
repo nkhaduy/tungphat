@@ -1,4 +1,8 @@
-import type { CatalogSearchEntry, SupplierId } from "./types";
+import type {
+  CanonicalCatalogGroup,
+  CatalogSearchEntry,
+  SupplierId,
+} from "./types";
 import { isMaterialTaxonomySlug } from "../material-taxonomy";
 import { supplierPriority } from "./registry";
 
@@ -6,14 +10,20 @@ export type CatalogSearchIntent = "all" | "melamine" | "supplier";
 
 export function getCatalogSearchOptionsForSelection(
   group: string,
+  canonicalGroup: CanonicalCatalogGroup | "",
   type: CatalogSearchIntent,
-): { group: string | undefined; material: string | undefined } {
+): {
+  canonicalGroup: CanonicalCatalogGroup | undefined;
+  group: string | undefined;
+  material: string | undefined;
+} {
   const material = isMaterialTaxonomySlug(group)
     ? group
     : type === "melamine"
       ? "melamine"
       : undefined;
   return {
+    canonicalGroup: canonicalGroup || undefined,
     group: group && !isMaterialTaxonomySlug(group) ? group : undefined,
     material,
   };
@@ -88,6 +98,7 @@ export function searchSupplierCatalog(
     supplierId?: SupplierId;
     category?: string;
     group?: string;
+    canonicalGroup?: CanonicalCatalogGroup;
     material?: string;
     type?: Exclude<CatalogSearchIntent, "supplier">;
   } = {},
@@ -95,6 +106,7 @@ export function searchSupplierCatalog(
   const normalizedQuery = normalizeCatalogSearch(query);
   const normalizedCategory = normalizeCatalogSearch(options.category ?? "");
   const normalizedGroup = normalizeCatalogSearch(options.group ?? "");
+  const normalizedCanonicalGroup = normalizeCatalogSearch(options.canonicalGroup ?? "");
   const normalizedMaterial = normalizeCatalogSearch(options.material ?? "");
 
   return entries
@@ -124,6 +136,12 @@ export function searchSupplierCatalog(
       if (
         normalizedMaterial &&
         normalizeCatalogSearch(entry.material ?? "") !== normalizedMaterial
+      )
+        return false;
+      if (
+        normalizedCanonicalGroup &&
+        normalizeCatalogSearch(entry.canonicalGroup ?? "") !==
+          normalizedCanonicalGroup
       )
         return false;
       if (

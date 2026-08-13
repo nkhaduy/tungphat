@@ -7,19 +7,18 @@ import {
 import { searchSupplierCatalog } from "@/lib/catalog/core/search";
 
 describe("full supplier compact search index", () => {
-  it("indexes every verified public color code exactly once", () => {
+  it("indexes every verified public color code plus unique non-code families", () => {
     const index = getSupplierSearchIndex();
+    const records = index.allRecords;
 
-    expect(index.records).toHaveLength(2_829);
-    expect(new Set(index.records.map((record) => record.id)).size).toBe(2_829);
-    expect(index.records.filter((record) => record.supplierId === "an-cuong")).toHaveLength(2_195);
-    expect(index.records.filter((record) => record.supplierId === "thanh-thuy")).toHaveLength(342);
-    expect(index.records.filter((record) => record.supplierId === "ba-thanh")).toHaveLength(292);
-    expect(index.records.every((record) => record.recordType === "color-code" && record.code.trim())).toBe(true);
+    expect(records.length).toBeGreaterThan(2_829);
+    expect(new Set(records.map((record) => record.id)).size).toBe(records.length);
+    expect(records.filter((record) => record.recordType === "color-code")).toHaveLength(2_829);
+    expect(records.filter((record) => record.recordType === "document")).toHaveLength(0);
   });
 
   it("groups default mixed results by Thanh Thuy, Ba Thanh, then An Cuong", () => {
-    const results = searchSupplierCatalog(getSupplierSearchIndex().records, "");
+    const results = searchSupplierCatalog(getSupplierSearchIndex().allRecords, "");
     const priority = { "thanh-thuy": 0, "ba-thanh": 1, "an-cuong": 2 } as const;
     const supplierRanks = results.map((record) => priority[record.supplierId]);
 
@@ -27,7 +26,7 @@ describe("full supplier compact search index", () => {
   });
 
   it("ranks an exact normalized code before names and partial matches", () => {
-    const entries = getSupplierSearchIndex().records;
+    const entries = getSupplierSearchIndex().allRecords;
     const exact = entries.find((record) => record.normalizedCode === "MFCMS01012T");
     expect(exact).toBeDefined();
     const partial = { ...exact!, id: "test-partial", code: "MFCMS01012T2", normalizedCode: "MFCMS01012T2", demandScore: 0 };
@@ -41,21 +40,45 @@ describe("full supplier compact search index", () => {
   });
 
   it("gives every An Cuong color code a canonical detail route", () => {
-    expect(getSupplierSearchIndex().records
-      .filter((record) => record.supplierId === "an-cuong")
+    expect(getSupplierSearchIndex().allRecords
+      .filter((record) => record.supplierId === "an-cuong" && record.recordType === "color-code")
       .every((record) => /^\/catalogue\/an-cuong\/[^/]+\/[^/]+\/$/.test(record.canonicalRoute))).toBe(true);
   });
 
   it("recovers a local swatch for every An Cuong color code", () => {
-    expect(getSupplierSearchIndex().records
-      .filter((record) => record.supplierId === "an-cuong" && !record.thumbnail)).toHaveLength(0);
+    expect(getSupplierSearchIndex().allRecords
+      .filter((record) => record.supplierId === "an-cuong" && record.recordType === "color-code" && !record.thumbnail)).toHaveLength(0);
   });
 
-  it("never publishes family or document records", () => {
-    const records = getSupplierSearchIndex().records.filter(
-      (record) => record.recordType === "family" || record.recordType === "document",
+  it("publishes the five Thanh Thuy edge families without inventing codes", () => {
+    const records = getSupplierSearchIndex().allRecords.filter(
+      (record) =>
+        record.supplierId === "thanh-thuy" &&
+        record.recordType === "family" &&
+        record.material === "edge-banding",
     );
-    expect(records).toHaveLength(0);
+
+    expect(records).toHaveLength(5);
+    expect(records.every((record) => !record.code && !record.indexable)).toBe(true);
+    expect(records.every((record) => record.canonicalRoute === "/san-pham/chi-nep-nhua/")).toBe(true);
+    expect(records.filter((record) => record.canonicalGroup === "woodgrain")).toHaveLength(3);
+  });
+
+  it("represents each Thanh Thuy source product once across codes and families", () => {
+    const records = getSupplierSearchIndex().allRecords.filter(
+      (record) => record.supplierId === "thanh-thuy",
+    );
+
+    expect(records).toHaveLength(348);
+    expect(records.filter((record) => record.recordType === "color-code")).toHaveLength(342);
+    expect(records.filter((record) => record.recordType === "family")).toHaveLength(6);
+    expect(
+      records.filter(
+        (record) =>
+          record.recordType === "family" &&
+          /VENEER (?:CHEERY|OAK|WALNUT)/.test(record.name),
+      ),
+    ).toHaveLength(0);
   });
 
   it("derives supplier totals only from verified public color codes", () => {
@@ -66,9 +89,9 @@ describe("full supplier compact search index", () => {
   });
 
   it("returns only non-empty material taxonomy choices in the requested order", () => {
-    const options = getMaterialTaxonomyOptions(getSupplierSearchIndex().records);
+    const options = getMaterialTaxonomyOptions(getSupplierSearchIndex().allRecords);
     expect(options.map((option) => option.slug)).toEqual([
-      "all", "melamine", "laminate", "acrylic", "veneer", "pvc-ppet", "worktop", "edge-banding",
+      "all", "melamine", "laminate", "acrylic", "veneer", "pvc-ppet", "worktop", "edge-banding", "panel", "other-decorative",
     ]);
     expect(options.find((option) => option.slug === "worktop")?.label).toBe("Mặt Top (Compact)");
     expect(options.every((option) => option.count > 0)).toBe(true);
@@ -79,10 +102,10 @@ describe("full supplier compact search index", () => {
     const optionsForSupplier = Reflect.get(taxonomy, "materialTaxonomyOptionsForSupplier");
 
     expect(optionsForSupplier).toBeTypeOf("function");
-    const options = optionsForSupplier(getSupplierSearchIndex().records, "thanh-thuy");
+    const options = optionsForSupplier(getSupplierSearchIndex().allRecords, "thanh-thuy");
 
     expect(options.every((option: { count: number }) => option.count > 0)).toBe(true);
-    expect(options.map((option: { slug: string }) => option.slug)).not.toContain("edge-banding");
+    expect(options.map((option: { slug: string }) => option.slug)).toContain("edge-banding");
     expect(options.map((option: { slug: string }) => option.slug)).not.toContain("panel");
   });
 });

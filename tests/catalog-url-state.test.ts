@@ -13,13 +13,14 @@ describe("catalogue URL state", () => {
     expect(
       parseCatalogUrlState(
         new URLSearchParams(
-          "query=BT111&type=melamine&group=van-go&supplier=ba-thanh",
+          "query=BT111&type=melamine&group=melamine&pattern=woodgrain&supplier=ba-thanh",
         ),
       ),
     ).toEqual({
       query: "BT111",
       type: "melamine",
-      group: "van-go",
+      group: "melamine",
+      pattern: "woodgrain",
       supplierId: "ba-thanh",
     });
   });
@@ -36,11 +37,12 @@ describe("catalogue URL state", () => {
     expect(legacy).toEqual({
       query: "SC020M",
       type: "all",
-      group: "don-sac",
+      group: "",
+      pattern: "solid",
       supplierId: "",
     });
     expect(next.toString()).toBe(
-      "utm_source=preview&query=SC020M&group=don-sac",
+      "utm_source=preview&query=SC020M&pattern=solid",
     );
   });
 
@@ -50,6 +52,7 @@ describe("catalogue URL state", () => {
         query: "",
         type: "all",
         group: "",
+        pattern: "",
         supplierId: "",
       }),
     ).toBe(false);
@@ -58,6 +61,7 @@ describe("catalogue URL state", () => {
         query: "BT111",
         type: "all",
         group: "",
+        pattern: "",
         supplierId: "",
       }),
     ).toBe(true);
@@ -66,9 +70,18 @@ describe("catalogue URL state", () => {
         query: "",
         type: "supplier",
         group: "",
+        pattern: "",
         supplierId: "",
       }),
     ).toBe(true);
+  });
+
+  it("drops invalid canonical pattern filters", () => {
+    expect(
+      parseCatalogUrlState(
+        new URLSearchParams("group=melamine&pattern=oak-collection"),
+      ),
+    ).toMatchObject({ group: "melamine", pattern: "" });
   });
 
   it("restores supplier collection query/group state and removes legacy keys", () => {

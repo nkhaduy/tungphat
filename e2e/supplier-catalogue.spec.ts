@@ -150,13 +150,55 @@ test.describe("Mã màu customer journeys", () => {
       page.getByText("Kết quả phù hợp", { exact: true }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: "2.829 mã màu", exact: true }),
+      page.getByRole("heading", { name: "2.982 sản phẩm", exact: true }),
     ).toBeVisible();
     const region = page.getByRole("region", { name: "Kết quả mã màu" });
     await expect(region.getByRole("article")).toHaveCount(48);
     await page.getByTestId("catalogue-load-sentinel").scrollIntoViewIfNeeded();
     await expect(page.getByText("Đang tải thêm mã màu", { exact: true })).toBeVisible();
     await expect(region.getByRole("article")).toHaveCount(96);
+  });
+
+  test("Thanh Thuỳ exposes edge families and merged Melamine subgroups", async ({
+    page,
+  }) => {
+    await page.goto("/catalogue/");
+    const supplier = page.getByRole("combobox", { name: "Theo thương hiệu" });
+    await supplier.selectOption("thanh-thuy");
+
+    await page.getByRole("button", { name: "Mã cạnh", exact: true }).click();
+    await expect(page).toHaveURL(
+      /(?=.*supplier=thanh-thuy)(?=.*group=edge-banding)/,
+    );
+    await expect(
+      page.getByRole("heading", { name: "5 sản phẩm", exact: true }),
+    ).toBeVisible();
+    const edgeRegion = page.getByRole("region", { name: "Kết quả mã màu" });
+    for (const name of [
+      "CHỈ NẸP ĐEN",
+      "CHỈ NẸP TRẮNG",
+      "CHỈ NẸP VÂN GỖ 1",
+      "CHỈ NẸP VÂN GỖ 2",
+      "CHỈ NẸP VÂN GỖ 3",
+    ]) {
+      await expect(edgeRegion.getByText(name, { exact: true })).toBeVisible();
+    }
+
+    await page.getByRole("button", { name: "Melamine", exact: true }).click();
+    await expect(page.getByText("Kiểu vân / màu", { exact: true })).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Vân gỗ", exact: true }),
+    ).toBeVisible();
+    await page.getByRole("button", { name: "Vân gỗ", exact: true }).click();
+    await expect(page).toHaveURL(
+      /(?=.*supplier=thanh-thuy)(?=.*group=melamine)(?=.*pattern=woodgrain)/,
+    );
+    await expect(
+      page.getByRole("heading", { name: "40 sản phẩm", exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByText("Danh mục: Melamine · Vân gỗ", { exact: false }).first(),
+    ).toBeVisible();
   });
 
   test("catalogue filters expose clear selected states and supplier filtering", async ({
@@ -169,7 +211,7 @@ test.describe("Mã màu customer journeys", () => {
     await laminate.click();
     await expect(laminate).toHaveAttribute("aria-pressed", "true");
     await expect(
-      page.getByRole("heading", { name: "1.222 mã màu", exact: true }),
+      page.getByRole("heading", { name: "1.236 sản phẩm", exact: true }),
     ).toBeVisible();
 
     const supplier = page.getByRole("combobox", {
@@ -178,7 +220,7 @@ test.describe("Mã màu customer journeys", () => {
     await supplier.selectOption("ba-thanh");
     await expect(supplier).toHaveValue("ba-thanh");
     await expect(
-      page.getByRole("heading", { name: "33 mã màu", exact: true }),
+      page.getByRole("heading", { name: "33 sản phẩm", exact: true }),
     ).toBeVisible();
   });
 
@@ -209,7 +251,7 @@ test.describe("Mã màu customer journeys", () => {
     await expect(thanhThuyCard.getByText("301", { exact: true })).toHaveCount(0);
     await expect(thanhThuyCard.getByText("301 Artistic Stripe", { exact: true })).toHaveCount(1);
     await expect(
-      thanhThuyCard.getByText("Danh mục: Melamine · Vân Gỗ", { exact: true }),
+      thanhThuyCard.getByText("Danh mục: Melamine · Vân gỗ", { exact: true }),
     ).toBeVisible();
     await expect(thanhThuyCard.getByRole("button")).toHaveCount(0);
     await expect(thanhThuyCard.getByText("Chi tiết", { exact: true })).toHaveCount(0);

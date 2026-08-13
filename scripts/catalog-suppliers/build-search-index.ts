@@ -2,7 +2,10 @@ import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { isAnCuongCuratedCategory } from "../../lib/catalog/an-cuong-categories";
-import { classifyMaterialTaxonomy } from "../../lib/catalog/material-taxonomy";
+import {
+  classifyCatalogGroup,
+  classifyMaterialTaxonomy,
+} from "../../lib/catalog/material-taxonomy";
 import type { CatalogSearchEntry, SupplierId } from "../../lib/catalog/core/types";
 
 type RecordType = "sku" | "family" | "document";
@@ -123,19 +126,22 @@ export function buildSupplierSearchIndex(root = process.cwd()): SupplierSearchIn
   const retainedByCode = new Map(retainedBaThanh.map((record) => [record.codeNormalized, record]));
   const records: Array<CatalogSearchEntry & { id: string; recordType: RecordType }> = [];
 
-  const addAnCuong = (record: SourceRecord, recordType: RecordType, sourceGroup: string) => {
+  const addAnCuong = (record: SourceRecord, recordType: RecordType, sourceKind: string) => {
     const code = recordType === "sku" ? text(record, "normalizedProductCode") || text(record, "normalizedCode") || text(record, "productCode") || text(record, "code") : "";
     const category = text(record, "category") || text(record, "productType");
     const series = text(record, "productLine") || text(record, "productFamily");
+    const sourceGroup = text(record, "materialPattern");
     const material = classifyMaterialTaxonomy([category, series, text(record, "productType"), text(record, "name")]);
     const identity = text(record, "sourceId") || text(record, "sourceProductId") || text(record, "slug") || text(record, "sourceChecksum") || text(record, "sourceUrl") || text(record, "sourceHash") || text(record, "normalizedHash") || sha256(`${code}|${text(record, "name")}`);
     records.push({
-      id: `an-cuong:${recordType}:${sourceGroup}:${identity}`,
+      id: `an-cuong:${recordType}:${sourceKind}:${identity}`,
       supplierId: "an-cuong", supplierName: "An Cường", kind: "catalogue-item", recordType,
       code, normalizedCode: code ? normalizedCode(code) : undefined,
       name: text(record, "name"), thumbnail: verifiedPublicThumbnail(root, record),
       canonicalRoute: material && isAnCuongCuratedCategory(material) ? `/catalogue/an-cuong/${material}/` : "/catalogue/an-cuong/",
-      category, series, group: text(record, "materialPattern"), material,
+      category, series, group: sourceGroup, sourceGroup,
+      canonicalGroup: classifyCatalogGroup([sourceGroup, series, text(record, "name")]),
+      material,
       seoStatus: text(record, "seoStatus") || "NOINDEX_USEFUL", indexable: false,
       formats: [...new Set([...array(record, "dimensions"), ...array(record, "thicknesses")].filter((value): value is string => typeof value === "string"))].slice(0, 6),
       demandScore: Number(record.completenessScore ?? 0),
@@ -152,6 +158,8 @@ export function buildSupplierSearchIndex(root = process.cwd()): SupplierSearchIn
     const code = recordType === "sku" ? text(record, "code") : "";
     const category = text(record, "category");
     const attributes = object(record, "attributes");
+    const sourceGroup = String(attributes.pattern ?? "");
+    const series = text(record, "productFamily") || String(attributes.series ?? "");
     const material = classifyMaterialTaxonomy([category, text(record, "productFamily"), text(record, "name")]);
     records.push({
       id: `thanh-thuy:${recordType}:${text(record, "sourceProductId") || text(record, "slug")}`,
@@ -159,7 +167,9 @@ export function buildSupplierSearchIndex(root = process.cwd()): SupplierSearchIn
       code, normalizedCode: code ? normalizedCode(text(record, "normalizedCode") || code) : undefined,
       name: text(record, "name"), thumbnail: localThumbnail(record, "/partners/thanh-thuy-logo.webp"),
       canonicalRoute: recordType === "sku" ? `/san-pham/${slugify(category)}/${text(record, "slug")}/` : categoryRouteForThanhThuy(category),
-      category, series: text(record, "productFamily") || String(attributes.series ?? ""), group: String(attributes.pattern ?? ""), material,
+      category, series, group: sourceGroup, sourceGroup,
+      canonicalGroup: classifyCatalogGroup([sourceGroup, series, text(record, "name")]),
+      material,
       seoStatus: text(record, "seoStatus"), indexable: text(record, "seoStatus") === "READY_TO_INDEX",
       formats: formats(record), demandScore: Number(record.completenessScore ?? 0),
     });
@@ -180,7 +190,9 @@ export function buildSupplierSearchIndex(root = process.cwd()): SupplierSearchIn
       code: retained?.displayName ?? code, normalizedCode: normalized || undefined,
       name: text(record, "name"), thumbnail: localThumbnail(record, "/partners/ba-thanh-logo.webp"),
       canonicalRoute: retained ? `/ma-mau-melamine/ba-thanh/${retained.slug}/` : ["van-go", "don-sac", "van-da", "van-vai"].includes(group) ? `/ma-mau-melamine/ba-thanh/${group}/` : "/ma-mau-melamine/ba-thanh/",
-      category, series: text(record, "productFamily"), group, material,
+      category, series: text(record, "productFamily"), group, sourceGroup: group,
+      canonicalGroup: classifyCatalogGroup([group, text(record, "productFamily"), text(record, "name")]),
+      material,
       seoStatus: text(record, "seoStatus"), indexable: Boolean(retained) && text(record, "seoStatus") === "READY_TO_INDEX",
       formats: formats(record),
       demandScore: retained
