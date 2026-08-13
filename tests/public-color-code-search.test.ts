@@ -6,7 +6,7 @@ import { getSupplierSearchIndex, getSupplierTotals } from "@/lib/catalog/supplie
 describe("public Mã màu search index", () => {
   it("contains only verified color-code records with exact codes", () => {
     const records = getSupplierSearchIndex().records;
-    expect(records).toHaveLength(2_829);
+    expect(records).toHaveLength(2_909);
     expect(records.every((record) => record.kind === "color-code")).toBe(true);
     expect(records.every((record) => record.recordType === "color-code")).toBe(true);
     expect(records.every((record) => record.code.trim() && record.normalizedCode?.trim())).toBe(true);
@@ -17,7 +17,7 @@ describe("public Mã màu search index", () => {
     expect(getSupplierTotals()).toMatchObject({
       "an-cuong": { total: 2_195, colorCodes: 2_195 },
       "thanh-thuy": { total: 342, colorCodes: 342 },
-      "ba-thanh": { total: 292, colorCodes: 292 },
+      "ba-thanh": { total: 372, colorCodes: 372 },
     });
   });
 

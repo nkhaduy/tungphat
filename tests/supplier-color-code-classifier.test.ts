@@ -156,6 +156,36 @@ describe("supplier color-code classifiers", () => {
     });
   });
 
+  it("keeps the official WAY Laminate code instead of replacing it with the matching Melamine code", () => {
+    const laminate = classifyBaThanhRecord({
+      recordType: "sku",
+      code: "P2052",
+      name: "Laminate WAY P 2052 G",
+      category: "Laminate",
+      productFamily: "WAY Laminate",
+      canonicalSourceUrl: "https://bathanh.com.vn/way-p2052",
+      sourceUrls: ["https://bathanh.com.vn/way-p2052"],
+      attributes: {
+        patternGroup: "MÀU ĐƠN SẮC",
+        finishCode: "G",
+        matchingMelamineCode: "SC 017 MW",
+      },
+      collections: ["Laminate WAY 2025-2026"],
+      images: [],
+      seoStatus: "NOINDEX_USEFUL",
+    });
+
+    expect(laminate.colorCode).toMatchObject({
+      codeRaw: "P 2052 G",
+      codeNormalized: "P2052G",
+      displayName: "Laminate WAY P 2052 G",
+      materialType: "laminate",
+    });
+    expect(laminate.colorCode?.searchAliases).toEqual(
+      expect.arrayContaining(["P2052", "P2052 G", "SC 017 MW", "SC017MW"]),
+    );
+  });
+
   it("keeps Thanh Thuy coded decorative products and removes families/documents", () => {
     const sku = classifyThanhThuyRecord({
       recordType: "sku",

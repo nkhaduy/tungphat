@@ -10,6 +10,7 @@ import type {
 import { checksumFullSourceManifest } from "@/lib/catalog/full-import/manifest";
 import type { CatalogImage, SupplierColorCode } from "@/lib/catalog/types";
 import { selectBaThanhDetailMedia } from "./detail-media";
+import { BA_THANH_LAMINATE_WAY_NEW_DEFINITIONS } from "@/lib/catalog/ba-thanh-laminate-way";
 
 export type BaThanhFullSourceItem = {
   materialType?: "melamine" | "laminate";
@@ -20,6 +21,8 @@ export type BaThanhFullSourceItem = {
   codeRaw: string;
   codeNormalized: string;
   displayName: string;
+  catalogueCode?: string;
+  matchingMelamineCode?: string;
   slug: string;
   confident: boolean;
   status: "PARSED" | "REJECTED" | "FAILED";
@@ -297,6 +300,17 @@ function mediaImage(sourceUrl: string, mediaType: CatalogueImage["mediaType"], m
   };
 }
 
+function compactCode(value: string): string {
+  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/Đ/g, "D").replace(/đ/g, "d").replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+}
+
+function sourceRecordForMatchingMelamine(records: CatalogueRecord[], matchingCode: string) {
+  const exact = compactCode(matchingCode);
+  const stripped = compactCode(matchingCode.replace(/\s+[TMG]$/, ""));
+  return records.find((record) => record.recordType === "sku" && record.productFamily === "Melamine" && record.normalizedCode === exact)
+    ?? records.find((record) => record.recordType === "sku" && record.productFamily === "Melamine" && record.normalizedCode === stripped);
+}
+
 function laminateMediaMatchesCode(url: string, code: string) {
   const basename = decodeURIComponent(new URL(url).pathname.split("/").pop() ?? "").toUpperCase();
   const visibleCodes = [
@@ -439,7 +453,13 @@ export function buildBaThanhCatalogueRecords(options: {
       productFamily: "WAY Laminate",
       category: "Laminate",
       collections: [item.sourceCategoryLabel],
-      attributes: { sourceGroup: item.category, patternGroup: item.sourceCategoryLabel, brand: "WAY" },
+      attributes: {
+        sourceGroup: item.category,
+        patternGroup: item.sourceCategoryLabel,
+        brand: "WAY",
+        ...(item.catalogueCode ? { catalogueCode: item.catalogueCode } : {}),
+        ...(item.matchingMelamineCode ? { matchingMelamineCode: item.matchingMelamineCode } : {}),
+      },
       formats: [],
       images: selectBaThanhDetailMedia({
         codeNormalized: item.codeNormalized,
@@ -465,6 +485,45 @@ export function buildBaThanhCatalogueRecords(options: {
       seoStatus: "NOINDEX_USEFUL",
     }));
 
+  const legacyLaminateCodes = new Set(laminate.filter((record) => record.recordType === "sku").map((record) => record.normalizedCode));
+  const catalogueLaminate: CatalogueRecord[] = BA_THANH_LAMINATE_WAY_NEW_DEFINITIONS
+    .filter((definition) => !legacyLaminateCodes.has(definition.routeCode))
+    .map((definition) => {
+      const matchingMelamine = sourceRecordForMatchingMelamine([...melamine, ...newlyDiscoveredMelamine], definition.matchingMelamineCode);
+      const sourceUrl = matchingMelamine?.sourceUrls[0] ?? "https://www.bathanhhocmon.com/catalogue/laminate-way";
+      const images = matchingMelamine?.images ?? [];
+      return {
+        recordType: "sku",
+        supplier: "ba-thanh",
+        sourceProductId: `ba-thanh:laminate:${definition.routeCode}`,
+        code: definition.routeCode,
+        normalizedCode: definition.routeCode,
+        name: `Laminate WAY ${definition.catalogueCode}`,
+        slug: `way-${definition.routeCode.toLowerCase()}`,
+        productFamily: "WAY Laminate",
+        category: "Laminate",
+        collections: [definition.sourceCategoryLabel],
+        attributes: {
+          sourceGroup: definition.category,
+          patternGroup: definition.sourceCategoryLabel,
+          brand: "WAY",
+          catalogueCode: definition.catalogueCode,
+          matchingMelamineCode: definition.matchingMelamineCode,
+          catalogueSourceUrl: "https://www.bathanhhocmon.com/catalogue/laminate-way",
+        },
+        formats: [],
+        images,
+        documents: [],
+        sourceUrls: [sourceUrl, "https://www.bathanhhocmon.com/catalogue/laminate-way"],
+        canonicalSourceUrl: sourceUrl,
+        importedAt: matchingMelamine?.recordType === "sku" ? matchingMelamine.importedAt : options.importedAt,
+        sourceChecksum: checksum({ definition, sourceUrl, images }),
+        completenessScore: 55 + (images.length ? 20 : 0),
+        editorialStatus: "NEEDS_EDITORIAL_REVIEW",
+        seoStatus: "NOINDEX_USEFUL",
+      } satisfies CatalogueRecord;
+    });
+
   const documents: CatalogueRecord[] = DOCUMENT_SOURCES.map((source) => ({
     recordType: "document",
     supplier: "ba-thanh",
@@ -481,7 +540,7 @@ export function buildBaThanhCatalogueRecords(options: {
     needsEditorialReview: true,
   }));
 
-  return [...melamine, ...newlyDiscoveredMelamine, ...laminate, ...familyRecords(mediaByUrl), ...documents];
+  return [...melamine, ...newlyDiscoveredMelamine, ...laminate, ...catalogueLaminate, ...familyRecords(mediaByUrl), ...documents];
 }
 
 function recordUrls(record: CatalogueRecord): string[] {

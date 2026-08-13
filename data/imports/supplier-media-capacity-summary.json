@@ -1,17 +1,17 @@
 {
-  "checksum": "1f936227e3cb0c321c6b56b4325c947a562d35da945d751607365c0ee5019969",
+  "checksum": "c3da71482ed4aad5a99d78db60ff7bf244e4a338743d3fe1b78d36abd92d4674",
   "combined": {
     "invalidRefs": 0,
-    "localPreviewBytes": 80357860,
-    "localPreviewFiles": 525,
-    "localPreviewRefs": 589,
+    "localPreviewBytes": 102265234,
+    "localPreviewFiles": 617,
+    "localPreviewRefs": 814,
     "originalProvenanceOnlyRefs": 6209,
     "rightsStatus": "UNCONFIRMED",
-    "totalRefs": 10654,
-    "uniqueUrls": 7923,
-    "unresolvedDeferredRefs": 3856
+    "totalRefs": 8157,
+    "uniqueUrls": 5328,
+    "unresolvedDeferredRefs": 1134
   },
-  "generatedAt": "2026-08-06T18:41:41.415Z",
+  "generatedAt": "2026-08-13T09:24:56.522Z",
   "policy": {
     "cloudflarePagesLimitsChecked": "2026-07-16",
     "cloudflarePagesLimitsSource": "https://developers.cloudflare.com/pages/platform/limits/",
@@ -21,15 +21,15 @@
     "transformedLegacyAssets": "DELIVERY_VARIANT_NOT_ORIGINAL_BYTES"
   },
   "publicDelivery": {
-    "bytes": 144384764,
+    "bytes": 2149200628,
     "cloudflarePagesFileLimit": 20000,
     "cloudflarePagesMaxFileBytes": 26214400,
-    "directory": "public",
-    "fileCount": 1389,
+    "directory": "out",
+    "fileCount": 14355,
     "fileCountGate": "PASS",
-    "maxFileBytes": 2267726,
+    "maxFileBytes": 16435124,
     "maxFileGate": "PASS",
-    "scope": "PREBUILD_SOURCE_PUBLIC"
+    "scope": "STATIC_OUTPUT"
   },
   "schemaVersion": 1,
   "suppliers": {
@@ -40,20 +40,20 @@
       "localPreviewRefs": 0,
       "originalProvenanceOnlyRefs": 6209,
       "rightsStatus": "UNCONFIRMED",
-      "totalRefs": 9949,
-      "uniqueUrls": 7262,
-      "unresolvedDeferredRefs": 3740
+      "totalRefs": 7267,
+      "uniqueUrls": 4584,
+      "unresolvedDeferredRefs": 1058
     },
     "ba-thanh": {
       "invalidRefs": 0,
-      "localPreviewBytes": 44162928,
-      "localPreviewFiles": 239,
-      "localPreviewRefs": 241,
+      "localPreviewBytes": 66070302,
+      "localPreviewFiles": 331,
+      "localPreviewRefs": 466,
       "originalProvenanceOnlyRefs": 0,
       "rightsStatus": "UNCONFIRMED",
-      "totalRefs": 352,
-      "uniqueUrls": 316,
-      "unresolvedDeferredRefs": 111
+      "totalRefs": 537,
+      "uniqueUrls": 399,
+      "unresolvedDeferredRefs": 71
     },
     "thanh-thuy": {
       "invalidRefs": 0,

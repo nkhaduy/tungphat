@@ -13,6 +13,10 @@ import * as baThanhImportModule from "@/scripts/ba-thanh/import";
 import * as baThanhDiscoveryModule from "@/scripts/ba-thanh/discover-full";
 import * as baThanhCrawlModule from "@/scripts/ba-thanh/crawl-full";
 import { runBaThanhFullImport } from "@/scripts/ba-thanh/full";
+import {
+  BA_THANH_LAMINATE_WAY_DEFINITIONS,
+  BA_THANH_LAMINATE_WAY_NEW_DEFINITIONS,
+} from "@/lib/catalog/ba-thanh-laminate-way";
 
 type LaminateSource = {
   sourceUrl: string;
@@ -30,6 +34,8 @@ type LaminateSource = {
   images: string[];
   discoveredAt: string;
   pageChecksum: string;
+  catalogueCode?: string;
+  matchingMelamineCode?: string;
 };
 
 type FullImportApi = {
@@ -121,6 +127,19 @@ function buildRecords() {
 }
 
 describe("Ba Thanh full catalogue records", () => {
+  it("tracks every official WAY code from the current Ba Thanh catalogue", () => {
+    expect(BA_THANH_LAMINATE_WAY_DEFINITIONS).toHaveLength(113);
+    expect(BA_THANH_LAMINATE_WAY_NEW_DEFINITIONS).toHaveLength(80);
+    expect(new Set(BA_THANH_LAMINATE_WAY_DEFINITIONS.map((item) => item.routeCode)).size).toBe(113);
+    expect(BA_THANH_LAMINATE_WAY_DEFINITIONS).toEqual(expect.arrayContaining([
+      expect.objectContaining({ routeCode: "P2052", catalogueCode: "P 2052 G", matchingMelamineCode: "SC 017 MW" }),
+      expect.objectContaining({ routeCode: "W7020", catalogueCode: "W 7020 Z", matchingMelamineCode: "BT 166" }),
+      expect.objectContaining({ routeCode: "LW20T", catalogueCode: "LW 20 T", matchingMelamineCode: "BT 20" }),
+      expect.objectContaining({ routeCode: "LWSC001M", catalogueCode: "LW SC001 M", matchingMelamineCode: "SC 001 M" }),
+      expect.objectContaining({ routeCode: "LW171T", catalogueCode: "LW 171 T", matchingMelamineCode: "BT 171" }),
+    ]));
+  });
+
   it("retains the known baseline while accepting newly discovered Melamine and Laminate codes", () => {
     expect(discoveryValidation.validateBaThanhDiscoveryCoverage).toBeTypeOf("function");
     expect(crawlValidation.validateBaThanhCrawlCoverage).toBeTypeOf("function");
@@ -258,16 +277,57 @@ describe("Ba Thanh full catalogue records", () => {
     )).toEqual({ "van-go": 153, "don-sac": 62, "van-da": 13, "van-vai": 5 });
   });
 
-  it("imports all 33 verified public WAY Laminate codes as real SKU records", () => {
+  it("imports all 113 verified public WAY Laminate codes as real SKU records", () => {
     const records = buildRecords();
     const laminate = records?.filter(
       (record) => record.recordType === "sku" && record.productFamily === "WAY Laminate",
     );
     const expectedCodes = Object.values(laminateGroups).flat();
 
-    expect(laminate).toHaveLength(33);
-    expect(laminate?.map((record) => record.code).sort()).toEqual([...expectedCodes].sort());
-    expect(laminate?.every((record) => record.canonicalSourceUrl.includes(`/way-${record.code.toLowerCase()}`))).toBe(true);
+    expect(laminate).toHaveLength(113);
+    expect(laminate?.map((record) => record.code).sort()).toEqual([
+      ...expectedCodes,
+      ...BA_THANH_LAMINATE_WAY_NEW_DEFINITIONS.map((item) => item.routeCode),
+    ].sort());
+    expect(laminate?.filter((record) => expectedCodes.includes(record.code)).every((record) => record.canonicalSourceUrl.includes(`/way-${record.code.toLowerCase()}`))).toBe(true);
+  });
+
+  it("imports a catalogue-only LW Laminate code with its matching Melamine relation", () => {
+    const source: LaminateSource = {
+      sourceUrl: "https://bathanh.com.vn/bt-20-wood-grains",
+      sourceImageUrl: "https://www.bathanhhocmon.com/catalogue/laminate-way",
+      category: "van-go",
+      sourceCategoryLabel: "MÀU VÂN GỖ",
+      codeRaw: "LW20T",
+      codeNormalized: "LW20T",
+      displayName: "LW 20 T",
+      catalogueCode: "LW 20 T",
+      matchingMelamineCode: "BT 20",
+      slug: "lw-20-t",
+      confident: true,
+      status: "PARSED",
+      heading: "LAMINATE WAY LW 20 T",
+      text: "Melamine: BT 20",
+      images: [],
+      discoveredAt: importedAt,
+      pageChecksum: "catalogue-lw-20-t",
+    };
+
+    const record = fullImport.buildBaThanhCatalogueRecords?.({
+      melamine: [],
+      laminate: [source],
+      importedAt,
+    }).find((item) => item.recordType === "sku" && item.code === "LW20T");
+
+    expect(record).toMatchObject({
+      name: "Laminate WAY LW 20 T",
+      canonicalSourceUrl: "https://bathanh.com.vn/bt-20-wood-grains",
+      attributes: {
+        catalogueCode: "LW 20 T",
+        matchingMelamineCode: "BT 20",
+      },
+      images: [],
+    });
   });
 
   it("rejects supplier-page images that visibly belong to a different Melamine code", () => {

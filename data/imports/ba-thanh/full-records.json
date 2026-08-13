@@ -12582,6 +12582,4142 @@
       "seoStatus": "NOINDEX_USEFUL"
     },
     {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWA150T",
+      "code": "LWA150T",
+      "normalizedCode": "LWA150T",
+      "name": "Laminate WAY LW A150 T",
+      "slug": "way-lwa150t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW A150 T",
+        "matchingMelamineCode": "BT A150 T",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-a150-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-a150-solid-color",
+      "importedAt": "2026-08-05T09:12:54.389Z",
+      "sourceChecksum": "f20e76f59b2d25b9d5f698e13963e00e4424e1833d302f175a1851f8b7ac2174",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWA150M",
+      "code": "LWA150M",
+      "normalizedCode": "LWA150M",
+      "name": "Laminate WAY LW A150 M",
+      "slug": "way-lwa150m",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW A150 M",
+        "matchingMelamineCode": "BT A150 M",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-a150-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-a150-solid-color",
+      "importedAt": "2026-08-05T09:12:54.389Z",
+      "sourceChecksum": "077f0e41be224f8129cdaed6051ab6fc3a3be8ab904987947dc86d2b936abd00",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWA150G",
+      "code": "LWA150G",
+      "normalizedCode": "LWA150G",
+      "name": "Laminate WAY LW A150 G",
+      "slug": "way-lwa150g",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW A150 G",
+        "matchingMelamineCode": "BT A150 G",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-a150-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-a150-solid-color",
+      "importedAt": "2026-08-05T09:12:54.389Z",
+      "sourceChecksum": "fc612da994fb9db2c59475c44a08d93f10e3adef160e171e3bccd7f7cd12704e",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWXAMCHIT",
+      "code": "LWXAMCHIT",
+      "normalizedCode": "LWXAMCHIT",
+      "name": "Laminate WAY LW XÁM CHÌ T",
+      "slug": "way-lwxamchit",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW XÁM CHÌ T",
+        "matchingMelamineCode": "BT XÁM CHÌ T",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-XAM-CHI.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-btxamchi-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "81a7ea44a6d1bb5dc47afe5d23c3ef91636df1aeb63450ea363dc48444355832",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.380Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-xam-chi-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-xam-chi-solid-color",
+      "importedAt": "2026-08-05T09:12:54.380Z",
+      "sourceChecksum": "b83919a86c11a18d908a8d625b0f18822a5d16508585ea82e971d43b34ac217a",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWDENT",
+      "code": "LWDENT",
+      "normalizedCode": "LWDENT",
+      "name": "Laminate WAY LW ĐEN T",
+      "slug": "way-lwdent",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW ĐEN T",
+        "matchingMelamineCode": "BT ĐEN T",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-den-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-den-solid-color",
+      "importedAt": "2026-08-05T09:12:54.386Z",
+      "sourceChecksum": "2a2ac86329e4b9966769a082accac35b5cfe5c1dc8f578137b2a7046b94f1a9e",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWDENM",
+      "code": "LWDENM",
+      "normalizedCode": "LWDENM",
+      "name": "Laminate WAY LW ĐEN M",
+      "slug": "way-lwdenm",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW ĐEN M",
+        "matchingMelamineCode": "BT ĐEN M",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-den-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-den-solid-color",
+      "importedAt": "2026-08-05T09:12:54.386Z",
+      "sourceChecksum": "2ecc9aa94ac7481a8fa8078a49dc2f5bd3bbfb06c0230283222e39bfab67a3fe",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWDENG",
+      "code": "LWDENG",
+      "normalizedCode": "LWDENG",
+      "name": "Laminate WAY LW ĐEN G",
+      "slug": "way-lwdeng",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW ĐEN G",
+        "matchingMelamineCode": "BT ĐEN G",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-den-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-den-solid-color",
+      "importedAt": "2026-08-05T09:12:54.386Z",
+      "sourceChecksum": "d0c85f11054f7f8bf5b88379b884748bc5bfab5c2866397533cddc2df7361f2c",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWXAMT",
+      "code": "LWXAMT",
+      "normalizedCode": "LWXAMT",
+      "name": "Laminate WAY LW XÁM T",
+      "slug": "way-lwxamt",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW XÁM T",
+        "matchingMelamineCode": "BT XÁM T",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/XAM.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-btxam-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "8c4f6116d3c2e26d550c2bebfc62b39cdd9630b209f4dbd2e5a0b75041c37e30",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.379Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-xam-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-xam-solid-color",
+      "importedAt": "2026-08-05T09:12:54.379Z",
+      "sourceChecksum": "dbf53f55419a3bbc7e8da8284767c30b234b4eb2ae9ed96304aaead85944bd0d",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW01T",
+      "code": "LW01T",
+      "normalizedCode": "LW01T",
+      "name": "Laminate WAY LW 01 T",
+      "slug": "way-lw01t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW 01 T",
+        "matchingMelamineCode": "BT 01 T",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-01-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-01-solid-color",
+      "importedAt": "2026-08-05T09:12:54.390Z",
+      "sourceChecksum": "11d7799738cda83d960749937e82cf3cbcfe3437e5383698925aba3f20a2a4b2",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW01M",
+      "code": "LW01M",
+      "normalizedCode": "LW01M",
+      "name": "Laminate WAY LW 01 M",
+      "slug": "way-lw01m",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW 01 M",
+        "matchingMelamineCode": "BT 01 M",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-01-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-01-solid-color",
+      "importedAt": "2026-08-05T09:12:54.390Z",
+      "sourceChecksum": "3a24af4673d10c32977150ec40b3524e58cc0799deec576dfbb626bcf3f9b684",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW01G",
+      "code": "LW01G",
+      "normalizedCode": "LW01G",
+      "name": "Laminate WAY LW 01 G",
+      "slug": "way-lw01g",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW 01 G",
+        "matchingMelamineCode": "BT 01 G",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-01-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-01-solid-color",
+      "importedAt": "2026-08-05T09:12:54.390Z",
+      "sourceChecksum": "6d600c4e947d57f85523a9b322dc8913056c73699021ea29569efe81c94b77d2",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW60T",
+      "code": "LW60T",
+      "normalizedCode": "LW60T",
+      "name": "Laminate WAY LW 60 T",
+      "slug": "way-lw60t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN ĐÁ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-da",
+        "patternGroup": "MÀU VÂN ĐÁ",
+        "brand": "WAY",
+        "catalogueCode": "LW 60 T",
+        "matchingMelamineCode": "BT 60",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-60-1-e1713937384248.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-60-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "3c07a549a43061b522389ec11270633c3cf67c25247b82c9dc161a1c5f1aeea5",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.424Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-60-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-60-solid-color",
+      "importedAt": "2026-08-05T09:12:54.424Z",
+      "sourceChecksum": "d53f5f00e23167c8075dc528b99cd4ccefaf4868ac5de2c55b747399f0bc9a11",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWS6G",
+      "code": "LWS6G",
+      "normalizedCode": "LWS6G",
+      "name": "Laminate WAY LW S6 G",
+      "slug": "way-lws6g",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN ĐÁ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-da",
+        "patternGroup": "MÀU VÂN ĐÁ",
+        "brand": "WAY",
+        "catalogueCode": "LW S6 G",
+        "matchingMelamineCode": "BT S6 G",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-s6-stone",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-s6-stone",
+      "importedAt": "2026-08-05T09:12:54.417Z",
+      "sourceChecksum": "4646f04a96842d0ebafad7e0d1c3cfc1d1fa3711f304897073b01287fb23ee94",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWS9G",
+      "code": "LWS9G",
+      "normalizedCode": "LWS9G",
+      "name": "Laminate WAY LW S9 G",
+      "slug": "way-lws9g",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN ĐÁ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-da",
+        "patternGroup": "MÀU VÂN ĐÁ",
+        "brand": "WAY",
+        "catalogueCode": "LW S9 G",
+        "matchingMelamineCode": "BT S9 G",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-s9-stone",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-s9-stone",
+      "importedAt": "2026-08-05T09:12:54.415Z",
+      "sourceChecksum": "10699d97c73f6e99d288d115f29e396f3a850dd57ca864bea4d30566aabb0d2a",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW52",
+      "code": "LW52",
+      "normalizedCode": "LW52",
+      "name": "Laminate WAY LW 52",
+      "slug": "way-lw52",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN VẢI"
+      ],
+      "attributes": {
+        "sourceGroup": "van-vai",
+        "patternGroup": "MÀU VÂN VẢI",
+        "brand": "WAY",
+        "catalogueCode": "LW 52",
+        "matchingMelamineCode": "BT 52",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-52-e1713937633934.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-52-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "e0e5be9f7b550368a9f84a7b5ac37d4e62e1dffc81f5a37990b8bcb7f416910e",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.447Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-52-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-52-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.447Z",
+      "sourceChecksum": "9dba6019b94aaf7ac4b29706ea1accc8509e05aeccd57094eca936c049ea48dc",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWSC001M",
+      "code": "LWSC001M",
+      "normalizedCode": "LWSC001M",
+      "name": "Laminate WAY LW SC001 M",
+      "slug": "way-lwsc001m",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW SC001 M",
+        "matchingMelamineCode": "SC 001 M",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/SC-001M.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-sc-001m-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "dc935bb8939bc7816ed47d994cd92d1e758b7d9c1e6f98b233df42460bb08de3",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.377Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc-001m-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc-001m-solid-color",
+      "importedAt": "2026-08-05T09:12:54.377Z",
+      "sourceChecksum": "a485b74c836ee2bbc62d77bd81b7fde3c40a257a9f15e68c540b780002474bf5",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWSC002M",
+      "code": "LWSC002M",
+      "normalizedCode": "LWSC002M",
+      "name": "Laminate WAY LW SC002 M",
+      "slug": "way-lwsc002m",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW SC002 M",
+        "matchingMelamineCode": "SC 002 M",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/SC-002M.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-sc-002m-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "16ecd93997d31cd0c9141e42c6dcb6bf00d2d8140401b93881290acab50bf70e",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.378Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc-002m-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc-002m-solid-color",
+      "importedAt": "2026-08-05T09:12:54.378Z",
+      "sourceChecksum": "bf90cc9f7e69cf9121beec8ff91989f2417ce9c19fa229e532a70b40879610db",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWSC003M",
+      "code": "LWSC003M",
+      "normalizedCode": "LWSC003M",
+      "name": "Laminate WAY LW SC003 M",
+      "slug": "way-lwsc003m",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW SC003 M",
+        "matchingMelamineCode": "SC 003 M",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/SC-003M.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-sc-003m-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "5e4cbd52947168a2536e6e42fd30e4b498bac67097eeb9810ed66cdbf1d6b7af",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.368Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc-003m-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc-003m-solid-color",
+      "importedAt": "2026-08-05T09:12:54.368Z",
+      "sourceChecksum": "4cf14ed6beca444550d450ecace9a8d8725f08ab8ccd27e9dfeca3b5b40a13b8",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWSC004M",
+      "code": "LWSC004M",
+      "normalizedCode": "LWSC004M",
+      "name": "Laminate WAY LW SC004 M",
+      "slug": "way-lwsc004m",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW SC004 M",
+        "matchingMelamineCode": "SC 004 M",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc-004m-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc-004m-solid-color",
+      "importedAt": "2026-08-05T09:12:54.369Z",
+      "sourceChecksum": "e51565fd9a3c009b03ec66479b0e36973bcfb2c4f5084f179505e5a651442b10",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWSC005M",
+      "code": "LWSC005M",
+      "normalizedCode": "LWSC005M",
+      "name": "Laminate WAY LW SC005 M",
+      "slug": "way-lwsc005m",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW SC005 M",
+        "matchingMelamineCode": "SC 005 M",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-005-M.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-sc-005m-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 719,
+          "checksum": "68e4f2d62f299f635bd32da1a8f9702e43ccf8883624d23d0f3822c7eaf570f4",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.359Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc-005m-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc-005m-solid-color",
+      "importedAt": "2026-08-05T09:12:54.359Z",
+      "sourceChecksum": "0d6154d0f12cf33dd4243d83aa3a399ac7d1512fcde0e4669d85a521b89bd2e4",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWSC008M",
+      "code": "LWSC008M",
+      "normalizedCode": "LWSC008M",
+      "name": "Laminate WAY LW SC008 M",
+      "slug": "way-lwsc008m",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW SC008 M",
+        "matchingMelamineCode": "SC 008 M",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-008-M.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-sc-008m-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 719,
+          "checksum": "815891a5f0f75d4d5b4cb897e7c0d1d74961c8e95612f600496779c2af403519",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.352Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc-008m-solid-color",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc-008m-solid-color",
+      "importedAt": "2026-08-05T09:12:54.352Z",
+      "sourceChecksum": "1e1fd15ab9550355ef08d617920e9411b5924b824bfa84de59d6c23a1943763a",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWSC011M",
+      "code": "LWSC011M",
+      "normalizedCode": "LWSC011M",
+      "name": "Laminate WAY LW SC011 M",
+      "slug": "way-lwsc011m",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW SC011 M",
+        "matchingMelamineCode": "SC 011 M",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/btsc011",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/btsc011",
+      "importedAt": "2026-08-05T09:12:54.337Z",
+      "sourceChecksum": "09a508b15d330b3e8eb0f85d90119f20ff43b083a7ea878d40ed7ecffd4c5a2c",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWSC014M",
+      "code": "LWSC014M",
+      "normalizedCode": "LWSC014M",
+      "name": "Laminate WAY LW SC014 M",
+      "slug": "way-lwsc014m",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW SC014 M",
+        "matchingMelamineCode": "SC 014 M",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/btsc014",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/btsc014",
+      "importedAt": "2026-08-05T09:12:54.331Z",
+      "sourceChecksum": "28a7c0c2d709064e3c8654c83048c71ef9cd3076967477c952d1a965753bc523",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWSC015M",
+      "code": "LWSC015M",
+      "normalizedCode": "LWSC015M",
+      "name": "Laminate WAY LW SC015 M",
+      "slug": "way-lwsc015m",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW SC015 M",
+        "matchingMelamineCode": "SC 015 M",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/btsc015",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/btsc015",
+      "importedAt": "2026-08-05T09:12:54.324Z",
+      "sourceChecksum": "cbc304f42d00ddac99625d00a7ef9b8ce3ca9025a0562ac77d2a8203aeaab2ec",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWSC016M",
+      "code": "LWSC016M",
+      "normalizedCode": "LWSC016M",
+      "name": "Laminate WAY LW SC016 M",
+      "slug": "way-lwsc016m",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW SC016 M",
+        "matchingMelamineCode": "SC 016 M",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-016M.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-sc-016m-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 719,
+          "checksum": "6d091ec73a310ed388f76d592d5e026079f813f4741df221c04d67db4cf28ab3",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.326Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc016",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc016",
+      "importedAt": "2026-08-05T09:12:54.326Z",
+      "sourceChecksum": "767987399d8355c95dac4dee3cbd7b8720271ec5a4a43da6a74d0d85857a7ff9",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWSC017M",
+      "code": "LWSC017M",
+      "normalizedCode": "LWSC017M",
+      "name": "Laminate WAY LW SC017 M",
+      "slug": "way-lwsc017m",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW SC017 M",
+        "matchingMelamineCode": "SC 017 M",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/09/SC-017-M.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-sc-017m-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 719,
+          "checksum": "660bd66d464f7ad23f8195ab3662ccada223835039832f88dd6ef78133b37a4a",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.319Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/sc017",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/sc017",
+      "importedAt": "2026-08-05T09:12:54.319Z",
+      "sourceChecksum": "f85dbd3687b7bf579953b9f3f61d1ab276fecac707df5669f137d6bee9176ed5",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LWSC018M",
+      "code": "LWSC018M",
+      "normalizedCode": "LWSC018M",
+      "name": "Laminate WAY LW SC018 M",
+      "slug": "way-lwsc018m",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU ĐƠN SẮC"
+      ],
+      "attributes": {
+        "sourceGroup": "don-sac",
+        "patternGroup": "MÀU ĐƠN SẮC",
+        "brand": "WAY",
+        "catalogueCode": "LW SC018 M",
+        "matchingMelamineCode": "SC 018 M",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/09/SC-018-M.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-sc-018m-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 721,
+          "checksum": "f5adbac5aba902770f469464d4552a8c9a35d49d130c174ab5501434633b9bac",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.320Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/btsc018",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/btsc018",
+      "importedAt": "2026-08-05T09:12:54.320Z",
+      "sourceChecksum": "72453141f742ef3b1c6a421acea0b04f8746aa20e547b7db30a24df6409fb706",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW20T",
+      "code": "LW20T",
+      "normalizedCode": "LW20T",
+      "name": "Laminate WAY LW 20 T",
+      "slug": "way-lw20t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 20 T",
+        "matchingMelamineCode": "BT 20",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-20.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-20-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "75864993322459dd1a785cc14bde3831b512993bf637deebd56ab54e51e4e77b",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.239Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-20-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-20-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.239Z",
+      "sourceChecksum": "125dcd46504b613ff93af9c728d2b0cf0570c488c92f8b0b504b798393660509",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW28T",
+      "code": "LW28T",
+      "normalizedCode": "LW28T",
+      "name": "Laminate WAY LW 28 T",
+      "slug": "way-lw28t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 28 T",
+        "matchingMelamineCode": "BT 28",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-28-e1713938172806.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-28-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "996543d2f1cbe6ec376f68c0783e8b0c3e7d912a0a967c7b4f1ab10cfeb7b723",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.225Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-28-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-28-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.225Z",
+      "sourceChecksum": "7fae948b76d8c5d87d9812305a786c5a7e1247d5d51afb3436c0c9b52df7a36b",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW34T",
+      "code": "LW34T",
+      "normalizedCode": "LW34T",
+      "name": "Laminate WAY LW 34 T",
+      "slug": "way-lw34t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 34 T",
+        "matchingMelamineCode": "BT 34",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-34-e1713937993123.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-34-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "913b61aa6ddcd22e07df38a41b102ef73ae19bf4a184203ad3f1c1b63b54c2f0",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.208Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-34-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-34-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.208Z",
+      "sourceChecksum": "74cc0893f335c02c185624358c9c61b547dfda6c448f99f80d35ba933a297d67",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW37T",
+      "code": "LW37T",
+      "normalizedCode": "LW37T",
+      "name": "Laminate WAY LW 37 T",
+      "slug": "way-lw37t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 37 T",
+        "matchingMelamineCode": "BT 37",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-37-e1713937953177.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-37-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "1fedb8f3c162f521a49a3b65d2ee69880a3025d5732cf0312c2f61a68565b994",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.193Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-37-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-37-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.193Z",
+      "sourceChecksum": "278be92afc91a6078d2a6d8e6ceb794cb3651f26bdf2af5cad74d62ad392b6d1",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW48T",
+      "code": "LW48T",
+      "normalizedCode": "LW48T",
+      "name": "Laminate WAY LW 48 T",
+      "slug": "way-lw48t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 48 T",
+        "matchingMelamineCode": "BT 48",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-48-e1713937721845.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-48-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "e37b3f046eb1db091c63ea571dafcc5b1b300df513a9621b5b4f0970804ed349",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.163Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-48-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-48-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.163Z",
+      "sourceChecksum": "58b59d3970b4d4a65de94936d336a44b62c4fa31d1b18e680430634f343a56a3",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW56T",
+      "code": "LW56T",
+      "normalizedCode": "LW56T",
+      "name": "Laminate WAY LW 56 T",
+      "slug": "way-lw56t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 56 T",
+        "matchingMelamineCode": "BT 56",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-56-e1713937548883.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-56-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "db6f60d1fc4e3341c179f6e12d5456e865ec03d5f0f20e755e074f453688ef0c",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.151Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-56-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-56-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.151Z",
+      "sourceChecksum": "cb438d03d8d32cd8ba30500108ba9843966605afd63bd6c06677a4e9ae22e8f5",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW58T",
+      "code": "LW58T",
+      "normalizedCode": "LW58T",
+      "name": "Laminate WAY LW 58 T",
+      "slug": "way-lw58t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 58 T",
+        "matchingMelamineCode": "BT 58",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-58-e1713937489165.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-58-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "db42637438e85a1a4e090e9f57cce249d7d50cc84459414a7b356a2aa1c664cd",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.142Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-58-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-58-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.142Z",
+      "sourceChecksum": "7e5443b84487d2b471e4e47abd463425927492d3e10de7b40d16a66acf484573",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW59T",
+      "code": "LW59T",
+      "normalizedCode": "LW59T",
+      "name": "Laminate WAY LW 59 T",
+      "slug": "way-lw59t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 59 T",
+        "matchingMelamineCode": "BT 59",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-59-e1713937416293.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-59-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "81fa57c63636b139a39555b5a555a3e19504b5e3f384e6d02bce45f59096ae72",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.133Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-59-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-59-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.133Z",
+      "sourceChecksum": "f43012497cbc3476a2ab5097d81283cf783717f012724edba4c2c1bd2bbc9f1a",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW61T",
+      "code": "LW61T",
+      "normalizedCode": "LW61T",
+      "name": "Laminate WAY LW 61 T",
+      "slug": "way-lw61t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 61 T",
+        "matchingMelamineCode": "BT 61",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-61.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-61-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "2932374d5190c0759a013eb22eee517355061542e10c92a5ccdb2c70c9b261f3",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.136Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-61-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-61-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.136Z",
+      "sourceChecksum": "c3cd9ea677fe0cc160f005b997629b85372460df84a32da7130e5c9aa431cb49",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW54T",
+      "code": "LW54T",
+      "normalizedCode": "LW54T",
+      "name": "Laminate WAY LW 54 T",
+      "slug": "way-lw54t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 54 T",
+        "matchingMelamineCode": "BT 54",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-54-e1713937595405.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-54-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "569a9f15a9fc305a4a9a59f1737908853e919c345487e77abfbad2b97fb7a1ec",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.146Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-54-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-54-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.146Z",
+      "sourceChecksum": "b28a9234fb563ab18cedc116fee06c9666b276595359c3cfe0a2921f26b31105",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW62T",
+      "code": "LW62T",
+      "normalizedCode": "LW62T",
+      "name": "Laminate WAY LW 62 T",
+      "slug": "way-lw62t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 62 T",
+        "matchingMelamineCode": "BT 62",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-62-e1713937332903.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-62-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "296a3bf8cb87e029cc7d6ccdd10cfb2c54528bf51db53aebb141df72b2c01a73",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.126Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-62-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-62-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.126Z",
+      "sourceChecksum": "04e5d62c24eaff0c1fc06a1afb2aa88856da094d61c120b39a7e67ac6211c629",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW63T",
+      "code": "LW63T",
+      "normalizedCode": "LW63T",
+      "name": "Laminate WAY LW 63 T",
+      "slug": "way-lw63t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 63 T",
+        "matchingMelamineCode": "BT 63",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-63-e1713937284153.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-63-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "df6a813cca0f26215a463d4810a6c654f235f4a0ebf2139dd547fc91faa56b46",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.129Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-63-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-63-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.129Z",
+      "sourceChecksum": "303a6ff5e99528b337e87d652bb318101e338e7ebdf6f2f806ecbcb8dfc1313f",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW64T",
+      "code": "LW64T",
+      "normalizedCode": "LW64T",
+      "name": "Laminate WAY LW 64 T",
+      "slug": "way-lw64t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 64 T",
+        "matchingMelamineCode": "BT 64",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-64-e1713937217560.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-64-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "f4a9f88b9fecfccc5e566ca77e580e7919a693ff04f3734c9662de524cdf2bf8",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.119Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-64-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-64-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.119Z",
+      "sourceChecksum": "17bef68308499c1be7314f708065b7d9ca6324c2c010772fbb96d9c097d43704",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW70T",
+      "code": "LW70T",
+      "normalizedCode": "LW70T",
+      "name": "Laminate WAY LW 70 T",
+      "slug": "way-lw70t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 70 T",
+        "matchingMelamineCode": "BT 70",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-70-e1713936098129.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-70-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "665b55bba5bca778dea56844a9231d33d82b668d250c329ff79c841e14bcf5db",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.095Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-70-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-70-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.095Z",
+      "sourceChecksum": "0fc81c8eccd149d4c019320bb017a9ac187eaa9a84a79de055e3490ba86674cb",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW74T",
+      "code": "LW74T",
+      "normalizedCode": "LW74T",
+      "name": "Laminate WAY LW 74 T",
+      "slug": "way-lw74t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 74 T",
+        "matchingMelamineCode": "BT 74",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-74-e1713936035232.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-74-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "2d3e06e8f60b7fa5426d4079e5aba2bc8fce2bc66b83946c9c0d02ef72644bc0",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.080Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-74-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-74-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.080Z",
+      "sourceChecksum": "0049301019bdf66261e448d44ef4a635ee103871151a1b69f271d6c4a95145e1",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW75T",
+      "code": "LW75T",
+      "normalizedCode": "LW75T",
+      "name": "Laminate WAY LW 75 T",
+      "slug": "way-lw75t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 75 T",
+        "matchingMelamineCode": "BT 75",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-75.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-75-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "05ea81e42b54b4d72fd094b519673fe937f9b214c12d38e015d47e68d278df8b",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.085Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-75-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-75-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.085Z",
+      "sourceChecksum": "c15e19b1cda687745fbf1889bd204d2af231a8f813275f3bb90724625f686151",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW76T",
+      "code": "LW76T",
+      "normalizedCode": "LW76T",
+      "name": "Laminate WAY LW 76 T",
+      "slug": "way-lw76t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 76 T",
+        "matchingMelamineCode": "BT 76",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-76-e1713935991336.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-76-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "f0e6bd2279bef5af4c1ab62ad53c9fc06b965c1d8fb7d82f5e4c85e434bd1530",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.073Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-76-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-76-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.073Z",
+      "sourceChecksum": "83aed4d705b2159d6f41d92b4b4db9c91d60f73c3caceab61d110a9a74908660",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW78T",
+      "code": "LW78T",
+      "normalizedCode": "LW78T",
+      "name": "Laminate WAY LW 78 T",
+      "slug": "way-lw78t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 78 T",
+        "matchingMelamineCode": "BT 78",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-78.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-78-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "40901abbbb04457fd39518f61979cdd88f9a0801d5d6e3838d45139490e779fd",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.063Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-78-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-78-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.063Z",
+      "sourceChecksum": "9a811b7625bc2b53615abdda54c1656145430bce7b9c542612e3f9ea922a7949",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW79T",
+      "code": "LW79T",
+      "normalizedCode": "LW79T",
+      "name": "Laminate WAY LW 79 T",
+      "slug": "way-lw79t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 79 T",
+        "matchingMelamineCode": "BT 79",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-79-e1713935952835.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-79-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "7ec8093193a57ad79137c0cb29be7090fd0e85e2909b56b279f0f73ed400f33c",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.068Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-79-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-79-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.068Z",
+      "sourceChecksum": "07b9f9cf6275daa08cdbf30f13cc5ad53ab4c10151d7923b5fd223480c9e76e2",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW80T",
+      "code": "LW80T",
+      "normalizedCode": "LW80T",
+      "name": "Laminate WAY LW 80 T",
+      "slug": "way-lw80t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 80 T",
+        "matchingMelamineCode": "BT 80",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-80-e1713935925945.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-80-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "8185daaa8dbf2bfdd02abe720f3a97a383e4b9cf52610c574f05a2433aef3562",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.057Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-80-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-80-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.057Z",
+      "sourceChecksum": "00a73c80ab2faa4e3bf114d1cadef1aa1ec989144f773741aa8062a570aa1097",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW81T",
+      "code": "LW81T",
+      "normalizedCode": "LW81T",
+      "name": "Laminate WAY LW 81 T",
+      "slug": "way-lw81t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 81 T",
+        "matchingMelamineCode": "BT 81",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-81-e1713933167762.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-81-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "72dbf177e975814ff22a3d5de95eab82934c5db6314eb8e01ccf49f46f9f442f",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.060Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-81-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-81-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.060Z",
+      "sourceChecksum": "99393accfc8835918af1d571b53de599688bcb71adff3fdbc593405b299f67d8",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW82T",
+      "code": "LW82T",
+      "normalizedCode": "LW82T",
+      "name": "Laminate WAY LW 82 T",
+      "slug": "way-lw82t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 82 T",
+        "matchingMelamineCode": "BT 82",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-82-e1713933077316.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-82-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "9950801617ca47376f6925faa5605acc01f3046be5230278622c81b73ff3a060",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.051Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-82-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-82-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.051Z",
+      "sourceChecksum": "c242f36862309219f856d382b6b696648c5728ef842c42f12164981bb7b9c0ea",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW85T",
+      "code": "LW85T",
+      "normalizedCode": "LW85T",
+      "name": "Laminate WAY LW 85 T",
+      "slug": "way-lw85t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 85 T",
+        "matchingMelamineCode": "BT 85",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-85.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-85-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "d548dc697343ee1614e7eecacd9610a73383b6e004d75ac5bdd2c087a609845b",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.047Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-85-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-85-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.047Z",
+      "sourceChecksum": "f5125d411260163307f228e2267463cb5ffdedb4c0ea2d9784fb61d1be11389c",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW86T",
+      "code": "LW86T",
+      "normalizedCode": "LW86T",
+      "name": "Laminate WAY LW 86 T",
+      "slug": "way-lw86t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 86 T",
+        "matchingMelamineCode": "BT 86",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-86-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-86-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.038Z",
+      "sourceChecksum": "624159930263d4507c44040c84ecd2d00cadc91f3046d61ab72bdbed9d7a6600",
+      "completenessScore": 55,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW87T",
+      "code": "LW87T",
+      "normalizedCode": "LW87T",
+      "name": "Laminate WAY LW 87 T",
+      "slug": "way-lw87t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 87 T",
+        "matchingMelamineCode": "BT 87",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-87.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-87-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "cbb51adfe7905d8743d5a1212c101c11a7078f066c79de5bd17b92e98d10026c",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.041Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-87-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-87-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.041Z",
+      "sourceChecksum": "e1de7f0e07a1cb00883d8704d43eb5dbf133fe5c136543f76dff33a940131062",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW88T",
+      "code": "LW88T",
+      "normalizedCode": "LW88T",
+      "name": "Laminate WAY LW 88 T",
+      "slug": "way-lw88t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 88 T",
+        "matchingMelamineCode": "BT 88",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-88.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-88-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "93faa46837e247721b77bcc53b78fac2de3061a062fcaa24f42bc80dc3707e15",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.036Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-88-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-88-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.036Z",
+      "sourceChecksum": "9f3e966d17217bdbbf707930954c297ed2ea3ecc469843e2027f334a7f139fa3",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW93T",
+      "code": "LW93T",
+      "normalizedCode": "LW93T",
+      "name": "Laminate WAY LW 93 T",
+      "slug": "way-lw93t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 93 T",
+        "matchingMelamineCode": "BT 93",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-93.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-93-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "ab81878e212ed6d180d6fad93a2f384ec39ae3ab96d708532246ecf0e3659f86",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.031Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-93-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-93-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.031Z",
+      "sourceChecksum": "048fcdc5ebf5a2bcb1d13f2c3ad27b9778f85d847e959955586c04e99e33c952",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW98T",
+      "code": "LW98T",
+      "normalizedCode": "LW98T",
+      "name": "Laminate WAY LW 98 T",
+      "slug": "way-lw98t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 98 T",
+        "matchingMelamineCode": "BT 98",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-98.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-98-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "dd32468703541268eae022951b40b10dfadd0bfb3d0d0ed15966b7ffe5f77721",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.006Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-98-01.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-98-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.006Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-98-02.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-98-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.006Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-98-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-98-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:54.006Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-98-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-98-wood-grains",
+      "importedAt": "2026-08-05T09:12:54.006Z",
+      "sourceChecksum": "54154fc2f1901dbd1166d0a98a34dfc0f3b8f9c53adb6c0b375f761413653242",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW100T",
+      "code": "LW100T",
+      "normalizedCode": "LW100T",
+      "name": "Laminate WAY LW 100 T",
+      "slug": "way-lw100t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 100 T",
+        "matchingMelamineCode": "BT 100",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-100.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-100-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "d83372229633d297797ecf39b23ce5c776c52ca9f761e69d0568e08e4ccf197f",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.657Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-100-01.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-100-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.657Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-100-02.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-100-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.657Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-100-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-100-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.657Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-100-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-100-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.657Z",
+      "sourceChecksum": "2b851ae0c23e55793b06d56e1dc13c19b521892fcbe82cb165efe974518a9db7",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW112T",
+      "code": "LW112T",
+      "normalizedCode": "LW112T",
+      "name": "Laminate WAY LW 112 T",
+      "slug": "way-lw112t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 112 T",
+        "matchingMelamineCode": "BT 112",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-112.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-112-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "197932ba3600bb273d6add213d4696f0da73eb3243b751c86e0cb3a2aaee0f68",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.651Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-112-01.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-112-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.651Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-112-02.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-112-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.651Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-112-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-112-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.651Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-112-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-112-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.651Z",
+      "sourceChecksum": "2d8dfa5135aa1bdf794ef335436c47eeb43659a9406b7355e29f058412ecd673",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW113T",
+      "code": "LW113T",
+      "normalizedCode": "LW113T",
+      "name": "Laminate WAY LW 113 T",
+      "slug": "way-lw113t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 113 T",
+        "matchingMelamineCode": "BT 113",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-113.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-113-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "2d04cccfe4976c402be9668eb8d5d26b057241d47e78cee3d6132c8184fd079d",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.653Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-113-01.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-113-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.653Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-113-02.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-113-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.653Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-113-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-113-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.653Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-113-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-113-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.653Z",
+      "sourceChecksum": "9eb03d52a8f412eb835947b85b4fb99bdfcada231be86a7c306edbc26faaea08",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW122T",
+      "code": "LW122T",
+      "normalizedCode": "LW122T",
+      "name": "Laminate WAY LW 122 T",
+      "slug": "way-lw122t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 122 T",
+        "matchingMelamineCode": "BT 122",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-122.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-122-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "a879fdf65ad768e730a597c8a352162b13c774e2e51c623aa2d318b67edbbad2",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.640Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-122-01.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-122-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.640Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-122-02.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-122-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.640Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-122-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-122-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.640Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-122-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-122-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.640Z",
+      "sourceChecksum": "1977666a9581ba8e5ec53bfee8cca71f22c67ac5f5326038923f7d72569e4d50",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW125T",
+      "code": "LW125T",
+      "normalizedCode": "LW125T",
+      "name": "Laminate WAY LW 125 T",
+      "slug": "way-lw125t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 125 T",
+        "matchingMelamineCode": "BT 125",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-125.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-125-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "09156a43aaa39b6a2a64b87830d84feaad14c5115f1ef289be4bb7857276e920",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.629Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-125-01.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-125-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.629Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-125-02.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-125-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.629Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-125-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-125-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.629Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-125-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-125-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.629Z",
+      "sourceChecksum": "acb137473f2a78cc8b755ad8a00c5a8141c93a3c3095f066a88dcf04cd9f43d7",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW130T",
+      "code": "LW130T",
+      "normalizedCode": "LW130T",
+      "name": "Laminate WAY LW 130 T",
+      "slug": "way-lw130t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 130 T",
+        "matchingMelamineCode": "BT 130",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-130.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-130-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "251b9ab569b03cae1964b6cda85a8233825cd88a0485ac5d85c1d1ec07bd8eef",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.619Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-130-01-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-130-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.619Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-130-02-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-130-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.619Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-130-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-130-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.619Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-130-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-130-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.619Z",
+      "sourceChecksum": "1558d8b4d9c972aea5ad8a18bd2dcd99e1696e3aae2828b4db985863fbf2503e",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW131T",
+      "code": "LW131T",
+      "normalizedCode": "LW131T",
+      "name": "Laminate WAY LW 131 T",
+      "slug": "way-lw131t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 131 T",
+        "matchingMelamineCode": "BT 131",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-131.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-131-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "a7d639903c9d4d95899c8a355f4aaa80eb52e189a7f3acdd4eb88966f2b3d367",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.616Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-131-01-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-131-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.616Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-131-02-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-131-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.616Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-131-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-131-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.616Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-131-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-131-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.616Z",
+      "sourceChecksum": "4698bc94bbd876667da5a8d48c316146d2dcb3dd1fc843bde313089eb590e638",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW137T",
+      "code": "LW137T",
+      "normalizedCode": "LW137T",
+      "name": "Laminate WAY LW 137 T",
+      "slug": "way-lw137t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 137 T",
+        "matchingMelamineCode": "BT 137",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-137.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-137-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "519a4536d9b92b72631dfcd7a803301425d5dadbd3a8323e1e5e2d18025934aa",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.599Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-137-01-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-137-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.599Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-137-02-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-137-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.599Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-137-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-137-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.599Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-137-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-137-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.599Z",
+      "sourceChecksum": "0356a54c2109190f20ddc6376716c5a87e40a451d75eb4f90d32b5357c6e7f51",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW140T",
+      "code": "LW140T",
+      "normalizedCode": "LW140T",
+      "name": "Laminate WAY LW 140 T",
+      "slug": "way-lw140t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 140 T",
+        "matchingMelamineCode": "BT 140",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-140.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-140-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "d19cfee2897f0fe216d9d2de234e02198ce9d2a99ef18169c73bb67860870d1f",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.591Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-140-01.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-140-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.591Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-140-02.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-140-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.591Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-140-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-140-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.591Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-140-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-140-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.591Z",
+      "sourceChecksum": "46b8a8e0a719c9e6d3fa17531953b966badedf589b95a0d7bc3d347ae53ce907",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW141T",
+      "code": "LW141T",
+      "normalizedCode": "LW141T",
+      "name": "Laminate WAY LW 141 T",
+      "slug": "way-lw141t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 141 T",
+        "matchingMelamineCode": "BT 141",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-141.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-141-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "01d047f79264efe8ce75ac7f3925fd7c959a72c1e4b673532c90eed6d069fd8f",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.588Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-141-01.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-141-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.588Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-141-02.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-141-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.588Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-141-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-141-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.588Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-141-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-141-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.588Z",
+      "sourceChecksum": "ba867ab601d657caf6d8203367781612e6079bd99178fa1e0db8cdf385deddc7",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW143T",
+      "code": "LW143T",
+      "normalizedCode": "LW143T",
+      "name": "Laminate WAY LW 143 T",
+      "slug": "way-lw143t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 143 T",
+        "matchingMelamineCode": "BT 143",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-143.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-143-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "e85e0410f5961b888902b08d17786837d5ec4eb95d679d921f51a42934d0af15",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.584Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-143-01.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-143-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.584Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-143-02.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-143-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.584Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-143-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-143-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.584Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-143-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-143-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.584Z",
+      "sourceChecksum": "f1cd97500672e017f7ddc23db5a882d444c684fd8ead9a4b998978113151d003",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW123T",
+      "code": "LW123T",
+      "normalizedCode": "LW123T",
+      "name": "Laminate WAY LW 123 T",
+      "slug": "way-lw123t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 123 T",
+        "matchingMelamineCode": "BT 123",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-123.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-123-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "00d06afc5e2ffce0908ebc748e43e66a113ab646f47f2b46d1a15258c4436d57",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.632Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-123-01-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-123-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.632Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-123-02-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-123-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.632Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-123-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-123-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.632Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-123-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-123-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.632Z",
+      "sourceChecksum": "e09a301f1c41cdb6bad81bfe54a9cd716850b42429b2e706e5209b8fd8637421",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW151T",
+      "code": "LW151T",
+      "normalizedCode": "LW151T",
+      "name": "Laminate WAY LW 151 T",
+      "slug": "way-lw151t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 151 T",
+        "matchingMelamineCode": "BT 151",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-151.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-151-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "260544fbda7daf3b741c141fed72e2636aff04eef8229c95502b2c025d74c37d",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.260Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-151-01-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-151-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.260Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-151-02-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-151-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.260Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-151-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-151-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.260Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-151-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-151-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.260Z",
+      "sourceChecksum": "626440f47cb4084ba12baecbde09a39e6ca4fbe6915090cfef22b98a51d0c3dd",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW152T",
+      "code": "LW152T",
+      "normalizedCode": "LW152T",
+      "name": "Laminate WAY LW 152 T",
+      "slug": "way-lw152t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 152 T",
+        "matchingMelamineCode": "BT 152",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-152.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-152-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "e28e4343cfc9fa84471af949de926b13dae600f9038e907cf922efcc24cf2bb8",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.257Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-152-01.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-152-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.257Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-152-02.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-152-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.257Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-152-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-152-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.257Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-152-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-152-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.257Z",
+      "sourceChecksum": "5f2cbff2a15497ef9fe0636ee91612f5a7ead343014bb9cdf6ce3c4b15b878d2",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW155T",
+      "code": "LW155T",
+      "normalizedCode": "LW155T",
+      "name": "Laminate WAY LW 155 T",
+      "slug": "way-lw155t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 155 T",
+        "matchingMelamineCode": "BT 155",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-155.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-155-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "d73a8062e92c7b4247de0b0c7ada6381b535e6b1cc5f2f3e7b47f04b4a593f12",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.249Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-155-01-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-155-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.249Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-155-02-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-155-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.249Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-155-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-155-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.249Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-155-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-155-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.249Z",
+      "sourceChecksum": "a4a3d7fb91c49ef01be378b261c6410712619f847aba8783444ea3c2af48510d",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW157T",
+      "code": "LW157T",
+      "normalizedCode": "LW157T",
+      "name": "Laminate WAY LW 157 T",
+      "slug": "way-lw157t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 157 T",
+        "matchingMelamineCode": "BT 157",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-157.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-157-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "833928f1a8a72e30dc64a0ecf1465493f4ab01c3b691fb6d09a46875bd4f98fa",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.243Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-157-01-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-157-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.243Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-157-02-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-157-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.243Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-157-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-157-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.243Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-157-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-157-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.243Z",
+      "sourceChecksum": "201a237eadf7eb71c6e3fa76de7f835df23219a7ae876ab1606ef8bdd7e4d070",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW161T",
+      "code": "LW161T",
+      "normalizedCode": "LW161T",
+      "name": "Laminate WAY LW 161 T",
+      "slug": "way-lw161t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 161 T",
+        "matchingMelamineCode": "BT 161",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/BT-161-e1680070682834.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-161-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "44aa13b6ccf04de409bd8b1bdb911eb91d32e58a2b90f91deff7a0a86b48710b",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.229Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-161-01-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-161-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.229Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-161-02.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-161-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.229Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-161-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-161-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.229Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-161-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-161-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.229Z",
+      "sourceChecksum": "ada02da89d5385973136ef1e5d2caa72b76c14e45a9a0e0647cfe0901f513c26",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW158T",
+      "code": "LW158T",
+      "normalizedCode": "LW158T",
+      "name": "Laminate WAY LW 158 T",
+      "slug": "way-lw158t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 158 T",
+        "matchingMelamineCode": "BT 158",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-158.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-158-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "b1382fcc019b6eb28156302dc1294d91ca8e457a520e9052060adff45c3f58cd",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.239Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-158-01-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-158-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.239Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-158-02-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-158-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.239Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-158-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-158-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.239Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-158-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-158-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.239Z",
+      "sourceChecksum": "e2889b750f6c48d844e493671bb0e9855ec4ccfd9aba06a0058e7012ca317805",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW160T",
+      "code": "LW160T",
+      "normalizedCode": "LW160T",
+      "name": "Laminate WAY LW 160 T",
+      "slug": "way-lw160t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 160 T",
+        "matchingMelamineCode": "BT 160",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-160.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-160-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "86a5f294289d368a8de6500be4fb341842058a8429f57ba9bc46928caa862868",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.232Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-160-01-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-160-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.232Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-160-02-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-160-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.232Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-160-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-160-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.232Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-160-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-160-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.232Z",
+      "sourceChecksum": "81e1d2215ada7368a0e201990a015d97ea00e46076f807ccb8f574d854d35f73",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW167T",
+      "code": "LW167T",
+      "normalizedCode": "LW167T",
+      "name": "Laminate WAY LW 167 T",
+      "slug": "way-lw167t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 167 T",
+        "matchingMelamineCode": "BT 167",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-167.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-167-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 719,
+          "checksum": "74c8fa7a180a4aaf76e451fa81d3fd3a3ec2a2ca61abab014ec5576032651785",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.223Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/02/BT-167-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-167-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.223Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt167",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt167",
+      "importedAt": "2026-08-05T09:12:53.223Z",
+      "sourceChecksum": "71212c792c1dc0a5c9dd57029adfccbda76cc37973f9adba28b21844ad353e08",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW168T",
+      "code": "LW168T",
+      "normalizedCode": "LW168T",
+      "name": "Laminate WAY LW 168 T",
+      "slug": "way-lw168t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 168 T",
+        "matchingMelamineCode": "BT 168",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/02/BT-168.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-168-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 719,
+          "checksum": "e0ddb29c56758fa1c57589fd9468c5f4f5940388d9bb507632205ebe976f6dfd",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.208Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/02/BT-168-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-168-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.208Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt168",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt168",
+      "importedAt": "2026-08-05T09:12:53.208Z",
+      "sourceChecksum": "04156d24ab8ef62cd6f7129eda9920506e1fedcd3c7cd62acdf699db43eaf621",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW162T",
+      "code": "LW162T",
+      "normalizedCode": "LW162T",
+      "name": "Laminate WAY LW 162 T",
+      "slug": "way-lw162t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 162 T",
+        "matchingMelamineCode": "BT 162",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/BT-162-e1680070707852.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-162-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "fd178f1215d6e7dd31a60fc491ef360f290b9103fb1a42235f2a0cb669aca8b7",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.227Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-162-02-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-162-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.227Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-162-01-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-162-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.227Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-162-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-162-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.227Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-162-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-162-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.227Z",
+      "sourceChecksum": "2f89cbe8829c53d2693f211475100b5a2104edb81ed5161617688cd5ef39d03b",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW163T",
+      "code": "LW163T",
+      "normalizedCode": "LW163T",
+      "name": "Laminate WAY LW 163 T",
+      "slug": "way-lw163t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 163 T",
+        "matchingMelamineCode": "BT 163",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/05/BT-163.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-163-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "012f7995abc64fb3449fb94e568ff5dfe2980bb2678bf5896fd783943f979cd7",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.224Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-163-01-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-163-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.224Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-163-02-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-163-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.224Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-163-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-163-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.224Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-163-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-163-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.224Z",
+      "sourceChecksum": "babdaac8a418ce1f4c6d8d2e03d5a802cbc02e8b0fb06babe75e88fdcf822968",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW142T",
+      "code": "LW142T",
+      "normalizedCode": "LW142T",
+      "name": "Laminate WAY LW 142 T",
+      "slug": "way-lw142t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 142 T",
+        "matchingMelamineCode": "BT 142",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-142.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-142-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "c3351ee8b0093a53d62ee35bb48e503763c3f5ab2ec250196b3373b5c1b0504b",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.585Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-142-01-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-142-application.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.585Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-142-02-1.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-142-application-2.webp",
+          "mimeType": "image/webp",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.585Z"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-142-MAU-THUC-TE-MELAMINE.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-142-real-photo.webp",
+          "mimeType": "image/webp",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.585Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt-142-wood-grains",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt-142-wood-grains",
+      "importedAt": "2026-08-05T09:12:53.585Z",
+      "sourceChecksum": "5bee7df4befe7c02dc07338912eaf6fabf8a68463f68a6345321bc86be9004a6",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:laminate:LW171T",
+      "code": "LW171T",
+      "normalizedCode": "LW171T",
+      "name": "Laminate WAY LW 171 T",
+      "slug": "way-lw171t",
+      "productFamily": "WAY Laminate",
+      "category": "Laminate",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ",
+        "brand": "WAY",
+        "catalogueCode": "LW 171 T",
+        "matchingMelamineCode": "BT 171",
+        "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/09/BT-171.jpg",
+          "localPath": "/catalog/ba-thanh/ba-thanh-melamine-bt-171-swatch.webp",
+          "mimeType": "image/webp",
+          "width": 1200,
+          "height": 720,
+          "checksum": "40b765894685745e5e50a70b0e1703173f3578057b3ed3c76a9e8de3b21de025",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED",
+          "importedAt": "2026-08-05T09:12:53.204Z"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt171",
+        "https://www.bathanhhocmon.com/catalogue/laminate-way"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt171",
+      "importedAt": "2026-08-05T09:12:53.204Z",
+      "sourceChecksum": "28c60270cc1d4da0595ea2c0af159b4d34068d491b048390091027fd5486a33f",
+      "completenessScore": 75,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
+    },
+    {
       "recordType": "family",
       "supplier": "ba-thanh",
       "name": "Ván MDF",
@@ -13257,5 +17393,5 @@
       "needsEditorialReview": true
     }
   ],
-  "checksum": "24ce3003700d3750add2068367a4e6c40eaae3119631413713b1813997551e3e"
+  "checksum": "d7fbfd6717212a7ed67452201d502878ab125407fd0226cdd9fafb378a6dd53b"
 }

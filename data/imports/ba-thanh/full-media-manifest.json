@@ -25,6 +25,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT163",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/05/BT-163.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW163T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/05/BT-163.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -53,6 +58,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT123",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-123-02-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW123T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-123-02-1.jpg"
         }
@@ -84,6 +94,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT140",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-140.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW140T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-140.jpg"
         }
@@ -145,6 +160,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT142",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-142-01-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW142T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-142-01-1.jpg"
         }
@@ -238,6 +258,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT100",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-100-02.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW100T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-100-02.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -266,6 +291,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT143",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-143-02.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW143T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-143-02.jpg"
         }
@@ -327,6 +357,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT158",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-158-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW158T",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-158-MAU-THUC-TE-MELAMINE.jpg"
         }
@@ -422,6 +457,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT155",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-155.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW155T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-155.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -450,6 +490,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT168",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/02/BT-168-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW168T",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/02/BT-168-MAU-THUC-TE-MELAMINE.jpg"
         }
@@ -574,6 +619,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT125",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-125.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW125T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-125.jpg"
         }
@@ -944,6 +994,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT141",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-141.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW141T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-141.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -975,6 +1030,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT61",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-61.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW61T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-61.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -1003,6 +1063,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT162",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-162-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW162T",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-162-MAU-THUC-TE-MELAMINE.jpg"
         }
@@ -1066,6 +1131,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT143",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-143-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW143T",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-143-MAU-THUC-TE-MELAMINE.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -1095,6 +1165,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT75",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-75.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW75T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-75.jpg"
         }
@@ -1189,6 +1264,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT123",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-123-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW123T",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-123-MAU-THUC-TE-MELAMINE.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -1218,6 +1298,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT143",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-143.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW143T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-143.jpg"
         }
@@ -1339,6 +1424,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT161",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-161-01-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW161T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-161-01-1.jpg"
         }
@@ -1464,6 +1554,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT112",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-112-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW112T",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-112-MAU-THUC-TE-MELAMINE.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -1492,6 +1587,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT140",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-140-01.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW140T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-140-01.jpg"
         }
@@ -1617,6 +1717,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT161",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/BT-161-e1680070682834.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW161T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/BT-161-e1680070682834.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -1646,6 +1751,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BTXAM",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/XAM.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LWXAMT",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/XAM.jpg"
         }
@@ -1771,6 +1881,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT34",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-34-e1713937993123.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW34T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-34-e1713937993123.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -1831,6 +1946,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT157",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-157-02-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW157T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-157-02-1.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -1860,6 +1980,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT79",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-79-e1713935952835.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW79T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-79-e1713935952835.jpg"
         }
@@ -1953,6 +2078,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT100",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-100-01.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW100T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-100-01.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -1981,6 +2111,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT152",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-152-02.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW152T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-152-02.jpg"
         }
@@ -2013,6 +2148,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT160",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-160-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW160T",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-160-MAU-THUC-TE-MELAMINE.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -2041,6 +2181,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT163",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-163-02-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW163T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-163-02-1.jpg"
         }
@@ -2073,6 +2218,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT158",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-158-01-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW158T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-158-01-1.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -2103,6 +2253,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT98",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-98-01.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW98T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-98-01.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -2130,6 +2285,11 @@
         }
       ],
       "references": [
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LWSC001M",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/SC-001M.jpg"
+        },
         {
           "productId": "ba-thanh:sku:ba-thanh:SC001M",
           "role": "swatch",
@@ -2163,6 +2323,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT162",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/BT-162-e1680070707852.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW162T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2017/07/BT-162-e1680070707852.jpg"
         }
@@ -2226,6 +2391,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT62",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-62-e1713937332903.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW62T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-62-e1713937332903.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -2254,6 +2424,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT125",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-125-01.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW125T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-125-01.jpg"
         }
@@ -2285,6 +2460,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT113",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-113.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW113T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-113.jpg"
         }
@@ -2349,6 +2529,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT20",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-20.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW20T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-20.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -2411,6 +2596,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT151",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-151.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW151T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-151.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -2439,6 +2629,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT122",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-122-02.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW122T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-122-02.jpg"
         }
@@ -2502,6 +2697,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT142",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-142-02-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW142T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-142-02-1.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -2562,6 +2762,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT155",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-155-01-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW155T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-155-01-1.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -2593,6 +2798,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT81",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-81-e1713933167762.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW81T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-81-e1713933167762.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -2621,6 +2831,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT162",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-162-02-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW162T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-162-02-1.jpg"
         }
@@ -2682,6 +2897,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT161",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-161-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW161T",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-161-MAU-THUC-TE-MELAMINE.jpg"
         }
@@ -2806,6 +3026,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT143",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-143-01.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW143T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-143-01.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -2834,6 +3059,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT151",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-151-01-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW151T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-151-01-1.jpg"
         }
@@ -3017,6 +3247,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT157",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-157-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW157T",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-157-MAU-THUC-TE-MELAMINE.jpg"
         }
@@ -3203,6 +3438,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT130",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-130-02-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW130T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-130-02-1.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -3293,6 +3533,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT157",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-157-01-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW157T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-157-01-1.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -3321,6 +3566,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT151",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-151-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW151T",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-151-MAU-THUC-TE-MELAMINE.jpg"
         }
@@ -3416,6 +3666,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT167",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-167.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW167T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-167.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -3477,6 +3732,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT88",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-88.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW88T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-88.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -3506,6 +3766,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT52",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-52-e1713937633934.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW52",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-52-e1713937633934.jpg"
         }
@@ -3600,6 +3865,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT142",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-142.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW142T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-142.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -3629,6 +3899,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT123",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-123.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW123T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-123.jpg"
         }
@@ -3784,6 +4059,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT140",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-140-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW140T",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-140-MAU-THUC-TE-MELAMINE.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -3875,6 +4155,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT74",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-74-e1713936035232.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW74T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-74-e1713936035232.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -3934,6 +4219,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT157",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-157.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW157T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-157.jpg"
         }
@@ -4213,6 +4503,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT125",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-125-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW125T",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-125-MAU-THUC-TE-MELAMINE.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -4243,6 +4538,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT131",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-131-02-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW131T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-131-02-1.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -4271,6 +4571,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT112",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-112-01.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW112T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-112-01.jpg"
         }
@@ -4304,6 +4609,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT64",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-64-e1713937217560.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW64T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-64-e1713937217560.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -4333,6 +4643,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT37",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-37-e1713937953177.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW37T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-37-e1713937953177.jpg"
         }
@@ -4489,6 +4804,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT63",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-63-e1713937284153.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW63T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-63-e1713937284153.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -4551,6 +4871,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT160",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-160.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW160T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-160.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -4580,6 +4905,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT112",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-112.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW112T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-112.jpg"
         }
@@ -4735,6 +5065,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT113",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-113-01.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW113T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-113-01.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -4885,6 +5220,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT140",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-140-02.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW140T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-140-02.jpg"
         }
@@ -5040,6 +5380,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT113",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-113-02.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW113T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-113-02.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -5100,6 +5445,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT167",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/02/BT-167-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW167T",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/02/BT-167-MAU-THUC-TE-MELAMINE.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -5128,6 +5478,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT123",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-123-01-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW123T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-123-01-1.jpg"
         }
@@ -5191,6 +5546,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT130",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-130.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW130T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-130.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -5220,6 +5580,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT82",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-82-e1713933077316.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW82T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-82-e1713933077316.jpg"
         }
@@ -5345,6 +5710,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT163",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-163-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW163T",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-163-MAU-THUC-TE-MELAMINE.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -5374,6 +5744,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT100",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-100.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW100T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-100.jpg"
         }
@@ -5436,6 +5811,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT158",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-158.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW158T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-158.jpg"
         }
@@ -5559,6 +5939,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT122",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-122-01.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW122T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-122-01.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -5617,6 +6002,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT125",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-125-02.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW125T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-125-02.jpg"
         }
@@ -5681,6 +6071,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT54",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-54-e1713937595405.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW54T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-54-e1713937595405.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -5710,6 +6105,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT60",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-60-1-e1713937384248.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW60T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-60-1-e1713937384248.jpg"
         }
@@ -5771,6 +6171,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT155",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-155-02-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW155T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-155-02-1.jpg"
         }
@@ -5896,6 +6301,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT152",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-152-01.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW152T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-152-01.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -5925,6 +6335,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT76",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-76-e1713935991336.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW76T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-76-e1713935991336.jpg"
         }
@@ -6051,6 +6466,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT98",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-98.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW98T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-98.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -6112,6 +6532,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT160",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-160-02-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW160T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-160-02-1.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -6139,6 +6564,11 @@
         }
       ],
       "references": [
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LWSC008M",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-008-M.jpg"
+        },
         {
           "productId": "ba-thanh:sku:ba-thanh:SC008M",
           "role": "swatch",
@@ -6201,6 +6631,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT130",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-130-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW130T",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-130-MAU-THUC-TE-MELAMINE.jpg"
         }
@@ -6295,6 +6730,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT152",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-152.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW152T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-152.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -6325,6 +6765,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT151",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-151-02-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW151T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-151-02-1.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -6352,6 +6797,11 @@
         }
       ],
       "references": [
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LWSC018M",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/09/SC-018-M.jpg"
+        },
         {
           "productId": "ba-thanh:sku:ba-thanh:SC018M",
           "role": "swatch",
@@ -6384,6 +6834,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT163",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-163-01-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW163T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-163-01-1.jpg"
         }
@@ -6568,6 +7023,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT130",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-130-01-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW130T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-130-01-1.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -6626,6 +7086,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT112",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-112-02.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW112T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-112-02.jpg"
         }
@@ -6751,6 +7216,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT80",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-80-e1713935925945.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW80T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-80-e1713935925945.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -6780,6 +7250,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT70",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-70-e1713936098129.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW70T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-70-e1713936098129.jpg"
         }
@@ -6871,6 +7346,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT85",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-85.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW85T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-85.jpg"
         }
@@ -6994,6 +7474,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT98",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-98-02.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW98T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-98-02.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -7021,6 +7506,11 @@
         }
       ],
       "references": [
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LWSC016M",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-016M.jpg"
+        },
         {
           "productId": "ba-thanh:sku:ba-thanh:SC016M",
           "role": "swatch",
@@ -7087,6 +7577,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT171",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/09/BT-171.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW171T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/09/BT-171.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -7116,6 +7611,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT137",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-137.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW137T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-137.jpg"
         }
@@ -7273,6 +7773,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BTXAMCHI",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-XAM-CHI.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LWXAMCHIT",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-XAM-CHI.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -7302,6 +7807,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT131",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-131.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW131T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-131.jpg"
         }
@@ -7364,6 +7874,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT113",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-113-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW113T",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-113-MAU-THUC-TE-MELAMINE.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -7424,6 +7939,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT137",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-137-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW137T",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-137-MAU-THUC-TE-MELAMINE.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -7453,6 +7973,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT93",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-93.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW93T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-93.jpg"
         }
@@ -7485,6 +8010,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT141",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-141-01.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW141T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-141-01.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -7513,6 +8043,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT155",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-155-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW155T",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-155-MAU-THUC-TE-MELAMINE.jpg"
         }
@@ -7574,6 +8109,11 @@
       ],
       "references": [
         {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LWSC005M",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-005-M.jpg"
+        },
+        {
           "productId": "ba-thanh:sku:ba-thanh:SC005M",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-005-M.jpg"
@@ -7606,6 +8146,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT78",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-78.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW78T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-78.jpg"
         }
@@ -7761,6 +8306,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT168",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/02/BT-168.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW168T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/02/BT-168.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -7822,6 +8372,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT100",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-100-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW100T",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-100-MAU-THUC-TE-MELAMINE.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -7851,6 +8406,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT48",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-48-e1713937721845.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW48T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-48-e1713937721845.jpg"
         }
@@ -7944,6 +8504,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT158",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-158-02-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW158T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-158-02-1.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -8002,6 +8567,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT141",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-141-02.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW141T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-141-02.jpg"
         }
@@ -8218,6 +8788,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT122",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-122-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW122T",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-122-MAU-THUC-TE-MELAMINE.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -8245,6 +8820,11 @@
         }
       ],
       "references": [
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LWSC017M",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/09/SC-017-M.jpg"
+        },
         {
           "productId": "ba-thanh:sku:ba-thanh:SC017M",
           "role": "swatch",
@@ -8340,6 +8920,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT58",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-58-e1713937489165.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW58T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-58-e1713937489165.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -8433,6 +9018,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT122",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-122.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW122T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-122.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -8461,6 +9051,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT131",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-131-01-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW131T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-131-01-1.jpg"
         }
@@ -8645,6 +9240,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT152",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-152-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW152T",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-152-MAU-THUC-TE-MELAMINE.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -8673,6 +9273,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT137",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-137-02-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW137T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-137-02-1.jpg"
         }
@@ -8768,6 +9373,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT87",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-87.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW87T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-87.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -8857,6 +9467,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT142",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-142-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW142T",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-142-MAU-THUC-TE-MELAMINE.jpg"
         }
@@ -9103,6 +9718,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT131",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-131-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW131T",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-131-MAU-THUC-TE-MELAMINE.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -9224,6 +9844,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT161",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-161-02.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW161T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-161-02.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -9282,6 +9907,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT141",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-141-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW141T",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-141-MAU-THUC-TE-MELAMINE.jpg"
         }
@@ -9405,6 +10035,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT98",
           "role": "product",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-98-MAU-THUC-TE-MELAMINE.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW98T",
+          "role": "product",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-98-MAU-THUC-TE-MELAMINE.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -9433,6 +10068,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT160",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-160-01-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW160T",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-160-01-1.jpg"
         }
@@ -9465,6 +10105,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT137",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-137-01-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW137T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-137-01-1.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -9494,6 +10139,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT59",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-59-e1713937416293.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW59T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-59-e1713937416293.jpg"
         }
@@ -9615,6 +10265,11 @@
       ],
       "references": [
         {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LWSC002M",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/SC-002M.jpg"
+        },
+        {
           "productId": "ba-thanh:sku:ba-thanh:SC002M",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/SC-002M.jpg"
@@ -9706,6 +10361,11 @@
         }
       ],
       "references": [
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LWSC003M",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/SC-003M.jpg"
+        },
         {
           "productId": "ba-thanh:sku:ba-thanh:SC003M",
           "role": "swatch",
@@ -9893,6 +10553,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT56",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-56-e1713937548883.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW56T",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-56-e1713937548883.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -9954,6 +10619,11 @@
           "productId": "ba-thanh:sku:ba-thanh:BT162",
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-162-01-1.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW162T",
+          "role": "application",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-162-01-1.jpg"
         }
       ],
       "rightsStatus": "UNCONFIRMED",
@@ -9983,6 +10653,11 @@
       "references": [
         {
           "productId": "ba-thanh:sku:ba-thanh:BT28",
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-28-e1713938172806.jpg"
+        },
+        {
+          "productId": "ba-thanh:sku:ba-thanh:laminate:LW28T",
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-28-e1713938172806.jpg"
         }
@@ -11624,8 +12299,8 @@
       "state": "DEFERRED"
     }
   ],
-  "checksum": "00044ca2ab3cf57e5754a7090b0b13af431ce2e5f708422866cabb16f7a10dfd",
-  "generatedAt": "2026-08-13T07:53:05.882Z",
+  "checksum": "e719bfe1b052034c83650ec74f47f49de3b5b97fb024c37bf52187b41fe6367f",
+  "generatedAt": "2026-08-13T09:24:56.115Z",
   "schemaVersion": 1,
   "supplier": "ba-thanh"
 }

@@ -2134,7 +2134,10 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT01"
+        "ba-thanh:sku:BT01",
+        "ba-thanh:sku:LW01G",
+        "ba-thanh:sku:LW01M",
+        "ba-thanh:sku:LW01T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -2234,7 +2237,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT167"
+        "ba-thanh:sku:BT167",
+        "ba-thanh:sku:LW167T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -2259,7 +2263,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT168"
+        "ba-thanh:sku:BT168",
+        "ba-thanh:sku:LW168T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -2384,7 +2389,10 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BTA150"
+        "ba-thanh:sku:BTA150",
+        "ba-thanh:sku:LWA150G",
+        "ba-thanh:sku:LWA150M",
+        "ba-thanh:sku:LWA150T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -2434,7 +2442,10 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BTDEN"
+        "ba-thanh:sku:BTDEN",
+        "ba-thanh:sku:LWDENG",
+        "ba-thanh:sku:LWDENM",
+        "ba-thanh:sku:LWDENT"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -2509,7 +2520,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BTXAM"
+        "ba-thanh:sku:BTXAM",
+        "ba-thanh:sku:LWXAMT"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -2709,7 +2721,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT100"
+        "ba-thanh:sku:BT100",
+        "ba-thanh:sku:LW100T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -2784,7 +2797,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT112"
+        "ba-thanh:sku:BT112",
+        "ba-thanh:sku:LW112T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -2809,7 +2823,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT113"
+        "ba-thanh:sku:BT113",
+        "ba-thanh:sku:LW113T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -3034,7 +3049,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT122"
+        "ba-thanh:sku:BT122",
+        "ba-thanh:sku:LW122T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -3059,7 +3075,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT123"
+        "ba-thanh:sku:BT123",
+        "ba-thanh:sku:LW123T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -3109,7 +3126,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT125"
+        "ba-thanh:sku:BT125",
+        "ba-thanh:sku:LW125T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -3259,7 +3277,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT130"
+        "ba-thanh:sku:BT130",
+        "ba-thanh:sku:LW130T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -3284,7 +3303,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT131"
+        "ba-thanh:sku:BT131",
+        "ba-thanh:sku:LW131T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -3434,7 +3454,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT137"
+        "ba-thanh:sku:BT137",
+        "ba-thanh:sku:LW137T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -3534,7 +3555,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT140"
+        "ba-thanh:sku:BT140",
+        "ba-thanh:sku:LW140T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -3559,7 +3581,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT141"
+        "ba-thanh:sku:BT141",
+        "ba-thanh:sku:LW141T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -3584,7 +3607,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT142"
+        "ba-thanh:sku:BT142",
+        "ba-thanh:sku:LW142T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -3609,7 +3633,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT143"
+        "ba-thanh:sku:BT143",
+        "ba-thanh:sku:LW143T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -3784,7 +3809,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT151"
+        "ba-thanh:sku:BT151",
+        "ba-thanh:sku:LW151T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -3809,7 +3835,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT152"
+        "ba-thanh:sku:BT152",
+        "ba-thanh:sku:LW152T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -3859,7 +3886,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT155"
+        "ba-thanh:sku:BT155",
+        "ba-thanh:sku:LW155T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -3909,7 +3937,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT157"
+        "ba-thanh:sku:BT157",
+        "ba-thanh:sku:LW157T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -3934,7 +3963,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT158"
+        "ba-thanh:sku:BT158",
+        "ba-thanh:sku:LW158T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -4009,7 +4039,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT160"
+        "ba-thanh:sku:BT160",
+        "ba-thanh:sku:LW160T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -4034,7 +4065,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT161"
+        "ba-thanh:sku:BT161",
+        "ba-thanh:sku:LW161T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -4059,7 +4091,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT162"
+        "ba-thanh:sku:BT162",
+        "ba-thanh:sku:LW162T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -4084,7 +4117,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT163"
+        "ba-thanh:sku:BT163",
+        "ba-thanh:sku:LW163T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -4234,7 +4268,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT20"
+        "ba-thanh:sku:BT20",
+        "ba-thanh:sku:LW20T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -4409,7 +4444,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT28"
+        "ba-thanh:sku:BT28",
+        "ba-thanh:sku:LW28T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -4559,7 +4595,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT34"
+        "ba-thanh:sku:BT34",
+        "ba-thanh:sku:LW34T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -4634,7 +4671,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT37"
+        "ba-thanh:sku:BT37",
+        "ba-thanh:sku:LW37T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -4884,7 +4922,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT48"
+        "ba-thanh:sku:BT48",
+        "ba-thanh:sku:LW48T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -4959,7 +4998,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT52"
+        "ba-thanh:sku:BT52",
+        "ba-thanh:sku:LW52"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5009,7 +5049,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT54"
+        "ba-thanh:sku:BT54",
+        "ba-thanh:sku:LW54T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5034,7 +5075,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT56"
+        "ba-thanh:sku:BT56",
+        "ba-thanh:sku:LW56T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5084,7 +5126,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT58"
+        "ba-thanh:sku:BT58",
+        "ba-thanh:sku:LW58T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5109,7 +5152,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT59"
+        "ba-thanh:sku:BT59",
+        "ba-thanh:sku:LW59T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5134,7 +5178,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT61"
+        "ba-thanh:sku:BT61",
+        "ba-thanh:sku:LW61T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5159,7 +5204,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT62"
+        "ba-thanh:sku:BT62",
+        "ba-thanh:sku:LW62T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5184,7 +5230,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT63"
+        "ba-thanh:sku:BT63",
+        "ba-thanh:sku:LW63T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5209,7 +5256,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT64"
+        "ba-thanh:sku:BT64",
+        "ba-thanh:sku:LW64T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5359,7 +5407,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT70"
+        "ba-thanh:sku:BT70",
+        "ba-thanh:sku:LW70T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5434,7 +5483,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT60"
+        "ba-thanh:sku:BT60",
+        "ba-thanh:sku:LW60T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5484,7 +5534,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT74"
+        "ba-thanh:sku:BT74",
+        "ba-thanh:sku:LW74T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5509,7 +5560,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT75"
+        "ba-thanh:sku:BT75",
+        "ba-thanh:sku:LW75T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5534,7 +5586,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT76"
+        "ba-thanh:sku:BT76",
+        "ba-thanh:sku:LW76T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5584,7 +5637,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT78"
+        "ba-thanh:sku:BT78",
+        "ba-thanh:sku:LW78T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5609,7 +5663,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT79"
+        "ba-thanh:sku:BT79",
+        "ba-thanh:sku:LW79T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5634,7 +5689,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT80"
+        "ba-thanh:sku:BT80",
+        "ba-thanh:sku:LW80T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5659,7 +5715,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT81"
+        "ba-thanh:sku:BT81",
+        "ba-thanh:sku:LW81T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5684,7 +5741,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT82"
+        "ba-thanh:sku:BT82",
+        "ba-thanh:sku:LW82T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5759,7 +5817,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT85"
+        "ba-thanh:sku:BT85",
+        "ba-thanh:sku:LW85T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5784,7 +5843,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT86"
+        "ba-thanh:sku:BT86",
+        "ba-thanh:sku:LW86T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5809,7 +5869,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT87"
+        "ba-thanh:sku:BT87",
+        "ba-thanh:sku:LW87T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5834,7 +5895,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT88"
+        "ba-thanh:sku:BT88",
+        "ba-thanh:sku:LW88T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -5959,7 +6021,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT93"
+        "ba-thanh:sku:BT93",
+        "ba-thanh:sku:LW93T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -6084,7 +6147,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT98"
+        "ba-thanh:sku:BT98",
+        "ba-thanh:sku:LW98T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -6134,7 +6198,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BTS6"
+        "ba-thanh:sku:BTS6",
+        "ba-thanh:sku:LWS6G"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -6209,7 +6274,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BTS9"
+        "ba-thanh:sku:BTS9",
+        "ba-thanh:sku:LWS9G"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -6259,6 +6325,7 @@
       },
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC001M",
         "ba-thanh:sku:SC001M"
       ],
       "reason": "Fetched and verified public product detail page."
@@ -6309,6 +6376,7 @@
       },
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC002M",
         "ba-thanh:sku:SC002M"
       ],
       "reason": "Fetched and verified public product detail page."
@@ -6359,6 +6427,7 @@
       },
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC003M",
         "ba-thanh:sku:SC003M"
       ],
       "reason": "Fetched and verified public product detail page."
@@ -6409,6 +6478,7 @@
       },
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC004M",
         "ba-thanh:sku:SC004M"
       ],
       "reason": "Fetched and verified public product detail page."
@@ -6459,6 +6529,7 @@
       },
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC005M",
         "ba-thanh:sku:SC005M"
       ],
       "reason": "Fetched and verified public product detail page."
@@ -6609,6 +6680,7 @@
       },
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC008M",
         "ba-thanh:sku:SC008M"
       ],
       "reason": "Fetched and verified public product detail page."
@@ -6709,6 +6781,7 @@
       },
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC011M",
         "ba-thanh:sku:SC011M"
       ],
       "reason": "Fetched and verified public product detail page."
@@ -6784,6 +6857,7 @@
       },
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC014M",
         "ba-thanh:sku:SC014M"
       ],
       "reason": "Fetched and verified public product detail page."
@@ -6809,6 +6883,7 @@
       },
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC015M",
         "ba-thanh:sku:SC015M"
       ],
       "reason": "Fetched and verified public product detail page."
@@ -6834,6 +6909,7 @@
       },
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC016M",
         "ba-thanh:sku:SC016M"
       ],
       "reason": "Fetched and verified public product detail page."
@@ -6884,7 +6960,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BTXAMCHI"
+        "ba-thanh:sku:BTXAMCHI",
+        "ba-thanh:sku:LWXAMCHIT"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -8065,7 +8142,8 @@
       },
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT171"
+        "ba-thanh:sku:BT171",
+        "ba-thanh:sku:LW171T"
       ],
       "reason": "Fetched and verified public product detail page."
     },
@@ -8090,6 +8168,7 @@
       },
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC017M",
         "ba-thanh:sku:SC017M"
       ],
       "reason": "Fetched and verified public product detail page."
@@ -8140,6 +8219,7 @@
       },
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC018M",
         "ba-thanh:sku:SC018M"
       ],
       "reason": "Fetched and verified public product detail page."
@@ -11132,7 +11212,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT100"
+        "ba-thanh:sku:BT100",
+        "ba-thanh:sku:LW100T"
       ]
     },
     {
@@ -11144,7 +11225,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT100"
+        "ba-thanh:sku:BT100",
+        "ba-thanh:sku:LW100T"
       ]
     },
     {
@@ -11156,7 +11238,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT100"
+        "ba-thanh:sku:BT100",
+        "ba-thanh:sku:LW100T"
       ]
     },
     {
@@ -11168,7 +11251,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT100"
+        "ba-thanh:sku:BT100",
+        "ba-thanh:sku:LW100T"
       ]
     },
     {
@@ -11240,7 +11324,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT112"
+        "ba-thanh:sku:BT112",
+        "ba-thanh:sku:LW112T"
       ]
     },
     {
@@ -11252,7 +11337,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT112"
+        "ba-thanh:sku:BT112",
+        "ba-thanh:sku:LW112T"
       ]
     },
     {
@@ -11264,7 +11350,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT112"
+        "ba-thanh:sku:BT112",
+        "ba-thanh:sku:LW112T"
       ]
     },
     {
@@ -11276,7 +11363,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT112"
+        "ba-thanh:sku:BT112",
+        "ba-thanh:sku:LW112T"
       ]
     },
     {
@@ -11288,7 +11376,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT113"
+        "ba-thanh:sku:BT113",
+        "ba-thanh:sku:LW113T"
       ]
     },
     {
@@ -11300,7 +11389,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT113"
+        "ba-thanh:sku:BT113",
+        "ba-thanh:sku:LW113T"
       ]
     },
     {
@@ -11312,7 +11402,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT113"
+        "ba-thanh:sku:BT113",
+        "ba-thanh:sku:LW113T"
       ]
     },
     {
@@ -11324,7 +11415,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT113"
+        "ba-thanh:sku:BT113",
+        "ba-thanh:sku:LW113T"
       ]
     },
     {
@@ -11612,7 +11704,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT122"
+        "ba-thanh:sku:BT122",
+        "ba-thanh:sku:LW122T"
       ]
     },
     {
@@ -11624,7 +11717,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT122"
+        "ba-thanh:sku:BT122",
+        "ba-thanh:sku:LW122T"
       ]
     },
     {
@@ -11636,7 +11730,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT122"
+        "ba-thanh:sku:BT122",
+        "ba-thanh:sku:LW122T"
       ]
     },
     {
@@ -11648,7 +11743,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT122"
+        "ba-thanh:sku:BT122",
+        "ba-thanh:sku:LW122T"
       ]
     },
     {
@@ -11660,7 +11756,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT123"
+        "ba-thanh:sku:BT123",
+        "ba-thanh:sku:LW123T"
       ]
     },
     {
@@ -11672,7 +11769,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT123"
+        "ba-thanh:sku:BT123",
+        "ba-thanh:sku:LW123T"
       ]
     },
     {
@@ -11684,7 +11782,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT123"
+        "ba-thanh:sku:BT123",
+        "ba-thanh:sku:LW123T"
       ]
     },
     {
@@ -11696,7 +11795,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT123"
+        "ba-thanh:sku:BT123",
+        "ba-thanh:sku:LW123T"
       ]
     },
     {
@@ -11756,7 +11856,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT125"
+        "ba-thanh:sku:BT125",
+        "ba-thanh:sku:LW125T"
       ]
     },
     {
@@ -11768,7 +11869,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT125"
+        "ba-thanh:sku:BT125",
+        "ba-thanh:sku:LW125T"
       ]
     },
     {
@@ -11780,7 +11882,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT125"
+        "ba-thanh:sku:BT125",
+        "ba-thanh:sku:LW125T"
       ]
     },
     {
@@ -11792,7 +11895,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT125"
+        "ba-thanh:sku:BT125",
+        "ba-thanh:sku:LW125T"
       ]
     },
     {
@@ -11924,7 +12028,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT130"
+        "ba-thanh:sku:BT130",
+        "ba-thanh:sku:LW130T"
       ]
     },
     {
@@ -11936,7 +12041,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT130"
+        "ba-thanh:sku:BT130",
+        "ba-thanh:sku:LW130T"
       ]
     },
     {
@@ -11948,7 +12054,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT130"
+        "ba-thanh:sku:BT130",
+        "ba-thanh:sku:LW130T"
       ]
     },
     {
@@ -11960,7 +12067,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT130"
+        "ba-thanh:sku:BT130",
+        "ba-thanh:sku:LW130T"
       ]
     },
     {
@@ -11972,7 +12080,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT131"
+        "ba-thanh:sku:BT131",
+        "ba-thanh:sku:LW131T"
       ]
     },
     {
@@ -11984,7 +12093,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT131"
+        "ba-thanh:sku:BT131",
+        "ba-thanh:sku:LW131T"
       ]
     },
     {
@@ -11996,7 +12106,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT131"
+        "ba-thanh:sku:BT131",
+        "ba-thanh:sku:LW131T"
       ]
     },
     {
@@ -12008,7 +12119,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT131"
+        "ba-thanh:sku:BT131",
+        "ba-thanh:sku:LW131T"
       ]
     },
     {
@@ -12260,7 +12372,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT137"
+        "ba-thanh:sku:BT137",
+        "ba-thanh:sku:LW137T"
       ]
     },
     {
@@ -12272,7 +12385,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT137"
+        "ba-thanh:sku:BT137",
+        "ba-thanh:sku:LW137T"
       ]
     },
     {
@@ -12284,7 +12398,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT137"
+        "ba-thanh:sku:BT137",
+        "ba-thanh:sku:LW137T"
       ]
     },
     {
@@ -12296,7 +12411,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT137"
+        "ba-thanh:sku:BT137",
+        "ba-thanh:sku:LW137T"
       ]
     },
     {
@@ -12416,7 +12532,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT140"
+        "ba-thanh:sku:BT140",
+        "ba-thanh:sku:LW140T"
       ]
     },
     {
@@ -12428,7 +12545,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT140"
+        "ba-thanh:sku:BT140",
+        "ba-thanh:sku:LW140T"
       ]
     },
     {
@@ -12440,7 +12558,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT140"
+        "ba-thanh:sku:BT140",
+        "ba-thanh:sku:LW140T"
       ]
     },
     {
@@ -12452,7 +12571,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT140"
+        "ba-thanh:sku:BT140",
+        "ba-thanh:sku:LW140T"
       ]
     },
     {
@@ -12464,7 +12584,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT141"
+        "ba-thanh:sku:BT141",
+        "ba-thanh:sku:LW141T"
       ]
     },
     {
@@ -12476,7 +12597,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT141"
+        "ba-thanh:sku:BT141",
+        "ba-thanh:sku:LW141T"
       ]
     },
     {
@@ -12488,7 +12610,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT141"
+        "ba-thanh:sku:BT141",
+        "ba-thanh:sku:LW141T"
       ]
     },
     {
@@ -12500,7 +12623,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT141"
+        "ba-thanh:sku:BT141",
+        "ba-thanh:sku:LW141T"
       ]
     },
     {
@@ -12512,7 +12636,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT142"
+        "ba-thanh:sku:BT142",
+        "ba-thanh:sku:LW142T"
       ]
     },
     {
@@ -12524,7 +12649,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT142"
+        "ba-thanh:sku:BT142",
+        "ba-thanh:sku:LW142T"
       ]
     },
     {
@@ -12536,7 +12662,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT142"
+        "ba-thanh:sku:BT142",
+        "ba-thanh:sku:LW142T"
       ]
     },
     {
@@ -12548,7 +12675,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT142"
+        "ba-thanh:sku:BT142",
+        "ba-thanh:sku:LW142T"
       ]
     },
     {
@@ -12560,7 +12688,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT143"
+        "ba-thanh:sku:BT143",
+        "ba-thanh:sku:LW143T"
       ]
     },
     {
@@ -12572,7 +12701,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT143"
+        "ba-thanh:sku:BT143",
+        "ba-thanh:sku:LW143T"
       ]
     },
     {
@@ -12584,7 +12714,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT143"
+        "ba-thanh:sku:BT143",
+        "ba-thanh:sku:LW143T"
       ]
     },
     {
@@ -12596,7 +12727,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT143"
+        "ba-thanh:sku:BT143",
+        "ba-thanh:sku:LW143T"
       ]
     },
     {
@@ -12824,7 +12956,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT151"
+        "ba-thanh:sku:BT151",
+        "ba-thanh:sku:LW151T"
       ]
     },
     {
@@ -12836,7 +12969,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT151"
+        "ba-thanh:sku:BT151",
+        "ba-thanh:sku:LW151T"
       ]
     },
     {
@@ -12848,7 +12982,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT151"
+        "ba-thanh:sku:BT151",
+        "ba-thanh:sku:LW151T"
       ]
     },
     {
@@ -12860,7 +12995,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT151"
+        "ba-thanh:sku:BT151",
+        "ba-thanh:sku:LW151T"
       ]
     },
     {
@@ -12872,7 +13008,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT152"
+        "ba-thanh:sku:BT152",
+        "ba-thanh:sku:LW152T"
       ]
     },
     {
@@ -12884,7 +13021,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT152"
+        "ba-thanh:sku:BT152",
+        "ba-thanh:sku:LW152T"
       ]
     },
     {
@@ -12896,7 +13034,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT152"
+        "ba-thanh:sku:BT152",
+        "ba-thanh:sku:LW152T"
       ]
     },
     {
@@ -12908,7 +13047,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT152"
+        "ba-thanh:sku:BT152",
+        "ba-thanh:sku:LW152T"
       ]
     },
     {
@@ -12968,7 +13108,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT155"
+        "ba-thanh:sku:BT155",
+        "ba-thanh:sku:LW155T"
       ]
     },
     {
@@ -12980,7 +13121,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT155"
+        "ba-thanh:sku:BT155",
+        "ba-thanh:sku:LW155T"
       ]
     },
     {
@@ -12992,7 +13134,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT155"
+        "ba-thanh:sku:BT155",
+        "ba-thanh:sku:LW155T"
       ]
     },
     {
@@ -13004,7 +13147,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT155"
+        "ba-thanh:sku:BT155",
+        "ba-thanh:sku:LW155T"
       ]
     },
     {
@@ -13064,7 +13208,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT157"
+        "ba-thanh:sku:BT157",
+        "ba-thanh:sku:LW157T"
       ]
     },
     {
@@ -13076,7 +13221,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT157"
+        "ba-thanh:sku:BT157",
+        "ba-thanh:sku:LW157T"
       ]
     },
     {
@@ -13088,7 +13234,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT157"
+        "ba-thanh:sku:BT157",
+        "ba-thanh:sku:LW157T"
       ]
     },
     {
@@ -13100,7 +13247,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT157"
+        "ba-thanh:sku:BT157",
+        "ba-thanh:sku:LW157T"
       ]
     },
     {
@@ -13112,7 +13260,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT158"
+        "ba-thanh:sku:BT158",
+        "ba-thanh:sku:LW158T"
       ]
     },
     {
@@ -13124,7 +13273,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT158"
+        "ba-thanh:sku:BT158",
+        "ba-thanh:sku:LW158T"
       ]
     },
     {
@@ -13136,7 +13286,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT158"
+        "ba-thanh:sku:BT158",
+        "ba-thanh:sku:LW158T"
       ]
     },
     {
@@ -13148,7 +13299,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT158"
+        "ba-thanh:sku:BT158",
+        "ba-thanh:sku:LW158T"
       ]
     },
     {
@@ -13220,7 +13372,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT160"
+        "ba-thanh:sku:BT160",
+        "ba-thanh:sku:LW160T"
       ]
     },
     {
@@ -13232,7 +13385,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT160"
+        "ba-thanh:sku:BT160",
+        "ba-thanh:sku:LW160T"
       ]
     },
     {
@@ -13244,7 +13398,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT160"
+        "ba-thanh:sku:BT160",
+        "ba-thanh:sku:LW160T"
       ]
     },
     {
@@ -13256,7 +13411,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT160"
+        "ba-thanh:sku:BT160",
+        "ba-thanh:sku:LW160T"
       ]
     },
     {
@@ -13268,7 +13424,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT161"
+        "ba-thanh:sku:BT161",
+        "ba-thanh:sku:LW161T"
       ]
     },
     {
@@ -13280,7 +13437,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT161"
+        "ba-thanh:sku:BT161",
+        "ba-thanh:sku:LW161T"
       ]
     },
     {
@@ -13292,7 +13450,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT161"
+        "ba-thanh:sku:BT161",
+        "ba-thanh:sku:LW161T"
       ]
     },
     {
@@ -13304,7 +13463,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT161"
+        "ba-thanh:sku:BT161",
+        "ba-thanh:sku:LW161T"
       ]
     },
     {
@@ -13316,7 +13476,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT162"
+        "ba-thanh:sku:BT162",
+        "ba-thanh:sku:LW162T"
       ]
     },
     {
@@ -13328,7 +13489,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT162"
+        "ba-thanh:sku:BT162",
+        "ba-thanh:sku:LW162T"
       ]
     },
     {
@@ -13340,7 +13502,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT162"
+        "ba-thanh:sku:BT162",
+        "ba-thanh:sku:LW162T"
       ]
     },
     {
@@ -13352,7 +13515,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT162"
+        "ba-thanh:sku:BT162",
+        "ba-thanh:sku:LW162T"
       ]
     },
     {
@@ -13364,7 +13528,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT163"
+        "ba-thanh:sku:BT163",
+        "ba-thanh:sku:LW163T"
       ]
     },
     {
@@ -13376,7 +13541,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT163"
+        "ba-thanh:sku:BT163",
+        "ba-thanh:sku:LW163T"
       ]
     },
     {
@@ -13388,7 +13554,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT163"
+        "ba-thanh:sku:BT163",
+        "ba-thanh:sku:LW163T"
       ]
     },
     {
@@ -13400,7 +13567,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT163"
+        "ba-thanh:sku:BT163",
+        "ba-thanh:sku:LW163T"
       ]
     },
     {
@@ -13460,7 +13628,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT167"
+        "ba-thanh:sku:BT167",
+        "ba-thanh:sku:LW167T"
       ]
     },
     {
@@ -13472,7 +13641,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT167"
+        "ba-thanh:sku:BT167",
+        "ba-thanh:sku:LW167T"
       ]
     },
     {
@@ -13484,7 +13654,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT168"
+        "ba-thanh:sku:BT168",
+        "ba-thanh:sku:LW168T"
       ]
     },
     {
@@ -13496,7 +13667,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT168"
+        "ba-thanh:sku:BT168",
+        "ba-thanh:sku:LW168T"
       ]
     },
     {
@@ -13568,7 +13740,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT171"
+        "ba-thanh:sku:BT171",
+        "ba-thanh:sku:LW171T"
       ]
     },
     {
@@ -13604,7 +13777,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT20"
+        "ba-thanh:sku:BT20",
+        "ba-thanh:sku:LW20T"
       ]
     },
     {
@@ -13688,7 +13862,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT28"
+        "ba-thanh:sku:BT28",
+        "ba-thanh:sku:LW28T"
       ]
     },
     {
@@ -13760,7 +13935,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT34"
+        "ba-thanh:sku:BT34",
+        "ba-thanh:sku:LW34T"
       ]
     },
     {
@@ -13796,7 +13972,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT37"
+        "ba-thanh:sku:BT37",
+        "ba-thanh:sku:LW37T"
       ]
     },
     {
@@ -13916,7 +14093,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT48"
+        "ba-thanh:sku:BT48",
+        "ba-thanh:sku:LW48T"
       ]
     },
     {
@@ -13952,7 +14130,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT52"
+        "ba-thanh:sku:BT52",
+        "ba-thanh:sku:LW52"
       ]
     },
     {
@@ -13976,7 +14155,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT54"
+        "ba-thanh:sku:BT54",
+        "ba-thanh:sku:LW54T"
       ]
     },
     {
@@ -13988,7 +14168,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT56"
+        "ba-thanh:sku:BT56",
+        "ba-thanh:sku:LW56T"
       ]
     },
     {
@@ -14012,7 +14193,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT58"
+        "ba-thanh:sku:BT58",
+        "ba-thanh:sku:LW58T"
       ]
     },
     {
@@ -14024,7 +14206,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT59"
+        "ba-thanh:sku:BT59",
+        "ba-thanh:sku:LW59T"
       ]
     },
     {
@@ -14036,7 +14219,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT60"
+        "ba-thanh:sku:BT60",
+        "ba-thanh:sku:LW60T"
       ]
     },
     {
@@ -14048,7 +14232,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT61"
+        "ba-thanh:sku:BT61",
+        "ba-thanh:sku:LW61T"
       ]
     },
     {
@@ -14060,7 +14245,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT62"
+        "ba-thanh:sku:BT62",
+        "ba-thanh:sku:LW62T"
       ]
     },
     {
@@ -14072,7 +14258,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT63"
+        "ba-thanh:sku:BT63",
+        "ba-thanh:sku:LW63T"
       ]
     },
     {
@@ -14084,7 +14271,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT64"
+        "ba-thanh:sku:BT64",
+        "ba-thanh:sku:LW64T"
       ]
     },
     {
@@ -14156,7 +14344,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT70"
+        "ba-thanh:sku:BT70",
+        "ba-thanh:sku:LW70T"
       ]
     },
     {
@@ -14204,7 +14393,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT74"
+        "ba-thanh:sku:BT74",
+        "ba-thanh:sku:LW74T"
       ]
     },
     {
@@ -14216,7 +14406,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT75"
+        "ba-thanh:sku:BT75",
+        "ba-thanh:sku:LW75T"
       ]
     },
     {
@@ -14228,7 +14419,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT76"
+        "ba-thanh:sku:BT76",
+        "ba-thanh:sku:LW76T"
       ]
     },
     {
@@ -14252,7 +14444,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT78"
+        "ba-thanh:sku:BT78",
+        "ba-thanh:sku:LW78T"
       ]
     },
     {
@@ -14264,7 +14457,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT79"
+        "ba-thanh:sku:BT79",
+        "ba-thanh:sku:LW79T"
       ]
     },
     {
@@ -14276,7 +14470,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT80"
+        "ba-thanh:sku:BT80",
+        "ba-thanh:sku:LW80T"
       ]
     },
     {
@@ -14288,7 +14483,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT81"
+        "ba-thanh:sku:BT81",
+        "ba-thanh:sku:LW81T"
       ]
     },
     {
@@ -14300,7 +14496,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT82"
+        "ba-thanh:sku:BT82",
+        "ba-thanh:sku:LW82T"
       ]
     },
     {
@@ -14336,7 +14533,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT85"
+        "ba-thanh:sku:BT85",
+        "ba-thanh:sku:LW85T"
       ]
     },
     {
@@ -14348,7 +14546,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT87"
+        "ba-thanh:sku:BT87",
+        "ba-thanh:sku:LW87T"
       ]
     },
     {
@@ -14360,7 +14559,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT88"
+        "ba-thanh:sku:BT88",
+        "ba-thanh:sku:LW88T"
       ]
     },
     {
@@ -14408,7 +14608,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT93"
+        "ba-thanh:sku:BT93",
+        "ba-thanh:sku:LW93T"
       ]
     },
     {
@@ -14504,7 +14705,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT98"
+        "ba-thanh:sku:BT98",
+        "ba-thanh:sku:LW98T"
       ]
     },
     {
@@ -14516,7 +14718,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT98"
+        "ba-thanh:sku:BT98",
+        "ba-thanh:sku:LW98T"
       ]
     },
     {
@@ -14528,7 +14731,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT98"
+        "ba-thanh:sku:BT98",
+        "ba-thanh:sku:LW98T"
       ]
     },
     {
@@ -14540,7 +14744,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BT98"
+        "ba-thanh:sku:BT98",
+        "ba-thanh:sku:LW98T"
       ]
     },
     {
@@ -14636,7 +14841,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BTXAM"
+        "ba-thanh:sku:BTXAM",
+        "ba-thanh:sku:LWXAMT"
       ]
     },
     {
@@ -14648,7 +14854,8 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:BTXAMCHI"
+        "ba-thanh:sku:BTXAMCHI",
+        "ba-thanh:sku:LWXAMCHIT"
       ]
     },
     {
@@ -14696,6 +14903,7 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC001M",
         "ba-thanh:sku:SC001M"
       ]
     },
@@ -14708,6 +14916,7 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC002M",
         "ba-thanh:sku:SC002M"
       ]
     },
@@ -14732,6 +14941,7 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC003M",
         "ba-thanh:sku:SC003M"
       ]
     },
@@ -14744,6 +14954,7 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC005M",
         "ba-thanh:sku:SC005M"
       ]
     },
@@ -14816,6 +15027,7 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC008M",
         "ba-thanh:sku:SC008M"
       ]
     },
@@ -14840,6 +15052,7 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC016M",
         "ba-thanh:sku:SC016M"
       ]
     },
@@ -14864,6 +15077,7 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC017M",
         "ba-thanh:sku:SC017M"
       ]
     },
@@ -14888,6 +15102,7 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
+        "ba-thanh:sku:LWSC018M",
         "ba-thanh:sku:SC018M"
       ]
     },
@@ -15855,5 +16070,5 @@
       ]
     }
   ],
-  "checksum": "6ee8f1c30c8408b1e446fe78768b1b15eb7e0f761e4171296921c63164275b31"
+  "checksum": "c5e30ad53ab904ed86d435e19e38a748be2a1697c55c3b1de86ef3519515ce99"
 }

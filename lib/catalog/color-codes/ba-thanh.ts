@@ -9,11 +9,49 @@ import {
   type ColorCodeClassification,
   type SourceCatalogueRecord,
 } from "./classify";
+import { buildColorCodeAliases } from "./normalize";
+import { BA_THANH_LAMINATE_WAY_BY_ROUTE } from "../ba-thanh-laminate-way";
 
 const MELAMINE_MAP = "https://bathanh.com.vn/map-ma-melamine";
 const LAMINATE_MAP = "https://bathanh.com.vn/map-mau-laminate";
 
-const LAMINATE_PRINTED_CODES: Record<string, string> = {
+const LAMINATE_CATALOGUE_CODES: Record<string, string> = {
+  P1010: "P 1010 G",
+  P1150: "P 1150 G",
+  P2001: "P 2001 G",
+  P2002: "P 2002 G",
+  P2052: "P 2052 G",
+  P2061: "P 2061 G",
+  P2660: "P 2660 G",
+  P3190: "P 3190 CY",
+  P4600: "P 4600 R",
+  P4640: "P 4640 R",
+  P7700: "P 7700 CY",
+  P7740: "P 7740 R",
+  P7790: "P 7790 R",
+  P9120: "P 9120 CY",
+  P9340: "P 9340 R",
+  P9660: "P 9660 G",
+  S4600: "S 4600 G",
+  S7382: "S 7382 G",
+  S7402: "S 7402 G",
+  S7403: "S 7403 G",
+  W0304: "W 0304 Z",
+  W0502: "W 0502 Z",
+  W0504: "W 0504 Z",
+  W5220: "W 5220 N",
+  W7020: "W 7020 Z",
+  W7393: "W 7393 Z",
+  W7412: "W 7412 Z",
+  W9630: "W 9630 Z",
+  F0022: "F 0022 X",
+  F3292: "F 3292 X",
+  F3293: "F 3293 X",
+  F3294: "F 3294 X",
+  F3295: "F 3295 X",
+};
+
+const LAMINATE_MATCHING_MELAMINE: Record<string, string> = {
   P1010: "SC 013 MW",
   P1150: "SC 015 MW",
   P2001: "SC 014 MW",
@@ -63,14 +101,18 @@ export function classifyBaThanhRecord(record: SourceCatalogueRecord): ColorCodeC
     return { purpose: nonColorPurpose(record), reason: !codeRaw ? "missing-code" : "not-an-official-color-map-material" };
   }
   const attributes = objectValue(record, "attributes");
+  const officialLaminate = BA_THANH_LAMINATE_WAY_BY_ROUTE.get(codeRaw);
   const mapUrl = materialType === "melamine" ? MELAMINE_MAP : LAMINATE_MAP;
-  const printedCode = materialType === "laminate"
-    ? LAMINATE_PRINTED_CODES[codeRaw]
-    : undefined;
+  const catalogueCode = materialType === "laminate"
+    ? stringValue(attributes, "catalogueCode") || officialLaminate?.catalogueCode || LAMINATE_CATALOGUE_CODES[codeRaw] || codeRaw
+    : codeRaw;
+  const matchingMelamineCode = materialType === "laminate"
+    ? stringValue(attributes, "matchingMelamineCode") || officialLaminate?.matchingMelamineCode || LAMINATE_MATCHING_MELAMINE[codeRaw] || ""
+    : "";
   const colorCode = verifiedColorCode({
     supplier: "ba-thanh",
     record,
-    codeRaw: printedCode ?? codeRaw,
+    codeRaw: catalogueCode,
     materialType,
     evidence: "official-color-map",
     images: mapRecordImages(record),
@@ -78,11 +120,26 @@ export function classifyBaThanhRecord(record: SourceCatalogueRecord): ColorCodeC
     collection: stringArray(record, "collections")[0],
     sourceColorMapUrl: mapUrl,
   });
+  if (matchingMelamineCode) {
+    colorCode.searchAliases = [
+      ...new Set([
+        ...colorCode.searchAliases,
+        ...buildColorCodeAliases(matchingMelamineCode),
+      ]),
+    ];
+  }
+  if (materialType === "laminate" && catalogueCode !== codeRaw) {
+    colorCode.searchAliases = [
+      ...new Set([
+        ...colorCode.searchAliases,
+        ...buildColorCodeAliases(codeRaw),
+        catalogueCode.replace(/^([A-Z]+)\s+(\d+)/, "$1$2"),
+      ]),
+    ];
+  }
   return {
     purpose: "color-code",
     reason: "verified-official-color-map",
-    colorCode: printedCode
-      ? { ...colorCode, displayName: `Laminate Ba Thanh ${printedCode}` }
-      : colorCode,
+    colorCode,
   };
 }

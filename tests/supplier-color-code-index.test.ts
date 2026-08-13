@@ -5,11 +5,11 @@ describe("canonical supplier color-code index", () => {
   const artifact = buildSupplierColorCodeIndex();
 
   it("reconciles the former mixed catalogue and exposes canonical verified codes only", () => {
-    expect(artifact.previousSearchableRecords).toBe(3_558);
-    expect(artifact.records).toHaveLength(2_829);
+    expect(artifact.previousSearchableRecords).toBe(3_638);
+    expect(artifact.records).toHaveLength(2_909);
     expect(artifact.removedFromPublicColorIndex).toBe(729);
     expect(artifact.purposeTotals).toEqual({
-      "color-code": 3_379,
+      "color-code": 3_459,
       "product-family": 153,
       technical: 0,
       document: 26,
@@ -31,14 +31,14 @@ describe("canonical supplier color-code index", () => {
     expect(artifact.totals).toMatchObject({
       "an-cuong": { verifiedColorCodes: 2_195, scopeExcluded: 549 },
       "thanh-thuy": { verifiedColorCodes: 342 },
-      "ba-thanh": { verifiedColorCodes: 292 },
+      "ba-thanh": { verifiedColorCodes: 372 },
     });
     expect(
       artifact.records.filter(
         (record) =>
           record.supplier === "ba-thanh" && record.materialType === "laminate",
       ),
-    ).toHaveLength(33);
+    ).toHaveLength(113);
     expect(
       artifact.records.some(
         (record) =>
@@ -57,42 +57,39 @@ describe("canonical supplier color-code index", () => {
     ).toEqual(["VENEER CHEERY", "VENEER OAK", "VENEER WALNUT"]);
   });
 
-  it("uses the codes printed on Ba Thanh Laminate swatches instead of WAY route codes", () => {
+  it("uses official WAY Laminate codes and keeps matching Melamine codes as aliases", () => {
     const laminate = artifact.records.filter(
       (record) =>
         record.supplier === "ba-thanh" && record.materialType === "laminate",
     );
 
-    expect(laminate.map((record) => record.codeNormalized).sort()).toEqual([
-      "BT117", "BT118", "BT146", "BT158", "BT159", "BT160", "BT161",
-      "BT162", "BT163", "BT164", "BT165", "BT166", "BT167", "BT52",
-      "BT90", "BTS8", "BTS9", "SC009MW", "SC010MW", "SC011MW",
-      "SC012MW", "SC013M", "SC013MW", "SC014M", "SC014MW", "SC015M",
-      "SC015MW", "SC016M", "SC016MW", "SC017M", "SC017MW", "SC018M",
-      "SC018MW",
-    ].sort());
-    expect(laminate.some((record) => /^[PWSF]\d{4}$/.test(record.codeNormalized))).toBe(false);
+    expect(laminate.map((record) => record.codeNormalized)).toContain("P2052G");
+    expect(laminate.map((record) => record.codeNormalized)).toContain("W7020Z");
 
-    const sc017Mw = laminate.find((record) => record.codeNormalized === "SC017MW");
-    expect(sc017Mw).toMatchObject({
-      codeRaw: "SC 017 MW",
-      displayName: "Laminate Ba Thanh SC 017 MW",
+    const p2052 = laminate.find((record) => record.codeNormalized === "P2052G");
+    expect(p2052).toMatchObject({
+      codeRaw: "P 2052 G",
+      displayName: "Laminate WAY P 2052",
       canonicalRoute: "/catalogue/ba-thanh/laminate/p2052/",
       sourceUrl: "https://bathanh.com.vn/way-p2052",
     });
-    expect(sc017Mw?.searchAliases).not.toContain("P2052");
+    expect(p2052?.searchAliases).toEqual(
+      expect.arrayContaining(["P2052", "P2052 G", "SC 017 MW", "SC017MW"]),
+    );
   });
 
   it("keeps identical Ba Thanh printed codes separate by material", () => {
-    const bt163 = artifact.records.filter(
-      (record) => record.supplier === "ba-thanh" && record.codeNormalized === "BT163",
+    const bt163 = artifact.records.filter((record) =>
+      record.supplier === "ba-thanh" &&
+      (record.codeNormalized === "BT163" || record.searchAliases.includes("BT163")),
     );
 
-    expect(bt163.map((record) => record.materialType).sort()).toEqual([
-      "laminate",
-      "melamine",
+    expect(bt163.map((record) => [record.materialType, record.codeNormalized]).sort()).toEqual([
+      ["laminate", "LW163T"],
+      ["laminate", "W0502Z"],
+      ["melamine", "BT163"],
     ]);
-    expect(new Set(bt163.map((record) => record.id)).size).toBe(2);
+    expect(new Set(bt163.map((record) => record.id)).size).toBe(3);
   });
 
   it("stores mixed-supplier records in Thanh Thuy, Ba Thanh, An Cuong order", () => {
@@ -154,7 +151,7 @@ describe("canonical supplier color-code index", () => {
     );
     expect(anCuong?.images.some((image) => image.role === "swatch" && image.localPath)).toBe(true);
     const baThanhLaminate = artifact.records.find(
-      (record) => record.supplier === "ba-thanh" && record.codeNormalized === "BT163" && record.materialType === "laminate",
+      (record) => record.supplier === "ba-thanh" && record.codeNormalized === "W0502Z" && record.materialType === "laminate",
     );
     expect(baThanhLaminate?.images.some((image) => image.localPath)).toBe(true);
     const invalidBaThanh = artifact.records.find(

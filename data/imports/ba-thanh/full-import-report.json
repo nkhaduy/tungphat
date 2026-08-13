@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "generatedAt": "2026-08-06T17:11:54.397Z",
   "dryRun": false,
-  "previousRecords": 305,
+  "previousRecords": 385,
   "melamineSkus": 259,
   "melamineGroups": {
     "don-sac": 62,
@@ -11,30 +11,30 @@
     "van-go": 153,
     "van-vai": 5
   },
-  "laminateSkus": 33,
+  "laminateSkus": 113,
   "laminateGroups": {
-    "don-sac": 16,
-    "van-da": 4,
-    "van-go": 8,
-    "van-vai": 5
+    "don-sac": 39,
+    "van-da": 7,
+    "van-go": 61,
+    "van-vai": 6
   },
   "familyRecords": 11,
   "documentRecords": 2,
-  "totalImported": 305,
-  "mediaReferences": 402,
+  "totalImported": 385,
+  "mediaReferences": 537,
   "uniqueMediaSourceUrls": 399,
-  "localMediaReferences": 331,
+  "localMediaReferences": 466,
   "sourceOnlyMediaReferences": 71,
   "originalMediaDownload": "DEFERRED_CAPACITY_REVIEW",
   "mediaRightsStatus": "UNCONFIRMED",
   "created": 0,
-  "updated": 0,
-  "unchanged": 305,
+  "updated": 12,
+  "unchanged": 373,
   "removed": 0,
   "duplicates": 0,
   "coveragePercentage": 100,
   "accountedSourceUrls": 800,
   "totalSourceUrls": 800,
-  "manifestChecksum": "6ee8f1c30c8408b1e446fe78768b1b15eb7e0f761e4171296921c63164275b31",
-  "recordChecksum": "24ce3003700d3750add2068367a4e6c40eaae3119631413713b1813997551e3e"
+  "manifestChecksum": "c5e30ad53ab904ed86d435e19e38a748be2a1697c55c3b1de86ef3519515ce99",
+  "recordChecksum": "d7fbfd6717212a7ed67452201d502878ab125407fd0226cdd9fafb378a6dd53b"
 }

@@ -11,6 +11,7 @@ import {
   recordId,
   type BaThanhFullSourceItem,
 } from "./full-import";
+import { BA_THANH_LAMINATE_WAY_DEFINITIONS } from "@/lib/catalog/ba-thanh-laminate-way";
 
 type FullDiscovery = {
   schemaVersion: 1;
@@ -137,7 +138,7 @@ function validateArtifacts(options: {
     ...(options.discovery.melamineBaselineCodes ?? []),
     ...options.melamineSources.filter((item) => item.status === "PARSED").map((item) => item.codeNormalized),
   ]);
-  const expectedLaminateCodes = new Set(options.laminate.filter((item) => item.status === "PARSED").map((item) => item.codeNormalized));
+  const expectedLaminateCodes = new Set(BA_THANH_LAMINATE_WAY_DEFINITIONS.map((item) => item.routeCode));
   if (melamine.length !== expectedMelamineCodes.size) errors.push(`Expected ${expectedMelamineCodes.size} discovered Melamine SKUs, found ${melamine.length}`);
   if (laminate.length !== expectedLaminateCodes.size) errors.push(`Expected ${expectedLaminateCodes.size} discovered WAY Laminate SKUs, found ${laminate.length}`);
   const importedMelamineCodes = new Set(melamine.map((record) => record.normalizedCode));
