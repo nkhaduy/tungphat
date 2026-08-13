@@ -290,6 +290,61 @@ textarea:focus-visible {
   );
 }
 
+.home-hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(
+    90deg,
+    rgba(241, 237, 231, 0.99) 0%,
+    rgba(241, 237, 231, 0.97) 34%,
+    rgba(241, 237, 231, 0.84) 46%,
+    rgba(241, 237, 231, 0.12) 61%,
+    transparent 75%
+  );
+}
+
+.home-hero-image-layer picture {
+  display: block;
+  height: 100%;
+}
+
+.material-panels-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+@media (max-width: 1023px) {
+  .home-hero {
+    background: #f1ede7;
+  }
+
+  .home-hero::before {
+    background: linear-gradient(
+      180deg,
+      rgba(241, 237, 231, 1) 0%,
+      rgba(241, 237, 231, 1) 51%,
+      rgba(241, 237, 231, 0.96) 59%,
+      rgba(241, 237, 231, 0.38) 70%,
+      transparent 83%
+    );
+  }
+
+  .material-panels-hero-image {
+    object-position: 84% bottom;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .material-panels-hero-image {
+    object-position: 56% center;
+  }
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;

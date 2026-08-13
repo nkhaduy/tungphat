@@ -171,7 +171,7 @@ test("representative routes expose breadcrumbs, intact images, and no horizontal
   expect(errors).toEqual([]);
 });
 
-test("homepage có hero tĩnh sáng, CTA chính và chỉ ưu tiên ảnh CNC mở đầu", async ({
+test("homepage có hero vật liệu editorial, CTA gọn và một ảnh LCP ưu tiên", async ({
   page,
 }) => {
   await page.goto("/");
@@ -182,13 +182,15 @@ test("homepage có hero tĩnh sáng, CTA chính và chỉ ưu tiên ảnh CNC m�
       name: "Ván gỗ công nghiệp & gia công CNC tại TP.HCM",
     }),
   ).toBeVisible();
-  await expect(
-    hero.getByRole("link", { name: "Gửi quy cách nhận báo giá" }),
-  ).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Nhận tư vấn" })).toBeVisible();
   await expect(hero.getByRole("link", { name: "Xem catalogue" })).toBeVisible();
-  await expect(hero.getByRole("img", { name: /Máy CNC/ })).toBeVisible();
+  await expect(hero.locator(".material-panels-hero-image")).toBeVisible();
+  await expect(hero.locator('source[type="image/avif"]')).toHaveAttribute(
+    "srcset",
+    /material-panels-hero-960\.avif 960w.*material-panels-hero\.avif 1916w/,
+  );
   await expect(hero.locator('img[fetchpriority="high"]')).toHaveCount(1);
-  await expect(hero.locator("picture")).toHaveCount(0);
+  await expect(hero.locator("picture")).toHaveCount(1);
 });
 
 test("homepage does not prefetch the catalogue payload before user intent", async ({

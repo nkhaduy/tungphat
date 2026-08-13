@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -36,91 +35,76 @@ const benefits = [
 
 export function HomeHero() {
   return (
-    <section id="trang-chu" className="relative overflow-hidden bg-[#f8faf7]">
-      <div
-        className="home-dot-grid pointer-events-none absolute inset-0 opacity-50"
-        aria-hidden="true"
-      />
-      <div className="container-shell relative grid items-center gap-10 py-12 sm:py-16 lg:min-h-[620px] lg:grid-cols-[1.02fr_.98fr] lg:gap-14 lg:py-16 xl:min-h-[650px]">
-        <div className="max-w-[680px]">
+    <section
+      id="trang-chu"
+      className="home-hero relative isolate overflow-hidden border-b border-forest-900/10 bg-[#f1ede7]"
+    >
+      <div className="home-hero-image-layer absolute inset-0 z-0" aria-hidden="true">
+        <picture>
+          <source
+            type="image/avif"
+            srcSet="/images/material-panels-hero-960.avif 960w, /images/material-panels-hero-1440.avif 1440w, /images/material-panels-hero.avif 1916w"
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcSet="/images/material-panels-hero-960.webp 960w, /images/material-panels-hero-1440.webp 1440w, /images/material-panels-hero.webp 1916w"
+            sizes="100vw"
+          />
+          {/* Static export needs a native picture to serve format and width variants. */}
+          <img
+            src="/images/material-panels-hero.webp"
+            alt=""
+            width="1916"
+            height="821"
+            sizes="100vw"
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+            className="material-panels-hero-image"
+          />
+        </picture>
+      </div>
+
+      <div className="container-shell relative z-10 grid lg:min-h-[560px] lg:grid-cols-[minmax(0,47rem)_1fr] lg:items-center">
+        <div className="home-hero-copy max-w-[47rem] py-10 sm:py-12 lg:py-14">
           <p className="eyebrow">Vật liệu gỗ &amp; gia công tại xưởng</p>
-          <h1 className="text-balance mt-5 font-display text-[2.35rem] font-extrabold leading-[1.08] tracking-[-.045em] text-forest-950 sm:text-5xl lg:text-[3.5rem] xl:text-[3.9rem]">
-            Ván gỗ công nghiệp{" "}
-            <span className="text-wood-600">&amp; gia công CNC</span> tại TP.HCM
+          <h1 className="text-balance mt-4 font-display text-[clamp(2.7rem,8vw,4.75rem)] font-extrabold leading-[.98] tracking-[-.05em] text-forest-950">
+            Ván gỗ công nghiệp
+            <span className="block text-wood-600">&amp; gia công CNC</span>
+            <span className="block">tại TP.HCM</span>
           </h1>
-          <p className="text-pretty mt-6 max-w-2xl text-base leading-7 text-slate-700 sm:text-[1.0625rem] sm:leading-8">
+          <p className="text-pretty mt-5 max-w-[39rem] text-[15px] leading-7 text-slate-700 sm:text-[1.0625rem] sm:leading-8">
             Tùng Phát cung cấp MDF, MFC, plywood, gỗ ghép và vật liệu bề mặt;
             đồng thời nhận cắt, khoan, soi rãnh và gia công CNC theo bản vẽ cho
             xưởng nội thất, thợ mộc và doanh nghiệp.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/catalogue"
+              prefetch={false}
+              className="pressable inline-flex min-h-12 items-center justify-center gap-2 bg-forest-900 px-5 text-sm font-extrabold text-white hover:bg-forest-800"
+            >
+              Xem catalogue <ArrowRight size={17} aria-hidden="true" />
+            </Link>
             <TrackedLink
               href={ZALO_URL}
               target="_blank"
               rel="noopener noreferrer"
               eventName="request_quote"
               eventProperties={{ location: "home_hero", channel: "zalo" }}
-              className="inline-flex min-h-14 items-center justify-center gap-2 rounded-md bg-wood-500 px-6 text-sm font-extrabold text-white shadow-[0_12px_26px_rgba(237,118,16,.22)] transition hover:-translate-y-0.5 hover:bg-wood-600"
+              className="pressable inline-flex min-h-12 items-center justify-center gap-2 border border-forest-900/25 bg-[#f7f3ed]/90 px-5 text-sm font-extrabold text-forest-950 hover:border-wood-500 hover:bg-white"
             >
-              <MessageCircle size={18} aria-hidden="true" />
-              Gửi quy cách nhận báo giá
+              <MessageCircle size={17} aria-hidden="true" />
+              Nhận tư vấn
             </TrackedLink>
-            <Link
-              href="/catalogue"
-              prefetch={false}
-              className="inline-flex min-h-14 items-center justify-center gap-2 rounded-md border border-forest-900/25 bg-white px-6 text-sm font-extrabold text-forest-950 transition hover:border-forest-900 hover:bg-forest-950 hover:text-white"
-            >
-              Xem catalogue <ArrowRight size={17} aria-hidden="true" />
-            </Link>
-          </div>
-          <div className="mt-7 flex flex-wrap gap-2 text-xs font-bold text-forest-900/80">
-            <span className="rounded-full border border-forest-900/10 bg-white px-3 py-2">
-              MDF · MFC · Plywood
-            </span>
-            <span className="rounded-full border border-forest-900/10 bg-white px-3 py-2">
-              Gỗ ghép
-            </span>
-            <span className="rounded-full border border-forest-900/10 bg-white px-3 py-2">
-              CNC theo file
-            </span>
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[650px] lg:max-w-none">
-          <div
-            className="absolute -left-4 -top-4 h-28 w-28 rounded-tl-[34px] border-l-2 border-t-2 border-wood-500/70 sm:-left-6 sm:-top-6"
-            aria-hidden="true"
-          />
-          <div className="relative aspect-[5/4] overflow-hidden rounded-[18px] border border-forest-900/10 bg-white shadow-[0_28px_80px_rgba(7,59,40,.16)] sm:rounded-[24px]">
-            <Image
-              src="/images/cnc-service-home.webp"
-              alt="Máy CNC tại Tùng Phát đang gia công một tấm ván"
-              fill
-              sizes="(max-width: 1024px) calc(100vw - 32px), 50vw"
-              priority
-              fetchPriority="high"
-              decoding="sync"
-              className="object-cover"
-            />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest-950/90 via-forest-950/50 to-transparent px-5 pb-5 pt-16 text-white sm:px-7 sm:pb-7">
-              <p className="text-xs font-extrabold uppercase tracking-[.16em] text-orange-300">
-                Gia công tại xưởng
-              </p>
-              <p className="mt-2 max-w-md text-sm font-bold leading-6 sm:text-base">
-                Kiểm tra vật liệu, kích thước và nội dung file trước khi chạy
-                máy.
-              </p>
-            </div>
-          </div>
-          <div className="absolute -bottom-5 -right-2 rounded-lg border border-forest-900/10 bg-white px-4 py-3 shadow-card sm:-right-5 sm:px-5">
-            <span className="block text-[10px] font-extrabold uppercase tracking-[.16em] text-wood-600">
-              Phục vụ tại TP.HCM
-            </span>
-            <span className="mt-1 block text-sm font-extrabold text-forest-950">
-              Hai địa điểm tại Tam Bình
-            </span>
-          </div>
-        </div>
+        <div
+          className="home-hero-visual min-h-[clamp(250px,69vw,330px)] lg:min-h-0"
+          aria-hidden="true"
+        />
       </div>
     </section>
   );
