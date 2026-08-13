@@ -12,8 +12,16 @@ import {
   type CatalogSearchIntent,
 } from "@/lib/catalog/core/search";
 import { supplierDefinitions } from "@/lib/catalog/core/registry";
-import type { CatalogSearchEntry, SupplierId } from "@/lib/catalog/core/types";
-import { materialTaxonomyOptionsForSupplier } from "@/lib/catalog/material-taxonomy";
+import type {
+  CanonicalCatalogGroup,
+  CatalogSearchEntry,
+  SupplierId,
+} from "@/lib/catalog/core/types";
+import {
+  canonicalCatalogGroups,
+  catalogGroupOptions,
+  materialTaxonomyOptionsForSupplier,
+} from "@/lib/catalog/material-taxonomy";
 import {
   findExactCatalogCodeMatch,
   findExactSupplierMatch,
@@ -51,6 +59,7 @@ export function SupplierCatalogSearch({
   const [supplierId, setSupplierId] = useState<SupplierId | "">("");
   const [type, setType] = useState<CatalogSearchIntent>("all");
   const [group, setGroup] = useState("");
+  const [pattern, setPattern] = useState<CanonicalCatalogGroup | "">("");
   const [visibleLimit, setVisibleLimit] = useState(PAGE_SIZE);
   const deferredQuery = useDeferredValue(query);
   const primarySelections: PrimarySelection[] = useMemo(
@@ -66,17 +75,32 @@ export function SupplierCatalogSearch({
       ),
     [entries, supplierId],
   );
+  const selectedMaterial = group || (type === "melamine" ? "melamine" : "");
+  const patternOptions = useMemo(
+    () =>
+      selectedMaterial
+        ? catalogGroupOptions(entries, {
+            supplierId,
+            material: selectedMaterial,
+          })
+        : [],
+    [entries, selectedMaterial, supplierId],
+  );
+  const patternLabelBySlug = useMemo(
+    () => new Map(canonicalCatalogGroups.map((item) => [item.slug, item.label])),
+    [],
+  );
 
   const activeSelection =
     type === "melamine"
         ? "melamine"
         : group || "all";
-  const currentState = { query, supplierId, type, group };
+  const currentState = { query, supplierId, type, group, pattern };
   const hasSearchIntent =
     isCatalogFilterStateActive(currentState) && type !== "supplier";
   const showSupplierDirectory = type === "supplier" && !query.trim();
   const showAllResults =
-    !query.trim() && !supplierId && type === "all" && !group;
+    !query.trim() && !supplierId && type === "all" && !group && !pattern;
 
   useEffect(() => {
     const restoreFromUrl = () => {
@@ -87,6 +111,7 @@ export function SupplierCatalogSearch({
       setSupplierId(restored.supplierId);
       setType(restored.type);
       setGroup(restored.group);
+      setPattern(restored.pattern);
     };
     restoreFromUrl();
     window.addEventListener("popstate", restoreFromUrl);
@@ -95,7 +120,7 @@ export function SupplierCatalogSearch({
 
   useEffect(() => {
     setVisibleLimit(PAGE_SIZE);
-  }, [group, query, supplierId, type]);
+  }, [group, pattern, query, supplierId, type]);
 
   useCatalogFilterRobots(hasSearchIntent || showSupplierDirectory);
 
@@ -105,6 +130,7 @@ export function SupplierCatalogSearch({
       supplierId?: SupplierId | "";
       type?: CatalogSearchIntent;
       group?: string;
+      pattern?: CanonicalCatalogGroup | "";
     },
     mode: "push" | "replace" = "replace",
   ) {
@@ -113,6 +139,7 @@ export function SupplierCatalogSearch({
       supplierId: next.supplierId ?? supplierId,
       type: next.type ?? type,
       group: next.group ?? group,
+      pattern: next.pattern ?? pattern,
     };
     const parameters = buildCatalogSearchParams(
       new URLSearchParams(window.location.search),
@@ -131,9 +158,9 @@ export function SupplierCatalogSearch({
     () =>
       searchSupplierCatalog(entries, deferredQuery, {
         supplierId: supplierId || undefined,
-        ...getCatalogSearchOptionsForSelection(group, type),
+        ...getCatalogSearchOptionsForSelection(group, pattern, type),
       }),
-    [deferredQuery, entries, group, supplierId, type],
+    [deferredQuery, entries, group, pattern, supplierId, type],
   );
   const featured = useMemo(
     () => searchSupplierCatalog(entries, "", { type: "melamine" }).slice(0, 8),
@@ -157,7 +184,13 @@ export function SupplierCatalogSearch({
   function selectPrimary(selection: PrimarySelection) {
     setType(selection.type);
     setGroup(selection.group);
-    updateUrl({ type: selection.type, group: selection.group }, "push");
+    setPattern("");
+    updateUrl({ type: selection.type, group: selection.group, pattern: "" }, "push");
+  }
+
+  function selectPattern(value: CanonicalCatalogGroup | "") {
+    setPattern(value);
+    updateUrl({ pattern: value }, "push");
   }
 
   function handleSearchKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -169,7 +202,7 @@ export function SupplierCatalogSearch({
     if (event.key !== "Enter") return;
     const currentResults = searchSupplierCatalog(entries, query, {
       supplierId: supplierId || undefined,
-      ...getCatalogSearchOptionsForSelection(group, type),
+      ...getCatalogSearchOptionsForSelection(group, pattern, type),
     });
     const exact = findExactCatalogCodeMatch(currentResults, query);
     if (!exact) return;
@@ -280,7 +313,8 @@ export function SupplierCatalogSearch({
                 onChange={(event) => {
                   const value = event.target.value as SupplierId | "";
                   setSupplierId(value);
-                  updateUrl({ supplierId: value }, "push");
+                  setPattern("");
+                  updateUrl({ supplierId: value, pattern: "" }, "push");
                 }}
                 className="min-h-12 w-full appearance-none rounded-[4px] border border-forest-900/25 bg-white px-4 pr-11 text-base font-bold text-forest-950 outline-none focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
               >
@@ -298,6 +332,37 @@ export function SupplierCatalogSearch({
               />
             </span>
           </label>
+
+          {patternOptions.length > 1 ? (
+            <div className="mt-4 border-t border-forest-900/20 pt-4">
+              <p className="text-sm font-extrabold uppercase tracking-[.13em] text-wood-600">
+                Kiểu vân / màu
+              </p>
+              <div className="catalogue-filter-scroll -mx-3 mt-2.5 overflow-x-auto px-3 pb-1 sm:mx-0 sm:px-0">
+                <div
+                  role="group"
+                  aria-label="Chọn kiểu vân hoặc màu"
+                  className="catalogue-filter-row flex w-max gap-1.5 sm:gap-2"
+                >
+                  {patternOptions.map((option) => {
+                    const value = option.slug === "all" ? "" : option.slug;
+                    const active = pattern === value;
+                    return (
+                      <button
+                        key={option.slug}
+                        type="button"
+                        aria-pressed={active}
+                        onClick={() => selectPattern(value)}
+                        className={`pressable inline-flex min-h-11 shrink-0 items-center rounded-[4px] border px-4 text-left text-sm font-extrabold ${active ? "border-forest-900 bg-forest-900 text-white" : "border-forest-900/20 bg-white text-forest-950 hover:border-wood-500/60"}`}
+                      >
+                        {patternLabelBySlug.get(option.slug) ?? option.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
 
@@ -354,7 +419,7 @@ export function SupplierCatalogSearch({
               </p>
               <h3 className="mt-2 text-2xl font-extrabold tracking-[-.025em] text-forest-950 sm:text-3xl">
                 {hasSearchIntent || showAllResults
-                  ? `${results.length.toLocaleString("vi-VN")} mã màu`
+                  ? `${results.length.toLocaleString("vi-VN")} sản phẩm`
                   : "Bắt đầu từ các mã có dữ liệu đầy đủ"}
               </h3>
             </div>

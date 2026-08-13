@@ -25,6 +25,10 @@ import {
   baThanhAdapter,
   thanhThuyAdapter,
 } from "../lib/catalog/suppliers";
+import {
+  catalogGroupOptions,
+  classifyCatalogGroup,
+} from "../lib/catalog/material-taxonomy";
 
 const thanhThuy: SupplierDefinition = {
   id: "thanh-thuy",
@@ -83,6 +87,8 @@ describe("supplier catalogue search", () => {
       thumbnail: "/catalog/thanh-thuy/bt-111-plus.webp",
       canonicalRoute: "/san-pham/melamine/bt-111-plus/",
       category: "Melamine",
+      material: "melamine",
+      canonicalGroup: "woodgrain",
     },
     {
       supplierId: "ba-thanh",
@@ -93,6 +99,8 @@ describe("supplier catalogue search", () => {
       thumbnail: "/catalog/ba-thanh/bt-111.webp",
       canonicalRoute: "/ma-mau-melamine/ba-thanh/bt-111/",
       category: "Vân gỗ",
+      material: "melamine",
+      canonicalGroup: "woodgrain",
     },
     {
       supplierId: "an-cuong",
@@ -104,6 +112,8 @@ describe("supplier catalogue search", () => {
       canonicalRoute: "/catalogue/an-cuong/",
       category: "Melamine",
       series: "Ván Dăm Phủ Melamine",
+      material: "melamine",
+      canonicalGroup: "woodgrain",
     },
   ];
 
@@ -164,17 +174,20 @@ describe("supplier catalogue search", () => {
     ]);
   });
 
-  it("filters primary intent groups before applying merchandising", () => {
+  it("filters canonical pattern groups before applying merchandising", () => {
     expect(
-      searchSupplierCatalog(entries, "", { group: "van-go" }).map(
+      searchSupplierCatalog(entries, "", {
+        material: "melamine",
+        canonicalGroup: "woodgrain",
+      }).map(
         (entry) => entry.code,
       ),
-    ).toEqual(["BT 111"]);
+    ).toEqual(["BT 111 Plus", "BT 111", "MFC - MS 01012 T"]);
   });
 
-  it("maps a legacy group selection to group filtering instead of material filtering", () => {
-    expect(getCatalogSearchOptionsForSelection("van-go", "all"))
-      .toEqual({ group: "van-go", material: undefined });
+  it("maps material and canonical pattern selections independently", () => {
+    expect(getCatalogSearchOptionsForSelection("melamine", "woodgrain", "all"))
+      .toEqual({ canonicalGroup: "woodgrain", group: undefined, material: "melamine" });
   });
 
   it("puts demand before partial-match strength", () => {
@@ -183,6 +196,74 @@ describe("supplier catalogue search", () => {
       { ...entries[0], id: "low-demand-code", code: "XX OAK 100", name: "Neutral", demandScore: 0 },
     ];
     expect(searchSupplierCatalog(partialMatches, "OAK")[0]?.id).toBe("high-demand-name");
+  });
+});
+
+describe("canonical catalogue pattern groups", () => {
+  it.each([
+    ["Vân Gỗ", "woodgrain"],
+    ["van-go", "woodgrain"],
+    ["Woodgrain", "woodgrain"],
+    ["Đơn Sắc", "solid"],
+    ["solid colour", "solid"],
+    ["Vân Đá & Vật Liệu Công Nghiệp", "stone-material"],
+    ["Vân Vải | Da | Mây", "textile-leather-rattan"],
+    ["Hiệu Ứng Khác", "effect"],
+  ])("normalizes %s to %s", (source, expected) => {
+    expect(classifyCatalogGroup([source])).toBe(expected);
+  });
+
+  it("leaves supplier collections without a canonical pattern ungrouped", () => {
+    expect(classifyCatalogGroup(["Ultra Series", "LP Collection"])).toBeUndefined();
+  });
+
+  it("counts only groups available for the selected supplier and material", () => {
+    const groupedEntries: CatalogSearchEntry[] = [
+      {
+        supplierId: "thanh-thuy",
+        supplierName: "Thanh Thuỳ",
+        kind: "product",
+        code: "301",
+        name: "301 Artistic Stripe",
+        thumbnail: "",
+        canonicalRoute: "/catalogue/thanh-thuy/melamine/301/",
+        material: "melamine",
+        canonicalGroup: "woodgrain",
+      },
+      {
+        supplierId: "thanh-thuy",
+        supplierName: "Thanh Thuỳ",
+        kind: "product",
+        code: "021",
+        name: "021 Flamingo Pink",
+        thumbnail: "",
+        canonicalRoute: "/catalogue/thanh-thuy/melamine/021/",
+        material: "melamine",
+        canonicalGroup: "solid",
+      },
+      {
+        supplierId: "an-cuong",
+        supplierName: "An Cường",
+        kind: "color-code",
+        code: "PVC 031",
+        name: "Woodgrain edge",
+        thumbnail: "",
+        canonicalRoute: "/catalogue/an-cuong/edge-banding/pvc-031/",
+        material: "edge-banding",
+        canonicalGroup: "woodgrain",
+      },
+    ];
+
+    expect(
+      catalogGroupOptions(groupedEntries, {
+        supplierId: "thanh-thuy",
+        material: "melamine",
+      }),
+    ).toEqual([
+      { slug: "all", label: "Tất cả", count: 2 },
+      { slug: "woodgrain", label: "Vân gỗ", count: 1 },
+      { slug: "solid", label: "Đơn sắc", count: 1 },
+    ]);
   });
 });
 
@@ -278,9 +359,19 @@ describe("supplier sitemap composition", () => {
 
 describe("supplier adapters", () => {
   it("preserves supplier-specific record counts and SEO gates", () => {
-    expect(thanhThuyAdapter.getSearchEntries()).toHaveLength(342);
-    expect(baThanhAdapter.getSearchEntries()).toHaveLength(292);
-    expect(anCuongAdapter.getSearchEntries()).toHaveLength(2_195);
+    expect(thanhThuyAdapter.getSearchEntries()).toHaveLength(348);
+    expect(baThanhAdapter.getSearchEntries()).toHaveLength(303);
+    expect(anCuongAdapter.getSearchEntries()).toHaveLength(2_331);
+
+    expect(
+      thanhThuyAdapter.getSearchEntries().filter((entry) => entry.recordType === "color-code"),
+    ).toHaveLength(342);
+    expect(
+      baThanhAdapter.getSearchEntries().filter((entry) => entry.recordType === "color-code"),
+    ).toHaveLength(292);
+    expect(
+      anCuongAdapter.getSearchEntries().filter((entry) => entry.recordType === "color-code"),
+    ).toHaveLength(2_195);
 
     expect(thanhThuyAdapter.getSitemapEntries().filter((entry) => entry.indexable).length).toBeGreaterThan(0);
     expect(baThanhAdapter.getSitemapEntries().filter((entry) => entry.indexable).length).toBeGreaterThan(0);

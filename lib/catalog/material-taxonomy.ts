@@ -1,4 +1,8 @@
-import type { CatalogSearchEntry } from "./core/types";
+import type {
+  CanonicalCatalogGroup,
+  CatalogSearchEntry,
+  SupplierId,
+} from "./core/types";
 
 export const materialTaxonomy = [
   { slug: "all", label: "Tất cả" },
@@ -14,6 +18,17 @@ export const materialTaxonomy = [
 ] as const;
 
 export type MaterialTaxonomySlug = Exclude<(typeof materialTaxonomy)[number]["slug"], "all">;
+
+export const canonicalCatalogGroups = [
+  { slug: "all", label: "Tất cả" },
+  { slug: "woodgrain", label: "Vân gỗ" },
+  { slug: "solid", label: "Đơn sắc" },
+  { slug: "stone-material", label: "Vân đá / vật liệu" },
+  { slug: "textile-leather-rattan", label: "Vân vải / da / mây" },
+  { slug: "effect", label: "Hiệu ứng khác" },
+] as const;
+
+export type { CanonicalCatalogGroup } from "./core/types";
 
 export function isMaterialTaxonomySlug(value: string): value is MaterialTaxonomySlug {
   return materialTaxonomy.some((item) => item.slug !== "all" && item.slug === value);
@@ -39,6 +54,46 @@ export function classifyMaterialTaxonomy(values: Array<string | undefined>): Mat
   if (/3d|decorative|trang tri|panel|tam op|wall/.test(value)) return "panel";
   if (value.trim()) return "other-decorative";
   return undefined;
+}
+
+export function classifyCatalogGroup(
+  values: Array<string | undefined>,
+): CanonicalCatalogGroup | undefined {
+  const value = fold(values.filter(Boolean).join(" "))
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+  if (/van go|woodgrain|wood grain|wood pattern/.test(value)) return "woodgrain";
+  if (/don sac|solid colou?r|solid color|uni colou?r|uni color/.test(value)) return "solid";
+  if (/van da|stone|vat lieu cong nghiep|industrial material|metal|xi mang|cement/.test(value)) {
+    return "stone-material";
+  }
+  if (/van vai|\bvai\b|textile|fabric|\bda\b|leather|\bmay\b|rattan/.test(value)) {
+    return "textile-leather-rattan";
+  }
+  if (/hieu ung|effect|metallic|glitter|pearlescent|high gloss|sieu mo/.test(value)) return "effect";
+  return undefined;
+}
+
+export function catalogGroupOptions(
+  entries: CatalogSearchEntry[],
+  filters: { supplierId?: SupplierId | ""; material?: string } = {},
+) {
+  const scoped = entries.filter((entry) => {
+    if (filters.supplierId && entry.supplierId !== filters.supplierId) return false;
+    if (filters.material && entry.material !== filters.material) return false;
+    return true;
+  });
+  const counts = new Map<CanonicalCatalogGroup, number>();
+  for (const entry of scoped) {
+    if (!entry.canonicalGroup) continue;
+    counts.set(entry.canonicalGroup, (counts.get(entry.canonicalGroup) ?? 0) + 1);
+  }
+  return canonicalCatalogGroups
+    .map((item) => ({
+      ...item,
+      count: item.slug === "all" ? scoped.length : counts.get(item.slug) ?? 0,
+    }))
+    .filter((item) => item.count > 0);
 }
 
 export function materialTaxonomyOptions(entries: CatalogSearchEntry[]) {

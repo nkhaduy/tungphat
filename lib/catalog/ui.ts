@@ -1,4 +1,5 @@
 import type { CatalogSearchEntry } from "./core/types";
+import { canonicalCatalogGroups } from "./material-taxonomy";
 import { normalizeCatalogSearch } from "./core/search";
 
 const catalogueLabels: Record<string, string> = {
@@ -44,10 +45,23 @@ export function formatCatalogCardTitle(
 }
 
 export function formatCatalogCardTaxonomy(
-  entry: Pick<CatalogSearchEntry, "category" | "series" | "group" | "material">,
+  entry: Pick<
+    CatalogSearchEntry,
+    "canonicalGroup" | "category" | "series" | "group" | "material"
+  >,
 ): string {
   const seen = new Set<string>();
-  const labels = [entry.category ?? entry.material, entry.series, entry.group]
+  const canonicalLabel = canonicalCatalogGroups.find(
+    (item) => item.slug === entry.canonicalGroup,
+  )?.label;
+  const sourceGroup = entry.group?.trim();
+  const keepSourceGroup = sourceGroup && !entry.canonicalGroup;
+  const labels = [
+    entry.category ?? entry.material,
+    canonicalLabel,
+    entry.series,
+    keepSourceGroup ? sourceGroup : undefined,
+  ]
     .filter((value): value is string => Boolean(value?.trim()))
     .map((value) => {
       const label = humanizeCatalogLabel(value);

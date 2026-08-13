@@ -5,7 +5,7 @@ import { SiteShell } from "@/components/site/SiteShell";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
-import { getSupplierSearchEntries } from "@/lib/catalog/suppliers/search";
+import { getAllSupplierSearchEntriesForCatalogue } from "@/lib/catalog/suppliers/search";
 import { getSupplierTotals } from "@/lib/catalog/suppliers/search-index";
 import {
   createPageMetadata,
@@ -50,7 +50,7 @@ function supplierCards() {
 }
 
 export default function SupplierCataloguePage() {
-  const entries = getSupplierSearchEntries();
+  const entries = getAllSupplierSearchEntriesForCatalogue();
   const suppliers = supplierCards();
 
   return (

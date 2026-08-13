@@ -8,11 +8,12 @@ if (!definition) throw new Error("Ba Thanh supplier definition is missing");
 export const baThanhAdapter: SupplierCatalogAdapter = {
   definition,
   getSearchEntries() {
-    return getSupplierSearchIndex().records.filter((record) => record.supplierId === definition.id);
+    return getSupplierSearchIndex().allRecords.filter((record) => record.supplierId === definition.id);
   },
   getRouteClaims() {
     const entries = this.getSearchEntries();
-    const materials = [...new Set(entries.map((entry) => entry.category).filter(Boolean))] as string[];
+    const colorCodeEntries = entries.filter((entry) => entry.recordType === "color-code");
+    const materials = [...new Set(colorCodeEntries.map((entry) => entry.category).filter(Boolean))] as string[];
     return [
       {
         supplierId: definition.id,
@@ -32,7 +33,7 @@ export const baThanhAdapter: SupplierCatalogAdapter = {
         kind: "category" as const,
         indexable: true,
       })),
-      ...entries.map((record) => ({
+      ...colorCodeEntries.map((record) => ({
         supplierId: definition.id,
         path: record.canonicalRoute,
         kind: "detail" as const,

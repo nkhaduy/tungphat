@@ -49,4 +49,23 @@ describe("catalogue card copy", () => {
       }),
     ).toBe("Danh mục: Melamine · Vân Gỗ");
   });
+
+  it("keeps a non-code edge family readable", () => {
+    expect(
+      formatCatalogCardTitle({
+        supplierId: "thanh-thuy",
+        code: "",
+        name: "CHỈ NẸP VÂN GỖ 1",
+      }),
+    ).toBe("CHỈ NẸP VÂN GỖ 1");
+    expect(
+      formatCatalogCardTaxonomy({
+        category: "Chỉ nẹp nhựa",
+        series: "",
+        group: "Vân Gỗ",
+        material: "edge-banding",
+        canonicalGroup: "woodgrain",
+      }),
+    ).toBe("Danh mục: Chỉ nẹp nhựa · Vân gỗ");
+  });
 });

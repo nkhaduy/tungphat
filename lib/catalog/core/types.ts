@@ -2,6 +2,13 @@ export type SupplierId = "thanh-thuy" | "ba-thanh" | "an-cuong";
 
 export type SupplierRecordKind = "product" | "color-code" | "catalogue-item";
 
+export type CanonicalCatalogGroup =
+  | "woodgrain"
+  | "solid"
+  | "stone-material"
+  | "textile-leather-rattan"
+  | "effect";
+
 export type SupplierDefinition = {
   id: SupplierId;
   displayName: string;
@@ -27,6 +34,8 @@ export type CatalogSearchEntry = {
   category?: string;
   series?: string;
   group?: string;
+  sourceGroup?: string;
+  canonicalGroup?: CanonicalCatalogGroup;
   material?: string;
   seoStatus?: string;
   indexable?: boolean;
