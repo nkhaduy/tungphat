@@ -32,7 +32,7 @@ describe("catalogue hub customer journey", () => {
     expect(markup).not.toContain("inert=");
   });
 
-  it("uses the supplied material image as a compact title-only hero", () => {
+  it("integrates breadcrumb, title and the only search input inside the hero", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
 
     expect(markup).toContain("%2Fimages%2Fmaterial-color-hero.webp");
@@ -43,7 +43,18 @@ describe("catalogue hub customer journey", () => {
     expect(markup).toContain("Mã màu vật liệu");
     expect(markup).toContain('aria-label="Breadcrumb"');
     expect(markup).toContain("catalogue-hero-breadcrumb");
+    expect(markup).toContain("catalogue-hero-search");
+    expect(markup).toContain("catalogue-filter-deck");
     expect(markup).toContain("whitespace-nowrap");
+    expect(markup.indexOf("catalogue-material-hero")).toBeLessThan(
+      markup.indexOf("catalogue-hero-breadcrumb"),
+    );
+    expect(markup.indexOf("catalogue-hero-breadcrumb")).toBeLessThan(
+      markup.indexOf('aria-label="Nhập mã màu, tên màu hoặc thương hiệu..."'),
+    );
+    expect(markup.indexOf('aria-label="Nhập mã màu, tên màu hoặc thương hiệu..."')).toBeLessThan(
+      markup.indexOf("catalogue-filter-deck"),
+    );
     expect(markup).not.toContain("Tra cứu theo mã thực tế");
     expect(markup).not.toContain(
       "Tra nhanh mã, tên màu và thương hiệu từ thư viện vật liệu đã xác minh.",

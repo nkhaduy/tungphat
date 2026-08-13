@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -35,6 +36,7 @@ import {
   parseCatalogUrlState,
 } from "@/lib/catalog/url-state";
 import { AutoLoadMore } from "@/components/catalog/shared/AutoLoadMore";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 const PAGE_SIZE = 48;
 
@@ -188,36 +190,62 @@ export function SupplierCatalogSearch({
       <h2 id="supplier-search-title" className="sr-only">
         Tìm mã màu
       </h2>
+      <div className="catalogue-material-hero relative isolate flex min-h-[390px] overflow-hidden rounded-[1.2rem] border border-white/15 bg-forest-950 shadow-[0_18px_46px_rgba(6,43,29,.16)] sm:min-h-[420px] sm:rounded-[1.4rem] lg:min-h-[440px]">
+        <Image
+          src="/images/material-color-hero.webp"
+          alt="Các tấm ván MDF phủ bề mặt với nhiều màu và vân gỗ"
+          fill
+          priority
+          fetchPriority="high"
+          quality={95}
+          sizes="(max-width: 767px) calc(100vw - 24px), (max-width: 1279px) calc(100vw - 48px), 1280px"
+          className="catalogue-material-hero-image object-cover"
+        />
+        <div
+          className="catalogue-material-hero-shade absolute inset-0 z-10"
+          aria-hidden="true"
+        />
+        <div className="relative z-20 flex w-full flex-col px-5 pb-6 pt-4 sm:px-9 sm:pb-8 sm:pt-5 lg:px-14 lg:pb-10 lg:pt-6 xl:px-16">
+          <Breadcrumbs
+            compact
+            tone="onDark"
+            className="catalogue-hero-breadcrumb"
+            items={[{ label: "Trang chủ", href: "/" }, { label: "Mã màu" }]}
+          />
+          <div className="mt-auto max-w-3xl">
+            <h1 className="whitespace-nowrap text-[clamp(2rem,9.1vw,2.35rem)] font-extrabold leading-none tracking-[-.045em] text-[#fffdf8] [text-shadow:0_2px_16px_rgba(0,0,0,.18)] sm:text-5xl lg:text-[3.5rem]">
+              Mã màu vật liệu
+            </h1>
+            <label className="catalogue-hero-search mt-6 block sm:mt-7">
+              <span className="sr-only">Tra cứu mã màu</span>
+              <span className="relative block rounded-[0.9rem] border border-white/70 bg-[#fffdf9] p-1.5 shadow-[0_14px_34px_rgba(2,18,12,.24)]">
+                <Search
+                  aria-hidden="true"
+                  className="pointer-events-none absolute left-5 top-1/2 z-10 -translate-y-1/2 text-wood-600 sm:left-6"
+                  size={22}
+                  strokeWidth={1.8}
+                />
+                <input
+                  value={query}
+                  onChange={(event) => updateQuery(event.target.value)}
+                  onKeyDown={handleSearchKeyDown}
+                  type="search"
+                  aria-label="Nhập mã màu, tên màu hoặc thương hiệu..."
+                  autoComplete="off"
+                  spellCheck={false}
+                  placeholder="Nhập mã màu, tên màu hoặc thương hiệu..."
+                  className="min-h-14 w-full rounded-[0.65rem] border border-forest-900/10 bg-white py-3 pl-12 pr-4 text-sm font-semibold text-forest-950 outline-none transition-[border-color,box-shadow] placeholder:font-medium placeholder:text-slate-500 focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20 sm:min-h-16 sm:pl-14 sm:pr-5 sm:text-base"
+                />
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
       <div
         data-testid="catalogue-search-original"
-        className="rounded-xl border border-forest-900/10 bg-white p-4 shadow-[0_18px_50px_rgba(7,59,40,.08)] sm:p-6 lg:p-7"
+        className="catalogue-filter-deck relative z-20 mx-2 -mt-3 rounded-xl border border-forest-900/10 bg-white p-4 shadow-[0_18px_50px_rgba(7,59,40,.1)] sm:mx-4 sm:-mt-4 sm:p-6 lg:mx-6 lg:p-7"
       >
-        <label className="block">
-          <span className="mb-2.5 block text-xs font-extrabold uppercase tracking-[.15em] text-forest-900">
-            Tra cứu mã màu
-          </span>
-          <span className="relative block">
-            <Search
-              aria-hidden="true"
-              className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 text-wood-600"
-              size={22}
-              strokeWidth={1.8}
-            />
-            <input
-              value={query}
-              onChange={(event) => updateQuery(event.target.value)}
-              onKeyDown={handleSearchKeyDown}
-              type="search"
-              aria-label="Nhập mã màu, tên màu hoặc thương hiệu..."
-              autoComplete="off"
-              spellCheck={false}
-              placeholder="Nhập mã màu, tên màu hoặc thương hiệu..."
-              className="min-h-16 w-full rounded-lg border border-forest-900/20 bg-[#fbfaf6] py-4 pl-14 pr-5 text-base font-semibold text-forest-950 shadow-inner shadow-forest-950/[.025] outline-none transition-[border-color,box-shadow,background-color] placeholder:font-medium placeholder:text-slate-500 focus:border-wood-500 focus:bg-white focus:ring-2 focus:ring-wood-500/20"
-            />
-          </span>
-        </label>
-
-        <div className="mt-6">
+        <div>
           <p className="text-xs font-extrabold uppercase tracking-[.15em] text-slate-600">
             Chọn nhóm vật liệu
           </p>

@@ -1,9 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MessageCircle, Phone } from "lucide-react";
 import { SupplierCatalogSearch } from "@/components/catalog/shared/SupplierCatalogSearch";
 import { SiteShell } from "@/components/site/SiteShell";
-import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
@@ -64,37 +62,7 @@ export default function SupplierCataloguePage() {
         className="catalogue-page scroll-mt-28 overflow-clip border-b border-forest-900/10 bg-[#f5f4ef] pb-6 pt-2 sm:pb-8 sm:pt-2.5 lg:pb-10 lg:pt-3"
       >
         <PageContainer className="relative">
-          <Breadcrumbs
-            compact
-            className="catalogue-hero-breadcrumb mb-1 sm:mb-1.5"
-            items={[{ label: "Trang chủ", href: "/" }, { label: "Mã màu" }]}
-          />
-          <div className="catalogue-material-hero relative isolate flex min-h-[300px] overflow-hidden rounded-[1.2rem] border border-white/15 bg-forest-950 shadow-[0_16px_38px_rgba(6,43,29,.13)] sm:min-h-[350px] sm:rounded-[1.4rem] lg:min-h-[390px]">
-            <Image
-              src="/images/material-color-hero.webp"
-              alt="Các tấm ván MDF phủ bề mặt với nhiều màu và vân gỗ"
-              fill
-              priority
-              fetchPriority="high"
-              quality={95}
-              sizes="(max-width: 767px) calc(100vw - 24px), (max-width: 1279px) calc(100vw - 48px), 1280px"
-              className="catalogue-material-hero-image object-cover"
-            />
-            <div
-              className="catalogue-material-hero-shade absolute inset-0 z-10"
-              aria-hidden="true"
-            />
-            <div className="relative z-20 flex w-full items-center px-5 py-8 sm:px-9 sm:py-10 lg:px-14 lg:py-12 xl:px-16">
-              <div className="min-w-0 text-white">
-                <h1 className="whitespace-nowrap text-[clamp(2rem,9.1vw,2.35rem)] font-extrabold leading-none tracking-[-.045em] text-[#fffdf8] [text-shadow:0_2px_16px_rgba(0,0,0,.16)] sm:text-5xl lg:text-[3.5rem]">
-                  Mã màu vật liệu
-                </h1>
-              </div>
-            </div>
-          </div>
-          <div className="relative mt-4 sm:mt-5 lg:mt-6">
-            <SupplierCatalogSearch entries={entries} />
-          </div>
+          <SupplierCatalogSearch entries={entries} />
         </PageContainer>
       </section>
 
