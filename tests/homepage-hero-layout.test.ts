@@ -3,6 +3,10 @@ import { describe, expect, it } from "vitest";
 
 describe("homepage editorial material hero", () => {
   const hero = readFileSync("components/home/HomeHero.tsx", "utf8");
+  const catalogue = readFileSync(
+    "components/catalog/shared/SupplierCatalogSearch.tsx",
+    "utf8",
+  );
 
   it("uses the supplied material image as a responsive LCP asset", () => {
     expect(hero).toContain("/images/material-panels-hero.webp");
@@ -20,5 +24,8 @@ describe("homepage editorial material hero", () => {
     expect(hero).toContain("home-hero-visual");
     expect(hero).not.toContain("home-dot-grid");
     expect(hero).not.toContain("cnc-service-home.webp");
+    expect(catalogue).toContain("catalogue-material-hero");
+    expect(catalogue).toContain("/images/material-color-hero.webp");
+    expect(catalogue).not.toContain("material-panels-hero");
   });
 });

@@ -191,6 +191,14 @@ test("homepage có hero vật liệu editorial, CTA gọn và một ảnh LCP ư
   );
   await expect(hero.locator('img[fetchpriority="high"]')).toHaveCount(1);
   await expect(hero.locator("picture")).toHaveCount(1);
+  await expect
+    .poll(() =>
+      hero.locator(".material-panels-hero-image").evaluate((image) => {
+        const element = image as HTMLImageElement;
+        return element.complete && element.naturalWidth > 0;
+      }),
+    )
+    .toBe(true);
 });
 
 test("homepage does not prefetch the catalogue payload before user intent", async ({

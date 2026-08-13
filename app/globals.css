@@ -340,6 +340,17 @@ textarea:focus-visible {
 }
 
 @media (min-width: 1024px) and (max-width: 1279px) {
+  .home-hero::before {
+    background: linear-gradient(
+      90deg,
+      rgba(241, 237, 231, 0.995) 0%,
+      rgba(241, 237, 231, 0.98) 43%,
+      rgba(241, 237, 231, 0.9) 57%,
+      rgba(241, 237, 231, 0.42) 69%,
+      transparent 84%
+    );
+  }
+
   .material-panels-hero-image {
     object-position: 56% center;
   }
