@@ -40,7 +40,8 @@ describe("catalogue hub customer journey", () => {
     expect(markup).toContain('fetchPriority="high"');
     expect(markup).toContain(">Mã màu</h1>");
     expect(markup).not.toContain(">Mã màu vật liệu</h1>");
-    expect(markup).not.toContain('aria-label="Breadcrumb"');
+    expect(markup).toContain('aria-label="Breadcrumb"');
+    expect(markup).toContain("catalogue-hero-breadcrumb");
     expect(markup).toContain("catalogue-search-panel");
     expect(markup).toContain("catalogue-filter-deck");
     expect(markup).not.toContain("catalogue-liquid-glass");
@@ -69,6 +70,9 @@ describe("catalogue hub customer journey", () => {
     expect(markup).not.toContain("Chọn nhóm vật liệu");
     expect(markup).not.toContain("Lọc theo nhà cung cấp");
     expect(markup).not.toContain("Mặc định ưu tiên ý định tra mã Melamine");
+    expect(markup).toContain("catalogue-filter-row");
+    expect(markup).not.toContain("2.829</span>");
+    expect(markup).not.toContain("846</span>");
   });
 
   it("keeps the requested ma-mau URL as a permanent alias", () => {

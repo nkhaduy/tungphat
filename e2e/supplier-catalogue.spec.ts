@@ -164,7 +164,7 @@ test.describe("Mã màu customer journeys", () => {
   }) => {
     await page.goto("/catalogue/");
 
-    const laminate = page.getByRole("button", { name: "Laminate 1.222" });
+    const laminate = page.getByRole("button", { name: "Laminate", exact: true });
     await expect(laminate).toHaveAttribute("aria-pressed", "false");
     await laminate.click();
     await expect(laminate).toHaveAttribute("aria-pressed", "true");

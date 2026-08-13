@@ -173,7 +173,11 @@ textarea:focus-visible {
 
 .catalogue-liquid-glass {
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.1)),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.24),
+      rgba(255, 255, 255, 0.1)
+    ),
     rgba(6, 43, 29, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow:
@@ -189,11 +193,23 @@ textarea:focus-visible {
   inset: 0;
   pointer-events: none;
   content: "";
-  background: linear-gradient(115deg, rgba(255, 255, 255, 0.2), transparent 32%);
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.2),
+    transparent 32%
+  );
 }
 
 .catalogue-liquid-glass > * {
   position: relative;
+}
+
+.catalogue-filter-scroll {
+  scrollbar-width: none;
+}
+
+.catalogue-filter-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 @media (max-width: 767px) {

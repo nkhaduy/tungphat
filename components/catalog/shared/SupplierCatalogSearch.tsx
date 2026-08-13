@@ -26,6 +26,7 @@ import {
   parseCatalogUrlState,
 } from "@/lib/catalog/url-state";
 import { AutoLoadMore } from "@/components/catalog/shared/AutoLoadMore";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 const PAGE_SIZE = 48;
 
@@ -206,16 +207,24 @@ export function SupplierCatalogSearch({
           aria-hidden="true"
         />
         <div className="container-shell relative z-20 flex w-full items-center py-10 sm:py-12 lg:py-14">
-          <h1 className="whitespace-nowrap text-[clamp(2.7rem,8vw,4.75rem)] font-extrabold leading-none tracking-[-.05em] text-[#fffdf8] [text-shadow:0_2px_18px_rgba(0,0,0,.22)]">
-            Mã màu
-          </h1>
+          <div>
+            <Breadcrumbs
+              compact
+              tone="onDark"
+              className="catalogue-hero-breadcrumb mb-3 sm:mb-4"
+              items={[{ label: "Trang chủ", href: "/" }, { label: "Mã màu" }]}
+            />
+            <h1 className="whitespace-nowrap text-[clamp(2.7rem,8vw,4.75rem)] font-extrabold leading-none tracking-[-.05em] text-[#fffdf8] [text-shadow:0_2px_18px_rgba(0,0,0,.22)]">
+              Mã màu
+            </h1>
+          </div>
         </div>
       </div>
 
-      <div className="catalogue-search-panel relative z-20 bg-white px-4 py-5 shadow-[0_14px_38px_rgba(6,43,29,.09)] sm:px-6 sm:py-6 lg:px-8 lg:py-7">
+      <div className="catalogue-search-panel relative z-20 py-5 sm:py-6 lg:py-7">
         <label className="catalogue-hero-search mx-auto block max-w-4xl">
           <span className="sr-only">Tra cứu mã màu</span>
-          <span className="relative block rounded-xl border border-forest-900/15 bg-[#fbfaf7] p-1 shadow-[0_8px_24px_rgba(6,43,29,.08)]">
+          <span className="relative block rounded-md border border-forest-900/15 bg-white p-1 shadow-[0_8px_24px_rgba(6,43,29,.07)]">
             <Search
               aria-hidden="true"
               className="pointer-events-none absolute left-5 top-1/2 z-10 -translate-y-1/2 text-wood-600 sm:left-6"
@@ -231,53 +240,50 @@ export function SupplierCatalogSearch({
               autoComplete="off"
               spellCheck={false}
               placeholder="Nhập mã màu, tên màu hoặc thương hiệu..."
-              className="min-h-12 w-full rounded-lg border border-transparent bg-white py-2.5 pl-12 pr-4 text-sm font-semibold text-forest-950 outline-none transition-[border-color,box-shadow] placeholder:font-medium placeholder:text-slate-500 focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20 sm:min-h-14 sm:pl-14 sm:pr-5 sm:text-base"
+              className="min-h-12 w-full rounded-sm border border-transparent bg-white py-2.5 pl-12 pr-4 text-sm font-semibold text-forest-950 outline-none transition-[border-color,box-shadow] placeholder:font-medium placeholder:text-slate-500 focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20 sm:min-h-14 sm:pl-14 sm:pr-5 sm:text-base"
             />
           </span>
         </label>
 
         <div
           data-testid="catalogue-search-original"
-          className="catalogue-filter-deck mt-5 border-t border-forest-900/10 pt-5 sm:mt-6 sm:pt-6 lg:flex lg:items-end lg:gap-8"
+          className="catalogue-filter-deck mt-5 border-t border-forest-900/10 pt-5 sm:mt-6 sm:pt-6"
         >
-          <div className="min-w-0 flex-1">
+          <div className="min-w-0">
             <p className="text-xs font-extrabold uppercase tracking-[.15em] text-wood-600">
               Phân loại
             </p>
             <div
-              role="group"
-              aria-label="Chọn loại vật liệu"
-              className="mt-2.5 flex flex-wrap gap-1.5 sm:gap-2"
+              className="catalogue-filter-scroll -mx-3 mt-2.5 overflow-x-auto px-3 pb-1 sm:mx-0 sm:px-0"
             >
-              {primarySelections.map((selection) => {
-                const active = activeSelection === selection.value;
-                return (
-                  <button
-                    key={selection.value}
-                    type="button"
-                    aria-pressed={active}
-                    onClick={() => selectPrimary(selection)}
-                    className={`pressable inline-flex min-h-11 min-w-0 max-w-full items-center gap-1.5 rounded-full border px-3 text-left text-[13px] font-extrabold sm:px-3.5 sm:text-sm ${active ? "border-forest-900 bg-forest-900 text-white shadow-[0_6px_18px_rgba(2,18,12,.16)]" : "border-forest-900/10 bg-[#f5f4ef] text-forest-950 hover:border-wood-500/40 hover:bg-white"}`}
-                  >
-                    <span>{selection.label}</span>
-                    {selection.count !== undefined ? (
-                      <span
-                        className={`text-xs tabular-nums ${active ? "text-white/70" : "text-slate-500"}`}
-                      >
-                        {selection.count.toLocaleString("vi-VN")}
-                      </span>
-                    ) : null}
-                  </button>
-                );
-              })}
+              <div
+                role="group"
+                aria-label="Chọn loại vật liệu"
+                className="catalogue-filter-row flex w-max gap-1.5 sm:gap-2"
+              >
+                {primarySelections.map((selection) => {
+                  const active = activeSelection === selection.value;
+                  return (
+                    <button
+                      key={selection.value}
+                      type="button"
+                      aria-pressed={active}
+                      onClick={() => selectPrimary(selection)}
+                      className={`pressable inline-flex min-h-11 shrink-0 items-center rounded-[4px] border px-3.5 text-left text-[13px] font-extrabold sm:px-4 sm:text-sm ${active ? "border-forest-900 bg-forest-900 text-white shadow-[0_5px_14px_rgba(2,18,12,.14)]" : "border-forest-900/15 bg-transparent text-forest-950 hover:border-wood-500/50 hover:bg-white"}`}
+                    >
+                      <span>{selection.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
-          <label className="mt-5 block shrink-0 lg:mt-0 lg:w-[280px]">
-            <span className="mb-1.5 block text-xs font-extrabold uppercase tracking-[.14em] text-wood-600">
+          <label className="mt-4 flex flex-col gap-2 border-t border-forest-900/10 pt-4 sm:flex-row sm:items-center sm:gap-4">
+            <span className="shrink-0 text-xs font-extrabold uppercase tracking-[.14em] text-wood-600">
               Theo thương hiệu
             </span>
-            <span className="relative block">
+            <span className="relative block w-full sm:w-[280px]">
               <select
                 value={supplierId}
                 onChange={(event) => {
@@ -285,7 +291,7 @@ export function SupplierCatalogSearch({
                   setSupplierId(value);
                   updateUrl({ supplierId: value }, "push");
                 }}
-                className="min-h-11 w-full appearance-none rounded-lg border border-forest-900/15 bg-[#fbfaf7] px-4 pr-11 text-sm font-bold text-forest-950 outline-none focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
+                className="min-h-11 w-full appearance-none rounded-[4px] border border-forest-900/15 bg-white px-4 pr-11 text-sm font-bold text-forest-950 outline-none focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
               >
                 <option value="">Tất cả thương hiệu</option>
                 {supplierOptions.map((supplier) => (
