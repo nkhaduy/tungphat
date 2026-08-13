@@ -67,7 +67,7 @@ export function HomeHero() {
       </div>
 
       <div className="container-shell relative z-10 grid lg:min-h-[560px] lg:grid-cols-[minmax(0,47rem)_1fr] lg:items-center">
-        <div className="home-hero-copy max-w-[47rem] py-10 sm:py-12 lg:py-14">
+        <div className="home-hero-copy max-w-[47rem] pb-10 pt-[calc(2.5rem+4.5rem)] sm:pb-12 sm:pt-[calc(3rem+4.5rem)] lg:pb-14 lg:pt-[calc(3.5rem+4.5rem)]">
           <p className="eyebrow">Vật liệu gỗ &amp; gia công tại xưởng</p>
           <h1 className="text-balance mt-4 font-display text-[clamp(2.7rem,8vw,4.75rem)] font-extrabold leading-[.98] tracking-[-.05em] text-forest-950">
             Ván gỗ công nghiệp

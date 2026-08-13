@@ -41,7 +41,7 @@ export default async function SupplierMaterialRoute({ params }: RouteProps) {
   const referenceEntries = entries.filter((entry) => entry.indexable);
   return <SiteShell>
     <JsonLd data={breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Mã màu", path: "/catalogue/" }, { name: definition.displayName, path: `/catalogue/${supplier}/` }, { name: materialLabel, path }])} />
-    <section className="border-b border-forest-900/10 bg-[#f7f8f5] py-8 sm:py-10 lg:py-12">
+    <section className="border-b border-forest-900/10 bg-[#f7f8f5] pb-8 pt-[calc(2rem+4.5rem)] sm:pb-10 sm:pt-[calc(2.5rem+4.5rem)] lg:pb-12 lg:pt-[calc(3rem+4.5rem)]">
       <PageContainer>
         <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Mã màu", href: "/catalogue/" }, { label: definition.displayName, href: `/catalogue/${supplier}/` }, { label: materialLabel }]} />
         <h1 className="mt-5 text-3xl font-extrabold text-forest-950 sm:text-4xl">Mã màu {materialLabel} · {definition.displayName}</h1>

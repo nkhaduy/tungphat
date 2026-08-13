@@ -69,7 +69,7 @@ export default async function BaThanhCodePage({ params }: RouteProps) {
     <>
       <JsonLd data={[productSchema, breadcrumbSchema]} />
       <div className="bg-[#fbfcf9]">
-        <section className="bg-forest-950 py-10 text-white lg:py-14">
+        <section className="bg-forest-950 pb-10 pt-[calc(2.5rem+4.5rem)] text-white lg:pb-14 lg:pt-[calc(3.5rem+4.5rem)]">
           <div className="container-shell">
             <nav
               aria-label="Breadcrumb"

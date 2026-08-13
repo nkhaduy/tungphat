@@ -24,7 +24,7 @@ export function CatalogueView({ brand }: { brand: Brand }) {
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-forest-900/10 bg-[#f7f8f5] py-7 sm:py-9 lg:py-12">
+      <section className="relative overflow-hidden border-b border-forest-900/10 bg-[#f7f8f5] pb-7 pt-[calc(1.75rem+4.5rem)] sm:pb-9 sm:pt-[calc(2.25rem+4.5rem)] lg:pb-12 lg:pt-[calc(3rem+4.5rem)]">
         <PageContainer>
           <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Mã màu", href: "/catalogue/" }, { label: brand.name }]} />
           <div className="mt-4 max-w-4xl">

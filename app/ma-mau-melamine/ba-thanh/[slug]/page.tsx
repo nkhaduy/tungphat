@@ -33,7 +33,7 @@ export default async function BaThanhSlugPage({ params }: RouteProps) {
     return <SiteShell><CategoryView params={Promise.resolve({ category: slug })} /></SiteShell>;
   }
   if (getBaThanhCode(slug)) {
-    return <SiteShell><CodeView params={Promise.resolve({ code: slug })} /></SiteShell>;
+    return <SiteShell headerTone="dark"><CodeView params={Promise.resolve({ code: slug })} /></SiteShell>;
   }
   notFound();
 }

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <SiteShell mainClassName="min-h-[100dvh]">
+    <SiteShell headerTone="dark" mainClassName="min-h-[100dvh]">
       <section className="not-found-scene" data-testid="not-found-scene">
         <div className="not-found-stage" data-testid="not-found-stage">
           <picture className="absolute inset-0 block">

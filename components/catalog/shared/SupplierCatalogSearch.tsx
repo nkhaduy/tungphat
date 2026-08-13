@@ -230,7 +230,7 @@ export function SupplierCatalogSearch({
           className="catalogue-material-hero-shade absolute inset-0 z-10"
           aria-hidden="true"
         />
-        <div className="container-shell relative z-20 flex w-full items-center py-10 sm:py-12 lg:py-14">
+        <div className="container-shell relative z-20 flex w-full items-center pb-10 pt-[calc(2.5rem+4.5rem)] sm:pb-12 sm:pt-[calc(3rem+4.5rem)] lg:pb-14 lg:pt-[calc(3.5rem+4.5rem)]">
           <div>
             <Breadcrumbs
               compact

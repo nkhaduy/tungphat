@@ -2,17 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, MapPin, Menu, MessageCircle, Phone } from "lucide-react";
+import { Menu, MessageCircle } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   MobileNavigation,
   type NavigationItem,
 } from "@/components/site/MobileNavigation";
 import { TrackedLink } from "@/components/TrackedLink";
-import business from "@/content/settings/business.json";
 import { useLang } from "@/lib/i18n-context";
-import { PHONE_HREF, ZALO_URL } from "@/lib/seo";
+import {
+  getSiteHeaderClasses,
+  type SiteHeaderTone,
+} from "@/lib/site-header";
+import { ZALO_URL } from "@/lib/seo";
 
 const productSlugs = [
   "/go-ghep",
@@ -23,10 +26,11 @@ const productSlugs = [
   "/van-go-cong-nghiep",
 ];
 
-export function SiteHeader() {
+export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
   const { lang, setLang } = useLang();
   const pathname = (usePathname() || "/").replace(/\/$/, "") || "/";
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const languageLabel =
     lang === "vi"
@@ -89,67 +93,20 @@ export function SiteHeader() {
     if (restoreFocus) requestAnimationFrame(() => triggerRef.current?.focus());
   }, []);
 
+  useEffect(() => {
+    const updateScrolled = () => setScrolled(window.scrollY > 12);
+    updateScrolled();
+    window.addEventListener("scroll", updateScrolled, { passive: true });
+    return () => window.removeEventListener("scroll", updateScrolled);
+  }, []);
+
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-forest-900/10 bg-white shadow-header">
-        <div className="hidden border-b border-forest-900/10 bg-[#f7f8f5] md:block">
-          <div className="container-shell flex min-h-11 items-center justify-between gap-5 text-xs font-semibold text-slate-700">
-            <div className="flex min-w-0 items-center gap-5">
-              {business.locations.map((location) => (
-                <a
-                  key={location.id}
-                  href={location.directionsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden min-w-0 items-center gap-2 hover:text-wood-600 xl:inline-flex"
-                >
-                  <MapPin
-                    size={13}
-                    className="shrink-0 text-wood-600"
-                    aria-hidden="true"
-                  />
-                  <span className="truncate">{location.address}</span>
-                </a>
-              ))}
-              <span className="inline-flex items-center gap-2 xl:hidden">
-                <MapPin
-                  size={13}
-                  className="text-wood-600"
-                  aria-hidden="true"
-                />
-                2 chi nhánh tại TP.HCM
-              </span>
-            </div>
-            <div className="flex shrink-0 items-center gap-5">
-              <a
-                href={PHONE_HREF}
-                className="inline-flex min-h-11 items-center gap-2 font-bold text-forest-950 hover:text-wood-600"
-              >
-                <Phone size={14} className="text-wood-600" aria-hidden="true" />
-                {business.phoneDisplay}
-              </a>
-              <a
-                href={`mailto:${business.email}`}
-                className="hidden min-h-11 items-center gap-2 hover:text-wood-600 lg:inline-flex"
-              >
-                <Mail size={14} className="text-wood-600" aria-hidden="true" />
-                {business.email}
-              </a>
-              <button
-                type="button"
-                onClick={() => setLang(lang === "vi" ? "en" : "vi")}
-                aria-label={languageLabel}
-                className="inline-flex min-h-11 items-center gap-1.5 px-1 font-extrabold text-slate-600 hover:text-forest-950"
-              >
-                <span className={lang === "vi" ? "text-wood-600" : ""}>VI</span>
-                <span aria-hidden="true" className="text-slate-300">
-                  |
-                </span>
-                <span className={lang === "en" ? "text-wood-600" : ""}>EN</span>
-              </button>
-            </div>
-          </div>
-        </div>
+      <header
+        className={`site-header sticky top-0 z-50 ${getSiteHeaderClasses(scrolled, tone)}`}
+        data-scrolled={scrolled ? "true" : "false"}
+        data-tone={tone}
+      >
         <div className="container-shell flex h-[72px] items-center justify-between gap-4">
           <Link
             href="/"
@@ -162,7 +119,16 @@ export function SiteHeader() {
               fill
               sizes="220px"
               loading="eager"
-              className="object-contain object-left"
+              className="site-header-logo site-header-logo--default object-contain object-left"
+            />
+            <Image
+              src="/logo-horizontal-white.png"
+              alt=""
+              fill
+              sizes="220px"
+              loading="eager"
+              className="site-header-logo site-header-logo--inverse object-contain object-left"
+              aria-hidden="true"
             />
           </Link>
           <nav
@@ -175,12 +141,22 @@ export function SiteHeader() {
                 href={item.href}
                 prefetch={item.prefetch}
                 aria-current={item.active ? "page" : undefined}
-                className={`relative inline-flex min-h-11 items-center text-[12px] font-extrabold transition-colors 2xl:text-[13px] ${item.active ? "text-wood-600 after:absolute after:inset-x-0 after:bottom-1 after:h-0.5 after:bg-wood-500" : "text-forest-950 hover:text-wood-600"}`}
+                className={`site-header-nav-link relative inline-flex min-h-11 items-center text-[12px] font-extrabold transition-colors 2xl:text-[13px] ${item.active ? "site-header-nav-link--active after:absolute after:inset-x-0 after:bottom-1 after:h-0.5 after:bg-wood-500" : "hover:text-wood-600"}`}
               >
                 {item.label}
               </Link>
             ))}
           </nav>
+          <button
+            type="button"
+            onClick={() => setLang(lang === "vi" ? "en" : "vi")}
+            aria-label={languageLabel}
+            className="site-header-language hidden min-h-11 shrink-0 items-center gap-1 px-1 text-[11px] font-extrabold xl:inline-flex"
+          >
+            <span className={lang === "vi" ? "text-wood-500" : ""}>VI</span>
+            <span aria-hidden="true" className="site-header-language-divider">|</span>
+            <span className={lang === "en" ? "text-wood-500" : ""}>EN</span>
+          </button>
           <TrackedLink
             href={ZALO_URL}
             target="_blank"
@@ -199,7 +175,7 @@ export function SiteHeader() {
             aria-expanded={menuOpen}
             aria-controls="site-mobile-navigation"
             onClick={() => setMenuOpen(true)}
-            className="pressable grid h-11 w-11 place-items-center border border-forest-900/20 text-forest-950 hover:border-wood-500 hover:text-wood-600 xl:hidden"
+            className="site-header-menu pressable grid h-11 w-11 place-items-center border hover:border-wood-500 hover:text-wood-600 xl:hidden"
           >
             <Menu size={22} aria-hidden="true" />
           </button>

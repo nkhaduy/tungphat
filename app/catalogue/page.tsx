@@ -55,6 +55,7 @@ export default function SupplierCataloguePage() {
 
   return (
     <SiteShell
+      headerTone="dark"
       thirdMobileAction={{ href: "#tra-cuu-catalogue", label: "Mã màu" }}
     >
       <section

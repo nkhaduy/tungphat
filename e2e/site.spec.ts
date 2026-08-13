@@ -100,35 +100,33 @@ test("các route chính trả về trang có H1, canonical và không có lỗi 
   expect(errors).toEqual([]);
 });
 
-test("shared site contract uses solid light chrome without blur", async ({
+test("shared header is transparent over the first section and solid after scroll", async ({
   page,
 }) => {
-  for (const route of representativeRoutes) {
+  for (const { route, tone } of [
+    { route: "/", tone: "light" },
+    { route: "/catalogue/", tone: "dark" },
+  ]) {
     await page.goto(route);
     const header = page.getByRole("banner");
-    const footer = page.getByRole("contentinfo");
-    await expect(header, route).toBeVisible();
-    await expect(footer, route).toBeAttached();
-
-    const headerStyles = await header.evaluate((element) => {
-      const style = getComputedStyle(element);
-      return {
-        backgroundColor: style.backgroundColor,
-        backdropFilter: style.backdropFilter,
-        webkitBackdropFilter: style.getPropertyValue("-webkit-backdrop-filter"),
-      };
-    });
-    const footerBackground = await footer.evaluate(
-      (element) => getComputedStyle(element).backgroundColor,
+    await expect(header, route).toHaveAttribute("data-tone", tone);
+    await expect(header, route).toHaveAttribute("data-scrolled", "false");
+    await expect(header, route).toHaveCSS(
+      "background-color",
+      "rgba(0, 0, 0, 0)",
     );
+    await expect(header, route).toHaveCSS("position", "sticky");
+    await expect(page.getByText("2 chi nhánh tại TP.HCM"), route).toHaveCount(0);
 
-    expect(headerStyles.backgroundColor, route).toMatch(/^rgb\(/);
-    expect(headerStyles.backgroundColor, route).not.toBe("rgba(0, 0, 0, 0)");
-    expect(headerStyles.backdropFilter, route).toBe("none");
-    expect(headerStyles.webkitBackdropFilter || "none", route).toBe("none");
-    expect(footerBackground, route).toMatch(
-      /^rgb\((2[3-5]\d|255), (2[3-5]\d|255), (2[3-5]\d|255)\)$/,
-    );
+    await page.evaluate(() => window.scrollTo(0, 160));
+    await expect(header, route).toHaveAttribute("data-scrolled", "true");
+    await expect
+      .poll(() =>
+        header.evaluate(
+          (element) => getComputedStyle(element).backgroundColor,
+        ),
+      )
+      .not.toBe("rgba(0, 0, 0, 0)");
   }
 });
 

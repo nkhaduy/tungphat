@@ -18,7 +18,7 @@ export default function ErrorPage({
 
   return (
     <SiteShell>
-      <section className="grid min-h-[58vh] place-items-center border-b border-forest-900/10 bg-[#f7f8f5] px-4 py-16 text-center">
+      <section className="grid min-h-[58vh] place-items-center border-b border-forest-900/10 bg-[#f7f8f5] px-4 pb-16 pt-[calc(4rem+4.5rem)] text-center">
         <div className="max-w-2xl border border-forest-900/10 bg-white p-7 shadow-card sm:p-10">
           <p className="eyebrow">Đã có lỗi</p>
           <h1 className="mt-4 text-balance text-3xl font-extrabold text-forest-950 sm:text-4xl">Trang chưa thể hiển thị</h1>

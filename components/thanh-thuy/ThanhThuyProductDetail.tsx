@@ -34,7 +34,7 @@ export function ThanhThuyProductDetail({
         ]}
       />
       <div className="bg-[#f6f7f5]">
-        <section className="bg-white py-10 lg:py-16">
+        <section className="bg-white pb-10 pt-[calc(2.5rem+4.5rem)] lg:pb-16 lg:pt-[calc(4rem+4.5rem)]">
           <div className="container-shell">
             <nav
               aria-label="Breadcrumb"

@@ -40,7 +40,7 @@ export default async function SupplierColorCodeRoute({ params }: RouteProps) {
       breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Mã màu", path: "/catalogue/" }, { name: supplierName, path: `/catalogue/${record.supplier}/` }, { name: materialLabel, path: `/catalogue/${record.supplier}/${material}/` }, { name: record.codeRaw, path }]),
       { "@context": "https://schema.org", "@type": "Product", name: record.displayName ?? record.codeRaw, sku: record.codeRaw, brand: { "@type": "Brand", name: supplierName }, category: materialLabel, url: absoluteUrl(path), ...(images.length ? { image: images.map((image) => absoluteUrl(image.localPath!)) } : {}) },
     ]} />
-    <section className="border-b border-forest-900/10 bg-[#f7f8f5] py-8 sm:py-10 lg:py-14">
+    <section className="border-b border-forest-900/10 bg-[#f7f8f5] pb-8 pt-[calc(2rem+4.5rem)] sm:pb-10 sm:pt-[calc(2.5rem+4.5rem)] lg:pb-14 lg:pt-[calc(3.5rem+4.5rem)]">
       <PageContainer>
         <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Mã màu", href: "/catalogue/" }, { label: supplierName, href: `/catalogue/${record.supplier}/` }, { label: materialLabel, href: `/catalogue/${record.supplier}/${material}/` }, { label: record.codeRaw }]} />
         <div className="mt-7 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,.8fr)] lg:items-start">

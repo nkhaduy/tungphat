@@ -16,7 +16,7 @@ export function PageHero({ breadcrumbs, eyebrow, title, description, image, acti
   return (
     <section className="relative overflow-hidden border-b border-forest-900/10 bg-[#f7f8f5]">
       <div className="page-hero-pattern pointer-events-none absolute inset-y-0 right-0 w-1/2 opacity-35" aria-hidden="true" />
-      <PageContainer className={`relative grid items-center gap-8 ${compact ? "py-10 lg:py-12" : "py-12 sm:py-14 lg:grid-cols-[1.05fr_.75fr] lg:py-16"}`}>
+      <PageContainer className={`relative grid items-center gap-8 ${compact ? "pb-10 pt-[calc(2.5rem+4.5rem)] lg:pb-12 lg:pt-[calc(3rem+4.5rem)]" : "pb-12 pt-[calc(3rem+4.5rem)] sm:pb-14 sm:pt-[calc(3.5rem+4.5rem)] lg:grid-cols-[1.05fr_.75fr] lg:pb-16 lg:pt-[calc(4rem+4.5rem)]"}`}>
         <div>
           <Breadcrumbs items={breadcrumbs} />
           <p className="eyebrow mt-7">{eyebrow}</p>

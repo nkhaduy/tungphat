@@ -45,10 +45,10 @@ const brandSchema = {
 export default function BaThanhBrandPage() {
   const verifiedMelamineCodes = getBaThanhCodes().length;
   return (
-    <SiteShell>
+    <SiteShell headerTone="dark">
       <JsonLd data={brandSchema} />
       <div className="bg-[#fbfcf9]">
-        <section className="relative overflow-hidden bg-forest-950 py-16 text-white lg:py-24">
+        <section className="relative overflow-hidden bg-forest-950 pb-16 pt-[calc(4rem+4.5rem)] text-white lg:pb-24 lg:pt-[calc(6rem+4.5rem)]">
           <div className="pointer-events-none absolute -right-24 -top-28 h-80 w-80 rounded-full border border-wood-500/30 bg-wood-500/10" />
           <div className="pointer-events-none absolute bottom-0 left-0 h-40 w-[42%] bg-[linear-gradient(90deg,rgba(184,77,0,.24),transparent)]" />
           <div className="container-shell relative">
