@@ -7,8 +7,9 @@ import type { AdminUser } from "../api";
 import { NavIcon } from "./NavIcon";
 
 const nav = [
-  ["dashboard", "Tổng quan"], ["products", "Sản phẩm"], ["articles", "Bài viết"], ["projects", "Dự án"], ["pages", "Trang"],
+  ["dashboard", "Tổng quan"], ["homepage", "Trang chủ"], ["products", "Sản phẩm"], ["articles", "Bài viết"], ["projects", "Dự án"], ["pages", "Trang"],
   ["media", "Media"], ["business-settings", "Cài đặt"], ["users", "Người dùng"], ["versions", "Phiên bản"], ["audit", "Nhật ký"],
+  ["gbp", "Google Business"],
 ] as const;
 
 const roleLabels: Record<AdminUser["role"], string> = { "super-admin": "Quản trị viên", admin: "Quản trị viên", editor: "Biên tập viên" };

@@ -4,13 +4,16 @@ import FolderKanban from "lucide-react/dist/esm/icons/folder-kanban";
 import History from "lucide-react/dist/esm/icons/history";
 import Image from "lucide-react/dist/esm/icons/image";
 import LayoutDashboard from "lucide-react/dist/esm/icons/layout-dashboard";
+import House from "lucide-react/dist/esm/icons/house";
 import Newspaper from "lucide-react/dist/esm/icons/newspaper";
 import Package from "lucide-react/dist/esm/icons/package";
 import Settings from "lucide-react/dist/esm/icons/settings";
 import Users from "lucide-react/dist/esm/icons/users";
+import MapPinned from "lucide-react/dist/esm/icons/map-pinned";
 
 const icons = {
   dashboard: LayoutDashboard,
+  homepage: House,
   products: Package,
   articles: Newspaper,
   projects: FolderKanban,
@@ -20,6 +23,7 @@ const icons = {
   users: Users,
   versions: FileClock,
   audit: History,
+  gbp: MapPinned,
 } as const;
 
 export function NavIcon({ route }: { route: keyof typeof icons }) {

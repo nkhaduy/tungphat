@@ -7,6 +7,8 @@ import { ContentScreen } from "./screens/ContentScreen";
 import { MediaScreen } from "./screens/MediaScreen";
 import { SettingsScreen } from "./screens/SettingsScreen";
 import { DataScreen } from "./screens/DataScreen";
+import { HomepageScreen } from "./screens/HomepageScreen";
+import { GbpScreen } from "./screens/GbpScreen";
 
 export function App() {
   const [user, setUser] = useState<AdminUser | null>(null); const [loading, setLoading] = useState(true); const [error, setError] = useState(""); const [route, setRoute] = useState("dashboard");
@@ -24,8 +26,10 @@ export function App() {
   async function leave() { await logout(); setUser(null); setRoute("dashboard"); }
   if (!user) return <LoginScreen onLogin={beginLogin} error={error} busy={loading} />;
   let screen = <DashboardScreen />;
-  if (["products", "articles", "projects", "pages"].includes(route)) screen = <ContentScreen collection={route} />;
+  if (route === "homepage") screen = <HomepageScreen />;
+  else if (["products", "articles", "projects", "pages"].includes(route)) screen = <ContentScreen collection={route} />;
   else if (route === "media") screen = <MediaScreen />;
+  else if (route === "gbp") screen = <GbpScreen />;
   else if (route === "business-settings") screen = <SettingsScreen setting="business-settings" />;
   else if (route === "users" || route === "versions" || route === "audit") screen = <DataScreen kind={route} />;
   return <Layout user={user} route={route} onRoute={setRoute} onLogout={leave}>{screen}</Layout>;

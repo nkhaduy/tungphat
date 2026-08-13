@@ -5,8 +5,15 @@
   "compatibility_date": "2026-08-08",
   "vars": {
     "LEGACY_CMS_ORIGIN": "https://d9e520d2.tungphat-cms.pages.dev",
-    "LIGHT_CMS_GATEWAY": "pages-production"
+    "LIGHT_CMS_GATEWAY": "pages-production",
+    "ALLOWED_ORIGINS": "https://cms.mdftungphat.com",
+    "CORS_ALLOWED_ORIGINS": "https://mdftungphat.com,https://www.mdftungphat.com",
+    "GBP_GOOGLE_PROJECT_ID": "stable-inn-503413-e2",
+    "GBP_GOOGLE_REDIRECT_URI": "https://cms.mdftungphat.com/api/gbp/oauth/callback"
   },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "tungphat-light-cms-production", "database_id": "c46b5fa3-6db7-4de4-b797-99fc07158506" }
+  ],
   "services": [
     { "binding": "LIGHT_CMS_API", "service": "tungphat-light-cms-api-production" }
   ]
