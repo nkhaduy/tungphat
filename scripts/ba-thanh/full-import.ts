@@ -9,6 +9,7 @@ import type {
 } from "@/lib/catalog/full-import/types";
 import { checksumFullSourceManifest } from "@/lib/catalog/full-import/manifest";
 import type { CatalogImage, SupplierColorCode } from "@/lib/catalog/types";
+import { selectBaThanhDetailMedia } from "./detail-media";
 
 export type BaThanhFullSourceItem = {
   materialType?: "melamine" | "laminate";
@@ -249,11 +250,11 @@ export function checksumBaThanhRecords(records: CatalogueRecord[]): string {
   return checksum([...records].sort((left, right) => recordId(left).localeCompare(recordId(right))));
 }
 
-function legacyImage(record: SupplierColorCode, image: CatalogImage, index: number): CatalogueImage {
+function legacyImage(record: SupplierColorCode, image: CatalogImage, index: number, sourceUrlOverride?: string): CatalogueImage {
   const mediaSources = Array.isArray(record.sourceData.mediaSourceUrls)
     ? record.sourceData.mediaSourceUrls.filter((url): url is string => typeof url === "string")
     : [];
-  const sourceUrl = mediaSources[index]
+  const sourceUrl = sourceUrlOverride ?? mediaSources[index]
     ?? (typeof record.sourceData.sourceImageUrl === "string" ? record.sourceData.sourceImageUrl : record.sourceUrl);
   return {
     sourceUrl,
@@ -266,6 +267,18 @@ function legacyImage(record: SupplierColorCode, image: CatalogImage, index: numb
     rightsStatus: "UNCONFIRMED",
     importedAt: record.sourceImportedAt,
   };
+}
+
+function selectedLegacyImages(record: SupplierColorCode): Array<{ sourceUrl: string; role: CatalogImage["type"] }> {
+  const detailImageUrls = Array.isArray(record.sourceData.detailImageUrls)
+    ? record.sourceData.detailImageUrls.filter((url): url is string => typeof url === "string")
+    : [];
+  return selectBaThanhDetailMedia({
+    codeNormalized: record.codeNormalized,
+    materialType: "melamine",
+    sourceImageUrl: typeof record.sourceData.sourceImageUrl === "string" ? record.sourceData.sourceImageUrl : undefined,
+    detailImageUrls,
+  }).map((item) => ({ sourceUrl: item.sourceUrl, role: item.role === "actual-photo" ? "real-photo" : item.role }));
 }
 
 function mediaImage(sourceUrl: string, mediaType: CatalogueImage["mediaType"], media?: MediaMetadata): CatalogueImage {
@@ -340,7 +353,25 @@ export function buildBaThanhCatalogueRecords(options: {
       thicknessMm: format.thicknessMm,
       label: format.raw,
     })),
-    images: record.images.map((image, index) => legacyImage(record, image, index)),
+    images: (() => {
+      const selected = selectedLegacyImages(record);
+      const mediaSources = Array.isArray(record.sourceData.mediaSourceUrls)
+        ? record.sourceData.mediaSourceUrls.filter((url): url is string => typeof url === "string")
+        : [];
+      const availableSelected = selected.filter((item) => {
+        const sourceIndex = mediaSources.indexOf(item.sourceUrl);
+        return sourceIndex >= 0 && Boolean(record.images[sourceIndex]?.localPath || record.images[sourceIndex]?.src);
+      });
+      return availableSelected.length
+        ? availableSelected.map((item) => {
+          const sourceIndex = mediaSources.indexOf(item.sourceUrl);
+          const sourceImage = sourceIndex >= 0 ? record.images[sourceIndex] : undefined;
+          return sourceImage
+            ? legacyImage(record, sourceImage, sourceIndex, item.sourceUrl)
+            : mediaImage(item.sourceUrl, item.role === "real-photo" ? "product" : item.role);
+        })
+        : [];
+    })(),
     documents: [],
     sourceUrls: [record.sourceUrl],
     canonicalSourceUrl: record.sourceUrl,
@@ -355,9 +386,13 @@ export function buildBaThanhCatalogueRecords(options: {
   const newlyDiscoveredMelamine: CatalogueRecord[] = (options.melamineSources ?? [])
     .filter((item) => item.materialType !== "laminate" && item.status === "PARSED" && item.codeNormalized && !legacyMelamineCodes.has(item.codeNormalized))
     .map((item) => {
-      const sourceImages = [item.sourceImageUrl, ...(item.images ?? [])]
-        .filter((url): url is string => Boolean(url))
-        .filter((url, index, all) => all.indexOf(url) === index);
+      const selected = selectBaThanhDetailMedia({
+        codeNormalized: item.codeNormalized,
+        materialType: "melamine",
+        sourceImageUrl: item.sourceImageUrl,
+        detailImageUrls: item.images,
+      });
+      const sourceImages = selected.map((image) => ({ sourceUrl: image.sourceUrl, type: image.role === "actual-photo" ? "product" as const : image.role }));
       return {
         recordType: "sku",
         supplier: "ba-thanh",
@@ -371,7 +406,7 @@ export function buildBaThanhCatalogueRecords(options: {
         collections: [item.sourceCategoryLabel],
         attributes: { sourceGroup: item.category, patternGroup: item.sourceCategoryLabel },
         formats: [],
-        images: sourceImages.map((url, index) => mediaImage(url, index === 0 ? "swatch" : "product", mediaByUrl.get(url))),
+        images: sourceImages.map((image) => mediaImage(image.sourceUrl, image.type, mediaByUrl.get(image.sourceUrl))),
         documents: [],
         sourceUrls: [item.sourceUrl],
         canonicalSourceUrl: item.sourceUrl,
@@ -406,11 +441,12 @@ export function buildBaThanhCatalogueRecords(options: {
       collections: [item.sourceCategoryLabel],
       attributes: { sourceGroup: item.category, patternGroup: item.sourceCategoryLabel, brand: "WAY" },
       formats: [],
-      images: [item.sourceImageUrl, ...(item.images ?? [])]
-        .filter((url): url is string => Boolean(url))
-        .filter((url, index, all) => all.indexOf(url) === index)
-        .filter((url) => laminateMediaMatchesCode(url, item.codeNormalized))
-        .map((url, index) => mediaImage(url, index === 0 ? "swatch" : "product", mediaByUrl.get(url))),
+      images: selectBaThanhDetailMedia({
+        codeNormalized: item.codeNormalized,
+        materialType: "laminate",
+        sourceImageUrl: item.sourceImageUrl,
+        detailImageUrls: item.images,
+      }).map((image) => mediaImage(image.sourceUrl, image.role === "actual-photo" ? "product" : image.role, mediaByUrl.get(image.sourceUrl))),
       documents: [],
       sourceUrls: [item.sourceUrl],
       canonicalSourceUrl: item.sourceUrl,

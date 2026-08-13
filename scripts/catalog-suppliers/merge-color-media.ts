@@ -59,8 +59,12 @@ export function applyColorMediaToIndex(
   const byId = new Map(
     artifacts.flatMap((artifact) => artifact.entries).map((entry) => [entry.id, entry]),
   );
+  const bySource = new Map(
+    artifacts
+      .flatMap((artifact) => artifact.entries.map((entry) => [`${artifact.supplier}:${entry.sourceUrl}`, entry] as const)),
+  );
   return records.map((record) => {
-    const entry = byId.get(record.id);
+    const entry = byId.get(record.id) ?? bySource.get(`${record.supplier}:${record.sourceUrl}`);
     return entry ? mergeRecordMedia(record, entry) : record;
   });
 }

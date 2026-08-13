@@ -532,7 +532,7 @@ async function main() {
   };
   const cached = existingOrigins(Object.values(previous));
   const products = readJson<AnCuongProduct[]>(path.join(ROOT, "data/imports/ancuong/normalized/catalogue.json"));
-  const listings = readJson<AnCuongListing[]>(path.join(ROOT, "data/imports/ancuong/raw/listings.json"));
+  const listings = readJsonIfExists<AnCuongListing[]>(path.join(ROOT, "data/imports/ancuong/raw/listings.json")) ?? [];
   const baThanhRecords = readJson<FullRecordFile>(path.join(ROOT, "data/imports/ba-thanh/full-records.json"));
   const thanhThuyRecords = readJson<FullRecordFile>(path.join(ROOT, "data/imports/thanh-thuy/full-records.json"));
   const anCuong = buildAnCuongReferences(products, listings);

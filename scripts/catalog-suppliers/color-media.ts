@@ -27,6 +27,7 @@ export type ColorMediaDiscoveryEntry = {
   previewSourceUrl?: string;
   fullsheetSourceUrl?: string;
   applicationSourceUrls?: string[];
+  actualPhotoSourceUrls?: string[];
   localPath?: string;
   checksum?: string;
   mimeType?: string;
@@ -39,7 +40,7 @@ export type ColorMediaDiscoveryEntry = {
 };
 
 export type ColorMediaLocalAsset = {
-  role: "swatch" | "fullsheet" | "application";
+  role: "swatch" | "fullsheet" | "application" | "actual-photo";
   sourceUrl: string;
   localPath: string;
   checksum?: string;
@@ -70,7 +71,7 @@ export function validateColorMediaDiscovery(
     if (!entry.codeRaw.trim() || !entry.codeNormalized.trim()) {
       issues.push({ code: "EMPTY_COLOR_CODE", message: "Public color media entry has an empty code" });
     }
-    if (entry.sourceHasMedia && !entry.previewSourceUrl && !entry.fullsheetSourceUrl && !entry.applicationSourceUrls?.length) {
+    if (entry.sourceHasMedia && !entry.previewSourceUrl && !entry.fullsheetSourceUrl && !entry.applicationSourceUrls?.length && !entry.actualPhotoSourceUrls?.length) {
       issues.push({ code: "SOURCE_MEDIA_URL_MISSING", message: "Source media is claimed without a usable source URL", colorCode: entry.codeRaw });
     }
     const localAssets = entry.localAssets ?? [];
@@ -122,10 +123,10 @@ export function semanticMediaPath(
   supplier: SupplierId,
   material: string,
   codeRaw: string,
-  role: "swatch" | "fullsheet" | "application",
+  role: ColorMediaLocalAsset["role"],
   ordinal?: number,
 ): string {
-  const suffix = role === "application" && ordinal ? `${role}-${ordinal}` : role;
+  const suffix = (role === "application" || role === "actual-photo") && ordinal ? `${role}-${ordinal}` : role;
   return `/catalog/${supplier}/${extensionlessSlug(material)}/${extensionlessSlug(codeRaw)}-${suffix}.webp`;
 }
 
@@ -142,7 +143,16 @@ function mediaRequestsForEntry(entry: ColorMediaDiscoveryEntry): RequestedMedia[
   for (const [index, sourceUrl] of (entry.applicationSourceUrls ?? []).entries()) {
     requests.push({ role: "application", sourceUrl, ordinal: index + 1 });
   }
+  for (const [index, sourceUrl] of (entry.actualPhotoSourceUrls ?? []).entries()) {
+    requests.push({ role: "actual-photo", sourceUrl, ordinal: index + 1 });
+  }
   return requests.filter((request, index) => requests.findIndex((candidate) => candidate.role === request.role && candidate.sourceUrl === request.sourceUrl) === index);
+}
+
+function materialForEntry(entry: ColorMediaDiscoveryEntry, materialByCode: Map<string, string>): string {
+  if (entry.id.startsWith("ba-thanh:laminate:")) return "laminate";
+  if (entry.id.startsWith("ba-thanh:") && !entry.id.startsWith("ba-thanh:laminate:")) return "melamine";
+  return materialByCode.get(entry.codeNormalized) ?? "other-decorative";
 }
 
 function enrichExistingAsset(root: string, asset: ColorMediaLocalAsset): ColorMediaLocalAsset | undefined {
@@ -189,7 +199,7 @@ export async function downloadColorMediaArtifact(options: {
       });
     }
     const requested = mediaRequestsForEntry(entry);
-    const material = options.materialByCode.get(entry.codeNormalized) ?? "other-decorative";
+    const material = materialForEntry(entry, options.materialByCode);
     for (const request of requested) {
       if (existing.some((asset) => asset.role === request.role && asset.sourceUrl === request.sourceUrl)) continue;
       const candidatePath = semanticMediaPath(options.artifact.supplier, material, entry.codeRaw, request.role, request.ordinal);
@@ -257,21 +267,17 @@ export async function downloadColorMediaArtifact(options: {
       try {
         const sourceInfo = inspectMediaBytes(result.bytes, result.origin.mimeType);
         if (sourceInfo.width < 32 || sourceInfo.height < 32) throw new Error("Source image is smaller than 32x32");
-        const pipeline = sharp(result.bytes, { failOn: "error" }).rotate();
-        if (request.role === "fullsheet") {
-          pipeline.resize({
+        const pipeline = sharp(result.bytes, { failOn: "error" })
+          .rotate()
+          .resize({
             width: 1600,
             height: 1600,
             fit: "inside",
             withoutEnlargement: true,
           });
-        }
-        const output = request.role === "fullsheet"
-          ? await pipeline
-            .withMetadata()
-            .webp({ quality: 92, effort: 0, smartSubsample: true })
-            .toBuffer()
-          : await pipeline.webp({ lossless: true, effort: 0 }).toBuffer();
+        const output = await pipeline
+          .webp({ quality: request.role === "swatch" ? 90 : 86, effort: 2, smartSubsample: true })
+          .toBuffer();
         const outputInfo = inspectMediaBytes(output, "image/webp");
         const checksum = createHash("sha256").update(output).digest("hex");
         return { index, request, output, outputInfo, checksum };
@@ -287,7 +293,7 @@ export async function downloadColorMediaArtifact(options: {
         continue;
       }
       const { output, outputInfo, checksum } = result;
-      const material = options.materialByCode.get(item.entry.codeNormalized) ?? "other-decorative";
+      const material = materialForEntry(item.entry, options.materialByCode);
       let localPath = checksumPaths.get(checksum);
       if (!localPath) {
         localPath = semanticMediaPath(options.artifact.supplier, material, item.entry.codeRaw, request.role, request.ordinal);

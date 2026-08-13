@@ -21,10 +21,10 @@
   "familyRecords": 11,
   "documentRecords": 2,
   "totalImported": 305,
-  "mediaReferences": 352,
-  "uniqueMediaSourceUrls": 316,
-  "localMediaReferences": 241,
-  "sourceOnlyMediaReferences": 111,
+  "mediaReferences": 402,
+  "uniqueMediaSourceUrls": 399,
+  "localMediaReferences": 331,
+  "sourceOnlyMediaReferences": 71,
   "originalMediaDownload": "DEFERRED_CAPACITY_REVIEW",
   "mediaRightsStatus": "UNCONFIRMED",
   "created": 0,
@@ -33,8 +33,8 @@
   "removed": 0,
   "duplicates": 0,
   "coveragePercentage": 100,
-  "accountedSourceUrls": 717,
-  "totalSourceUrls": 717,
-  "manifestChecksum": "fd7c1f4ef5e634f60f82966eba2c620734162417dc3204ed8c8d824b4b087998",
-  "recordChecksum": "2996f948b5ca740e8f1fc5fe75780ae35fc9a992b8bbd31b63609001af2774dc"
+  "accountedSourceUrls": 800,
+  "totalSourceUrls": 800,
+  "manifestChecksum": "6ee8f1c30c8408b1e446fe78768b1b15eb7e0f761e4171296921c63164275b31",
+  "recordChecksum": "24ce3003700d3750add2068367a4e6c40eaae3119631413713b1813997551e3e"
 }

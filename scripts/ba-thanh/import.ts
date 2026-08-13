@@ -7,6 +7,7 @@ import { assertRobotsAllowed } from "@/lib/catalog/robots-policy";
 import type { CatalogImage, SupplierColorCode } from "@/lib/catalog/types";
 import { COLOR_DISCLAIMER, CATALOG_PATH, IMPORT_DIR, MEDIA_DIR, READY_EDITORIAL, SOURCE_INDEX_URL, USER_AGENT } from "./config";
 import { downloadCatalogImage } from "./download-media";
+import { selectBaThanhDetailMedia } from "./detail-media";
 
 export {
   buildBaThanhCatalogueRecords,
@@ -84,10 +85,13 @@ export async function importBaThanhCatalog(options: { dryRun?: boolean; refresh?
     const localExisting = existing.find((record) => record.id === `ba-thanh:${normalized.normalized}`);
     const images: CatalogImage[] = [];
     const typeCounts = new Map<CatalogImage["type"], number>();
-    const mediaSourceUrls: string[] = [item.sourceImageUrl, ...(detailAccepted ? item.images || [] : [])];
-    const uniqueMediaUrls = [...new Set(mediaSourceUrls)].slice(0, editorial ? 3 : 1);
-    for (const [index, url] of uniqueMediaUrls.entries()) {
-      const type = index === 0 ? "swatch" : classifyDetailImage(url);
+    const selectedDetailMedia = detailAccepted
+      ? selectBaThanhDetailMedia({ codeNormalized: normalized.normalized, materialType: "melamine", sourceImageUrl: item.sourceImageUrl, detailImageUrls: item.images })
+      : [];
+    const mediaSourceUrls: string[] = selectedDetailMedia.map((image) => image.sourceUrl);
+    for (const [index, image] of selectedDetailMedia.entries()) {
+      const url = image.sourceUrl;
+      const type = image.role === "actual-photo" ? "real-photo" : image.role === "application" ? "application" : "swatch";
       const ordinal = (typeCounts.get(type) || 0) + 1;
       typeCounts.set(type, ordinal);
       const previous = localExisting?.images.filter((image) => image.type === type)[ordinal - 1];

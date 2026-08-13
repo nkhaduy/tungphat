@@ -7,6 +7,7 @@ import {
   type ColorMediaDiscoveryEntry,
   writeColorMediaArtifact,
 } from "../catalog-suppliers/color-media";
+import { selectBaThanhDetailMedia } from "./detail-media";
 
 export type BaThanhMapMedia = {
   codeNormalized: string;
@@ -114,17 +115,18 @@ export function mergeBaThanhMapMedia(
       | "width"
       | "height"
       | "localAssets"
-    >
+    > & { id?: string }
   >,
   mapMedia: BaThanhMapMedia[],
 ): ColorMediaDiscoveryEntry[] {
   const byCode = new Map(mapMedia.map((media) => [media.codeNormalized, media]));
+  const byDetailUrl = new Map(mapMedia.map((media) => [media.detailUrl, media]));
   return entries.map((entry) => {
-    const map = byCode.get(entry.codeNormalized);
+    const map = byCode.get(entry.codeNormalized) ?? byDetailUrl.get(entry.sourceUrl);
     const sourceHasMedia = Boolean(entry.localPath || map?.sourceUrl);
     return {
       ...entry,
-      id: `ba-thanh:${entry.codeNormalized}`,
+      id: entry.id ?? `ba-thanh:${entry.codeNormalized}`,
       previewSourceUrl: map?.sourceUrl,
       sourceHasMedia,
       reasonCode: entry.localPath
@@ -139,49 +141,37 @@ export function mergeBaThanhMapMedia(
 export async function discoverBaThanhColorMedia(root = process.cwd()): Promise<ColorMediaDiscoveryArtifact> {
   const artifact = JSON.parse(fs.readFileSync(path.join(root, "data/catalogs/supplier-color-codes.json"), "utf8")) as { records: PublicSupplierColorCode[] };
   const records = artifact.records.filter((record) => record.supplier === "ba-thanh");
-  const rawArtifact = JSON.parse(fs.readFileSync(path.join(root, "data/imports/ba-thanh/full-records.json"), "utf8")) as { records?: Array<{ normalizedCode?: string; images?: Array<{ sourceUrl?: string }> }> } | Array<{ normalizedCode?: string; images?: Array<{ sourceUrl?: string }> }>;
-  const raw = Array.isArray(rawArtifact) ? rawArtifact : rawArtifact.records ?? [];
-  const rawMediaByCode = new Map(raw.map((record) => [record.normalizedCode, record.images?.[0]?.sourceUrl]));
-  const pages = await Promise.all([
-    fetch("https://bathanh.com.vn/map-ma-melamine").then((response) => response.text()),
-    fetch("https://bathanh.com.vn/map-mau-laminate").then((response) => response.text()),
-  ]);
-  const mapMedia = pages.flatMap(parseBaThanhColorMap);
-  const entries = mergeBaThanhMapMedia(
-    records.map((record) => {
-      const localPreview = record.images.find((image) => image.localPath);
-      const localAssets = record.images
-        .filter((image) => image.localPath && image.role === "swatch")
-        .map((image) => ({
-          role: "swatch" as const,
-          sourceUrl: image.sourceUrl,
-          localPath: image.localPath!,
-          checksum: image.checksum,
-          mimeType: image.mimeType,
-          width: image.width,
-          height: image.height,
-        }));
-      return {
-        codeNormalized: record.codeNormalized,
-        codeRaw: record.codeRaw,
-        sourceUrl: record.sourceUrl,
-        localPath: localPreview?.localPath,
-        checksum: localPreview?.checksum,
-        mimeType: localPreview?.mimeType,
-        width: localPreview?.width,
-        height: localPreview?.height,
-        localAssets: localAssets.length ? localAssets : undefined,
-      };
-    }),
-    mapMedia,
-  );
-  for (const entry of entries) {
-    const record = records.find((value) => value.codeNormalized === entry.codeNormalized);
-    Object.assign(
-      entry,
-      applyBaThanhFallbackMedia(entry, record?.images[0]?.sourceUrl ?? rawMediaByCode.get(entry.codeNormalized)),
-    );
-  }
+  type SourceItem = { codeNormalized: string; sourceUrl: string; sourceImageUrl?: string; images?: string[] };
+  const sourceItems: SourceItem[] = [
+    ...JSON.parse(fs.readFileSync(path.join(root, "data/imports/ba-thanh/discovered-codes.json"), "utf8")) as SourceItem[],
+    ...JSON.parse(fs.readFileSync(path.join(root, "data/imports/ba-thanh/discovered-laminate-codes.json"), "utf8")) as SourceItem[],
+  ];
+  const sourceByUrl = new Map(sourceItems.map((item) => [item.sourceUrl, item]));
+  const entries = records.map((record): ColorMediaDiscoveryEntry => {
+    const source = sourceByUrl.get(record.sourceUrl);
+    const routeCode = source?.codeNormalized ?? record.codeNormalized;
+    const selected = selectBaThanhDetailMedia({
+      codeNormalized: routeCode,
+      materialType: record.materialType === "laminate" ? "laminate" : "melamine",
+      sourceImageUrl: source?.sourceImageUrl,
+      detailImageUrls: source?.images,
+    });
+    const preview = selected.find((image) => image.role === "swatch");
+    const applications = selected.filter((image) => image.role === "application").map((image) => image.sourceUrl);
+    const actualPhotos = selected.filter((image) => image.role === "actual-photo").map((image) => image.sourceUrl);
+    return {
+      id: record.id,
+      codeNormalized: record.codeNormalized,
+      codeRaw: record.codeRaw,
+      sourceUrl: record.sourceUrl,
+      previewSourceUrl: preview?.sourceUrl,
+      applicationSourceUrls: applications.length ? applications : undefined,
+      actualPhotoSourceUrls: actualPhotos.length ? actualPhotos : undefined,
+      localAssets: undefined,
+      sourceHasMedia: selected.length > 0,
+      reasonCode: selected.length > 0 ? "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED" : source?.images?.length ? "INVALID_IMAGE" : "SOURCE_NO_IMAGE",
+    };
+  });
   return { schemaVersion: 1, supplier: "ba-thanh", generatedAt: "2026-08-07T00:00:00.000Z", entries };
 }
 

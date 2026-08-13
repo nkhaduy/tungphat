@@ -488,4 +488,5 @@ describe("color-code media discovery", () => {
     ]));
     expect(merged[2]?.images).toEqual([]);
   });
+
 });

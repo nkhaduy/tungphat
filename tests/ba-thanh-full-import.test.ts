@@ -290,6 +290,36 @@ describe("Ba Thanh full catalogue records", () => {
     ]);
   });
 
+  it("builds Melamine records only from selected detail-page media", () => {
+    const records = fullImport.buildBaThanhCatalogueRecords?.({
+      melamine: [],
+      melamineSources: [{
+        ...laminateSources()[0]!,
+        codeNormalized: "BT163",
+        codeRaw: "BT163",
+        displayName: "BT 163",
+        sourceUrl: "https://bathanh.com.vn/bt-163-wood-grains",
+        sourceImageUrl: "https://bathanh.com.vn/wp-content/uploads/2023/09/BT-163.jpg",
+        images: [
+          "https://bathanh.com.vn/wp-content/uploads/2023/05/BT-163.jpg",
+          "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-163-01-1.jpg",
+          "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-163-MAU-THUC-TE-MELAMINE.jpg",
+        ],
+      }],
+      laminate: [],
+      importedAt,
+    });
+
+    expect(records?.find((record) => record.recordType === "sku")?.images.map((image) => ({
+      sourceUrl: image.sourceUrl,
+      mediaType: image.mediaType,
+    }))).toEqual([
+      { sourceUrl: "https://bathanh.com.vn/wp-content/uploads/2023/05/BT-163.jpg", mediaType: "swatch" },
+      { sourceUrl: "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-163-01-1.jpg", mediaType: "application" },
+      { sourceUrl: "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-163-MAU-THUC-TE-MELAMINE.jpg", mediaType: "product" },
+    ]);
+  });
+
   it("uses family records for public board specifications instead of thickness-derived fake SKUs", () => {
     const records = buildRecords();
     const families = records?.filter((record) => record.recordType === "family");

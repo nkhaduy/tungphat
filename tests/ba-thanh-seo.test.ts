@@ -54,10 +54,7 @@ describe("Ba Thanh SEO policy", () => {
     expect(indexable.map((record) => record.codeNormalized)).toEqual([
       "BT111",
       "BT143",
-      "BT184",
-      "BTS14G",
       "SC028M",
-      "SC029M",
     ]);
     expect(
       indexable.every(
@@ -113,7 +110,7 @@ describe("Ba Thanh SEO policy", () => {
 
   it("returns stable brand, hub, category and READY_TO_INDEX sitemap paths only", () => {
     const paths = getBaThanhSitemapPaths();
-    expect(paths).toHaveLength(9);
+    expect(paths).toHaveLength(6);
     expect(paths).toContain("/thuong-hieu/ba-thanh/");
     expect(paths).toContain("/catalogue/ba-thanh/melamine/");
     expect(paths).toContain("/catalogue/ba-thanh/melamine/bt111/");

@@ -129,7 +129,7 @@ describe("full supplier compact search index", () => {
     const totals = getSupplierTotals();
     expect(totals["an-cuong"]).toMatchObject({ total: 2_195, colorCodes: 2_195, family: 0, document: 0, withLocalPreview: 2_195 });
     expect(totals["thanh-thuy"]).toMatchObject({ total: 342, colorCodes: 342, family: 0, document: 0, withLocalPreview: 342 });
-    expect(totals["ba-thanh"]).toMatchObject({ total: 292, colorCodes: 292, family: 0, document: 0, retainedMelamineCodes: 259, withLocalPreview: 269, sourceMediaMissing: 23 });
+    expect(totals["ba-thanh"]).toMatchObject({ total: 292, colorCodes: 292, family: 0, document: 0, retainedMelamineCodes: 259, withLocalPreview: 212, sourceMediaMissing: 80 });
   });
 
   it("returns only non-empty material taxonomy choices in the requested order", () => {

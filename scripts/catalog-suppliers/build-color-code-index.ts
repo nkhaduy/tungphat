@@ -111,10 +111,17 @@ function demandScore(record: SupplierColorCode): number {
 }
 
 function publicRecord(record: SupplierColorCode): PublicSupplierColorCode {
-  const slug = slugify(record.codeRaw);
+  const sourcePath = new URL(record.sourceUrl).pathname;
+  const baThanhLaminateRoute = record.supplier === "ba-thanh" && record.materialType === "laminate"
+    ? sourcePath.match(/^\/way-([^/]+)\/?$/i)?.[1]
+    : undefined;
+  const slug = baThanhLaminateRoute || slugify(record.codeRaw);
+  const id = record.supplier === "ba-thanh" && record.materialType === "laminate"
+    ? `${record.supplier}:${record.materialType}:${record.codeNormalized}`
+    : `${record.supplier}:${record.codeNormalized}`;
   return {
     ...record,
-    id: `${record.supplier}:${record.codeNormalized}`,
+    id,
     slug,
     canonicalRoute: `/catalogue/${record.supplier}/${record.materialType}/${slug}/`,
     demandScore: demandScore(record),
@@ -219,7 +226,9 @@ export function buildSupplierColorCodeIndex(root = process.cwd()): SupplierColor
         totals[supplier].scopeExcluded += 1;
         continue;
       }
-      const key = `${supplier}:${result.colorCode.codeNormalized}`;
+      const key = supplier === "ba-thanh"
+        ? `${supplier}:${result.colorCode.materialType}:${result.colorCode.codeNormalized}`
+        : `${supplier}:${result.colorCode.codeNormalized}`;
       const existing = canonical.get(key);
       if (existing) {
         duplicateAliases += 1;

@@ -1,8 +1,8 @@
 {
-  "validatedAt": "2026-08-07T05:20:55.652Z",
+  "validatedAt": "2026-08-13T07:53:32.151Z",
   "total": 233,
-  "readyToIndex": 6,
-  "noindex": 227,
+  "readyToIndex": 3,
+  "noindex": 230,
   "errors": [],
   "warnings": [],
   "pass": true
