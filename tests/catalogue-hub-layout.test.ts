@@ -66,6 +66,7 @@ describe("catalogue hub customer journey", () => {
 
     expect(markup).toContain(">Phân loại</p>");
     expect(markup).toContain(">Theo thương hiệu</span>");
+    expect(markup.match(/>Theo thương hiệu<\/span>/g)).toHaveLength(1);
     expect(markup).toContain(">Tất cả thương hiệu</option>");
     expect(markup).not.toContain("Chọn nhóm vật liệu");
     expect(markup).not.toContain("Lọc theo nhà cung cấp");

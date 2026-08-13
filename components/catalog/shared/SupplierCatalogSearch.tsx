@@ -54,8 +54,8 @@ export function SupplierCatalogSearch({
   const [visibleLimit, setVisibleLimit] = useState(PAGE_SIZE);
   const deferredQuery = useDeferredValue(query);
   const primarySelections: PrimarySelection[] = useMemo(
-    () => [
-      ...materialTaxonomyOptionsForSupplier(entries, supplierId).map(
+    () =>
+      materialTaxonomyOptionsForSupplier(entries, supplierId).map(
         (option) => ({
           value: option.slug,
           label: option.label,
@@ -64,20 +64,11 @@ export function SupplierCatalogSearch({
           group: option.slug === "all" ? "" : option.slug,
         }),
       ),
-      {
-        value: "supplier",
-        label: "Theo thương hiệu",
-        type: "supplier" as const,
-        group: "",
-      },
-    ],
     [entries, supplierId],
   );
 
   const activeSelection =
-    type === "supplier"
-      ? "supplier"
-      : type === "melamine"
+    type === "melamine"
         ? "melamine"
         : group || "all";
   const currentState = { query, supplierId, type, group };
@@ -224,7 +215,7 @@ export function SupplierCatalogSearch({
       <div className="catalogue-search-panel relative z-20 py-5 sm:py-6 lg:py-7">
         <label className="catalogue-hero-search mx-auto block max-w-4xl">
           <span className="sr-only">Tra cứu mã màu</span>
-          <span className="relative block rounded-md border border-forest-900/15 bg-white p-1 shadow-[0_8px_24px_rgba(6,43,29,.07)]">
+          <span className="relative block rounded-md border border-forest-900/25 bg-white p-1 shadow-[0_8px_24px_rgba(6,43,29,.07)]">
             <Search
               aria-hidden="true"
               className="pointer-events-none absolute left-5 top-1/2 z-10 -translate-y-1/2 text-wood-600 sm:left-6"
@@ -240,7 +231,7 @@ export function SupplierCatalogSearch({
               autoComplete="off"
               spellCheck={false}
               placeholder="Nhập mã màu, tên màu hoặc thương hiệu..."
-              className="min-h-12 w-full rounded-sm border border-transparent bg-white py-2.5 pl-12 pr-4 text-sm font-semibold text-forest-950 outline-none transition-[border-color,box-shadow] placeholder:font-medium placeholder:text-slate-500 focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20 sm:min-h-14 sm:pl-14 sm:pr-5 sm:text-base"
+              className="min-h-12 w-full rounded-sm border border-transparent bg-white py-2.5 pl-12 pr-4 text-base font-semibold text-forest-950 outline-none transition-[border-color,box-shadow] placeholder:font-medium placeholder:text-slate-500 focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20 sm:min-h-14 sm:pl-14 sm:pr-5 sm:text-[17px]"
             />
           </span>
         </label>
@@ -250,7 +241,7 @@ export function SupplierCatalogSearch({
           className="catalogue-filter-deck mt-5 border-t border-forest-900/10 pt-5 sm:mt-6 sm:pt-6"
         >
           <div className="min-w-0">
-            <p className="text-xs font-extrabold uppercase tracking-[.15em] text-wood-600">
+            <p className="text-sm font-extrabold uppercase tracking-[.13em] text-wood-600">
               Phân loại
             </p>
             <div
@@ -269,7 +260,7 @@ export function SupplierCatalogSearch({
                       type="button"
                       aria-pressed={active}
                       onClick={() => selectPrimary(selection)}
-                      className={`pressable inline-flex min-h-11 shrink-0 items-center rounded-[4px] border px-3.5 text-left text-[13px] font-extrabold sm:px-4 sm:text-sm ${active ? "border-forest-900 bg-forest-900 text-white shadow-[0_5px_14px_rgba(2,18,12,.14)]" : "border-forest-900/15 bg-transparent text-forest-950 hover:border-wood-500/50 hover:bg-white"}`}
+                      className={`pressable inline-flex min-h-12 shrink-0 items-center rounded-[4px] border px-4 text-left text-[15px] font-extrabold sm:px-5 sm:text-base ${active ? "border-forest-900 bg-forest-900 text-white shadow-[0_5px_14px_rgba(2,18,12,.14)]" : "border-forest-900/25 bg-transparent text-forest-950 hover:border-wood-500/60 hover:bg-white"}`}
                     >
                       <span>{selection.label}</span>
                     </button>
@@ -279,8 +270,8 @@ export function SupplierCatalogSearch({
             </div>
           </div>
 
-          <label className="mt-4 flex flex-col gap-2 border-t border-forest-900/10 pt-4 sm:flex-row sm:items-center sm:gap-4">
-            <span className="shrink-0 text-xs font-extrabold uppercase tracking-[.14em] text-wood-600">
+          <label className="mt-4 flex flex-col gap-2 border-t border-forest-900/20 pt-4 sm:flex-row sm:items-center sm:gap-4">
+            <span className="shrink-0 text-sm font-extrabold uppercase tracking-[.13em] text-wood-600">
               Theo thương hiệu
             </span>
             <span className="relative block w-full sm:w-[280px]">
@@ -291,7 +282,7 @@ export function SupplierCatalogSearch({
                   setSupplierId(value);
                   updateUrl({ supplierId: value }, "push");
                 }}
-                className="min-h-11 w-full appearance-none rounded-[4px] border border-forest-900/15 bg-white px-4 pr-11 text-sm font-bold text-forest-950 outline-none focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
+                className="min-h-12 w-full appearance-none rounded-[4px] border border-forest-900/25 bg-white px-4 pr-11 text-base font-bold text-forest-950 outline-none focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
               >
                 <option value="">Tất cả thương hiệu</option>
                 {supplierOptions.map((supplier) => (
