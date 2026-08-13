@@ -173,7 +173,7 @@ test.describe("Mã màu customer journeys", () => {
     ).toBeVisible();
 
     const supplier = page.getByRole("combobox", {
-      name: "Lọc theo nhà cung cấp",
+      name: "Theo thương hiệu",
     });
     await supplier.selectOption("ba-thanh");
     await expect(supplier).toHaveValue("ba-thanh");
@@ -341,7 +341,7 @@ test.describe("Mã màu customer journeys", () => {
     await page.goto("/catalogue/");
 
     await expect(
-      page.getByRole("heading", { name: "Mã màu vật liệu", exact: true }),
+      page.getByRole("heading", { name: "Mã màu", exact: true }),
     ).toBeVisible();
     await expect(page.locator('a[href="/catalogue/an-cuong/"]')).toHaveCount(1);
     await expect(page.locator('a[href="/catalogue/thanh-thuy/"]')).toHaveCount(1);

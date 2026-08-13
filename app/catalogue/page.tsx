@@ -59,7 +59,7 @@ export default function SupplierCataloguePage() {
     >
       <section
         id="tra-cuu-catalogue"
-        className="catalogue-page scroll-mt-28 overflow-clip border-b border-forest-900/10 bg-[#f5f4ef] pb-6 pt-2 sm:pb-8 sm:pt-2.5 lg:pb-10 lg:pt-3"
+        className="catalogue-page scroll-mt-28 overflow-clip border-b border-forest-900/10 bg-[#f5f4ef] pb-6 sm:pb-8 lg:pb-10"
       >
         <PageContainer className="relative">
           <SupplierCatalogSearch entries={entries} />

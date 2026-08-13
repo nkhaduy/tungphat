@@ -24,15 +24,13 @@ describe("catalogue hub customer journey", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
 
     expect(
-      markup.match(
-        /aria-label="Nhập mã màu, tên màu hoặc thương hiệu\.\.\."/g,
-      ),
+      markup.match(/aria-label="Nhập mã màu, tên màu hoặc thương hiệu\.\.\."/g),
     ).toHaveLength(1);
     expect(markup).not.toContain('data-testid="catalogue-search-floating"');
     expect(markup).not.toContain("inert=");
   });
 
-  it("integrates breadcrumb, title and the only search input inside the hero", () => {
+  it("renders a full-bleed image hero before the separate search interface", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
 
     expect(markup).toContain("%2Fimages%2Fmaterial-color-hero.webp");
@@ -42,22 +40,18 @@ describe("catalogue hub customer journey", () => {
     expect(markup).toContain('fetchPriority="high"');
     expect(markup).toContain(">Mã màu</h1>");
     expect(markup).not.toContain(">Mã màu vật liệu</h1>");
-    expect(markup).toContain('aria-label="Breadcrumb"');
-    expect(markup).toContain("catalogue-hero-breadcrumb");
-    expect(markup).toContain("catalogue-hero-search");
+    expect(markup).not.toContain('aria-label="Breadcrumb"');
+    expect(markup).toContain("catalogue-search-panel");
     expect(markup).toContain("catalogue-filter-deck");
-    expect(markup).toContain("catalogue-liquid-glass");
+    expect(markup).not.toContain("catalogue-liquid-glass");
     expect(markup).toContain("whitespace-nowrap");
     expect(markup.indexOf("catalogue-material-hero")).toBeLessThan(
-      markup.indexOf("catalogue-hero-breadcrumb"),
-    );
-    expect(markup.indexOf("catalogue-hero-breadcrumb")).toBeLessThan(
       markup.indexOf('aria-label="Nhập mã màu, tên màu hoặc thương hiệu..."'),
     );
-    expect(markup.indexOf('aria-label="Nhập mã màu, tên màu hoặc thương hiệu..."')).toBeLessThan(
-      markup.indexOf("catalogue-filter-deck"),
-    );
-    expect(markup.indexOf("catalogue-liquid-glass")).toBeLessThan(
+    expect(
+      markup.indexOf('aria-label="Nhập mã màu, tên màu hoặc thương hiệu..."'),
+    ).toBeLessThan(markup.indexOf("catalogue-filter-deck"));
+    expect(markup.indexOf("catalogue-search-panel")).toBeLessThan(
       markup.indexOf("catalogue-filter-deck"),
     );
     expect(markup).not.toContain("Tra cứu theo mã thực tế");
@@ -96,7 +90,9 @@ describe("catalogue hub customer journey", () => {
   it("renders matching results before supplier sections", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
 
-    expect(markup.indexOf("Kết quả phù hợp")).toBeLessThan(markup.indexOf("Theo nhà cung cấp"));
+    expect(markup.indexOf("Kết quả phù hợp")).toBeLessThan(
+      markup.indexOf("Theo nhà cung cấp"),
+    );
   });
 
   it("distinguishes Thanh Thuy searchable imports from public product pages", () => {
