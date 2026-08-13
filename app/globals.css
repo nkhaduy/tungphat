@@ -98,7 +98,8 @@ textarea:focus-visible {
 }
 
 .not-found-scene {
-  --not-found-stage-height: 100dvh;
+  --not-found-header-height: 4.5rem;
+  --not-found-stage-height: calc(100dvh - var(--not-found-header-height));
   --not-found-heading-anchor: calc(var(--not-found-stage-height) / 2);
   --not-found-release-offset: clamp(2.75rem, 5vw, 4rem);
   position: relative;
