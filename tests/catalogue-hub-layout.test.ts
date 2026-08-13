@@ -45,6 +45,7 @@ describe("catalogue hub customer journey", () => {
     expect(markup).toContain("catalogue-hero-breadcrumb");
     expect(markup).toContain("catalogue-hero-search");
     expect(markup).toContain("catalogue-filter-deck");
+    expect(markup).toContain("catalogue-liquid-glass");
     expect(markup).toContain("whitespace-nowrap");
     expect(markup.indexOf("catalogue-material-hero")).toBeLessThan(
       markup.indexOf("catalogue-hero-breadcrumb"),
@@ -53,6 +54,9 @@ describe("catalogue hub customer journey", () => {
       markup.indexOf('aria-label="Nhập mã màu, tên màu hoặc thương hiệu..."'),
     );
     expect(markup.indexOf('aria-label="Nhập mã màu, tên màu hoặc thương hiệu..."')).toBeLessThan(
+      markup.indexOf("catalogue-filter-deck"),
+    );
+    expect(markup.indexOf("catalogue-liquid-glass")).toBeLessThan(
       markup.indexOf("catalogue-filter-deck"),
     );
     expect(markup).not.toContain("Tra cứu theo mã thực tế");
