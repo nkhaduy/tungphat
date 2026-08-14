@@ -49,6 +49,14 @@ export function calculateVatAmount(taxableBase: number, rate: number): number {
   return Number(amount);
 }
 
+export function parseVatRateInput(value: string): VatRate {
+  const normalized = value.trim();
+  if (!normalized) return 0;
+  const rate = Number(normalized);
+  if (rate !== 8 && rate !== 10) throw new Error("Thuế VAT chỉ được để trống, 8% hoặc 10%.");
+  return rate;
+}
+
 type QuoteCalculationInput = QuoteMoneyInput & { vatRate?: VatRate | null };
 
 export function calculateTotals(items: QuoteItemInput[], money: QuoteCalculationInput): QuoteTotals {

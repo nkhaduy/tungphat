@@ -177,6 +177,8 @@ input[readonly], input:disabled, select:disabled { color: #63746b; background: #
 .money-input span { color: #52665d; font-size: 10.5px; }
 .money-input input { min-height: 34px; padding-right: 24px; text-align: right; font-size: 11px; }
 .money-input small { position: absolute; right: 8px; color: #78877f; font-size: 9px; }
+.vat-rate-input select { min-height: 36px; text-align: right; font-size: 11px; }
+.vat-rate-input em { grid-column: 2; color: var(--green); font-size: 10px; font-style: normal; font-weight: 750; text-align: right; }
 .payment-actions { margin-top: 16px; padding-top: 15px; border-top: 1px solid var(--line); }
 .payment-actions-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .payment-actions-heading > div { display: grid; gap: 4px; }

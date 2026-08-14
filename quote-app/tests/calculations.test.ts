@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   calculateLineTotal,
+  parseVatRateInput,
   calculateTotals,
   calculateVatAmount,
   derivePaymentStatus,
@@ -47,6 +48,13 @@ describe("quote calculations", () => {
       { productName: "MDF", specification: "", quantity: 1, unit: "Tấm", unitPrice: 1_000_001, note: "" },
     ], { discount: 1, shippingFee: 0, processingFee: 0, vatAmount: 12_345, vatRate: null, depositAmount: 0 });
     expect(legacy.vatAmount).toBe(12_345);
+  });
+
+  it("parses an empty VAT field as zero and rejects unsupported percentages", () => {
+    expect(parseVatRateInput("")).toBe(0);
+    expect(parseVatRateInput("8")).toBe(8);
+    expect(parseVatRateInput("10")).toBe(10);
+    expect(() => parseVatRateInput("5")).toThrow(/8.*10/);
   });
 
   it("marks a fully paid quote and rejects negative or excessive deposits", () => {
