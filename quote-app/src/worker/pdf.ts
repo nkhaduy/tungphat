@@ -5,6 +5,7 @@ import { deriveQuoteStatus, formatVnd } from "../shared/calculations";
 import { OFFICIAL_BRANCHES } from "../shared/branches";
 import { buildQuotePdfContentDisposition, formatEmployeeContact } from "../shared/display";
 import { paymentReceivedLabel, shouldShowPaymentQr } from "../shared/payment";
+import { shouldShowSpecificationColumn } from "../shared/display";
 import type { AppSettings, QuoteRecord } from "../shared/types";
 import { buildVietQrUrl } from "../shared/vietqr";
 import { auditStatement } from "./audit";
@@ -268,14 +269,21 @@ function drawQuoteIntro(page: PDFPage, regular: PDFFont, bold: PDFFont, snapshot
 type Column = { key: string; label: string; width: number; align?: "right" };
 function tableColumns(quote: QuoteRecord): Column[] {
   const showNote = quote.items.some((item) => item.note.trim());
-  const definitions = showNote ? [
+  const showSpecification = shouldShowSpecificationColumn(quote.items);
+  const definitions = showNote && showSpecification ? [
     ["position", "STT", 0.055], ["product", "Tên sản phẩm", 0.23], ["spec", "Quy cách", 0.16],
     ["quantity", "SL", 0.075], ["unit", "ĐVT", 0.07], ["price", "Đơn giá", 0.14],
     ["total", "Thành tiền", 0.145], ["note", "Ghi chú", 0.125],
-  ] : [
+  ] : showNote ? [
+    ["position", "STT", 0.055], ["product", "Tên sản phẩm", 0.32], ["quantity", "SL", 0.075],
+    ["unit", "ĐVT", 0.07], ["price", "Đơn giá", 0.14], ["total", "Thành tiền", 0.145], ["note", "Ghi chú", 0.195],
+  ] : showSpecification ? [
     ["position", "STT", 0.06], ["product", "Tên sản phẩm", 0.30], ["spec", "Quy cách", 0.19],
     ["quantity", "SL", 0.08], ["unit", "ĐVT", 0.08], ["price", "Đơn giá", 0.14],
     ["total", "Thành tiền", 0.15],
+  ] : [
+    ["position", "STT", 0.06], ["product", "Tên sản phẩm", 0.49], ["quantity", "SL", 0.08],
+    ["unit", "ĐVT", 0.08], ["price", "Đơn giá", 0.14], ["total", "Thành tiền", 0.15],
   ];
   return definitions.map(([key, label, ratio], index) => ({
     key: String(key),

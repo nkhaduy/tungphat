@@ -1,6 +1,7 @@
 import { CalendarDays, MapPin, RefreshCw, UserRound, X } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { formatVnd } from "../../shared/calculations";
+import { shouldShowSpecificationColumn } from "../../shared/display";
 import type { QuoteRecord } from "../../shared/types";
 import { StatusBadge } from "./StatusBadge";
 
@@ -15,6 +16,7 @@ type QuoteQuickViewModalProps = {
 
 export function QuoteQuickViewModal({ quote, loading, error, onClose, onRetry, returnFocus }: QuoteQuickViewModalProps) {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const showSpecifications = quote ? shouldShowSpecificationColumn(quote.items) : false;
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -61,8 +63,8 @@ export function QuoteQuickViewModal({ quote, loading, error, onClose, onRetry, r
 
           <div className="quick-view-table-wrap">
             <table className="quick-view-table">
-              <thead><tr><th>STT</th><th>Sản phẩm</th><th>Quy cách</th><th>SL</th><th>Đơn giá</th><th>Thành tiền</th></tr></thead>
-              <tbody>{quote.items.map((item, index) => <tr key={item.id}><td>{index + 1}</td><td><strong>{item.productName || "—"}</strong><small>{item.note}</small></td><td>{item.specification || "—"}</td><td>{item.quantity.toLocaleString("vi-VN")} {item.unit}</td><td>{formatVnd(item.unitPrice)}</td><td>{formatVnd(item.lineTotal)}</td></tr>)}</tbody>
+              <thead><tr><th>STT</th><th>Sản phẩm</th>{showSpecifications ? <th>Quy cách</th> : null}<th>SL</th><th>Đơn giá</th><th>Thành tiền</th></tr></thead>
+              <tbody>{quote.items.map((item, index) => <tr key={item.id}><td>{index + 1}</td><td><strong>{item.productName || "—"}</strong><small>{item.note}</small></td>{showSpecifications ? <td>{item.specification}</td> : null}<td>{item.quantity.toLocaleString("vi-VN")} {item.unit}</td><td>{formatVnd(item.unitPrice)}</td><td>{formatVnd(item.lineTotal)}</td></tr>)}</tbody>
             </table>
           </div>
 

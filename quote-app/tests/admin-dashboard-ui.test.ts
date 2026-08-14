@@ -49,11 +49,28 @@ describe("admin dashboard quick view", () => {
     expect(html).toContain("Đóng");
   });
 
+  it("omits the specification column when no product has one", () => {
+    const withoutSpecifications = { ...quote, items: quote.items.map((item) => ({ ...item, specification: "" })) };
+    const html = renderToStaticMarkup(createElement(QuoteQuickViewModal, {
+      quote: withoutSpecifications,
+      loading: false,
+      error: "",
+      onClose: vi.fn(),
+      onRetry: vi.fn(),
+    }));
+    expect(html).not.toContain("Quy cách");
+  });
+
   it("keeps obsolete history navigation and admin filter copy out of the UI", async () => {
     const shell = await readFile(fileURLToPath(new URL("../src/client/components/AppShell.tsx", import.meta.url)), "utf8");
     const list = await readFile(fileURLToPath(new URL("../src/client/pages/QuoteListPage.tsx", import.meta.url)), "utf8");
     expect(shell).not.toContain('label: "Lịch sử"');
     expect(list).not.toContain("Tra cứu theo nhân viên, chi nhánh, khách hàng và trạng thái.");
+  });
+
+  it("keeps payment editing available after an order is marked paid", async () => {
+    const dashboard = await readFile(fileURLToPath(new URL("../src/client/pages/AdminDashboardPage.tsx", import.meta.url)), "utf8");
+    expect(dashboard).not.toContain('quote.paymentStatus !== "PAID" ? <PaymentActions');
   });
 });
 import { readFile } from "node:fs/promises";

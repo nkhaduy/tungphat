@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { paymentActionAmount, paymentReceivedLabel, shouldShowPaymentQr } from "../src/shared/payment";
+import { paymentActionAmount, paymentReceivedLabel, shouldPromptForPaymentAmount, shouldShowPaymentQr } from "../src/shared/payment";
 
 describe("payment action amounts", () => {
   it("fills the full total for the paid action", () => {
@@ -17,5 +17,10 @@ describe("payment action amounts", () => {
     expect(paymentReceivedLabel("PARTIAL")).toBe("Đã nhận");
     expect(shouldShowPaymentQr("PARTIAL", 70_000)).toBe(true);
     expect(shouldShowPaymentQr("PAID", 0)).toBe(false);
+  });
+
+  it("asks for a corrected deposit when a fully paid order is edited", () => {
+    expect(shouldPromptForPaymentAmount("DEPOSITED", 1_000_000, 1_000_000)).toBe(true);
+    expect(shouldPromptForPaymentAmount("DEPOSITED", 200_000, 1_000_000)).toBe(false);
   });
 });

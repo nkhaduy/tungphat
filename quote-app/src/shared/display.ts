@@ -4,6 +4,10 @@ export function formatEmployeeContact(name: string, phone: string): string {
   return normalizedPhone ? `${normalizedName} - ${normalizedPhone}` : normalizedName;
 }
 
+export function shouldShowSpecificationColumn(items: Array<{ specification: string }>): boolean {
+  return items.some((item) => item.specification.trim().length > 0);
+}
+
 type QuotePdfNameSource = {
   customerName: string;
   quoteDate: string;

@@ -1,7 +1,7 @@
 import { Banknote, CheckCircle2, HandCoins, X } from "lucide-react";
 import { useState } from "react";
 import { formatVnd, normalizePayment } from "../../shared/calculations";
-import { paymentActionAmount } from "../../shared/payment";
+import { paymentActionAmount, shouldPromptForPaymentAmount } from "../../shared/payment";
 import type { PaymentStatus } from "../../shared/types";
 
 type PaymentActionsProps = {
@@ -27,8 +27,8 @@ export function PaymentActions({ paymentStatus, receivedAmount, grandTotal, disa
 
   const choose = (nextStatus: PaymentStatus) => {
     const nextAmount = paymentActionAmount(nextStatus, grandTotal, receivedAmount);
-    if (nextStatus === "DEPOSITED" && nextAmount === 0) {
-      setDraftAmount(0);
+    if (shouldPromptForPaymentAmount(nextStatus, nextAmount, grandTotal)) {
+      setDraftAmount(nextAmount < grandTotal ? nextAmount : 0);
       setError("");
       setAmountStatus("DEPOSITED");
       return;

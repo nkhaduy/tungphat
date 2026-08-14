@@ -21,6 +21,10 @@ export function paymentReceivedLabel(paymentStatus: PaymentStatus): string {
   return paymentStatus === "DEPOSITED" ? "Tiền đã cọc" : "Đã nhận";
 }
 
+export function shouldPromptForPaymentAmount(paymentStatus: PaymentStatus, currentReceivedAmount: number, grandTotal: number): boolean {
+  return paymentStatus === "DEPOSITED" && (currentReceivedAmount <= 0 || currentReceivedAmount >= grandTotal);
+}
+
 export function shouldShowPaymentQr(paymentStatus: PaymentStatus, remainingAmount: number): boolean {
   return paymentStatus !== "PAID" && remainingAmount > 0;
 }

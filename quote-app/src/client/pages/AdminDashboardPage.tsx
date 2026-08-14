@@ -94,7 +94,7 @@ export function AdminDashboardPage() {
                 <dl className="queue-card-details"><div><dt>Nhân viên</dt><dd>{quote.employeeName}</dd></div><div><dt>Tổng tiền</dt><dd>{formatVnd(quote.totals.grandTotal)}</dd></div><div><dt>Đã nhận</dt><dd>{formatVnd(quote.totals.depositAmount)}</dd></div><div><dt>Còn lại</dt><dd className="queue-remaining">{formatVnd(quote.totals.remainingAmount)}</dd></div></dl>
                 <button className="button secondary queue-view" type="button" onClick={(event: MouseEvent<HTMLButtonElement>) => { setReturnFocus(event.currentTarget); void loadQuickView(quote.id); }}><Eye size={16} /> Xem đơn</button>
               </div>
-              {quote.paymentStatus !== "PAID" ? <PaymentActions compact paymentStatus={quote.paymentStatus} receivedAmount={quote.totals.depositAmount} grandTotal={quote.totals.grandTotal} disabled={busyQuoteId === quote.id} onChange={(paymentStatus, receivedAmount) => void updatePayment(quote, paymentStatus, receivedAmount)} /> : null}
+              <PaymentActions compact paymentStatus={quote.paymentStatus} receivedAmount={quote.totals.depositAmount} grandTotal={quote.totals.grandTotal} disabled={busyQuoteId === quote.id} onChange={(paymentStatus, receivedAmount) => void updatePayment(quote, paymentStatus, receivedAmount)} />
             </article>)}
           </div>}
         </div>

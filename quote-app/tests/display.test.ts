@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildQuotePdfContentDisposition, buildQuotePdfFilename } from "../src/shared/display";
+import { buildQuotePdfContentDisposition, buildQuotePdfFilename, shouldShowSpecificationColumn } from "../src/shared/display";
 
 describe("quote PDF filename", () => {
   it("uses customer, Vietnamese date, and quote sequence", () => {
@@ -13,5 +13,12 @@ describe("quote PDF filename", () => {
     const disposition = buildQuotePdfContentDisposition(quote);
     expect(disposition).toContain("filename*=UTF-8''");
     expect(disposition).toContain("Cong ty A_BaoGia_TungPhat_230726_012.pdf");
+  });
+});
+
+describe("optional quote specification column", () => {
+  it("hides the column when every product specification is blank", () => {
+    expect(shouldShowSpecificationColumn([{ specification: "" }, { specification: "  " }])).toBe(false);
+    expect(shouldShowSpecificationColumn([{ specification: "18mm" }, { specification: "" }])).toBe(true);
   });
 });
