@@ -79,6 +79,7 @@ describe("Google Business Profile review import", () => {
 describe("GBP cache storage policy", () => {
   it("supports multiple GBP locations with stable public order", () => {
     const sql = readFileSync(new URL("../migrations/0008_gbp_multi_location.sql", import.meta.url), "utf8");
+    expect(sql).not.toMatch(/\b(?:BEGIN TRANSACTION|COMMIT)\b/);
     expect(sql).not.toContain("CHECK (id = 1)");
     expect(sql).toContain("location_name TEXT UNIQUE");
     expect(sql).toContain("branch_key TEXT NOT NULL");

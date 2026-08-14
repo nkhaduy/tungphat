@@ -1,5 +1,4 @@
 PRAGMA foreign_keys = OFF;
-BEGIN TRANSACTION;
 
 ALTER TABLE gbp_connection RENAME TO gbp_connection_single;
 
@@ -49,5 +48,4 @@ CREATE UNIQUE INDEX idx_gbp_connection_place_id
   ON gbp_connection(location_place_id)
   WHERE location_place_id IS NOT NULL;
 
-COMMIT;
 PRAGMA foreign_keys = ON;
