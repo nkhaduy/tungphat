@@ -90,6 +90,8 @@ export async function oauthCallback(request: Request, env: PagesGbpEnv) {
   const now = Math.floor(Date.now() / 1000); const expiry = now + Number(token.expires_in || 3600);
   await env.DB.prepare(`INSERT INTO gbp_connection(id,project_id,account_name,location_name,location_title,location_maps_uri,location_place_id,access_token_ciphertext,refresh_token_ciphertext,token_expires_at,scope,status,updated_at) VALUES(1,?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,'connected',?11) ON CONFLICT(id) DO UPDATE SET project_id=?1,account_name=?2,location_name=?3,location_title=?4,location_maps_uri=?5,location_place_id=?6,access_token_ciphertext=?7,refresh_token_ciphertext=COALESCE(?8,refresh_token_ciphertext),token_expires_at=?9,scope=?10,status='connected',last_error_safe=NULL,updated_at=?11`)
     .bind(env.GBP_GOOGLE_PROJECT_ID || "", accountName, `${accountName}/${selected.name}`, selected.title || "Tùng Phát", selected.metadata?.mapsUri || null, selected.metadata?.placeId || null, await encryptToken(token.access_token || "", env.GBP_TOKEN_ENCRYPTION_KEY), token.refresh_token ? await encryptToken(token.refresh_token, env.GBP_TOKEN_ENCRYPTION_KEY) : null, expiry, token.scope || "https://www.googleapis.com/auth/business.manage", now).run();
+  try { await syncGbp(env); }
+  catch (error) { console.error(JSON.stringify({ message: "gbp_initial_sync_failed", error: error instanceof Error ? error.message.slice(0, 100) : "unknown" })); }
   return new Response(null, { status: 302, headers: { Location: "/?gbp=connected", "Set-Cookie": `${STATE_COOKIE}=; HttpOnly; Secure; SameSite=Lax; Path=/api/gbp/oauth; Max-Age=0`, "Cache-Control": "no-store" } });
 }
 
