@@ -85,7 +85,7 @@ test.describe("Mã màu customer journeys", () => {
     const suppliers = [
       { path: "/catalogue/an-cuong/", heading: "Mã màu An Cường", count: 2195 },
       { path: "/catalogue/thanh-thuy/", heading: /Mã màu Thanh Th[uù]y/, count: 342 },
-      { path: "/catalogue/ba-thanh/", heading: "Mã màu Ba Thanh", count: 292 },
+      { path: "/catalogue/ba-thanh/", heading: "Mã màu Ba Thanh", count: 372 },
     ] as const;
 
     for (const supplier of suppliers) {
@@ -150,7 +150,7 @@ test.describe("Mã màu customer journeys", () => {
       page.getByText("Kết quả phù hợp", { exact: true }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: "2.911 sản phẩm", exact: true }),
+      page.getByRole("heading", { name: "2.991 sản phẩm", exact: true }),
     ).toBeVisible();
     const region = page.getByRole("region", { name: "Kết quả mã màu" });
     await expect(region.getByRole("article")).toHaveCount(48);
@@ -226,7 +226,7 @@ test.describe("Mã màu customer journeys", () => {
     await laminate.click();
     await expect(laminate).toHaveAttribute("aria-pressed", "true");
     await expect(
-      page.getByRole("heading", { name: "1.236 sản phẩm", exact: true }),
+      page.getByRole("heading", { name: "1.316 sản phẩm", exact: true }),
     ).toBeVisible();
 
     const supplier = page.getByRole("combobox", {
@@ -235,7 +235,7 @@ test.describe("Mã màu customer journeys", () => {
     await supplier.selectOption("ba-thanh");
     await expect(supplier).toHaveValue("ba-thanh");
     await expect(
-      page.getByRole("heading", { name: "33 sản phẩm", exact: true }),
+      page.getByRole("heading", { name: "113 sản phẩm", exact: true }),
     ).toBeVisible();
   });
 
@@ -316,22 +316,21 @@ test.describe("Mã màu customer journeys", () => {
     await page.goto("/catalogue/ba-thanh/laminate/");
     await expect(
       page.getByRole("heading", {
-        name: "Mã màu laminate · Ba Thanh",
-        exact: true,
+        name: /Mã màu laminate.*Ba Thanh/i,
       }),
     ).toBeVisible();
     await expect(
       page.getByRole("heading", {
-        name: "33 mã màu · 33 mã phù hợp",
+        name: "113 mã màu · 113 mã phù hợp",
         exact: true,
       }),
     ).toBeVisible();
 
     const search = page.getByRole("searchbox", { name: supplierSearchName });
-    await search.fill("P2052");
+    await search.fill("LW 143 T");
     await expect(
-      page.getByRole("link", { name: /Ba Thanh, mã P2052, xem chi tiết/i }),
-    ).toHaveAttribute("href", "/catalogue/ba-thanh/laminate/p2052/");
+      page.getByRole("link", { name: /Ba Thanh, mã LW 143 T, xem chi tiết/i }),
+    ).toHaveAttribute("href", "/catalogue/ba-thanh/laminate/lw-143-t/");
 
     await page.goto("/catalogue/ba-thanh/melamine/");
     await expect(

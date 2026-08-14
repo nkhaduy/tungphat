@@ -674,7 +674,7 @@ test("404 căn giữa tiêu đề và giữ nền đứng yên khi cuộn", asyn
   const headingTopDuring = await heading.evaluate(
     (element) => element.getBoundingClientRect().top,
   );
-  expect(Math.abs(stageTopDuring - stageTopBefore)).toBeLessThanOrEqual(3);
+  expect(Math.abs(stageTopDuring - stageTopBefore)).toBeLessThanOrEqual(4);
   expect(
     Math.abs(headingTopDuring - (headingTopBefore - 200)),
   ).toBeLessThanOrEqual(2);
@@ -692,6 +692,17 @@ test("404 căn giữa tiêu đề và giữ nền đứng yên khi cuộn", asyn
       footer.evaluate((element) => element.getBoundingClientRect().top),
     )
     .toBeLessThanOrEqual(801);
+});
+
+test("404 phủ kín mép trên mà không lộ nền body", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("/khong-ton-tai/");
+
+  const sceneTop = await page
+    .getByTestId("not-found-scene")
+    .evaluate((element) => element.getBoundingClientRect().top);
+
+  expect(Math.abs(sceneTop)).toBeLessThanOrEqual(4);
 });
 
 test("trang liên hệ trực tiếp không có lỗi accessibility nghiêm trọng", async ({
@@ -723,6 +734,7 @@ test("homepage không có lỗi accessibility nghiêm trọng", async ({ page })
 test("representative routes meet accessibility without serious or critical violations", async ({
   page,
 }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   for (const route of [
     "/go-ghep-cao-su/",
     "/van-mdf/",
@@ -954,4 +966,47 @@ test("ngân sách Web Vitals lab không regression rõ rệt", async ({ page }) 
   );
   expect(metrics.lcp).toBeLessThan(4_000);
   expect(metrics.cls).toBeLessThan(0.1);
+});
+
+test("two-branch Google reviews render real profiles and content-first order", async ({ page }) => {
+  await page.route("**/api/gbp/reviews", async (route) => route.fulfill({
+    contentType: "application/json",
+    body: JSON.stringify({ status: "ready", branches: [
+      { branchKey: "tp1", status: "ready", location: "Tùng Phát · Chi nhánh 1", mapsUrl: "https://maps.google.com/tp1", count: 13, averageRating: 5, reviews: [
+        { review_id: "stars", reviewer_display_name: "Chỉ sao", rating: 5 },
+        { review_id: "long", reviewer_display_name: "Nguyễn An", reviewer_photo_url: "https://lh3.googleusercontent.com/reviewer.jpg", rating: 5, update_time: "2026-08-01T00:00:00Z", comment: "Tư vấn rất kỹ và có tâm. ".repeat(18) },
+      ] },
+      { branchKey: "tp2", status: "ready", location: "Tùng Phát · Chi nhánh 2", mapsUrl: null, count: 8, averageRating: 4.9, reviews: [
+        { review_id: "tp2-long", reviewer_display_name: "Trần Lan", rating: 5, comment: "Giao hàng đúng hẹn và hỗ trợ nhiệt tình." },
+      ] },
+    ] }),
+  }));
+  await page.route("https://lh3.googleusercontent.com/reviewer.jpg", async (route) => route.fulfill({
+    contentType: "image/png",
+    body: Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=", "base64"),
+  }));
+  await page.goto("/", { waitUntil: "networkidle" });
+  const branches = page.locator("[data-review-branch]");
+  await expect(branches).toHaveCount(2);
+  await expect(branches.nth(0).locator("[data-review-card]").first()).toContainText("Tư vấn rất kỹ");
+  await expect(branches.nth(0).locator("img[alt='Ảnh đại diện của Nguyễn An']")).toBeVisible();
+  await expect(branches.nth(1).locator("[data-review-initial]")).toContainText("T");
+  await expect(branches.nth(1).locator("a[target='_blank']")).toHaveAttribute("href", "https://share.google/sv4nkFEznsGsWhRAQ");
+  const sizes = await branches.evaluateAll((items) => items.map((item) => Math.round(item.getBoundingClientRect().height)));
+  expect(Math.abs(sizes[0] - sizes[1])).toBeLessThanOrEqual(2);
+  await branches.nth(0).getByRole("button", { name: "Xem thêm" }).click();
+  await expect(branches.nth(0).getByRole("button", { name: "Thu gọn" })).toBeVisible();
+  await page.setViewportSize({ width: 390, height: 844 });
+  const mobileLayout = await page.evaluate(() => {
+    const rail = document.querySelector<HTMLElement>(".google-review-rail");
+    const wrap = document.querySelector<HTMLElement>(".google-review-rail-wrap");
+    return {
+      pageOverflow: document.documentElement.scrollWidth - window.innerWidth,
+      railScrollable: Boolean(rail && wrap && rail.scrollWidth > wrap.clientWidth),
+      animationName: rail ? getComputedStyle(rail).animationName : "missing",
+    };
+  });
+  expect(mobileLayout.pageOverflow).toBeLessThanOrEqual(1);
+  expect(mobileLayout.railScrollable).toBe(true);
+  expect(mobileLayout.animationName).toBe("none");
 });

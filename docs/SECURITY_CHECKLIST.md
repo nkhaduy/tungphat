@@ -27,7 +27,7 @@
 - [x] Hai D1 UUID khác nhau; migrate preview trước production.
 - [x] Custom domain CMS và SSL active mà không đổi nameserver.
 - [ ] Kiểm tra định kỳ OAuth email allowlist và quyền repository.
-- [ ] Kiểm CSP khi bật GA/Trustindex; không thêm wildcard tùy tiện.
+- [ ] Kiểm CSP khi bật GA hoặc dịch vụ bên thứ ba; không thêm wildcard tùy tiện.
 - [ ] Xác minh NAP, giờ mở cửa, email và tuyên bố thương hiệu trước publish.
 - [ ] Bật Cloudflare security/usage notification phù hợp với account.
 - [ ] Thử backup/restore Git và D1.

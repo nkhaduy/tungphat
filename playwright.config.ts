@@ -22,7 +22,7 @@ export function createPlaywrightConfig() {
     webServer: externalBaseUrl
       ? undefined
       : {
-          command: "npm run d1:migrate:local && npm run build && npm run cf:test-server",
+          command: "npm run d1:migrate:local && npm run cf:test-server",
           url: localBaseUrl,
           reuseExistingServer: !process.env.CI,
           timeout: 300_000,

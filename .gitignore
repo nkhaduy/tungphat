@@ -21,6 +21,13 @@ backups/
 local-media/
 # Local npm cache, audit logs and screenshots. Never commit runtime artifacts.
 work/
+output/
+reports/
+.playwright-cli/
+.superpowers/
+.codex/
+.worktrees/
+payload-cms/
 *.tsbuildinfo
 .vercel
 .indexnow-state.json

@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { auditCataloguePages } from "../lib/catalogue-quality";
 
@@ -20,6 +20,9 @@ const report = auditCataloguePages({
 });
 
 const reportPath = process.env.CATALOGUE_QUALITY_OUTPUT;
-if (reportPath) writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`);
+if (reportPath) {
+  mkdirSync(path.dirname(reportPath), { recursive: true });
+  writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`);
+}
 console.log(JSON.stringify(report.summary, null, 2));
 if (report.summary.failed || report.configurationErrors.length) process.exitCode = 1;

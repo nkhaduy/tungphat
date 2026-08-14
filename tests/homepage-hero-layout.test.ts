@@ -36,7 +36,7 @@ describe("homepage editorial material hero", () => {
     expect(hero).not.toContain("Nhận tư vấn");
   });
 
-  it("keeps the hero image slightly inset so the material scene has breathing room", () => {
+  it("keeps the hero image covering the full frame without exposed edges", () => {
     const styles = readFileSync("app/globals.css", "utf8");
     expect(styles).toContain(".material-panels-hero-image");
     expect(styles).toContain("transform: scale(1.01)");

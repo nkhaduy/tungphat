@@ -1,0 +1,16 @@
+# Keep bulk assets and generated/runtime output out of normal rg/Codex discovery.
+.worktrees/
+.next/
+.wrangler/
+.cache/
+node_modules/
+out/
+output/
+reports/
+test-results/
+playwright-report/
+coverage/
+public/catalog/
+data/imports/
+backups/
+work/

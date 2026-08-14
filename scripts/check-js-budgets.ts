@@ -1,4 +1,4 @@
-import { readFileSync, statSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import {
   DEFAULT_JS_BUDGETS,
@@ -32,6 +32,7 @@ const report = {
 };
 
 if (process.env.JS_BUDGET_OUTPUT) {
+  mkdirSync(path.dirname(process.env.JS_BUDGET_OUTPUT), { recursive: true });
   writeFileSync(process.env.JS_BUDGET_OUTPUT, `${JSON.stringify(report, null, 2)}\n`);
 }
 
