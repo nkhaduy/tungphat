@@ -1,4 +1,4 @@
-import type { QuoteItemInput, QuoteMoneyInput, QuoteStatus, QuoteTotals } from "./types";
+import type { PaymentStatus, QuoteItemInput, QuoteMoneyInput, QuoteStatus, QuoteTotals } from "./types";
 
 const MAX_VND = Number.MAX_SAFE_INTEGER;
 export const QUANTITY_SCALE = 1_000;
@@ -64,6 +64,34 @@ export function deriveQuoteStatus(current: QuoteStatus, totals: QuoteTotals, has
   if (totals.remainingAmount === 0 && totals.grandTotal > 0) return "PAID";
   if (totals.depositAmount > 0 && totals.remainingAmount > 0) return "DEPOSITED";
   return hasIssuedVersion ? "ISSUED" : "DRAFT";
+}
+
+export function normalizePayment(paymentStatus: PaymentStatus, receivedAmount: number, grandTotal: number) {
+  assertVnd(receivedAmount, "Số tiền đã nhận");
+  assertVnd(grandTotal, "Tổng thanh toán");
+  if (receivedAmount > grandTotal) throw new Error("Số tiền đã nhận không thể lớn hơn tổng thanh toán.");
+  if (paymentStatus === "UNPAID" && receivedAmount !== 0) {
+    throw new Error("Đơn chưa thanh toán phải có số tiền đã nhận bằng 0.");
+  }
+  if ((paymentStatus === "DEPOSITED" || paymentStatus === "PARTIAL") && receivedAmount <= 0) {
+    throw new Error("Số tiền đã nhận phải lớn hơn 0.");
+  }
+  if ((paymentStatus === "DEPOSITED" || paymentStatus === "PARTIAL") && receivedAmount >= grandTotal) {
+    throw new Error("Số tiền đã nhận phải nhỏ hơn tổng thanh toán.");
+  }
+  if (paymentStatus === "PAID" && (grandTotal <= 0 || receivedAmount !== grandTotal)) {
+    throw new Error("Trạng thái đã thanh toán phải nhận đủ tổng thanh toán.");
+  }
+  return { receivedAmount, remainingAmount: grandTotal - receivedAmount };
+}
+
+export function derivePaymentStatus(
+  requestedStatus: PaymentStatus,
+  receivedAmount: number,
+  grandTotal: number,
+): PaymentStatus {
+  normalizePayment(requestedStatus, receivedAmount, grandTotal);
+  return requestedStatus;
 }
 
 export function formatVnd(value: number): string {

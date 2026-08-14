@@ -1,5 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { calculateLineTotal, calculateTotals, deriveQuoteStatus, quantityFromMilli, quantityToMilli } from "../src/shared/calculations";
+import {
+  calculateLineTotal,
+  calculateTotals,
+  derivePaymentStatus,
+  deriveQuoteStatus,
+  normalizePayment,
+  quantityFromMilli,
+  quantityToMilli,
+} from "../src/shared/calculations";
 
 describe("quote calculations", () => {
   it("calculates each product line using integer VND", () => {
@@ -34,5 +42,20 @@ describe("quote calculations", () => {
   it("does not mark a zero-value draft as paid", () => {
     const zero = calculateTotals([{ productName: "Mẫu", specification: "", quantity: 0, unit: "", unitPrice: 0, note: "" }], { discount: 0, shippingFee: 0, processingFee: 0, vatAmount: 0, depositAmount: 0 });
     expect(deriveQuoteStatus("DRAFT", zero, false)).toBe("DRAFT");
+  });
+
+  it("keeps deposited and partial payments as distinct business states", () => {
+    expect(derivePaymentStatus("UNPAID", 0, 1_000_000)).toBe("UNPAID");
+    expect(derivePaymentStatus("DEPOSITED", 200_000, 1_000_000)).toBe("DEPOSITED");
+    expect(derivePaymentStatus("PARTIAL", 500_000, 1_000_000)).toBe("PARTIAL");
+    expect(derivePaymentStatus("PAID", 1_000_000, 1_000_000)).toBe("PAID");
+  });
+
+  it("rejects payment states that do not match the received amount", () => {
+    expect(normalizePayment("UNPAID", 0, 1_000_000)).toEqual({ receivedAmount: 0, remainingAmount: 1_000_000 });
+    expect(normalizePayment("PAID", 1_000_000, 1_000_000)).toEqual({ receivedAmount: 1_000_000, remainingAmount: 0 });
+    expect(() => normalizePayment("PARTIAL", 0, 1_000_000)).toThrow(/lớn hơn 0/);
+    expect(() => normalizePayment("DEPOSITED", 1_000_000, 1_000_000)).toThrow(/nhỏ hơn tổng/);
+    expect(() => normalizePayment("PAID", 999_999, 1_000_000)).toThrow(/đủ tổng/);
   });
 });

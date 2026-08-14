@@ -1,5 +1,6 @@
 export type UserRole = "ADMIN" | "EMPLOYEE";
 export type QuoteStatus = "DRAFT" | "ISSUED" | "DEPOSITED" | "PAID" | "CANCELLED";
+export type PaymentStatus = "UNPAID" | "DEPOSITED" | "PARTIAL" | "PAID";
 
 export type QuoteItemInput = {
   id?: string;
@@ -55,6 +56,7 @@ export type QuoteRecord = {
   deliveryNote: string;
   generalNote: string;
   status: QuoteStatus;
+  paymentStatus: PaymentStatus;
   totals: QuoteTotals;
   items: Array<QuoteItemInput & { id: string; position: number; lineTotal: number }>;
   latestPdfKey: string | null;
