@@ -1,4 +1,14 @@
-import type { PaymentQueue, QuoteRecord } from "./types";
+import type { PaymentQueue, PaymentStatus, QuoteRecord } from "./types";
+
+export function paymentActionAmount(
+  paymentStatus: PaymentStatus,
+  grandTotal: number,
+  currentReceivedAmount: number,
+): number {
+  if (paymentStatus === "UNPAID") return 0;
+  if (paymentStatus === "PAID") return grandTotal;
+  return currentReceivedAmount;
+}
 
 export function groupPaymentQueue(quotes: QuoteRecord[]): PaymentQueue {
   const queue: PaymentQueue = { unpaid: [], deposited: [], partial: [], paid: [] };

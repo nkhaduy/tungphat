@@ -3,10 +3,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { calculateLineTotal, calculateTotals, formatVnd } from "../../shared/calculations";
 import { buildQuotePdfFilename, formatEmployeeContact } from "../../shared/display";
-import type { AppSettings, CustomerRecord, QuoteRecord } from "../../shared/types";
+import type { AppSettings, CustomerRecord, PaymentStatus, QuoteRecord } from "../../shared/types";
 import { api, downloadProtected } from "../api";
 import { useAuth } from "../auth";
 import { PageHeader } from "../components/PageHeader";
+import { PaymentActions } from "../components/PaymentActions";
 import { emptyRow, QuoteGrid, type EditorRow } from "../components/QuoteGrid";
 
 type QuoteForm = {
@@ -22,6 +23,7 @@ type QuoteForm = {
   processingFee: number;
   vatAmount: number;
   depositAmount: number;
+  paymentStatus: PaymentStatus;
   rows: EditorRow[];
 };
 
@@ -46,6 +48,7 @@ function blankForm(meta: Meta): QuoteForm {
     processingFee: 0,
     vatAmount: 0,
     depositAmount: 0,
+    paymentStatus: "UNPAID",
     rows: [emptyRow()],
   };
 }
@@ -64,6 +67,7 @@ function quoteToForm(quote: QuoteRecord): QuoteForm {
     processingFee: quote.totals.processingFee,
     vatAmount: quote.totals.vatAmount,
     depositAmount: quote.totals.depositAmount,
+    paymentStatus: quote.paymentStatus,
     rows: [...quote.items.map((item) => ({ ...item, clientId: item.id })), emptyRow()],
   };
 }
@@ -83,6 +87,7 @@ function payload(form: QuoteForm, version?: number) {
     processingFee: form.processingFee,
     vatAmount: form.vatAmount,
     depositAmount: form.depositAmount,
+    paymentStatus: form.paymentStatus,
     items: form.rows.map((item) => ({
       productName: item.productName,
       specification: item.specification,
@@ -335,7 +340,14 @@ export function QuoteEditorPage() {
           {moneyField("processingFee", "Phí gia công")}
           {moneyField("vatAmount", "Thuế VAT")}
           <dl className="grand-total"><div><dt>Tổng thanh toán</dt><dd>{formatVnd(totals.grandTotal)}</dd></div></dl>
-          {moneyField("depositAmount", "Tiền đã cọc")}
+          {moneyField("depositAmount", "Số tiền đã nhận")}
+          <PaymentActions
+            paymentStatus={form.paymentStatus}
+            receivedAmount={form.depositAmount}
+            grandTotal={totals.grandTotal}
+            disabled={saving}
+            onChange={(paymentStatus, depositAmount) => change({ ...form, paymentStatus, depositAmount })}
+          />
           <div className="remaining-total"><span>CÒN LẠI</span><strong>{formatVnd(totals.remainingAmount)}</strong>{totals.remainingAmount === 0 && totals.grandTotal > 0 && <em><Check size={15} /> Đã thanh toán đủ</em>}</div>
           <div className="editor-actions">
             <button className="button primary" type="button" disabled={saving} onClick={() => void save()}><Save size={17} /> Lưu nháp</button>
