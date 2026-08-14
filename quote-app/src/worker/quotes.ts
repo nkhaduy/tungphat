@@ -1,12 +1,20 @@
 import type { Context } from "hono";
-import { calculateLineTotal, calculateTotals, deriveQuoteStatus, quantityFromMilli, quantityToMilli } from "../shared/calculations";
+import {
+  calculateLineTotal,
+  calculateTotals,
+  lifecycleStatusForPayment,
+  normalizePayment,
+  paymentStatusFromLegacyQuote,
+  quantityFromMilli,
+  quantityToMilli,
+} from "../shared/calculations";
 import { formatQuoteNumber } from "../shared/quote-number";
-import type { QuoteItemInput, QuoteRecord, QuoteStatus, SessionUser } from "../shared/types";
+import type { PaymentStatus, QuoteItemInput, QuoteRecord, QuoteStatus, QuoteTotals, SessionUser } from "../shared/types";
 import { auditStatement, writeAudit } from "./audit";
 import type { AppBindings } from "./auth";
 import { customerUpsertStatement } from "./customers";
 import { HttpError, isoNow, requiredParam } from "./http";
-import { quoteInputSchema } from "./schemas";
+import { paymentUpdateSchema, quoteInputSchema } from "./schemas";
 
 type QuoteRow = {
   id: string;
@@ -34,6 +42,7 @@ type QuoteRow = {
   deposit_amount: number;
   remaining_amount: number;
   status: QuoteStatus;
+  payment_status: PaymentStatus;
   latest_pdf_key: string | null;
   version: number;
   created_at: string;
@@ -52,7 +61,7 @@ type ItemRow = {
   note: string;
 };
 
-const quoteSelect = `
+export const quoteSelect = `
   SELECT q.*, b.code AS branch_code, b.name AS branch_name, b.address AS branch_address, b.phone AS branch_phone,
     u.full_name AS employee_name, u.phone AS employee_phone
   FROM quotes q JOIN branches b ON b.id=q.branch_id JOIN users u ON u.id=q.created_by
@@ -64,7 +73,7 @@ function compactDate(isoDate: string): string {
   return `${day}${month}${year.slice(-2)}`;
 }
 
-function mapQuote(row: QuoteRow, items: ItemRow[]): QuoteRecord {
+export function mapQuote(row: QuoteRow, items: ItemRow[]): QuoteRecord {
   return {
     id: row.id,
     quoteNumber: row.quote_number,
@@ -83,6 +92,7 @@ function mapQuote(row: QuoteRow, items: ItemRow[]): QuoteRecord {
     deliveryNote: row.delivery_note,
     generalNote: row.general_note,
     status: row.status,
+    paymentStatus: row.payment_status,
     totals: {
       subtotal: row.subtotal,
       discount: row.discount,
@@ -109,6 +119,24 @@ function mapQuote(row: QuoteRow, items: ItemRow[]): QuoteRecord {
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
+}
+
+function resolvePaymentStatus(
+  requestedStatus: PaymentStatus | undefined,
+  currentStatus: PaymentStatus | undefined,
+  legacyStatus: QuoteStatus,
+  totals: QuoteTotals,
+): PaymentStatus {
+  const paymentStatus = requestedStatus
+    ?? (totals.depositAmount === 0
+      ? "UNPAID"
+      : totals.depositAmount === totals.grandTotal && totals.grandTotal > 0
+        ? "PAID"
+        : currentStatus === "PARTIAL"
+          ? "PARTIAL"
+          : paymentStatusFromLegacyQuote(legacyStatus, totals.depositAmount, totals.grandTotal));
+  normalizePayment(paymentStatus, totals.depositAmount, totals.grandTotal);
+  return paymentStatus;
 }
 
 export function canAccessQuote(user: SessionUser, createdBy: string): boolean {
@@ -149,6 +177,8 @@ async function createQuote(env: QuoteAppEnv, user: SessionUser, rawInput: unknow
   const branch = await branchForCreate(env, user, input.branchId);
   const items = meaningfulItems(input.items);
   const totals = calculateTotals(items, input);
+  const paymentStatus = resolvePaymentStatus(input.paymentStatus, undefined, "DRAFT", totals);
+  const status = lifecycleStatusForPayment("DRAFT", paymentStatus, false);
   const counter = await env.DB.prepare(`
     INSERT INTO quote_counters(branch_id,quote_date,last_sequence) VALUES(?1,?2,1)
     ON CONFLICT(branch_id,quote_date) DO UPDATE SET last_sequence=last_sequence+1
@@ -164,12 +194,13 @@ async function createQuote(env: QuoteAppEnv, user: SessionUser, rawInput: unknow
       INSERT INTO quotes(
         id,quote_number,branch_id,created_by,quote_date,customer_name,customer_phone,customer_address,
         delivery_note,general_note,subtotal,discount,shipping_fee,processing_fee,vat_amount,grand_total,deposit_amount,
-        remaining_amount,status,revision_token,created_at,updated_at
-      ) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?16,?17,?18,'DRAFT',?19,?20,?20)
+        remaining_amount,status,payment_status,revision_token,created_at,updated_at
+      ) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?16,?17,?18,?19,?20,?21,?22,?22)
     `).bind(
       id, quoteNumber, branch.id, user.id, input.quoteDate, input.customerName, input.customerPhone,
       input.customerAddress, input.deliveryNote, input.generalNote, totals.subtotal, totals.discount, totals.shippingFee,
-      totals.processingFee, totals.vatAmount, totals.grandTotal, totals.depositAmount, totals.remainingAmount, revisionToken, now,
+      totals.processingFee, totals.vatAmount, totals.grandTotal, totals.depositAmount, totals.remainingAmount, status, paymentStatus,
+      revisionToken, now,
     ),
   ];
   const customerStatement = customerUpsertStatement(env, {
@@ -192,7 +223,7 @@ async function createQuote(env: QuoteAppEnv, user: SessionUser, rawInput: unknow
     action: "QUOTE_CREATED",
     entityType: "QUOTE",
     entityId: id,
-    newData: { quoteNumber, branchId: branch.id, totals },
+    newData: { quoteNumber, branchId: branch.id, totals, paymentStatus },
     requestId,
   }));
   await env.DB.batch(statements);
@@ -219,18 +250,20 @@ export async function updateQuoteHandler(c: Context<AppBindings>): Promise<Respo
   const totals = calculateTotals(items, input);
   const versionRow = await c.env.DB.prepare("SELECT COUNT(*) AS count FROM quote_versions WHERE quote_id=?1")
     .bind(quote.id).first<{ count: number }>();
-  const status = deriveQuoteStatus(quote.status, totals, Number(versionRow?.count ?? 0) > 0);
+  const hasIssuedVersion = Number(versionRow?.count ?? 0) > 0;
+  const paymentStatus = resolvePaymentStatus(input.paymentStatus, quote.paymentStatus, quote.status, totals);
+  const status = lifecycleStatusForPayment(quote.status, paymentStatus, hasIssuedVersion);
   const now = isoNow();
   const revisionToken = crypto.randomUUID();
   const statements: D1PreparedStatement[] = [
     c.env.DB.prepare(`
       UPDATE quotes SET customer_name=?1,customer_phone=?2,customer_address=?3,delivery_note=?4,general_note=?5,
         subtotal=?6,discount=?7,shipping_fee=?8,processing_fee=?9,vat_amount=?10,grand_total=?11,deposit_amount=?12,
-        remaining_amount=?13,status=?14,revision_token=?15,version=version+1,updated_at=?16 WHERE id=?17 AND version=?18
+        remaining_amount=?13,status=?14,payment_status=?15,revision_token=?16,version=version+1,updated_at=?17 WHERE id=?18 AND version=?19
     `).bind(
       input.customerName, input.customerPhone, input.customerAddress, input.deliveryNote, input.generalNote,
       totals.subtotal, totals.discount, totals.shippingFee, totals.processingFee, totals.vatAmount, totals.grandTotal,
-      totals.depositAmount, totals.remainingAmount, status, revisionToken, now, quote.id, input.version,
+      totals.depositAmount, totals.remainingAmount, status, paymentStatus, revisionToken, now, quote.id, input.version,
     ),
     c.env.DB.prepare(`
       UPDATE quote_items SET deleted_at=?1,updated_at=?1
@@ -259,11 +292,46 @@ export async function updateQuoteHandler(c: Context<AppBindings>): Promise<Respo
     SELECT ?1,?2,'QUOTE_UPDATED','QUOTE',?3,?4,?5,?6,?7
     WHERE EXISTS(SELECT 1 FROM quotes WHERE id=?3 AND revision_token=?8)
   `).bind(
-    crypto.randomUUID(), c.get("user").id, quote.id, JSON.stringify(quote), JSON.stringify({ ...input, totals, status }),
+    crypto.randomUUID(), c.get("user").id, quote.id, JSON.stringify(quote), JSON.stringify({ ...input, totals, status, paymentStatus }),
     c.get("requestId"), now, revisionToken,
   ));
   const results = await c.env.DB.batch(statements);
   if (Number(results[0]?.meta.changes ?? 0) !== 1) throw new HttpError(409, "Báo giá đã thay đổi ở nơi khác. Vui lòng tải lại trước khi lưu.");
+  return c.json({ quote: await loadQuote(c.env, quote.id, c.get("user")) });
+}
+
+export async function updatePaymentHandler(c: Context<AppBindings>): Promise<Response> {
+  const quote = await loadQuote(c.env, requiredParam(c, "id"), c.get("user"));
+  if (quote.status === "CANCELLED") throw new HttpError(409, "Báo giá đã hủy, không thể cập nhật thanh toán.");
+  const parsed = paymentUpdateSchema.safeParse(await c.req.json());
+  if (!parsed.success) throw new HttpError(422, parsed.error.issues[0]?.message ?? "Dữ liệu thanh toán không hợp lệ.");
+  if (parsed.data.version !== quote.version) throw new HttpError(409, "Báo giá đã thay đổi ở nơi khác. Vui lòng tải lại trước khi cập nhật.");
+  const normalized = normalizePayment(parsed.data.paymentStatus, parsed.data.receivedAmount, quote.totals.grandTotal);
+  const versionRow = await c.env.DB.prepare("SELECT COUNT(*) AS count FROM quote_versions WHERE quote_id=?1")
+    .bind(quote.id).first<{ count: number }>();
+  const status = lifecycleStatusForPayment(quote.status, parsed.data.paymentStatus, Number(versionRow?.count ?? 0) > 0);
+  const now = isoNow();
+  const revisionToken = crypto.randomUUID();
+  const results = await c.env.DB.batch([
+    c.env.DB.prepare(`
+      UPDATE quotes SET deposit_amount=?1,remaining_amount=?2,payment_status=?3,status=?4,revision_token=?5,
+        version=version+1,updated_at=?6 WHERE id=?7 AND version=?8 AND deleted_at IS NULL
+    `).bind(
+      normalized.receivedAmount, normalized.remainingAmount, parsed.data.paymentStatus, status, revisionToken,
+      now, quote.id, parsed.data.version,
+    ),
+    c.env.DB.prepare(`
+      INSERT INTO audit_logs(id,actor_user_id,action,entity_type,entity_id,old_data,new_data,request_id,created_at)
+      SELECT ?1,?2,'QUOTE_PAYMENT_UPDATED','QUOTE',?3,?4,?5,?6,?7
+      WHERE EXISTS(SELECT 1 FROM quotes WHERE id=?3 AND revision_token=?8)
+    `).bind(
+      crypto.randomUUID(), c.get("user").id, quote.id,
+      JSON.stringify({ paymentStatus: quote.paymentStatus, receivedAmount: quote.totals.depositAmount, remainingAmount: quote.totals.remainingAmount }),
+      JSON.stringify({ paymentStatus: parsed.data.paymentStatus, receivedAmount: normalized.receivedAmount, remainingAmount: normalized.remainingAmount }),
+      c.get("requestId"), now, revisionToken,
+    ),
+  ]);
+  if (Number(results[0]?.meta.changes ?? 0) !== 1) throw new HttpError(409, "Báo giá đã thay đổi ở nơi khác. Vui lòng tải lại trước khi cập nhật.");
   return c.json({ quote: await loadQuote(c.env, quote.id, c.get("user")) });
 }
 
@@ -354,6 +422,7 @@ export async function duplicateQuoteHandler(c: Context<AppBindings>): Promise<Re
     processingFee: source.totals.processingFee,
     vatAmount: source.totals.vatAmount,
     depositAmount: 0,
+    paymentStatus: "UNPAID",
     items: source.items,
   }, c.get("requestId"));
   await writeAudit(c.env, {

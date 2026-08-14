@@ -36,11 +36,18 @@ export const quoteInputSchema = z.object({
   processingFee: vnd,
   vatAmount: vnd,
   depositAmount: vnd,
+  paymentStatus: z.enum(["UNPAID", "DEPOSITED", "PARTIAL", "PAID"]).optional(),
   items: z.array(quoteItemSchema).max(500),
 }).superRefine((value, context) => {
   if (value.items.every((item) => !item.productName && item.quantity === 0 && item.unitPrice === 0)) {
     context.addIssue({ code: "custom", path: ["items"], message: "Báo giá cần ít nhất một dòng sản phẩm." });
   }
+});
+
+export const paymentUpdateSchema = z.object({
+  paymentStatus: z.enum(["UNPAID", "DEPOSITED", "PARTIAL", "PAID"]),
+  receivedAmount: vnd,
+  version: z.number().int().min(1).max(Number.MAX_SAFE_INTEGER),
 });
 
 export const userInputSchema = z.object({

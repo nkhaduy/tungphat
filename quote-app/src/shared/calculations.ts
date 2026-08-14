@@ -94,6 +94,28 @@ export function derivePaymentStatus(
   return requestedStatus;
 }
 
+export function paymentStatusFromLegacyQuote(
+  legacyStatus: QuoteStatus,
+  receivedAmount: number,
+  grandTotal: number,
+): PaymentStatus {
+  if (grandTotal > 0 && receivedAmount >= grandTotal) return "PAID";
+  if (legacyStatus === "PAID") return "PAID";
+  if (legacyStatus === "DEPOSITED" && receivedAmount > 0 && receivedAmount < grandTotal) return "DEPOSITED";
+  return "UNPAID";
+}
+
+export function lifecycleStatusForPayment(
+  current: QuoteStatus,
+  paymentStatus: PaymentStatus,
+  hasIssuedVersion: boolean,
+): QuoteStatus {
+  if (current === "CANCELLED") return current;
+  if (paymentStatus === "PAID") return "PAID";
+  if (paymentStatus === "DEPOSITED" || paymentStatus === "PARTIAL") return "DEPOSITED";
+  return hasIssuedVersion ? "ISSUED" : "DRAFT";
+}
+
 export function formatVnd(value: number): string {
   return new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND", maximumFractionDigits: 0 }).format(value);
 }

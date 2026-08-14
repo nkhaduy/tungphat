@@ -37,6 +37,7 @@ import {
   getQuoteHandler,
   listQuotesHandler,
   restoreQuoteHandler,
+  updatePaymentHandler,
   updateQuoteHandler,
 } from "./quotes";
 import { getSettings, getSettingsHandler, serveLogoHandler, updateSettingsHandler, uploadLogoHandler } from "./settings";
@@ -96,6 +97,7 @@ app.get("/api/quotes", listQuotesHandler);
 app.post("/api/quotes", requireMutation, createQuoteHandler);
 app.get("/api/quotes/:id", getQuoteHandler);
 app.put("/api/quotes/:id", requireMutation, updateQuoteHandler);
+app.post("/api/quotes/:id/payment", requireMutation, updatePaymentHandler);
 app.post("/api/quotes/:id/pdf", requireMutation, exportPdfHandler);
 app.post("/api/quotes/:id/archive", requireMutation, archiveQuoteHandler);
 app.get("/api/quotes/:id/versions", listVersionsHandler);
