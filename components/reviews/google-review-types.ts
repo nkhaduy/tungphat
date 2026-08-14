@@ -1,0 +1,26 @@
+export type Review = {
+  review_id: string;
+  reviewer_display_name: string;
+  reviewer_photo_url: string | null;
+  rating: number;
+  comment: string | null;
+  create_time: string | null;
+  update_time: string | null;
+  owner_reply: string | null;
+};
+
+export type ReviewBranch = {
+  branchKey: "tp1" | "tp2";
+  status: "ready" | "empty" | "error";
+  location: string;
+  mapsUrl: string | null;
+  count: number;
+  averageRating: number;
+  lastSyncedAt: number | null;
+  reviews: Review[];
+};
+
+export type ReviewPayload = {
+  status: "ready" | "empty";
+  branches: ReviewBranch[];
+};
