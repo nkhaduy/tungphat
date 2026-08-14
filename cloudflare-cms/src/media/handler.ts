@@ -1,5 +1,5 @@
 const MEDIA_ROUTE_PREFIX = "/media/";
-const PUBLIC_KEY_PREFIX = "videos/";
+const PUBLIC_KEY_PREFIXES = ["videos/", "catalog/"];
 const IMMUTABLE_CACHE = "public, max-age=31536000, immutable";
 
 type ByteRange = {
@@ -10,6 +10,20 @@ type ByteRange = {
 type MediaEnv = {
   MEDIA: R2Bucket;
 };
+
+const aliasCache = new WeakMap<R2Bucket, Promise<Record<string, string>>>();
+
+function catalogueAliases(bucket: R2Bucket): Promise<Record<string, string>> {
+  const cached = aliasCache.get(bucket);
+  if (cached) return cached;
+  const pending = bucket.get("catalog/_manifest.json").then(async (object) => {
+    if (!object) return {};
+    const manifest = await object.json<{ aliases?: Record<string, string> }>();
+    return manifest.aliases ?? {};
+  }).catch(() => ({}));
+  aliasCache.set(bucket, pending);
+  return pending;
+}
 
 function mediaKey(request: Request) {
   const pathname = new URL(request.url).pathname;
@@ -23,11 +37,11 @@ function mediaKey(request: Request) {
   }
 
   if (
-    !key.startsWith(PUBLIC_KEY_PREFIX) ||
+    !PUBLIC_KEY_PREFIXES.some((prefix) => key.startsWith(prefix)) ||
     key.length > 512 ||
     key.includes("\\") ||
     key.split("/").includes("..") ||
-    !/^videos\/[a-zA-Z0-9][a-zA-Z0-9._/-]*$/.test(key)
+    !/^(?:videos|catalog)\/[a-zA-Z0-9][a-zA-Z0-9._/-]*$/.test(key)
   ) {
     return null;
   }
@@ -104,9 +118,17 @@ export async function handleMedia(request: Request, env: MediaEnv) {
   const key = mediaKey(request);
   if (!key) return errorResponse(404, "Media not found");
 
+  let resolvedKey = key;
   let metadata: R2Object | null;
   try {
-    metadata = await env.MEDIA.head(key);
+    metadata = await env.MEDIA.head(resolvedKey);
+    if (!metadata && resolvedKey.startsWith("catalog/")) {
+      const alias = (await catalogueAliases(env.MEDIA))[resolvedKey];
+      if (alias) {
+        resolvedKey = alias;
+        metadata = await env.MEDIA.head(resolvedKey);
+      }
+    }
   } catch {
     return errorResponse(503, "Media storage unavailable");
   }
@@ -126,7 +148,7 @@ export async function handleMedia(request: Request, env: MediaEnv) {
 
   let object: R2ObjectBody | null;
   try {
-    object = await env.MEDIA.get(key, range ? { range } : undefined);
+    object = await env.MEDIA.get(resolvedKey, range ? { range } : undefined);
   } catch {
     return errorResponse(503, "Media storage unavailable");
   }

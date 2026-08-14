@@ -56,6 +56,41 @@ function env(overrides: Partial<R2Bucket> = {}) {
 }
 
 describe("private R2 media delivery", () => {
+  it("serves catalogue images through the same immutable R2 route", async () => {
+    let requestedKey = "";
+    const response = await handleMedia(
+      new Request("https://cms.mdftungphat.com/media/catalog/an-cuong/a.webp"),
+      env({
+        head: async (key) => {
+          requestedKey = key;
+          return metadata();
+        },
+      }),
+    );
+
+    expect(response.status).toBe(200);
+    expect(requestedKey).toBe("catalog/an-cuong/a.webp");
+    expect(response.headers.get("Cache-Control")).toBe("public, max-age=31536000, immutable");
+  });
+
+  it("resolves a deduplicated catalogue alias from the uploaded manifest", async () => {
+    const requested: string[] = [];
+    const manifestBytes = new TextEncoder().encode(JSON.stringify({ aliases: { "catalog/alias.webp": "catalog/canonical.webp" } }));
+    const response = await handleMedia(
+      new Request("https://cms.mdftungphat.com/media/catalog/alias.webp"),
+      env({
+        head: async (key) => {
+          requested.push(key);
+          return key === "catalog/canonical.webp" ? metadata() : null;
+        },
+        get: async (key) => key === "catalog/_manifest.json" ? object(manifestBytes) : object(),
+      }),
+    );
+
+    expect(response.status).toBe(200);
+    expect(requested).toEqual(["catalog/alias.webp", "catalog/canonical.webp"]);
+  });
+
   it("streams the full video with immutable metadata", async () => {
     const response = await handleMedia(
       new Request("https://cms.mdftungphat.com/media/videos/legacy/0619.mp4"),

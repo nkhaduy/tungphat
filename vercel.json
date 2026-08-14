@@ -1,4 +1,10 @@
 {
+  "rewrites": [
+    {
+      "source": "/catalog/:path*",
+      "destination": "https://cms.mdftungphat.com/media/catalog/:path*"
+    }
+  ],
   "redirects": [
     {
       "source": "/ma-mau",

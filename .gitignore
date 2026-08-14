@@ -19,6 +19,9 @@ test-results/
 coverage/
 backups/
 local-media/
+# Generated catalogue binaries are staged locally, synced to R2, then removed.
+public/catalog/
+.cache/media-sync/
 # Local npm cache, audit logs and screenshots. Never commit runtime artifacts.
 work/
 output/
