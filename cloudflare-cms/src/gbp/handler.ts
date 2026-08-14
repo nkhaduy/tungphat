@@ -24,11 +24,28 @@ export async function handlePublicReviews(request: Request, env: GbpEnv) {
   const origin = request.headers.get("Origin") || "";
   const allowedOrigin = (env.CORS_ALLOWED_ORIGINS || "").split(",").map((value) => value.trim()).includes(origin) ? origin : undefined;
   const now = Math.floor(Date.now() / 1000);
-  const connection = await env.DB.prepare("SELECT location_name,location_title,location_maps_uri,last_sync_succeeded_at FROM gbp_connection WHERE id=1 AND location_name IS NOT NULL").first<Record<string, string | number | null>>();
-  if (!connection?.location_name) return Response.json({ status: "empty", reviews: [] }, { headers: responseHeaders(true, allowedOrigin) });
-  const result = await publicReviewQuery(env.DB, String(connection.location_name), now).all<Record<string, unknown>>();
-  const summary = await env.DB.prepare("SELECT COUNT(*) AS count,ROUND(AVG(rating),1) AS average FROM gbp_reviews WHERE location_name=?1 AND available=1 AND expires_at>?2").bind(connection.location_name, now).first<{ count: number; average: number }>();
-  return Response.json({ status: result.results.length ? "ready" : "empty", location: connection.location_title, mapsUrl: connection.location_maps_uri, lastSyncedAt: connection.last_sync_succeeded_at, count: Number(summary?.count || 0), averageRating: Number(summary?.average || 0), reviews: result.results }, { headers: responseHeaders(true, allowedOrigin) });
+  const connections = await env.DB.prepare("SELECT branch_key,display_order,location_name,location_title,location_maps_uri,status,last_sync_succeeded_at,last_error_safe FROM gbp_connection WHERE location_name IS NOT NULL AND status != 'disconnected' ORDER BY display_order,branch_key").all<Record<string, string | number | null>>();
+  const branches = await Promise.all(connections.results.map(async (connection) => {
+    const locationName = String(connection.location_name);
+    const [result, summary] = await Promise.all([
+      publicReviewQuery(env.DB, locationName, now, 12).all<Record<string, unknown>>(),
+      env.DB.prepare("SELECT COUNT(*) AS count,ROUND(AVG(rating),1) AS average FROM gbp_reviews WHERE location_name=?1 AND available=1 AND expires_at>?2").bind(locationName, now).first<{ count: number; average: number }>(),
+    ]);
+    const branchKey = String(connection.branch_key);
+    const status = result.results.length ? "ready" : connection.status === "error" ? "error" : "empty";
+    return {
+      branchKey,
+      status,
+      location: connection.location_title,
+      mapsUrl: connection.location_maps_uri || (branchKey === "tp2" ? "https://share.google/sv4nkFEznsGsWhRAQ" : null),
+      lastSyncedAt: connection.last_sync_succeeded_at,
+      count: Number(summary?.count || 0),
+      averageRating: Number(summary?.average || 0),
+      reviews: result.results,
+      errorCode: status === "error" ? connection.last_error_safe : undefined,
+    };
+  }));
+  return Response.json({ status: branches.some((branch) => branch.status === "ready") ? "ready" : branches.length ? "empty" : "empty", branches }, { headers: responseHeaders(true, allowedOrigin) });
 }
 
 export async function handleGbpOAuthStart(request: Request, env: GbpEnv) {
@@ -77,10 +94,10 @@ export async function handleAdminGbp(context: EventContext<GbpEnv, string, unkno
   if (request.method === "POST" && (!(await validMutation(request, env, session)) || !validOrigin(request, env))) return json({ ok: false, code: "request_rejected" }, 403);
   if (route === "sync" && request.method === "POST") return json(await syncGbp(env));
   if (request.method !== "GET") return json({ ok: false, code: "method_not_allowed" }, 405);
-  const connection = await env.DB.prepare("SELECT project_id,account_name,location_name,location_title,location_maps_uri,status,last_sync_started_at,last_sync_succeeded_at,last_sync_failed_at,last_error_safe FROM gbp_connection WHERE id=1").first();
-  const reviews = await env.DB.prepare("SELECT COUNT(*) AS total,ROUND(AVG(rating),1) AS average,MAX(fetched_at) AS last_sync FROM gbp_reviews WHERE available=1").first();
-  const latest = await env.DB.prepare("SELECT reviewer_display_name,rating,comment,update_time FROM gbp_reviews WHERE available=1 ORDER BY COALESCE(update_time,create_time) DESC LIMIT 10").all();
+  const connections = await env.DB.prepare("SELECT branch_key,display_order,project_id,account_name,location_name,location_title,location_maps_uri,status,last_sync_started_at,last_sync_succeeded_at,last_sync_failed_at,last_error_safe FROM gbp_connection ORDER BY display_order,branch_key").all();
+  const reviews = await env.DB.prepare("SELECT location_name,COUNT(*) AS total,ROUND(AVG(rating),1) AS average,MAX(fetched_at) AS last_sync FROM gbp_reviews WHERE available=1 GROUP BY location_name").all();
+  const latest = await env.DB.prepare("SELECT location_name,reviewer_display_name,rating,comment,update_time FROM gbp_reviews WHERE available=1 ORDER BY CASE WHEN TRIM(COALESCE(comment,'')) = '' THEN 1 ELSE 0 END,LENGTH(TRIM(COALESCE(comment,''))) DESC,COALESCE(update_time,create_time) DESC LIMIT 20").all();
   const metrics = await env.DB.prepare("SELECT metric_date,metric_name,metric_value FROM gbp_performance_daily ORDER BY metric_date DESC,metric_name LIMIT 400").all();
   const keywords = await env.DB.prepare("SELECT month,keyword,impressions,threshold FROM gbp_search_keywords_monthly ORDER BY month DESC,COALESCE(impressions,threshold) DESC LIMIT 300").all();
-  return json({ configured: Boolean(env.GBP_GOOGLE_CLIENT_ID), connection, reviews: { ...reviews, latest: latest.results }, metrics: metrics.results, keywords: keywords.results, retentionDays: 30 });
+  return json({ configured: Boolean(env.GBP_GOOGLE_CLIENT_ID), connections: connections.results, reviews: { summaries: reviews.results, latest: latest.results }, metrics: metrics.results, keywords: keywords.results, retentionDays: 30 });
 }

@@ -4,6 +4,7 @@ import { GBP_RETENTION_SECONDS, cleanupStatements, reviewUpsertStatements } from
 import type { GbpEnv, GbpTokenResponse } from "./types";
 
 type Connection = {
+  id: number;
   access_token_ciphertext: string | null;
   refresh_token_ciphertext: string | null;
   token_expires_at: number | null;
@@ -11,6 +12,7 @@ type Connection = {
   location_name: string | null;
   location_title: string | null;
   location_maps_uri: string | null;
+  branch_key: string;
 };
 
 function dateOnly(timestamp: number) { return new Date(timestamp).toISOString().slice(0, 10); }
@@ -38,33 +40,31 @@ async function refreshAccessToken(env: GbpEnv, refreshToken: string) {
   }));
 }
 
-async function connection(env: GbpEnv) {
-  return env.DB.prepare("SELECT * FROM gbp_connection WHERE id=1").first<Connection>();
+async function connections(env: GbpEnv) {
+  const result = await env.DB.prepare("SELECT * FROM gbp_connection WHERE location_name IS NOT NULL AND status != 'disconnected' ORDER BY display_order,branch_key").all<Connection>();
+  return result.results;
 }
 
-export async function currentAccessToken(env: GbpEnv, now = Math.floor(Date.now() / 1000)) {
-  const row = await connection(env);
-  if (!row || !env.GBP_TOKEN_ENCRYPTION_KEY) throw new Error("gbp_not_connected");
+export async function currentAccessToken(env: GbpEnv, row: Connection, now = Math.floor(Date.now() / 1000)) {
+  if (!env.GBP_TOKEN_ENCRYPTION_KEY) throw new Error("gbp_not_connected");
   if (row.access_token_ciphertext && Number(row.token_expires_at || 0) > now + 120) return decryptToken(row.access_token_ciphertext, env.GBP_TOKEN_ENCRYPTION_KEY);
   if (!row.refresh_token_ciphertext) throw new Error("gbp_refresh_token_missing");
   const refreshed = await refreshAccessToken(env, await decryptToken(row.refresh_token_ciphertext, env.GBP_TOKEN_ENCRYPTION_KEY));
   const expires = now + Number(refreshed.expires_in || 3600);
-  await env.DB.prepare("UPDATE gbp_connection SET access_token_ciphertext=?1,token_expires_at=?2,status='connected',updated_at=?3 WHERE id=1")
-    .bind(await encryptToken(refreshed.access_token || "", env.GBP_TOKEN_ENCRYPTION_KEY), expires, now).run();
+  await env.DB.prepare("UPDATE gbp_connection SET access_token_ciphertext=?1,token_expires_at=?2,status='connected',updated_at=?3 WHERE account_name=?4")
+    .bind(await encryptToken(refreshed.access_token || "", env.GBP_TOKEN_ENCRYPTION_KEY), expires, now, row.account_name).run();
   return refreshed.access_token || "";
 }
 
-async function updateSyncStatus(env: GbpEnv, status: string, now: number, error: string | null = null) {
+async function updateSyncStatus(env: GbpEnv, id: number, status: string, now: number, error: string | null = null) {
   const column = status === "connected" ? "last_sync_succeeded_at" : status === "syncing" ? "last_sync_started_at" : "last_sync_failed_at";
-  await env.DB.prepare(`UPDATE gbp_connection SET status=?1,${column}=?2,last_error_safe=?3,updated_at=?2 WHERE id=1`).bind(status, now, error).run();
+  await env.DB.prepare(`UPDATE gbp_connection SET status=?1,${column}=?2,last_error_safe=?3,updated_at=?2 WHERE id=?4`).bind(status, now, error, id).run();
 }
 
-export async function syncGbp(env: GbpEnv, now = Math.floor(Date.now() / 1000)) {
-  const row = await connection(env);
-  if (!row?.location_name) throw new Error("gbp_location_missing");
-  await updateSyncStatus(env, "syncing", now);
+async function syncLocation(env: GbpEnv, row: Connection, token: string, now: number) {
+  if (!row.location_name) throw new Error("gbp_location_missing");
+  await updateSyncStatus(env, row.id, "syncing", now);
   try {
-    const token = await currentAccessToken(env, now);
     const start = dateOnly((now - 29 * 86_400) * 1000);
     const end = dateOnly(now * 1000);
     const month = monthOnly(now * 1000);
@@ -80,11 +80,19 @@ export async function syncGbp(env: GbpEnv, now = Math.floor(Date.now() / 1000)) 
       ...cleanupStatements(env.DB, now),
     ];
     for (let index = 0; index < statements.length; index += 100) await env.DB.batch(statements.slice(index, index + 100));
-    await updateSyncStatus(env, "connected", now);
-    return { reviews: reviews.length, metrics: metrics.length, keywords: keywords.length, syncedAt: now };
+    await updateSyncStatus(env, row.id, "connected", now);
+    return { branchKey: row.branch_key, status: "ready" as const, reviews: reviews.length, metrics: metrics.length, keywords: keywords.length, syncedAt: now };
   } catch (error) {
     const safe = error instanceof Error ? error.message.slice(0, 100) : "gbp_sync_failed";
-    await updateSyncStatus(env, "error", now, safe);
-    throw error;
+    await updateSyncStatus(env, row.id, "error", now, safe);
+    return { branchKey: row.branch_key, status: "error" as const, reviews: 0, metrics: 0, keywords: 0, syncedAt: now, errorCode: safe };
   }
+}
+
+export async function syncGbp(env: GbpEnv, now = Math.floor(Date.now() / 1000)) {
+  const rows = await connections(env);
+  if (!rows.length) throw new Error("gbp_location_missing");
+  const token = await currentAccessToken(env, rows[0], now);
+  const branches = await Promise.all(rows.map((row) => syncLocation(env, row, token, now)));
+  return { branches, syncedAt: now };
 }

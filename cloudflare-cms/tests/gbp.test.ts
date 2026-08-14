@@ -6,7 +6,7 @@ import {
   normalizeReview,
   retryGoogleRequest,
 } from "../src/gbp/google";
-import { reviewRetentionCutoff, reviewUpsertStatements } from "../src/gbp/storage";
+import { publicReviewQuery, reviewRetentionCutoff, reviewUpsertStatements } from "../src/gbp/storage";
 import { decryptToken, encryptToken, selectTungPhatLocation, selectTungPhatLocations } from "../src/gbp/oauth";
 
 const token = "unit-test-token";
@@ -104,6 +104,16 @@ describe("GBP cache storage policy", () => {
     expect(String((statements[1] as never as { sql: string }).sql)).toContain("available=0");
     expect(String((statements[1] as never as { sql: string }).sql)).toContain("fetched_at<?");
     expect(String((statements[2] as never as { sql: string }).sql)).toContain("expires_at<?");
+  });
+
+  it("orders substantive written reviews before rating-only reviews", () => {
+    const statement = publicReviewQuery({
+      prepare: (sql: string) => ({ bind: (...values: unknown[]) => ({ sql, values }) }),
+    } as never, "accounts/1/locations/2", 1_800_000_000);
+    const sql = String((statement as never as { sql: string }).sql);
+    expect(sql).toContain("CASE WHEN TRIM(COALESCE(comment,'')) = '' THEN 1 ELSE 0 END");
+    expect(sql).toContain("LENGTH(TRIM(COALESCE(comment,''))) DESC");
+    expect(sql).toContain("COALESCE(update_time,create_time) DESC");
   });
 });
 

@@ -19,7 +19,7 @@ export function reviewUpsertStatements(db: D1Database, locationName: string, rev
 }
 
 export function publicReviewQuery(db: D1Database, locationName: string, now: number, limit = 8) {
-  return db.prepare(`SELECT review_id,reviewer_display_name,reviewer_photo_url,rating,comment,create_time,update_time,owner_reply FROM gbp_reviews WHERE location_name=?1 AND available=1 AND expires_at>?2 ORDER BY COALESCE(update_time,create_time) DESC LIMIT ?3`).bind(locationName, now, Math.max(1, Math.min(20, limit)));
+  return db.prepare(`SELECT review_id,reviewer_display_name,reviewer_photo_url,rating,comment,create_time,update_time,owner_reply FROM gbp_reviews WHERE location_name=?1 AND available=1 AND expires_at>?2 ORDER BY CASE WHEN TRIM(COALESCE(comment,'')) = '' THEN 1 ELSE 0 END, LENGTH(TRIM(COALESCE(comment,''))) DESC, COALESCE(update_time,create_time) DESC LIMIT ?3`).bind(locationName, now, Math.max(1, Math.min(20, limit)));
 }
 
 export function cleanupStatements(db: D1Database, now: number) {
