@@ -9,6 +9,7 @@ type PaymentActionsProps = {
   receivedAmount: number;
   grandTotal: number;
   disabled?: boolean;
+  compact?: boolean;
   onChange: (paymentStatus: PaymentStatus, receivedAmount: number) => void;
 };
 
@@ -19,13 +20,19 @@ function parseVnd(value: string): number {
   return Number.isSafeInteger(parsed) ? parsed : Number.MAX_SAFE_INTEGER;
 }
 
-export function PaymentActions({ paymentStatus, receivedAmount, grandTotal, disabled = false, onChange }: PaymentActionsProps) {
-  const [partialOpen, setPartialOpen] = useState(false);
-  const [partialAmount, setPartialAmount] = useState(receivedAmount);
+export function PaymentActions({ paymentStatus, receivedAmount, grandTotal, disabled = false, compact = false, onChange }: PaymentActionsProps) {
+  const [amountStatus, setAmountStatus] = useState<"DEPOSITED" | "PARTIAL" | null>(null);
+  const [draftAmount, setDraftAmount] = useState(receivedAmount);
   const [error, setError] = useState("");
 
   const choose = (nextStatus: PaymentStatus) => {
     const nextAmount = paymentActionAmount(nextStatus, grandTotal, receivedAmount);
+    if (nextStatus === "DEPOSITED" && nextAmount === 0) {
+      setDraftAmount(0);
+      setError("");
+      setAmountStatus("DEPOSITED");
+      return;
+    }
     try {
       normalizePayment(nextStatus, nextAmount, grandTotal);
       setError("");
@@ -36,27 +43,28 @@ export function PaymentActions({ paymentStatus, receivedAmount, grandTotal, disa
   };
 
   const openPartial = () => {
-    setPartialAmount(receivedAmount > 0 && receivedAmount < grandTotal ? receivedAmount : 0);
+    setDraftAmount(receivedAmount > 0 && receivedAmount < grandTotal ? receivedAmount : 0);
     setError("");
-    setPartialOpen(true);
+    setAmountStatus("PARTIAL");
   };
 
-  const applyPartial = () => {
+  const applyAmount = () => {
+    if (!amountStatus) return;
     try {
-      normalizePayment("PARTIAL", partialAmount, grandTotal);
-      onChange("PARTIAL", partialAmount);
+      normalizePayment(amountStatus, draftAmount, grandTotal);
+      onChange(amountStatus, draftAmount);
       setError("");
-      setPartialOpen(false);
+      setAmountStatus(null);
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Số tiền thanh toán không hợp lệ.");
     }
   };
 
   return (
-    <section className="payment-actions" aria-labelledby="payment-actions-title">
+    <section className={compact ? "payment-actions compact" : "payment-actions"} aria-label="Cập nhật thanh toán">
       <div className="payment-actions-heading">
         <div>
-          <strong id="payment-actions-title">Trạng thái thanh toán</strong>
+          <strong>Trạng thái thanh toán</strong>
           <span>Đã nhận {formatVnd(receivedAmount)}</span>
         </div>
         {paymentStatus !== "UNPAID" ? <button type="button" className="payment-reset" disabled={disabled} onClick={() => choose("UNPAID")}>Đặt lại</button> : null}
@@ -73,16 +81,16 @@ export function PaymentActions({ paymentStatus, receivedAmount, grandTotal, disa
         </button>
       </div>
       {error ? <p className="payment-error" role="alert">{error}</p> : null}
-      {partialOpen ? <div className="dialog-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget && !disabled) setPartialOpen(false); }}>
-        <section className="confirm-dialog payment-dialog" role="dialog" aria-modal="true" aria-labelledby="partial-payment-title">
-          <button type="button" className="payment-dialog-close" aria-label="Đóng" disabled={disabled} onClick={() => setPartialOpen(false)}><X size={18} /></button>
-          <h2 id="partial-payment-title">Nhập số tiền đã nhận</h2>
+      {amountStatus ? <div className="dialog-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget && !disabled) setAmountStatus(null); }}>
+        <section className="confirm-dialog payment-dialog" role="dialog" aria-modal="true" aria-labelledby="payment-amount-title">
+          <button type="button" className="payment-dialog-close" aria-label="Đóng" disabled={disabled} onClick={() => setAmountStatus(null)}><X size={18} /></button>
+          <h2 id="payment-amount-title">{amountStatus === "DEPOSITED" ? "Nhập số tiền cọc" : "Nhập số tiền đã nhận"}</h2>
           <p>Số tiền phải lớn hơn 0 và nhỏ hơn tổng thanh toán {formatVnd(grandTotal)}.</p>
-          <label className="payment-dialog-input"><span>Số tiền thực nhận</span><input autoFocus inputMode="numeric" value={partialAmount || ""} onChange={(event) => setPartialAmount(parseVnd(event.target.value))} /><small>đ</small></label>
+          <label className="payment-dialog-input"><span>Số tiền thực nhận</span><input autoFocus inputMode="numeric" value={draftAmount || ""} onChange={(event) => setDraftAmount(parseVnd(event.target.value))} /><small>đ</small></label>
           {error ? <p className="payment-error" role="alert">{error}</p> : null}
           <div className="confirm-dialog-actions">
-            <button className="button secondary" type="button" disabled={disabled} onClick={() => setPartialOpen(false)}>Hủy</button>
-            <button className="button primary" type="button" disabled={disabled} onClick={applyPartial}>Xác nhận</button>
+            <button className="button secondary" type="button" disabled={disabled} onClick={() => setAmountStatus(null)}>Hủy</button>
+            <button className="button primary" type="button" disabled={disabled} onClick={applyAmount}>Xác nhận</button>
           </div>
         </section>
       </div> : null}

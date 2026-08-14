@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { groupPaymentQueue } from "../src/shared/payment";
+import { PAYMENT_QUEUE_SECTIONS, groupPaymentQueue, replaceQuoteInPaymentQueue } from "../src/shared/payment";
 import type { QuoteRecord } from "../src/shared/types";
 
 function quote(paymentStatus: QuoteRecord["paymentStatus"], id: string = paymentStatus): QuoteRecord {
@@ -45,5 +45,23 @@ describe("Admin payment queue grouping", () => {
     cancelled.status = "CANCELLED";
     const queue = groupPaymentQueue([cancelled]);
     expect(Object.values(queue).flat()).toHaveLength(0);
+  });
+
+  it("defines the four Admin landing sections in business order", () => {
+    expect(PAYMENT_QUEUE_SECTIONS.map((section) => section.label)).toEqual([
+      "Cần xử lý",
+      "Đã cọc",
+      "Thanh toán một phần",
+      "Đã thanh toán",
+    ]);
+  });
+
+  it("moves an updated quote into its new payment group", () => {
+    const unpaid = quote("UNPAID", "quote-1");
+    const queue = groupPaymentQueue([unpaid]);
+    const paid = quote("PAID", "quote-1");
+    const next = replaceQuoteInPaymentQueue(queue, paid);
+    expect(next.unpaid).toHaveLength(0);
+    expect(next.paid.map((item) => item.id)).toEqual(["quote-1"]);
   });
 });

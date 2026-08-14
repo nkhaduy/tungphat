@@ -1,5 +1,12 @@
 import type { PaymentQueue, PaymentStatus, QuoteRecord } from "./types";
 
+export const PAYMENT_QUEUE_SECTIONS: Array<{ key: keyof PaymentQueue; label: string; description: string }> = [
+  { key: "unpaid", label: "Cần xử lý", description: "Đơn chưa ghi nhận thanh toán" },
+  { key: "deposited", label: "Đã cọc", description: "Đơn đã nhận tiền cọc" },
+  { key: "partial", label: "Thanh toán một phần", description: "Đơn đang còn số dư" },
+  { key: "paid", label: "Đã thanh toán", description: "Đơn đã nhận đủ tổng tiền" },
+];
+
 export function paymentActionAmount(
   paymentStatus: PaymentStatus,
   grandTotal: number,
@@ -20,4 +27,9 @@ export function groupPaymentQueue(quotes: QuoteRecord[]): PaymentQueue {
     if (quote.paymentStatus === "PAID") queue.paid.push(quote);
   }
   return queue;
+}
+
+export function replaceQuoteInPaymentQueue(queue: PaymentQueue, quote: QuoteRecord): PaymentQueue {
+  const current = Object.values(queue).flat().filter((item) => item.id !== quote.id);
+  return groupPaymentQueue([quote, ...current]);
 }
