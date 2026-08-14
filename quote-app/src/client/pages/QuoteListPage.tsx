@@ -9,8 +9,8 @@ import { useAuth } from "../auth";
 import { PageHeader } from "../components/PageHeader";
 import { StatusBadge } from "../components/StatusBadge";
 
-type FilterState = { from: string; to: string; quoteNumber: string; customerName: string; customerPhone: string; status: string; employeeId: string; branchId: string };
-const initialFilters: FilterState = { from: "", to: "", quoteNumber: "", customerName: "", customerPhone: "", status: "", employeeId: "", branchId: "" };
+type FilterState = { from: string; to: string; quoteNumber: string; customerName: string; customerPhone: string; status: string; paymentStatus: string; employeeId: string; branchId: string };
+const initialFilters: FilterState = { from: "", to: "", quoteNumber: "", customerName: "", customerPhone: "", status: "", paymentStatus: "", employeeId: "", branchId: "" };
 
 export function QuoteListPage({ admin = false }: { admin?: boolean }) {
   const { user } = useAuth();
@@ -58,7 +58,7 @@ export function QuoteListPage({ admin = false }: { admin?: boolean }) {
         <label><span>Mã báo giá</span><input value={filters.quoteNumber} onChange={(event) => setFilters({ ...filters, quoteNumber: event.target.value })} placeholder="TP81-…" /></label>
         <label><span>Khách hàng</span><input value={filters.customerName} onChange={(event) => setFilters({ ...filters, customerName: event.target.value })} /></label>
         <label><span>Số điện thoại</span><input value={filters.customerPhone} onChange={(event) => setFilters({ ...filters, customerPhone: event.target.value })} /></label>
-        <label><span>Trạng thái</span><select value={filters.status} onChange={(event) => setFilters({ ...filters, status: event.target.value })}><option value="">Tất cả</option><option value="DRAFT">Nháp</option><option value="ISSUED">Đã phát hành</option><option value="DEPOSITED">Đã cọc</option><option value="PAID">Đã thanh toán</option><option value="CANCELLED">Đã hủy</option></select></label>
+        <label><span>Trạng thái thanh toán</span><select value={filters.paymentStatus} onChange={(event) => setFilters({ ...filters, paymentStatus: event.target.value })}><option value="">Tất cả</option><option value="UNPAID">Cần xử lý</option><option value="DEPOSITED">Đã cọc</option><option value="PARTIAL">Thanh toán một phần</option><option value="PAID">Đã thanh toán</option></select></label>
         {admin && <label><span>Nhân viên</span><select value={filters.employeeId} onChange={(event) => setFilters({ ...filters, employeeId: event.target.value })}><option value="">Tất cả</option>{meta.users.map((item) => <option key={item.id} value={item.id}>{item.fullName}</option>)}</select></label>}
         {admin && <label><span>Chi nhánh</span><select value={filters.branchId} onChange={(event) => setFilters({ ...filters, branchId: event.target.value })}><option value="">Tất cả</option>{meta.branches.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>}
         <button className="button secondary filter-submit" type="submit"><Search size={16} /> Lọc</button>
@@ -66,7 +66,7 @@ export function QuoteListPage({ admin = false }: { admin?: boolean }) {
       {error && <div className="form-error">{error}</div>}
       <div className="data-table-wrap">
         <table className="data-table">
-          <thead><tr><th>Mã báo giá</th><th>Ngày</th><th>Khách hàng</th><th>Số điện thoại</th>{admin && <th>Nhân viên</th>}<th>Chi nhánh</th><th>Tổng tiền</th><th>Đã cọc</th><th>Còn lại</th><th>Trạng thái</th></tr></thead>
+          <thead><tr><th>Mã báo giá</th><th>Ngày</th><th>Khách hàng</th><th>Số điện thoại</th>{admin && <th>Nhân viên</th>}<th>Chi nhánh</th><th>Tổng tiền</th><th>Đã nhận</th><th>Còn lại</th><th>Trạng thái</th></tr></thead>
           <tbody>
             {loading ? Array.from({ length: 5 }, (_, index) => <tr key={index} className="skeleton-row"><td colSpan={admin ? 10 : 9}><span /></td></tr>) : quotes.map((quote) => (
               <tr key={quote.id}>
@@ -79,7 +79,7 @@ export function QuoteListPage({ admin = false }: { admin?: boolean }) {
                 <td className="money">{formatVnd(quote.totals.grandTotal)}</td>
                 <td className="money">{formatVnd(quote.totals.depositAmount)}</td>
                 <td className="money remaining">{formatVnd(quote.totals.remainingAmount)}</td>
-                <td><StatusBadge status={quote.status} /></td>
+                <td><StatusBadge status={quote.status} paymentStatus={quote.paymentStatus} /></td>
               </tr>
             ))}
           </tbody>

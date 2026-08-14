@@ -4,6 +4,7 @@ import { PDFDocument, type PDFFont, type PDFImage, type PDFPage, rgb } from "pdf
 import { deriveQuoteStatus, formatVnd } from "../shared/calculations";
 import { OFFICIAL_BRANCHES } from "../shared/branches";
 import { buildQuotePdfContentDisposition, formatEmployeeContact } from "../shared/display";
+import { paymentReceivedLabel, shouldShowPaymentQr } from "../shared/payment";
 import type { AppSettings, QuoteRecord } from "../shared/types";
 import { buildVietQrUrl } from "../shared/vietqr";
 import { auditStatement } from "./audit";
@@ -334,7 +335,7 @@ function drawTotals(page: PDFPage, regular: PDFFont, bold: PDFFont, quote: Quote
   const rows = [
     ["Tiền hàng", quote.totals.subtotal], ["Chiết khấu", -quote.totals.discount], ["Phí vận chuyển", quote.totals.shippingFee],
     ["Phí gia công", quote.totals.processingFee], ["Thuế VAT", quote.totals.vatAmount], ["TỔNG THANH TOÁN", quote.totals.grandTotal],
-    ["Tiền đã cọc", quote.totals.depositAmount], ["CÒN LẠI", quote.totals.remainingAmount],
+    [paymentReceivedLabel(quote.paymentStatus), quote.totals.depositAmount], ["CÒN LẠI", quote.totals.remainingAmount],
   ] as const;
   const boxWidth = TOTALS_WIDTH;
   const rowHeight = 22;
@@ -379,7 +380,7 @@ function drawPayment(page: PDFPage, regular: PDFFont, bold: PDFFont, snapshot: Q
     const qrWidth = qr.width * scale;
     const qrHeight = qr.height * scale;
     page.drawImage(qr, { x: x + width - qrWidth - 10, y: y - qrHeight - 34, width: qrWidth, height: qrHeight });
-  } else if (snapshot.quote.totals.grandTotal > 0 && snapshot.quote.totals.remainingAmount === 0) {
+  } else if (snapshot.quote.paymentStatus === "PAID") {
     page.drawText("ĐÃ THANH TOÁN ĐỦ", { x: x + 10, y: y - 124, font: bold, size: 10.5, color: GREEN });
   } else {
     page.drawText("KHÔNG PHÁT SINH THANH TOÁN", { x: x + 10, y: y - 124, font: regular, size: 8.2, color: MUTED });
@@ -468,7 +469,9 @@ export async function exportPdfHandler(c: Context<AppBindings>): Promise<Respons
   const settings = await getSettings(c.env);
   const { results: headerBranches } = await c.env.DB.prepare("SELECT code,name,address FROM branches WHERE code IN ('TP14','TP81') AND deleted_at IS NULL ORDER BY code")
     .all<{ code: string; name: string; address: string }>();
-  const qrUrl = buildVietQrUrl(settings.bank, quote.totals.remainingAmount);
+  const qrUrl = shouldShowPaymentQr(quote.paymentStatus, quote.totals.remainingAmount)
+    ? buildVietQrUrl(settings.bank, quote.totals.remainingAmount)
+    : null;
   const exportedAt = isoNow();
   const snapshot: QuoteSnapshot = {
     schemaVersion: 2,

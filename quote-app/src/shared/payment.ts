@@ -17,6 +17,14 @@ export function paymentActionAmount(
   return currentReceivedAmount;
 }
 
+export function paymentReceivedLabel(paymentStatus: PaymentStatus): string {
+  return paymentStatus === "DEPOSITED" ? "Tiền đã cọc" : "Đã nhận";
+}
+
+export function shouldShowPaymentQr(paymentStatus: PaymentStatus, remainingAmount: number): boolean {
+  return paymentStatus !== "PAID" && remainingAmount > 0;
+}
+
 export function groupPaymentQueue(quotes: QuoteRecord[]): PaymentQueue {
   const queue: PaymentQueue = { unpaid: [], deposited: [], partial: [], paid: [] };
   for (const quote of quotes) {

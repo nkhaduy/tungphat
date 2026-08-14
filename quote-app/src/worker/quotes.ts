@@ -344,7 +344,7 @@ export async function listQuotesHandler(c: Context<AppBindings>): Promise<Respon
     values.push(value);
     conditions.push(condition.replace("?", `?${values.length}`));
   };
-  for (const [key, max] of [["from", 10], ["to", 10], ["employeeId", 100], ["branchId", 100], ["status", 20], ["quoteNumber", 50], ["customerName", 200], ["customerPhone", 30]] as const) {
+  for (const [key, max] of [["from", 10], ["to", 10], ["employeeId", 100], ["branchId", 100], ["status", 20], ["paymentStatus", 20], ["quoteNumber", 50], ["customerName", 200], ["customerPhone", 30]] as const) {
     if (query[key] && query[key].length > max) throw new HttpError(422, "Bộ lọc tìm kiếm quá dài.");
   }
   if (user.role === "EMPLOYEE") bind("q.created_by=?", user.id);
@@ -353,6 +353,7 @@ export async function listQuotesHandler(c: Context<AppBindings>): Promise<Respon
   if (query.employeeId && user.role === "ADMIN") bind("q.created_by=?", query.employeeId);
   if (query.branchId) bind("q.branch_id=?", query.branchId);
   if (query.status) bind("q.status=?", query.status);
+  if (query.paymentStatus) bind("q.payment_status=?", query.paymentStatus);
   if (query.quoteNumber) bind("q.quote_number LIKE ?", `%${query.quoteNumber}%`);
   if (query.customerName) bind("q.customer_name LIKE ?", `%${query.customerName}%`);
   if (query.customerPhone) bind("q.customer_phone LIKE ?", `%${query.customerPhone}%`);
