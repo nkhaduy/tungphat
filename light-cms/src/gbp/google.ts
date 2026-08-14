@@ -105,8 +105,8 @@ export async function fetchDailyMetrics(token: string, locationName: string, sta
     const timeSeries = safeJson(body.timeSeries);
     for (const point of Array.isArray(timeSeries.datedValues) ? timeSeries.datedValues : []) {
       const date = safeJson(point.date);
-      const value = safeJson(point.value);
-      rows.push({ date: `${date.year}-${String(date.month).padStart(2, "0")}-${String(date.day).padStart(2, "0")}`, metric, value: Number(value.value || 0) });
+      const value = typeof point.value === "string" || typeof point.value === "number" ? Number(point.value) : 0;
+      rows.push({ date: `${date.year}-${String(date.month).padStart(2, "0")}-${String(date.day).padStart(2, "0")}`, metric, value });
     }
   }
   return rows;
