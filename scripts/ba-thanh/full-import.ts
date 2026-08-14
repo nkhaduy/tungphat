@@ -311,14 +311,6 @@ function sourceRecordForMatchingMelamine(records: CatalogueRecord[], matchingCod
     ?? records.find((record) => record.recordType === "sku" && record.productFamily === "Melamine" && record.normalizedCode === stripped);
 }
 
-function laminateMediaMatchesCode(url: string, code: string) {
-  const basename = decodeURIComponent(new URL(url).pathname.split("/").pop() ?? "").toUpperCase();
-  const visibleCodes = [
-    ...basename.matchAll(/(?:BTSC|SC|BTS|BT)[-_ ]?\d{1,4}[A-Z]{0,2}|(?:W|P|S|F)[-_ ]?\d{4}/g),
-  ].map((match) => match[0].replace(/[-_ ]/g, ""));
-  return visibleCodes.length === 0 || visibleCodes.includes(code);
-}
-
 function familyRecords(mediaByUrl: Map<string, MediaMetadata>): SupplierFamilyRecord[] {
   return FAMILY_SOURCES.map((source) => ({
     recordType: "family",

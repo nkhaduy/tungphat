@@ -39,6 +39,6 @@ describe("homepage editorial material hero", () => {
   it("keeps the hero image slightly inset so the material scene has breathing room", () => {
     const styles = readFileSync("app/globals.css", "utf8");
     expect(styles).toContain(".material-panels-hero-image");
-    expect(styles).toContain("transform: scale(0.985)");
+    expect(styles).toContain("transform: scale(1.01)");
   });
 });

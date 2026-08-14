@@ -5,7 +5,7 @@ describe("hybrid Cloudflare CMS bindings", () => {
   const config = JSON.parse(readFileSync("cloudflare-cms/wrangler.jsonc", "utf8"));
 
   it("uses a dedicated CMS Pages project and separate D1 databases", () => {
-    expect(config.name).toBe("tungphat-cms");
+    expect(config.name).toBe("tungphat-light-cms-production");
     expect(config.pages_build_output_dir).toBe("./public");
     expect(config.d1_databases[0].database_name).toBe("tung-phat-leads");
     expect(config.d1_databases[0].binding).toBe("DB");

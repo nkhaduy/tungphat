@@ -43,12 +43,6 @@ function extractDimensions(text = "") {
   return dimensions;
 }
 
-function classifyDetailImage(url: string): CatalogImage["type"] {
-  if (/(?:THUC|REAL|Mau-?thuc-?te|actual)/i.test(url)) return "real-photo";
-  if (/(?:APP|APPLICATION|THIET-?KE|DESIGN)/i.test(url)) return "application";
-  return "other";
-}
-
 export function buildSourceChecksum(item: SourceItem) {
   return crypto.createHash("sha256").update(JSON.stringify({
     sourceUrl: item.sourceUrl,
@@ -89,7 +83,7 @@ export async function importBaThanhCatalog(options: { dryRun?: boolean; refresh?
       ? selectBaThanhDetailMedia({ codeNormalized: normalized.normalized, materialType: "melamine", sourceImageUrl: item.sourceImageUrl, detailImageUrls: item.images })
       : [];
     const mediaSourceUrls: string[] = selectedDetailMedia.map((image) => image.sourceUrl);
-    for (const [index, image] of selectedDetailMedia.entries()) {
+    for (const image of selectedDetailMedia) {
       const url = image.sourceUrl;
       const type = image.role === "actual-photo" ? "real-photo" : image.role === "application" ? "application" : "swatch";
       const ordinal = (typeCounts.get(type) || 0) + 1;

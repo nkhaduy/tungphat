@@ -29,14 +29,23 @@ function ReviewCard({ review }: { review: Review }) {
 }
 
 export function GoogleReviews() {
-  const [payload, setPayload] = useState<ReviewPayload | null>(() => {
-    if (typeof window === "undefined") return null;
+  const [payload, setPayload] = useState<ReviewPayload | null>(null);
+  useEffect(() => {
+    let active = true;
     try {
       const cached = window.sessionStorage.getItem("tp-google-reviews");
-      return cached ? JSON.parse(cached) as ReviewPayload : null;
-    } catch { return null; }
-  });
-  useEffect(() => { let active = true; fetch(`${CMS_ORIGIN}/api/gbp/reviews`, { headers: { Accept: "application/json" } }).then((response) => response.ok ? response.json() as Promise<ReviewPayload> : null).then((value) => { if (!active || !value) return; setPayload(value); try { window.sessionStorage.setItem("tp-google-reviews", JSON.stringify(value)); } catch { /* Cache is optional. */ } }).catch(() => undefined); return () => { active = false; }; }, []);
+      if (cached) setPayload(JSON.parse(cached) as ReviewPayload);
+    } catch { /* Cache is optional. */ }
+    fetch(`${CMS_ORIGIN}/api/gbp/reviews`, { headers: { Accept: "application/json" } })
+      .then((response) => response.ok ? response.json() as Promise<ReviewPayload> : null)
+      .then((value) => {
+        if (!active || !value) return;
+        setPayload(value);
+        try { window.sessionStorage.setItem("tp-google-reviews", JSON.stringify(value)); } catch { /* Cache is optional. */ }
+      })
+      .catch(() => undefined);
+    return () => { active = false; };
+  }, []);
   if (!payload || payload.status !== "ready" || !payload.reviews?.length) return null;
   return <section id="google-reviews" aria-labelledby="google-reviews-title" className="border-y border-forest-900/10 bg-[#f7f9f6] py-16 lg:py-24">
     <div className="container-shell">
