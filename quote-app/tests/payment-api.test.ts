@@ -3,6 +3,7 @@ import {
   lifecycleStatusForPayment,
   paymentStatusFromLegacyQuote,
 } from "../src/shared/calculations";
+import { quoteInputSchema } from "../src/worker/schemas";
 
 describe("payment API compatibility rules", () => {
   it("backfills legacy payment states without changing monetary values", () => {
@@ -19,5 +20,27 @@ describe("payment API compatibility rules", () => {
     expect(lifecycleStatusForPayment("ISSUED", "PARTIAL", true)).toBe("DEPOSITED");
     expect(lifecycleStatusForPayment("ISSUED", "PAID", true)).toBe("PAID");
     expect(lifecycleStatusForPayment("CANCELLED", "PAID", true)).toBe("CANCELLED");
+  });
+
+  it("accepts only blank, 0%, 8% or 10% VAT rates", () => {
+    const input = {
+      quoteDate: "2026-08-14",
+      customerName: "Khách VAT",
+      customerPhone: "",
+      customerAddress: "",
+      deliveryNote: "",
+      generalNote: "",
+      discount: 0,
+      shippingFee: 0,
+      processingFee: 0,
+      vatAmount: 0,
+      depositAmount: 0,
+      items: [{ productName: "MDF", specification: "", quantity: 1, unit: "Tấm", unitPrice: 100_000, note: "" }],
+    };
+    expect(quoteInputSchema.safeParse({ ...input, vatRate: null }).success).toBe(true);
+    expect(quoteInputSchema.safeParse({ ...input, vatRate: 0 }).success).toBe(true);
+    expect(quoteInputSchema.safeParse({ ...input, vatRate: 8 }).success).toBe(true);
+    expect(quoteInputSchema.safeParse({ ...input, vatRate: 10 }).success).toBe(true);
+    expect(quoteInputSchema.safeParse({ ...input, vatRate: 5 }).success).toBe(false);
   });
 });

@@ -9,7 +9,7 @@ import {
   quantityToMilli,
 } from "../shared/calculations";
 import { formatQuoteNumber } from "../shared/quote-number";
-import type { PaymentStatus, QuoteItemInput, QuoteRecord, QuoteStatus, QuoteTotals, SessionUser } from "../shared/types";
+import type { PaymentStatus, QuoteItemInput, QuoteRecord, QuoteStatus, QuoteTotals, SessionUser, VatRate } from "../shared/types";
 import { auditStatement, writeAudit } from "./audit";
 import type { AppBindings } from "./auth";
 import { customerUpsertStatement } from "./customers";
@@ -38,6 +38,7 @@ export type QuoteRow = {
   shipping_fee: number;
   processing_fee: number;
   vat_amount: number;
+  vat_rate: VatRate | null;
   grand_total: number;
   deposit_amount: number;
   remaining_amount: number;
@@ -91,6 +92,7 @@ export function mapQuote(row: QuoteRow, items: ItemRow[]): QuoteRecord {
     customerAddress: row.customer_address,
     deliveryNote: row.delivery_note,
     generalNote: row.general_note,
+    vatRate: row.vat_rate,
     status: row.status,
     paymentStatus: row.payment_status,
     totals: {
@@ -193,14 +195,14 @@ async function createQuote(env: QuoteAppEnv, user: SessionUser, rawInput: unknow
     env.DB.prepare(`
       INSERT INTO quotes(
         id,quote_number,branch_id,created_by,quote_date,customer_name,customer_phone,customer_address,
-        delivery_note,general_note,subtotal,discount,shipping_fee,processing_fee,vat_amount,grand_total,deposit_amount,
+        delivery_note,general_note,subtotal,discount,shipping_fee,processing_fee,vat_amount,vat_rate,grand_total,deposit_amount,
         remaining_amount,status,payment_status,revision_token,created_at,updated_at
-      ) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?16,?17,?18,?19,?20,?21,?22,?22)
+      ) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?16,?17,?18,?19,?20,?21,?22,?23,?23)
     `).bind(
       id, quoteNumber, branch.id, user.id, input.quoteDate, input.customerName, input.customerPhone,
       input.customerAddress, input.deliveryNote, input.generalNote, totals.subtotal, totals.discount, totals.shippingFee,
-      totals.processingFee, totals.vatAmount, totals.grandTotal, totals.depositAmount, totals.remainingAmount, status, paymentStatus,
-      revisionToken, now,
+      totals.processingFee, totals.vatAmount, input.vatRate ?? null, totals.grandTotal, totals.depositAmount, totals.remainingAmount,
+      status, paymentStatus, revisionToken, now,
     ),
   ];
   const customerStatement = customerUpsertStatement(env, {
@@ -258,12 +260,12 @@ export async function updateQuoteHandler(c: Context<AppBindings>): Promise<Respo
   const statements: D1PreparedStatement[] = [
     c.env.DB.prepare(`
       UPDATE quotes SET customer_name=?1,customer_phone=?2,customer_address=?3,delivery_note=?4,general_note=?5,
-        subtotal=?6,discount=?7,shipping_fee=?8,processing_fee=?9,vat_amount=?10,grand_total=?11,deposit_amount=?12,
-        remaining_amount=?13,status=?14,payment_status=?15,revision_token=?16,version=version+1,updated_at=?17 WHERE id=?18 AND version=?19
+        subtotal=?6,discount=?7,shipping_fee=?8,processing_fee=?9,vat_amount=?10,vat_rate=?11,grand_total=?12,deposit_amount=?13,
+        remaining_amount=?14,status=?15,payment_status=?16,revision_token=?17,version=version+1,updated_at=?18 WHERE id=?19 AND version=?20
     `).bind(
       input.customerName, input.customerPhone, input.customerAddress, input.deliveryNote, input.generalNote,
-      totals.subtotal, totals.discount, totals.shippingFee, totals.processingFee, totals.vatAmount, totals.grandTotal,
-      totals.depositAmount, totals.remainingAmount, status, paymentStatus, revisionToken, now, quote.id, input.version,
+      totals.subtotal, totals.discount, totals.shippingFee, totals.processingFee, totals.vatAmount, input.vatRate ?? null,
+      totals.grandTotal, totals.depositAmount, totals.remainingAmount, status, paymentStatus, revisionToken, now, quote.id, input.version,
     ),
     c.env.DB.prepare(`
       UPDATE quote_items SET deleted_at=?1,updated_at=?1
@@ -422,6 +424,7 @@ export async function duplicateQuoteHandler(c: Context<AppBindings>): Promise<Re
     shippingFee: source.totals.shippingFee,
     processingFee: source.totals.processingFee,
     vatAmount: source.totals.vatAmount,
+    vatRate: source.vatRate ?? null,
     depositAmount: 0,
     paymentStatus: "UNPAID",
     items: source.items,

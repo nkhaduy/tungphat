@@ -334,7 +334,7 @@ function drawItemRow(page: PDFPage, regular: PDFFont, quote: QuoteRecord, index:
 function drawTotals(page: PDFPage, regular: PDFFont, bold: PDFFont, quote: QuoteRecord, x: number, y: number): number {
   const rows = [
     ["Tiền hàng", quote.totals.subtotal], ["Chiết khấu", -quote.totals.discount], ["Phí vận chuyển", quote.totals.shippingFee],
-    ["Phí gia công", quote.totals.processingFee], ["Thuế VAT", quote.totals.vatAmount], ["TỔNG THANH TOÁN", quote.totals.grandTotal],
+    ["Phí gia công", quote.totals.processingFee], [quote.vatRate ? `Thuế VAT (${quote.vatRate}%)` : "Thuế VAT", quote.totals.vatAmount], ["TỔNG THANH TOÁN", quote.totals.grandTotal],
     [paymentReceivedLabel(quote.paymentStatus), quote.totals.depositAmount], ["CÒN LẠI", quote.totals.remainingAmount],
   ] as const;
   const boxWidth = TOTALS_WIDTH;
