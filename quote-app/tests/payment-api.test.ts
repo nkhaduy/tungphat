@@ -22,7 +22,7 @@ describe("payment API compatibility rules", () => {
     expect(lifecycleStatusForPayment("CANCELLED", "PAID", true)).toBe("CANCELLED");
   });
 
-  it("accepts only blank, 0%, 8% or 10% VAT rates", () => {
+  it("accepts a manually entered VAT amount and rejects percentage-based saves", () => {
     const input = {
       quoteDate: "2026-08-14",
       customerName: "Khách VAT",
@@ -33,14 +33,13 @@ describe("payment API compatibility rules", () => {
       discount: 0,
       shippingFee: 0,
       processingFee: 0,
-      vatAmount: 0,
+      vatAmount: 125_000,
       depositAmount: 0,
       items: [{ productName: "MDF", specification: "", quantity: 1, unit: "Tấm", unitPrice: 100_000, note: "" }],
     };
     expect(quoteInputSchema.safeParse({ ...input, vatRate: null }).success).toBe(true);
-    expect(quoteInputSchema.safeParse({ ...input, vatRate: 0 }).success).toBe(true);
-    expect(quoteInputSchema.safeParse({ ...input, vatRate: 8 }).success).toBe(true);
-    expect(quoteInputSchema.safeParse({ ...input, vatRate: 10 }).success).toBe(true);
-    expect(quoteInputSchema.safeParse({ ...input, vatRate: 5 }).success).toBe(false);
+    expect(quoteInputSchema.safeParse(input).success).toBe(true);
+    expect(quoteInputSchema.safeParse({ ...input, vatRate: 8 }).success).toBe(false);
+    expect(quoteInputSchema.safeParse({ ...input, vatRate: 10 }).success).toBe(false);
   });
 });

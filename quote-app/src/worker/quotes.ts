@@ -201,7 +201,7 @@ async function createQuote(env: QuoteAppEnv, user: SessionUser, rawInput: unknow
     `).bind(
       id, quoteNumber, branch.id, user.id, input.quoteDate, input.customerName, input.customerPhone,
       input.customerAddress, input.deliveryNote, input.generalNote, totals.subtotal, totals.discount, totals.shippingFee,
-      totals.processingFee, totals.vatAmount, input.vatRate ?? null, totals.grandTotal, totals.depositAmount, totals.remainingAmount,
+      totals.processingFee, totals.vatAmount, null, totals.grandTotal, totals.depositAmount, totals.remainingAmount,
       status, paymentStatus, revisionToken, now,
     ),
   ];
@@ -264,7 +264,7 @@ export async function updateQuoteHandler(c: Context<AppBindings>): Promise<Respo
         remaining_amount=?14,status=?15,payment_status=?16,revision_token=?17,version=version+1,updated_at=?18 WHERE id=?19 AND version=?20
     `).bind(
       input.customerName, input.customerPhone, input.customerAddress, input.deliveryNote, input.generalNote,
-      totals.subtotal, totals.discount, totals.shippingFee, totals.processingFee, totals.vatAmount, input.vatRate ?? null,
+      totals.subtotal, totals.discount, totals.shippingFee, totals.processingFee, totals.vatAmount, null,
       totals.grandTotal, totals.depositAmount, totals.remainingAmount, status, paymentStatus, revisionToken, now, quote.id, input.version,
     ),
     c.env.DB.prepare(`
@@ -424,7 +424,7 @@ export async function duplicateQuoteHandler(c: Context<AppBindings>): Promise<Re
     shippingFee: source.totals.shippingFee,
     processingFee: source.totals.processingFee,
     vatAmount: source.totals.vatAmount,
-    vatRate: source.vatRate ?? null,
+    vatRate: null,
     depositAmount: 0,
     paymentStatus: "UNPAID",
     items: source.items,

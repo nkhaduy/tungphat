@@ -35,7 +35,7 @@ export const quoteInputSchema = z.object({
   shippingFee: vnd,
   processingFee: vnd,
   vatAmount: vnd,
-  vatRate: z.union([z.literal(0), z.literal(8), z.literal(10)]).nullable().optional(),
+  vatRate: z.null().optional(),
   depositAmount: vnd,
   paymentStatus: z.enum(["UNPAID", "DEPOSITED", "PARTIAL", "PAID"]).optional(),
   items: z.array(quoteItemSchema).max(500),

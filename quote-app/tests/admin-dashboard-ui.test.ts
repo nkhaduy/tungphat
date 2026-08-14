@@ -47,6 +47,8 @@ describe("admin dashboard quick view", () => {
     expect(html).toContain("Đã nhận");
     expect(html).toContain("MDF chống ẩm");
     expect(html).toContain("Đóng");
+    expect(html).toContain('href="/bao-gia/quote-1/chinh-sua"');
+    expect(html).toContain("Chỉnh báo giá");
   });
 
   it("omits the specification column when no product has one", () => {

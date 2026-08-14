@@ -1,9 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   calculateLineTotal,
-  parseVatRateInput,
   calculateTotals,
-  calculateVatAmount,
   derivePaymentStatus,
   deriveQuoteStatus,
   normalizePayment,
@@ -33,28 +31,12 @@ describe("quote calculations", () => {
     expect(deriveQuoteStatus("DRAFT", totals, true)).toBe("DEPOSITED");
   });
 
-  it("calculates VAT from 8% or 10% and preserves legacy money when rate is null", () => {
-    expect(calculateVatAmount(1_000_001, 8)).toBe(80_000);
-    expect(calculateVatAmount(1_000_001, 10)).toBe(100_000);
-    expect(() => calculateVatAmount(1_000_000, 5)).toThrow(/8.*10/);
-
-    const rated = calculateTotals([
+  it("adds the manually entered VAT amount to the taxable base", () => {
+    const totals = calculateTotals([
       { productName: "MDF", specification: "", quantity: 1, unit: "Tấm", unitPrice: 1_000_001, note: "" },
-    ], { discount: 1, shippingFee: 0, processingFee: 0, vatAmount: 999, vatRate: 8, depositAmount: 0 });
-    expect(rated.vatAmount).toBe(80_000);
-    expect(rated.grandTotal).toBe(1_080_000);
-
-    const legacy = calculateTotals([
-      { productName: "MDF", specification: "", quantity: 1, unit: "Tấm", unitPrice: 1_000_001, note: "" },
-    ], { discount: 1, shippingFee: 0, processingFee: 0, vatAmount: 12_345, vatRate: null, depositAmount: 0 });
-    expect(legacy.vatAmount).toBe(12_345);
-  });
-
-  it("parses an empty VAT field as zero and rejects unsupported percentages", () => {
-    expect(parseVatRateInput("")).toBe(0);
-    expect(parseVatRateInput("8")).toBe(8);
-    expect(parseVatRateInput("10")).toBe(10);
-    expect(() => parseVatRateInput("5")).toThrow(/8.*10/);
+    ], { discount: 1, shippingFee: 0, processingFee: 0, vatAmount: 12_345, depositAmount: 0 });
+    expect(totals.vatAmount).toBe(12_345);
+    expect(totals.grandTotal).toBe(1_012_345);
   });
 
   it("marks a fully paid quote and rejects negative or excessive deposits", () => {

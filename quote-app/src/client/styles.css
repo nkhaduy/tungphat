@@ -177,8 +177,6 @@ input[readonly], input:disabled, select:disabled { color: #63746b; background: #
 .money-input span { color: #52665d; font-size: 10.5px; }
 .money-input input { min-height: 34px; padding-right: 24px; text-align: right; font-size: 11px; }
 .money-input small { position: absolute; right: 8px; color: #78877f; font-size: 9px; }
-.vat-rate-input select { min-height: 36px; text-align: right; font-size: 11px; }
-.vat-rate-input em { grid-column: 2; color: var(--green); font-size: 10px; font-style: normal; font-weight: 750; text-align: right; }
 .payment-actions { margin-top: 16px; padding-top: 15px; border-top: 1px solid var(--line); }
 .payment-actions-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .payment-actions-heading > div { display: grid; gap: 4px; }
@@ -364,6 +362,7 @@ input[readonly], input:disabled, select:disabled { color: #63746b; background: #
 .quick-view-totals .received { background: #eef8f2; }
 .quick-view-totals .remaining { color: #fff; background: var(--orange); }
 .quick-view-totals .remaining span,.quick-view-totals .remaining strong { color: #fff; }
+.quick-view-actions { display: flex; justify-content: flex-end; }
 .quick-view-loading,.quick-view-error { min-height: 360px; display: grid; place-content: center; justify-items: center; gap: 12px; padding: 30px; color: var(--muted); text-align: center; font-size: 12px; }
 .quick-view-loading span { width: min(520px,70vw); height: 34px; border-radius: 10px; background: linear-gradient(90deg,#e3eee7,#f8fbf9,#e3eee7); background-size: 200% 100%; animation: shimmer 1.2s linear infinite; }
 .quick-view-error strong { color: var(--forest); font-size: 17px; }

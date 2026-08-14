@@ -1,4 +1,4 @@
-import { CalendarDays, MapPin, RefreshCw, UserRound, X } from "lucide-react";
+import { CalendarDays, Edit3, MapPin, RefreshCw, UserRound, X } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { formatVnd } from "../../shared/calculations";
 import { shouldShowSpecificationColumn } from "../../shared/display";
@@ -70,11 +70,12 @@ export function QuoteQuickViewModal({ quote, loading, error, onClose, onRetry, r
 
           <section className="quick-view-totals">
             <div><span>Tiền hàng</span><strong>{formatVnd(quote.totals.subtotal)}</strong></div>
-            <div><span>{quote.vatRate ? `Thuế VAT (${quote.vatRate}%)` : "Thuế VAT"}</span><strong>{formatVnd(quote.totals.vatAmount)}</strong></div>
+            <div><span>Thuế VAT</span><strong>{formatVnd(quote.totals.vatAmount)}</strong></div>
             <div><span>Tổng thanh toán</span><strong>{formatVnd(quote.totals.grandTotal)}</strong></div>
             <div className="received"><span>Đã nhận</span><strong>{formatVnd(quote.totals.depositAmount)}</strong></div>
             <div className="remaining"><span>Còn lại</span><strong>{formatVnd(quote.totals.remainingAmount)}</strong></div>
           </section>
+          {quote.status !== "CANCELLED" ? <div className="quick-view-actions"><a className="button primary" href={`/bao-gia/${quote.id}/chinh-sua`}><Edit3 size={16} /> Chỉnh báo giá</a></div> : null}
         </div> : null}
       </section>
     </div>

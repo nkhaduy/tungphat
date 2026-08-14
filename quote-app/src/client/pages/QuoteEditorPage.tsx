@@ -1,9 +1,9 @@
 import { Check, Eye, FileDown, Printer, Save, Wifi } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { calculateLineTotal, calculateTotals, calculateVatAmount, formatVnd, parseVatRateInput } from "../../shared/calculations";
+import { calculateLineTotal, calculateTotals, formatVnd } from "../../shared/calculations";
 import { buildQuotePdfFilename, formatEmployeeContact } from "../../shared/display";
-import type { AppSettings, CustomerRecord, PaymentStatus, QuoteRecord, VatRate } from "../../shared/types";
+import type { AppSettings, CustomerRecord, PaymentStatus, QuoteRecord } from "../../shared/types";
 import { api, downloadProtected } from "../api";
 import { useAuth } from "../auth";
 import { PageHeader } from "../components/PageHeader";
@@ -22,7 +22,6 @@ type QuoteForm = {
   shippingFee: number;
   processingFee: number;
   vatAmount: number;
-  vatRate: VatRate | null;
   depositAmount: number;
   paymentStatus: PaymentStatus;
   rows: EditorRow[];
@@ -48,7 +47,6 @@ function blankForm(meta: Meta): QuoteForm {
     shippingFee: 0,
     processingFee: 0,
     vatAmount: 0,
-    vatRate: 0,
     depositAmount: 0,
     paymentStatus: "UNPAID",
     rows: [emptyRow()],
@@ -68,7 +66,6 @@ function quoteToForm(quote: QuoteRecord): QuoteForm {
     shippingFee: quote.totals.shippingFee,
     processingFee: quote.totals.processingFee,
     vatAmount: quote.totals.vatAmount,
-    vatRate: quote.vatRate ?? null,
     depositAmount: quote.totals.depositAmount,
     paymentStatus: quote.paymentStatus,
     rows: [...quote.items.map((item) => ({ ...item, clientId: item.id })), emptyRow()],
@@ -89,7 +86,7 @@ function payload(form: QuoteForm, version?: number) {
     shippingFee: form.shippingFee,
     processingFee: form.processingFee,
     vatAmount: form.vatAmount,
-    vatRate: form.vatRate,
+    vatRate: null,
     depositAmount: form.depositAmount,
     paymentStatus: form.paymentStatus,
     items: form.rows.map((item) => ({
@@ -120,6 +117,23 @@ function parseVndInput(value: string): number {
   if (!digits) return 0;
   const parsed = Number(digits);
   return Number.isSafeInteger(parsed) ? parsed : Number.MAX_SAFE_INTEGER;
+}
+
+type MoneyInputProps = {
+  name: string;
+  label: string;
+  value: number;
+  onChange: (value: number) => void;
+};
+
+export function MoneyInput({ name, label, value, onChange }: MoneyInputProps) {
+  return (
+    <label className="money-input">
+      <span>{label}</span>
+      <input name={name} inputMode="numeric" value={value || ""} onChange={(event) => onChange(parseVndInput(event.target.value))} />
+      <small>đ</small>
+    </label>
+  );
 }
 
 export function QuoteEditorPage() {
@@ -266,7 +280,7 @@ export function QuoteEditorPage() {
         catch { return sum; }
       }, 0);
       const taxableBase = Math.max(0, subtotal - form.discount + form.shippingFee + form.processingFee);
-      const vatAmount = form.vatRate === null ? form.vatAmount : calculateVatAmount(taxableBase, form.vatRate);
+      const vatAmount = form.vatAmount;
       const grandTotal = Math.max(0, taxableBase + vatAmount);
       return {
         totals: { subtotal, discount: form.discount, shippingFee: form.shippingFee, processingFee: form.processingFee, vatAmount, grandTotal, depositAmount: form.depositAmount, remainingAmount: Math.max(0, grandTotal - form.depositAmount) },
@@ -301,8 +315,8 @@ export function QuoteEditorPage() {
   if (loading) return <div className="page-loading"><span />Đang mở bảng báo giá…</div>;
   if (!form || !meta || !totals) return <div className="form-error">{error || "Không thể mở báo giá."}</div>;
 
-  const moneyField = (key: "discount" | "shippingFee" | "processingFee" | "depositAmount", label: string) => (
-    <label className="money-input"><span>{label}</span><input inputMode="numeric" value={form[key] || ""} onChange={(event) => change({ ...form, [key]: parseVndInput(event.target.value) })} /><small>đ</small></label>
+  const moneyField = (key: "discount" | "shippingFee" | "processingFee" | "vatAmount" | "depositAmount", label: string) => (
+    <MoneyInput name={key} label={label} value={form[key]} onChange={(value) => change({ ...form, [key]: value })} />
   );
   const employeeContact = quote
     ? formatEmployeeContact(quote.employeeName, quote.employeePhone)
@@ -344,7 +358,7 @@ export function QuoteEditorPage() {
           {moneyField("discount", "Chiết khấu")}
           {moneyField("shippingFee", "Phí vận chuyển")}
           {moneyField("processingFee", "Phí gia công")}
-          <label className="money-input vat-rate-input"><span>Thuế VAT (%)</span><select value={form.vatRate ?? ""} onChange={(event) => { const vatRate = parseVatRateInput(event.target.value); change({ ...form, vatRate, vatAmount: vatRate === 0 ? 0 : form.vatAmount }); }}><option value="">Không VAT</option><option value="8">8%</option><option value="10">10%</option></select><em>{formatVnd(totals.vatAmount)}</em></label>
+          {moneyField("vatAmount", "Thuế VAT")}
           <dl className="grand-total"><div><dt>Tổng thanh toán</dt><dd>{formatVnd(totals.grandTotal)}</dd></div></dl>
           {moneyField("depositAmount", "Số tiền đã nhận")}
           <PaymentActions

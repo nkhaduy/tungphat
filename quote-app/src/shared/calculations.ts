@@ -1,4 +1,4 @@
-import type { PaymentStatus, QuoteItemInput, QuoteMoneyInput, QuoteStatus, QuoteTotals, VatRate } from "./types";
+import type { PaymentStatus, QuoteItemInput, QuoteMoneyInput, QuoteStatus, QuoteTotals } from "./types";
 
 const MAX_VND = Number.MAX_SAFE_INTEGER;
 export const QUANTITY_SCALE = 1_000;
@@ -41,25 +41,7 @@ export function formatQuantity(quantity: number): string {
   return new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 3 }).format(quantity);
 }
 
-export function calculateVatAmount(taxableBase: number, rate: number): number {
-  assertVnd(taxableBase, "Cơ sở tính thuế");
-  if (rate !== 0 && rate !== 8 && rate !== 10) throw new Error("Thuế VAT chỉ được để trống, 8% hoặc 10%.");
-  const amount = (BigInt(taxableBase) * BigInt(rate) + 50n) / 100n;
-  if (amount > BigInt(MAX_VND)) throw new Error("Tiền VAT vượt quá giới hạn an toàn.");
-  return Number(amount);
-}
-
-export function parseVatRateInput(value: string): VatRate {
-  const normalized = value.trim();
-  if (!normalized) return 0;
-  const rate = Number(normalized);
-  if (rate !== 8 && rate !== 10) throw new Error("Thuế VAT chỉ được để trống, 8% hoặc 10%.");
-  return rate;
-}
-
-type QuoteCalculationInput = QuoteMoneyInput & { vatRate?: VatRate | null };
-
-export function calculateTotals(items: QuoteItemInput[], money: QuoteCalculationInput): QuoteTotals {
+export function calculateTotals(items: QuoteItemInput[], money: QuoteMoneyInput): QuoteTotals {
   const subtotal = items.reduce((sum, item) => {
     const next = sum + calculateLineTotal(item.quantity, item.unitPrice);
     return assertVnd(next, "Tiền hàng");
@@ -67,13 +49,10 @@ export function calculateTotals(items: QuoteItemInput[], money: QuoteCalculation
   const discount = assertVnd(money.discount, "Chiết khấu");
   const shippingFee = assertVnd(money.shippingFee, "Phí vận chuyển");
   const processingFee = assertVnd(money.processingFee, "Phí gia công");
-  const legacyVatAmount = assertVnd(money.vatAmount, "Thuế VAT");
+  const vatAmount = assertVnd(money.vatAmount, "Thuế VAT");
   const depositAmount = assertVnd(money.depositAmount, "Tiền đã cọc");
   const taxableBase = subtotal - discount + shippingFee + processingFee;
   if (taxableBase < 0) throw new Error("Tổng thanh toán không thể âm.");
-  const vatAmount = money.vatRate === null || money.vatRate === undefined
-    ? legacyVatAmount
-    : calculateVatAmount(taxableBase, money.vatRate);
   const rawGrandTotal = taxableBase + vatAmount;
   const grandTotal = assertVnd(rawGrandTotal, "Tổng thanh toán");
   if (depositAmount > grandTotal) throw new Error("Tiền đã cọc không thể lớn hơn tổng thanh toán.");
