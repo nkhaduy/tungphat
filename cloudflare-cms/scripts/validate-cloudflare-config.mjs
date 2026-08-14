@@ -36,7 +36,7 @@ if (production && preview && production.database_id === preview.database_id) err
 if (config.name !== "tungphat-light-cms-production") errors.push("Pages project production không đúng.");
 if (config.pages_build_output_dir !== "./public") errors.push("pages_build_output_dir phải là ./public.");
 if (!config.compatibility_flags?.includes("nodejs_compat")) errors.push("Thiếu nodejs_compat.");
-if (migrations.join(",") !== "0001_create_leads.sql,0002_lead_status_history_triggers.sql,0003_add_request_context.sql,0004_create_analytics.sql,0005_create_cms_auth.sql,0006_create_cms_git_objects.sql,0007_create_gbp.sql") errors.push("Danh sách migrations production không đúng.");
+if (migrations.join(",") !== "0001_create_leads.sql,0002_lead_status_history_triggers.sql,0003_add_request_context.sql,0004_create_analytics.sql,0005_create_cms_auth.sql,0006_create_cms_git_objects.sql,0007_create_gbp.sql,0008_gbp_multi_location.sql") errors.push("Danh sách migrations production không đúng.");
 if (config.vars.CORS_ALLOWED_ORIGINS.includes("*")) errors.push("Production CORS không được dùng wildcard.");
 if (config.vars.CORS_ALLOWED_ORIGINS !== "https://mdftungphat.com,https://www.mdftungphat.com") errors.push("Production CORS allowlist không đúng.");
 if (cms.backend?.name !== "tungphat-gateway" || cms.backend?.branch !== "main") errors.push("Decap backend phải dùng custom Tùng Phát gateway trên branch main.");

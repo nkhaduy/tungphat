@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   fetchAllReviews,
@@ -76,6 +77,14 @@ describe("Google Business Profile review import", () => {
 });
 
 describe("GBP cache storage policy", () => {
+  it("supports multiple GBP locations with stable public order", () => {
+    const sql = readFileSync(new URL("../migrations/0008_gbp_multi_location.sql", import.meta.url), "utf8");
+    expect(sql).not.toContain("CHECK (id = 1)");
+    expect(sql).toContain("location_name TEXT UNIQUE");
+    expect(sql).toContain("branch_key TEXT NOT NULL");
+    expect(sql).toContain("display_order INTEGER NOT NULL");
+  });
+
   it("uses a strict 30-day retention cutoff", () => {
     expect(reviewRetentionCutoff(Date.parse("2026-08-13T00:00:00Z")))
       .toBe(Math.floor(Date.parse("2026-07-14T00:00:00Z") / 1000));
