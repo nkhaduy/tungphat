@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { PAYMENT_QUEUE_SECTIONS, groupPaymentQueue, replaceQuoteInPaymentQueue } from "../src/shared/payment";
 import type { QuoteRecord } from "../src/shared/types";
 
-function quote(paymentStatus: QuoteRecord["paymentStatus"], id: string = paymentStatus): QuoteRecord {
+function quote(paymentStatus: QuoteRecord["paymentStatus"], id: string = paymentStatus, oldDebtAmount = 0): QuoteRecord {
   return {
     id,
     quoteNumber: `TP81-${id}`,
@@ -20,6 +20,7 @@ function quote(paymentStatus: QuoteRecord["paymentStatus"], id: string = payment
     customerAddress: "",
     deliveryNote: "",
     generalNote: "",
+    oldDebtAmount,
     status: paymentStatus === "PAID" ? "PAID" : "ISSUED",
     paymentStatus,
     totals: { subtotal: 100, discount: 0, shippingFee: 0, processingFee: 0, vatAmount: 0, grandTotal: 100, depositAmount: paymentStatus === "UNPAID" ? 0 : paymentStatus === "PAID" ? 100 : 25, remainingAmount: paymentStatus === "PAID" ? 0 : paymentStatus === "UNPAID" ? 100 : 75 },
@@ -32,12 +33,13 @@ function quote(paymentStatus: QuoteRecord["paymentStatus"], id: string = payment
 }
 
 describe("Admin payment queue grouping", () => {
-  it("keeps four payment groups separate and preserves each quote", () => {
-    const queue = groupPaymentQueue([quote("UNPAID"), quote("DEPOSITED"), quote("PARTIAL"), quote("PAID")]);
+  it("keeps old-debt quotes in their own Admin group", () => {
+    const queue = groupPaymentQueue([quote("UNPAID"), quote("DEPOSITED"), quote("PARTIAL"), quote("PAID"), quote("UNPAID", "old-debt", 450_000)]);
     expect(queue.unpaid).toHaveLength(1);
     expect(queue.deposited).toHaveLength(1);
     expect(queue.partial).toHaveLength(1);
     expect(queue.paid).toHaveLength(1);
+    expect(queue.oldDebt.map((item) => item.id)).toEqual(["old-debt"]);
   });
 
   it("does not put a cancelled quote into any group", () => {
@@ -47,12 +49,13 @@ describe("Admin payment queue grouping", () => {
     expect(Object.values(queue).flat()).toHaveLength(0);
   });
 
-  it("defines the four Admin landing sections in business order", () => {
+  it("defines the five Admin landing sections in business order", () => {
     expect(PAYMENT_QUEUE_SECTIONS.map((section) => section.label)).toEqual([
       "Cần xử lý",
       "Đã cọc",
       "Thanh toán một phần",
       "Đã thanh toán",
+      "Nợ cũ",
     ]);
   });
 

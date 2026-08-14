@@ -37,7 +37,9 @@ describe("payment API compatibility rules", () => {
       depositAmount: 0,
       items: [{ productName: "MDF", specification: "", quantity: 1, unit: "Tấm", unitPrice: 100_000, note: "" }],
     };
-    expect(quoteInputSchema.safeParse({ ...input, vatRate: null }).success).toBe(true);
+    const withOldDebt = quoteInputSchema.safeParse({ ...input, vatRate: null, oldDebtAmount: 450_000 });
+    expect(withOldDebt.success).toBe(true);
+    if (withOldDebt.success) expect(withOldDebt.data.oldDebtAmount).toBe(450_000);
     expect(quoteInputSchema.safeParse(input).success).toBe(true);
     expect(quoteInputSchema.safeParse({ ...input, vatRate: 8 }).success).toBe(false);
     expect(quoteInputSchema.safeParse({ ...input, vatRate: 10 }).success).toBe(false);

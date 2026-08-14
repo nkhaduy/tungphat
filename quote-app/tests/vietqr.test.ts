@@ -20,4 +20,10 @@ describe("VietQR", () => {
   it("hides the QR when remaining amount is zero", () => {
     expect(buildVietQrUrl(bank, 0)).toBeNull();
   });
+
+  it("keeps the bank QR but omits the amount for quotes with old debt", () => {
+    const url = new URL(buildVietQrUrl(bank, null)!);
+    expect(url.searchParams.get("acc")).toBe("3191158");
+    expect(url.searchParams.has("amount")).toBe(false);
+  });
 });

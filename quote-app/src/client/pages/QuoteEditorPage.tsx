@@ -18,6 +18,7 @@ type QuoteForm = {
   customerAddress: string;
   deliveryNote: string;
   generalNote: string;
+  oldDebtAmount: number;
   discount: number;
   shippingFee: number;
   processingFee: number;
@@ -43,6 +44,7 @@ function blankForm(meta: Meta): QuoteForm {
     customerAddress: "",
     deliveryNote: meta.settings.defaults.deliveryNote,
     generalNote: meta.settings.defaults.generalNote,
+    oldDebtAmount: 0,
     discount: 0,
     shippingFee: 0,
     processingFee: 0,
@@ -62,6 +64,7 @@ function quoteToForm(quote: QuoteRecord): QuoteForm {
     customerAddress: quote.customerAddress,
     deliveryNote: quote.deliveryNote,
     generalNote: quote.generalNote,
+    oldDebtAmount: quote.oldDebtAmount ?? 0,
     discount: quote.totals.discount,
     shippingFee: quote.totals.shippingFee,
     processingFee: quote.totals.processingFee,
@@ -82,6 +85,7 @@ function payload(form: QuoteForm, version?: number) {
     customerAddress: form.customerAddress,
     deliveryNote: form.deliveryNote,
     generalNote: form.generalNote,
+    oldDebtAmount: form.oldDebtAmount,
     discount: form.discount,
     shippingFee: form.shippingFee,
     processingFee: form.processingFee,
@@ -315,7 +319,7 @@ export function QuoteEditorPage() {
   if (loading) return <div className="page-loading"><span />Đang mở bảng báo giá…</div>;
   if (!form || !meta || !totals) return <div className="form-error">{error || "Không thể mở báo giá."}</div>;
 
-  const moneyField = (key: "discount" | "shippingFee" | "processingFee" | "vatAmount" | "depositAmount", label: string) => (
+  const moneyField = (key: "discount" | "shippingFee" | "processingFee" | "vatAmount" | "oldDebtAmount" | "depositAmount", label: string) => (
     <MoneyInput name={key} label={label} value={form[key]} onChange={(value) => change({ ...form, [key]: value })} />
   );
   const employeeContact = quote
@@ -360,6 +364,7 @@ export function QuoteEditorPage() {
           {moneyField("processingFee", "Phí gia công")}
           {moneyField("vatAmount", "Thuế VAT")}
           <dl className="grand-total"><div><dt>Tổng thanh toán</dt><dd>{formatVnd(totals.grandTotal)}</dd></div></dl>
+          <div className="old-debt-editor">{moneyField("oldDebtAmount", "Nợ cũ")}<p>Khoản này không cộng vào tổng thanh toán.</p></div>
           {moneyField("depositAmount", "Số tiền đã nhận")}
           <PaymentActions
             paymentStatus={form.paymentStatus}

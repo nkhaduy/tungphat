@@ -10,7 +10,7 @@ import { PaymentActions } from "../components/PaymentActions";
 import { QuoteQuickViewModal } from "../components/QuoteQuickViewModal";
 import { StatusBadge } from "../components/StatusBadge";
 
-const emptyQueue: PaymentQueue = { unpaid: [], deposited: [], partial: [], paid: [] };
+const emptyQueue: PaymentQueue = { unpaid: [], deposited: [], partial: [], paid: [], oldDebt: [] };
 
 export function AdminDashboardPage() {
   const [queue, setQueue] = useState<PaymentQueue>(emptyQueue);
@@ -91,7 +91,7 @@ export function AdminDashboardPage() {
             {activeQuotes.map((quote) => <article key={quote.id} className="queue-card">
               <div className="queue-card-main">
                 <div className="queue-card-title"><div><span>Khách hàng</span><h3>{quote.customerName || "Chưa nhập tên khách hàng"}</h3><small>{quote.quoteNumber} · {quote.quoteDate.split("-").reverse().join("/")}</small></div><StatusBadge status={quote.status} paymentStatus={quote.paymentStatus} /></div>
-                <dl className="queue-card-details"><div><dt>Nhân viên</dt><dd>{quote.employeeName}</dd></div><div><dt>Tổng tiền</dt><dd>{formatVnd(quote.totals.grandTotal)}</dd></div><div><dt>Đã nhận</dt><dd>{formatVnd(quote.totals.depositAmount)}</dd></div><div><dt>Còn lại</dt><dd className="queue-remaining">{formatVnd(quote.totals.remainingAmount)}</dd></div></dl>
+                <dl className="queue-card-details"><div><dt>Nhân viên</dt><dd>{quote.employeeName}</dd></div><div><dt>{activeSection === "oldDebt" ? "Nợ cũ" : "Tổng tiền"}</dt><dd className={activeSection === "oldDebt" ? "queue-old-debt" : undefined}>{formatVnd(activeSection === "oldDebt" ? quote.oldDebtAmount ?? 0 : quote.totals.grandTotal)}</dd></div><div><dt>Đã nhận</dt><dd>{formatVnd(quote.totals.depositAmount)}</dd></div><div><dt>Còn lại</dt><dd className="queue-remaining">{formatVnd(quote.totals.remainingAmount)}</dd></div></dl>
                 <button className="button secondary queue-view" type="button" onClick={(event: MouseEvent<HTMLButtonElement>) => { setReturnFocus(event.currentTarget); void loadQuickView(quote.id); }}><Eye size={16} /> Xem đơn</button>
               </div>
               <PaymentActions compact paymentStatus={quote.paymentStatus} receivedAmount={quote.totals.depositAmount} grandTotal={quote.totals.grandTotal} disabled={busyQuoteId === quote.id} onChange={(paymentStatus, receivedAmount) => void updatePayment(quote, paymentStatus, receivedAmount)} />

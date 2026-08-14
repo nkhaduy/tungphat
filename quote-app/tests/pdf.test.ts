@@ -4,7 +4,7 @@ import { PDFDocument } from "pdf-lib";
 import { describe, expect, it } from "vitest";
 import type { AppSettings, QuoteRecord } from "../src/shared/types";
 import { buildVietQrUrl } from "../src/shared/vietqr";
-import { generateQuotePdf, type QuoteSnapshot } from "../src/worker/pdf";
+import { buildPdfTotalsRows, generateQuotePdf, type QuoteSnapshot } from "../src/worker/pdf";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const settings: AppSettings = {
@@ -35,6 +35,14 @@ function snapshot(sourceQuote: QuoteRecord): QuoteSnapshot {
 }
 
 describe("server PDF", () => {
+  it("places old debt directly after the grand total without adding it to the total", () => {
+    const source = { ...quote(), oldDebtAmount: 450_000 };
+    const rows = buildPdfTotalsRows(source);
+    const grandTotalIndex = rows.findIndex(([label]) => label === "TỔNG THANH TOÁN");
+    expect(rows[grandTotalIndex + 1]).toEqual(["NỢ CŨ", 450_000]);
+    expect(source.totals.grandTotal).toBe(source.totals.subtotal);
+  });
+
   it("creates an A4 PDF containing logo/QR assets and all product rows", async () => {
     const source = quote(8);
     const bytes = await generateQuotePdf(snapshot(source), await assets(true));

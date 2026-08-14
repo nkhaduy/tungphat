@@ -56,6 +56,7 @@ export type QuoteRecord = {
   customerAddress: string;
   deliveryNote: string;
   generalNote: string;
+  oldDebtAmount?: number;
   vatRate?: VatRate | null;
   status: QuoteStatus;
   paymentStatus: PaymentStatus;
@@ -72,6 +73,7 @@ export type PaymentQueue = {
   deposited: QuoteRecord[];
   partial: QuoteRecord[];
   paid: QuoteRecord[];
+  oldDebt: QuoteRecord[];
 };
 
 export type CompanySettings = {

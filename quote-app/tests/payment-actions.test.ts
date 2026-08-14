@@ -17,6 +17,7 @@ describe("payment action amounts", () => {
     expect(paymentReceivedLabel("PARTIAL")).toBe("Đã nhận");
     expect(shouldShowPaymentQr("PARTIAL", 70_000)).toBe(true);
     expect(shouldShowPaymentQr("PAID", 0)).toBe(false);
+    expect(shouldShowPaymentQr("PAID", 0, 450_000)).toBe(true);
   });
 
   it("asks for a corrected deposit when a fully paid order is edited", () => {

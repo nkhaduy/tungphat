@@ -31,6 +31,7 @@ export const quoteInputSchema = z.object({
   customerAddress: text(500),
   deliveryNote: text(2000),
   generalNote: text(4000),
+  oldDebtAmount: vnd.optional().default(0),
   discount: vnd,
   shippingFee: vnd,
   processingFee: vnd,

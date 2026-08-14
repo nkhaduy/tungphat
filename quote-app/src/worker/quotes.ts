@@ -33,6 +33,7 @@ export type QuoteRow = {
   customer_address: string;
   delivery_note: string;
   general_note: string;
+  old_debt_amount: number;
   subtotal: number;
   discount: number;
   shipping_fee: number;
@@ -92,6 +93,7 @@ export function mapQuote(row: QuoteRow, items: ItemRow[]): QuoteRecord {
     customerAddress: row.customer_address,
     deliveryNote: row.delivery_note,
     generalNote: row.general_note,
+    oldDebtAmount: row.old_debt_amount ?? 0,
     vatRate: row.vat_rate,
     status: row.status,
     paymentStatus: row.payment_status,
@@ -196,13 +198,13 @@ async function createQuote(env: QuoteAppEnv, user: SessionUser, rawInput: unknow
       INSERT INTO quotes(
         id,quote_number,branch_id,created_by,quote_date,customer_name,customer_phone,customer_address,
         delivery_note,general_note,subtotal,discount,shipping_fee,processing_fee,vat_amount,vat_rate,grand_total,deposit_amount,
-        remaining_amount,status,payment_status,revision_token,created_at,updated_at
-      ) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?16,?17,?18,?19,?20,?21,?22,?23,?23)
+        remaining_amount,status,payment_status,old_debt_amount,revision_token,created_at,updated_at
+      ) VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?16,?17,?18,?19,?20,?21,?22,?23,?24,?24)
     `).bind(
       id, quoteNumber, branch.id, user.id, input.quoteDate, input.customerName, input.customerPhone,
       input.customerAddress, input.deliveryNote, input.generalNote, totals.subtotal, totals.discount, totals.shippingFee,
       totals.processingFee, totals.vatAmount, null, totals.grandTotal, totals.depositAmount, totals.remainingAmount,
-      status, paymentStatus, revisionToken, now,
+      status, paymentStatus, input.oldDebtAmount, revisionToken, now,
     ),
   ];
   const customerStatement = customerUpsertStatement(env, {
@@ -261,11 +263,11 @@ export async function updateQuoteHandler(c: Context<AppBindings>): Promise<Respo
     c.env.DB.prepare(`
       UPDATE quotes SET customer_name=?1,customer_phone=?2,customer_address=?3,delivery_note=?4,general_note=?5,
         subtotal=?6,discount=?7,shipping_fee=?8,processing_fee=?9,vat_amount=?10,vat_rate=?11,grand_total=?12,deposit_amount=?13,
-        remaining_amount=?14,status=?15,payment_status=?16,revision_token=?17,version=version+1,updated_at=?18 WHERE id=?19 AND version=?20
+        remaining_amount=?14,status=?15,payment_status=?16,old_debt_amount=?17,revision_token=?18,version=version+1,updated_at=?19 WHERE id=?20 AND version=?21
     `).bind(
       input.customerName, input.customerPhone, input.customerAddress, input.deliveryNote, input.generalNote,
       totals.subtotal, totals.discount, totals.shippingFee, totals.processingFee, totals.vatAmount, null,
-      totals.grandTotal, totals.depositAmount, totals.remainingAmount, status, paymentStatus, revisionToken, now, quote.id, input.version,
+      totals.grandTotal, totals.depositAmount, totals.remainingAmount, status, paymentStatus, input.oldDebtAmount, revisionToken, now, quote.id, input.version,
     ),
     c.env.DB.prepare(`
       UPDATE quote_items SET deleted_at=?1,updated_at=?1
@@ -420,6 +422,7 @@ export async function duplicateQuoteHandler(c: Context<AppBindings>): Promise<Re
     customerAddress: source.customerAddress,
     deliveryNote: source.deliveryNote,
     generalNote: source.generalNote,
+    oldDebtAmount: source.oldDebtAmount ?? 0,
     discount: source.totals.discount,
     shippingFee: source.totals.shippingFee,
     processingFee: source.totals.processingFee,

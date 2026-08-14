@@ -2,6 +2,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import { QuoteQuickViewModal } from "../src/client/components/QuoteQuickViewModal";
+import { OldDebtNotice } from "../src/client/components/OldDebtNotice";
 import type { QuoteRecord } from "../src/shared/types";
 
 const quote: QuoteRecord = {
@@ -33,6 +34,13 @@ const quote: QuoteRecord = {
 };
 
 describe("admin dashboard quick view", () => {
+  it("renders old debt as a prominent amount without changing the quote total", () => {
+    const html = renderToStaticMarkup(createElement(OldDebtNotice, { amount: 450_000 }));
+    expect(html).toContain("NỢ CŨ");
+    expect(html).toContain("450.000");
+    expect(html).toContain("old-debt-notice");
+  });
+
   it("renders customer-first quote details in a read-only dialog", () => {
     const html = renderToStaticMarkup(createElement(QuoteQuickViewModal, {
       quote,

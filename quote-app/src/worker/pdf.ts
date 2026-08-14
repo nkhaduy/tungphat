@@ -339,12 +339,18 @@ function drawItemRow(page: PDFPage, regular: PDFFont, quote: QuoteRecord, index:
   return y - rowHeight;
 }
 
-function drawTotals(page: PDFPage, regular: PDFFont, bold: PDFFont, quote: QuoteRecord, x: number, y: number): number {
-  const rows = [
+export function buildPdfTotalsRows(quote: QuoteRecord): Array<[string, number]> {
+  const rows: Array<[string, number]> = [
     ["Tiền hàng", quote.totals.subtotal], ["Chiết khấu", -quote.totals.discount], ["Phí vận chuyển", quote.totals.shippingFee],
     ["Phí gia công", quote.totals.processingFee], ["Thuế VAT", quote.totals.vatAmount], ["TỔNG THANH TOÁN", quote.totals.grandTotal],
-    [paymentReceivedLabel(quote.paymentStatus), quote.totals.depositAmount], ["CÒN LẠI", quote.totals.remainingAmount],
-  ] as const;
+  ];
+  if ((quote.oldDebtAmount ?? 0) > 0) rows.push(["NỢ CŨ", quote.oldDebtAmount ?? 0]);
+  rows.push([paymentReceivedLabel(quote.paymentStatus), quote.totals.depositAmount], ["CÒN LẠI", quote.totals.remainingAmount]);
+  return rows;
+}
+
+function drawTotals(page: PDFPage, regular: PDFFont, bold: PDFFont, quote: QuoteRecord, x: number, y: number): number {
+  const rows = buildPdfTotalsRows(quote);
   const boxWidth = TOTALS_WIDTH;
   const rowHeight = 22;
   const topPadding = 6;
@@ -352,12 +358,14 @@ function drawTotals(page: PDFPage, regular: PDFFont, bold: PDFFont, quote: Quote
   page.drawRectangle({ x, y: y - boxHeight, width: boxWidth, height: boxHeight, color: rgb(0.985, 0.99, 0.987), borderColor: rgb(0.82, 0.88, 0.84), borderWidth: 0.6 });
   rows.forEach(([label, value], index) => {
     const highlight = label === "CÒN LẠI";
-    const font = label.includes("TỔNG") || highlight ? bold : regular;
-    const size = label.includes("TỔNG") || highlight ? 10 : 9.2;
+    const oldDebt = label === "NỢ CŨ";
+    const font = label.includes("TỔNG") || highlight || oldDebt ? bold : regular;
+    const size = label.includes("TỔNG") || highlight || oldDebt ? 10 : 9.2;
     const rowBottom = y - topPadding - (index + 1) * rowHeight;
     const baseline = rowBottom + (rowHeight - size) / 2 + 1.7;
     if (highlight) page.drawRectangle({ x, y: rowBottom, width: boxWidth, height: rowHeight, color: ORANGE });
-    const color = highlight ? rgb(1, 1, 1) : DARK;
+    if (oldDebt) page.drawRectangle({ x, y: rowBottom, width: boxWidth, height: rowHeight, color: rgb(1, 0.94, 0.84) });
+    const color = highlight ? rgb(1, 1, 1) : oldDebt ? ORANGE : DARK;
     const normalizedValue = Object.is(value, -0) ? 0 : value;
     const display = normalizedValue < 0 ? `-${formatVnd(Math.abs(normalizedValue))}` : formatVnd(normalizedValue);
     page.drawText(label, { x: x + 9, y: baseline, font, size, color });
@@ -477,8 +485,9 @@ export async function exportPdfHandler(c: Context<AppBindings>): Promise<Respons
   const settings = await getSettings(c.env);
   const { results: headerBranches } = await c.env.DB.prepare("SELECT code,name,address FROM branches WHERE code IN ('TP14','TP81') AND deleted_at IS NULL ORDER BY code")
     .all<{ code: string; name: string; address: string }>();
-  const qrUrl = shouldShowPaymentQr(quote.paymentStatus, quote.totals.remainingAmount)
-    ? buildVietQrUrl(settings.bank, quote.totals.remainingAmount)
+  const oldDebtAmount = quote.oldDebtAmount ?? 0;
+  const qrUrl = shouldShowPaymentQr(quote.paymentStatus, quote.totals.remainingAmount, oldDebtAmount)
+    ? buildVietQrUrl(settings.bank, oldDebtAmount > 0 ? null : quote.totals.remainingAmount)
     : null;
   const exportedAt = isoNow();
   const snapshot: QuoteSnapshot = {
