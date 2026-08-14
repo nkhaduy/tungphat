@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   calculateLineTotal,
   calculateTotals,
+  calculateVatAmount,
   derivePaymentStatus,
   deriveQuoteStatus,
   normalizePayment,
@@ -29,6 +30,23 @@ describe("quote calculations", () => {
     ], { discount: 100_000, shippingFee: 150_000, processingFee: 50_000, vatAmount: 0, depositAmount: 500_000 });
     expect(totals).toMatchObject({ subtotal: 2_324_000, grandTotal: 2_424_000, depositAmount: 500_000, remainingAmount: 1_924_000 });
     expect(deriveQuoteStatus("DRAFT", totals, true)).toBe("DEPOSITED");
+  });
+
+  it("calculates VAT from 8% or 10% and preserves legacy money when rate is null", () => {
+    expect(calculateVatAmount(1_000_001, 8)).toBe(80_000);
+    expect(calculateVatAmount(1_000_001, 10)).toBe(100_000);
+    expect(() => calculateVatAmount(1_000_000, 5)).toThrow(/8.*10/);
+
+    const rated = calculateTotals([
+      { productName: "MDF", specification: "", quantity: 1, unit: "Tấm", unitPrice: 1_000_001, note: "" },
+    ], { discount: 1, shippingFee: 0, processingFee: 0, vatAmount: 999, vatRate: 8, depositAmount: 0 });
+    expect(rated.vatAmount).toBe(80_000);
+    expect(rated.grandTotal).toBe(1_080_000);
+
+    const legacy = calculateTotals([
+      { productName: "MDF", specification: "", quantity: 1, unit: "Tấm", unitPrice: 1_000_001, note: "" },
+    ], { discount: 1, shippingFee: 0, processingFee: 0, vatAmount: 12_345, vatRate: null, depositAmount: 0 });
+    expect(legacy.vatAmount).toBe(12_345);
   });
 
   it("marks a fully paid quote and rejects negative or excessive deposits", () => {

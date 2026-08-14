@@ -1,6 +1,7 @@
 export type UserRole = "ADMIN" | "EMPLOYEE";
 export type QuoteStatus = "DRAFT" | "ISSUED" | "DEPOSITED" | "PAID" | "CANCELLED";
 export type PaymentStatus = "UNPAID" | "DEPOSITED" | "PARTIAL" | "PAID";
+export type VatRate = 0 | 8 | 10;
 
 export type QuoteItemInput = {
   id?: string;
@@ -55,6 +56,7 @@ export type QuoteRecord = {
   customerAddress: string;
   deliveryNote: string;
   generalNote: string;
+  vatRate?: VatRate | null;
   status: QuoteStatus;
   paymentStatus: PaymentStatus;
   totals: QuoteTotals;
