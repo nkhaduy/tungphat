@@ -49,7 +49,7 @@ export function QuoteListPage({ admin = false }: { admin?: boolean }) {
     <div>
       <PageHeader
         title={admin ? "Tất cả báo giá" : "Báo giá của tôi"}
-        description={admin ? "Tra cứu theo nhân viên, chi nhánh, khách hàng và trạng thái." : "Theo dõi báo giá nháp, đã phát hành và thanh toán."}
+        description={admin ? undefined : "Theo dõi báo giá nháp, đã phát hành và thanh toán."}
         actions={<Link className="button primary" to="/bao-gia/moi"><FilePlus2 size={17} /> Tạo báo giá</Link>}
       />
       <form className="filter-bar" onSubmit={submit}>

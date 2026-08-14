@@ -1,4 +1,4 @@
-import { Building2, FileClock, FilePlus2, Files, History, LayoutDashboard, LogOut, Settings, Store, Users } from "lucide-react";
+import { Building2, FileClock, FilePlus2, Files, LayoutDashboard, LogOut, Settings, Store, Users } from "lucide-react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "../auth";
 
@@ -13,7 +13,6 @@ const adminLinks = [
   { to: "/admin/nhan-vien", label: "Nhân viên", icon: Users },
   { to: "/admin/chi-nhanh", label: "Chi nhánh", icon: Store },
   { to: "/admin/cai-dat", label: "Cài đặt", icon: Settings },
-  { to: "/admin/lich-su", label: "Lịch sử", icon: History },
 ];
 
 export function AppShell() {
