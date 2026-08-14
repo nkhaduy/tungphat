@@ -2,6 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes google-review-left {
+  to {
+    transform: translateX(calc(-50% - 0.4375rem));
+  }
+}
+
+@keyframes google-review-right {
+  from {
+    transform: translateX(calc(-50% - 0.4375rem));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.google-review-rail-wrap {
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
+}
+
+.google-review-rail {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  gap: 0.875rem;
+}
+
+.google-review-rail > * {
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .google-review-rail-wrap {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, #000 2.5rem, #000 calc(100% - 2.5rem), transparent);
+  }
+
+  .google-review-rail[data-loop="true"] {
+    animation: google-review-left 42s linear infinite;
+  }
+
+  .google-review-rail--right[data-loop="true"] {
+    animation-name: google-review-right;
+  }
+
+  .google-review-rail-wrap:hover .google-review-rail,
+  .google-review-rail-wrap:focus-within .google-review-rail {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .google-review-rail-wrap {
+    overflow-x: auto;
+    mask-image: none;
+  }
+
+  .google-review-rail[data-loop="true"] {
+    animation: none;
+  }
+}
+
 :root {
   --font-montserrat:
     var(--font-montserrat-vietnamese), var(--font-montserrat-latin), Arial,

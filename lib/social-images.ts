@@ -21,6 +21,7 @@ const LOCAL_SOCIAL_IMAGE_ASSETS: Record<
   Pick<SocialImage, "width" | "height" | "type">
 > = {
   "/og-logo.png": { width: 1200, height: 630, type: "image/png" },
+  "/og-tungphat.jpg": { width: 1200, height: 630, type: "image/jpeg" },
   "/images/cnc-service.webp": { width: 1222, height: 821, type: "image/webp" },
   "/images/hero-workshop4.webp": { width: 1915, height: 821, type: "image/webp" },
   "/images/hero-workshop5.webp": { width: 1915, height: 821, type: "image/webp" },
