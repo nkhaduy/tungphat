@@ -65,6 +65,13 @@ export type QuoteRecord = {
   updatedAt: string;
 };
 
+export type PaymentQueue = {
+  unpaid: QuoteRecord[];
+  deposited: QuoteRecord[];
+  partial: QuoteRecord[];
+  paid: QuoteRecord[];
+};
+
 export type CompanySettings = {
   name: string;
   address: string;

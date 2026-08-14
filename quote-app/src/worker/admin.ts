@@ -1,5 +1,7 @@
 import type { Context } from "hono";
 import { officialBranch } from "../shared/branches";
+import { groupPaymentQueue } from "../shared/payment";
+import { mapQuote, quoteSelect, type QuoteRow } from "./quotes";
 import { writeAudit } from "./audit";
 import type { AppBindings } from "./auth";
 import { HttpError, isoNow, requiredParam } from "./http";
@@ -44,6 +46,16 @@ export async function dashboardHandler(c: Context<AppBindings>): Promise<Respons
       topEmployee: topEmployee ? { id: topEmployee.id, fullName: topEmployee.full_name, quoteCount: topEmployee.quote_count } : null,
     },
   });
+}
+
+export async function paymentQueueHandler(c: Context<AppBindings>): Promise<Response> {
+  const { results } = await c.env.DB.prepare(`
+    ${quoteSelect}
+    WHERE q.deleted_at IS NULL AND q.status!='CANCELLED'
+    ORDER BY q.updated_at DESC,q.created_at DESC
+    LIMIT 200
+  `).all<QuoteRow>();
+  return c.json({ queue: groupPaymentQueue(results.map((row) => mapQuote(row, []))) });
 }
 
 export async function listUsersHandler(c: Context<AppBindings>): Promise<Response> {

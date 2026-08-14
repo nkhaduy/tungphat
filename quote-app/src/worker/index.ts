@@ -7,6 +7,7 @@ import {
   dashboardHandler,
   listBranchesHandler,
   listUsersHandler,
+  paymentQueueHandler,
   deleteUserHandler,
   viewUserPasswordHandler,
   updateBranchHandler,
@@ -105,6 +106,7 @@ app.get("/api/quote-versions/:versionId/pdf", downloadVersionHandler);
 
 app.use("/api/admin/*", requireAdmin);
 app.get("/api/admin/dashboard", dashboardHandler);
+app.get("/api/admin/payment-queue", paymentQueueHandler);
 app.get("/api/admin/users", listUsersHandler);
 app.post("/api/admin/users", requireMutation, createUserHandler);
 app.put("/api/admin/users/:id", requireMutation, updateUserHandler);

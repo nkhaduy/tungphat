@@ -16,7 +16,7 @@ import { customerUpsertStatement } from "./customers";
 import { HttpError, isoNow, requiredParam } from "./http";
 import { paymentUpdateSchema, quoteInputSchema } from "./schemas";
 
-type QuoteRow = {
+export type QuoteRow = {
   id: string;
   quote_number: string;
   branch_id: string;
@@ -49,7 +49,7 @@ type QuoteRow = {
   updated_at: string;
 };
 
-type ItemRow = {
+export type ItemRow = {
   id: string;
   position: number;
   product_name: string;
