@@ -25,6 +25,10 @@ export function shouldPromptForPaymentAmount(paymentStatus: PaymentStatus, curre
   return paymentStatus === "DEPOSITED" && (currentReceivedAmount <= 0 || currentReceivedAmount >= grandTotal);
 }
 
+export function paymentActionsInitiallyVisible(paymentStatus: PaymentStatus): boolean {
+  return paymentStatus === "UNPAID";
+}
+
 export function shouldShowPaymentQr(paymentStatus: PaymentStatus, remainingAmount: number): boolean {
   return paymentStatus !== "PAID" && remainingAmount > 0;
 }

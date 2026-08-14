@@ -1,7 +1,7 @@
-import { Banknote, CheckCircle2, HandCoins, X } from "lucide-react";
-import { useState } from "react";
+import { Banknote, CheckCircle2, HandCoins, PencilLine, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { formatVnd, normalizePayment } from "../../shared/calculations";
-import { paymentActionAmount, shouldPromptForPaymentAmount } from "../../shared/payment";
+import { paymentActionAmount, paymentActionsInitiallyVisible, shouldPromptForPaymentAmount } from "../../shared/payment";
 import type { PaymentStatus } from "../../shared/types";
 
 type PaymentActionsProps = {
@@ -21,9 +21,14 @@ function parseVnd(value: string): number {
 }
 
 export function PaymentActions({ paymentStatus, receivedAmount, grandTotal, disabled = false, compact = false, onChange }: PaymentActionsProps) {
+  const [editing, setEditing] = useState(() => paymentActionsInitiallyVisible(paymentStatus));
   const [amountStatus, setAmountStatus] = useState<"DEPOSITED" | "PARTIAL" | null>(null);
   const [draftAmount, setDraftAmount] = useState(receivedAmount);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (paymentStatus === "UNPAID") setEditing(true);
+  }, [paymentStatus]);
 
   const choose = (nextStatus: PaymentStatus) => {
     const nextAmount = paymentActionAmount(nextStatus, grandTotal, receivedAmount);
@@ -37,6 +42,7 @@ export function PaymentActions({ paymentStatus, receivedAmount, grandTotal, disa
       normalizePayment(nextStatus, nextAmount, grandTotal);
       setError("");
       onChange(nextStatus, nextAmount);
+      setEditing(nextStatus === "UNPAID");
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Số tiền thanh toán không hợp lệ.");
     }
@@ -55,6 +61,7 @@ export function PaymentActions({ paymentStatus, receivedAmount, grandTotal, disa
       onChange(amountStatus, draftAmount);
       setError("");
       setAmountStatus(null);
+      setEditing(false);
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Số tiền thanh toán không hợp lệ.");
     }
@@ -67,9 +74,9 @@ export function PaymentActions({ paymentStatus, receivedAmount, grandTotal, disa
           <strong>Trạng thái thanh toán</strong>
           <span>Đã nhận {formatVnd(receivedAmount)}</span>
         </div>
-        {paymentStatus !== "UNPAID" ? <button type="button" className="payment-reset" disabled={disabled} onClick={() => choose("UNPAID")}>Đặt lại</button> : null}
+        {!editing ? <button type="button" className="payment-edit" disabled={disabled} onClick={() => { setError(""); setEditing(true); }}><PencilLine size={15} /> Chỉnh sửa</button> : paymentStatus !== "UNPAID" ? <button type="button" className="payment-reset" disabled={disabled} onClick={() => choose("UNPAID")}>Đặt lại</button> : null}
       </div>
-      <div className="payment-action-grid">
+      {editing ? <div className="payment-action-grid">
         <button type="button" className={paymentStatus === "DEPOSITED" ? "payment-action active" : "payment-action"} disabled={disabled} onClick={() => choose("DEPOSITED")}>
           <HandCoins size={17} aria-hidden="true" /><span>Đã cọc</span>
         </button>
@@ -79,7 +86,7 @@ export function PaymentActions({ paymentStatus, receivedAmount, grandTotal, disa
         <button type="button" className={paymentStatus === "PAID" ? "payment-action active paid" : "payment-action paid"} disabled={disabled} onClick={() => choose("PAID")}>
           <CheckCircle2 size={17} aria-hidden="true" /><span>Đã thanh toán</span>
         </button>
-      </div>
+      </div> : null}
       {error ? <p className="payment-error" role="alert">{error}</p> : null}
       {amountStatus ? <div className="dialog-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget && !disabled) setAmountStatus(null); }}>
         <section className="confirm-dialog payment-dialog" role="dialog" aria-modal="true" aria-labelledby="payment-amount-title">

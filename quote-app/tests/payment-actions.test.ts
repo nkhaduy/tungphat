@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { paymentActionAmount, paymentReceivedLabel, shouldPromptForPaymentAmount, shouldShowPaymentQr } from "../src/shared/payment";
+import { paymentActionAmount, paymentActionsInitiallyVisible, paymentReceivedLabel, shouldPromptForPaymentAmount, shouldShowPaymentQr } from "../src/shared/payment";
 
 describe("payment action amounts", () => {
   it("fills the full total for the paid action", () => {
@@ -22,5 +22,12 @@ describe("payment action amounts", () => {
   it("asks for a corrected deposit when a fully paid order is edited", () => {
     expect(shouldPromptForPaymentAmount("DEPOSITED", 1_000_000, 1_000_000)).toBe(true);
     expect(shouldPromptForPaymentAmount("DEPOSITED", 200_000, 1_000_000)).toBe(false);
+  });
+
+  it("only opens the three actions automatically for unprocessed orders", () => {
+    expect(paymentActionsInitiallyVisible("UNPAID")).toBe(true);
+    expect(paymentActionsInitiallyVisible("DEPOSITED")).toBe(false);
+    expect(paymentActionsInitiallyVisible("PARTIAL")).toBe(false);
+    expect(paymentActionsInitiallyVisible("PAID")).toBe(false);
   });
 });
