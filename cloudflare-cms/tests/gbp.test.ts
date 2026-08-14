@@ -7,7 +7,7 @@ import {
   retryGoogleRequest,
 } from "../src/gbp/google";
 import { reviewRetentionCutoff, reviewUpsertStatements } from "../src/gbp/storage";
-import { decryptToken, encryptToken, selectTungPhatLocation } from "../src/gbp/oauth";
+import { decryptToken, encryptToken, selectTungPhatLocation, selectTungPhatLocations } from "../src/gbp/oauth";
 
 const token = "unit-test-token";
 
@@ -121,5 +121,17 @@ describe("GBP OAuth security and location selection", () => {
       { name: "locations/1", title: "Other business", websiteUri: "https://other.example" },
       { name: "locations/2", title: "Công ty Gỗ Tùng Phát", websiteUri: "https://mdftungphat.com/" },
     ])?.name).toBe("locations/2");
+  });
+
+  it("selects and orders both verified Tùng Phát branches", () => {
+    expect(selectTungPhatLocations([
+      { name: "locations/other", title: "Other business", websiteUri: "https://other.example" },
+      { name: "locations/tp2", title: "Gỗ Tùng Phát", websiteUri: "https://mdftungphat.com", metadata: { placeId: "ChIJjWMBUikndTERNFK1M-j02ZY" } },
+      { name: "locations/tp1", title: "Công ty Gỗ Tùng Phát", websiteUri: "https://mdftungphat.com", metadata: { placeId: "ChIJ6dw2A6YndTERr5eaiym-l-M" } },
+      { name: "locations/tp2-copy", title: "Gỗ Tùng Phát", metadata: { placeId: "ChIJjWMBUikndTERNFK1M-j02ZY" } },
+    ])).toMatchObject([
+      { branchKey: "tp1", location: { name: "locations/tp1" }, displayOrder: 1 },
+      { branchKey: "tp2", location: { name: "locations/tp2" }, displayOrder: 2, fallbackMapsUrl: "https://share.google/sv4nkFEznsGsWhRAQ" },
+    ]);
   });
 });

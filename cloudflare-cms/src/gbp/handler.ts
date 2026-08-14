@@ -1,5 +1,5 @@
 import { validMutation, verifySession } from "../auth/session";
-import { decryptToken, encryptToken, googleAuthorizationUrl, selectTungPhatLocation, type BusinessLocation } from "./oauth";
+import { decryptToken, encryptToken, googleAuthorizationUrl, selectTungPhatLocations, type BusinessLocation } from "./oauth";
 import { exchangeAuthorizationCode, syncGbp } from "./sync";
 import { publicReviewQuery } from "./storage";
 import type { GbpEnv } from "./types";
@@ -48,16 +48,26 @@ export async function handleGbpOAuthCallback(request: Request, env: GbpEnv) {
   const [expected, , created] = cookie.split(":"); if (expected !== state || Date.now() - Number(created) > 600_000) return new Response("OAuth state expired", { status: 400 });
   const token = await exchangeAuthorizationCode(env, code);
   const accounts = await googleGet<{ accounts?: Array<{ name: string }> }>("https://mybusinessaccountmanagement.googleapis.com/v1/accounts", token.access_token || "");
-  let selectedAccount = ""; let selected: BusinessLocation | null = null;
+  const selected: Array<ReturnType<typeof selectTungPhatLocations>[number] & { accountName: string }> = [];
   for (const account of accounts.accounts || []) {
     const fields = "name,title,websiteUri,metadata";
     const locations = await googleGet<{ locations?: BusinessLocation[] }>(`https://mybusinessbusinessinformation.googleapis.com/v1/${account.name}/locations?readMask=${encodeURIComponent(fields)}&pageSize=100`, token.access_token || "");
-    selected = selectTungPhatLocation(locations.locations || []); if (selected) { selectedAccount = account.name; break; }
+    selected.push(...selectTungPhatLocations(locations.locations || []).map((entry) => ({ ...entry, accountName: account.name })));
   }
-  if (!selected || !selectedAccount) return new Response("Tùng Phát location was not found", { status: 404 });
+  if (!selected.length) return new Response("Tùng Phát location was not found", { status: 404 });
   const now = Math.floor(Date.now() / 1000); const expiry = now + Number(token.expires_in || 3600);
-  await env.DB.prepare(`INSERT INTO gbp_connection(id,project_id,account_name,location_name,location_title,location_maps_uri,location_place_id,access_token_ciphertext,refresh_token_ciphertext,token_expires_at,scope,status,updated_at) VALUES(1,?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,'connected',?11) ON CONFLICT(id) DO UPDATE SET project_id=?1,account_name=?2,location_name=?3,location_title=?4,location_maps_uri=?5,location_place_id=?6,access_token_ciphertext=?7,refresh_token_ciphertext=COALESCE(?8,refresh_token_ciphertext),token_expires_at=?9,scope=?10,status='connected',last_error_safe=NULL,updated_at=?11`)
-    .bind(env.GBP_GOOGLE_PROJECT_ID, selectedAccount, `${selectedAccount}/${selected.name}`, selected.title || "Tùng Phát", selected.metadata?.mapsUri || null, selected.metadata?.placeId || null, await encryptToken(token.access_token || "", env.GBP_TOKEN_ENCRYPTION_KEY), token.refresh_token ? await encryptToken(token.refresh_token, env.GBP_TOKEN_ENCRYPTION_KEY) : null, expiry, token.scope || "https://www.googleapis.com/auth/business.manage", now).run();
+  const encryptedAccess = await encryptToken(token.access_token || "", env.GBP_TOKEN_ENCRYPTION_KEY);
+  const encryptedRefresh = token.refresh_token ? await encryptToken(token.refresh_token, env.GBP_TOKEN_ENCRYPTION_KEY) : null;
+  const statements = selected.map(({ accountName, branchKey, displayOrder, fallbackMapsUrl, location }) => env.DB.prepare(`
+    INSERT INTO gbp_connection(project_id,account_name,location_name,location_title,location_maps_uri,location_place_id,branch_key,display_order,access_token_ciphertext,refresh_token_ciphertext,token_expires_at,scope,status,updated_at)
+    VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,'connected',?13)
+    ON CONFLICT(location_name) DO UPDATE SET project_id=?1,account_name=?2,location_title=?4,location_maps_uri=?5,location_place_id=?6,branch_key=?7,display_order=?8,access_token_ciphertext=?9,refresh_token_ciphertext=COALESCE(?10,refresh_token_ciphertext),token_expires_at=?11,scope=?12,status='connected',last_error_safe=NULL,updated_at=?13
+  `).bind(env.GBP_GOOGLE_PROJECT_ID, accountName, `${accountName}/${location.name}`, location.title || "Tùng Phát", location.metadata?.mapsUri || fallbackMapsUrl, location.metadata?.placeId || null, branchKey, displayOrder, encryptedAccess, encryptedRefresh, expiry, token.scope || "https://www.googleapis.com/auth/business.manage", now));
+  await env.DB.batch(statements);
+  const selectedKeys = selected.map((entry) => entry.branchKey);
+  const placeholders = selectedKeys.map((_, index) => `?${index + 2}`).join(",");
+  await env.DB.prepare(`UPDATE gbp_connection SET status='disconnected',updated_at=?1 WHERE branch_key NOT IN (${placeholders})`)
+    .bind(now, ...selectedKeys).run();
   return new Response(null, { status: 302, headers: { Location: "/?view=gbp&connected=1", "Set-Cookie": `${STATE_COOKIE}=; HttpOnly; Secure; SameSite=Lax; Path=/api/gbp/oauth; Max-Age=0`, "Cache-Control": "no-store" } });
 }
 

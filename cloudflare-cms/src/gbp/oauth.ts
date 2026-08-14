@@ -39,13 +39,35 @@ export type BusinessLocation = {
   metadata?: { mapsUri?: string; placeId?: string };
 };
 
-export function selectTungPhatLocation(locations: BusinessLocation[]) {
-  const exactWebsite = locations.find((location) => {
-    try { return new URL(location.websiteUri || "").hostname.replace(/^www\./, "") === "mdftungphat.com"; }
-    catch { return false; }
+const VERIFIED_BRANCHES = [
+  { branchKey: "tp1", displayOrder: 1, placeId: "ChIJ6dw2A6YndTERr5eaiym-l-M", fallbackMapsUrl: null },
+  { branchKey: "tp2", displayOrder: 2, placeId: "ChIJjWMBUikndTERNFK1M-j02ZY", fallbackMapsUrl: "https://share.google/sv4nkFEznsGsWhRAQ" },
+] as const;
+
+function isTungPhatLocation(location: BusinessLocation) {
+  try {
+    if (new URL(location.websiteUri || "").hostname.replace(/^www\./, "") === "mdftungphat.com") return true;
+  } catch { /* Fall through to verified identity signals. */ }
+  return /tùng\s*phát|tung\s*phat/iu.test(location.title || "");
+}
+
+export function selectTungPhatLocations(locations: BusinessLocation[]) {
+  const seen = new Set<string>();
+  return VERIFIED_BRANCHES.flatMap((branch) => {
+    const location = locations.find((candidate) =>
+      isTungPhatLocation(candidate) && candidate.metadata?.placeId === branch.placeId
+    );
+    const identity = location?.metadata?.placeId || location?.name;
+    if (!location || !identity || seen.has(identity)) return [];
+    seen.add(identity);
+    return [{ ...branch, location }];
   });
+}
+
+export function selectTungPhatLocation(locations: BusinessLocation[]) {
+  const exactWebsite = locations.find((location) => isTungPhatLocation(location) && location.websiteUri);
   if (exactWebsite) return exactWebsite;
-  return locations.find((location) => /tùng\s*phát|tung\s*phat/iu.test(location.title || "")) || null;
+  return locations.find(isTungPhatLocation) || null;
 }
 
 export function googleAuthorizationUrl(clientId: string, redirectUri: string, state: string) {
