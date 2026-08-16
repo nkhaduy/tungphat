@@ -1,5 +1,6 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { SupplierMediaGallery } from "@/components/catalog/SupplierMediaGallery";
 
@@ -14,5 +15,13 @@ describe("supplier media gallery", () => {
     expect(html).not.toContain("original.jpg");
     expect(html).not.toContain("room.jpg");
     expect(html).toContain("Mở thư viện 2 ảnh");
+  });
+
+  it("provides lightweight thumbnail navigation inside the lightbox", () => {
+    const source = readFileSync("components/catalog/SupplierMediaGallery.tsx", "utf8");
+
+    expect(source).toContain("Chuyển đến ảnh");
+    expect(source).toContain("image.thumbnailSrc || image.src");
+    expect(source).toContain('aria-current={imageIndex === index ? "true" : undefined}');
   });
 });
