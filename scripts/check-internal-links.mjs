@@ -157,23 +157,29 @@ function createOutputServer(outputDirectory) {
   });
 }
 
-async function requestTargets(requestPaths, origin) {
+export async function requestTargets(requestPaths, origin, maxConcurrency = 24) {
   const results = new Map();
-  await Promise.all([...requestPaths].map(async (requestPath) => {
-    const requestUrl = new URL(requestPath, origin);
-    try {
-      const response = await fetch(requestUrl, { redirect: "manual" });
-      results.set(requestPath, {
-        status: response.status,
-        location: response.headers.get("location"),
-        error: null
-      });
-    } catch (error) {
-      results.set(requestPath, {
-        status: 0,
-        location: null,
-        error: error instanceof Error ? error.message : String(error)
-      });
+  const pending = [...requestPaths];
+  const workerCount = Math.min(Math.max(1, maxConcurrency), pending.length);
+  await Promise.all(Array.from({ length: workerCount }, async () => {
+    while (pending.length) {
+      const requestPath = pending.shift();
+      if (!requestPath) continue;
+      const requestUrl = new URL(requestPath, origin);
+      try {
+        const response = await fetch(requestUrl, { redirect: "manual" });
+        results.set(requestPath, {
+          status: response.status,
+          location: response.headers.get("location"),
+          error: null
+        });
+      } catch (error) {
+        results.set(requestPath, {
+          status: 0,
+          location: null,
+          error: error instanceof Error ? error.message : String(error)
+        });
+      }
     }
   }));
   return results;

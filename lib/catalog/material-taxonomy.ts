@@ -5,16 +5,12 @@ export const materialTaxonomy = [
   { slug: "melamine", label: "Melamine" },
   { slug: "laminate", label: "Laminate" },
   { slug: "acrylic", label: "Acrylic" },
-  { slug: "pvc-ppet", label: "PVC/PPET" },
   { slug: "veneer", label: "Veneer" },
-  { slug: "mdf-hdf", label: "MDF/HDF" },
-  { slug: "mfc-okal", label: "MFC/OKAL" },
-  { slug: "joined-wood", label: "Gỗ ghép" },
-  { slug: "edge-banding", label: "Chỉ dán cạnh" },
-  { slug: "outdoor-panels", label: "Tấm ngoài trời" },
-  { slug: "decorative-panels", label: "Tấm trang trí" },
-  { slug: "accessories", label: "Phụ kiện" },
-  { slug: "flooring", label: "Ván sàn" },
+  { slug: "pvc-ppet", label: "PVC / PPET" },
+  { slug: "worktop", label: "Mặt Top (Compact)" },
+  { slug: "edge-banding", label: "Mã cạnh" },
+  { slug: "panel", label: "Panel" },
+  { slug: "other-decorative", label: "Khác" },
 ] as const;
 
 export type MaterialTaxonomySlug = Exclude<(typeof materialTaxonomy)[number]["slug"], "all">;
@@ -34,18 +30,14 @@ function fold(value: string): string {
 export function classifyMaterialTaxonomy(values: Array<string | undefined>): MaterialTaxonomySlug | undefined {
   const value = fold(values.filter(Boolean).join(" "));
   if (/chi (dan canh|nep)|edge band|pvc edge|abs edge/.test(value)) return "edge-banding";
-  if (/go ghep|joined wood/.test(value)) return "joined-wood";
-  if (/van san|flooring|san go/.test(value)) return "flooring";
-  if (/phu kien|accessor|hettich|imundex/.test(value)) return "accessories";
-  if (/ngoai troi|outdoor|wpb|waterproof board/.test(value)) return "outdoor-panels";
   if (/acrylic/.test(value)) return "acrylic";
   if (/laminate|high pressure laminate|hpl/.test(value)) return "laminate";
   if (/melamine/.test(value)) return "melamine";
   if (/veneer|van lang/.test(value)) return "veneer";
   if (/ppet|pvc|decal/.test(value)) return "pvc-ppet";
-  if (/mdf|hdf|cdf/.test(value)) return "mdf-hdf";
-  if (/mfc|okal|van dam|particle board/.test(value)) return "mfc-okal";
-  if (/3d|decorative|trang tri|panel|tam op|wall/.test(value)) return "decorative-panels";
+  if (/worktop|mat top|compact top/.test(value)) return "worktop";
+  if (/3d|decorative|trang tri|panel|tam op|wall/.test(value)) return "panel";
+  if (value.trim()) return "other-decorative";
   return undefined;
 }
 

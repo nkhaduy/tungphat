@@ -5,7 +5,7 @@ import { SiteShell } from "@/components/site/SiteShell";
 import { JsonLd } from "@/components/JsonLd";
 import { MaterialDisclaimer } from "@/components/catalog/MaterialDisclaimer";
 import { ProductInquiryCTA } from "@/components/catalog/ProductInquiryCTA";
-import { baThanhCategories } from "@/lib/catalog/ba-thanh";
+import { baThanhCategories, getBaThanhCodes } from "@/lib/catalog/ba-thanh";
 import { absoluteUrl, createPageMetadata } from "@/lib/seo";
 import { locations } from "@/lib/locations";
 
@@ -43,6 +43,7 @@ const brandSchema = {
 };
 
 export default function BaThanhBrandPage() {
+  const verifiedMelamineCodes = getBaThanhCodes().length;
   return (
     <SiteShell>
       <JsonLd data={brandSchema} />
@@ -80,7 +81,7 @@ export default function BaThanhBrandPage() {
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link
-                  href="/ma-mau-melamine/ba-thanh/"
+                  href="/catalogue/ba-thanh/melamine/"
                   className="inline-flex min-h-13 items-center justify-center gap-2 bg-wood-700 px-6 text-sm font-extrabold text-white transition-[transform,background-color] duration-[180ms] ease-out hover:-translate-y-0.5 hover:bg-wood-800 active:scale-[.97]"
                 >
                   Mở bảng mã Melamine{" "}
@@ -100,13 +101,13 @@ export default function BaThanhBrandPage() {
         <section className="border-b border-forest-900/10 bg-[#f4f6f1] py-7">
           <div className="container-shell grid gap-5 sm:grid-cols-3">
             <div>
-              <p className="text-3xl font-extrabold text-forest-950">233</p>
+              <p className="text-3xl font-extrabold text-forest-950">{verifiedMelamineCodes}</p>
               <p className="mt-1 text-xs font-bold uppercase tracking-[.14em] text-slate-500">
                 mã đã xác minh từ index
               </p>
             </div>
             <div>
-              <p className="text-3xl font-extrabold text-forest-950">4</p>
+              <p className="text-3xl font-extrabold text-forest-950">{baThanhCategories.length}</p>
               <p className="mt-1 text-xs font-bold uppercase tracking-[.14em] text-slate-500">
                 nhóm bề mặt phát hiện
               </p>

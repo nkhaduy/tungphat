@@ -425,6 +425,42 @@ describe("supplier full-media provenance", () => {
     expect(Date.now() - startedAt).toBeLessThan(100);
   });
 
+  it("forwards supplier redirect cookies required by ASP.NET media endpoints", async () => {
+    const seenCookies: Array<string | undefined> = [];
+    const result = await fetchExactSupplierPreview(
+      "an-cuong",
+      "https://acshopping.ancuong.com/Upload/MaterialApp/example.jfif",
+      {
+        fetchImpl: async (_input, init) => {
+          seenCookies.push(new Headers(init?.headers).get("cookie") ?? undefined);
+          if (seenCookies.length === 1) {
+            return new Response(null, {
+              status: 302,
+              headers: {
+                location: "/Upload/MaterialApp/example.jfif?AspxAutoDetectCookieSupport=1",
+                "set-cookie": "AspxAutoDetectCookieSupport=1; path=/",
+              },
+            });
+          }
+          const requestHeaders = new Headers(init?.headers);
+          if (!requestHeaders.get("cookie") || !requestHeaders.get("accept")?.includes("image/pjpeg")) {
+            return new Response(null, { status: 406 });
+          }
+          return new Response(PNG_1X1, {
+            status: 200,
+            headers: { "content-type": "image/png", "content-length": String(PNG_1X1.length) },
+          });
+        },
+        retries: 0,
+        maxRedirects: 2,
+        timeoutMs: 100,
+      },
+    );
+
+    expect(result.status).toBe("downloaded");
+    expect(seenCookies).toEqual([undefined, "AspxAutoDetectCookieSupport=1"]);
+  });
+
   it("does not retry preview HTTP 429 and preserves Retry-After evidence", async () => {
     let requests = 0;
     const result = await fetchExactSupplierPreview("an-cuong", "https://ancuong.com/a.png", {
@@ -467,6 +503,30 @@ describe("supplier full-media provenance", () => {
     expect(bodyAccessed).toBe(false);
   });
 
+  it("allows an explicit larger source-media gate for fullsheet optimization", async () => {
+    const declaredBytes = 26 * 1024 * 1024;
+    const result = await fetchExactSupplierPreview(
+      "an-cuong",
+      "https://ancuong.com/products/products-full/a.png",
+      {
+        fetchImpl: async () =>
+          new Response(PNG_1X1, {
+            status: 200,
+            headers: {
+              "content-type": "image/png",
+              "content-length": String(declaredBytes),
+            },
+          }),
+        retries: 0,
+        maxRedirects: 0,
+        timeoutMs: 100,
+        maxBytes: 64 * 1024 * 1024,
+      },
+    );
+
+    expect(result.status).toBe("downloaded");
+  });
+
   it("atomically checkpoints preview rate limits and suppresses normal resume", async () => {
     const directory = fs.mkdtempSync(path.join(os.tmpdir(), "supplier-preview-cache-"));
     const cacheFile = path.join(directory, "preview.json");
@@ -500,6 +560,48 @@ describe("supplier full-media provenance", () => {
     fs.rmSync(directory, { recursive: true, force: true });
   });
 
+  it("retries cached transient preview failures when explicitly refreshed", async () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), "supplier-preview-failed-cache-"));
+    const cacheFile = path.join(directory, "preview.json");
+    const requests = [{ supplier: "an-cuong" as const, sourceUrl: "https://ancuong.com/a.png" }];
+    await fetchExactSupplierPreviewsWithCache(requests, {
+      cacheFile,
+      fetchImpl: async () => {
+        throw new Error("temporary timeout");
+      },
+      concurrency: 1,
+      retries: 0,
+      maxRedirects: 0,
+      timeoutMs: 100,
+      minDelayMs: 0,
+    });
+
+    let refreshedRequests = 0;
+    const refreshed = await fetchExactSupplierPreviewsWithCache(requests, {
+      cacheFile,
+      fetchImpl: async () => {
+        refreshedRequests += 1;
+        return new Response(PNG_1X1, {
+          status: 200,
+          headers: {
+            "content-type": "image/png",
+            "content-length": String(PNG_1X1.length),
+          },
+        });
+      },
+      concurrency: 1,
+      retries: 0,
+      maxRedirects: 0,
+      timeoutMs: 100,
+      minDelayMs: 0,
+      refreshFailed: true,
+    });
+
+    expect(refreshedRequests).toBe(1);
+    expect(refreshed.get("an-cuong|https://ancuong.com/a.png")?.status).toBe("downloaded");
+    fs.rmSync(directory, { recursive: true, force: true });
+  });
+
   it("caps the actual preview GET batch at three concurrent requests", async () => {
     const directory = fs.mkdtempSync(path.join(os.tmpdir(), "supplier-preview-concurrency-"));
     let active = 0;
@@ -528,6 +630,39 @@ describe("supplier full-media provenance", () => {
     });
 
     expect(maxActive).toBeLessThanOrEqual(3);
+    expect([...result.values()].every((item) => item.status === "downloaded")).toBe(true);
+    fs.rmSync(directory, { recursive: true, force: true });
+  });
+
+  it("honors an explicit higher concurrency ceiling for bounded bulk media", async () => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), "supplier-preview-custom-concurrency-"));
+    let active = 0;
+    let maxActive = 0;
+    const requests = Array.from({ length: 8 }, (_, index) => ({
+      supplier: "an-cuong" as const,
+      sourceUrl: `https://ancuong.com/custom-${index}.png`,
+    }));
+    const result = await fetchExactSupplierPreviewsWithCache(requests, {
+      cacheFile: path.join(directory, "preview.json"),
+      concurrency: 8,
+      maxConcurrency: 5,
+      retries: 0,
+      maxRedirects: 0,
+      timeoutMs: 500,
+      minDelayMs: 0,
+      fetchImpl: async () => {
+        active += 1;
+        maxActive = Math.max(maxActive, active);
+        await new Promise((resolve) => setTimeout(resolve, 30));
+        active -= 1;
+        return new Response(PNG_1X1, {
+          status: 200,
+          headers: { "content-type": "image/png", "content-length": String(PNG_1X1.length) },
+        });
+      },
+    });
+
+    expect(maxActive).toBe(5);
     expect([...result.values()].every((item) => item.status === "downloaded")).toBe(true);
     fs.rmSync(directory, { recursive: true, force: true });
   });

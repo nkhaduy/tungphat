@@ -15,12 +15,13 @@ import {
 
 describe("Ba Thanh catalogue repository", () => {
   it("loads every verified source code without collapsing suffix variants", () => {
-    expect(getBaThanhCodes()).toHaveLength(233);
+    expect(getBaThanhCodes()).toHaveLength(259);
+    expect(getBaThanhCode("bt171ev")?.codeNormalized).toBe("BT171EV");
     expect(getBaThanhCode("sc-018m")?.codeNormalized).toBe("SC018M");
     expect(getBaThanhCode("sc-018mw")?.codeNormalized).toBe("SC018MW");
   });
 
-  it("keeps the four discovered categories and their verified counts", () => {
+  it("keeps every discovered category and its verified counts", () => {
     expect(
       baThanhCategories.map((category) => [category.slug, category.count]),
     ).toEqual([
@@ -28,6 +29,7 @@ describe("Ba Thanh catalogue repository", () => {
       ["don-sac", 62],
       ["van-da", 13],
       ["van-vai", 5],
+      ["khac", 26],
     ]);
   });
 
@@ -86,12 +88,11 @@ describe("Ba Thanh SEO policy", () => {
     );
   });
 
-  it("creates self-referencing code metadata and noindexes thin records", () => {
+  it("points legacy code metadata at the canonical Mã màu route and noindexes it", () => {
     const ready = getBaThanhCode("bt-111")!;
     const thin = getBaThanhCode("bt-100")!;
-    expect(buildBaThanhCodeMetadata(ready).alternates?.canonical).toBe(
-      "https://mdftungphat.com/ma-mau-melamine/ba-thanh/bt-111/",
-    );
+    expect(buildBaThanhCodeMetadata(ready).alternates?.canonical).toBe("https://mdftungphat.com/catalogue/ba-thanh/melamine/bt111/");
+    expect(buildBaThanhCodeMetadata(ready).robots).toEqual({ index: false, follow: true });
     expect(buildBaThanhCodeMetadata(thin).robots).toEqual({
       index: false,
       follow: true,
@@ -112,10 +113,10 @@ describe("Ba Thanh SEO policy", () => {
 
   it("returns stable brand, hub, category and READY_TO_INDEX sitemap paths only", () => {
     const paths = getBaThanhSitemapPaths();
-    expect(paths).toHaveLength(12);
+    expect(paths).toHaveLength(9);
     expect(paths).toContain("/thuong-hieu/ba-thanh/");
-    expect(paths).toContain("/ma-mau-melamine/ba-thanh/van-go/");
-    expect(paths).toContain("/ma-mau-melamine/ba-thanh/bt-111/");
+    expect(paths).toContain("/catalogue/ba-thanh/melamine/");
+    expect(paths).toContain("/catalogue/ba-thanh/melamine/bt111/");
     expect(paths).not.toContain("/ma-mau-melamine/ba-thanh/bt-110/");
     expect(paths.every((path) => !path.includes("?"))).toBe(true);
   });

@@ -2,7 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Copy } from "lucide-react";
 import type { SupplierColorCode } from "@/lib/catalog/types";
-import { humanizeCatalogLabel } from "@/lib/catalog/ui";
+import {
+  formatCatalogCardTaxonomy,
+  formatCatalogCardTitle,
+} from "@/lib/catalog/ui";
 
 export type ColorCardRecord = Pick<
   SupplierColorCode,
@@ -55,10 +58,17 @@ export function ColorCodeCard({
                 className="break-words text-lg font-extrabold tracking-tight text-forest-950"
                 translate="no"
               >
-                {record.displayName}
+                {formatCatalogCardTitle({
+                  supplierId: "ba-thanh",
+                  code: record.codeNormalized,
+                  name: record.displayName,
+                })}
               </h3>
               <p className="mt-1 text-xs font-semibold uppercase tracking-[.12em] text-slate-500">
-                {humanizeCatalogLabel(record.patternGroup || record.category)}
+                {formatCatalogCardTaxonomy({
+                  category: record.category,
+                  group: record.patternGroup,
+                })}
               </p>
             </div>
             <ArrowUpRight

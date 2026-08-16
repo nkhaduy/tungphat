@@ -23,7 +23,9 @@ export const metadata: Metadata = createPageMetadata({
   title: "Mã màu Melamine Ba Thanh – Bảng màu và tra mã nhanh",
   description:
     "Tra cứu bảng màu Melamine Ba Thanh theo mã, nhóm vân gỗ, đơn sắc, vân đá và vân vải. Gửi mã cho Tùng Phát kiểm tra ván, cắt, dán cạnh và CNC.",
-  path: "/ma-mau-melamine/ba-thanh/",
+  path: "/catalogue/ba-thanh/melamine/",
+  noIndex: true,
+  followWhenNoIndex: true,
 });
 
 const records: ColorCardRecord[] = getBaThanhCodes().map(
@@ -48,7 +50,7 @@ const records: ColorCardRecord[] = getBaThanhCodes().map(
 const featuredCodes = getBaThanhHubFeaturedCodes();
 const schema = buildBaThanhCollectionSchema({
   name: "Bảng mã Melamine Ba Thanh",
-  path: "/ma-mau-melamine/ba-thanh/",
+  path: "/catalogue/ba-thanh/melamine/",
   items: getBaThanhCodes(),
 });
 
@@ -71,9 +73,9 @@ export default function BaThanhMelamineHubPage() {
               ]}
             />
             <div className="mt-4 max-w-4xl">
-              <p className="eyebrow">Catalogue tra cứu</p>
+              <p className="eyebrow">Mã màu tra cứu</p>
               <h1 className="mt-3 text-balance text-3xl font-extrabold leading-tight tracking-[-.035em] text-forest-950 sm:text-4xl lg:text-5xl">
-                Bảng mã Melamine Ba Thanh
+                Mã màu Melamine Ba Thanh
               </h1>
               <p className="mt-3 max-w-3xl text-pretty text-sm leading-7 text-slate-700 sm:text-base">
                 Tìm nhanh theo mã hoặc nhóm bề mặt. Gửi mã cho Tùng Phát để kiểm

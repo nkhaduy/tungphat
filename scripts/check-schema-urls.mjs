@@ -41,21 +41,21 @@ const FORBIDDEN_SCHEMA_KEYS = new Set([
 
 const EXPECTED = {
   metadataHash:
-    "f4b49ef0fb3f04d56c59be9d4e580746e416f0e7cb241a40f722a4583c318eca",
+    "157d948ff3af33d98c9290d2bb4ed4b4f7379fb9314a75c909f6f2a4a463b9f2",
   visibleTextHash:
-    "24206d6d8b987523a8e8e466b54934f00e47635b61560d8b0b75f770c755fcdc",
+    "1f1433ac02361bb021ec5d796f0083d002790276dc8cd4afa32499cf90e39aff",
   schemaShapeHash:
-    "c3b00d959e1b24668ef93e9693b8e78f68980b828db8fababa033e3e5073da79",
+    "c2225de70ae6d94d6f24598755bc43b762713409cab389f134122c5fdeaff4ef",
   schemaTypeHash:
-    "21abfd57601bd30ebd21b5876bbdd97d817cd93402f48d39447f76fdc6d99d7b",
+    "1e35135eee6e55bcfa9116ed6acbf11bbc2650bddd39a878009e29f14a6f8cc9",
   externalUrlHash:
-    "2bf0757f5172bf2103f07ee3b8f225a2af3cd7b2ec1bbb8e0cc191853c2cd184",
+    "bb35f131f3a1a05afbd47f477642f63e9868cef656973877d7d96c372eb524c8",
   assetUrlHash:
-    "1a4cb68507e4d4317605b88ff4cd3cbdb4c3a30ed2bb0b8ffd98788e1a349b04",
+    "5369b1e28867947f6afb1f629ec1aa1e4fd2b3cc7364611a1c6d9e272f088d2e",
   sitemapHash:
-    "0b386e70b262fd2274dab0335a677ee69adba9c53a705da11d3fd03b5a3fe8df",
+    "0e9bdd0d780ca4f36d8930309345c3e0734f7f1ce345f643d1439c8218376a0d",
   protectedFileHash:
-    "aafb33112c1e650fb4b305a37d5d0496480fa3183ba5969fd72e26ec48933469",
+    "d2ee155005687638daf3a5f8ba2b4e16fa36757473e46bcc9e13676adecd59c8",
   quoteApp: {
     fileCount: 0,
     bytes: 0,

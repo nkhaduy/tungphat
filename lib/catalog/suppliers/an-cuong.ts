@@ -1,12 +1,12 @@
-import { isAnCuongCuratedCategory } from "../an-cuong-categories";
 import { supplierRegistry } from "../core/registry";
 import type { SupplierCatalogAdapter } from "../core/types";
-import { getMaterialTaxonomyOptions, getSupplierSearchIndex } from "./search-index";
+import { getSupplierSearchIndex } from "./search-index";
 
 const definition = supplierRegistry.get("an-cuong");
 if (!definition) throw new Error("An Cuong supplier definition is missing");
 
 const entries = getSupplierSearchIndex().records.filter((record) => record.supplierId === "an-cuong");
+const materials = [...new Set(entries.map((entry) => entry.category).filter(Boolean))] as string[];
 
 export const anCuongAdapter: SupplierCatalogAdapter = {
   definition,
@@ -19,16 +19,20 @@ export const anCuongAdapter: SupplierCatalogAdapter = {
         supplierId: definition.id,
         path: definition.cataloguePath,
         kind: "catalogue" as const,
-        indexable: false,
+        indexable: true,
       },
-      ...getMaterialTaxonomyOptions(entries)
-        .filter((item) => isAnCuongCuratedCategory(item.slug))
-        .map((item) => ({
+      ...materials.map((material) => ({
           supplierId: definition.id,
-          path: `${definition.cataloguePath}${item.slug}/`,
+          path: `${definition.cataloguePath}${material}/`,
           kind: "category" as const,
-          indexable: item.count > 0,
+          indexable: true,
         })),
+      ...entries.map((entry) => ({
+        supplierId: definition.id,
+        path: entry.canonicalRoute,
+        kind: "detail" as const,
+        indexable: Boolean(entry.indexable),
+      })),
     ];
   },
   getSitemapEntries() {

@@ -8,7 +8,6 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
 import { getSupplierSearchEntries } from "@/lib/catalog/suppliers/search";
 import { getSupplierTotals } from "@/lib/catalog/suppliers/search-index";
-import { getThanhThuyCatalog } from "@/lib/thanh-thuy";
 import {
   createPageMetadata,
   PHONE_DISPLAY,
@@ -17,38 +16,37 @@ import {
 } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "Tra cứu mã vật liệu và catalogue tại Tùng Phát",
+  title: "Mã màu vật liệu tại Tùng Phát",
   description:
-    "Tìm nhanh mã Melamine, sản phẩm và catalogue Thanh Thuỳ, Ba Thanh, An Cường theo mã, loại bề mặt hoặc thương hiệu.",
+    "Tìm nhanh mã màu, tên màu hoặc thương hiệu An Cường, Thanh Thuỳ và Ba Thanh theo bề mặt thực tế.",
   path: "/catalogue/",
 });
 
 function supplierCards() {
   const totals = getSupplierTotals();
-  const thanhThuyPublicProducts = getThanhThuyCatalog().products.length;
   return [{
     name: "Thanh Thuỳ",
-    count: `${totals["thanh-thuy"].total} mục tra cứu · ${totals["thanh-thuy"].sku} mã nhập · ${thanhThuyPublicProducts} sản phẩm công khai`,
+    count: `${totals["thanh-thuy"].colorCodes} mã màu`,
     description:
-      "Phân biệt mã sản phẩm có thể tra cứu với các dòng và tài liệu nguồn-only trong bộ nhập đầy đủ.",
-    href: "/thuong-hieu/thanh-thuy/",
-    action: "Catalogue Thanh Thuỳ",
+      "Tra cứu mã bề mặt Thanh Thuỳ theo màu, vân và loại vật liệu.",
+    href: "/catalogue/thanh-thuy/",
+    action: "Mở mã màu Thanh Thuỳ",
   },
   {
     name: "Ba Thanh",
-    count: `${totals["ba-thanh"].total} mục nhập · ${totals["ba-thanh"].retainedMelamineCodes ?? 0} mã Melamine đang có trang chi tiết`,
+    count: `${totals["ba-thanh"].colorCodes} mã màu`,
     description:
-      `Tra ${totals["ba-thanh"].sku} mã sản phẩm cùng các dòng và tài liệu; mã chưa có trang chi tiết mở về nhóm phù hợp.`,
-    href: "/ma-mau-melamine/ba-thanh/",
-    action: "Catalogue Ba Thanh",
+      "Tra cứu Melamine và Laminate Ba Thanh theo mã màu/bề mặt thực tế.",
+    href: "/catalogue/ba-thanh/",
+    action: "Mở mã màu Ba Thanh",
   },
   {
     name: "An Cường",
-    count: `${totals["an-cuong"].total} mục tra cứu · ${totals["an-cuong"].sku} mã vật liệu`,
+    count: `${totals["an-cuong"].colorCodes} mã màu`,
     description:
-      "Tra mã, dòng sản phẩm và tài liệu từ bộ nhập đầy đủ; mục nguồn-only không tạo trang sản phẩm mỏng.",
+      "Tra cứu Melamine, Laminate, Acrylic, Veneer, PPET/PVC, Mặt Top và mã cạnh An Cường.",
     href: "/catalogue/an-cuong/",
-    action: "Catalogue An Cường",
+    action: "Mở mã màu An Cường",
   }] as const;
 }
 
@@ -58,7 +56,7 @@ export default function SupplierCataloguePage() {
 
   return (
     <SiteShell
-      thirdMobileAction={{ href: "#tra-cuu-catalogue", label: "Tra mã" }}
+      thirdMobileAction={{ href: "#tra-cuu-catalogue", label: "Mã màu" }}
     >
       <section
         id="tra-cuu-catalogue"
@@ -66,15 +64,15 @@ export default function SupplierCataloguePage() {
       >
         <PageContainer>
           <Breadcrumbs
-            items={[{ label: "Trang chủ", href: "/" }, { label: "Catalogue" }]}
+            items={[{ label: "Trang chủ", href: "/" }, { label: "Mã màu" }]}
           />
           <div className="mt-4 max-w-4xl">
-            <p className="eyebrow">Tra cứu theo nhu cầu thực tế</p>
+            <p className="eyebrow">Tra cứu theo mã thực tế</p>
             <h1 className="mt-4 text-balance text-3xl font-extrabold leading-tight tracking-[-.035em] text-forest-950 sm:text-4xl lg:text-5xl">
-              Tra cứu mã vật liệu và catalogue
+              Mã màu vật liệu
             </h1>
             <p className="mt-4 max-w-3xl text-pretty text-sm leading-7 text-slate-700 sm:text-base">
-              Tìm nhanh theo mã, loại bề mặt hoặc thương hiệu. Liên hệ Tùng Phát
+              Tìm nhanh mã màu, tên màu hoặc thương hiệu. Liên hệ Tùng Phát
               để kiểm tra cốt ván, quy cách và tình trạng hàng thực tế.
             </p>
           </div>
@@ -88,8 +86,8 @@ export default function SupplierCataloguePage() {
         <PageContainer>
           <SectionHeader
             eyebrow="Theo nhà cung cấp"
-            title="Mở catalogue riêng khi cần xem sâu hơn"
-            description="Tìm mã ở đầu trang trước. Các trang nhà cung cấp giữ nguyên nguồn dữ liệu, chính sách index và phạm vi thông tin đã xác minh."
+            title="Mở bảng mã riêng theo nhà cung cấp"
+            description="Tìm mã ở đầu trang trước. Mỗi nhà cung cấp giữ đúng mã, bề mặt và ảnh nguồn đã xác minh."
           />
           <div className="mt-9 grid gap-4 lg:grid-cols-3">
             {suppliers.map((supplier) => (
@@ -159,11 +157,11 @@ export default function SupplierCataloguePage() {
           </div>
           <div className="border border-forest-900/10 bg-white p-6 shadow-sm sm:p-8">
             <h2 className="text-xl font-extrabold text-forest-950">
-              Chưa chắc nên chọn catalogue nào?
+              Chưa chắc nên chọn mã màu nào?
             </h2>
             <p className="mt-3 text-sm leading-7 text-slate-700">
-              Gửi nhu cầu, mã đang có hoặc ảnh tham khảo để Tùng Phát hỗ trợ đối
-              chiếu trước khi báo giá.
+              Gửi mã đang có hoặc ảnh tham khảo để Tùng Phát hỗ trợ đối chiếu
+              trước khi báo giá.
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
               <a

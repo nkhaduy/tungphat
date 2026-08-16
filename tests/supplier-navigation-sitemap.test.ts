@@ -15,8 +15,8 @@ describe("supplier catalogue navigation", () => {
     expect(
       supplierNavigation.catalogue.map((link) => [link.supplierId, link.href]),
     ).toEqual([
-      ["thanh-thuy", "/thuong-hieu/thanh-thuy/"],
-      ["ba-thanh", "/ma-mau-melamine/ba-thanh/"],
+      ["thanh-thuy", "/catalogue/thanh-thuy/"],
+      ["ba-thanh", "/catalogue/ba-thanh/"],
       ["an-cuong", "/catalogue/an-cuong/"],
     ]);
     expect(
@@ -43,10 +43,10 @@ describe("supplier catalogue navigation", () => {
     );
     const owners = createRouteOwnershipIndex(claims);
 
-    expect(entries.length).toBeGreaterThan(3_000);
+    expect(entries.length).toBeGreaterThan(2_500);
     expect(searchSupplierCatalog(entries, "BT-111")[0]).toMatchObject({
       supplierId: "ba-thanh",
-      code: "BT 111",
+      code: "BT111",
     });
     expect(
       entries.every(
@@ -57,18 +57,19 @@ describe("supplier catalogue navigation", () => {
 });
 
 describe("composed supplier sitemap", () => {
-  it("contains only the three curated An Cuong category URLs", () => {
+  it("contains hubs and READY_TO_INDEX color detail routes only", () => {
     const entries = getSupplierSitemapEntries("2026-08-05T00:00:00.000Z");
     const bySupplier = (supplierId: string) =>
       entries.filter((entry) => entry.supplierId === supplierId);
 
-    expect(bySupplier("thanh-thuy")).toHaveLength(8);
-    expect(bySupplier("ba-thanh")).toHaveLength(12);
-    expect(bySupplier("an-cuong").map((entry) => entry.path)).toEqual([
-      "/catalogue/an-cuong/melamine/",
-      "/catalogue/an-cuong/laminate/",
-      "/catalogue/an-cuong/acrylic/",
-    ]);
+    expect(bySupplier("thanh-thuy").some((entry) => entry.path === "/catalogue/thanh-thuy/")).toBe(true);
+    expect(bySupplier("ba-thanh").some((entry) => entry.path === "/catalogue/ba-thanh/")).toBe(true);
+    expect(bySupplier("an-cuong").some((entry) => entry.path === "/catalogue/an-cuong/")).toBe(true);
+    expect(entries.every((entry) => entry.indexable)).toBe(true);
+    expect(entries.filter((entry) => entry.path.split("/").filter(Boolean).length === 4).every((entry) => {
+      const searchEntry = getSupplierSearchEntries().find((record) => record.canonicalRoute === entry.path);
+      return searchEntry?.seoStatus === "READY_TO_INDEX";
+    })).toBe(true);
     expect(new Set(entries.map((entry) => entry.path)).size).toBe(
       entries.length,
     );

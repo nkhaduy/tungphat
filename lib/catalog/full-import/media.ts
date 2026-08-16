@@ -306,6 +306,7 @@ export type ExactSupplierPreviewOptions = {
   retries?: number;
   maxRedirects?: number;
   timeoutMs?: number;
+  maxBytes?: number;
 };
 
 function parseContentLength(response: Response): number | "unknown" {
@@ -330,8 +331,8 @@ async function readResponseBytesWithLimit(
       const chunk = Buffer.from(next.value);
       total += chunk.length;
       if (total > maxBytes) {
-        await reader.cancel("25 MiB per-file gate exceeded");
-        throw new Error("Supplier preview exceeds the 25 MiB per-file gate");
+        await reader.cancel("per-file gate exceeded");
+        throw new Error(`Supplier preview exceeds the ${Math.round(maxBytes / 1024 / 1024)} MiB per-file gate`);
       }
       chunks.push(chunk);
     }
@@ -353,11 +354,24 @@ export async function fetchExactSupplierPreview(
   const retries = Math.max(0, Math.min(options.retries ?? 2, 4));
   const maxRedirects = Math.max(0, Math.min(options.maxRedirects ?? 5, 10));
   const timeoutMs = Math.max(1, options.timeoutMs ?? 20_000);
+  const maxBytes = Math.max(1, options.maxBytes ?? 25 * 1024 * 1024);
   const deadline = Date.now() + timeoutMs;
   const controller = new AbortController();
   const deadlineTimer = setTimeout(() => controller.abort(), timeoutMs);
   const redirectChain: string[] = [];
   const visited = new Set([sourceUrl]);
+  const cookies = new Map<string, string>();
+  const cookieHeader = () => [...cookies].map(([name, value]) => `${name}=${value}`).join("; ");
+  const rememberCookies = (response: Response) => {
+    const setCookie = response.headers.get("set-cookie");
+    if (!setCookie) return;
+    for (const cookie of setCookie.split(/,(?=[^;,]+=)/)) {
+      const [pair] = cookie.split(";", 1);
+      const separator = pair.indexOf("=");
+      if (separator <= 0) continue;
+      cookies.set(pair.slice(0, separator).trim(), pair.slice(separator + 1).trim());
+    }
+  };
   let currentUrl = sourceUrl;
   try {
     for (let redirects = 0; ; redirects += 1) {
@@ -367,13 +381,15 @@ export async function fetchExactSupplierPreview(
         const remaining = deadline - Date.now();
         if (remaining <= 0) throw new Error(`Supplier preview deadline exceeded: ${sourceUrl}`);
         try {
+          const cookie = cookieHeader();
           response = await fetchImpl(currentUrl, {
             method: "GET",
             redirect: "manual",
             signal: controller.signal,
             headers: {
-              accept: "image/avif,image/webp,image/png,image/jpeg,image/gif",
+              accept: "image/avif,image/webp,image/png,image/jpeg,image/pjpeg,image/gif,*/*;q=0.8",
               "user-agent": "TungPhat-Supplier-Preview-Importer/1.0 (+https://mdftungphat.com)",
+              ...(cookie ? { cookie } : {}),
             },
           });
         } catch (error) {
@@ -388,13 +404,15 @@ export async function fetchExactSupplierPreview(
         if (delay > 0) await new Promise((resolve) => setTimeout(resolve, delay));
       }
       if (!response) throw lastError instanceof Error ? lastError : new Error(`Supplier preview GET failed: ${currentUrl}`);
+      rememberCookies(response);
       const contentLength = response.status === 429 ? "unknown" : parseContentLength(response);
+      const responseMime = response.headers.get("content-type")?.split(";", 1)[0]?.trim().toLowerCase();
       const baseOrigin: SupplierMediaOrigin = {
         sourceUrl,
         finalUrl: currentUrl,
         redirectChain: [...redirectChain],
         httpStatus: response.status,
-        mimeType: response.headers.get("content-type")?.split(";", 1)[0]?.trim().toLowerCase(),
+        mimeType: responseMime === "image/pjpeg" ? "image/jpeg" : responseMime,
         contentLength,
       };
       if (response.status === 429) {
@@ -422,8 +440,8 @@ export async function fetchExactSupplierPreview(
       }
       if (!response.ok) throw new Error(`Supplier preview GET returned HTTP ${response.status}`);
       if (contentLength === "unknown") throw new Error("Supplier preview Content-Length is unknown; no body was read");
-      if (contentLength > 25 * 1024 * 1024) throw new Error("Supplier preview exceeds the 25 MiB per-file gate");
-      const bytes = await readResponseBytesWithLimit(response, 25 * 1024 * 1024);
+      if (contentLength > maxBytes) throw new Error(`Supplier preview exceeds the ${Math.round(maxBytes / 1024 / 1024)} MiB per-file gate`);
+      const bytes = await readResponseBytesWithLimit(response, maxBytes);
       const info = inspectMediaBytes(bytes, baseOrigin.mimeType);
       return {
         status: "downloaded",
@@ -457,8 +475,10 @@ export async function fetchExactSupplierPreviewsWithCache(
   options: ExactSupplierPreviewOptions & {
     cacheFile: string;
     concurrency?: number;
+    maxConcurrency?: number;
     minDelayMs?: number;
     refreshRateLimited?: boolean;
+    refreshFailed?: boolean;
     offline?: boolean;
   },
 ): Promise<Map<string, ExactSupplierPreviewResult>> {
@@ -469,7 +489,10 @@ export async function fetchExactSupplierPreviewsWithCache(
   const unique = new Map(requests.map((request) => [`${request.supplier}|${request.sourceUrl}`, request]));
   const pending = [...unique].sort(([left], [right]) => left.localeCompare(right));
   const results = new Map<string, ExactSupplierPreviewResult>();
-  const concurrency = Math.max(1, Math.min(options.concurrency ?? 3, 3, pending.length || 1));
+  const concurrency = Math.max(
+    1,
+    Math.min(options.concurrency ?? 3, options.maxConcurrency ?? 3, 24, pending.length || 1),
+  );
   const minDelayMs = Math.max(0, options.minDelayMs ?? 0);
   let cursor = 0;
   let requestGate = Promise.resolve();
@@ -488,7 +511,13 @@ export async function fetchExactSupplierPreviewsWithCache(
     while (cursor < pending.length) {
       const [key, request] = pending[cursor++]!;
       const cachedResult = cached.get(key);
-      if (cachedResult && !(cachedResult.status === "rate-limited" && options.refreshRateLimited)) {
+      const refreshCached =
+        cachedResult?.status === "rate-limited"
+          ? options.refreshRateLimited
+          : cachedResult?.status === "failed"
+            ? options.refreshFailed
+            : false;
+      if (cachedResult && !refreshCached) {
         const { status, ...origin } = cachedResult;
         results.set(key, { status, origin });
         continue;
@@ -507,6 +536,8 @@ export async function fetchExactSupplierPreviewsWithCache(
         results.set(key, result);
         if (result.status === "rate-limited") {
           cached.set(key, { status: "rate-limited", ...result.origin });
+          writePreviewCheckpoint(options.cacheFile, cached);
+        } else if (cached.delete(key)) {
           writePreviewCheckpoint(options.cacheFile, cached);
         }
       } catch (error) {

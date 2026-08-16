@@ -16,19 +16,17 @@ import { materialTaxonomyOptionsForSupplier } from "@/lib/catalog/material-taxon
 import {
   findExactCatalogCodeMatch,
   findExactSupplierMatch,
-  humanizeCatalogLabel,
+  formatCatalogCardTaxonomy,
+  formatCatalogCardTitle,
 } from "@/lib/catalog/ui";
 import {
   buildCatalogSearchParams,
   isCatalogFilterStateActive,
   parseCatalogUrlState,
 } from "@/lib/catalog/url-state";
+import { AutoLoadMore } from "@/components/catalog/shared/AutoLoadMore";
 
-const kindLabels: Record<CatalogSearchEntry["kind"], string> = {
-  product: "Sản phẩm",
-  "color-code": "Mã màu",
-  "catalogue-item": "Mục catalogue",
-};
+const PAGE_SIZE = 48;
 
 type PrimarySelection = {
   value: string;
@@ -51,6 +49,7 @@ export function SupplierCatalogSearch({
   const [type, setType] = useState<CatalogSearchIntent>("all");
   const [group, setGroup] = useState("");
   const [copyStatus, setCopyStatus] = useState("");
+  const [visibleLimit, setVisibleLimit] = useState(PAGE_SIZE);
   const deferredQuery = useDeferredValue(query);
   const primarySelections: PrimarySelection[] = useMemo(() => [
     ...materialTaxonomyOptionsForSupplier(entries, supplierId).map((option) => ({
@@ -72,6 +71,7 @@ export function SupplierCatalogSearch({
   const hasSearchIntent =
     isCatalogFilterStateActive(currentState) && type !== "supplier";
   const showSupplierDirectory = type === "supplier" && !query.trim();
+  const showAllResults = !query.trim() && !supplierId && type === "all" && !group;
 
   useEffect(() => {
     const restoreFromUrl = () => {
@@ -87,6 +87,10 @@ export function SupplierCatalogSearch({
     window.addEventListener("popstate", restoreFromUrl);
     return () => window.removeEventListener("popstate", restoreFromUrl);
   }, []);
+
+  useEffect(() => {
+    setVisibleLimit(PAGE_SIZE);
+  }, [group, query, supplierId, type]);
 
   useCatalogFilterRobots(hasSearchIntent || showSupplierDirectory);
 
@@ -136,7 +140,9 @@ export function SupplierCatalogSearch({
       ? supplierMatch
       : undefined;
   const visibleResults =
-    hasSearchIntent && !exactSupplier ? results.slice(0, 48) : featured;
+    (hasSearchIntent || showAllResults) && !exactSupplier
+      ? results.slice(0, visibleLimit)
+      : featured;
 
   function updateQuery(value: string) {
     setQuery(value);
@@ -179,11 +185,11 @@ export function SupplierCatalogSearch({
   return (
     <section aria-labelledby="supplier-search-title">
       <h2 id="supplier-search-title" className="sr-only">
-        Tìm mã vật liệu và catalogue
+        Tìm mã màu
       </h2>
       <div className="border border-forest-900/10 bg-white p-4 shadow-card sm:p-6">
         <label className="relative block">
-          <span className="sr-only">Tìm catalogue nhà cung cấp</span>
+          <span className="sr-only">Tìm mã màu, tên màu hoặc thương hiệu</span>
           <Search
             aria-hidden="true"
             className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-forest-900/55"
@@ -196,7 +202,7 @@ export function SupplierCatalogSearch({
             type="search"
             autoComplete="off"
             spellCheck={false}
-            placeholder="Tìm mã BT 111, tên sản phẩm hoặc thương hiệu"
+            placeholder="Tìm mã màu, tên màu hoặc thương hiệu"
             className="min-h-14 w-full border border-forest-900/20 bg-[#fbfaf6] py-3 pl-12 pr-4 text-base font-semibold text-forest-950 outline-none transition focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
           />
         </label>
@@ -208,7 +214,7 @@ export function SupplierCatalogSearch({
           <div
             role="group"
             aria-label="Chọn loại vật liệu"
-            className="-mx-1 mt-3 flex snap-x gap-2 overflow-x-auto px-1 pb-2 [scrollbar-width:thin]"
+            className="mt-3 flex flex-wrap gap-2 pb-1"
           >
             {primarySelections.map((selection) => {
               const active = activeSelection === selection.value;
@@ -218,7 +224,7 @@ export function SupplierCatalogSearch({
                   type="button"
                   aria-pressed={active}
                   onClick={() => selectPrimary(selection)}
-                  className={`pressable min-h-11 shrink-0 snap-start border px-4 text-sm font-extrabold ${active ? "border-forest-900 bg-forest-900 text-white" : "border-forest-900/15 bg-white text-forest-950 hover:border-wood-500"}`}
+                  className={`pressable min-h-11 min-w-0 max-w-full whitespace-normal border px-4 text-left text-sm font-extrabold ${active ? "border-forest-900 bg-forest-900 text-white" : "border-forest-900/15 bg-white text-forest-950 hover:border-wood-500"}`}
                 >
                   {selection.label}
                 </button>
@@ -277,7 +283,7 @@ export function SupplierCatalogSearch({
             </p>
           </div>
           <span className="mt-4 inline-flex min-h-11 shrink-0 items-center gap-2 text-sm font-extrabold text-forest-950 sm:mt-0">
-            Mở catalogue <ArrowRight size={16} aria-hidden="true" />
+            Mở mã màu <ArrowRight size={16} aria-hidden="true" />
           </span>
         </Link>
       ) : showSupplierDirectory ? (
@@ -295,7 +301,7 @@ export function SupplierCatalogSearch({
                 {supplier.displayName}
               </h3>
               <span className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-950">
-                Mở catalogue <ArrowRight size={16} aria-hidden="true" />
+                Mở mã màu <ArrowRight size={16} aria-hidden="true" />
               </span>
             </Link>
           ))}
@@ -310,12 +316,12 @@ export function SupplierCatalogSearch({
                   : "Mã Melamine được quan tâm"}
               </p>
               <h3 className="mt-2 text-2xl font-extrabold text-forest-950">
-                {hasSearchIntent
+                {hasSearchIntent || showAllResults
                   ? `${results.length} mục phù hợp`
                   : "Bắt đầu từ các mã có dữ liệu đầy đủ"}
               </h3>
             </div>
-            {!hasSearchIntent ? (
+            {!hasSearchIntent && !showAllResults ? (
               <Link
                 href="/ma-mau-melamine/ba-thanh/"
                 className="inline-flex min-h-11 items-center gap-2 text-sm font-extrabold text-forest-950 hover:text-wood-600"
@@ -327,7 +333,11 @@ export function SupplierCatalogSearch({
           </div>
 
           {visibleResults.length ? (
-            <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div
+              role="region"
+              aria-label="Kết quả mã màu"
+              className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
+            >
               {visibleResults.map((entry) => (
                 <article
                   key={entry.id ?? `${entry.supplierId}:${entry.code}:${entry.canonicalRoute}`}
@@ -350,33 +360,20 @@ export function SupplierCatalogSearch({
                       />
                     ) : (
                       <span className="grid h-full place-items-center px-3 text-center text-xs font-bold text-slate-600">
-                        {entry.supplierName}
+                        Nguồn chưa cung cấp ảnh màu
                       </span>
                     )}
                   </Link>
                   <div className="flex flex-1 flex-col p-4">
-                    <div className="flex flex-wrap gap-2 text-[.65rem] font-extrabold uppercase tracking-[.12em]">
-                      <span className="text-wood-600">
-                        {entry.supplierName}
-                      </span>
-                      <span className="text-slate-500">
-                      {entry.recordType === "family" ? "Dòng sản phẩm" : entry.recordType === "document" ? "Tài liệu" : kindLabels[entry.kind]}
-                      </span>
-                    </div>
-                    {entry.code ? (
-                      <p className="mt-3 break-words font-mono text-lg font-extrabold text-forest-950" translate="no">
-                        {entry.code}
-                      </p>
-                    ) : null}
-                    <h4 className="mt-1 line-clamp-2 text-sm font-bold leading-6 text-slate-700">
-                      <Link href={entry.canonicalRoute}>{entry.name}</Link>
-                    </h4>
-                    <p className="mt-3 text-xs leading-5 text-slate-500">
-                      {[entry.category, entry.series, entry.group]
-                        .filter(Boolean)
-                        .map((value) => humanizeCatalogLabel(value!))
-                        .join(" · ")}
+                    <p className="text-[.65rem] font-extrabold uppercase tracking-[.12em] text-wood-600">
+                      {entry.supplierName}
                     </p>
+                    <h4 className="mt-2 line-clamp-2 text-lg font-extrabold leading-6 text-forest-950">
+                      <Link href={entry.canonicalRoute} translate="no">
+                        {formatCatalogCardTitle(entry)}
+                      </Link>
+                    </h4>
+                    <p className="mt-3 text-xs leading-5 text-slate-500">{formatCatalogCardTaxonomy(entry)}</p>
                     <div className={`mt-auto grid gap-2 pt-5 ${entry.code ? "grid-cols-2" : "grid-cols-1"}`}>
                       {entry.code ? (
                         <button
@@ -386,7 +383,7 @@ export function SupplierCatalogSearch({
                           className="pressable inline-flex min-h-11 items-center justify-center gap-2 border border-forest-900/15 px-3 text-xs font-extrabold text-forest-950 hover:border-wood-500"
                         >
                           <Copy size={15} aria-hidden="true" />
-                          Copy
+                          Sao chép mã
                         </button>
                       ) : null}
                       <Link
@@ -416,6 +413,14 @@ export function SupplierCatalogSearch({
               </p>
             </div>
           )}
+          {(hasSearchIntent || showAllResults) && visibleResults.length < results.length ? (
+            <AutoLoadMore
+              hasMore={visibleResults.length < results.length}
+              onLoadMore={() => setVisibleLimit((value) => value + PAGE_SIZE)}
+              remaining={results.length - visibleResults.length}
+              pageSize={PAGE_SIZE}
+            />
+          ) : null}
         </>
       )}
 

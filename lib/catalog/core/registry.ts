@@ -5,9 +5,9 @@ export const supplierDefinitions: SupplierDefinition[] = [
     id: "thanh-thuy",
     displayName: "Thanh Thuỳ",
     brandName: "Thanh Thuỳ",
-    recordKind: "product",
+    recordKind: "color-code",
     brandPath: "/thuong-hieu/thanh-thuy/",
-    cataloguePath: "/thuong-hieu/thanh-thuy/",
+    cataloguePath: "/catalogue/thanh-thuy/",
   },
   {
     id: "ba-thanh",
@@ -15,17 +15,25 @@ export const supplierDefinitions: SupplierDefinition[] = [
     brandName: "Ba Thanh",
     recordKind: "color-code",
     brandPath: "/thuong-hieu/ba-thanh/",
-    cataloguePath: "/ma-mau-melamine/ba-thanh/",
+    cataloguePath: "/catalogue/ba-thanh/",
   },
   {
     id: "an-cuong",
     displayName: "An Cường",
     brandName: "An Cường",
-    recordKind: "catalogue-item",
+    recordKind: "color-code",
     brandPath: "/san-pham/an-cuong/",
     cataloguePath: "/catalogue/an-cuong/",
   },
 ];
+
+const supplierPriorityById = new Map(
+  supplierDefinitions.map((supplier, index) => [supplier.id, index]),
+);
+
+export function supplierPriority(id: SupplierId): number {
+  return supplierPriorityById.get(id) ?? supplierDefinitions.length;
+}
 
 export function createSupplierRegistry(definitions: SupplierDefinition[]) {
   const suppliers = new Map<SupplierId, SupplierDefinition>();
@@ -43,4 +51,3 @@ export function createSupplierRegistry(definitions: SupplierDefinition[]) {
 }
 
 export const supplierRegistry = createSupplierRegistry(supplierDefinitions);
-
