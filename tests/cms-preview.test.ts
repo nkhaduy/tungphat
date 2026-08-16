@@ -48,6 +48,18 @@ describe("CMS preview security and shell", () => {
     ]));
   });
 
+  it("allows Google Tag Manager telemetry through the production CSP", () => {
+    const config = JSON.parse(readFileSync("vercel.json", "utf8"));
+    const global = config.headers.find((rule: { source: string }) => rule.source === "/(.*)");
+    const csp = global?.headers.find(
+      (header: { key: string }) => header.key === "Content-Security-Policy",
+    )?.value;
+
+    expect(csp).toMatch(
+      /connect-src[^;]*https:\/\/www\.googletagmanager\.com(?:\s|;)/,
+    );
+  });
+
   it("validates, allowlists, limits and sanitizes in-memory drafts", () => {
     const draft = sanitizeCmsPreviewDraft({
       collection: "articles",

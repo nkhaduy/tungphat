@@ -587,6 +587,7 @@ describe("Ba Thanh full source accounting", () => {
       fs.mkdirSync(path.join(tempRoot, "data/catalogs"), { recursive: true });
       fs.mkdirSync(path.join(tempRoot, "public/catalog"), { recursive: true });
       fs.copyFileSync("data/catalogs/ba-thanh.json", path.join(tempRoot, "data/catalogs/ba-thanh.json"));
+      fs.copyFileSync("data/catalog-media-manifest.json", path.join(tempRoot, "data/catalog-media-manifest.json"));
       for (const filename of ["full-discovery.json", "discovered-codes.json", "discovered-laminate-codes.json"]) {
         fs.copyFileSync(path.join("data/imports/ba-thanh", filename), path.join(importDir, filename));
       }
@@ -607,8 +608,6 @@ describe("Ba Thanh full source accounting", () => {
         };
       });
       fs.writeFileSync(discoveryFixturePath, `${JSON.stringify(discoveryFixture, null, 2)}\n`);
-      fs.symlinkSync(path.join(process.cwd(), "public/catalog/ba-thanh"), path.join(tempRoot, "public/catalog/ba-thanh"));
-
       const first = await runBaThanhFullImport({ root: tempRoot });
       const firstFile = fs.readFileSync(path.join(importDir, "full-records.json"), "utf8");
       const discoveryPath = path.join(importDir, "full-discovery.json");

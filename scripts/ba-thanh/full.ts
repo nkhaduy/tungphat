@@ -4,6 +4,7 @@ import { pathToFileURL } from "node:url";
 import { buildCoverageSummary, checksumFullSourceManifest, validateFullSourceManifest } from "@/lib/catalog/full-import/manifest";
 import type { CatalogueRecord, DiscoveredSourceUrl, FullSourceManifest } from "@/lib/catalog/full-import/types";
 import type { SupplierColorCode } from "@/lib/catalog/types";
+import type { MediaManifest } from "@/scripts/media/core";
 import {
   buildBaThanhCatalogueRecords,
   buildBaThanhFullSourceManifest,
@@ -42,6 +43,18 @@ function writeJson(file: string, value: unknown) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(temporary, `${JSON.stringify(value, null, 2)}\n`);
   fs.renameSync(temporary, file);
+}
+
+function externalMediaPaths(root: string): Set<string> {
+  try {
+    const manifest = readJson<MediaManifest>(path.join(root, "data/catalog-media-manifest.json"));
+    return new Set([
+      ...manifest.entries.map((entry) => entry.logicalPath),
+      ...Object.keys(manifest.aliases),
+    ]);
+  } catch {
+    return new Set();
+  }
 }
 
 function recordChecksum(record: CatalogueRecord): string {
@@ -128,6 +141,7 @@ function validateArtifacts(options: {
   root: string;
 }): string[] {
   const errors: string[] = [];
+  const externalMedia = externalMediaPaths(options.root);
   const records = options.recordFile.records;
   const skuRecords = records.filter((record) => record.recordType === "sku");
   const melamine = skuRecords.filter((record) => record.productFamily === "Melamine");
@@ -159,7 +173,13 @@ function validateArtifacts(options: {
     for (const image of record.images) {
       if (image.rightsStatus !== "UNCONFIRMED") errors.push(`${recordId(record)}: media rights status changed`);
       if (image.localPath && !image.localPath.startsWith("/catalog/ba-thanh/")) errors.push(`${recordId(record)}: invalid local media path`);
-      else if (image.localPath && !fs.existsSync(path.join(options.root, "public", image.localPath.replace(/^\//, "")))) errors.push(`${recordId(record)}: local media missing ${image.localPath}`);
+      else if (image.localPath) {
+        const logicalPath = image.localPath.replace(/^\//, "");
+        const localPath = path.join(options.root, "public", logicalPath);
+        if (!fs.existsSync(localPath) && !externalMedia.has(logicalPath)) {
+          errors.push(`${recordId(record)}: media missing locally and from external manifest ${image.localPath}`);
+        }
+      }
       else if (!image.localPath && record.seoStatus === "READY_TO_INDEX") errors.push(`${recordId(record)}: indexable record has source-only media`);
     }
   }
