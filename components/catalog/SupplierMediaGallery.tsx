@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 type GalleryImage = {
   src: string;
   thumbnailSrc?: string;
@@ -49,7 +50,7 @@ export function SupplierMediaGallery({ images }: { images: GalleryImage[] }) {
         <Image src={images[0].thumbnailSrc || images[0].src} alt={images[0].alt} fill priority sizes="(max-width: 1024px) 100vw, 48vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.015] motion-reduce:transition-none" />
         <span className="absolute bottom-3 right-3 bg-forest-950/90 px-3 py-2 text-xs font-extrabold text-white">Mở thư viện {images.length} ảnh</span>
       </button>
-      {open && current ? (
+      {open && current ? createPortal(
         <div role="dialog" aria-modal="true" aria-label={`Thư viện ảnh, ${index + 1} trên ${images.length}`} className="fixed inset-0 z-[1000] flex flex-col bg-black/95 p-3 backdrop-blur-sm sm:p-6" onClick={() => setOpen(false)} onTouchStart={(event) => { touchStart.current = event.touches[0]?.clientX ?? null; }} onTouchEnd={(event) => {
           const start = touchStart.current;
           const end = event.changedTouches[0]?.clientX;
@@ -84,7 +85,8 @@ export function SupplierMediaGallery({ images }: { images: GalleryImage[] }) {
               </div>
             ) : null}
           </div>
-        </div>
+        </div>,
+        document.body,
       ) : null}
     </>
   );

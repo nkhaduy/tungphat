@@ -24,5 +24,6 @@ describe("supplier media gallery", () => {
     expect(source).toContain("image.thumbnailSrc || image.src");
     expect(source).toContain('aria-current={imageIndex === index ? "true" : undefined}');
     expect(source).toContain("z-[1000]");
+    expect(source).toContain("createPortal(");
   });
 });
