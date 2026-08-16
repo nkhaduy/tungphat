@@ -60,6 +60,19 @@ describe("CMS preview security and shell", () => {
     );
   });
 
+  it("allows catalogue images from the first-party R2 media domain", () => {
+    const config = JSON.parse(readFileSync("vercel.json", "utf8"));
+    const global = config.headers.find((rule: { source: string }) => rule.source === "/(.*)");
+    const csp = global?.headers.find(
+      (header: { key: string }) => header.key === "Content-Security-Policy",
+    )?.value;
+
+    expect(csp).toMatch(/img-src[^;]*https:\/\/cms\.mdftungphat\.com(?:\s|;)/);
+    expect(readFileSync("public/_headers", "utf8")).toMatch(
+      /img-src[^;]*https:\/\/cms\.mdftungphat\.com(?:\s|;)/,
+    );
+  });
+
   it("validates, allowlists, limits and sanitizes in-memory drafts", () => {
     const draft = sanitizeCmsPreviewDraft({
       collection: "articles",
