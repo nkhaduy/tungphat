@@ -85,7 +85,7 @@ test.describe("Mã màu customer journeys", () => {
     const suppliers = [
       { path: "/catalogue/an-cuong/", heading: "Mã màu An Cường", count: 2195 },
       { path: "/catalogue/thanh-thuy/", heading: /Mã màu Thanh Th[uù]y/, count: 342 },
-      { path: "/catalogue/ba-thanh/", heading: "Mã màu Ba Thanh", count: 372 },
+      { path: "/catalogue/ba-thanh/", heading: "Mã màu Ba Thanh", count: 373 },
     ] as const;
 
     for (const supplier of suppliers) {
@@ -150,7 +150,7 @@ test.describe("Mã màu customer journeys", () => {
       page.getByText("Kết quả phù hợp", { exact: true }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: "2.991 sản phẩm", exact: true }),
+      page.getByRole("heading", { name: "2.992 sản phẩm", exact: true }),
     ).toBeVisible();
     const region = page.getByRole("region", { name: "Kết quả mã màu" });
     await expect(region.getByRole("article")).toHaveCount(48);
@@ -386,7 +386,7 @@ test.describe("Mã màu customer journeys", () => {
     await expect(
       page.getByRole("heading", { name: "BT171EV", exact: true }),
     ).toBeVisible();
-    await expect(page.getByText("Nguồn chưa cung cấp ảnh màu")).toBeVisible();
+    await expect(page.getByText("Ảnh đang cập nhật", { exact: true })).toBeVisible();
     await expect(page.locator("main img")).toHaveCount(0);
     await expect(page.locator('img[src=""]')).toHaveCount(0);
   });
