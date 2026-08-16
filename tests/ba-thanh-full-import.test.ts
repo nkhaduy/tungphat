@@ -262,19 +262,19 @@ describe("Ba Thanh full catalogue records", () => {
     expect(records?.some((record) => record.recordType === "sku" && record.normalizedCode === "W9999" && record.productFamily === "Melamine")).toBe(false);
   });
 
-  it("retains all 233 Melamine codes and all four exact source group counts", () => {
+  it("retains all verified Melamine codes, including direct product-page discoveries", () => {
     const records = buildRecords();
     const melamine = records?.filter(
       (record) => record.recordType === "sku" && record.productFamily === "Melamine",
     );
 
-    expect(melamine).toHaveLength(233);
+    expect(melamine).toHaveLength(260);
     expect(Object.fromEntries(
-      ["van-go", "don-sac", "van-da", "van-vai"].map((group) => [
+      ["van-go", "don-sac", "van-da", "van-vai", "public-product-page"].map((group) => [
         group,
         melamine?.filter((record) => record.attributes.sourceGroup === group).length,
       ]),
-    )).toEqual({ "van-go": 153, "don-sac": 62, "van-da": 13, "van-vai": 5 });
+    )).toEqual({ "van-go": 154, "don-sac": 62, "van-da": 13, "van-vai": 5, "public-product-page": 26 });
   });
 
   it("imports all 113 verified public WAY Laminate codes as real SKU records", () => {

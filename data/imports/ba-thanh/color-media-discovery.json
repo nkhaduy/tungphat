@@ -8849,8 +8849,25 @@
       "codeNormalized": "SC009MW",
       "codeRaw": "SC009MW",
       "sourceUrl": "https://bathanh.com.vn/sc009mw",
-      "sourceHasMedia": false,
-      "reasonCode": "INVALID_IMAGE"
+      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-01.jpg",
+      "sourceHasMedia": true,
+      "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
+      "localAssets": [
+        {
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-01.jpg",
+          "localPath": "/catalog/ba-thanh/melamine/sc009mw-swatch.webp",
+          "checksum": "217a6148878db911469a7a6622b96a654582236dd406f974d5b9bb785aa0d3ca",
+          "mimeType": "image/webp",
+          "width": 1600,
+          "height": 959
+        }
+      ],
+      "localPath": "/catalog/ba-thanh/melamine/sc009mw-swatch.webp",
+      "checksum": "217a6148878db911469a7a6622b96a654582236dd406f974d5b9bb785aa0d3ca",
+      "mimeType": "image/webp",
+      "width": 1600,
+      "height": 959
     },
     {
       "id": "ba-thanh:SC010M",
@@ -8865,8 +8882,25 @@
       "codeNormalized": "SC010MW",
       "codeRaw": "SC010MW",
       "sourceUrl": "https://bathanh.com.vn/sc010mw",
-      "sourceHasMedia": false,
-      "reasonCode": "INVALID_IMAGE"
+      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-02.jpg",
+      "sourceHasMedia": true,
+      "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
+      "localAssets": [
+        {
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-02.jpg",
+          "localPath": "/catalog/ba-thanh/melamine/sc010mw-swatch.webp",
+          "checksum": "cff52c37279584bf2583aafc3a3dfa1f8b4a802e43da4fde7bdfd7c41da4db78",
+          "mimeType": "image/webp",
+          "width": 1600,
+          "height": 959
+        }
+      ],
+      "localPath": "/catalog/ba-thanh/melamine/sc010mw-swatch.webp",
+      "checksum": "cff52c37279584bf2583aafc3a3dfa1f8b4a802e43da4fde7bdfd7c41da4db78",
+      "mimeType": "image/webp",
+      "width": 1600,
+      "height": 959
     },
     {
       "id": "ba-thanh:SC011M",
@@ -8881,8 +8915,25 @@
       "codeNormalized": "SC011MW",
       "codeRaw": "SC011MW",
       "sourceUrl": "https://bathanh.com.vn/sc011mw",
-      "sourceHasMedia": false,
-      "reasonCode": "INVALID_IMAGE"
+      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-03.jpg",
+      "sourceHasMedia": true,
+      "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
+      "localAssets": [
+        {
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-03.jpg",
+          "localPath": "/catalog/ba-thanh/melamine/sc011mw-swatch.webp",
+          "checksum": "a0b89e6a593687b85b27b4d4b68e1492f2f24cbd8a6511f16c1ebd0983040788",
+          "mimeType": "image/webp",
+          "width": 1600,
+          "height": 959
+        }
+      ],
+      "localPath": "/catalog/ba-thanh/melamine/sc011mw-swatch.webp",
+      "checksum": "a0b89e6a593687b85b27b4d4b68e1492f2f24cbd8a6511f16c1ebd0983040788",
+      "mimeType": "image/webp",
+      "width": 1600,
+      "height": 959
     },
     {
       "id": "ba-thanh:SC012M",
@@ -8897,8 +8948,25 @@
       "codeNormalized": "SC012MW",
       "codeRaw": "SC012MW",
       "sourceUrl": "https://bathanh.com.vn/sc012mw",
-      "sourceHasMedia": false,
-      "reasonCode": "INVALID_IMAGE"
+      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-04.jpg",
+      "sourceHasMedia": true,
+      "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
+      "localAssets": [
+        {
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-04.jpg",
+          "localPath": "/catalog/ba-thanh/melamine/sc012mw-swatch.webp",
+          "checksum": "037dac26f62a290aeb44fd45d6ec447b418a66cfd51c32bdbe61225a4770929b",
+          "mimeType": "image/webp",
+          "width": 1600,
+          "height": 959
+        }
+      ],
+      "localPath": "/catalog/ba-thanh/melamine/sc012mw-swatch.webp",
+      "checksum": "037dac26f62a290aeb44fd45d6ec447b418a66cfd51c32bdbe61225a4770929b",
+      "mimeType": "image/webp",
+      "width": 1600,
+      "height": 959
     },
     {
       "id": "ba-thanh:SC013M",
@@ -8913,8 +8981,25 @@
       "codeNormalized": "SC013MW",
       "codeRaw": "SC013MW",
       "sourceUrl": "https://bathanh.com.vn/sc013mw",
-      "sourceHasMedia": false,
-      "reasonCode": "INVALID_IMAGE"
+      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-05.jpg",
+      "sourceHasMedia": true,
+      "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
+      "localAssets": [
+        {
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-05.jpg",
+          "localPath": "/catalog/ba-thanh/melamine/sc013mw-swatch.webp",
+          "checksum": "9e57de27c946f4df59c3ba41c176632280460e2d6e0012742b7ad7b9b1f719c5",
+          "mimeType": "image/webp",
+          "width": 1600,
+          "height": 959
+        }
+      ],
+      "localPath": "/catalog/ba-thanh/melamine/sc013mw-swatch.webp",
+      "checksum": "9e57de27c946f4df59c3ba41c176632280460e2d6e0012742b7ad7b9b1f719c5",
+      "mimeType": "image/webp",
+      "width": 1600,
+      "height": 959
     },
     {
       "id": "ba-thanh:SC014M",
@@ -8929,8 +9014,25 @@
       "codeNormalized": "SC014MW",
       "codeRaw": "SC014MW",
       "sourceUrl": "https://bathanh.com.vn/sc014mw",
-      "sourceHasMedia": false,
-      "reasonCode": "INVALID_IMAGE"
+      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-06.jpg",
+      "sourceHasMedia": true,
+      "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
+      "localAssets": [
+        {
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-06.jpg",
+          "localPath": "/catalog/ba-thanh/melamine/sc014mw-swatch.webp",
+          "checksum": "042cba6f86daaa9aabab2e158a57ac1e84dd54a10fb73e1ab57d381f12621e09",
+          "mimeType": "image/webp",
+          "width": 1600,
+          "height": 959
+        }
+      ],
+      "localPath": "/catalog/ba-thanh/melamine/sc014mw-swatch.webp",
+      "checksum": "042cba6f86daaa9aabab2e158a57ac1e84dd54a10fb73e1ab57d381f12621e09",
+      "mimeType": "image/webp",
+      "width": 1600,
+      "height": 959
     },
     {
       "id": "ba-thanh:SC015M",
@@ -8945,8 +9047,25 @@
       "codeNormalized": "SC015MW",
       "codeRaw": "SC015MW",
       "sourceUrl": "https://bathanh.com.vn/sc015mw",
-      "sourceHasMedia": false,
-      "reasonCode": "INVALID_IMAGE"
+      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-07.jpg",
+      "sourceHasMedia": true,
+      "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
+      "localAssets": [
+        {
+          "role": "swatch",
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-07.jpg",
+          "localPath": "/catalog/ba-thanh/melamine/sc015mw-swatch.webp",
+          "checksum": "4dd9e37a9530dd4573cd8518cf1d8789eae2a621b0add6a04631f181922b8d91",
+          "mimeType": "image/webp",
+          "width": 1600,
+          "height": 959
+        }
+      ],
+      "localPath": "/catalog/ba-thanh/melamine/sc015mw-swatch.webp",
+      "checksum": "4dd9e37a9530dd4573cd8518cf1d8789eae2a621b0add6a04631f181922b8d91",
+      "mimeType": "image/webp",
+      "width": 1600,
+      "height": 959
     },
     {
       "id": "ba-thanh:SC019MW",
@@ -9121,22 +9240,12 @@
       "codeNormalized": "F0022X",
       "codeRaw": "F 0022 X",
       "sourceUrl": "https://bathanh.com.vn/way-f0022",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
       "applicationSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg"
       ],
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-          "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
-          "mimeType": "image/webp",
-          "width": 1024,
-          "height": 490
-        },
         {
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
@@ -9147,33 +9256,23 @@
           "height": 800
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-      "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
+      "localPath": "/catalog/ba-thanh/melamine/bt01-application-1.webp",
+      "checksum": "ecfe1ed0d11687b9b46f7ec5fdddd09a0a5933a0caf9ab228a2a8a366ffa3268",
       "mimeType": "image/webp",
-      "width": 1024,
-      "height": 490
+      "width": 1600,
+      "height": 800
     },
     {
       "id": "ba-thanh:laminate:F3292X",
       "codeNormalized": "F3292X",
       "codeRaw": "F 3292 X",
       "sourceUrl": "https://bathanh.com.vn/way-f3292",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
       "applicationSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg"
       ],
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-          "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
-          "mimeType": "image/webp",
-          "width": 1024,
-          "height": 490
-        },
         {
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
@@ -9184,33 +9283,23 @@
           "height": 800
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-      "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
+      "localPath": "/catalog/ba-thanh/melamine/bt01-application-1.webp",
+      "checksum": "ecfe1ed0d11687b9b46f7ec5fdddd09a0a5933a0caf9ab228a2a8a366ffa3268",
       "mimeType": "image/webp",
-      "width": 1024,
-      "height": 490
+      "width": 1600,
+      "height": 800
     },
     {
       "id": "ba-thanh:laminate:F3293X",
       "codeNormalized": "F3293X",
       "codeRaw": "F 3293 X",
       "sourceUrl": "https://bathanh.com.vn/way-f3293",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
       "applicationSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg"
       ],
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-          "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
-          "mimeType": "image/webp",
-          "width": 1024,
-          "height": 490
-        },
         {
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
@@ -9221,33 +9310,23 @@
           "height": 800
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-      "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
+      "localPath": "/catalog/ba-thanh/melamine/bt01-application-1.webp",
+      "checksum": "ecfe1ed0d11687b9b46f7ec5fdddd09a0a5933a0caf9ab228a2a8a366ffa3268",
       "mimeType": "image/webp",
-      "width": 1024,
-      "height": 490
+      "width": 1600,
+      "height": 800
     },
     {
       "id": "ba-thanh:laminate:F3294X",
       "codeNormalized": "F3294X",
       "codeRaw": "F 3294 X",
       "sourceUrl": "https://bathanh.com.vn/way-f3294",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
       "applicationSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg"
       ],
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-          "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
-          "mimeType": "image/webp",
-          "width": 1024,
-          "height": 490
-        },
         {
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
@@ -9258,33 +9337,23 @@
           "height": 800
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-      "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
+      "localPath": "/catalog/ba-thanh/melamine/bt01-application-1.webp",
+      "checksum": "ecfe1ed0d11687b9b46f7ec5fdddd09a0a5933a0caf9ab228a2a8a366ffa3268",
       "mimeType": "image/webp",
-      "width": 1024,
-      "height": 490
+      "width": 1600,
+      "height": 800
     },
     {
       "id": "ba-thanh:laminate:F3295X",
       "codeNormalized": "F3295X",
       "codeRaw": "F 3295 X",
       "sourceUrl": "https://bathanh.com.vn/way-f3295",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
       "applicationSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg"
       ],
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-          "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
-          "mimeType": "image/webp",
-          "width": 1024,
-          "height": 490
-        },
         {
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
@@ -9295,11 +9364,11 @@
           "height": 800
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-      "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
+      "localPath": "/catalog/ba-thanh/melamine/bt01-application-1.webp",
+      "checksum": "ecfe1ed0d11687b9b46f7ec5fdddd09a0a5933a0caf9ab228a2a8a366ffa3268",
       "mimeType": "image/webp",
-      "width": 1024,
-      "height": 490
+      "width": 1600,
+      "height": 800
     },
     {
       "id": "ba-thanh:laminate:LW100T",
@@ -12204,22 +12273,12 @@
       "codeNormalized": "P1010G",
       "codeRaw": "P 1010 G",
       "sourceUrl": "https://bathanh.com.vn/way-p1010",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
       "applicationSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg"
       ],
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-          "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
-          "mimeType": "image/webp",
-          "width": 1024,
-          "height": 490
-        },
         {
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
@@ -12230,33 +12289,23 @@
           "height": 800
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-      "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
+      "localPath": "/catalog/ba-thanh/melamine/bt01-application-1.webp",
+      "checksum": "ecfe1ed0d11687b9b46f7ec5fdddd09a0a5933a0caf9ab228a2a8a366ffa3268",
       "mimeType": "image/webp",
-      "width": 1024,
-      "height": 490
+      "width": 1600,
+      "height": 800
     },
     {
       "id": "ba-thanh:laminate:P1150G",
       "codeNormalized": "P1150G",
       "codeRaw": "P 1150 G",
       "sourceUrl": "https://bathanh.com.vn/way-p1150",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
       "applicationSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg"
       ],
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-          "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
-          "mimeType": "image/webp",
-          "width": 1024,
-          "height": 490
-        },
         {
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
@@ -12267,11 +12316,11 @@
           "height": 800
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-      "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
+      "localPath": "/catalog/ba-thanh/melamine/bt01-application-1.webp",
+      "checksum": "ecfe1ed0d11687b9b46f7ec5fdddd09a0a5933a0caf9ab228a2a8a366ffa3268",
       "mimeType": "image/webp",
-      "width": 1024,
-      "height": 490
+      "width": 1600,
+      "height": 800
     },
     {
       "id": "ba-thanh:laminate:P2001G",
@@ -12303,22 +12352,12 @@
       "codeNormalized": "P2002G",
       "codeRaw": "P 2002 G",
       "sourceUrl": "https://bathanh.com.vn/way-p2002",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
       "applicationSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg"
       ],
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-          "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
-          "mimeType": "image/webp",
-          "width": 1024,
-          "height": 490
-        },
         {
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
@@ -12329,11 +12368,11 @@
           "height": 800
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-      "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
+      "localPath": "/catalog/ba-thanh/melamine/bt01-application-1.webp",
+      "checksum": "ecfe1ed0d11687b9b46f7ec5fdddd09a0a5933a0caf9ab228a2a8a366ffa3268",
       "mimeType": "image/webp",
-      "width": 1024,
-      "height": 490
+      "width": 1600,
+      "height": 800
     },
     {
       "id": "ba-thanh:laminate:P2052G",
@@ -12350,7 +12389,7 @@
         {
           "role": "swatch",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
+          "localPath": "/catalog/ba-thanh/laminate/p-2052-g-swatch.webp",
           "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
           "mimeType": "image/webp",
           "width": 1024,
@@ -12366,7 +12405,7 @@
           "height": 800
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
+      "localPath": "/catalog/ba-thanh/laminate/p-2052-g-swatch.webp",
       "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
       "mimeType": "image/webp",
       "width": 1024,
@@ -12377,22 +12416,12 @@
       "codeNormalized": "P2061G",
       "codeRaw": "P 2061 G",
       "sourceUrl": "https://bathanh.com.vn/way-p2061",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
       "applicationSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg"
       ],
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-          "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
-          "mimeType": "image/webp",
-          "width": 1024,
-          "height": 490
-        },
         {
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
@@ -12403,11 +12432,11 @@
           "height": 800
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-      "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
+      "localPath": "/catalog/ba-thanh/melamine/bt01-application-1.webp",
+      "checksum": "ecfe1ed0d11687b9b46f7ec5fdddd09a0a5933a0caf9ab228a2a8a366ffa3268",
       "mimeType": "image/webp",
-      "width": 1024,
-      "height": 490
+      "width": 1600,
+      "height": 800
     },
     {
       "id": "ba-thanh:laminate:P2660G",
@@ -12489,22 +12518,12 @@
       "codeNormalized": "P4640R",
       "codeRaw": "P 4640 R",
       "sourceUrl": "https://bathanh.com.vn/way-p4640",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
       "applicationSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg"
       ],
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-          "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
-          "mimeType": "image/webp",
-          "width": 1024,
-          "height": 490
-        },
         {
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
@@ -12515,11 +12534,11 @@
           "height": 800
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
-      "checksum": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
+      "localPath": "/catalog/ba-thanh/melamine/bt01-application-1.webp",
+      "checksum": "ecfe1ed0d11687b9b46f7ec5fdddd09a0a5933a0caf9ab228a2a8a366ffa3268",
       "mimeType": "image/webp",
-      "width": 1024,
-      "height": 490
+      "width": 1600,
+      "height": 800
     },
     {
       "id": "ba-thanh:laminate:P7700CY",
@@ -13093,7 +13112,6 @@
       "codeNormalized": "LW86T",
       "codeRaw": "LW 86 T",
       "sourceUrl": "https://bathanh.com.vn/bt-86-wood-grains",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-84-86.jpg",
       "applicationSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-86-01-1.jpg",
         "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-86-02-1.jpg"
@@ -13104,15 +13122,6 @@
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-84-86.jpg",
-          "localPath": "/catalog/ba-thanh/melamine/bt84-swatch.webp",
-          "checksum": "bc553a2f084f8bb1ffcbfee93b1f6f4847cef7f6b71eba1b264a3bc921f57263",
-          "mimeType": "image/webp",
-          "width": 1600,
-          "height": 800
-        },
         {
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-86-01-1.jpg",
@@ -13141,18 +13150,17 @@
           "height": 726
         }
       ],
-      "localPath": "/catalog/ba-thanh/melamine/bt84-swatch.webp",
-      "checksum": "bc553a2f084f8bb1ffcbfee93b1f6f4847cef7f6b71eba1b264a3bc921f57263",
+      "localPath": "/catalog/ba-thanh/melamine/bt86-application-1.webp",
+      "checksum": "264d20fc714058362eb27efd063f327a5be9556370ba9684e34a697aceb0518d",
       "mimeType": "image/webp",
       "width": 1600,
-      "height": 800
+      "height": 1598
     },
     {
       "id": "ba-thanh:laminate:LWDENG",
       "codeNormalized": "LWDENG",
       "codeRaw": "LW ĐEN G",
       "sourceUrl": "https://bathanh.com.vn/bt-den-solid-color",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-%C4%90EN.jpg",
       "applicationSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-01-1.jpg",
         "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-02-1.jpg"
@@ -13160,15 +13168,6 @@
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-%C4%90EN.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/lw-den-g-swatch.webp",
-          "checksum": "9eff9e94ee55f65f91b9bb9f1404c81095a036274f9029acd7255e1c3cfc1b1f",
-          "mimeType": "image/webp",
-          "width": 1600,
-          "height": 800
-        },
         {
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-01-1.jpg",
@@ -13188,18 +13187,17 @@
           "height": 1598
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/lw-den-g-swatch.webp",
-      "checksum": "9eff9e94ee55f65f91b9bb9f1404c81095a036274f9029acd7255e1c3cfc1b1f",
+      "localPath": "/catalog/ba-thanh/melamine/btden-application-1.webp",
+      "checksum": "54da7b376250e2fc4a014dbcef76b70ca3cf65f860403be4ac8b15bf38383d64",
       "mimeType": "image/webp",
       "width": 1600,
-      "height": 800
+      "height": 1598
     },
     {
       "id": "ba-thanh:laminate:LWDENM",
       "codeNormalized": "LWDENM",
       "codeRaw": "LW ĐEN M",
       "sourceUrl": "https://bathanh.com.vn/bt-den-solid-color",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-%C4%90EN.jpg",
       "applicationSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-01-1.jpg",
         "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-02-1.jpg"
@@ -13207,15 +13205,6 @@
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-%C4%90EN.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/lw-den-g-swatch.webp",
-          "checksum": "9eff9e94ee55f65f91b9bb9f1404c81095a036274f9029acd7255e1c3cfc1b1f",
-          "mimeType": "image/webp",
-          "width": 1600,
-          "height": 800
-        },
         {
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-01-1.jpg",
@@ -13235,18 +13224,17 @@
           "height": 1598
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/lw-den-g-swatch.webp",
-      "checksum": "9eff9e94ee55f65f91b9bb9f1404c81095a036274f9029acd7255e1c3cfc1b1f",
+      "localPath": "/catalog/ba-thanh/melamine/btden-application-1.webp",
+      "checksum": "54da7b376250e2fc4a014dbcef76b70ca3cf65f860403be4ac8b15bf38383d64",
       "mimeType": "image/webp",
       "width": 1600,
-      "height": 800
+      "height": 1598
     },
     {
       "id": "ba-thanh:laminate:LWDENT",
       "codeNormalized": "LWDENT",
       "codeRaw": "LW ĐEN T",
       "sourceUrl": "https://bathanh.com.vn/bt-den-solid-color",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-%C4%90EN.jpg",
       "applicationSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-01-1.jpg",
         "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-02-1.jpg"
@@ -13254,15 +13242,6 @@
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-%C4%90EN.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/lw-den-g-swatch.webp",
-          "checksum": "9eff9e94ee55f65f91b9bb9f1404c81095a036274f9029acd7255e1c3cfc1b1f",
-          "mimeType": "image/webp",
-          "width": 1600,
-          "height": 800
-        },
         {
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-01-1.jpg",
@@ -13282,18 +13261,17 @@
           "height": 1598
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/lw-den-g-swatch.webp",
-      "checksum": "9eff9e94ee55f65f91b9bb9f1404c81095a036274f9029acd7255e1c3cfc1b1f",
+      "localPath": "/catalog/ba-thanh/melamine/btden-application-1.webp",
+      "checksum": "54da7b376250e2fc4a014dbcef76b70ca3cf65f860403be4ac8b15bf38383d64",
       "mimeType": "image/webp",
       "width": 1600,
-      "height": 800
+      "height": 1598
     },
     {
       "id": "ba-thanh:laminate:LWSC004M",
       "codeNormalized": "LWSC004M",
       "codeRaw": "LW SC004 M",
       "sourceUrl": "https://bathanh.com.vn/sc-004m-solid-color",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/SC-04M.1.jpg",
       "applicationSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-004-01-1.jpg",
         "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-004-02-1.jpg"
@@ -13304,15 +13282,6 @@
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/SC-04M.1.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/lw-sc004-m-swatch.webp",
-          "checksum": "cc00b1aac12ab3324c8c03ffbeb6548e68be69fd88537ca474cd2a9191f4bc0d",
-          "mimeType": "image/webp",
-          "width": 1600,
-          "height": 800
-        },
         {
           "role": "application",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-004-01-1.jpg",
@@ -13341,108 +13310,47 @@
           "height": 726
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/lw-sc004-m-swatch.webp",
-      "checksum": "cc00b1aac12ab3324c8c03ffbeb6548e68be69fd88537ca474cd2a9191f4bc0d",
+      "localPath": "/catalog/ba-thanh/laminate/lw-sc004-m-application-1.webp",
+      "checksum": "807fbfc1c8a06241d4b03f8e8b215b825127a6890647730806c5f3553712dc24",
       "mimeType": "image/webp",
       "width": 1600,
-      "height": 800
+      "height": 1598
     },
     {
       "id": "ba-thanh:laminate:LWA150G",
       "codeNormalized": "LWA150G",
       "codeRaw": "LW A150 G",
       "sourceUrl": "https://bathanh.com.vn/bt-a150-solid-color",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/A150-e1713933122996.jpg",
-      "sourceHasMedia": true,
-      "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
-      "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/A150-e1713933122996.jpg",
-          "localPath": "/catalog/ba-thanh/melamine/bt103-swatch.webp",
-          "checksum": "b616bcfab753f4d1a8c1d2c0e18de000197e8b957760c48796715e3228f52a5d",
-          "mimeType": "image/webp",
-          "width": 1600,
-          "height": 800
-        }
-      ],
-      "localPath": "/catalog/ba-thanh/melamine/bt103-swatch.webp",
-      "checksum": "b616bcfab753f4d1a8c1d2c0e18de000197e8b957760c48796715e3228f52a5d",
-      "mimeType": "image/webp",
-      "width": 1600,
-      "height": 800
+      "sourceHasMedia": false,
+      "reasonCode": "INVALID_IMAGE"
     },
     {
       "id": "ba-thanh:laminate:LWA150M",
       "codeNormalized": "LWA150M",
       "codeRaw": "LW A150 M",
       "sourceUrl": "https://bathanh.com.vn/bt-a150-solid-color",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/A150-e1713933122996.jpg",
-      "sourceHasMedia": true,
-      "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
-      "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/A150-e1713933122996.jpg",
-          "localPath": "/catalog/ba-thanh/melamine/bt103-swatch.webp",
-          "checksum": "b616bcfab753f4d1a8c1d2c0e18de000197e8b957760c48796715e3228f52a5d",
-          "mimeType": "image/webp",
-          "width": 1600,
-          "height": 800
-        }
-      ],
-      "localPath": "/catalog/ba-thanh/melamine/bt103-swatch.webp",
-      "checksum": "b616bcfab753f4d1a8c1d2c0e18de000197e8b957760c48796715e3228f52a5d",
-      "mimeType": "image/webp",
-      "width": 1600,
-      "height": 800
+      "sourceHasMedia": false,
+      "reasonCode": "INVALID_IMAGE"
     },
     {
       "id": "ba-thanh:laminate:LWA150T",
       "codeNormalized": "LWA150T",
       "codeRaw": "LW A150 T",
       "sourceUrl": "https://bathanh.com.vn/bt-a150-solid-color",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/A150-e1713933122996.jpg",
-      "sourceHasMedia": true,
-      "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
-      "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/A150-e1713933122996.jpg",
-          "localPath": "/catalog/ba-thanh/melamine/bt103-swatch.webp",
-          "checksum": "b616bcfab753f4d1a8c1d2c0e18de000197e8b957760c48796715e3228f52a5d",
-          "mimeType": "image/webp",
-          "width": 1600,
-          "height": 800
-        }
-      ],
-      "localPath": "/catalog/ba-thanh/melamine/bt103-swatch.webp",
-      "checksum": "b616bcfab753f4d1a8c1d2c0e18de000197e8b957760c48796715e3228f52a5d",
-      "mimeType": "image/webp",
-      "width": 1600,
-      "height": 800
+      "sourceHasMedia": false,
+      "reasonCode": "INVALID_IMAGE"
     },
     {
       "id": "ba-thanh:laminate:LWS6G",
       "codeNormalized": "LWS6G",
       "codeRaw": "LW S6 G",
       "sourceUrl": "https://bathanh.com.vn/bt-s6-stone",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-S6-e1713938806580.jpg",
       "actualPhotoSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-S6-MAU-THUC-TE-MELAMINE-1024x726.jpg"
       ],
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-S6-e1713938806580.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/lw-s6-g-swatch.webp",
-          "checksum": "0f020626e3b6e0f1ed3ea94fb6e45bb096efbc76edcc49ebe646eb1d88553ad6",
-          "mimeType": "image/webp",
-          "width": 1600,
-          "height": 800
-        },
         {
           "role": "actual-photo",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-S6-MAU-THUC-TE-MELAMINE-1024x726.jpg",
@@ -13453,33 +13361,23 @@
           "height": 726
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/lw-s6-g-swatch.webp",
-      "checksum": "0f020626e3b6e0f1ed3ea94fb6e45bb096efbc76edcc49ebe646eb1d88553ad6",
+      "localPath": "/catalog/ba-thanh/laminate/lw-s6-g-actual-photo-1.webp",
+      "checksum": "d0dea149bcfc05acf83094c12815bd526af6be4b707a51ae23a3bdcb6a3fca8a",
       "mimeType": "image/webp",
-      "width": 1600,
-      "height": 800
+      "width": 1024,
+      "height": 726
     },
     {
       "id": "ba-thanh:laminate:LWS9G",
       "codeNormalized": "LWS9G",
       "codeRaw": "LW S9 G",
       "sourceUrl": "https://bathanh.com.vn/bt-s9-stone",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-S9.jpg",
       "actualPhotoSourceUrls": [
         "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-S9-MAU-THUC-TE-MELAMINE-1024x726.jpg"
       ],
       "sourceHasMedia": true,
       "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
       "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-S9.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/lw-s9-g-swatch.webp",
-          "checksum": "6b5ba63fdf356324d2128ae6c189b968de809c35b74b990a16cf408f0468f865",
-          "mimeType": "image/webp",
-          "width": 1600,
-          "height": 800
-        },
         {
           "role": "actual-photo",
           "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-S9-MAU-THUC-TE-MELAMINE-1024x726.jpg",
@@ -13490,86 +13388,35 @@
           "height": 726
         }
       ],
-      "localPath": "/catalog/ba-thanh/laminate/lw-s9-g-swatch.webp",
-      "checksum": "6b5ba63fdf356324d2128ae6c189b968de809c35b74b990a16cf408f0468f865",
+      "localPath": "/catalog/ba-thanh/laminate/lw-s9-g-actual-photo-1.webp",
+      "checksum": "a9958cba1213c059cafe7e26e7ea46a78dc68e1f99cc76241af3eca56bd79329",
       "mimeType": "image/webp",
-      "width": 1600,
-      "height": 800
+      "width": 1024,
+      "height": 726
     },
     {
       "id": "ba-thanh:laminate:LWSC011M",
       "codeNormalized": "LWSC011M",
       "codeRaw": "LW SC011 M",
       "sourceUrl": "https://bathanh.com.vn/btsc011",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/SC-011-e1710320125471.jpg",
-      "sourceHasMedia": true,
-      "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
-      "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/SC-011-e1710320125471.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/lw-sc011-m-swatch.webp",
-          "checksum": "5bcaa6f32535da803dabebb272362761b29315dd075dc1480b29ef28551f5d63",
-          "mimeType": "image/webp",
-          "width": 1600,
-          "height": 800
-        }
-      ],
-      "localPath": "/catalog/ba-thanh/laminate/lw-sc011-m-swatch.webp",
-      "checksum": "5bcaa6f32535da803dabebb272362761b29315dd075dc1480b29ef28551f5d63",
-      "mimeType": "image/webp",
-      "width": 1600,
-      "height": 800
+      "sourceHasMedia": false,
+      "reasonCode": "INVALID_IMAGE"
     },
     {
       "id": "ba-thanh:laminate:LWSC014M",
       "codeNormalized": "LWSC014M",
       "codeRaw": "LW SC014 M",
       "sourceUrl": "https://bathanh.com.vn/btsc014",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/SC-014-e1710320054476.jpg",
-      "sourceHasMedia": true,
-      "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
-      "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/SC-014-e1710320054476.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/lw-sc014-m-swatch.webp",
-          "checksum": "f4b7c0574315f94a0202edec68034ca7719218d8c66206e1d19ceecf21711d3d",
-          "mimeType": "image/webp",
-          "width": 1600,
-          "height": 800
-        }
-      ],
-      "localPath": "/catalog/ba-thanh/laminate/lw-sc014-m-swatch.webp",
-      "checksum": "f4b7c0574315f94a0202edec68034ca7719218d8c66206e1d19ceecf21711d3d",
-      "mimeType": "image/webp",
-      "width": 1600,
-      "height": 800
+      "sourceHasMedia": false,
+      "reasonCode": "INVALID_IMAGE"
     },
     {
       "id": "ba-thanh:laminate:LWSC015M",
       "codeNormalized": "LWSC015M",
       "codeRaw": "LW SC015 M",
       "sourceUrl": "https://bathanh.com.vn/btsc015",
-      "previewSourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/SC-015-e1710320030779.jpg",
-      "sourceHasMedia": true,
-      "reasonCode": "SOURCE_HAS_IMAGE_DOWNLOAD_FAILED",
-      "localAssets": [
-        {
-          "role": "swatch",
-          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/03/SC-015-e1710320030779.jpg",
-          "localPath": "/catalog/ba-thanh/laminate/lw-sc015-m-swatch.webp",
-          "checksum": "dd02cc7632631642884923172ccfd55d66384a602beeafe7c836eb773e67ae3b",
-          "mimeType": "image/webp",
-          "width": 1600,
-          "height": 800
-        }
-      ],
-      "localPath": "/catalog/ba-thanh/laminate/lw-sc015-m-swatch.webp",
-      "checksum": "dd02cc7632631642884923172ccfd55d66384a602beeafe7c836eb773e67ae3b",
-      "mimeType": "image/webp",
-      "width": 1600,
-      "height": 800
+      "sourceHasMedia": false,
+      "reasonCode": "INVALID_IMAGE"
     }
   ]
 }

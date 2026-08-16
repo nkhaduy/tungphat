@@ -11211,7 +11211,31 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-04-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/ml-bt04",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT04"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-05-e1713938737664.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-05-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT05"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-05-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-05-wood-grains",
       "locale": "unknown",
@@ -11235,7 +11259,31 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-06-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-06-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT06"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-07-e1713938675894.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-07-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT07"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-07-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-07-wood-grains",
       "locale": "unknown",
@@ -11259,6 +11307,18 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-08-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-08-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT08"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-09-e1713938622645.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-09-wood-grains",
@@ -11271,7 +11331,31 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-09-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-09-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT09"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-10.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-10-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT10"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-10-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-10-wood-grains",
       "locale": "unknown",
@@ -11322,7 +11406,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-100-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-100-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-100-wood-grains",
       "locale": "unknown",
@@ -11348,6 +11432,30 @@
     {
       "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-11-e1713938592805.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-11-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT11"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-11-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-11-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT11"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-11-02-1.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-11-wood-grains",
       "locale": "unknown",
@@ -11395,7 +11503,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-111-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-111-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-111-wood-grains",
       "locale": "unknown",
@@ -11446,7 +11554,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-112-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-112-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-112-wood-grains",
       "locale": "unknown",
@@ -11498,7 +11606,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-113-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-113-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-113-wood-grains",
       "locale": "unknown",
@@ -11547,7 +11655,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-114-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-114-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-114-wood-grains",
       "locale": "unknown",
@@ -11595,7 +11703,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-115-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-115-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-115-wood-grains",
       "locale": "unknown",
@@ -11643,7 +11751,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-116-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-116-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-116-wood-grains",
       "locale": "unknown",
@@ -11667,7 +11775,79 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-117-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-117-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT117"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-117-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-117-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT117"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-117-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-117-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT117"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-118.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-118-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT118"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-118-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-118-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT118"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-118-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-118-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT118"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-118-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-118-wood-grains",
       "locale": "unknown",
@@ -11715,7 +11895,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-119-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-119-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-119-wood-grains",
       "locale": "unknown",
@@ -11728,6 +11908,18 @@
     {
       "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-12-e1713938523874.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-12-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT12"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-12-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-12-wood-grains",
       "locale": "unknown",
@@ -11775,7 +11967,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-120-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-120-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-120-wood-grains",
       "locale": "unknown",
@@ -11826,7 +12018,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-122-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-122-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-122-wood-grains",
       "locale": "unknown",
@@ -11878,7 +12070,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-123-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-123-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-123-wood-grains",
       "locale": "unknown",
@@ -11927,7 +12119,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-124-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-124-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-124-wood-grains",
       "locale": "unknown",
@@ -11978,7 +12170,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-125-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-125-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-125-wood-grains",
       "locale": "unknown",
@@ -12015,7 +12207,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-126-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-126-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-126-wood-grains",
       "locale": "unknown",
@@ -12063,7 +12255,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-127-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-127-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-127-wood-grains",
       "locale": "unknown",
@@ -12087,6 +12279,42 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-128-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-128-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT128"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-128-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-128-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT128"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-128-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-128-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT128"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-129.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-129-wood-grains",
@@ -12099,7 +12327,55 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-129-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-129-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT129"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-129-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-129-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT129"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-129-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-129-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT129"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-13-e1713938502934.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-13-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT13"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-13-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-13-wood-grains",
       "locale": "unknown",
@@ -12150,7 +12426,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-130-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-130-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-130-wood-grains",
       "locale": "unknown",
@@ -12202,7 +12478,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-131-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-131-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-131-wood-grains",
       "locale": "unknown",
@@ -12251,7 +12527,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-132-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-132-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-132-wood-grains",
       "locale": "unknown",
@@ -12299,7 +12575,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-133-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-133-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-133-wood-grains",
       "locale": "unknown",
@@ -12347,7 +12623,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-134-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-134-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-134-wood-grains",
       "locale": "unknown",
@@ -12395,7 +12671,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-135-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-135-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-135-wood-grains",
       "locale": "unknown",
@@ -12443,7 +12719,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-136-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-136-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-136-wood-grains",
       "locale": "unknown",
@@ -12494,7 +12770,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-137-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-137-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-137-wood-grains",
       "locale": "unknown",
@@ -12543,7 +12819,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-138-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-138-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-138-wood-grains",
       "locale": "unknown",
@@ -12591,7 +12867,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-139-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-139-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-139-wood-grains",
       "locale": "unknown",
@@ -12604,6 +12880,18 @@
     {
       "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-14-e1713938477907.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-14-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT14"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-14-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-14-wood-grains",
       "locale": "unknown",
@@ -12654,7 +12942,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-140-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-140-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-140-wood-grains",
       "locale": "unknown",
@@ -12706,7 +12994,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-141-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-141-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-141-wood-grains",
       "locale": "unknown",
@@ -12758,7 +13046,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-142-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-142-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-142-wood-grains",
       "locale": "unknown",
@@ -12810,7 +13098,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-143-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-143-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-143-wood-grains",
       "locale": "unknown",
@@ -12859,7 +13147,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-144-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-144-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-144-wood-grains",
       "locale": "unknown",
@@ -12907,7 +13195,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-145-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-145-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-145-wood-grains",
       "locale": "unknown",
@@ -12920,6 +13208,42 @@
     {
       "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/10/BT-146.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-146-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT146"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-146-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-146-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT146"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-146-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-146-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT146"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-146-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-146-wood-grains",
       "locale": "unknown",
@@ -12967,7 +13291,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-147-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-147-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-147-wood-grains",
       "locale": "unknown",
@@ -13015,7 +13339,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-148-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-148-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-148-wood-grains",
       "locale": "unknown",
@@ -13028,6 +13352,18 @@
     {
       "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-15-e1713938445285.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-15-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT15"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-15-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-15-wood-grains",
       "locale": "unknown",
@@ -13078,7 +13414,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-151-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-151-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-151-wood-grains",
       "locale": "unknown",
@@ -13130,7 +13466,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-152-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-152-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-152-wood-grains",
       "locale": "unknown",
@@ -13179,7 +13515,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-154-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-154-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-154-wood-grains",
       "locale": "unknown",
@@ -13230,7 +13566,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-155-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-155-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-155-wood-grains",
       "locale": "unknown",
@@ -13279,7 +13615,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-156-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-156-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-156-wood-grains",
       "locale": "unknown",
@@ -13330,7 +13666,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-157-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-157-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-157-wood-grains",
       "locale": "unknown",
@@ -13382,7 +13718,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-158-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-158-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-158-wood-grains",
       "locale": "unknown",
@@ -13431,7 +13767,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-159-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-159-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-159-wood-grains",
       "locale": "unknown",
@@ -13494,7 +13830,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-160-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-160-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-160-wood-grains",
       "locale": "unknown",
@@ -13546,7 +13882,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-161-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-161-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-161-wood-grains",
       "locale": "unknown",
@@ -13598,7 +13934,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-162-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-162-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-162-wood-grains",
       "locale": "unknown",
@@ -13650,7 +13986,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-163-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-163-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-163-wood-grains",
       "locale": "unknown",
@@ -13675,7 +14011,79 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-164-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-164-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT164"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-164-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-164-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT164"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-164-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-164-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT164"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2023/05/BT-165-e1683882376116.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-165-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT165"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-165-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-165-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT165"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-165-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-165-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT165"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-165-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-165-wood-grains",
       "locale": "unknown",
@@ -13699,7 +14107,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-166-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-166-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt166",
       "locale": "unknown",
@@ -13724,7 +14132,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/02/BT-167-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/02/BT-167-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt167",
       "locale": "unknown",
@@ -13750,7 +14158,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/02/BT-168-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/02/BT-168-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt168",
       "locale": "unknown",
@@ -13775,7 +14183,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-169-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-169-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt169",
       "locale": "unknown",
@@ -13799,6 +14207,18 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-17-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-17-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT17"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2024/02/BT-170.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt170",
@@ -13811,7 +14231,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-170-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-170-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt170",
       "locale": "unknown",
@@ -13944,6 +14364,18 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-18-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-18-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT18"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2026/06/BT-180-MELAMINE-BA-THANH-GROUP.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt180",
@@ -14016,7 +14448,31 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2026/08/BT-186-MELAMINE-BA-THANH-GROUP.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt186",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT186"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-19-e1713938396561.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-19-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT19"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-19-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-19-wood-grains",
       "locale": "unknown",
@@ -14041,7 +14497,32 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-20-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-20-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT20",
+        "ba-thanh:sku:LW20T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-22-e1713938372416.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-22-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT22"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-22-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-22-wood-grains",
       "locale": "unknown",
@@ -14065,7 +14546,31 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-23-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-23-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT23"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-24-e1713938326321.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-24-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT24"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-24-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-24-wood-grains",
       "locale": "unknown",
@@ -14089,6 +14594,18 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-25-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-25-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT25"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-26-e1713938271579.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-26-wood-grains",
@@ -14101,7 +14618,31 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-26-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-26-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT26"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-27-e1713938206929.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-27-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT27"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-27-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-27-wood-grains",
       "locale": "unknown",
@@ -14126,7 +14667,32 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-28-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-28-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT28",
+        "ba-thanh:sku:LW28T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-29-e1713938105968.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-29-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT29"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-29-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-29-wood-grains",
       "locale": "unknown",
@@ -14150,7 +14716,31 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-30-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-30-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT30"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-31.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-31-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT31"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-31-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-31-wood-grains",
       "locale": "unknown",
@@ -14174,7 +14764,31 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-32-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-32-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT32"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-33-e1713938039221.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-33-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT33"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-33-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-33-wood-grains",
       "locale": "unknown",
@@ -14199,6 +14813,19 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-34-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-34-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT34",
+        "ba-thanh:sku:LW34T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-35.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-35-wood-grains",
@@ -14211,7 +14838,31 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-35-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-35-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT35"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-36.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-36-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT36"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-36-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-36-wood-grains",
       "locale": "unknown",
@@ -14236,7 +14887,32 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-37-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-37-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT37",
+        "ba-thanh:sku:LW37T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-38-e1713937927851.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-38-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT38"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-38-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-38-wood-grains",
       "locale": "unknown",
@@ -14260,7 +14936,31 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-40-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-40-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT40"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-41-e1713937864956.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-41-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT41"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-41-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-41-wood-grains",
       "locale": "unknown",
@@ -14284,7 +14984,31 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-42-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-42-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT42"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-43-e1713937817662.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-43-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT43"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-43-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-43-wood-grains",
       "locale": "unknown",
@@ -14332,6 +15056,18 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-46-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-46-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT46"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-47.png",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-47-wood-grains",
@@ -14357,6 +15093,31 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-48-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-48-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT48",
+        "ba-thanh:sku:LW48T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-49-e1713937690671.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-49-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT49"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-50.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-50-wood-grains",
@@ -14369,7 +15130,31 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-50-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-50-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT50"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-51-e1713937656882.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-51-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT51"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-51-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-51-wood-grains",
       "locale": "unknown",
@@ -14406,6 +15191,18 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-53-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-53-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT53"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-54-e1713937595405.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-54-wood-grains",
@@ -14419,7 +15216,45 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-54-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-54-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT54",
+        "ba-thanh:sku:LW54T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-55-e1713937570962.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-55-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT55"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-56-e1713937548883.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-56-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT56",
+        "ba-thanh:sku:LW56T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-56-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-56-wood-grains",
       "locale": "unknown",
@@ -14444,7 +15279,32 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-57-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-57-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT57"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-58-e1713937489165.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-58-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT58",
+        "ba-thanh:sku:LW58T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-58-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-58-wood-grains",
       "locale": "unknown",
@@ -14470,7 +15330,33 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-59-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-59-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT59",
+        "ba-thanh:sku:LW59T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-60-1-e1713937384248.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-60-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT60",
+        "ba-thanh:sku:LW60T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-60-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-60-solid-color",
       "locale": "unknown",
@@ -14496,7 +15382,59 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-61-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-61-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT61",
+        "ba-thanh:sku:LW61T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-62-e1713937332903.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-62-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT62",
+        "ba-thanh:sku:LW62T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-62-01.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-62-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT62",
+        "ba-thanh:sku:LW62T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-62-02.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-62-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT62",
+        "ba-thanh:sku:LW62T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-62-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-62-wood-grains",
       "locale": "unknown",
@@ -14522,7 +15460,46 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-63-01.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-63-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT63",
+        "ba-thanh:sku:LW63T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-63-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-63-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT63",
+        "ba-thanh:sku:LW63T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-64-e1713937217560.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-64-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT64",
+        "ba-thanh:sku:LW64T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-64-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-64-wood-grains",
       "locale": "unknown",
@@ -14547,7 +15524,31 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-65-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-65-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT65"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-66-e1713937135913.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-66-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT66"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-66-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-66-wood-grains",
       "locale": "unknown",
@@ -14571,6 +15572,42 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-67-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-67-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT67"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-67-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-67-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT67"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-67-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-67-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT67"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-68-e1713937016379.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-68-wood-grains",
@@ -14583,7 +15620,31 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-68-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-68-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT68"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-69-e1713936922433.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-69-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT69"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-69-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-69-wood-grains",
       "locale": "unknown",
@@ -14608,7 +15669,32 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-70-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-70-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT70",
+        "ba-thanh:sku:LW70T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-71.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-71-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT71"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-71-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-71-wood-grains",
       "locale": "unknown",
@@ -14632,6 +15718,18 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-72-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-72-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT72"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-73.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-73-wood-grains",
@@ -14644,7 +15742,32 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-73-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-73-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT73"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-74-e1713936035232.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-74-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT74",
+        "ba-thanh:sku:LW74T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-74-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-74-wood-grains",
       "locale": "unknown",
@@ -14670,7 +15793,33 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-75-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-75-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT75",
+        "ba-thanh:sku:LW75T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-76-e1713935991336.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-76-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT76",
+        "ba-thanh:sku:LW76T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-76-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-76-wood-grains",
       "locale": "unknown",
@@ -14695,7 +15844,32 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-77-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-77-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT77"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-78.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-78-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT78",
+        "ba-thanh:sku:LW78T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-78-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-78-wood-grains",
       "locale": "unknown",
@@ -14721,7 +15895,33 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-79-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-79-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT79",
+        "ba-thanh:sku:LW79T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-80-e1713935925945.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-80-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT80",
+        "ba-thanh:sku:LW80T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-80-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-80-wood-grains",
       "locale": "unknown",
@@ -14747,7 +15947,33 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-81-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-81-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT81",
+        "ba-thanh:sku:LW81T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-82-e1713933077316.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-82-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT82",
+        "ba-thanh:sku:LW82T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-82-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-82-wood-grains",
       "locale": "unknown",
@@ -14772,6 +15998,18 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-83-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-83-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT83"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-84-86.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-84-wood-grains",
@@ -14785,6 +16023,19 @@
     {
       "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-85.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-85-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT85",
+        "ba-thanh:sku:LW85T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-85-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-85-wood-grains",
       "locale": "unknown",
@@ -14849,7 +16100,33 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-87-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-87-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT87",
+        "ba-thanh:sku:LW87T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-88.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-88-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT88",
+        "ba-thanh:sku:LW88T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-88-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-88-wood-grains",
       "locale": "unknown",
@@ -14874,6 +16151,42 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-89-01.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-89-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT89"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-89-02.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-89-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT89"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-89-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-89-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT89"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-90.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-90-wood-grains",
@@ -14886,7 +16199,91 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-90-01.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-90-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT90"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-90-02.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-90-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT90"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-90-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-90-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT90"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-91.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-91-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT91"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-92.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-92-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT92"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-92-01.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-92-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT92"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-92-02.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-92-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT92"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-92-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-92-wood-grains",
       "locale": "unknown",
@@ -14911,6 +16308,45 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-93-01.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-93-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT93",
+        "ba-thanh:sku:LW93T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-93-02.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-93-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT93",
+        "ba-thanh:sku:LW93T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-93-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-93-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT93",
+        "ba-thanh:sku:LW93T"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-94.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-94-wood-grains",
@@ -14923,7 +16359,79 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-94-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-94-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT94"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-94-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-94-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT94"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-94-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-94-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT94"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-95.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-95-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT95"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-95-01.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-95-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT95"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/11/BT-95-02.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-95-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT95"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-95-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-95-wood-grains",
       "locale": "unknown",
@@ -14971,7 +16479,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-96-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-96-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-96-wood-grains",
       "locale": "unknown",
@@ -14984,6 +16492,42 @@
     {
       "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-97.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-97-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT97"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-97-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-97-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT97"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-97-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-97-wood-grains",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BT97"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-97-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-97-wood-grains",
       "locale": "unknown",
@@ -15034,7 +16578,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-98-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-98-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-98-wood-grains",
       "locale": "unknown",
@@ -15083,7 +16627,7 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-99-MAU-THUC-TE-MELAMINE.jpg",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-99-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-99-wood-grains",
       "locale": "unknown",
@@ -15096,6 +16640,42 @@
     {
       "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-CAM.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-cam-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTCAM"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/CAM-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-cam-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTCAM"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/CAM-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-cam-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTCAM"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/CAM-MAU-THUC-TE-MELAMINE-1-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-cam-solid-color",
       "locale": "unknown",
@@ -15149,7 +16729,79 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/HONG-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-hong-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTHONG"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/HONG-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-hong-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTHONG"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/HONG-MAU-THUC-TE-MELAMINE-1-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-hong-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTHONG"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-VANG.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-vang-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTVANG"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/VANG-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-vang-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTVANG"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/VANG-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-vang-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTVANG"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/VANG-MAU-THUC-TE-MELAMINE-1-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-vang-solid-color",
       "locale": "unknown",
@@ -15199,6 +16851,42 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/XANH-BIEN-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-xanh-bien-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTXANHBIEN"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/XANH-BIEN-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-xanh-bien-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTXANHBIEN"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/XANH-DUONG-MAU-THUC-TE-MELAMINE-1-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-xanh-bien-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTXANHBIEN"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/Xanhchuoi.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-xanh-chuoi-solid-color",
@@ -15211,7 +16899,79 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/XANH-CHUOI-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-xanh-chuoi-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTXANHCHUOI"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/XANH-CHUOI-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-xanh-chuoi-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTXANHCHUOI"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/XANH-CHUOI-MAU-THUC-TE-MELAMINE-01-1-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-xanh-chuoi-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTXANHCHUOI"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/05/BT-XANH-COBAN.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-xanh-coban-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTXANHCOBAN"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/XANH-COBAN-01-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-xanh-coban-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTXANHCOBAN"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/XANH-COBAN-02-1.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/bt-xanh-coban-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:BTXANHCOBAN"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/XANH-COBAN-MAU-THUC-TE-MELAMINE-1-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/bt-xanh-coban-solid-color",
       "locale": "unknown",
@@ -15261,7 +17021,32 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-002-MW-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/sc-002mw-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:SC002MW"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/SC-003M.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/sc-003m-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:LWSC003M",
+        "ba-thanh:sku:SC003M"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-003-M-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/sc-003m-solid-color",
       "locale": "unknown",
@@ -15324,7 +17109,32 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-005-M-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/sc-005m-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:LWSC005M",
+        "ba-thanh:sku:SC005M"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-005-MW.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/sc-005mw-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:SC005MW"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-005-MW-MAU-THUC-TE-MELAMINE-1024x726.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/sc-005mw-solid-color",
       "locale": "unknown",
@@ -15372,6 +17182,18 @@
     },
     {
       "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-007-M-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/sc-007m-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:SC007M"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2023/10/SC-007-MW.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/sc-007mw-solid-color",
@@ -15405,6 +17227,102 @@
       "outcome": "imported",
       "recordIds": [
         "ba-thanh:sku:SC008MW"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-008-MW-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/sc-008mw-solid-color",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:SC008MW"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-01.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/sc009mw",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:SC009MW"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-02.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/sc010mw",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:SC010MW"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-03.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/sc011mw",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:SC011MW"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-04.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/sc012mw",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:SC012MW"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-05.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/sc013mw",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:SC013MW"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-06.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/sc014mw",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:SC014MW"
+      ]
+    },
+    {
+      "supplier": "ba-thanh",
+      "url": "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-07.jpg",
+      "discoveredFrom": "html-link",
+      "sourceParent": "https://bathanh.com.vn/sc015mw",
+      "locale": "unknown",
+      "pageType": "product",
+      "outcome": "imported",
+      "recordIds": [
+        "ba-thanh:sku:SC015MW"
       ]
     },
     {
@@ -15616,54 +17534,6 @@
     },
     {
       "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2026/08/BT-186-MELAMINE-BA-THANH-GROUP.jpg",
-      "discoveredFrom": "html-link",
-      "sourceParent": "https://bathanh.com.vn/bt186",
-      "locale": "unknown",
-      "pageType": "product",
-      "outcome": "imported",
-      "recordIds": [
-        "ba-thanh:sku:BT186"
-      ]
-    },
-    {
-      "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-49-e1713937690671.jpg",
-      "discoveredFrom": "html-link",
-      "sourceParent": "https://bathanh.com.vn/bt-49-wood-grains",
-      "locale": "unknown",
-      "pageType": "product",
-      "outcome": "imported",
-      "recordIds": [
-        "ba-thanh:sku:BT49"
-      ]
-    },
-    {
-      "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-55-e1713937570962.jpg",
-      "discoveredFrom": "html-link",
-      "sourceParent": "https://bathanh.com.vn/bt-55-wood-grains",
-      "locale": "unknown",
-      "pageType": "product",
-      "outcome": "imported",
-      "recordIds": [
-        "ba-thanh:sku:BT55"
-      ]
-    },
-    {
-      "supplier": "ba-thanh",
-      "url": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-91.jpg",
-      "discoveredFrom": "html-link",
-      "sourceParent": "https://bathanh.com.vn/bt-91-wood-grains",
-      "locale": "unknown",
-      "pageType": "product",
-      "outcome": "imported",
-      "recordIds": [
-        "ba-thanh:sku:BT91"
-      ]
-    },
-    {
-      "supplier": "ba-thanh",
       "url": "https://bathanh.com.vn/wp-content/uploads/2024/09/W7020-Z.jpg",
       "discoveredFrom": "html-link",
       "sourceParent": "https://bathanh.com.vn/way-w7020",
@@ -15767,17 +17637,7 @@
       "pageType": "product",
       "outcome": "imported",
       "recordIds": [
-        "ba-thanh:sku:F0022",
-        "ba-thanh:sku:F3292",
-        "ba-thanh:sku:F3293",
-        "ba-thanh:sku:F3294",
-        "ba-thanh:sku:F3295",
-        "ba-thanh:sku:P1010",
-        "ba-thanh:sku:P1150",
-        "ba-thanh:sku:P2002",
-        "ba-thanh:sku:P2052",
-        "ba-thanh:sku:P2061",
-        "ba-thanh:sku:P4640"
+        "ba-thanh:sku:P2052"
       ]
     },
     {
@@ -16528,5 +18388,5 @@
       ]
     }
   ],
-  "checksum": "97f3ea61fc4bbb53671f89cd6c7dccecd022a84aedbf0c3f750c37711f013616"
+  "checksum": "55e3c4844dcc272c35ad55f4e599d4b1139879e036820d78da817626971aee5c"
 }

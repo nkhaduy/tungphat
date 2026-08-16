@@ -1,5 +1,5 @@
 {
-  "checksum": "d7cb8e613b107e0f7cd632474050fa3add3d15e68e1d162532e105fd094f41ce",
+  "checksum": "772c2438816a3689861475b8e294f8b5a53a66d276a834a04872e738784b972c",
   "combined": {
     "invalidRefs": 0,
     "localPreviewBytes": 0,
@@ -7,11 +7,11 @@
     "localPreviewRefs": 0,
     "originalProvenanceOnlyRefs": 6209,
     "rightsStatus": "UNCONFIRMED",
-    "totalRefs": 8227,
-    "uniqueUrls": 5361,
-    "unresolvedDeferredRefs": 2018
+    "totalRefs": 8404,
+    "uniqueUrls": 5514,
+    "unresolvedDeferredRefs": 2195
   },
-  "generatedAt": "2026-08-16T14:36:31.647Z",
+  "generatedAt": "2026-08-16T15:51:03.473Z",
   "policy": {
     "cloudflarePagesLimitsChecked": "2026-07-16",
     "cloudflarePagesLimitsSource": "https://developers.cloudflare.com/pages/platform/limits/",
@@ -21,13 +21,13 @@
     "transformedLegacyAssets": "DELIVERY_VARIANT_NOT_ORIGINAL_BYTES"
   },
   "publicDelivery": {
-    "bytes": 444221844,
+    "bytes": 524685071,
     "cloudflarePagesFileLimit": 20000,
     "cloudflarePagesMaxFileBytes": 26214400,
     "directory": "out",
-    "fileCount": 7271,
+    "fileCount": 8000,
     "fileCountGate": "PASS",
-    "maxFileBytes": 4744777,
+    "maxFileBytes": 8459355,
     "maxFileGate": "PASS",
     "scope": "STATIC_OUTPUT"
   },
@@ -51,9 +51,9 @@
       "localPreviewRefs": 0,
       "originalProvenanceOnlyRefs": 0,
       "rightsStatus": "UNCONFIRMED",
-      "totalRefs": 607,
-      "uniqueUrls": 432,
-      "unresolvedDeferredRefs": 607
+      "totalRefs": 784,
+      "uniqueUrls": 585,
+      "unresolvedDeferredRefs": 784
     },
     "thanh-thuy": {
       "invalidRefs": 0,

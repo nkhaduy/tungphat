@@ -23,13 +23,22 @@ describe("Ba Thanh detail-page media selection", () => {
     ]);
   });
 
-  it("drops a detail image that is only a branded Ba Thanh template", () => {
+  it("retains a branded swatch when the product page directly assigns it to the code", () => {
     expect(selectBaThanhDetailMedia({
       codeNormalized: "SC013MW",
       materialType: "melamine",
       sourceImageUrl: "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-05.jpg",
       detailImageUrls: ["https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-05.jpg"],
-    })).toEqual([]);
+    })).toEqual([
+      { sourceUrl: "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-05.jpg", role: "swatch" },
+    ]);
+
+    expect(selectBaThanhDetailMedia({
+      codeNormalized: "SC009MW",
+      materialType: "melamine",
+      sourceImageUrl: "https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-01.jpg",
+      detailImageUrls: ["https://bathanh.com.vn/wp-content/uploads/2024/03/TAO-TEM-MAU-WEB-01.jpg"],
+    })[0]?.role).toBe("swatch");
   });
 
   it("drops known wrong-code and coming-soon placeholders", () => {

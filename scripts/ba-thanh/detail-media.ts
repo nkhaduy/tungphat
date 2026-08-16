@@ -63,13 +63,18 @@ function matchesCode(code: string, url: string, materialType: "melamine" | "lami
   return namedCodeMatches(code, url);
 }
 
-function isBrandedOrPlaceholder(url: string): boolean {
+function isPlaceholder(url: string): boolean {
   const name = filename(url);
-  return /(?:logo|icon|background|cropped-|soon(?:-|\.)|tao-tem|tem-web|ba-thanh[-_ ](?:group|logo)|melamine[-_ ]ba[-_ ]thanh[-_ ](?:group|logo))/i.test(name)
+  return /(?:logo|icon|background|cropped-|soon(?:-|\.)|ba-thanh[-_ ](?:group|logo)|melamine[-_ ]ba[-_ ]thanh[-_ ](?:group|logo))/i.test(name)
     || /(?:BT-103(?:-|\.)|BT103(?:-|\.))/i.test(name);
 }
 
+function isBrandedTemplate(url: string): boolean {
+  return /(?:tao-tem|tem-web)/i.test(filename(url));
+}
+
 function roleFor(url: string): BaThanhDetailMediaRole {
+  if (isBrandedTemplate(url)) return "swatch";
   if (/(?:MAU[-_ ]THUC[-_ ]TE|THUC[-_ ]TE|REAL|ACTUAL)/i.test(filename(url))) return "actual-photo";
   if (/(?:[-_](?:01|02)(?:[-_.]|$)|APP|APPLICATION|THIET[-_ ]KE|DESIGN)/i.test(filename(url))) return "application";
   return "swatch";
@@ -80,12 +85,14 @@ export function selectBaThanhDetailMedia(input: SelectBaThanhDetailMediaInput): 
   const trustedPageCodes = new Set(visibleCodes(input.sourceImageUrl ?? ""));
   for (const sourceUrl of [...new Set(input.detailImageUrls ?? [])]) {
     if (!sourceUrl) continue;
-    if (isBrandedOrPlaceholder(sourceUrl) && !matchesCode(input.codeNormalized, sourceUrl, input.materialType)) continue;
+    if (isPlaceholder(sourceUrl) && !matchesCode(input.codeNormalized, sourceUrl, input.materialType)) continue;
+    if (isBrandedTemplate(sourceUrl) && sourceUrl !== input.sourceImageUrl && !matchesCode(input.codeNormalized, sourceUrl, input.materialType)) continue;
     const role = roleFor(sourceUrl);
     const printedCodes = visibleCodes(sourceUrl);
     const matchesTrustedPageCode = printedCodes.some((code) => trustedPageCodes.has(code));
     const isPageApplication = role !== "swatch";
     if (!matchesCode(input.codeNormalized, sourceUrl, input.materialType)
+      && sourceUrl !== input.sourceImageUrl
       && !(input.materialType === "laminate" && (matchesTrustedPageCode || isPageApplication))) continue;
     selected.push({ sourceUrl, role });
   }
