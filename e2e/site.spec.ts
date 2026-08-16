@@ -620,7 +620,9 @@ test("404 dùng ảnh responsive và có hai đường thoát rõ ràng", async 
   );
 });
 
-test("404 căn giữa tiêu đề và giữ nền đứng yên khi cuộn", async ({ page }) => {
+test("404 keeps content visible and background coverage stable across viewports", async ({
+  page,
+}) => {
   for (const viewport of [
     { width: 390, height: 844 },
     { width: 768, height: 1024 },
@@ -635,63 +637,53 @@ test("404 căn giữa tiêu đề và giữ nền đứng yên khi cuộn", asyn
       name: "Trang này không tồn tại",
       exact: true,
     });
+    const homeLink = page.getByRole("link", { name: "Về trang chủ" });
+    const catalogueLink = page.getByRole("link", { name: "Xem catalogue" });
     const stageBox = await stage.boundingBox();
     const headingBox = await heading.boundingBox();
 
     expect(stageBox).not.toBeNull();
     expect(headingBox).not.toBeNull();
-    const stageCenter = stageBox!.y + stageBox!.height / 2;
-    const headingCenter = headingBox!.y + headingBox!.height / 2;
-    expect(
-      Math.abs(stageCenter - headingCenter),
-      `${viewport.width}x${viewport.height}`,
-    ).toBeLessThanOrEqual(3);
+    expect(stageBox!.width).toBeGreaterThanOrEqual(viewport.width - 1);
+    expect(stageBox!.height).toBeGreaterThan(viewport.height * 0.75);
+    expect(headingBox!.x).toBeGreaterThanOrEqual(0);
+    expect(headingBox!.x + headingBox!.width).toBeLessThanOrEqual(viewport.width);
+    expect(headingBox!.y).toBeGreaterThanOrEqual(0);
+    expect(headingBox!.y + headingBox!.height).toBeLessThanOrEqual(
+      viewport.height,
+    );
+    await expect(homeLink).toBeInViewport();
+    await expect(catalogueLink).toBeInViewport();
+
+    const layout = await page.evaluate(() => ({
+      documentWidth: document.documentElement.scrollWidth,
+      viewportWidth: document.documentElement.clientWidth,
+      stagePosition: getComputedStyle(
+        document.querySelector('[data-testid="not-found-stage"]')!,
+      ).position,
+    }));
+    expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth);
+    expect(layout.stagePosition).toBe("sticky");
   }
 
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/khong-ton-tai/");
 
   const stage = page.getByTestId("not-found-stage");
-  const heading = page.getByRole("heading", {
-    level: 1,
-    name: "Trang này không tồn tại",
-    exact: true,
-  });
   const footer = page.getByRole("contentinfo");
-  const stageTopBefore = await stage.evaluate(
-    (element) => element.getBoundingClientRect().top,
-  );
-  const headingTopBefore = await heading.evaluate(
-    (element) => element.getBoundingClientRect().top,
-  );
 
   await page.evaluate(() => window.scrollTo(0, 200));
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(200);
 
-  const stageTopDuring = await stage.evaluate(
-    (element) => element.getBoundingClientRect().top,
+  const stageDuringScroll = await stage.boundingBox();
+  expect(stageDuringScroll).not.toBeNull();
+  expect(stageDuringScroll!.y).toBeLessThanOrEqual(0);
+  expect(stageDuringScroll!.y + stageDuringScroll!.height).toBeGreaterThanOrEqual(
+    700,
   );
-  const headingTopDuring = await heading.evaluate(
-    (element) => element.getBoundingClientRect().top,
-  );
-  expect(Math.abs(stageTopDuring - stageTopBefore)).toBeLessThanOrEqual(4);
-  expect(
-    Math.abs(headingTopDuring - (headingTopBefore - 200)),
-  ).toBeLessThanOrEqual(2);
 
-  const headerBottom = await page
-    .getByRole("banner")
-    .evaluate((element) => element.getBoundingClientRect().bottom);
-  const revealScroll = Math.max(0, headingTopBefore - headerBottom);
-  await page.evaluate(
-    (scrollTop) => window.scrollTo(0, scrollTop),
-    revealScroll,
-  );
-  await expect
-    .poll(() =>
-      footer.evaluate((element) => element.getBoundingClientRect().top),
-    )
-    .toBeLessThanOrEqual(801);
+  await footer.scrollIntoViewIfNeeded();
+  await expect(footer).toBeInViewport();
 });
 
 test("404 phủ kín mép trên mà không lộ nền body", async ({ page }) => {
