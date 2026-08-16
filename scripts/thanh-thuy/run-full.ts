@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { runThanhThuyFullArtifacts } from "./full";
@@ -30,12 +31,14 @@ export async function runThanhThuyFullImport(options: {
 
 async function main() {
   const args = parseCliArgs();
+  const dryRun = args.has("dry-run");
   await runThanhThuyFullImport({
     sourceDirectory: typeof args.get("source-dir") === "string" ? path.resolve(String(args.get("source-dir"))) : undefined,
     cacheDirectory: typeof args.get("cache-dir") === "string" ? path.resolve(String(args.get("cache-dir"))) : undefined,
-    dryRun: args.has("dry-run"),
+    dryRun,
     resume: !args.has("refresh"),
   });
+  if (!dryRun) execFileSync("npm", ["run", "media:publish"], { cwd: process.cwd(), stdio: "inherit" });
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

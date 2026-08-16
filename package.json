@@ -48,7 +48,7 @@
     "catalog:thanh-thuy:crawl": "tsx scripts/thanh-thuy/crawl.ts",
     "catalog:thanh-thuy:crawl:full": "tsx scripts/thanh-thuy/crawl.ts",
     "catalog:thanh-thuy:import": "tsx scripts/thanh-thuy/import.ts && npm run media:publish",
-    "catalog:thanh-thuy:import:full": "tsx scripts/thanh-thuy/run-full.ts && npm run media:publish",
+    "catalog:thanh-thuy:import:full": "tsx scripts/thanh-thuy/run-full.ts",
     "catalog:thanh-thuy:validate": "tsx scripts/thanh-thuy/validate.ts",
     "catalog:thanh-thuy:validate:full": "tsx scripts/thanh-thuy/validate.ts && tsx scripts/thanh-thuy/full.ts --validate-only",
     "catalog:thanh-thuy:audit-duplication": "tsx scripts/thanh-thuy/duplication-audit.ts",
