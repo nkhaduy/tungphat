@@ -50,7 +50,7 @@ export function SupplierMediaGallery({ images }: { images: GalleryImage[] }) {
         <span className="absolute bottom-3 right-3 bg-forest-950/90 px-3 py-2 text-xs font-extrabold text-white">Mở thư viện {images.length} ảnh</span>
       </button>
       {open && current ? (
-        <div role="dialog" aria-modal="true" aria-label={`Thư viện ảnh, ${index + 1} trên ${images.length}`} className="fixed inset-0 z-[100] flex flex-col bg-black/95 p-3 backdrop-blur-sm sm:p-6" onClick={() => setOpen(false)} onTouchStart={(event) => { touchStart.current = event.touches[0]?.clientX ?? null; }} onTouchEnd={(event) => {
+        <div role="dialog" aria-modal="true" aria-label={`Thư viện ảnh, ${index + 1} trên ${images.length}`} className="fixed inset-0 z-[1000] flex flex-col bg-black/95 p-3 backdrop-blur-sm sm:p-6" onClick={() => setOpen(false)} onTouchStart={(event) => { touchStart.current = event.touches[0]?.clientX ?? null; }} onTouchEnd={(event) => {
           const start = touchStart.current;
           const end = event.changedTouches[0]?.clientX;
           touchStart.current = null;
