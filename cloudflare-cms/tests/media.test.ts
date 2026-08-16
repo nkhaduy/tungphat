@@ -4,7 +4,7 @@ import { handleMedia } from "../src/media/handler";
 const payload = new TextEncoder().encode("test-video");
 const uploaded = new Date("2026-07-20T00:00:00.000Z");
 
-function object(body = payload): R2ObjectBody {
+function object(body = payload, contentType = "video/mp4"): R2ObjectBody {
   return {
     key: "videos/legacy/0619.mp4",
     version: "v1",
@@ -13,13 +13,13 @@ function object(body = payload): R2ObjectBody {
     httpEtag: '"etag-value"',
     checksums: {},
     uploaded,
-    httpMetadata: { contentType: "video/mp4", cacheControl: "public, max-age=31536000, immutable" },
+    httpMetadata: { contentType, cacheControl: "public, max-age=31536000, immutable" },
     customMetadata: {},
     range: { offset: 0, length: body.byteLength },
     storageClass: "Standard",
     ssecKeyMd5: undefined,
     writeHttpMetadata(headers) {
-      headers.set("Content-Type", "video/mp4");
+      headers.set("Content-Type", contentType);
       headers.set("Cache-Control", "public, max-age=31536000, immutable");
     },
     body: new ReadableStream({
@@ -33,7 +33,7 @@ function object(body = payload): R2ObjectBody {
     bytes: async () => body,
     text: async () => new TextDecoder().decode(body),
     json: async () => JSON.parse(new TextDecoder().decode(body)),
-    blob: async () => new Blob([body], { type: "video/mp4" })
+    blob: async () => new Blob([body], { type: contentType })
   } as R2ObjectBody;
 }
 
@@ -137,6 +137,46 @@ describe("private R2 media delivery", () => {
         storageRead = true;
         return null;
       } })
+    );
+
+    expect(response.status).toBe(404);
+    expect(storageRead).toBe(false);
+  });
+
+  it("serves safe supplier image keys with their stored MIME", async () => {
+    const response = await handleMedia(
+      new Request("https://cms.mdftungphat.com/media/supplier/ba-thanh/bt182/texture/hash.jpg"),
+      env({
+        head: async () => object(payload, "image/jpeg") as unknown as R2Object,
+        get: async () => object(payload, "image/jpeg"),
+      }),
+    );
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("Content-Type")).toBe("image/jpeg");
+  });
+
+  it("preserves the existing public catalogue image prefix", async () => {
+    const response = await handleMedia(
+      new Request("https://cms.mdftungphat.com/media/catalog/an-cuong/melamine/example.webp"),
+      env({
+        head: async () => object(payload, "image/webp") as unknown as R2Object,
+        get: async () => object(payload, "image/webp"),
+      }),
+    );
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("Content-Type")).toBe("image/webp");
+  });
+
+  it("rejects traversal under supplier media without reading storage", async () => {
+    let storageRead = false;
+    const response = await handleMedia(
+      new Request("https://cms.mdftungphat.com/media/supplier/ba-thanh/%2e%2e%2fprivate.jpg"),
+      env({ head: async () => {
+        storageRead = true;
+        return null;
+      } }),
     );
 
     expect(response.status).toBe(404);

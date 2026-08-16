@@ -16,7 +16,7 @@ private.
 - Analytics admin API: `/api/admin/analytics/*`
 - Lead API: `POST /api/contact`, `POST /api/quote`
 - Health: `GET /health`
-- R2 media: `GET|HEAD /media/videos/*`
+- R2 media: `GET|HEAD /media/videos/*`, `/media/catalog/*`, and `/media/supplier/*`
 
 ## Bindings và secrets
 
@@ -26,7 +26,7 @@ CSRF hash và rate-limit key đã HMAC; không lưu raw IP hoặc password.
 
 R2 binding `MEDIA` dùng `tung-phat-media` ở production và
 `tung-phat-media-preview` ở preview. Bucket giữ private; route media chỉ cho phép
-key dưới `videos/`.
+key dưới `videos/`, catalogue hiện hữu dưới `catalog/`, và originals dưới `supplier/`.
 
 Các secret bắt buộc, chỉ đặt trong Cloudflare encrypted secret store:
 

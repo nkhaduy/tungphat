@@ -1,5 +1,5 @@
 const MEDIA_ROUTE_PREFIX = "/media/";
-const PUBLIC_KEY_PREFIXES = ["videos/", "catalog/"];
+const PUBLIC_KEY_PREFIXES = ["videos/", "catalog/", "supplier/"] as const;
 const IMMUTABLE_CACHE = "public, max-age=31536000, immutable";
 
 type ByteRange = {
@@ -41,7 +41,7 @@ function mediaKey(request: Request) {
     key.length > 512 ||
     key.includes("\\") ||
     key.split("/").includes("..") ||
-    !/^(?:videos|catalog)\/[a-zA-Z0-9][a-zA-Z0-9._/-]*$/.test(key)
+    !/^(?:videos|catalog|supplier)\/[a-zA-Z0-9][a-zA-Z0-9._/-]*$/.test(key)
   ) {
     return null;
   }
@@ -73,7 +73,7 @@ function parseRange(value: string | null, size: number): ByteRange | null | "inv
 function mediaHeaders(object: R2Object, contentLength: number) {
   const headers = new Headers();
   object.writeHttpMetadata(headers);
-  if (!headers.has("Content-Type")) headers.set("Content-Type", "video/mp4");
+  if (!headers.has("Content-Type")) headers.set("Content-Type", "application/octet-stream");
   if (!headers.has("Cache-Control")) headers.set("Cache-Control", IMMUTABLE_CACHE);
   headers.set("Content-Length", String(contentLength));
   headers.set("Accept-Ranges", "bytes");
