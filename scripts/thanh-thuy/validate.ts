@@ -17,6 +17,19 @@ export function validateCatalog(
 ): string[] {
   const root = options.root ?? process.cwd();
   const errors: string[] = [];
+  const manifestFile = path.join(root, "data/catalog-media-manifest.json");
+  const externalMedia = fs.existsSync(manifestFile)
+    ? (() => {
+        const manifest = JSON.parse(fs.readFileSync(manifestFile, "utf8")) as {
+          entries?: Array<{ logicalPath: string }>;
+          aliases?: Record<string, string>;
+        };
+        return new Set([
+          ...(manifest.entries ?? []).map((entry) => entry.logicalPath),
+          ...Object.keys(manifest.aliases ?? {}),
+        ]);
+      })()
+    : new Set<string>();
   if (catalog.schemaVersion !== 1) errors.push("schemaVersion phải là 1");
   if (catalog.supplier !== "Thanh Thuỳ" || catalog.sourceName !== "Gỗ Thanh Thuỳ") errors.push("source attribution không hợp lệ");
   if (!Array.isArray(catalog.products) || !Array.isArray(catalog.categories)) errors.push("catalog arrays không hợp lệ");
@@ -41,7 +54,8 @@ export function validateCatalog(
         errors.push(`hotlink ảnh: ${product.id}`);
       } else if (options.requireMediaFiles !== false) {
         const mediaFile = path.join(root, "public", product.image.src.replace(/^\//, ""));
-        if (!fs.existsSync(mediaFile)) errors.push(`thiếu media: ${product.image.src}`);
+        const logicalPath = product.image.src.replace(/^\//, "");
+        if (!fs.existsSync(mediaFile) && !externalMedia.has(logicalPath)) errors.push(`thiếu media: ${product.image.src}`);
       }
     }
     if (!product.checksum || !/^[a-f0-9]{64}$/.test(product.checksum)) errors.push(`checksum không hợp lệ: ${product.id}`);

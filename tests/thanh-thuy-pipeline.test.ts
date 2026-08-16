@@ -422,4 +422,30 @@ describe("Thanh Thuy import safety", () => {
     expect(errors.some((error) => error.includes("commerce"))).toBe(true);
     expect(errors.some((error) => error.includes("slug"))).toBe(true);
   });
+
+  it("accepts catalogue media externalized in the R2 manifest", () => {
+    const root = temporaryDirectory();
+    const localImage = "/catalog/thanh-thuy/image.webp";
+    const product = normalizeSourceProduct(sourceProduct(), {
+      categories: [category],
+      importedAt: "2026-08-04T00:00:00.000Z",
+      localImage,
+    });
+    const catalog = {
+      schemaVersion: 1 as const,
+      supplier: "Thanh Thuỳ" as const,
+      sourceName: "Gỗ Thanh Thuỳ" as const,
+      importedAt: "2026-08-04T00:00:00.000Z",
+      checksum: stableChecksum([product.checksum]),
+      categories: [],
+      products: [product],
+    };
+    fs.mkdirSync(path.join(root, "data"), { recursive: true });
+    fs.writeFileSync(path.join(root, "data/catalog-media-manifest.json"), JSON.stringify({
+      entries: [{ logicalPath: localImage.replace(/^\//, "") }],
+      aliases: {},
+    }));
+
+    expect(validateCatalog(catalog, { root })).toEqual([]);
+  });
 });

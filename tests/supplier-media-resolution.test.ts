@@ -4,6 +4,7 @@ import {
   dedupeSupplierMedia,
   resolveOriginalMedia,
   selectPrimaryMedia,
+  supplierOriginalKey,
 } from "@/lib/catalog/supplier-media/resolve";
 
 describe("supplier media resolution", () => {
@@ -74,5 +75,10 @@ describe("supplier media resolution", () => {
 
     expect(selected.primary?.selectedUrl).toBe("texture");
     expect(selected.gallery.map((item) => item.selectedUrl)).toEqual(["texture", "detail", "room"]);
+  });
+
+  it("builds deterministic safe R2 original keys", () => {
+    expect(supplierOriginalKey({ supplier: "ba-thanh", code: "BT 182", type: "room", checksum: "a".repeat(64), mimeType: "image/jpeg" }))
+      .toBe(`supplier/ba-thanh/bt182/room/${"a".repeat(64)}.jpg`);
   });
 });

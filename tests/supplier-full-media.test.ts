@@ -847,29 +847,20 @@ describe("supplier full-media provenance", () => {
     ).toBe("PREBUILD_SOURCE_PUBLIC");
   });
 
-  it("never promotes an explicitly source-only relationship into local delivery", () => {
+  it("preserves every media relationship after catalogue media is externalized", () => {
     const records = JSON.parse(
       fs.readFileSync(path.join(process.cwd(), "data/imports/ba-thanh/full-records.json"), "utf8"),
     ) as { records: Array<{ images?: Array<{ localPath?: string }> }> };
     const generated = JSON.parse(
       fs.readFileSync(path.join(process.cwd(), "data/imports/ba-thanh/full-media-manifest.json"), "utf8"),
     ) as SupplierMediaManifest;
-    const explicitLocalRefs = records.records.reduce(
-      (total, record) => total + (record.images ?? []).filter((image) => image.localPath).length,
+    const recordRefs = records.records.reduce(
+      (total, record) => total + (record.images ?? []).length,
       0,
     );
-    const explicitSourceOnlyRefs = records.records.reduce(
-      (total, record) => total + (record.images ?? []).filter((image) => !image.localPath).length,
-      0,
-    );
-    const manifestLocalRefs = generated.assets
-      .filter((item) => item.state === "LOCAL_PREVIEW")
-      .reduce((total, item) => total + item.references.length, 0);
-    const manifestDeferredRefs = generated.assets
-      .filter((item) => item.state === "DEFERRED")
-      .reduce((total, item) => total + item.references.length, 0);
+    const manifestRefs = generated.assets.reduce((total, item) => total + item.references.length, 0);
 
-    expect(manifestLocalRefs).toBe(explicitLocalRefs);
-    expect(manifestDeferredRefs).toBe(explicitSourceOnlyRefs);
+    expect(manifestRefs).toBe(recordRefs);
+    expect(generated.assets.some((item) => item.state === "INVALID" || item.state === "UNRESOLVED")).toBe(false);
   });
 });

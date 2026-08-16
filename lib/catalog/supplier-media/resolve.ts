@@ -56,3 +56,25 @@ export function selectPrimaryMedia(items: RetainedSupplierMedia[]) {
   return { primary: gallery[0], gallery };
 }
 
+export function supplierOriginalKey(input: {
+  supplier: string;
+  code: string;
+  type: RetainedSupplierMedia["type"];
+  checksum: string;
+  mimeType: string;
+}) {
+  const supplier = input.supplier.toLowerCase().replace(/[^a-z0-9-]+/g, "-").replace(/^-|-$/g, "");
+  const code = input.code.toLowerCase().replace(/[^a-z0-9]+/g, "");
+  const extensions: Record<string, string> = {
+    "image/avif": "avif",
+    "image/gif": "gif",
+    "image/jpeg": "jpg",
+    "image/png": "png",
+    "image/webp": "webp",
+  };
+  const extension = extensions[input.mimeType];
+  if (!supplier || !code || !/^[a-f0-9]{64}$/.test(input.checksum) || !extension) {
+    throw new Error("Unsafe supplier original media key input");
+  }
+  return `supplier/${supplier}/${code}/${input.type}/${input.checksum}.${extension}`;
+}

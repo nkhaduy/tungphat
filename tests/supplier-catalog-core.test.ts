@@ -360,7 +360,7 @@ describe("supplier sitemap composition", () => {
 describe("supplier adapters", () => {
   it("preserves supplier-specific record counts and SEO gates", () => {
     expect(thanhThuyAdapter.getSearchEntries()).toHaveLength(348);
-    expect(baThanhAdapter.getSearchEntries()).toHaveLength(383);
+    expect(baThanhAdapter.getSearchEntries()).toHaveLength(384);
     expect(anCuongAdapter.getSearchEntries()).toHaveLength(2_331);
 
     expect(
@@ -368,7 +368,7 @@ describe("supplier adapters", () => {
     ).toHaveLength(342);
     expect(
       baThanhAdapter.getSearchEntries().filter((entry) => entry.recordType === "color-code"),
-    ).toHaveLength(372);
+    ).toHaveLength(373);
     expect(
       anCuongAdapter.getSearchEntries().filter((entry) => entry.recordType === "color-code"),
     ).toHaveLength(2_195);

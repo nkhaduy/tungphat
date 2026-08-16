@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check, Ruler } from "lucide-react";
@@ -7,6 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { MaterialDisclaimer } from "@/components/catalog/MaterialDisclaimer";
 import { ProductInquiryCTA } from "@/components/catalog/ProductInquiryCTA";
 import { CodeInquiryActions } from "@/components/catalog/CodeInquiryActions";
+import { SupplierMediaGallery } from "@/components/catalog/SupplierMediaGallery";
 import { getBaThanhCode, getBaThanhCodes } from "@/lib/catalog/ba-thanh";
 import {
   buildBaThanhCodeMetadata,
@@ -105,43 +105,7 @@ export default async function BaThanhCodePage({ params }: RouteProps) {
         <section className="py-10 lg:py-16">
           <div className="container-shell grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
             <div className="lg:sticky lg:top-28">
-              <div className="relative aspect-[1.55/1] overflow-hidden border border-forest-900/12 bg-[#eef1ed]">
-                {record.images[0] ? (
-                  <Image
-                    src={record.images[0].src}
-                    alt={record.images[0].alt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 48vw"
-                    quality={92}
-                    priority
-                    className="object-cover"
-                  />
-                ) : (
-                  <div className="grid h-full place-items-center text-sm font-bold text-slate-500">
-                    Ảnh đang cập nhật
-                  </div>
-                )}
-              </div>
-              {record.images.length > 1 && (
-                <div className="mt-3 grid grid-cols-3 gap-3">
-                  {record.images.slice(1).map((image) => (
-                    <div
-                      key={image.src}
-                      className="relative aspect-[1.5/1] overflow-hidden border border-forest-900/10 bg-[#eef1ed]"
-                    >
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        sizes="160px"
-                        quality={90}
-                        loading="lazy"
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
+              <SupplierMediaGallery images={record.images} />
               <p className="mt-4 text-xs leading-5 text-slate-500">
                 Ảnh trong catalogue được lưu tại Tùng Phát để tránh phụ thuộc
                 tải ảnh từ website nguồn.

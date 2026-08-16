@@ -15,7 +15,7 @@ import {
 
 describe("Ba Thanh catalogue repository", () => {
   it("loads every verified source code without collapsing suffix variants", () => {
-    expect(getBaThanhCodes()).toHaveLength(259);
+    expect(getBaThanhCodes()).toHaveLength(260);
     expect(getBaThanhCode("bt171ev")?.codeNormalized).toBe("BT171EV");
     expect(getBaThanhCode("sc-018m")?.codeNormalized).toBe("SC018M");
     expect(getBaThanhCode("sc-018mw")?.codeNormalized).toBe("SC018MW");
@@ -25,7 +25,7 @@ describe("Ba Thanh catalogue repository", () => {
     expect(
       baThanhCategories.map((category) => [category.slug, category.count]),
     ).toEqual([
-      ["van-go", 153],
+      ["van-go", 154],
       ["don-sac", 62],
       ["van-da", 13],
       ["van-vai", 5],

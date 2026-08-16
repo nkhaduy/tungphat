@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "supplier": "ba-thanh",
-  "generatedAt": "2026-08-06T17:11:54.397Z",
+  "generatedAt": "2026-08-16T12:52:12.499Z",
   "records": [
     {
       "recordType": "sku",
@@ -21,7 +21,18 @@
         "patternGroup": "MÀU ĐƠN SẮC"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-01-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt-01-solid-color"
@@ -57,7 +68,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-02.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt-02-solid-color"
@@ -453,7 +470,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-103-e1698733774228.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt-103-solid-color"
@@ -4268,7 +4291,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/09/BT-172-MELAMINE-BA-THANH-GROUP-e1763542995639.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt172"
@@ -4304,7 +4333,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2025/10/BT-173-MELAMINE-BA-THANH-GROUP-e1759382928152.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt173"
@@ -4340,7 +4375,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2025/10/BT-174-MELAMINE-BA-THANH-GROUP-e1759382892646.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt174"
@@ -4376,7 +4417,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2025/10/BT-175-MELAMINE-BA-THANH-GROUP-e1759382856708.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt175"
@@ -4412,7 +4459,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2026/06/BT-176-MELAMINE-BA-THANH-GROUP.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt176"
@@ -4448,7 +4501,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2026/06/BT-177-MELAMINE-BA-THANH-GROUP.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt177"
@@ -4484,7 +4543,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2026/06/BT-178-MELAMINE-BA-THANH-GROUP.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt178"
@@ -4520,7 +4585,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2026/06/BT-179-MELAMINE-BA-THANH-GROUP.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt179"
@@ -4598,7 +4669,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2026/06/BT-180-MELAMINE-BA-THANH-GROUP.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt180"
@@ -4634,7 +4711,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2026/06/BT-181-MELAMINE-BA-THANH-GROUP.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt181"
@@ -4670,7 +4753,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2026/06/BT-182-MELAMINE-BA-THANH-GROUP.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt182"
@@ -4706,7 +4795,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2026/06/BT-183-MELAMINE-BA-THANH-GROUP.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt183"
@@ -4742,7 +4837,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2026/06/BT-184-MELAMINE-BA-THANH-GROUP.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt184"
@@ -4778,7 +4879,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2026/06/BT-185-MELAMINE-BA-THANH-GROUP.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt185"
@@ -7460,7 +7567,23 @@
         "patternGroup": "MÀU VÂN GỖ"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-86-01-1.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-86-02-1.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-86-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt-86-wood-grains"
@@ -8144,7 +8267,18 @@
         "patternGroup": "MÀU ĐƠN SẮC"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-01-1.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-02-1.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt-den-solid-color"
@@ -8996,7 +9130,13 @@
         "patternGroup": "MÀU ĐƠN SẮC"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-003-MW-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/sc-003mw-solid-color"
@@ -9026,7 +9166,13 @@
         "patternGroup": "MÀU ĐƠN SẮC"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-004-M-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/sc-004m-solid-color"
@@ -9056,7 +9202,13 @@
         "patternGroup": "MÀU ĐƠN SẮC"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-004-MW-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/sc-004mw-solid-color"
@@ -10598,7 +10750,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2025/10/SC-029M-MELAMINE-BA-THANH-GROUP-e1759382606278.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/sc029"
@@ -10634,7 +10792,13 @@
           "label": "1220mm x 2440mm"
         }
       ],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2025/10/SC-030M-MELAMINE-BA-THANH-GROUP-e1759382565941.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/sc030"
@@ -10645,6 +10809,42 @@
       "completenessScore": 55,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NEEDS_ENRICHMENT"
+    },
+    {
+      "recordType": "sku",
+      "supplier": "ba-thanh",
+      "sourceProductId": "ba-thanh:BT186",
+      "code": "BT186",
+      "normalizedCode": "BT186",
+      "name": "Melamine Ba Thanh BT 186",
+      "slug": "bt-186",
+      "productFamily": "Melamine",
+      "category": "Melamine",
+      "collections": [
+        "MÀU VÂN GỖ"
+      ],
+      "attributes": {
+        "sourceGroup": "van-go",
+        "patternGroup": "MÀU VÂN GỖ"
+      },
+      "formats": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2026/08/BT-186-MELAMINE-BA-THANH-GROUP.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
+      "documents": [],
+      "sourceUrls": [
+        "https://bathanh.com.vn/bt186"
+      ],
+      "canonicalSourceUrl": "https://bathanh.com.vn/bt186",
+      "importedAt": "2026-08-16T12:52:12.499Z",
+      "sourceChecksum": "b76da03cd818757cb8b2fb32eed9d38ef793961b03116bc42a490ccf814e0ad8",
+      "completenessScore": 65,
+      "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
+      "seoStatus": "NOINDEX_USEFUL"
     },
     {
       "recordType": "sku",
@@ -10664,7 +10864,13 @@
         "patternGroup": "Sản phẩm Melamine công khai"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-49-e1713937690671.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt-49-wood-grains"
@@ -10672,7 +10878,7 @@
       "canonicalSourceUrl": "https://bathanh.com.vn/bt-49-wood-grains",
       "importedAt": "2026-08-06T16:50:22.910Z",
       "sourceChecksum": "db2357cf7af3c5abc23708eb6ad9ad10485149f0d807265a035fca3ebe8b5fdd",
-      "completenessScore": 45,
+      "completenessScore": 65,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
     },
@@ -10694,7 +10900,13 @@
         "patternGroup": "Sản phẩm Melamine công khai"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-55-e1713937570962.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt-55-wood-grains"
@@ -10702,7 +10914,7 @@
       "canonicalSourceUrl": "https://bathanh.com.vn/bt-55-wood-grains",
       "importedAt": "2026-08-06T16:50:22.910Z",
       "sourceChecksum": "e203e1acb1eeb52327aff116c6ac1d082e57c7d3153181d887e73b257f6d64c6",
-      "completenessScore": 45,
+      "completenessScore": 65,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
     },
@@ -10724,7 +10936,13 @@
         "patternGroup": "Sản phẩm Melamine công khai"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2022/04/BT-91.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt-91-wood-grains"
@@ -10732,7 +10950,7 @@
       "canonicalSourceUrl": "https://bathanh.com.vn/bt-91-wood-grains",
       "importedAt": "2026-08-06T16:50:22.910Z",
       "sourceChecksum": "250b5542d8e0ad8f84615e63d7de675ab1be7a3c3fbb86cb4d9d03177fb18ffd",
-      "completenessScore": 45,
+      "completenessScore": 65,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
     },
@@ -11741,14 +11959,25 @@
         "brand": "WAY"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/way-p2052"
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/way-p2052",
-      "importedAt": "2026-08-06T16:09:09.079Z",
-      "sourceChecksum": "f468132ee275f9910a55e9864c31204389a153eecfe414254ff9eed57f3f04df",
+      "importedAt": "2026-08-16T12:52:12.499Z",
+      "sourceChecksum": "9a22115e1adba843f72200a229873b292a8d16aa0962b9347c6007db6ef13c2c",
       "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
@@ -11772,14 +12001,25 @@
         "brand": "WAY"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/way-p2061"
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/way-p2061",
-      "importedAt": "2026-08-06T16:09:09.079Z",
-      "sourceChecksum": "88ffa10a33a46bc951f274a4a696997528aa29e156bf59f8bf964dc0c5ac642c",
+      "importedAt": "2026-08-16T12:52:12.499Z",
+      "sourceChecksum": "0cbe6da77cbb28088155902359bc2891cedb77a6f67415ff4687cb26c7a79fcc",
       "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
@@ -11803,14 +12043,25 @@
         "brand": "WAY"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/way-p1150"
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/way-p1150",
-      "importedAt": "2026-08-06T16:09:09.079Z",
-      "sourceChecksum": "dd74e17505cb3acc2ba10d1c0531646a5c5e15eee65718f23c07b7c0afca87bb",
+      "importedAt": "2026-08-16T12:52:12.499Z",
+      "sourceChecksum": "4c47155618fee7a21cae64bd873a262c88e06c7c9cd6b7f250ed4071d76f7011",
       "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
@@ -11834,14 +12085,25 @@
         "brand": "WAY"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/way-p2002"
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/way-p2002",
-      "importedAt": "2026-08-06T16:09:09.079Z",
-      "sourceChecksum": "caf6320f7a64ead4ba74d739f7e28fbf9ebff61bca8ee40ee42f7c47821c5ba5",
+      "importedAt": "2026-08-16T12:52:12.499Z",
+      "sourceChecksum": "3d8127312c4e379769d0092fd5655e794668a59a749fd81fff55684ede1ed4f2",
       "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
@@ -11865,14 +12127,25 @@
         "brand": "WAY"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/way-p1010"
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/way-p1010",
-      "importedAt": "2026-08-06T16:09:09.079Z",
-      "sourceChecksum": "03505216ebbad9efa3c15bb50b8d0adc60a4b6dfb241e686897d580e653d81b8",
+      "importedAt": "2026-08-16T12:52:12.499Z",
+      "sourceChecksum": "38419b2547041159a391ad70e5e79abaa5ff02cb6dd6e1c7daf0ba06590dd0b9",
       "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
@@ -12192,14 +12465,25 @@
         "brand": "WAY"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/way-p4640"
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/way-p4640",
-      "importedAt": "2026-08-06T16:09:09.079Z",
-      "sourceChecksum": "0b4955d3ba8492df3672e2595d28c85b37ee9c593faa2b6a40c549fe340b80ed",
+      "importedAt": "2026-08-16T12:52:12.499Z",
+      "sourceChecksum": "52b0aea93363dab0a803f4b821b6f4ff2d97402f5a128fad701cf6a38c92f9a4",
       "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
@@ -12445,14 +12729,25 @@
         "brand": "WAY"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/way-f0022"
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/way-f0022",
-      "importedAt": "2026-08-06T16:09:09.079Z",
-      "sourceChecksum": "336142a90e295fc64272d5de8df92eee25b3a4c2cfc3a04fa1a1126efb3a16a0",
+      "importedAt": "2026-08-16T12:52:12.499Z",
+      "sourceChecksum": "e595174dc79a403654c624459059179b1212d5766fc6f6162adad8a9c53ddfb1",
       "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
@@ -12476,14 +12771,25 @@
         "brand": "WAY"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/way-f3292"
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/way-f3292",
-      "importedAt": "2026-08-06T16:09:09.079Z",
-      "sourceChecksum": "1e73e89e0da37626ea817277c33c6f43b41a230c307a3a88524f086e491b209d",
+      "importedAt": "2026-08-16T12:52:12.499Z",
+      "sourceChecksum": "eb940ab22975ace0d351c820f95f6dff07d3ec70796e477e3d87a259dcd5dddb",
       "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
@@ -12507,14 +12813,25 @@
         "brand": "WAY"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/way-f3293"
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/way-f3293",
-      "importedAt": "2026-08-06T16:09:09.079Z",
-      "sourceChecksum": "a89a877b7e1492224e19041a47f24b0ce043be16a13b64571c2d371ff5915f61",
+      "importedAt": "2026-08-16T12:52:12.499Z",
+      "sourceChecksum": "58e6b975965238c672beec3fed8aff481e47937b534a606f38f50b3825dcd96a",
       "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
@@ -12538,14 +12855,25 @@
         "brand": "WAY"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/way-f3294"
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/way-f3294",
-      "importedAt": "2026-08-06T16:09:09.079Z",
-      "sourceChecksum": "d95eae2df164f1f2331275eb89a16dfdc35b37949527894231700dc864abc982",
+      "importedAt": "2026-08-16T12:52:12.499Z",
+      "sourceChecksum": "eb01d6569c0c44a272f15a121a52c3c85b3a87d2eabbcba678266b2b81822baa",
       "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
@@ -12569,14 +12897,25 @@
         "brand": "WAY"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW-1024x490.jpg",
+          "mediaType": "swatch",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/way-f3295"
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/way-f3295",
-      "importedAt": "2026-08-06T16:09:09.079Z",
-      "sourceChecksum": "863273c2bee60c86187de4de51c3cee1b575e85fce178834197af32d6e84c356",
+      "importedAt": "2026-08-16T12:52:12.499Z",
+      "sourceChecksum": "961ca69e8774f602448de47aa2e5279316ceb7ee3789446f2bf2f878feaf348b",
       "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
@@ -12755,7 +13094,18 @@
         "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-01-1.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-02-1.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt-den-solid-color",
@@ -12763,8 +13113,8 @@
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/bt-den-solid-color",
       "importedAt": "2026-08-05T09:12:54.386Z",
-      "sourceChecksum": "2a2ac86329e4b9966769a082accac35b5cfe5c1dc8f578137b2a7046b94f1a9e",
-      "completenessScore": 55,
+      "sourceChecksum": "458929b1e282831ec6378769034ae4cc6dfd8cc66960dd570b942ea5f642e207",
+      "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
     },
@@ -12790,7 +13140,18 @@
         "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-01-1.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-02-1.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt-den-solid-color",
@@ -12798,8 +13159,8 @@
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/bt-den-solid-color",
       "importedAt": "2026-08-05T09:12:54.386Z",
-      "sourceChecksum": "2ecc9aa94ac7481a8fa8078a49dc2f5bd3bbfb06c0230283222e39bfab67a3fe",
-      "completenessScore": 55,
+      "sourceChecksum": "6ae5ac547bfd317e7f78775b4d5d8482f9f17b670fc5c38f122a76386885cb02",
+      "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
     },
@@ -12825,7 +13186,18 @@
         "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-01-1.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/DEN-02-1.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt-den-solid-color",
@@ -12833,8 +13205,8 @@
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/bt-den-solid-color",
       "importedAt": "2026-08-05T09:12:54.386Z",
-      "sourceChecksum": "d0c85f11054f7f8bf5b88379b884748bc5bfab5c2866397533cddc2df7361f2c",
-      "completenessScore": 55,
+      "sourceChecksum": "9e0455c9e76fdcce33192d937aede1f56add3622371373a0c3e173f1eb1f889f",
+      "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
     },
@@ -12907,7 +13279,18 @@
         "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-01-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt-01-solid-color",
@@ -12915,8 +13298,8 @@
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/bt-01-solid-color",
       "importedAt": "2026-08-05T09:12:54.390Z",
-      "sourceChecksum": "11d7799738cda83d960749937e82cf3cbcfe3437e5383698925aba3f20a2a4b2",
-      "completenessScore": 55,
+      "sourceChecksum": "7cca297d56d2c28836d1a6eed478f153c641eca290e301b8ee968e622a4b5117",
+      "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
     },
@@ -12942,7 +13325,18 @@
         "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-01-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt-01-solid-color",
@@ -12950,8 +13344,8 @@
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/bt-01-solid-color",
       "importedAt": "2026-08-05T09:12:54.390Z",
-      "sourceChecksum": "3a24af4673d10c32977150ec40b3524e58cc0799deec576dfbb626bcf3f9b684",
-      "completenessScore": 55,
+      "sourceChecksum": "8ce064ce688e30f5c2fa5f116fa572f82cb0fc9d3036614e70330f040599c54b",
+      "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
     },
@@ -12977,7 +13371,18 @@
         "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-01-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt-01-solid-color",
@@ -12985,8 +13390,8 @@
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/bt-01-solid-color",
       "importedAt": "2026-08-05T09:12:54.390Z",
-      "sourceChecksum": "6d600c4e947d57f85523a9b322dc8913056c73699021ea29569efe81c94b77d2",
-      "completenessScore": 55,
+      "sourceChecksum": "e35f9f65d5e3fec8b132e82bdfa7ef8941a59e684bae9c8ab7441d19935ddd21",
+      "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
     },
@@ -13317,7 +13722,13 @@
         "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-004-M-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/sc-004m-solid-color",
@@ -13325,8 +13736,8 @@
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/sc-004m-solid-color",
       "importedAt": "2026-08-05T09:12:54.369Z",
-      "sourceChecksum": "e51565fd9a3c009b03ec66479b0e36973bcfb2c4f5084f179505e5a651442b10",
-      "completenessScore": 55,
+      "sourceChecksum": "eb29ea60b25a121be6a1283ddffd9b5490bf0ef1e2c6a49e88a1fac88507a4d2",
+      "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
     },
@@ -14773,7 +15184,23 @@
         "catalogueSourceUrl": "https://www.bathanhhocmon.com/catalogue/laminate-way"
       },
       "formats": [],
-      "images": [],
+      "images": [
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-86-01-1.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-86-02-1.jpg",
+          "mediaType": "application",
+          "rightsStatus": "UNCONFIRMED"
+        },
+        {
+          "sourceUrl": "https://bathanh.com.vn/wp-content/uploads/2024/04/BT-86-MAU-THUC-TE-MELAMINE-1024x726.jpg",
+          "mediaType": "product",
+          "rightsStatus": "UNCONFIRMED"
+        }
+      ],
       "documents": [],
       "sourceUrls": [
         "https://bathanh.com.vn/bt-86-wood-grains",
@@ -14781,8 +15208,8 @@
       ],
       "canonicalSourceUrl": "https://bathanh.com.vn/bt-86-wood-grains",
       "importedAt": "2026-08-05T09:12:54.038Z",
-      "sourceChecksum": "624159930263d4507c44040c84ecd2d00cadc91f3046d61ab72bdbed9d7a6600",
-      "completenessScore": 55,
+      "sourceChecksum": "6378e9e8f94776885d9637dca84ad791f87865d1602bfa559273aa7460b688ea",
+      "completenessScore": 75,
       "editorialStatus": "NEEDS_EDITORIAL_REVIEW",
       "seoStatus": "NOINDEX_USEFUL"
     },
@@ -17393,5 +17820,5 @@
       "needsEditorialReview": true
     }
   ],
-  "checksum": "d7fbfd6717212a7ed67452201d502878ab125407fd0226cdd9fafb378a6dd53b"
+  "checksum": "f19450252b09052569631394369ed97f8072066a3ea75c4b36f48269520fc420"
 }

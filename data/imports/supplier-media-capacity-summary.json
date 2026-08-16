@@ -1,17 +1,17 @@
 {
-  "checksum": "c3da71482ed4aad5a99d78db60ff7bf244e4a338743d3fe1b78d36abd92d4674",
+  "checksum": "d7cb8e613b107e0f7cd632474050fa3add3d15e68e1d162532e105fd094f41ce",
   "combined": {
     "invalidRefs": 0,
-    "localPreviewBytes": 102265234,
-    "localPreviewFiles": 617,
-    "localPreviewRefs": 814,
+    "localPreviewBytes": 0,
+    "localPreviewFiles": 0,
+    "localPreviewRefs": 0,
     "originalProvenanceOnlyRefs": 6209,
     "rightsStatus": "UNCONFIRMED",
-    "totalRefs": 8157,
-    "uniqueUrls": 5328,
-    "unresolvedDeferredRefs": 1134
+    "totalRefs": 8227,
+    "uniqueUrls": 5361,
+    "unresolvedDeferredRefs": 2018
   },
-  "generatedAt": "2026-08-13T09:24:56.522Z",
+  "generatedAt": "2026-08-16T14:36:31.647Z",
   "policy": {
     "cloudflarePagesLimitsChecked": "2026-07-16",
     "cloudflarePagesLimitsSource": "https://developers.cloudflare.com/pages/platform/limits/",
@@ -21,13 +21,13 @@
     "transformedLegacyAssets": "DELIVERY_VARIANT_NOT_ORIGINAL_BYTES"
   },
   "publicDelivery": {
-    "bytes": 2149200628,
+    "bytes": 444221844,
     "cloudflarePagesFileLimit": 20000,
     "cloudflarePagesMaxFileBytes": 26214400,
     "directory": "out",
-    "fileCount": 14355,
+    "fileCount": 7271,
     "fileCountGate": "PASS",
-    "maxFileBytes": 16435124,
+    "maxFileBytes": 4744777,
     "maxFileGate": "PASS",
     "scope": "STATIC_OUTPUT"
   },
@@ -46,25 +46,25 @@
     },
     "ba-thanh": {
       "invalidRefs": 0,
-      "localPreviewBytes": 66070302,
-      "localPreviewFiles": 331,
-      "localPreviewRefs": 466,
+      "localPreviewBytes": 0,
+      "localPreviewFiles": 0,
+      "localPreviewRefs": 0,
       "originalProvenanceOnlyRefs": 0,
       "rightsStatus": "UNCONFIRMED",
-      "totalRefs": 537,
-      "uniqueUrls": 399,
-      "unresolvedDeferredRefs": 71
+      "totalRefs": 607,
+      "uniqueUrls": 432,
+      "unresolvedDeferredRefs": 607
     },
     "thanh-thuy": {
       "invalidRefs": 0,
-      "localPreviewBytes": 36194932,
-      "localPreviewFiles": 286,
-      "localPreviewRefs": 348,
+      "localPreviewBytes": 0,
+      "localPreviewFiles": 0,
+      "localPreviewRefs": 0,
       "originalProvenanceOnlyRefs": 0,
       "rightsStatus": "UNCONFIRMED",
       "totalRefs": 353,
       "uniqueUrls": 345,
-      "unresolvedDeferredRefs": 5
+      "unresolvedDeferredRefs": 353
     }
   }
 }

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { CopyColorCodeButton } from "@/components/catalog/CopyColorCodeButton";
@@ -12,6 +11,7 @@ import { absoluteUrl, breadcrumbSchema, createPageMetadata, ZALO_URL } from "@/l
 import { JsonLd } from "@/components/JsonLd";
 import { SiteShell } from "@/components/site/SiteShell";
 import { humanizeCatalogLabel } from "@/lib/catalog/ui";
+import { SupplierMediaGallery } from "@/components/catalog/SupplierMediaGallery";
 
 type RouteProps = { params: Promise<{ supplier: string; material: string; code: string }> };
 const imagePriority = ["swatch", "fullsheet", "actual-photo", "product", "application"] as const;
@@ -34,6 +34,11 @@ export default async function SupplierColorCodeRoute({ params }: RouteProps) {
   const supplierName = supplierDefinitions.find((item) => item.id === record.supplier)?.displayName ?? record.supplier;
   const materialLabel = humanizeCatalogLabel(material);
   const images = imagePriority.flatMap((role) => record.images.filter((image) => image.role === role && image.localPath));
+  const galleryImages = images.map((image) => ({
+    src: image.localPath!,
+    originalUrl: image.originalUrl,
+    alt: `${record.codeRaw} ${image.role}`,
+  }));
   const path = record.canonicalRoute;
   return <SiteShell>
     <JsonLd data={[
@@ -44,9 +49,7 @@ export default async function SupplierColorCodeRoute({ params }: RouteProps) {
       <PageContainer>
         <Breadcrumbs items={[{ label: "Trang chủ", href: "/" }, { label: "Mã màu", href: "/catalogue/" }, { label: supplierName, href: `/catalogue/${record.supplier}/` }, { label: materialLabel, href: `/catalogue/${record.supplier}/${material}/` }, { label: record.codeRaw }]} />
         <div className="mt-7 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,.8fr)] lg:items-start">
-          <div>
-            {images.length ? <div className="grid gap-4 sm:grid-cols-2">{images.map((image, index) => <figure key={`${image.localPath}-${index}`} className="relative aspect-[4/3] overflow-hidden border border-forest-900/10 bg-white"><Image src={image.localPath!} alt={`${record.codeRaw} ${image.role}`} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-contain" /></figure>)}</div> : <div className="border border-dashed border-forest-900/20 bg-white px-6 py-16 text-center text-sm font-bold text-slate-600">Nguồn chưa cung cấp ảnh màu</div>}
-          </div>
+          <div><SupplierMediaGallery images={galleryImages} /></div>
           <div className="border border-forest-900/10 bg-white p-6 shadow-card sm:p-8">
             <p className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">{supplierName} · {materialLabel}</p>
             <h1 className="mt-3 break-words font-mono text-3xl font-extrabold text-forest-950" translate="no">{record.codeRaw}</h1>

@@ -45,6 +45,15 @@ export type SupplierColorImage = {
   width?: number;
   height?: number;
   checksum?: string;
+  originalUrl?: string;
+  originalPath?: string;
+  originalWidth?: number;
+  originalHeight?: number;
+  originalBytes?: number;
+  originalMimeType?: string;
+  originalChecksum?: string;
+  suspectedCrop?: boolean;
+  uploadStatus?: string;
   rightsStatus: "UNCONFIRMED";
 };
 

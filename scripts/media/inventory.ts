@@ -10,6 +10,7 @@ import {
   logicalObjectKey,
   sha256File,
   type MediaInput,
+  type MediaManifest,
 } from "./core";
 
 const root = process.cwd();
@@ -27,6 +28,36 @@ function walk(directory: string, output: string[] = []): string[] {
 
 function trackedFiles(): Set<string> {
   return new Set(execFileSync("git", ["ls-files", "-z"], { cwd: root }).toString("utf8").split("\0").filter(Boolean));
+}
+
+function committedManifest(): MediaManifest | undefined {
+  try {
+    return JSON.parse(execFileSync("git", ["show", "HEAD:data/catalog-media-manifest.json"], { cwd: root, maxBuffer: 32 * 1024 * 1024 }).toString("utf8")) as MediaManifest;
+  } catch {
+    return undefined;
+  }
+}
+
+function preserveExternalizedEntries(manifest: MediaManifest): MediaManifest {
+  const preserved = committedManifest();
+  if (!preserved) return manifest;
+  const entries = new Map(preserved.entries.map((entry) => [entry.logicalPath, entry]));
+  for (const entry of manifest.entries) entries.set(entry.logicalPath, entry);
+  const aliases = { ...preserved.aliases, ...manifest.aliases };
+  const mergedEntries = [...entries.values()].sort((left, right) => left.logicalPath.localeCompare(right.logicalPath));
+  return {
+    ...manifest,
+    entries: mergedEntries,
+    aliases,
+    summary: {
+      files: mergedEntries.length + Object.keys(aliases).length,
+      bytes: mergedEntries.reduce((sum, entry) => sum + entry.bytes, 0),
+      uniqueObjects: mergedEntries.length,
+      uniqueBytes: mergedEntries.reduce((sum, entry) => sum + entry.bytes, 0),
+      duplicateFiles: Object.keys(aliases).length,
+      reclaimableBytes: 0,
+    },
+  };
 }
 
 function catalogueReferences(tracked: Set<string>): Set<string> {
@@ -70,7 +101,7 @@ export function createMediaInventory() {
     mimeType: record.mimeType,
     referenced: record.referenced,
   }));
-  const manifest = buildMediaManifest(manifestInputs);
+  const manifest = preserveExternalizedEntries(buildMediaManifest(manifestInputs));
   const inventory = {
     generatedAt: manifest.generatedAt,
     summary: {
