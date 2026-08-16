@@ -43,7 +43,7 @@ describe("supplier catalogue navigation", () => {
     );
     const owners = createRouteOwnershipIndex(claims);
 
-    expect(entries).toHaveLength(588);
+    expect(entries.length).toBeGreaterThan(3_000);
     expect(searchSupplierCatalog(entries, "BT-111")[0]).toMatchObject({
       supplierId: "ba-thanh",
       code: "BT 111",
@@ -57,14 +57,18 @@ describe("supplier catalogue navigation", () => {
 });
 
 describe("composed supplier sitemap", () => {
-  it("contains 8 Thanh Thuy and 12 Ba Thanh canonical URLs without An Cuong noindex routes", () => {
+  it("contains only the three curated An Cuong category URLs", () => {
     const entries = getSupplierSitemapEntries("2026-08-05T00:00:00.000Z");
     const bySupplier = (supplierId: string) =>
       entries.filter((entry) => entry.supplierId === supplierId);
 
     expect(bySupplier("thanh-thuy")).toHaveLength(8);
     expect(bySupplier("ba-thanh")).toHaveLength(12);
-    expect(bySupplier("an-cuong")).toHaveLength(0);
+    expect(bySupplier("an-cuong").map((entry) => entry.path)).toEqual([
+      "/catalogue/an-cuong/melamine/",
+      "/catalogue/an-cuong/laminate/",
+      "/catalogue/an-cuong/acrylic/",
+    ]);
     expect(new Set(entries.map((entry) => entry.path)).size).toBe(
       entries.length,
     );

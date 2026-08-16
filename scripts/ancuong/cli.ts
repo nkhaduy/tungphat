@@ -3,9 +3,13 @@ import type { CliOptions } from "./types";
 
 export type AnCuongCommand =
   | "discover"
+  | "discover:documents"
+  | "crawl:non-numeric"
+  | "crawl:product-lines"
   | "crawl:listings"
   | "crawl:details"
   | "crawl:relations"
+  | "manifest"
   | "media"
   | "normalize"
   | "validate"
@@ -17,7 +21,7 @@ export type AnCuongCommand =
   | "test:live";
 
 const commands = new Set<AnCuongCommand>([
-  "discover", "crawl:listings", "crawl:details", "crawl:relations", "media", "normalize", "validate", "diff", "export", "report", "sample", "all", "test:live"
+  "discover", "discover:documents", "crawl:non-numeric", "crawl:product-lines", "crawl:listings", "crawl:details", "crawl:relations", "manifest", "media", "normalize", "validate", "diff", "export", "report", "sample", "all", "test:live"
 ]);
 
 export function parseCliArgs(args: string[]): { command: AnCuongCommand; options: CliOptions } {
@@ -58,9 +62,13 @@ type StepModule = { run?: (options: CliOptions) => Promise<unknown> | unknown };
 
 const stepModules: Partial<Record<AnCuongCommand, string>> = {
   discover: "./discover",
+  "discover:documents": "./discover-documents",
+  "crawl:non-numeric": "./crawl-non-numeric",
+  "crawl:product-lines": "./crawl-product-lines",
   "crawl:listings": "./crawl-listings",
   "crawl:details": "./crawl-details",
   "crawl:relations": "./crawl-relations",
+  manifest: "./build-full-manifest",
   media: "./download-media",
   normalize: "./normalize",
   validate: "./validate",
@@ -70,7 +78,7 @@ const stepModules: Partial<Record<AnCuongCommand, string>> = {
 };
 
 export const PIPELINE_STEPS = [
-  "discover", "crawl:listings", "crawl:details", "crawl:relations", "normalize", "media", "validate", "diff", "export", "report"
+  "discover", "discover:documents", "crawl:non-numeric", "crawl:product-lines", "crawl:listings", "crawl:details", "crawl:relations", "normalize", "manifest", "media", "validate", "diff", "export", "report"
 ] as const;
 
 export async function runCommand(command: AnCuongCommand, options: CliOptions): Promise<void> {

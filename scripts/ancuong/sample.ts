@@ -1,15 +1,8 @@
 import { run as runDiscover } from "./discover";
 import { run as runListings } from "./crawl-listings";
 import { run as runDetails } from "./crawl-details";
-import { run as runRelations } from "./crawl-relations";
-import { run as runNormalize } from "./normalize";
-import { run as runMedia } from "./download-media";
-import { run as runValidate } from "./validate";
-import { run as runDiff } from "./diff";
-import { run as runExport } from "./export";
-import { run as runReport } from "./report";
 import { paths } from "./config";
-import { atomicWriteJson, readJsonIfExists } from "./stable-json";
+import { atomicWriteJson } from "./stable-json";
 import type { CliOptions, ListingProduct } from "./types";
 
 function hasFacet(product: ListingProduct, pattern: RegExp): boolean {
@@ -45,20 +38,57 @@ export function selectSampleListings(listings: ListingProduct[], requestedLimit 
   return selected.slice(0, target);
 }
 
-export async function run(options: CliOptions): Promise<ListingProduct[]> {
-  await runDiscover(options);
-  await runListings({ ...options, limit: undefined });
-  const listings = await readJsonIfExists<ListingProduct[]>(`${paths.raw}/listings.json`);
-  if (!listings?.length) throw new Error("Sample requires a non-empty listing dataset");
+type SamplePipelineDependencies = {
+  sampleDiscoveryPath: string;
+  sampleListingsPath: string;
+  sampleDetailsPath: string;
+  sampleListingsStatePath: string;
+  sampleDetailsStatePath: string;
+  discover: typeof runDiscover;
+  crawlListings: typeof runListings;
+  writeListings: typeof atomicWriteJson;
+  crawlDetails: typeof runDetails;
+};
+
+const defaultDependencies: SamplePipelineDependencies = {
+  sampleDiscoveryPath: `${paths.reports}/sample-discovery-manifest.json`,
+  sampleListingsPath: `${paths.raw}/sample-listings.json`,
+  sampleDetailsPath: `${paths.raw}/sample-details.json`,
+  sampleListingsStatePath: `${paths.state}/sample-crawl-listings.json`,
+  sampleDetailsStatePath: `${paths.state}/sample-crawl-details.json`,
+  discover: runDiscover,
+  crawlListings: runListings,
+  writeListings: atomicWriteJson,
+  crawlDetails: runDetails,
+};
+
+export async function runSamplePipeline(
+  options: CliOptions,
+  dependencies: SamplePipelineDependencies = defaultDependencies,
+): Promise<ListingProduct[]> {
+  await dependencies.discover(options, { outputPath: dependencies.sampleDiscoveryPath });
+  const listings = await dependencies.crawlListings(
+    { ...options, limit: undefined },
+    {
+      discoveryPath: dependencies.sampleDiscoveryPath,
+      outputPath: dependencies.sampleListingsPath,
+      statePath: dependencies.sampleListingsStatePath,
+    },
+  );
+  if (!listings.length) throw new Error("Sample requires a non-empty listing dataset");
   const selected = selectSampleListings(listings, options.limit ?? 7);
-  await atomicWriteJson(`${paths.raw}/sample-listings.json`, selected);
-  await runDetails({ ...options, limit: undefined }, { listingsPath: `${paths.raw}/sample-listings.json` });
-  await runRelations(options);
-  await runNormalize(options);
-  if (!options.skipMedia) await runMedia(options);
-  await runValidate(options);
-  await runDiff(options);
-  await runExport(options);
-  await runReport(options);
+  await dependencies.writeListings(dependencies.sampleListingsPath, selected);
+  await dependencies.crawlDetails(
+    { ...options, limit: undefined },
+    {
+      listingsPath: dependencies.sampleListingsPath,
+      outputPath: dependencies.sampleDetailsPath,
+      statePath: dependencies.sampleDetailsStatePath,
+    },
+  );
   return selected;
+}
+
+export async function run(options: CliOptions): Promise<ListingProduct[]> {
+  return runSamplePipeline(options);
 }

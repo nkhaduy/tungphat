@@ -5,6 +5,7 @@ import {
 } from "../lib/catalog/core/registry";
 import {
   catalogMerchandisingScore,
+  getCatalogSearchOptionsForSelection,
   searchSupplierCatalog,
 } from "../lib/catalog/core/search";
 import {
@@ -173,6 +174,19 @@ describe("supplier catalogue search", () => {
       ),
     ).toEqual(["BT 111"]);
   });
+
+  it("maps a legacy group selection to group filtering instead of material filtering", () => {
+    expect(getCatalogSearchOptionsForSelection("van-go", "all"))
+      .toEqual({ group: "van-go", material: undefined });
+  });
+
+  it("puts demand before partial-match strength", () => {
+    const partialMatches: CatalogSearchEntry[] = [
+      { ...entries[0], id: "high-demand-name", code: "ZZ 900", name: "Oak Pattern", demandScore: 1000 },
+      { ...entries[0], id: "low-demand-code", code: "XX OAK 100", name: "Neutral", demandScore: 0 },
+    ];
+    expect(searchSupplierCatalog(partialMatches, "OAK")[0]?.id).toBe("high-demand-name");
+  });
 });
 
 describe("supplier route ownership", () => {
@@ -267,9 +281,9 @@ describe("supplier sitemap composition", () => {
 
 describe("supplier adapters", () => {
   it("preserves supplier-specific record counts and SEO gates", () => {
-    expect(thanhThuyAdapter.getSearchEntries()).toHaveLength(348);
-    expect(baThanhAdapter.getSearchEntries()).toHaveLength(233);
-    expect(anCuongAdapter.getSearchEntries()).toHaveLength(7);
+    expect(thanhThuyAdapter.getSearchEntries()).toHaveLength(353);
+    expect(baThanhAdapter.getSearchEntries()).toHaveLength(305);
+    expect(anCuongAdapter.getSearchEntries()).toHaveLength(2_900);
 
     expect(
       thanhThuyAdapter.getSitemapEntries().filter((entry) => entry.indexable),
@@ -279,7 +293,7 @@ describe("supplier adapters", () => {
     ).toHaveLength(12);
     expect(
       anCuongAdapter.getSitemapEntries().filter((entry) => entry.indexable),
-    ).toHaveLength(0);
+    ).toContainEqual(expect.objectContaining({ path: "/catalogue/an-cuong/melamine/" }));
   });
 
   it("carries Ba Thanh demand priority into the shared catalogue search", () => {

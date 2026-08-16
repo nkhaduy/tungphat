@@ -1,0 +1,70 @@
+{
+  "checksum": "1f936227e3cb0c321c6b56b4325c947a562d35da945d751607365c0ee5019969",
+  "combined": {
+    "invalidRefs": 0,
+    "localPreviewBytes": 80357860,
+    "localPreviewFiles": 525,
+    "localPreviewRefs": 589,
+    "originalProvenanceOnlyRefs": 6209,
+    "rightsStatus": "UNCONFIRMED",
+    "totalRefs": 10654,
+    "uniqueUrls": 7923,
+    "unresolvedDeferredRefs": 3856
+  },
+  "generatedAt": "2026-08-06T18:41:41.415Z",
+  "policy": {
+    "cloudflarePagesLimitsChecked": "2026-07-16",
+    "cloudflarePagesLimitsSource": "https://developers.cloudflare.com/pages/platform/limits/",
+    "originalDownload": "DEFERRED_CAPACITY_SAFE",
+    "previewBytes": "EXACT_SUPPLIER_SOURCE_BYTES_ONLY",
+    "rightsStatus": "UNCONFIRMED",
+    "transformedLegacyAssets": "DELIVERY_VARIANT_NOT_ORIGINAL_BYTES"
+  },
+  "publicDelivery": {
+    "bytes": 144384764,
+    "cloudflarePagesFileLimit": 20000,
+    "cloudflarePagesMaxFileBytes": 26214400,
+    "directory": "public",
+    "fileCount": 1389,
+    "fileCountGate": "PASS",
+    "maxFileBytes": 2267726,
+    "maxFileGate": "PASS",
+    "scope": "PREBUILD_SOURCE_PUBLIC"
+  },
+  "schemaVersion": 1,
+  "suppliers": {
+    "an-cuong": {
+      "invalidRefs": 0,
+      "localPreviewBytes": 0,
+      "localPreviewFiles": 0,
+      "localPreviewRefs": 0,
+      "originalProvenanceOnlyRefs": 6209,
+      "rightsStatus": "UNCONFIRMED",
+      "totalRefs": 9949,
+      "uniqueUrls": 7262,
+      "unresolvedDeferredRefs": 3740
+    },
+    "ba-thanh": {
+      "invalidRefs": 0,
+      "localPreviewBytes": 44162928,
+      "localPreviewFiles": 239,
+      "localPreviewRefs": 241,
+      "originalProvenanceOnlyRefs": 0,
+      "rightsStatus": "UNCONFIRMED",
+      "totalRefs": 352,
+      "uniqueUrls": 316,
+      "unresolvedDeferredRefs": 111
+    },
+    "thanh-thuy": {
+      "invalidRefs": 0,
+      "localPreviewBytes": 36194932,
+      "localPreviewFiles": 286,
+      "localPreviewRefs": 348,
+      "originalProvenanceOnlyRefs": 0,
+      "rightsStatus": "UNCONFIRMED",
+      "totalRefs": 353,
+      "uniqueUrls": 345,
+      "unresolvedDeferredRefs": 5
+    }
+  }
+}

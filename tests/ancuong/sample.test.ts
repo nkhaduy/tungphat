@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { selectSampleListings } from "@/scripts/ancuong/sample";
+import { paths } from "@/scripts/ancuong/config";
+import { runSamplePipeline, selectSampleListings } from "@/scripts/ancuong/sample";
 import type { ListingProduct } from "@/scripts/ancuong/types";
 
 function listing(sourceId: string, categorySlug: string, facetKeys: Record<string, string[]> = {}): ListingProduct {
@@ -35,5 +36,54 @@ describe("An Cuong representative sample selection", () => {
     expect(selected.some((item) => (item.facetKeys["Kích Thước (mm)"]?.length ?? 0) > 1)).toBe(true);
     expect(selected.some((item) => "Bộ Sưu Tập" in item.facetKeys)).toBe(true);
     expect(selected.some((item) => "Hiệu Ứng Bề Mặt" in item.facetKeys)).toBe(true);
+  });
+
+  it("keeps discovery, listing, detail and resume state isolated from canonical full-import artifacts", async () => {
+    const calls: string[] = [];
+    const source = [listing("1", "melamine")];
+
+    await runSamplePipeline({
+      dryRun: false,
+      resume: false,
+      force: false,
+      changedOnly: false,
+      skipMedia: true,
+      verbose: false,
+      concurrency: 1,
+    }, {
+      sampleDiscoveryPath: `${paths.reports}/sample-discovery-manifest.json`,
+      sampleListingsPath: "/tmp/ancuong-sample/sample-listings.json",
+      sampleDetailsPath: "/tmp/ancuong-sample/sample-details.json",
+      sampleListingsStatePath: `${paths.state}/sample-crawl-listings.json`,
+      sampleDetailsStatePath: `${paths.state}/sample-crawl-details.json`,
+      discover: async (_options, dependencies) => {
+        calls.push(`discover:${dependencies.outputPath}`);
+        return {} as never;
+      },
+      crawlListings: async (_options, dependencies) => {
+        calls.push(`listings:${dependencies.discoveryPath}:${dependencies.outputPath}:${dependencies.statePath}`);
+        return source;
+      },
+      writeListings: async (path, records) => {
+        calls.push(`write:${path}:${records.length}`);
+      },
+      crawlDetails: async (_options, dependencies) => {
+        calls.push(`details:${dependencies.listingsPath}:${dependencies.outputPath}:${dependencies.statePath}`);
+        return [];
+      },
+    });
+
+    expect(calls).toEqual([
+      `discover:${paths.reports}/sample-discovery-manifest.json`,
+      `listings:${paths.reports}/sample-discovery-manifest.json:/tmp/ancuong-sample/sample-listings.json:${paths.state}/sample-crawl-listings.json`,
+      "write:/tmp/ancuong-sample/sample-listings.json:1",
+      `details:/tmp/ancuong-sample/sample-listings.json:/tmp/ancuong-sample/sample-details.json:${paths.state}/sample-crawl-details.json`,
+    ]);
+    expect(calls.join("\n")).not.toContain(`${paths.raw}/listings.json`);
+    expect(calls.join("\n")).not.toContain(`${paths.state}/crawl-listings.json`);
+    expect(calls.join("\n")).not.toContain(`${paths.state}/crawl-details.json`);
+    expect(calls.join("\n")).not.toContain(`${paths.reports}/discovery-manifest.json`);
+    expect(calls.join("\n")).not.toContain("data/imports/ancuong/normalized");
+    expect(calls.join("\n")).not.toContain("data/imports/ancuong/export");
   });
 });

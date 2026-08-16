@@ -1,6 +1,22 @@
 import type { CatalogSearchEntry, SupplierId } from "./types";
+import { isMaterialTaxonomySlug } from "../material-taxonomy";
 
 export type CatalogSearchIntent = "all" | "melamine" | "supplier";
+
+export function getCatalogSearchOptionsForSelection(
+  group: string,
+  type: CatalogSearchIntent,
+): { group: string | undefined; material: string | undefined } {
+  const material = isMaterialTaxonomySlug(group)
+    ? group
+    : type === "melamine"
+      ? "melamine"
+      : undefined;
+  return {
+    group: group && !isMaterialTaxonomySlug(group) ? group : undefined,
+    material,
+  };
+}
 
 export function normalizeCatalogSearch(value: string): string {
   return value
@@ -12,26 +28,26 @@ export function normalizeCatalogSearch(value: string): string {
 }
 
 function rank(entry: CatalogSearchEntry, query: string): number {
-  const code = normalizeCatalogSearch(entry.code);
+  const code = normalizeCatalogSearch(entry.normalizedCode ?? entry.code);
   const name = normalizeCatalogSearch(entry.name);
   const supplier = normalizeCatalogSearch(entry.supplierName);
   const category = normalizeCatalogSearch(entry.category ?? "");
   const series = normalizeCatalogSearch(entry.series ?? "");
   const group = normalizeCatalogSearch(entry.group ?? "");
   const taxonomy = normalizeCatalogSearch(
-    [entry.supplierName, entry.category, entry.series, entry.group]
+    [entry.supplierName, entry.category, entry.series, entry.group, entry.material]
       .filter(Boolean)
       .join(" "),
   );
 
-  if (code === query) return 900;
-  if (name === query) return 800;
-  if (code.startsWith(query)) return 700;
-  if (supplier === query) return 600;
-  if (category === query || series === query || group === query) return 500;
-  if (code.includes(query)) return 400;
-  if (name.includes(query)) return 300;
-  if (taxonomy.includes(query)) return 200;
+  if (code && code === query) return 1_000;
+  if (name === query) return 900;
+  if (code && code.startsWith(query)) return 800;
+  if (supplier === query) return 700;
+  if (category === query || series === query || group === query || normalizeCatalogSearch(entry.material ?? "") === query) return 600;
+  if (code && code.includes(query)) return 500;
+  if (name.includes(query)) return 400;
+  if (taxonomy.includes(query)) return 300;
   return 0;
 }
 
@@ -69,12 +85,14 @@ export function searchSupplierCatalog(
     supplierId?: SupplierId;
     category?: string;
     group?: string;
+    material?: string;
     type?: Exclude<CatalogSearchIntent, "supplier">;
   } = {},
 ): CatalogSearchEntry[] {
   const normalizedQuery = normalizeCatalogSearch(query);
   const normalizedCategory = normalizeCatalogSearch(options.category ?? "");
   const normalizedGroup = normalizeCatalogSearch(options.group ?? "");
+  const normalizedMaterial = normalizeCatalogSearch(options.material ?? "");
 
   return entries
     .map((entry) => ({
@@ -101,6 +119,11 @@ export function searchSupplierCatalog(
       )
         return false;
       if (
+        normalizedMaterial &&
+        normalizeCatalogSearch(entry.material ?? "") !== normalizedMaterial
+      )
+        return false;
+      if (
         normalizedGroup &&
         ![entry.category, entry.group].some(
           (value) => normalizeCatalogSearch(value ?? "") === normalizedGroup,
@@ -110,15 +133,19 @@ export function searchSupplierCatalog(
       return matchScore > 0;
     })
     .sort(
-      (left, right) =>
-        right.matchScore - left.matchScore ||
+      (left, right) => {
+        const leftPrimaryMatch = left.matchScore >= 600 ? left.matchScore : 0;
+        const rightPrimaryMatch = right.matchScore >= 600 ? right.matchScore : 0;
+        return rightPrimaryMatch - leftPrimaryMatch ||
         right.merchandisingScore - left.merchandisingScore ||
+        right.matchScore - left.matchScore ||
         left.entry.code.localeCompare(right.entry.code, "vi") ||
         left.entry.name.localeCompare(right.entry.name, "vi") ||
         left.entry.canonicalRoute.localeCompare(
           right.entry.canonicalRoute,
           "vi",
-        ),
+        );
+      },
     )
     .map(({ entry }) => entry);
 }

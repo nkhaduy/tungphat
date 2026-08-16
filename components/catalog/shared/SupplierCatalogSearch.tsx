@@ -6,11 +6,13 @@ import { ArrowRight, Check, Copy, Search } from "lucide-react";
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { useCatalogFilterRobots } from "@/components/catalog/useCatalogFilterRobots";
 import {
+  getCatalogSearchOptionsForSelection,
   searchSupplierCatalog,
   type CatalogSearchIntent,
 } from "@/lib/catalog/core/search";
 import { supplierDefinitions } from "@/lib/catalog/core/registry";
 import type { CatalogSearchEntry, SupplierId } from "@/lib/catalog/core/types";
+import { materialTaxonomyOptionsForSupplier } from "@/lib/catalog/material-taxonomy";
 import {
   findExactCatalogCodeMatch,
   findExactSupplierMatch,
@@ -35,21 +37,6 @@ type PrimarySelection = {
   group: string;
 };
 
-const primarySelections: PrimarySelection[] = [
-  { value: "all", label: "Tất cả", type: "all", group: "" },
-  { value: "melamine", label: "Mã Melamine", type: "melamine", group: "" },
-  { value: "van-go", label: "Vân gỗ", type: "all", group: "van-go" },
-  { value: "don-sac", label: "Đơn sắc", type: "all", group: "don-sac" },
-  { value: "van-da", label: "Vân đá", type: "all", group: "van-da" },
-  { value: "van-vai", label: "Vân vải", type: "all", group: "van-vai" },
-  {
-    value: "supplier",
-    label: "Sản phẩm theo thương hiệu",
-    type: "supplier",
-    group: "",
-  },
-];
-
 const supplierOptions = supplierDefinitions.map((supplier) => ({
   value: supplier.id,
   label: supplier.displayName,
@@ -65,6 +52,15 @@ export function SupplierCatalogSearch({
   const [group, setGroup] = useState("");
   const [copyStatus, setCopyStatus] = useState("");
   const deferredQuery = useDeferredValue(query);
+  const primarySelections: PrimarySelection[] = useMemo(() => [
+    ...materialTaxonomyOptionsForSupplier(entries, supplierId).map((option) => ({
+      value: option.slug,
+      label: `${option.label} (${option.count})`,
+      type: "all" as const,
+      group: option.slug === "all" ? "" : option.slug,
+    })),
+    { value: "supplier", label: "Theo thương hiệu", type: "supplier" as const, group: "" },
+  ], [entries, supplierId]);
 
   const activeSelection =
     type === "supplier"
@@ -126,8 +122,7 @@ export function SupplierCatalogSearch({
     () =>
       searchSupplierCatalog(entries, deferredQuery, {
         supplierId: supplierId || undefined,
-        group: group || undefined,
-        type: type === "melamine" ? "melamine" : undefined,
+        ...getCatalogSearchOptionsForSelection(group, type),
       }),
     [deferredQuery, entries, group, supplierId, type],
   );
@@ -163,8 +158,7 @@ export function SupplierCatalogSearch({
     if (event.key !== "Enter") return;
     const currentResults = searchSupplierCatalog(entries, query, {
       supplierId: supplierId || undefined,
-      group: group || undefined,
-      type: type === "melamine" ? "melamine" : undefined,
+      ...getCatalogSearchOptionsForSelection(group, type),
     });
     const exact = findExactCatalogCodeMatch(currentResults, query);
     if (!exact) return;
@@ -209,7 +203,7 @@ export function SupplierCatalogSearch({
 
         <div className="mt-5">
           <p className="text-xs font-extrabold uppercase tracking-[.15em] text-slate-600">
-            Chọn loại vật liệu hoặc nhóm mã
+            Chọn nhóm vật liệu
           </p>
           <div
             role="group"
@@ -336,12 +330,14 @@ export function SupplierCatalogSearch({
             <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {visibleResults.map((entry) => (
                 <article
-                  key={`${entry.supplierId}:${entry.code}:${entry.canonicalRoute}`}
+                  key={entry.id ?? `${entry.supplierId}:${entry.code}:${entry.canonicalRoute}`}
                   className="group flex min-w-0 flex-col overflow-hidden border border-forest-900/10 bg-white shadow-sm transition hover:border-wood-500/50 hover:shadow-card"
                 >
                   <Link
                     href={entry.canonicalRoute}
-                    aria-label={`${entry.supplierName}, mã ${entry.code}, xem chi tiết`}
+                    aria-label={entry.code
+                      ? `${entry.supplierName}, mã ${entry.code}, xem chi tiết`
+                      : `${entry.supplierName}, ${entry.name}, xem chi tiết`}
                     className="relative block aspect-[16/9] overflow-hidden bg-[#eef1ed] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-wood-600"
                   >
                     {entry.thumbnail ? (
@@ -364,15 +360,14 @@ export function SupplierCatalogSearch({
                         {entry.supplierName}
                       </span>
                       <span className="text-slate-500">
-                        {kindLabels[entry.kind]}
+                      {entry.recordType === "family" ? "Dòng sản phẩm" : entry.recordType === "document" ? "Tài liệu" : kindLabels[entry.kind]}
                       </span>
                     </div>
-                    <p
-                      className="mt-3 break-words font-mono text-lg font-extrabold text-forest-950"
-                      translate="no"
-                    >
-                      {entry.code}
-                    </p>
+                    {entry.code ? (
+                      <p className="mt-3 break-words font-mono text-lg font-extrabold text-forest-950" translate="no">
+                        {entry.code}
+                      </p>
+                    ) : null}
                     <h4 className="mt-1 line-clamp-2 text-sm font-bold leading-6 text-slate-700">
                       <Link href={entry.canonicalRoute}>{entry.name}</Link>
                     </h4>
@@ -382,16 +377,18 @@ export function SupplierCatalogSearch({
                         .map((value) => humanizeCatalogLabel(value!))
                         .join(" · ")}
                     </p>
-                    <div className="mt-auto grid grid-cols-2 gap-2 pt-5">
-                      <button
-                        type="button"
-                        onClick={() => copyCode(entry.code)}
-                        aria-label={`Sao chép mã ${entry.code}`}
-                        className="pressable inline-flex min-h-11 items-center justify-center gap-2 border border-forest-900/15 px-3 text-xs font-extrabold text-forest-950 hover:border-wood-500"
-                      >
-                        <Copy size={15} aria-hidden="true" />
-                        Copy
-                      </button>
+                    <div className={`mt-auto grid gap-2 pt-5 ${entry.code ? "grid-cols-2" : "grid-cols-1"}`}>
+                      {entry.code ? (
+                        <button
+                          type="button"
+                          onClick={() => copyCode(entry.code)}
+                          aria-label={`Sao chép mã ${entry.code}`}
+                          className="pressable inline-flex min-h-11 items-center justify-center gap-2 border border-forest-900/15 px-3 text-xs font-extrabold text-forest-950 hover:border-wood-500"
+                        >
+                          <Copy size={15} aria-hidden="true" />
+                          Copy
+                        </button>
+                      ) : null}
                       <Link
                         href={entry.canonicalRoute}
                         className="pressable inline-flex min-h-11 items-center justify-center gap-2 bg-forest-900 px-3 text-xs font-extrabold text-white hover:bg-forest-950"

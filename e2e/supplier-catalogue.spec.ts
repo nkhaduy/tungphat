@@ -23,7 +23,7 @@ test.describe("supplier catalogue customer journeys", () => {
       page.getByRole("link", { name: /Ba Thanh.*xem bảng mã/i }),
     ).toHaveAttribute("href", "/ma-mau-melamine/ba-thanh/");
     await expect(
-      page.getByRole("link", { name: /An Cường.*xem dữ liệu mẫu/i }),
+      page.getByRole("link", { name: /An Cường.*tra cứu catalogue/i }),
     ).toHaveAttribute("href", "/catalogue/an-cuong/");
     await expect(
       page
@@ -74,9 +74,9 @@ test.describe("supplier catalogue customer journeys", () => {
     await page
       .getByRole("combobox", { name: "Lọc theo nhà cung cấp" })
       .selectOption("ba-thanh");
-    await page.getByRole("button", { name: "Vân gỗ", exact: true }).click();
+    await page.getByRole("button", { name: /Melamine \(/ }).click();
     await expect(page).toHaveURL(/supplier=ba-thanh/);
-    await expect(page).toHaveURL(/group=van-go/);
+    await expect(page).toHaveURL(/group=melamine/);
     await expect(
       page.getByRole("link", { name: /Ba Thanh, mã BT 111/i }),
     ).toBeVisible();
@@ -106,28 +106,28 @@ test.describe("supplier catalogue customer journeys", () => {
     );
   });
 
-  test("An Cuong explains the limited scope and shows all seven samples", async ({
+  test("An Cuong exposes the full searchable catalogue without thin detail pages", async ({
     page,
   }) => {
     await page.goto("/catalogue/an-cuong/");
 
     const search = page.getByRole("searchbox", {
-      name: "Tìm mã hoặc tên mẫu An Cường",
+      name: "Tìm mã, tên hoặc dòng vật liệu An Cường",
     });
     await expect(search).toBeVisible();
-    await expect(page.getByText(/7 mẫu dữ liệu tham khảo/i)).toBeVisible();
+    await expect(page.getByText(/2900 mục tra cứu/i)).toBeVisible();
     await expect(
       page
-        .getByRole("region", { name: "Mẫu dữ liệu An Cường" })
+        .getByRole("region", { name: "Kết quả catalogue An Cường" })
         .getByRole("article"),
-    ).toHaveCount(7);
+    ).toHaveCount(48);
     await expect(page.getByText("MFC - MS 01012 T")).toBeVisible();
-    await expect(page.getByText("3DE 02 LL 2500")).toBeVisible();
+    await expect(page.getByRole("button", { name: /Xem thêm 48 mục/i })).toBeVisible();
     await search.fill("MFC - MS 01012 T");
     await expect(page).toHaveURL(/query=MFC/);
     await expect(
       page
-        .getByRole("region", { name: "Mẫu dữ liệu An Cường" })
+        .getByRole("region", { name: "Kết quả catalogue An Cường" })
         .getByRole("article"),
     ).toHaveCount(1);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute(

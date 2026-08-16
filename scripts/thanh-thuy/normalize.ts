@@ -84,6 +84,9 @@ function normalizeImage(localImage: string | ThanhThuyImage | undefined, product
   if (typeof localImage !== "string") {
     return {
       ...localImage,
+      sourceUrl: localImage.sourceUrl ?? product.image?.sourceUrl,
+      mimeType: localImage.mimeType ?? product.image?.mimeType,
+      rightsStatus: "UNCONFIRMED",
       alt: htmlToText(localImage.alt || product.image?.alt || product.title.rendered),
     };
   }

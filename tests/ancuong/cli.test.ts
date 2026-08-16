@@ -40,7 +40,7 @@ describe("An Cuong CLI", () => {
 
   it("orders normalization before media so media receives normalized image URLs", () => {
     expect(PIPELINE_STEPS).toEqual([
-      "discover", "crawl:listings", "crawl:details", "crawl:relations", "normalize", "media", "validate", "diff", "export", "report"
+      "discover", "discover:documents", "crawl:non-numeric", "crawl:product-lines", "crawl:listings", "crawl:details", "crawl:relations", "normalize", "manifest", "media", "validate", "diff", "export", "report"
     ]);
   });
 });

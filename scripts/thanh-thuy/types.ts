@@ -75,6 +75,9 @@ export interface ThanhThuyCategory {
 
 export interface ThanhThuyImage {
   src: string;
+  sourceUrl?: string;
+  mimeType?: string;
+  rightsStatus?: "UNCONFIRMED";
   alt: string;
   width: number;
   height: number;
@@ -128,10 +131,25 @@ export interface SourceManifest {
   sitemapIndexUrl: string;
   productSitemaps: string[];
   categorySitemap: string;
+  pageSitemap: string;
+  catalogSitemap: string;
   productApi: string;
   categoryApi: string;
   productCount: number;
+  productUrls: string[];
+  productUrlSources: Record<string, string>;
+  productUrlEvidence: Record<string, {
+    status: number;
+    canonicalUrl: string;
+    redirects: string[];
+    checkedAt: string;
+    error?: string;
+  }>;
   categoryUrls: string[];
+  pageUrls: string[];
+  catalogueUrls: string[];
+  productApiPages: string[];
+  categoryApiPages: string[];
   checksum: string;
 }
 
@@ -141,12 +159,14 @@ export interface ImportReport {
   dryRun: boolean;
   sourceProducts: number;
   catalogProducts: number;
+  previousRecords: number;
   categories: number;
   uniqueSourceImages: number;
   localImages: number;
   created: number;
   updated: number;
   unchanged: number;
+  removed: number;
   statuses: Record<ThanhThuySeoStatus, number>;
   catalogChecksum: string;
   backup: string | null;

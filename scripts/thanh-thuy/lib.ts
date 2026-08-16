@@ -11,14 +11,22 @@ const approvedSitemaps = new Set([
   "/product-sitemap1.xml",
   "/product-sitemap2.xml",
   "/product_cat-sitemap.xml",
+  "/page-sitemap.xml",
+  "/catalog-sitemap.xml",
 ]);
 
 export function isAllowedSourceUrl(value: string): boolean {
   try {
     const url = new URL(value);
     if (url.origin !== THANH_THUY_ORIGIN) return false;
-    if (url.pathname === "/robots.txt" || approvedSitemaps.has(url.pathname)) return true;
+    if (
+      url.pathname === "/robots.txt" ||
+      approvedSitemaps.has(url.pathname) ||
+      /^\/product-sitemap\d+\.xml$/.test(url.pathname)
+    ) return true;
     if (url.pathname.startsWith("/products/")) return true;
+    if (url.pathname.startsWith("/catalog/")) return true;
+    if (url.pathname === "/colormap/") return true;
     return url.pathname === "/wp-json/wp/v2/product" ||
       url.pathname === "/wp-json/wp/v2/product_cat";
   } catch {

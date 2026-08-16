@@ -1,7 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { THANH_THUY_ORIGIN, isAllowedSourceUrl, parseCliArgs, readThroughCache, writeJsonAtomic } from "./lib";
+import { collectPaginatedRecords } from "../../lib/catalog/full-import/pagination";
+import { THANH_THUY_ORIGIN, fetchWithRetry, isAllowedSourceUrl, parseCliArgs, readThroughCache, writeJsonAtomic } from "./lib";
 import type { SourceCategory, SourceProduct, WordPressCategory, WordPressProduct } from "./types";
 
 export function toSourceProduct(product: WordPressProduct): SourceProduct {
@@ -46,6 +47,38 @@ function readRawPage(sourceDirectory: string, page: number): WordPressProduct[] 
   return file ? JSON.parse(fs.readFileSync(file, "utf8")) as WordPressProduct[] : null;
 }
 
+export async function collectWordPressProducts(
+  loadPage: (input: { page: number; pageSize: number }) => Promise<WordPressProduct[] | { records: WordPressProduct[]; total?: number }>,
+) {
+  return collectPaginatedRecords(
+    async (input) => {
+      const result = await loadPage(input);
+      return Array.isArray(result) ? { records: result } : result;
+    },
+    { pageSize: 100 },
+  );
+}
+
+async function readWordPressProductPage(options: {
+  url: string;
+  cacheFile: string;
+  resume: boolean;
+}): Promise<{ records: WordPressProduct[]; total?: number }> {
+  const metadataFile = `${options.cacheFile}.meta.json`;
+  if (options.resume && fs.existsSync(options.cacheFile) && fs.existsSync(metadataFile)) {
+    const records = JSON.parse(fs.readFileSync(options.cacheFile, "utf8")) as WordPressProduct[];
+    const metadata = JSON.parse(fs.readFileSync(metadataFile, "utf8")) as { total?: number };
+    return { records, total: metadata.total };
+  }
+  const response = await fetchWithRetry(options.url);
+  const records = JSON.parse(await response.text()) as WordPressProduct[];
+  const rawTotal = response.headers.get("x-wp-total");
+  const total = rawTotal && Number.isInteger(Number(rawTotal)) ? Number(rawTotal) : undefined;
+  writeJsonAtomic(options.cacheFile, records);
+  writeJsonAtomic(metadataFile, { total });
+  return { records, total };
+}
+
 export async function crawlSource(options: {
   root?: string;
   sourceDirectory?: string;
@@ -56,17 +89,17 @@ export async function crawlSource(options: {
   const sourceDirectory = options.sourceDirectory;
   const cacheDirectory = options.cacheDirectory ?? path.join(root, ".cache/thanh-thuy/raw");
   const resume = options.resume ?? true;
-  const rawProducts: WordPressProduct[] = [];
-  for (let page = 1; page <= 100; page += 1) {
-    let records = sourceDirectory ? readRawPage(sourceDirectory, page) : null;
-    if (!records) {
-      const url = `${THANH_THUY_ORIGIN}/wp-json/wp/v2/product?per_page=100&page=${page}&_embed=1`;
-      const body = await readThroughCache(url, path.join(cacheDirectory, `products-${page}.json`), { resume });
-      records = JSON.parse(body) as WordPressProduct[];
-    }
-    rawProducts.push(...records);
-    if (records.length < 100) break;
-  }
+  const paginated = await collectWordPressProducts(async ({ page, pageSize }) => {
+    const records = sourceDirectory ? readRawPage(sourceDirectory, page) : null;
+    if (records) return records;
+    const url = `${THANH_THUY_ORIGIN}/wp-json/wp/v2/product?per_page=${pageSize}&page=${page}&_embed=1`;
+    return readWordPressProductPage({
+      url,
+      cacheFile: path.join(cacheDirectory, `products-${page}.json`),
+      resume,
+    });
+  });
+  const rawProducts = paginated.records;
   const categoryFile = sourceDirectory ? path.join(sourceDirectory, "categories.json") : path.join(cacheDirectory, "categories.json");
   let rawCategories: WordPressCategory[];
   if (sourceDirectory && fs.existsSync(categoryFile)) {

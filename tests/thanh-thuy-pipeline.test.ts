@@ -6,9 +6,11 @@ import { afterEach, describe, expect, it } from "vitest";
 import { extractSitemapUrls, robotsAllowsProducts } from "@/scripts/thanh-thuy/discover";
 import { toSourceProduct } from "@/scripts/thanh-thuy/crawl";
 import {
+  canReuseExistingMedia,
   processImageBuffer,
   processResponsiveImageBuffers,
   rollbackLatest,
+  runImport,
   writeImportArtifacts,
 } from "@/scripts/thanh-thuy/import";
 import {
@@ -288,6 +290,65 @@ describe("Thanh Thuy quality gate", () => {
 });
 
 describe("Thanh Thuy import safety", () => {
+  it("reports a stable no-op when the same source snapshot is imported twice", async () => {
+    const root = temporaryDirectory();
+    const sourceDirectory = path.join(root, "source");
+    fs.mkdirSync(sourceDirectory, { recursive: true });
+    fs.writeFileSync(path.join(sourceDirectory, "products-1.json"), JSON.stringify([{
+      id: 1,
+      slug: "101-white",
+      link: "https://www.gothanhthuy.com/product/melamine/101-white/",
+      title: { rendered: "101 White" },
+      content: { rendered: "<p>Mã sản phẩm: 101. Thông số kỹ thuật mẫu thử.</p>" },
+      excerpt: { rendered: "101 White" },
+      product_cat: [21],
+    }]));
+    fs.writeFileSync(path.join(sourceDirectory, "categories.json"), JSON.stringify([{
+      id: 21,
+      count: 1,
+      name: "Melamine",
+      slug: "melamine",
+      parent: 0,
+      link: "https://www.gothanhthuy.com/products/melamine/",
+    }]));
+
+    const first = await runImport({ root, sourceDirectory, cacheDirectory: path.join(root, "cache"), now: "2026-08-06T01:00:00.000Z" });
+    const second = await runImport({ root, sourceDirectory, cacheDirectory: path.join(root, "cache"), now: "2026-08-06T02:00:00.000Z" });
+
+    expect(first.report.created).toBe(1);
+    expect(second.report.created).toBe(0);
+    expect(second.report.updated).toBe(0);
+    expect(second.report.unchanged).toBe(1);
+    expect(second.report.removed).toBe(0);
+    expect(second.catalog.checksum).toBe(first.catalog.checksum);
+    expect(second.catalog.importedAt).toBe(first.catalog.importedAt);
+  });
+
+  it("reuses complete local media variants instead of downloading the source again", () => {
+    const root = temporaryDirectory();
+    const publicDirectory = path.join(root, "public/catalog/thanh-thuy");
+    fs.mkdirSync(publicDirectory, { recursive: true });
+    const small = Buffer.from("480");
+    const large = Buffer.from("960");
+    fs.writeFileSync(path.join(publicDirectory, "sample-480.webp"), small);
+    fs.writeFileSync(path.join(publicDirectory, "sample-960.webp"), large);
+    const image = {
+      src: "/catalog/thanh-thuy/sample-960.webp",
+      alt: "Sample",
+      width: 960,
+      height: 480,
+      checksum: stableChecksum(large),
+      variants: [
+        { src: "/catalog/thanh-thuy/sample-480.webp", width: 480, height: 240, checksum: stableChecksum(small) },
+        { src: "/catalog/thanh-thuy/sample-960.webp", width: 960, height: 480, checksum: stableChecksum(large) },
+      ],
+    };
+
+    expect(canReuseExistingMedia(image, root)).toBe(true);
+    fs.writeFileSync(path.join(publicDirectory, "sample-480.webp"), "tampered");
+    expect(canReuseExistingMedia(image, root)).toBe(false);
+  });
+
   it("rejects invalid image bytes and produces deterministic local WebP output", async () => {
     await expect(processImageBuffer(Buffer.from("not an image"))).rejects.toThrow();
     const input = await sharp({

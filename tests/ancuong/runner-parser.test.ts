@@ -81,4 +81,82 @@ describe("An Cuong parser runners", () => {
     expect(fetched).toEqual([listing.sourceUrl]);
     expect(details).toHaveLength(1);
   });
+
+  it("adds numeric product URLs discovered only through the product sitemap", async () => {
+    const directory = await mkdtemp(join(tmpdir(), "ancuong-sitemap-listings-"));
+    const discoveryPath = join(directory, "discovery.json");
+    const outputPath = join(directory, "listings.json");
+    const statePath = join(directory, "state.json");
+    const listingHtml = await fixture("melamine-listing.html");
+    await writeFile(discoveryPath, `${JSON.stringify({
+      schemaVersion: "1.0.0",
+      parserVersion: "1.0.0",
+      sourceRoot: "https://ancuong.com/online-catalogue/catalogue-vat-lieu.html",
+      generatedAt: "2026-08-06T00:00:00.000Z",
+      categories: [{ name: "Melamine", slug: "melamine", sourceUrl: "https://ancuong.com/melamine.html", catalogueUrls: [] }],
+      productUrls: [],
+      sitemapProductUrls: ["https://ancuong.com/eco-veneer/303002267.html"],
+      duplicateUrls: [],
+      excludedUrls: [],
+    }, null, 2)}\n`);
+
+    const listings = await runListings(options, {
+      discoveryPath,
+      outputPath,
+      statePath,
+      fetchText: async () => ({ body: listingHtml, contentHash: "5".repeat(64) }),
+    });
+
+    expect(listings).toHaveLength(3);
+    expect(listings).toContainEqual(expect.objectContaining({
+      sourceId: "303002267",
+      sourceUrl: "https://ancuong.com/eco-veneer/303002267.html",
+      categorySlug: "eco-veneer",
+    }));
+  });
+
+  it("adds verified non-numeric products from the dedicated sitemap audit", async () => {
+    const directory = await mkdtemp(join(tmpdir(), "ancuong-non-numeric-listings-"));
+    const discoveryPath = join(directory, "discovery.json");
+    const nonNumericAuditPath = join(directory, "non-numeric-audit.json");
+    const outputPath = join(directory, "listings.json");
+    const statePath = join(directory, "state.json");
+    await writeFile(discoveryPath, `${JSON.stringify({
+      schemaVersion: "1.0.0",
+      parserVersion: "1.0.0",
+      sourceRoot: "https://ancuong.com/online-catalogue/catalogue-vat-lieu.html",
+      generatedAt: "2026-08-06T00:00:00.000Z",
+      categories: [],
+      productUrls: [],
+      duplicateUrls: [],
+      excludedUrls: [],
+    })}\n`);
+    await writeFile(nonNumericAuditPath, `${JSON.stringify({
+      generatedAt: "2026-08-06T00:00:00.000Z",
+      listings: [{
+        sourceUrl: "https://ancuong.com/laminate/fine-weave-ivory.html",
+        sourceId: "",
+        category: "Laminate",
+        categorySlug: "laminate",
+        productCode: "LK 4617 A",
+        name: "Fine Weave Ivory",
+        facetKeys: {},
+      }],
+      accounting: [],
+    })}\n`);
+
+    const listings = await runListings(options, {
+      discoveryPath,
+      nonNumericAuditPath,
+      outputPath,
+      statePath,
+    });
+
+    expect(listings).toEqual([
+      expect.objectContaining({
+        sourceUrl: "https://ancuong.com/laminate/fine-weave-ivory.html",
+        productCode: "LK 4617 A",
+      }),
+    ]);
+  });
 });

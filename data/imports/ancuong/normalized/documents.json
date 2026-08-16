@@ -1,0 +1,469 @@
+[
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "979d9e96dccdb258c1e96d8db10baaa57065679aec7e89758bafbc5075258dfe",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/acrylic-basic/",
+        "title": "acrylic basic"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "acrylic basic",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-acrylic-basic",
+    "sourceChecksum": "9bb41af1249b87f447fa526e6701be17782b9ee4d6dd994b91508407e04a8fd7",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/accessories-others.html",
+      "https://catalogue.ancuong.com/acrylic-basic/"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Color Map",
+    "documents": [],
+    "documentType": "color-map",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "An Cuong Color Map",
+    "needsEditorialReview": true,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-color-map",
+    "sourceChecksum": "9afd11e55aa923cef8d839af4996cbabcee5e78950562b4e5d3853fb3f3e6bd9",
+    "sourceUrls": [
+      "https://ancuong.com/color-map.html"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "4e1bcb99024ce54c83404a4bbc2dcf45d525730f9b8045dadd95bc07c5a50dfd",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/door-collection/",
+        "title": "door collection"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "door collection",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-door-collection",
+    "sourceChecksum": "75516b2f0875461d4207ea090bf5f007627ef9278fce683598c6fff0df8c15b6",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/accessories-others.html",
+      "https://catalogue.ancuong.com/door-collection/"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "5cd8a0deabba6668f0a417df7e74036f6cba32f037bc08a9f623e1d1aef07151",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/eco-veneer-realistic-more/",
+        "title": "eco veneer realistic more"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "eco veneer realistic more",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-eco-veneer-realistic-more",
+    "sourceChecksum": "068a98e38d7d6982a0e4a008de71d1f291bb600d3deae483024a4791dcbce216",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/accessories-others.html",
+      "https://catalogue.ancuong.com/eco-veneer-realistic-more/"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "c2bbc3b1df7eebc60fe45c90a1c13540ea339e5eb8f2f809509bbe86cf8ed67c",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/fireproof-board/",
+        "title": "fireproof board"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "fireproof board",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-fireproof-board",
+    "sourceChecksum": "62ff695d5598c1d6a9c7d5561f0b77fd1502d8f116a7b4735267d75781380603",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/catalogue-material.html",
+      "https://catalogue.ancuong.com/fireproof-board/"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "20df23f7264c9dfcd0cc747d669235ef828105f35ccdaea7e25b6bcbecbd9ad3",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/hettich/",
+        "title": "hettich"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "hettich",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-hettich",
+    "sourceChecksum": "ba2e6a7a9dc4f00c3a0250b118f6e30e4b9748291840dd9896dbacc3a13678a1",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/accessories-others.html",
+      "https://catalogue.ancuong.com/hettich/"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "84635267d63c7ca754c6e493a1e42390c9b7f719d774d4d888962fc808e9b5f9",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/high-gloss-acrylic-panel/",
+        "title": "high gloss acrylic panel"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "high gloss acrylic panel",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-high-gloss-acrylic-panel",
+    "sourceChecksum": "576607bb060165288b86953e768c5ef979366ef19be7986e0255c2610d62063e",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/catalogue-material.html",
+      "https://catalogue.ancuong.com/high-gloss-acrylic-panel/"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "4de83cef5d6eed06c15b0ebea98f14e5ef373869bb001ab403164e3b87d97309",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/imundex-phu-kien-cua",
+        "title": "imundex phu kien cua"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "imundex phu kien cua",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-imundex-phu-kien-cua",
+    "sourceChecksum": "9f66d5e3c4e5b0d3d0b744eb045444bb0671a223e9eff8765144f72e34535442",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/accessories-others.html",
+      "https://catalogue.ancuong.com/imundex-phu-kien-cua"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "51ad3520bfd9e05af84d14c09976188d206814ff441b1caed08eb03564b638d6",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/innovative-mfc-mdf-melamine-panels/",
+        "title": "innovative mfc mdf melamine panels"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "innovative mfc mdf melamine panels",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-innovative-mfc-mdf-melamine-panels",
+    "sourceChecksum": "f7ac188ce522fcdfcf78d83a6a8ad44c3c671d76fd18b2c935394c04c05f3e83",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/catalogue-material.html",
+      "https://catalogue.ancuong.com/innovative-mfc-mdf-melamine-panels/"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "d723860675308de5be06b4352106105611efd00c3662c97da62ec2ff5b15886c",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/kingdom-basic/",
+        "title": "kingdom basic"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "kingdom basic",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-kingdom-basic",
+    "sourceChecksum": "6964e13764fd0031524af7e43d464dc05d0b106f05ffb514c24a66ad70cc3171",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/accessories-others.html",
+      "https://catalogue.ancuong.com/kingdom-basic/"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "e9574e092d1772eabce99a7fa5b3e5593267d121a4a706c53879ca52ff71e82d",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/laminate-flooring",
+        "title": "laminate flooring"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "laminate flooring",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-laminate-flooring",
+    "sourceChecksum": "7523569732a18b4cb66d40926c6bb202d33903c5bc06079c579e2f6360ccfa16",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/catalogue-material.html",
+      "https://catalogue.ancuong.com/laminate-flooring"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "bc7e037f0a8d71df26da595956a5b838088534c8ddb03d564d40fe7d64748040",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/laminate-kingdom-high-pressure-laminate/",
+        "title": "laminate kingdom high pressure laminate"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "laminate kingdom high pressure laminate",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-laminate-kingdom-high-pressure-laminate",
+    "sourceChecksum": "d1e6db0caa6636bca11290ded8709f5c13ad896e1369edfce5ed22f91d8e5967",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/catalogue-material.html",
+      "https://catalogue.ancuong.com/laminate-kingdom-high-pressure-laminate/"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "d4041dcc4f106c4e237153295ff0a51434e6ee36d60db17bf5dc89737adcc6e0",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/laminate-kingdom-trend-collection/",
+        "title": "laminate kingdom trend collection"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "laminate kingdom trend collection",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-laminate-kingdom-trend-collection",
+    "sourceChecksum": "9fb9e08c1dafc0f17bd7e456ee087a42db340d60323c17ec095307889a999a8f",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/catalogue-material.html",
+      "https://catalogue.ancuong.com/laminate-kingdom-trend-collection/"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "6d8dd94c3728a314976f694ab17f297c843b81bed42d2525e36214566b886441",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/materials-for-shipbuilding/",
+        "title": "materials for shipbuilding"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "materials for shipbuilding",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-materials-for-shipbuilding",
+    "sourceChecksum": "ae92e16592fc0ddbaa0a50fb9c5f5d994967995d4558a9f5f2297fada0185f4a",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/accessories-others.html",
+      "https://catalogue.ancuong.com/materials-for-shipbuilding/"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "f219320c338d99a721c46b4eaacc559e2682c0613b98c8d0b9a712382c72b022",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/phu-kien-noi-that",
+        "title": "phu kien noi that"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "phu kien noi that",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-phu-kien-noi-that",
+    "sourceChecksum": "ee4d6c33bde3ab424efb799d7436cfb770022ce0f2573334f2b17e1a12a2f685",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/accessories-others.html",
+      "https://catalogue.ancuong.com/phu-kien-noi-that"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "d9783250d59910a3db0d213020cb1c4ddf45217efba33754cd3f768289fa09df",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/pvc-abs-edges/",
+        "title": "pvc abs edges"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "pvc abs edges",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-pvc-abs-edges",
+    "sourceChecksum": "2ad7b96dd56d1f6361392f64b32dec667280c9a0ca85a903e3cea487955ac47e",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/accessories-others.html",
+      "https://catalogue.ancuong.com/pvc-abs-edges/"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "4475f7fd63cf82ef14e68323a4197ca858866c6e05740186e51c9e1d2ec7fa74",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/veneer/",
+        "title": "veneer"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "veneer",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-veneer",
+    "sourceChecksum": "d66712336d99f1dbe6760337a4265e65283743195b5eef63d3ad46a245dde153",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/catalogue-material.html",
+      "https://catalogue.ancuong.com/veneer/"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "614acbade1b45ef351f6aaee75ed8674bbde854c2a2eddb6b8e165ae500a27b4",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/wiser-catalogue/",
+        "title": "wiser catalogue"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "wiser catalogue",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-wiser-catalogue",
+    "sourceChecksum": "495ea1dd2f3c60d60cd22567a33b2688efb565ccb66c8d2d5116e94b80a6d644",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/accessories-others.html",
+      "https://catalogue.ancuong.com/wiser-catalogue/"
+    ],
+    "supplier": "an-cuong"
+  },
+  {
+    "category": "Catalogue",
+    "documents": [
+      {
+        "checksum": "ef92f86e1f286f8eec9a2b70012ae12bd5e207cd1a8aab823c65002ff5c2922b",
+        "mimeType": "text/html",
+        "sourceUrl": "https://catalogue.ancuong.com/wpb-pvc-foil-waterproof-board/",
+        "title": "wpb pvc foil waterproof board"
+      }
+    ],
+    "documentType": "catalogue",
+    "editorialStatus": "SOURCE_ONLY",
+    "images": [],
+    "name": "wpb pvc foil waterproof board",
+    "needsEditorialReview": false,
+    "recordType": "document",
+    "seoStatus": "SOURCE_ONLY",
+    "slug": "an-cuong-wpb-pvc-foil-waterproof-board",
+    "sourceChecksum": "9a628aef0f0fc9e2f6d99f51003c5c82b324cf09d052f9cf5d00df74d99be4c5",
+    "sourceUrls": [
+      "https://ancuong.com/catalogue/catalogue-material.html",
+      "https://catalogue.ancuong.com/wpb-pvc-foil-waterproof-board/"
+    ],
+    "supplier": "an-cuong"
+  }
+]

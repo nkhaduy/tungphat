@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-06T17:11:54.397Z",
+  "dryRun": false,
+  "previousRecords": 305,
+  "melamineSkus": 259,
+  "melamineGroups": {
+    "don-sac": 62,
+    "public-product-page": 26,
+    "van-da": 13,
+    "van-go": 153,
+    "van-vai": 5
+  },
+  "laminateSkus": 33,
+  "laminateGroups": {
+    "don-sac": 16,
+    "van-da": 4,
+    "van-go": 8,
+    "van-vai": 5
+  },
+  "familyRecords": 11,
+  "documentRecords": 2,
+  "totalImported": 305,
+  "mediaReferences": 352,
+  "uniqueMediaSourceUrls": 316,
+  "localMediaReferences": 241,
+  "sourceOnlyMediaReferences": 111,
+  "originalMediaDownload": "DEFERRED_CAPACITY_REVIEW",
+  "mediaRightsStatus": "UNCONFIRMED",
+  "created": 0,
+  "updated": 0,
+  "unchanged": 305,
+  "removed": 0,
+  "duplicates": 0,
+  "coveragePercentage": 100,
+  "accountedSourceUrls": 717,
+  "totalSourceUrls": 717,
+  "manifestChecksum": "fd7c1f4ef5e634f60f82966eba2c620734162417dc3204ed8c8d824b4b087998",
+  "recordChecksum": "2996f948b5ca740e8f1fc5fe75780ae35fc9a992b8bbd31b63609001af2774dc"
+}
