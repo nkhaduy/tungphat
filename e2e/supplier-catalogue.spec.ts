@@ -356,7 +356,7 @@ test.describe("Mã màu customer journeys", () => {
     await expect(
       breadcrumb.getByRole("link", { name: "An Cường", exact: true }),
     ).toHaveAttribute("href", "/catalogue/an-cuong/");
-    await expect(page.getByRole("img", { name: /MFC - MS 465 SC04 swatch/i })).toBeVisible();
+    await expect(page.getByRole("img", { name: /MFC - MS 465 SC04 fullsheet/i })).toBeVisible();
     await expect(page.locator('img[src=""]')).toHaveCount(0);
   });
 

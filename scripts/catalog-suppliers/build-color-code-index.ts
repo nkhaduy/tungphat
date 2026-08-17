@@ -19,6 +19,10 @@ import type {
   SupplierColorCode,
   SupplierColorCodeSupplier,
 } from "../../lib/catalog/color-codes/types";
+import {
+  applyAnCuongGalleryDecisions,
+  type AnCuongGalleryDecision,
+} from "../media-cleanup/gallery-decisions";
 
 type SupplierAuditTotal = {
   previousRecords: number;
@@ -208,6 +212,13 @@ function preserveOriginalMediaMetadata(root: string, records: PublicSupplierColo
   }));
 }
 
+function applyConfirmedGalleryDedup(root: string, records: PublicSupplierColorCode[]) {
+  const decisionPath = path.join(root, "data/catalogs/an-cuong-gallery-dedup.json");
+  if (!fs.existsSync(decisionPath)) return records;
+  const artifact = JSON.parse(fs.readFileSync(decisionPath, "utf8")) as { decisions: AnCuongGalleryDecision[] };
+  return applyAnCuongGalleryDecisions(records, artifact.decisions);
+}
+
 export function buildSupplierColorCodeIndex(root = process.cwd()): SupplierColorCodeIndexArtifact {
   const sources = {
     anCuong: [
@@ -277,6 +288,7 @@ export function buildSupplierColorCodeIndex(root = process.cwd()): SupplierColor
   );
   records = applyColorMediaToIndex(records, readColorMediaArtifacts(root));
   records = preserveOriginalMediaMetadata(root, records);
+  records = applyConfirmedGalleryDedup(root, records);
   for (const supplier of Object.keys(totals) as SupplierColorCodeSupplier[]) {
     totals[supplier].verifiedColorCodes = records.filter((record) => record.supplier === supplier).length;
   }

@@ -149,7 +149,7 @@ describe("canonical supplier color-code index", () => {
     const anCuong = artifact.records.find(
       (record) => record.supplier === "an-cuong" && record.codeRaw === "MFC - MS 465 SC04",
     );
-    expect(anCuong?.images.some((image) => image.role === "swatch" && image.localPath)).toBe(true);
+    expect(anCuong?.images.some((image) => image.role === "fullsheet" && image.localPath && image.thumbnailSrc)).toBe(true);
     const baThanhLaminate = artifact.records.find(
       (record) => record.supplier === "ba-thanh" && record.codeNormalized === "W0502Z" && record.materialType === "laminate",
     );
