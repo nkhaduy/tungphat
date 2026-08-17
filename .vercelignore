@@ -5,7 +5,6 @@ node_modules/
 out/
 payload-cms/
 quote-app/
-light-cms/
 data/imports/
 reports/
 test-results/
