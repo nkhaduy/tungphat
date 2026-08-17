@@ -21,8 +21,8 @@ function brandPageHref(slug: string) {
   return `/san-pham/${slug}/`;
 }
 
-export default function ProductsPage() {
-  const products = getProducts();
+export default async function ProductsPage() {
+  const products = await getProducts();
   const productListId = schemaPageId("/san-pham", "products");
   const productListSchema = { "@context": "https://schema.org", "@type": "ItemList", "@id": productListId, name: "Vật liệu gỗ tại Tùng Phát", numberOfItems: products.length, itemListElement: products.map((product, index) => ({ "@type": "ListItem", position: index + 1, item: { "@id": schemaPageId(`/${product.slug}`, product.status === "guide" ? "webpage" : "product"), url: absolutePageUrl(`/${product.slug}`), name: product.title } })) };
   const pageSchema = webPageSchema({ path: "/san-pham", name: "Vật liệu gỗ cho nội thất và gia công CNC", description: "Danh mục các nhóm vật liệu gỗ đã được Tùng Phát giới thiệu.", type: "CollectionPage", primaryEntityId: productListId });

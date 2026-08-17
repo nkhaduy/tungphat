@@ -104,7 +104,7 @@ describe("catalogue hub customer journey", () => {
   it("distinguishes Thanh Thuy searchable imports from public product pages", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
     expect(markup).toContain("342 mã màu");
-    expect(markup).toContain("372 mã màu");
+    expect(markup).toContain("373 mã màu");
     expect(markup).toContain("2195 mã màu");
     expect(markup).toContain("PPET/PVC, Mặt Top và mã cạnh An Cường");
     expect(markup).not.toContain("Panel và mã cạnh An Cường");

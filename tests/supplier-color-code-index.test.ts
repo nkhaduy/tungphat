@@ -5,11 +5,11 @@ describe("canonical supplier color-code index", () => {
   const artifact = buildSupplierColorCodeIndex();
 
   it("reconciles the former mixed catalogue and exposes canonical verified codes only", () => {
-    expect(artifact.previousSearchableRecords).toBe(3_638);
-    expect(artifact.records).toHaveLength(2_909);
+    expect(artifact.previousSearchableRecords).toBe(3_639);
+    expect(artifact.records).toHaveLength(2_910);
     expect(artifact.removedFromPublicColorIndex).toBe(729);
     expect(artifact.purposeTotals).toEqual({
-      "color-code": 3_459,
+      "color-code": 3_460,
       "product-family": 153,
       technical: 0,
       document: 26,
@@ -31,7 +31,7 @@ describe("canonical supplier color-code index", () => {
     expect(artifact.totals).toMatchObject({
       "an-cuong": { verifiedColorCodes: 2_195, scopeExcluded: 549 },
       "thanh-thuy": { verifiedColorCodes: 342 },
-      "ba-thanh": { verifiedColorCodes: 372 },
+      "ba-thanh": { verifiedColorCodes: 373 },
     });
     expect(
       artifact.records.filter(

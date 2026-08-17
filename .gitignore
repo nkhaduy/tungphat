@@ -30,11 +30,11 @@ reports/
 .superpowers/
 .codex/
 .worktrees/
-payload-cms/
 *.tsbuildinfo
 .vercel
 .indexnow-state.json
 public/indexnow-key.txt
+/content/
 
 # An Cuong crawler runtime data. Review fixtures, manifests and exports are force-added explicitly.
 data/imports/ancuong/raw/

@@ -16,13 +16,13 @@ export function createPlaywrightConfig() {
       baseURL: externalBaseUrl || localBaseUrl,
       trace: "on-first-retry",
       screenshot: "only-on-failure",
-      video: "retain-on-failure",
+      video: process.env.PLAYWRIGHT_NO_VIDEO ? "off" : "retain-on-failure",
     },
-    projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
+    projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"], channel: process.env.PLAYWRIGHT_CHANNEL || undefined } }],
     webServer: externalBaseUrl
       ? undefined
       : {
-          command: "npm run d1:migrate:local && npm run cf:test-server",
+          command: "npm start",
           url: localBaseUrl,
           reuseExistingServer: !process.env.CI,
           timeout: 300_000,

@@ -1,5 +1,6 @@
 import { normalizeSupplierCode } from "@/lib/catalog/normalize-code";
 import { isAllowedBaThanhUrl } from "@/lib/catalog/source-security";
+import { resolveOriginalMedia } from "@/lib/catalog/supplier-media/resolve";
 import type { CatalogCategory } from "@/lib/catalog/types";
 
 export type DiscoveredSourceItem = {
@@ -16,6 +17,20 @@ export type BaThanhIndexResult = {
   categories: CatalogCategory[];
   items: DiscoveredSourceItem[];
 };
+
+export function baThanhCandidateProductUrls(codeRaw: string, wayFamilies: string[] = ["P", "F", "S", "W"]) {
+  const code = normalizeSupplierCode(codeRaw).normalized;
+  const family = code.match(/^([A-Z]+)\d/)?.[1] ?? "";
+  const slug = code.toLowerCase();
+  const candidates = new Set<string>();
+  if (code.startsWith("BT") || code.startsWith("SC") || code.startsWith("BTS")) {
+    candidates.add(`https://bathanh.com.vn/${slug}`);
+  }
+  if (family && wayFamilies.map((value) => value.toUpperCase()).includes(family)) {
+    candidates.add(`https://bathanh.com.vn/way-${slug}`);
+  }
+  return [...candidates];
+}
 
 export function reconcileBaThanhCode(indexCodeRaw: string, verifiedCodeRaw: string) {
   const normalized = normalizeSupplierCode(verifiedCodeRaw || indexCodeRaw);
@@ -195,8 +210,21 @@ export function recognizeBaThanhDetail(
     .some((candidate) => candidate.length > 1 && headingCompact.includes(candidate));
   const verifiedCodeRaw = headingCodes[0] || (namedMatch ? input.expectedCode : "");
   const verified = verifiedCodeRaw ? normalizeSupplierCode(verifiedCodeRaw).normalized : "";
-  const images = [...detailContent.matchAll(/<img\b([^>]*)>/gi)]
-    .map((match) => attribute(match[1], "src"))
+  const images = [...detailContent.matchAll(/(?:<a\b([^>]*)>)?\s*(?:<div\b[^>]*>)*\s*<img\b([^>]*)>/gi)]
+    .map((match) => {
+      const anchorAttributes = match[1] ?? "";
+      const imageAttributes = match[2] ?? "";
+      const source = resolveOriginalMedia({
+        src: attribute(imageAttributes, "src") || undefined,
+        srcset: attribute(imageAttributes, "srcset") || undefined,
+        lightboxHref: /(?:prettyphoto|lightbox|fancybox)/i.test(anchorAttributes) ? attribute(anchorAttributes, "href") || undefined : undefined,
+        dataFull: attribute(imageAttributes, "data-full") || undefined,
+        dataLarge: attribute(imageAttributes, "data-large") || undefined,
+        dataOriginal: attribute(imageAttributes, "data-original") || undefined,
+        dataZoomImage: attribute(imageAttributes, "data-zoom-image") || undefined,
+      });
+      return source.selectedUrl;
+    })
     .filter(Boolean)
     .map((src) => new URL(src, input.sourceUrl).toString())
     .filter((src) => new URL(src).hostname === "bathanh.com.vn")

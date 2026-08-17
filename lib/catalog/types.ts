@@ -10,6 +10,13 @@ export type CatalogImage = {
   thumbnailSrc?: string;
   thumbnailWidth?: number;
   thumbnailHeight?: number;
+  originalUrl?: string;
+  originalPath?: string;
+  originalWidth?: number;
+  originalHeight?: number;
+  originalBytes?: number;
+  originalMimeType?: string;
+  originalChecksum?: string;
   checksum?: string;
   variant?: string;
   alt: string;

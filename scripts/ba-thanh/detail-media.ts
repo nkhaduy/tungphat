@@ -77,13 +77,16 @@ function roleFor(url: string): BaThanhDetailMediaRole {
 
 export function selectBaThanhDetailMedia(input: SelectBaThanhDetailMediaInput): BaThanhDetailMedia[] {
   const selected: BaThanhDetailMedia[] = [];
+  const trustedPageCodes = new Set(visibleCodes(input.sourceImageUrl ?? ""));
   for (const sourceUrl of [...new Set(input.detailImageUrls ?? [])]) {
-    if (!sourceUrl || sourceUrl === input.sourceImageUrl || isBrandedOrPlaceholder(sourceUrl)) continue;
-    // WAY detail pages must expose the WAY route code; shared SC fallback files are not valid media.
-    if (input.materialType === "laminate" && /SC[-_ ]?\d{3,4}[-_ ]?(?:MW|M)/i.test(filename(sourceUrl))) continue;
-    if (!matchesCode(input.codeNormalized, sourceUrl, input.materialType)) continue;
+    if (!sourceUrl) continue;
+    if (isBrandedOrPlaceholder(sourceUrl) && !matchesCode(input.codeNormalized, sourceUrl, input.materialType)) continue;
     const role = roleFor(sourceUrl);
-    if (role === "swatch" && selected.some((item) => item.role === "swatch")) continue;
+    const printedCodes = visibleCodes(sourceUrl);
+    const matchesTrustedPageCode = printedCodes.some((code) => trustedPageCodes.has(code));
+    const isPageApplication = role !== "swatch";
+    if (!matchesCode(input.codeNormalized, sourceUrl, input.materialType)
+      && !(input.materialType === "laminate" && (matchesTrustedPageCode || isPageApplication))) continue;
     selected.push({ sourceUrl, role });
   }
   return selected;

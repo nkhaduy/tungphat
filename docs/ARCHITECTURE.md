@@ -1,73 +1,24 @@
-# Kiến trúc hybrid production
-
-## Quyết định
-
-DNS tiếp tục được quản lý tại TenTen; không cần chuyển nameserver.
-
-```mermaid
-flowchart LR
-  V["Khách truy cập"] --> W["Vercel · mdftungphat.com"]
-  W -->|"POST contact/quote"| C["Cloudflare Pages · cms.mdftungphat.com"]
-  W -->|"GET /media/videos/*"| C
-  A["Quản trị viên"] -->|"GitHub OAuth"| C
-  C -->|"commit trực tiếp main"| G["GitHub · nkhaduy/tungphat"]
-  G -->|"Git Integration"| W
-  C --> T["Turnstile"]
-  C --> D["D1 leads"]
-  C --> R["R2 media private"]
-```
-
-- Vercel phục vụ website Next.js static export tại apex và `www`.
-- Cloudflare Pages project `tungphat-cms` phục vụ Decap CMS, OAuth same-domain,
-  Pages Functions và form API.
-- GitHub `main` là source of truth cho code, content và ảnh CMS.
-- D1 chỉ lưu contact/quote, trạng thái, lịch sử trạng thái và rate limit.
-- R2 chỉ lưu binary media lớn. Pages Function `/media/videos/*` stream object
-  công khai được allowlist từ bucket private; frontend không nhận R2 credential.
-- Canonical luôn là `https://mdftungphat.com`.
-
-## DNS
-
-| Host | Loại | Target | Vai trò |
-|---|---|---|---|
-| `@` | A | `216.198.79.1` | Website Vercel |
-| `www` | CNAME | `d69b5815ccf0cf8d.vercel-dns-017.com` | Website Vercel |
-| `cms` | CNAME | `tungphat-cms.pages.dev` | CMS/API Cloudflare |
-
-Không đổi nameserver, apex, `www`, DNSSEC hoặc canonical để vận hành CMS.
-
-## Luồng publish
+# Kiến trúc production
 
 ```text
-Decap CMS
-→ GitHub OAuth tại cms.mdftungphat.com
-→ commit trực tiếp main
-→ Vercel Git Integration build/deploy website
+mdftungphat.com (Vercel static frontend)
+        |
+        +--> cms.mdftungphat.com (Cloudflare Pages hostname gateway)
+                    |
+                    +--> Payload CMS Worker
+                            +--> D1 tungphat-payload-cms
+                            +--> R2 tung-phat-media
 ```
 
-`publish_mode: simple`; không có editorial workflow hoặc GitHub Actions deploy
-website thứ hai.
+- Payload CMS là CMS và structured-data backend duy nhất.
+- Cloudflare Pages tại `cms.mdftungphat.com` chỉ chuyển tiếp request tới Payload vì DNS được quản lý tại Tenten và zone không thuộc tài khoản Cloudflare Workers.
+- D1 `tungphat-payload-cms` lưu content, users, leads, analytics và review metadata.
+- R2 `tung-phat-media` lưu binary media; Payload chỉ quản lý metadata/reference.
+- Supplier crawler giữ nguyên normalize logic và đẩy output idempotent vào Payload bằng `npm run catalog:suppliers:sync:payload`.
+- Canonical public luôn là `https://mdftungphat.com`; migration CMS không thay đổi public route.
 
-## Ranh giới bảo mật
+## Deploy
 
-- OAuth `/auth` và `/callback` cùng domain CMS, dùng HMAC state 10 phút, cookie
-  `Secure`, `HttpOnly`, `SameSite=Lax` và fixed `postMessage` origin.
-- Callback chỉ chấp nhận tài khoản GitHub có email đã verify trong allowlist
-  server-side; hiện tại là tài khoản quản trị duy nhất.
-- Zone Cloudflare của apex chưa active vì nameserver ở TenTen, vì vậy không xem
-  Cloudflare Access là security boundary. Pages public nhưng publish bắt buộc
-  qua GitHub OAuth và quyền ghi repository.
-- Form API production chỉ cho phép origin apex và `www`, không wildcard, không
-  credentials.
-- Turnstile kiểm tra token, hostname và action server-side. Rate limit dùng hash
-  IP có salt; không lưu IP thô và không log PII.
-
-## Dữ liệu và portability
-
-Nội dung Markdown/JSON và ảnh nằm trong Git nên có history và dễ chuyển host.
-D1 production `tung-phat-leads` và preview `tung-phat-leads-preview` dùng UUID
-khác nhau. Migrations nằm tại `cloudflare-cms/migrations`.
-
-R2 production `tung-phat-media` và preview `tung-phat-media-preview` dùng binding
-`MEDIA`. Bucket production không bật public access; video được phục vụ qua
-`https://cms.mdftungphat.com/media/videos/...` với byte-range và cache headers.
+- Frontend: Vercel Git Integration từ `main`.
+- Payload Worker: build OpenNext rồi `wrangler deploy --env production` trong `payload-cms`.
+- CMS hostname gateway: `wrangler pages deploy gateway --project-name tungphat-light-cms-production --branch main` trong `payload-cms`.

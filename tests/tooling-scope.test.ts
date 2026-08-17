@@ -8,7 +8,8 @@ describe("repository tooling scope", () => {
     };
 
     expect(packageJson.scripts.lint).not.toContain("eslint .");
-    expect(packageJson.scripts.lint).toContain("eslint app components lib scripts tests e2e functions workers");
+    expect(packageJson.scripts.lint).toContain("eslint app components lib scripts tests e2e");
+    expect(packageJson.scripts.lint).not.toContain(" functions workers");
   });
 
   it("keeps bulky runtime and catalogue assets out of normal file discovery", () => {

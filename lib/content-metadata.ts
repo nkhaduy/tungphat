@@ -9,7 +9,8 @@ type SeoEntry = ContentEntry<ArticleFrontmatter | ProductFrontmatter | ProjectFr
 
 export function createContentMetadata(entry: SeoEntry, path: string): Metadata {
   const image = mediaUrl(entry.ogImage || entry.featuredImage);
-  const socialImage = createSocialImage({ url: image, alt: entry.featuredImageAlt });
+  const metadata = entry.ogImage ? entry.mediaMetadata?.ogImage : entry.mediaMetadata?.featuredImage;
+  const socialImage = createSocialImage({ url: image, alt: entry.featuredImageAlt, width: metadata?.width, height: metadata?.height, type: metadata?.type });
   const base = createPageMetadata({
     title: entry.seoTitle,
     description: entry.seoDescription,

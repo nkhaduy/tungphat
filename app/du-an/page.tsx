@@ -16,8 +16,8 @@ const workshopImages = [
   { src: "/images/contact/chi-nhanh-2.webp", alt: "Mặt tiền chi nhánh Tùng Phát tại 81B Tam Bình", caption: "Mặt tiền chi nhánh 2" },
 ];
 
-export default function ProjectsPage() {
-  const projects = getProjects();
+export default async function ProjectsPage() {
+  const projects = await getProjects();
   return (
     <>
       <JsonLd data={[webPageSchema({ path: "/du-an", name: "Hình ảnh xưởng và dự án CNC thực tế", description: "Tư liệu công khai về máy CNC, kho và các chi nhánh Tùng Phát.", type: "CollectionPage" }), breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Xưởng thực tế", path: "/du-an" }])]} />
@@ -45,7 +45,7 @@ export default function ProjectsPage() {
   );
 }
 
-export function generateMetadata() {
-  const projects = getProjects();
+export async function generateMetadata() {
+  const projects = await getProjects();
   return createPageMetadata({ title: "Hình ảnh xưởng và dự án CNC thực tế", description: "Hình ảnh máy CNC, kho và hai chi nhánh Tùng Phát; case study chỉ xuất hiện sau khi thông tin và quyền công bố được kiểm tra.", path: "/du-an", noIndex: projects.length === 0, followWhenNoIndex: true });
 }

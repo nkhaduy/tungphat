@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-14T16:18:15.846Z",
+  "generatedAt": "2026-08-16T14:30:21.571Z",
   "entries": [
     {
       "logicalPath": "catalog/an-cuong/acrylic/acrylic-arc-2388-application-1.webp",
@@ -46219,6 +46219,278 @@
       "mimeType": "image/webp"
     },
     {
+      "logicalPath": "catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/f-0022-x-swatch.webp",
+      "sha256": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e",
+      "bytes": 7894,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-den-g-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-den-g-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-den-g-swatch.webp",
+      "sha256": "9eff9e94ee55f65f91b9bb9f1404c81095a036274f9029acd7255e1c3cfc1b1f",
+      "bytes": 2620,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-s6-g-actual-photo-1.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-s6-g-actual-photo-1.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-s6-g-actual-photo-1.webp",
+      "sha256": "d0dea149bcfc05acf83094c12815bd526af6be4b707a51ae23a3bdcb6a3fca8a",
+      "bytes": 109626,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-s6-g-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-s6-g-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-s6-g-swatch.webp",
+      "sha256": "0f020626e3b6e0f1ed3ea94fb6e45bb096efbc76edcc49ebe646eb1d88553ad6",
+      "bytes": 200408,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-s9-g-actual-photo-1.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-s9-g-actual-photo-1.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-s9-g-actual-photo-1.webp",
+      "sha256": "a9958cba1213c059cafe7e26e7ea46a78dc68e1f99cc76241af3eca56bd79329",
+      "bytes": 69950,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-s9-g-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-s9-g-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-s9-g-swatch.webp",
+      "sha256": "6b5ba63fdf356324d2128ae6c189b968de809c35b74b990a16cf408f0468f865",
+      "bytes": 73882,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-sc001-m-application-1.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-sc001-m-application-1.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-sc001-m-application-1.webp",
+      "sha256": "ec8aafcb488f3907092ce222d326159c218ee1f4ac76da0df088d79fb44ba8e5",
+      "bytes": 220836,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-sc001-m-application-2.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-sc001-m-application-2.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-sc001-m-application-2.webp",
+      "sha256": "5173fc68e5a2216ac622d3e17642a1533994c684a2313d444238d6a722a4b93a",
+      "bytes": 188742,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-sc002-m-application-1.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-sc002-m-application-1.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-sc002-m-application-1.webp",
+      "sha256": "38e9a4934e69930df497d8fe18abed4e51c84517bc9b3e68a55207ff0ac1444d",
+      "bytes": 312820,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-sc002-m-application-2.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-sc002-m-application-2.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-sc002-m-application-2.webp",
+      "sha256": "f9e40418dcd6be2aca446b61de2ba2ec35972feda898eea4b56657a858005d2c",
+      "bytes": 265456,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-sc003-m-application-1.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-sc003-m-application-1.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-sc003-m-application-1.webp",
+      "sha256": "14c4208f17b9cd77f447256e7a5fd76606fef7db0859bb3bdf1a2bb27584a39e",
+      "bytes": 88156,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-sc003-m-application-2.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-sc003-m-application-2.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-sc003-m-application-2.webp",
+      "sha256": "ef765b163aeedd16ffe297cc08ccf3d5d5fb11e2613bc77f7254b73909f2edf7",
+      "bytes": 118852,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-sc004-m-application-1.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-sc004-m-application-1.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-sc004-m-application-1.webp",
+      "sha256": "807fbfc1c8a06241d4b03f8e8b215b825127a6890647730806c5f3553712dc24",
+      "bytes": 148218,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-sc004-m-application-2.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-sc004-m-application-2.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-sc004-m-application-2.webp",
+      "sha256": "a26f033ce00c4d9fcf6c586dbfa5725da185aebab0eb5c23ac00b50367818e6a",
+      "bytes": 153548,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-sc004-m-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-sc004-m-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-sc004-m-swatch.webp",
+      "sha256": "cc00b1aac12ab3324c8c03ffbeb6548e68be69fd88537ca474cd2a9191f4bc0d",
+      "bytes": 2242,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-sc005-m-application-1.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-sc005-m-application-1.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-sc005-m-application-1.webp",
+      "sha256": "87842f7c3920037d09f9cfdf37b5c943695478540c72b6e9a9c81b39ee64f7f2",
+      "bytes": 250806,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-sc005-m-application-2.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-sc005-m-application-2.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-sc005-m-application-2.webp",
+      "sha256": "eab322c02c3333cf0d9fd78dcd7c40604ed200a5e0878eae85e5d1fce6280c00",
+      "bytes": 208490,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-sc011-m-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-sc011-m-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-sc011-m-swatch.webp",
+      "sha256": "5bcaa6f32535da803dabebb272362761b29315dd075dc1480b29ef28551f5d63",
+      "bytes": 2374,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-sc014-m-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-sc014-m-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-sc014-m-swatch.webp",
+      "sha256": "f4b7c0574315f94a0202edec68034ca7719218d8c66206e1d19ceecf21711d3d",
+      "bytes": 2446,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/lw-sc015-m-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/lw-sc015-m-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/lw-sc015-m-swatch.webp",
+      "sha256": "dd02cc7632631642884923172ccfd55d66384a602beeafe7c836eb773e67ae3b",
+      "bytes": 2478,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/p-2001-g-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/p-2001-g-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/p-2001-g-swatch.webp",
+      "sha256": "be8a8cc1d129dde578bdf4bbd65914b266fe3351843d1aba2093b93bf1939a4a",
+      "bytes": 2486,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/p-2660-g-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/p-2660-g-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/p-2660-g-swatch.webp",
+      "sha256": "fb46314d2e6e8d187924f8042c34a0fb12537d1fac553c04a45923967f888475",
+      "bytes": 2416,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/p-3190-cy-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/p-3190-cy-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/p-3190-cy-swatch.webp",
+      "sha256": "f1caba5e80933a3faa49f7dd7ee7295bc5fbd6de97f66a4864fa2792f647fc17",
+      "bytes": 2426,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/p-4600-r-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/p-4600-r-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/p-4600-r-swatch.webp",
+      "sha256": "5ae9b502cad13b26d2f635a270a0a29cbc03795ec592d9c3eebe0b61dac8bca1",
+      "bytes": 2454,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/p-7700-cy-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/p-7700-cy-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/p-7700-cy-swatch.webp",
+      "sha256": "4b01ba5c184fc77a0282fe4c9bd7a8370065b283b2dc35472a269a405d4ae1d9",
+      "bytes": 2420,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/p-7740-r-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/p-7740-r-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/p-7740-r-swatch.webp",
+      "sha256": "4239624d500c9804ae77eaf07bd7a856e6f23f69c2bdbbebeba9b67a26641920",
+      "bytes": 2500,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/p-7790-r-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/p-7790-r-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/p-7790-r-swatch.webp",
+      "sha256": "865d7211bffba0456ca2f7c38de7f4d65949bfcc8663f9cf9992e54fc4aa3941",
+      "bytes": 2464,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/p-9120-cy-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/p-9120-cy-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/p-9120-cy-swatch.webp",
+      "sha256": "f866e7f3f8f23b4ce580fa4425ca36c7b28ce54bb052810dbc788185c8342d23",
+      "bytes": 2412,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/p-9340-r-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/p-9340-r-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/p-9340-r-swatch.webp",
+      "sha256": "b6946dc1a4e92e7bfb40e4c32502a48b035c41367accc3aee0e4dcfc7cecd19b",
+      "bytes": 2454,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/p-9660-g-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/p-9660-g-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/p-9660-g-swatch.webp",
+      "sha256": "3874a854d3d1da0336beabbcef61d8f4b151b9e341a25c9e471b88642324dbe3",
+      "bytes": 2974,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/s-4600-g-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/s-4600-g-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/s-4600-g-swatch.webp",
+      "sha256": "58ecdb3e774f1681588a78078ac1ea7a0d658583301d3070650b851906dd1358",
+      "bytes": 56398,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/s-7382-g-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/s-7382-g-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/s-7382-g-swatch.webp",
+      "sha256": "27e9c6ac9da76048fc9176bd5132ccaef5040bf37c7b2b5778a21f4a0755e62f",
+      "bytes": 224484,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/s-7402-g-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/s-7402-g-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/s-7402-g-swatch.webp",
+      "sha256": "897e4d462baf895ffc628c767e601cbbb26f6c2d91732f3c33922928df5612ee",
+      "bytes": 311076,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/s-7403-g-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/s-7403-g-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/s-7403-g-swatch.webp",
+      "sha256": "8f881d15ae8500f4d6029ad1a987ae72341afa1cbe851c5740f9387025e05447",
+      "bytes": 238256,
+      "mimeType": "image/webp"
+    },
+    {
       "logicalPath": "catalog/ba-thanh/laminate/sc-009-mw-swatch.webp",
       "objectKey": "catalog/ba-thanh/laminate/sc-009-mw-swatch.webp",
       "sourcePath": "public/catalog/ba-thanh/laminate/sc-009-mw-swatch.webp",
@@ -46296,6 +46568,70 @@
       "sourcePath": "public/catalog/ba-thanh/laminate/sc-018-m-swatch.webp",
       "sha256": "b6946dc1a4e92e7bfb40e4c32502a48b035c41367accc3aee0e4dcfc7cecd19b",
       "bytes": 2454,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/w-0304-z-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/w-0304-z-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/w-0304-z-swatch.webp",
+      "sha256": "b074fd542d8dae16b810b702691861445f240fc9d151493c253a92f1c8a506fb",
+      "bytes": 197822,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/w-0502-z-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/w-0502-z-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/w-0502-z-swatch.webp",
+      "sha256": "9acedc8cb52643a2dd4886c11896283e85daa474ca74c8c393807546ee29021c",
+      "bytes": 119122,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/w-0504-z-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/w-0504-z-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/w-0504-z-swatch.webp",
+      "sha256": "3db4a268c7c436935ca161ec55932c3bbff290c31675e4cd444d31fd20729325",
+      "bytes": 168626,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/w-5220-n-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/w-5220-n-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/w-5220-n-swatch.webp",
+      "sha256": "c5de4110f7c54866823eebe785f68d715b60645fd5505f0001b1bcccf5d06284",
+      "bytes": 148404,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/w-7020-z-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/w-7020-z-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/w-7020-z-swatch.webp",
+      "sha256": "1b1a6078f5371112326318bdf593b54a909988b4505ec6deb31962833df4556d",
+      "bytes": 135542,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/w-7393-z-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/w-7393-z-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/w-7393-z-swatch.webp",
+      "sha256": "15fd27cf5a31c0e3b057a338f3814c994c21d8f76e4a00752ce28aed7c79db56",
+      "bytes": 185854,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/w-7412-z-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/w-7412-z-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/w-7412-z-swatch.webp",
+      "sha256": "6d533c74cc2de937181713561ba1373026795c79f6a4d9110c3616082e5c2da3",
+      "bytes": 121244,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/laminate/w-9630-z-swatch.webp",
+      "objectKey": "catalog/ba-thanh/laminate/w-9630-z-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/laminate/w-9630-z-swatch.webp",
+      "sha256": "cfac49f4468607355d6b3a0d97840017b993ec65b1dd7783bd6a250aa0594e66",
+      "bytes": 187364,
       "mimeType": "image/webp"
     },
     {
@@ -46464,6 +46800,14 @@
       "sourcePath": "public/catalog/ba-thanh/melamine/bt100-swatch.webp",
       "sha256": "219ab976418ee8abf371afcce5584bf52588ec85a9b1486ac7de661643e5be3f",
       "bytes": 281884,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt103-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt103-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt103-swatch.webp",
+      "sha256": "b616bcfab753f4d1a8c1d2c0e18de000197e8b957760c48796715e3228f52a5d",
+      "bytes": 2490,
       "mimeType": "image/webp"
     },
     {
@@ -48291,6 +48635,70 @@
       "mimeType": "image/webp"
     },
     {
+      "logicalPath": "catalog/ba-thanh/melamine/bt172-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt172-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt172-swatch.webp",
+      "sha256": "b5c91e6984e9befaf11c1e3faed235a70abf0a504c957d5950ff533deca0ef45",
+      "bytes": 168488,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt173-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt173-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt173-swatch.webp",
+      "sha256": "b063b347585b47fcda596b6052ed48b2cc105f632f4debd20a052c26b866f670",
+      "bytes": 106978,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt174-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt174-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt174-swatch.webp",
+      "sha256": "0b71059188904998b42e0c68b8cce058c3f9d691251d55ccadcf265fc3cc96e2",
+      "bytes": 94606,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt175-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt175-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt175-swatch.webp",
+      "sha256": "f140bb8ad0439fbef2ab6a9276b3347cc149b93a58f277cdcb49efda8b902829",
+      "bytes": 63182,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt176-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt176-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt176-swatch.webp",
+      "sha256": "aba29340c9d7f0a155e50533193ba4d91b07c2ab2210e984366ed20ac53039ca",
+      "bytes": 102612,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt177-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt177-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt177-swatch.webp",
+      "sha256": "f7d14559ef13fe34e4f0b708354ccead432ff34de6ccc7125d36515262d19dab",
+      "bytes": 129986,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt178-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt178-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt178-swatch.webp",
+      "sha256": "85b4663227e3fc574ca91e62469abff44edbbc663f5e114de4d20c491bc98d74",
+      "bytes": 300020,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt179-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt179-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt179-swatch.webp",
+      "sha256": "93c760e8dd18bf4248ea07f343a84dce14af63c087de0d03991eb79a6d9487aa",
+      "bytes": 237602,
+      "mimeType": "image/webp"
+    },
+    {
       "logicalPath": "catalog/ba-thanh/melamine/bt18-actual-photo-1.webp",
       "objectKey": "catalog/ba-thanh/melamine/bt18-actual-photo-1.webp",
       "sourcePath": "public/catalog/ba-thanh/melamine/bt18-actual-photo-1.webp",
@@ -48304,6 +48712,62 @@
       "sourcePath": "public/catalog/ba-thanh/melamine/bt18-swatch.webp",
       "sha256": "8ca8cc985b0822299bce63aa73cdc36c88a6d315e81f67cb1885794ad63984ba",
       "bytes": 200814,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt180-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt180-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt180-swatch.webp",
+      "sha256": "0f40f15f9d80948f7b8051c55cd33b36a7c067b9c57b37264ae8e4379bc3f867",
+      "bytes": 201126,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt181-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt181-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt181-swatch.webp",
+      "sha256": "eb165fd61426655b8b127755a230e5db388d51c8a95280991ac2da30dcd4aea8",
+      "bytes": 153288,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt182-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt182-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt182-swatch.webp",
+      "sha256": "9aa6a560b28b77b201f818a5c993098053248996c6cf362e9be22a762435056e",
+      "bytes": 179428,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt183-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt183-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt183-swatch.webp",
+      "sha256": "01866d428772bb4712c0b24a3a26035dd5e504076f8a5ee29036399120824bfd",
+      "bytes": 176854,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt184-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt184-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt184-swatch.webp",
+      "sha256": "ece17322fed121b1a415f3713b49166e14b293720862b50589a34cdf618eaf8a",
+      "bytes": 180600,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt185-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt185-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt185-swatch.webp",
+      "sha256": "5eda865e29f84fa81dab6d71383e6aa34853fa8fad5da63c75dcf3d7cb2cc10b",
+      "bytes": 200884,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt186-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt186-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt186-swatch.webp",
+      "sha256": "cfb5d7fc751f7f408c6aa7d51e95ddb866e76305c19b01b32fb624bf775b566e",
+      "bytes": 206408,
       "mimeType": "image/webp"
     },
     {
@@ -48731,6 +49195,14 @@
       "mimeType": "image/webp"
     },
     {
+      "logicalPath": "catalog/ba-thanh/melamine/bt49-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt49-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt49-swatch.webp",
+      "sha256": "033298ef0d7cc63bbbce3ee4576781ae77db814e5d761ef27d4f0fe137330043",
+      "bytes": 214810,
+      "mimeType": "image/webp"
+    },
+    {
       "logicalPath": "catalog/ba-thanh/melamine/bt50-actual-photo-1.webp",
       "objectKey": "catalog/ba-thanh/melamine/bt50-actual-photo-1.webp",
       "sourcePath": "public/catalog/ba-thanh/melamine/bt50-actual-photo-1.webp",
@@ -48800,6 +49272,14 @@
       "sourcePath": "public/catalog/ba-thanh/melamine/bt54-swatch.webp",
       "sha256": "0f0224943383612f88185b6ac2fb1b6bfd7f6be61d6e6af6b49dc5d678268fe5",
       "bytes": 332680,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt55-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt55-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt55-swatch.webp",
+      "sha256": "96cbfdda1691d990723fa173cfb564efbd69ae564c5be48173504bd694421ce8",
+      "bytes": 438548,
       "mimeType": "image/webp"
     },
     {
@@ -49432,6 +49912,14 @@
       "sourcePath": "public/catalog/ba-thanh/melamine/bt90-swatch.webp",
       "sha256": "1b3e22475a1278e5569dd8ba3f21954e7888ed5c1a70db8444fb4b05bd0ebaeb",
       "bytes": 488776,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/bt91-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/bt91-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/bt91-swatch.webp",
+      "sha256": "7aff0cde2162d1838cfeb23f2b2c15456b4bdba43373663f510acbac2bd3c136",
+      "bytes": 312028,
       "mimeType": "image/webp"
     },
     {
@@ -50200,6 +50688,22 @@
       "sourcePath": "public/catalog/ba-thanh/melamine/sc028m-swatch.webp",
       "sha256": "363f97a26cfd6c2557fd4d16e9b5e6ff2d1998d18d10a7c431a7e20db4c70b7f",
       "bytes": 2524,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/sc029m-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/sc029m-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/sc029m-swatch.webp",
+      "sha256": "d7739c36b896e6845cbdd22f1f815613553d399c92df12be5f92b4067569ebe2",
+      "bytes": 2470,
+      "mimeType": "image/webp"
+    },
+    {
+      "logicalPath": "catalog/ba-thanh/melamine/sc030m-swatch.webp",
+      "objectKey": "catalog/ba-thanh/melamine/sc030m-swatch.webp",
+      "sourcePath": "public/catalog/ba-thanh/melamine/sc030m-swatch.webp",
+      "sha256": "99b5e23e5dafa5a96f4f04f2f4dd4d88cf2b31a9b08752255286839ddcc18756",
+      "bytes": 2402,
       "mimeType": "image/webp"
     },
     {
@@ -57053,10 +57557,10 @@
   ],
   "aliases": {},
   "summary": {
-    "files": 7131,
-    "bytes": 1671560390,
-    "uniqueObjects": 7131,
-    "uniqueBytes": 1671560390,
+    "files": 7194,
+    "bytes": 1679584242,
+    "uniqueObjects": 7194,
+    "uniqueBytes": 1679584242,
     "duplicateFiles": 0,
     "reclaimableBytes": 0
   }

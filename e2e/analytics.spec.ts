@@ -10,6 +10,7 @@ test("tracks App Router pages, content and CTA once, then honors opt-out", async
     await route.fulfill({ status: 204, body: "" });
   });
   await page.addInitScript(() => {
+    Object.defineProperty(navigator, "webdriver", { configurable: true, get: () => false });
     window.__TP_ANALYTICS_TEST_MODE__ = true;
     document.addEventListener("click", (event) => {
       const anchor = event.target instanceof Element ? event.target.closest("a") : null;

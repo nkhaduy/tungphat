@@ -1,0 +1,107 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "tungphat-payload-cms",
+  "workers_dev": true,
+  "preview_urls": false,
+  "compatibility_date": "2026-08-17",
+  "compatibility_flags": [
+    // Enable Node.js API
+    // see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#nodejs-compatibility-flag
+    "nodejs_compat",
+    // Allow to fetch URLs in your app
+    // see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#global-fetch-strictly-public
+    "global_fetch_strictly_public",
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+  },
+  "d1_databases": [
+    {
+      "binding": "D1",
+      // Local sentinel only. Replace with a dedicated staging D1 ID before staging.
+      "database_id": "00000000-0000-0000-0000-000000000001",
+      "database_name": "tungphat-payload-cms",
+      "migrations_dir": "./src/migrations",
+    },
+  ],
+  "services": [
+    // The service should match the "name" of your worker
+    // {
+    //   "binding": "WORKER_SELF_REFERENCE",
+    //   "service": "my-app"
+    // },
+  ],
+  "r2_buckets": [
+    {
+      "binding": "R2",
+      "bucket_name": "tung-phat-media",
+    },
+    // Create a R2 binding with the binding name "NEXT_INC_CACHE_R2_BUCKET"
+    // {
+    //   "binding": "NEXT_INC_CACHE_R2_BUCKET",
+    //   "bucket_name": "<BUCKET_NAME>",
+    // },
+  ],
+  "vars": {
+    "CMS_ENVIRONMENT": "local",
+    "PAYLOAD_PUBLIC_SERVER_URL": "http://127.0.0.1:3000",
+    "NEXT_PUBLIC_SITE_URL": "https://mdftungphat.com"
+  },
+  "observability": {
+    "enabled": true,
+    "logs": { "head_sampling_rate": 1 },
+    "traces": { "enabled": true, "head_sampling_rate": 0.01 }
+  },
+  "env": {
+    "staging": {
+      "name": "tungphat-payload-cms-staging",
+      "vars": {
+        "CMS_ENVIRONMENT": "staging",
+        "PAYLOAD_PUBLIC_SERVER_URL": "https://tungphat-payload-cms-staging.nkhaduy.workers.dev",
+        "NEXT_PUBLIC_SITE_URL": "https://tungphat-payload-staging.pages.dev",
+        "BUILD_VERSION": "payload-3.88-staging-20260817"
+      },
+      "d1_databases": [
+        {
+          "binding": "D1",
+          "database_id": "8104fa3a-280c-4c2e-9088-2cd209ecf680",
+          "database_name": "tungphat-payload-cms-staging",
+          "migrations_dir": "./src/migrations"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "R2",
+          "bucket_name": "tungphat-payload-media-staging"
+        }
+      ],
+      "services": []
+    },
+    "production": {
+      "name": "tungphat-payload-cms",
+      "vars": {
+        "CMS_ENVIRONMENT": "production",
+        "PAYLOAD_PUBLIC_SERVER_URL": "https://cms.mdftungphat.com",
+        "NEXT_PUBLIC_SITE_URL": "https://mdftungphat.com",
+        "BUILD_VERSION": "payload-3.88-production-20260817"
+      },
+      "d1_databases": [
+        {
+          "binding": "D1",
+          "database_id": "1f6f14d9-2798-4a6d-b892-231278bc7eaf",
+          "database_name": "tungphat-payload-cms",
+          "migrations_dir": "./src/migrations"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "R2",
+          "bucket_name": "tung-phat-media"
+        }
+      ],
+      "services": []
+    }
+  }
+}

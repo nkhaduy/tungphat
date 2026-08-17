@@ -67,6 +67,13 @@ export function validateColorMediaDiscovery(
   root = process.cwd(),
 ): ColorMediaValidationIssue[] {
   const issues: ColorMediaValidationIssue[] = [];
+  const manifestPath = path.join(root, "data/catalog-media-manifest.json");
+  const externalPaths = fs.existsSync(manifestPath)
+    ? (() => {
+        const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8")) as { entries?: Array<{ logicalPath: string }>; aliases?: Record<string, string> };
+        return new Set([...(manifest.entries ?? []).map((entry) => entry.logicalPath), ...Object.keys(manifest.aliases ?? {})]);
+      })()
+    : new Set<string>();
   for (const entry of artifact.entries) {
     if (!entry.codeRaw.trim() || !entry.codeNormalized.trim()) {
       issues.push({ code: "EMPTY_COLOR_CODE", message: "Public color media entry has an empty code" });
@@ -92,7 +99,9 @@ export function validateColorMediaDiscovery(
     for (const asset of assetsToValidate) {
       const file = path.join(root, "public", asset.localPath.replace(/^\//, ""));
       if (!fs.existsSync(file)) {
-        issues.push({ code: "LOCAL_PREVIEW_FILE_MISSING", message: `Local preview file does not exist: ${asset.localPath}`, colorCode: entry.codeRaw });
+        if (!externalPaths.has(asset.localPath.replace(/^\//, ""))) {
+          issues.push({ code: "LOCAL_PREVIEW_FILE_MISSING", message: `Local preview file does not exist: ${asset.localPath}`, colorCode: entry.codeRaw });
+        }
         continue;
       }
       try {

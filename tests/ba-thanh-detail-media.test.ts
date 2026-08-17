@@ -47,7 +47,7 @@ describe("Ba Thanh detail-page media selection", () => {
     })).toEqual([]);
   });
 
-  it("rejects a shared printed-code fallback for a WAY route", () => {
+  it("retains source-associated WAY gallery media even when the printed board code differs", () => {
     expect(selectBaThanhDetailMedia({
       codeNormalized: "P2052",
       materialType: "laminate",
@@ -56,6 +56,9 @@ describe("Ba Thanh detail-page media selection", () => {
         "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg",
         "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW.jpg",
       ],
-    })).toEqual([]);
+    })).toEqual([
+      { sourceUrl: "https://bathanh.com.vn/wp-content/uploads/2023/10/BT-01-e1713865269229.jpg", role: "application" },
+      { sourceUrl: "https://bathanh.com.vn/wp-content/uploads/2024/04/SC-017-MW.jpg", role: "swatch" },
+    ]);
   });
 });

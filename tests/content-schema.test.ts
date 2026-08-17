@@ -34,7 +34,7 @@ const product = {
 
 describe("productSchema", () => {
   it("chấp nhận đầy đủ field sản phẩm", () => expect(productSchema.safeParse(product).success).toBe(true));
-  it("chuẩn hóa Date do YAML parser tạo từ ngày Decap", () => {
+  it("chuẩn hóa Date từ dữ liệu migration cũ", () => {
     const result = productSchema.safeParse({
       ...product,
       publishedAt: new Date("2026-07-16T00:00:00.000Z"),

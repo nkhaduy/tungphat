@@ -183,6 +183,31 @@ function readColorMediaArtifacts(root: string): ColorMediaDiscoveryArtifact[] {
     .map((file) => JSON.parse(fs.readFileSync(file, "utf8")) as ColorMediaDiscoveryArtifact);
 }
 
+function preserveOriginalMediaMetadata(root: string, records: PublicSupplierColorCode[]) {
+  const existingPath = path.join(root, "data/catalogs/supplier-color-codes.json");
+  if (!fs.existsSync(existingPath)) return records;
+  const existing = JSON.parse(fs.readFileSync(existingPath, "utf8")) as SupplierColorCodeIndexArtifact;
+  const bySource = new Map(existing.records.flatMap((record) => record.images.map((image) => [`${record.supplier}|${image.sourceUrl}`, image] as const)));
+  return records.map((record) => ({
+    ...record,
+    images: record.images.map((image) => {
+      const previous = bySource.get(`${record.supplier}|${image.sourceUrl}`);
+      return previous?.originalChecksum ? {
+        ...image,
+        originalUrl: previous.originalUrl,
+        originalPath: previous.originalPath,
+        originalWidth: previous.originalWidth,
+        originalHeight: previous.originalHeight,
+        originalBytes: previous.originalBytes,
+        originalMimeType: previous.originalMimeType,
+        originalChecksum: previous.originalChecksum,
+        suspectedCrop: previous.suspectedCrop,
+        uploadStatus: previous.uploadStatus,
+      } : image;
+    }),
+  }));
+}
+
 export function buildSupplierColorCodeIndex(root = process.cwd()): SupplierColorCodeIndexArtifact {
   const sources = {
     anCuong: [
@@ -251,6 +276,7 @@ export function buildSupplierColorCodeIndex(root = process.cwd()): SupplierColor
       left.codeNormalized.localeCompare(right.codeNormalized),
   );
   records = applyColorMediaToIndex(records, readColorMediaArtifacts(root));
+  records = preserveOriginalMediaMetadata(root, records);
   for (const supplier of Object.keys(totals) as SupplierColorCodeSupplier[]) {
     totals[supplier].verifiedColorCodes = records.filter((record) => record.supplier === supplier).length;
   }

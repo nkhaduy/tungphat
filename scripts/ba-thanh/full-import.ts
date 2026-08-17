@@ -337,6 +337,9 @@ export function buildBaThanhCatalogueRecords(options: {
   media?: MediaMetadata[];
 }): CatalogueRecord[] {
   const mediaByUrl = new Map((options.media ?? []).map((item) => [item.sourceUrl, item]));
+  const melamineSourceByCode = new Map((options.melamineSources ?? [])
+    .filter((item) => item.codeNormalized)
+    .map((item) => [item.codeNormalized, item]));
   const melamine: CatalogueRecord[] = options.melamine.map((record) => ({
     recordType: "sku",
     supplier: "ba-thanh",
@@ -361,6 +364,7 @@ export function buildBaThanhCatalogueRecords(options: {
     })),
     images: (() => {
       const selected = selectedLegacyImages(record);
+      const discoveredSource = melamineSourceByCode.get(record.codeNormalized);
       const mediaSources = Array.isArray(record.sourceData.mediaSourceUrls)
         ? record.sourceData.mediaSourceUrls.filter((url): url is string => typeof url === "string")
         : [];
@@ -368,6 +372,14 @@ export function buildBaThanhCatalogueRecords(options: {
         const sourceIndex = mediaSources.indexOf(item.sourceUrl);
         return sourceIndex >= 0 && Boolean(record.images[sourceIndex]?.localPath || record.images[sourceIndex]?.src);
       });
+      if (!availableSelected.length && discoveredSource) {
+        return selectBaThanhDetailMedia({
+          codeNormalized: record.codeNormalized,
+          materialType: "melamine",
+          sourceImageUrl: discoveredSource.sourceImageUrl,
+          detailImageUrls: discoveredSource.images,
+        }).map((item) => mediaImage(item.sourceUrl, item.role === "actual-photo" ? "product" : item.role, mediaByUrl.get(item.sourceUrl)));
+      }
       return availableSelected.length
         ? availableSelected.map((item) => {
           const sourceIndex = mediaSources.indexOf(item.sourceUrl);

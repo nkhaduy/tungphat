@@ -11,7 +11,7 @@ describe("full supplier compact search index", () => {
   it("excludes Panel and Khác families from the shared catalogue surface", () => {
     const entries = getAllSupplierSearchEntriesForCatalogue();
 
-    expect(entries).toHaveLength(2_991);
+    expect(entries).toHaveLength(2_992);
     expect(entries.some((record) => record.material === "panel")).toBe(false);
     expect(entries.some((record) => record.material === "other-decorative")).toBe(false);
     expect(
@@ -48,7 +48,7 @@ describe("full supplier compact search index", () => {
 
     expect(records.length).toBeGreaterThan(2_829);
     expect(new Set(records.map((record) => record.id)).size).toBe(records.length);
-    expect(records.filter((record) => record.recordType === "color-code")).toHaveLength(2_909);
+    expect(records.filter((record) => record.recordType === "color-code")).toHaveLength(2_910);
     expect(records.filter((record) => record.recordType === "document")).toHaveLength(0);
   });
 
@@ -129,7 +129,7 @@ describe("full supplier compact search index", () => {
     const totals = getSupplierTotals();
     expect(totals["an-cuong"]).toMatchObject({ total: 2_195, colorCodes: 2_195, family: 0, document: 0, withLocalPreview: 2_195 });
     expect(totals["thanh-thuy"]).toMatchObject({ total: 342, colorCodes: 342, family: 0, document: 0, withLocalPreview: 342 });
-    expect(totals["ba-thanh"]).toMatchObject({ total: 372, colorCodes: 372, family: 0, document: 0, retainedMelamineCodes: 259, withLocalPreview: 284, sourceMediaMissing: 88 });
+    expect(totals["ba-thanh"]).toMatchObject({ total: 373, colorCodes: 373, family: 0, document: 0, retainedMelamineCodes: 260, withLocalPreview: 324, sourceMediaMissing: 49 });
   });
 
   it("returns only non-empty material taxonomy choices in the requested order", () => {

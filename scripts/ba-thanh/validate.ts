@@ -6,6 +6,14 @@ import { CATALOG_PATH, IMPORT_DIR } from "./config";
 
 export async function validateBaThanhCatalog() {
   const records = JSON.parse(await fs.readFile(CATALOG_PATH, "utf8")) as SupplierColorCode[];
+  const mediaManifest = JSON.parse(await fs.readFile(path.join(process.cwd(), "data/catalog-media-manifest.json"), "utf8")) as {
+    entries?: Array<{ logicalPath: string }>;
+    aliases?: Record<string, string>;
+  };
+  const externalMedia = new Set([
+    ...(mediaManifest.entries ?? []).map((entry) => `/${entry.logicalPath}`),
+    ...Object.keys(mediaManifest.aliases ?? {}).map((entry) => `/${entry}`),
+  ]);
   const errors: string[] = [];
   const warnings: string[] = [];
   const seenCodes = new Set<string>();
@@ -35,9 +43,11 @@ export async function validateBaThanhCatalog() {
       }
       try {
         const file = path.join(process.cwd(), "public", image.localPath.replace(/^\//, ""));
+        if (externalMedia.has(image.localPath)) continue;
         const metadata = await sharp(file).metadata();
         if (!metadata.width || !metadata.height) errors.push(`${record.id}: broken image ${image.localPath}`);
         if (image.thumbnailSrc) {
+          if (externalMedia.has(image.thumbnailSrc)) continue;
           const thumbnail = path.join(process.cwd(), "public", image.thumbnailSrc.replace(/^\//, ""));
           const thumbnailMetadata = await sharp(thumbnail).metadata();
           if (!thumbnailMetadata.width || !thumbnailMetadata.height) errors.push(`${record.id}: broken thumbnail ${image.thumbnailSrc}`);
