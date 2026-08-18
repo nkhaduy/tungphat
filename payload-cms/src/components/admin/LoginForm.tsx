@@ -9,7 +9,6 @@ import {
   EmailField,
   Form,
   FormSubmit,
-  Link,
   useAuth,
   useConfig,
   useField,
@@ -115,22 +114,10 @@ export default function LoginForm() {
     <main className="tp-login-view">
       <div aria-hidden="true" className="tp-login-view__wash" />
       <div className="tp-login-view__content">
-        <section className="tp-login-view__story">
-          <Image alt="" className="tp-login-view__story-image" fill priority sizes="(max-width: 760px) 100vw, 56vw" src="/brand/workshop-login.webp" />
-          <div className="tp-login-view__story-overlay" />
-          <div className="tp-login-view__story-copy">
-            <p className="tp-eyebrow">BRIGHT TÙNG PHÁT ADMIN</p>
-            <h1>Nội dung rõ ràng. Website luôn sẵn sàng.</h1>
-            <p>Không gian biên tập dành cho đội ngũ Tùng Phát: sản phẩm, dự án, bài viết và hình ảnh được quản lý nhẹ nhàng mỗi ngày.</p>
-          </div>
-        </section>
-
         <section aria-labelledby="tp-login-title" className="tp-login-card">
           <Image alt="Tùng Phát" className="tp-login-card__logo" height={86} priority src="/brand/logo-horizontal.png" width={286} />
           <div className="tp-login-card__intro">
-            <p className="tp-login-card__kicker">KHU VỰC NỘI BỘ</p>
-            <h2 id="tp-login-title">Quản trị nội dung Tùng Phát</h2>
-            <p>Đăng nhập để tiếp tục chỉnh sửa nội dung website.</p>
+            <h1 id="tp-login-title">CMS</h1>
           </div>
           <Form
             action={formatAdminURL({ apiRoute, path: `/${userSlug}/login` })}
@@ -157,9 +144,6 @@ export default function LoginForm() {
               validate={email}
             />
             <PasswordInput label={t('general:password')} />
-            <Link href={formatAdminURL({ adminRoute, path: config.admin.routes.forgot })} prefetch={false}>
-              {t('authentication:forgotPasswordQuestion')}
-            </Link>
             <p aria-live="polite" className="tp-login-status">
               {status}
             </p>

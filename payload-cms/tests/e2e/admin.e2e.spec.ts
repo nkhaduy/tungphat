@@ -33,13 +33,17 @@ test.describe('Admin Panel', () => {
     await cleanupTestUser()
   })
 
-  test('login có brand, password toggle, loading ổn định và lỗi chung', async ({ browser }) => {
+  test('login tối giản có logo, CMS, password toggle, loading ổn định và lỗi chung', async ({ browser }) => {
     const context = await browser.newContext({ viewport: { width: 1440, height: 900 } })
     const loginPage = await context.newPage()
     await loginPage.goto('/admin/login')
     await expect(loginPage.locator('.tp-login-view')).toBeVisible()
-    await expect(loginPage.getByRole('heading', { name: 'Quản trị nội dung Tùng Phát' })).toBeVisible()
-    await expect(loginPage.locator('.tp-login-view__story-image')).toBeVisible()
+    await expect(loginPage.locator('.tp-login-card__logo')).toBeVisible()
+    await expect(loginPage.getByRole('heading', { name: 'CMS', exact: true })).toBeVisible()
+    await expect(loginPage.locator('.tp-login-view__story-image')).toHaveCount(0)
+    await expect(loginPage.getByText('KHU VỰC NỘI BỘ')).toHaveCount(0)
+    await expect(loginPage.getByText('Đăng nhập để tiếp tục chỉnh sửa nội dung website.')).toHaveCount(0)
+    await expect(loginPage.getByRole('link', { name: 'Quên mật khẩu?' })).toHaveCount(0)
     await expectNoSeriousAxeIssues(loginPage)
 
     const password = loginPage.locator('#field-password')

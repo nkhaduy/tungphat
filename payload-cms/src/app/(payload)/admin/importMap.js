@@ -1,7 +1,6 @@
 import { Icon as Icon_81fda60f3e3709e861f40982a767707d } from '../../../components/admin/Brand'
 import { Logo as Logo_81fda60f3e3709e861f40982a767707d } from '../../../components/admin/Brand'
 import { default as default_7e616e776ce3da38f2a5a7175c336eca } from '../../../components/admin/OpenWebsite'
-import { default as default_7b77c0a8bf5649eadd846d28c5d927eb } from '../../../components/admin/LoginIntro'
 import { default as default_564a6e50fc3de58ea2fe94435bf176d7 } from '../../../components/admin/AccessibilityProvider'
 import { R2ClientUploadHandler as R2ClientUploadHandler_85cc02ed84006fcc91d3aff39dda669d } from '@payloadcms/storage-r2/client'
 import { default as default_16b88e9b8c48e393fa86591406efd08f } from '../../../components/admin/Dashboard'
@@ -13,7 +12,6 @@ export const importMap = {
   "/components/admin/Brand#Icon": Icon_81fda60f3e3709e861f40982a767707d,
   "/components/admin/Brand#Logo": Logo_81fda60f3e3709e861f40982a767707d,
   "/components/admin/OpenWebsite#default": default_7e616e776ce3da38f2a5a7175c336eca,
-  "/components/admin/LoginIntro#default": default_7b77c0a8bf5649eadd846d28c5d927eb,
   "/components/admin/AccessibilityProvider#default": default_564a6e50fc3de58ea2fe94435bf176d7,
   "@payloadcms/storage-r2/client#R2ClientUploadHandler": R2ClientUploadHandler_85cc02ed84006fcc91d3aff39dda669d,
   "/components/admin/Dashboard#default": default_16b88e9b8c48e393fa86591406efd08f,

@@ -67,7 +67,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   min-height: 100svh;
   position: relative;
   overflow: hidden;
-  background: var(--tp-app);
+  background: url('/brand/workshop-login.webp') center / cover no-repeat;
   isolation: isolate;
 }
 .login:has(.tp-login-view) { padding: 0; }
@@ -76,39 +76,20 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(115deg, rgba(3, 63, 45, .88) 0%, rgba(6, 75, 54, .64) 44%, rgba(245, 248, 246, .16) 100%);
+  background: linear-gradient(135deg, rgba(3, 46, 34, .68), rgba(3, 63, 45, .46));
 }
 .tp-login-view__content {
-  width: min(1220px, calc(100% - 3rem));
+  width: min(100% - 2rem, 480px);
   min-height: 100svh;
   margin: 0 auto;
-  padding: clamp(1.5rem, 4vw, 3.5rem) 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(360px, .72fr);
-  align-items: center;
-  gap: clamp(1.5rem, 5vw, 5rem);
-}
-.tp-login-view__story {
-  min-height: min(650px, calc(100svh - 7rem));
-  position: relative;
+  padding: clamp(1rem, 4vw, 2.5rem) 0;
   display: flex;
-  align-items: end;
-  overflow: hidden;
-  border-radius: 18px;
-  background: var(--tp-forest-deep);
-  box-shadow: 0 18px 48px rgba(3, 63, 45, .2);
+  justify-content: center;
+  align-items: center;
 }
-.tp-login-view__story-image { object-fit: cover; object-position: center; z-index: 0; }
-.tp-login-view__story-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(3, 63, 45, .08) 15%, rgba(3, 63, 45, .82) 100%); }
-.tp-login-view__story-copy { max-width: 40rem; position: relative; z-index: 1; padding: clamp(1.5rem, 4vw, 3.3rem); color: #fff; }
-.tp-login-view__story-copy .tp-eyebrow { color: #f7c59d; }
-.tp-login-view__story-copy h1 { max-width: 13ch; margin: .55rem 0 .9rem; font-size: clamp(2rem, 4.5vw, 4rem); line-height: 1.02; letter-spacing: -.05em; }
-.tp-login-view__story-copy p:last-child { max-width: 34rem; margin: 0; color: rgba(255, 255, 255, .83); line-height: 1.65; }
-.tp-login-card { width: 100%; max-width: 480px; justify-self: end; padding: clamp(1.4rem, 4vw, 2.6rem); border: 1px solid rgba(220, 230, 225, .95); border-radius: 18px; background: rgba(255, 255, 255, .96); box-shadow: 0 18px 48px rgba(3, 63, 45, .14); }
-.tp-login-card__logo { width: min(220px, 68%); height: auto; object-fit: contain; object-position: left; margin-bottom: 2rem; }
-.tp-login-card__kicker { margin: 0 0 .45rem; color: var(--tp-forest); font-size: .7rem; font-weight: 700; letter-spacing: .12em; }
-.tp-login-card__intro h2 { margin: 0; color: var(--tp-text); font-size: clamp(1.55rem, 3vw, 2.15rem); line-height: 1.12; letter-spacing: -.04em; }
-.tp-login-card__intro p:last-child { margin: .65rem 0 1.6rem; color: var(--tp-secondary-text); line-height: 1.55; }
+.tp-login-card { width: 100%; padding: clamp(1.5rem, 5vw, 2.75rem); border: 1px solid rgba(220, 230, 225, .95); border-radius: 18px; background: rgba(255, 255, 255, .97); box-shadow: 0 22px 64px rgba(2, 35, 26, .28); }
+.tp-login-card__logo { display: block; width: min(220px, 72%); height: auto; object-fit: contain; margin: 0 auto .65rem; }
+.tp-login-card__intro h1 { margin: 0 0 2rem; color: var(--tp-forest); font-size: clamp(1.3rem, 3vw, 1.65rem); line-height: 1.1; letter-spacing: .18em; text-align: center; }
 .tp-login-form { display: grid; gap: 1rem; }
 .tp-login-form .field-type { margin: 0; }
 .tp-login-form .field-label { display: block; margin-bottom: .42rem; color: var(--tp-text); font-size: .88rem; font-weight: 600; }
@@ -119,7 +100,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .tp-password-toggle { position: absolute; top: 50%; right: .55rem; min-width: 3rem; min-height: 2.35rem; transform: translateY(-50%); border: 0; border-radius: 6px; background: var(--tp-secondary); color: var(--tp-forest); font-weight: 700; cursor: pointer; }
 .tp-password-toggle:hover { background: var(--tp-soft); }
 .tp-login-form .field-error { margin: .4rem 0 0; color: #9f4646; font-size: .78rem; }
-.tp-login-form > a { color: var(--tp-forest); font-size: .82rem; font-weight: 600; }
 .tp-login-status { min-height: 1.25rem; margin: -.2rem 0 0; color: var(--tp-secondary-text); font-size: .78rem; }
 .tp-login-submit, .tp-login-submit button { width: 100%; }
 .tp-login-submit.btn { --bg-color: var(--tp-forest); --hover-bg: var(--tp-forest-deep); --color: #fff; --hover-color: #fff; min-height: 3rem; border-radius: 8px; font-weight: 700; }
@@ -131,12 +111,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media (max-width: 900px) { .tp-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tp-dashboard-columns { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .tp-dashboard { padding: 1rem; } .tp-dashboard-hero { display: block; } .tp-dashboard-primary { margin-top: 1rem; } .tp-stat-grid { grid-template-columns: 1fr; } .tp-quick-actions a { flex: 1 1 100%; } }
 @media (max-width: 760px) {
-  .tp-login-view__content { width: min(100% - 1.25rem, 520px); grid-template-columns: 1fr; gap: 1rem; padding: .625rem 0 1.25rem; }
-  .tp-login-view__story { min-height: 245px; border-radius: 14px; }
-  .tp-login-view__story-copy { padding: 1.4rem; }
-  .tp-login-view__story-copy h1 { font-size: clamp(1.85rem, 8vw, 2.55rem); }
-  .tp-login-view__story-copy p:last-child { font-size: .9rem; }
-  .tp-login-card { max-width: none; justify-self: stretch; border-radius: 14px; padding: 1.35rem; }
-  .tp-login-card__logo { margin-bottom: 1.35rem; }
+  .tp-login-view__content { width: min(100% - 1.25rem, 480px); padding: .625rem 0; }
+  .tp-login-card { border-radius: 14px; padding: 1.35rem; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }

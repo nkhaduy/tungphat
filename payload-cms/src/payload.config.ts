@@ -58,9 +58,15 @@ export default buildConfig({
     dateFormat: 'dd/MM/yyyy HH:mm',
     timezones: { defaultTimezone: 'Asia/Ho_Chi_Minh', supportedTimezones: [{ label: 'Việt Nam', value: 'Asia/Ho_Chi_Minh' }] },
     importMap: { baseDir: dirname },
-    meta: { titleSuffix: ' · Tùng Phát CMS', description: 'Quản trị nội dung Tùng Phát', icons: [{ rel: 'icon', url: '/brand/logo-horizontal.png' }] },
+    meta: {
+      titleSuffix: ' · Tùng Phát CMS',
+      description: 'Quản trị nội dung Tùng Phát',
+      icons: [
+        { rel: 'icon', url: 'https://mdftungphat.com/favicon.ico' },
+        { rel: 'apple-touch-icon', url: 'https://mdftungphat.com/apple-icon.png' },
+      ],
+    },
     components: {
-      beforeLogin: ['/components/admin/LoginIntro'],
       graphics: { Logo: '/components/admin/Brand#Logo', Icon: '/components/admin/Brand#Icon' },
       actions: ['/components/admin/OpenWebsite'],
       providers: ['/components/admin/AccessibilityProvider'],
