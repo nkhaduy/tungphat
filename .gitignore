@@ -46,3 +46,4 @@ data/imports/ancuong/logs/
 # Generated R2 cleanup audit manifests; retain externally when recovery evidence is needed.
 r2-cleanup-dry-run.json
 r2-delete-safety-manifest.json
+.env*
