@@ -8,7 +8,6 @@ const canonicalOrigin = "https://mdftungphat.com";
 const httpOrigin = process.env.SITEMAP_CHECK_ORIGIN;
 const placeholderRoutes = new Set(noindexMetadataRoutes);
 const utilityOrNotFoundRoutes = new Set([
-  "/bao-gia/",
   "/cms-preview/",
   "/404/",
   "/_not-found/",

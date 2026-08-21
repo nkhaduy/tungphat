@@ -192,10 +192,11 @@ test("homepage có hero vật liệu editorial, CTA gọn và một ảnh LCP ư
   await expect(
     hero.getByRole("heading", {
       level: 1,
-      name: "Ván gỗ công nghiệp & gia công CNC tại TP.HCM",
+      name: "Ván MDF, MFC, Plywood & gia công CNC tại TP.HCM",
     }),
   ).toBeVisible();
   await expect(hero.getByRole("link", { name: "Liên hệ Zalo" })).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Xem báo giá" })).toBeVisible();
   await expect(hero.getByRole("link", { name: "Xem mã màu" })).toBeVisible();
   await expect(hero.locator(".material-panels-hero-image")).toBeVisible();
   await expect(hero.locator('source[type="image/avif"]')).toHaveAttribute(
@@ -281,15 +282,16 @@ test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", asyn
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
   for (const heading of [
-    "Bạn đang cần gì?",
+    "Tìm đúng vật liệu hoặc dịch vụ trong 30 giây",
     "Danh mục vật liệu chính",
-    "Năng lực gia công CNC",
-    "Gửi file và quy cách để nhận báo giá",
     "Quy cách vật liệu thường được hỏi",
-    "Chọn vật liệu theo nhu cầu",
-    "Đơn hàng và thành phẩm thực tế tại Tùng Phát",
-    "Các thương hiệu vật liệu Tùng Phát đang cung cấp",
-    "Hệ thống hai chi nhánh tại TP.HCM",
+    "Mã màu nổi bật",
+    "Năng lực gia công CNC",
+    "Báo giá ván MDF, MFC & ván gỗ công nghiệp",
+    "Xưởng CNC và hai chi nhánh Tùng Phát",
+    "Tra cứu mã vật liệu theo nhà cung cấp",
+    "Hai chi nhánh tại đường Tam Bình, TP.HCM",
+    "Bài viết hữu ích từ Tùng Phát",
   ]) {
     await expect(
       page.getByRole("heading", { level: 2, name: heading }),
@@ -541,7 +543,7 @@ test("robots, sitemap, Vercel admin redirect và 404 đúng", async ({
     expect(xml).toContain(
       `<loc>https://mdftungphat.com/catalogue/an-cuong/${route}/</loc>`,
     );
-  expect(xml).not.toContain("https://mdftungphat.com/bao-gia");
+  expect(xml).toContain("https://mdftungphat.com/bao-gia/");
   expect(xml).not.toContain("https://mdftungphat.com/cms-preview");
   expect(xml).not.toContain("/admin");
   expect(xml).not.toContain("__empty-collection");
@@ -574,14 +576,12 @@ test("robots, sitemap, Vercel admin redirect và 404 đúng", async ({
   expect(missing?.status()).toBe(404);
 });
 
-test("direct quote and CMS preview routes stay noindex", async ({ page }) => {
-  for (const route of ["/bao-gia/", "/cms-preview/"]) {
-    await page.goto(route);
-    const robots = await page
-      .locator('meta[name="robots"]')
-      .getAttribute("content");
-    expect(robots, route).toMatch(/noindex/i);
-  }
+test("quote route is indexable while CMS preview stays noindex", async ({ page }) => {
+  await page.goto("/bao-gia/");
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /index/i);
+
+  await page.goto("/cms-preview/");
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/i);
 });
 
 test("404 chỉ hiện footer sau khi người dùng cuộn trên desktop và mobile", async ({

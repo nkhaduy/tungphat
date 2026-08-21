@@ -7,6 +7,7 @@ import { TrackedLink } from "@/components/TrackedLink";
 import { JsonLd } from "@/components/JsonLd";
 import { ZALO_URL, createPageMetadata, webPageSchema } from "@/lib/seo";
 import { GoogleReviews } from "@/components/reviews/GoogleReviews";
+import { parseReviewPayload } from "@/components/reviews/google-review-utils";
 
 const homepageTitle = "Tùng Phát | Ván MDF, MFC, gỗ ghép & gia công CNC TP.HCM";
 
@@ -19,7 +20,19 @@ export const metadata = {
   title: { absolute: homepageTitle }
 };
 
-export default function Home() {
+async function getInitialReviews() {
+  const origin = process.env.NEXT_PUBLIC_FORMS_API_BASE?.trim() || "https://cms.mdftungphat.com";
+  try {
+    const response = await fetch(`${origin}/api/gbp/reviews`, { cache: "force-cache", headers: { Accept: "application/json" } });
+    if (!response.ok) return null;
+    return parseReviewPayload(await response.json());
+  } catch {
+    return null;
+  }
+}
+
+export default async function Home() {
+  const initialReviews = await getInitialReviews();
   return (
     <>
       <JsonLd data={webPageSchema({ path: "/", name: homepageTitle, description: "Tùng Phát cung cấp MDF, MFC, plywood, gỗ ghép, vật liệu bề mặt và nhận gia công CNC theo quy cách tại TP.HCM.", primaryEntityId: "https://mdftungphat.com/#organization" })} />
@@ -27,7 +40,7 @@ export default function Home() {
       <HomeHero />
       <RequirementFinder />
       <HomeBenefits />
-      <GoogleReviews />
+      <GoogleReviews initialPayload={initialReviews} />
       <HomeContent />
       <TrackedLink
         href={ZALO_URL}

@@ -70,7 +70,7 @@ export function HomeHero() {
         <div className="home-hero-copy max-w-[47rem] pb-10 pt-[calc(3.25rem+var(--site-header-height))] sm:pb-12 sm:pt-[calc(3.75rem+var(--site-header-height))] lg:pb-14 lg:pt-[calc(4.25rem+var(--site-header-height))]">
           <p className="eyebrow">Vật liệu gỗ &amp; gia công tại xưởng</p>
           <h1 className="text-balance mt-4 font-display text-[clamp(2.7rem,8vw,4.75rem)] font-extrabold leading-[.98] tracking-[-.05em] text-forest-950">
-            Ván gỗ công nghiệp
+            Ván MDF, MFC, Plywood
             <span className="block text-wood-600">&amp; gia công CNC</span>
             <span className="block">tại TP.HCM</span>
           </h1>
@@ -81,10 +81,13 @@ export function HomeHero() {
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Link
-              href="/catalogue"
+              href="/bao-gia"
               prefetch={false}
               className="pressable inline-flex min-h-12 items-center justify-center gap-2 bg-forest-900 px-5 text-sm font-extrabold text-white hover:bg-forest-800"
             >
+              Xem báo giá <ArrowRight size={17} aria-hidden="true" />
+            </Link>
+            <Link href="/catalogue" prefetch={false} className="pressable inline-flex min-h-12 items-center justify-center gap-2 border border-forest-900/25 bg-white/90 px-5 text-sm font-extrabold text-forest-950 hover:border-wood-500 hover:bg-white">
               Xem mã màu <ArrowRight size={17} aria-hidden="true" />
             </Link>
             <TrackedLink

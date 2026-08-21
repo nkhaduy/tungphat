@@ -26,6 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { route: "/tham-chieu-vat-lieu/", include: true },
     { route: "/catalogue/", include: true },
     { route: "/gia-cong-cnc/", include: true },
+    { route: "/bao-gia/", include: true },
     {
       route: "/du-an/",
       include: getListingIndexability(projects.length).includeInSitemap,

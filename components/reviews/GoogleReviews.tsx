@@ -11,8 +11,8 @@ function ReviewsSkeleton() {
   return <div className="mt-10 space-y-5" role="status" aria-label="Đang tải đánh giá từ Google" aria-busy="true">{[0, 1].map((row) => <div key={row} className="grid min-h-[287px] animate-pulse gap-5 md:grid-cols-[minmax(13rem,16rem)_minmax(0,1fr)]"><div className="rounded-[0.9rem] border border-forest-900/5 bg-white p-5"><div className="h-9 w-9 rounded-full bg-slate-100" /><div className="mt-5 h-4 w-4/5 rounded bg-slate-100" /><div className="mt-8 h-10 w-20 rounded bg-slate-100" /></div><div className="flex gap-4 overflow-hidden"><div className="h-[287px] w-[19rem] shrink-0 rounded-[0.9rem] bg-white" /><div className="h-[287px] w-[19rem] shrink-0 rounded-[0.9rem] bg-white" /></div></div>)}</div>;
 }
 
-export function GoogleReviews() {
-  const [payload, setPayload] = useState<ReviewPayload | null>(null);
+export function GoogleReviews({ initialPayload = null }: { initialPayload?: ReviewPayload | null }) {
+  const [payload, setPayload] = useState<ReviewPayload | null>(initialPayload);
   const [failed, setFailed] = useState(false);
   useEffect(() => {
     let active = true;
@@ -32,7 +32,7 @@ export function GoogleReviews() {
       })
       .catch(() => { if (active) setFailed(true); });
     return () => { active = false; };
-  }, []);
+  }, [initialPayload]);
 
   return <section id="google-reviews" aria-labelledby="google-reviews-title" className="border-y border-forest-900/10 bg-[#f4f7f4] py-16 lg:py-24">
     <div className="container-shell">
