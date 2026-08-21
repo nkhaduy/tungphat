@@ -1,5 +1,22 @@
 # Tùng Phát production repository
 
+## Canonical local working repository
+
+The permanent local working repository is `/Users/khaduy/tungphat`.
+Normal sessions must start with:
+
+```bash
+cd ~/tungphat
+```
+
+Do not use `~/RECOVERY/repos/tungphat-github` for normal development; it is historical recovery evidence only.
+
+Production targets:
+
+- Main: `mdftungphat.com` on Vercel team `lmskis`, project `tungphat`.
+- CMS: `cms.mdftungphat.com`, Cloudflare Worker `tungphat-payload-cms`, Pages project `tungphat-light-cms-production`.
+- Never touch KIS LMS resources (`kislms.site`, `kislms-frappe`, `mykis-learning`, or related infrastructure).
+
 - Production website: `https://mdftungphat.com`; CMS: `https://cms.mdftungphat.com`.
 - Preserve the existing Vercel frontend and Cloudflare Payload Worker/Pages gateway/D1/R2 architecture.
 - Run `npm run verify` before any deployment. After deployment, verify live production; localhost alone is never completion.
