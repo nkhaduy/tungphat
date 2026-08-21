@@ -1,0 +1,17 @@
+{
+  "title": "Danh mục vật liệu",
+  "items": [
+    {
+      "name": "Gỗ ghép",
+      "slug": "go-ghep"
+    },
+    {
+      "name": "Ván gỗ công nghiệp",
+      "slug": "van-go-cong-nghiep"
+    },
+    {
+      "name": "Gia công CNC",
+      "slug": "gia-cong-cnc"
+    }
+  ]
+}
