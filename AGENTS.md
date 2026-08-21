@@ -7,6 +7,8 @@ Normal sessions must start with:
 
 ```bash
 cd ~/tungphat
+git pull
+codex
 ```
 
 Do not use `~/RECOVERY/repos/tungphat-github` for normal development; it is historical recovery evidence only.

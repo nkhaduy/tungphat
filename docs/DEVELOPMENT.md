@@ -1,5 +1,15 @@
 # Development
 
+The permanent local repository is `/Users/khaduy/tungphat`, and `main` is the canonical development branch. Start normal sessions with:
+
+```bash
+cd ~/tungphat
+git pull
+codex
+```
+
+Do not use `/Users/khaduy/RECOVERY/repos/tungphat-github` for normal development; it is historical recovery evidence only. Deployed recovery evidence remains under `/Users/khaduy/RECOVERY/tungphat-deployed-20260821`.
+
 Use Node.js 22 (the repository accepts Node 20.19 through 26) and npm 10 or newer.
 
 ```bash
