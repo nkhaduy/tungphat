@@ -1,0 +1,15 @@
+@use '../../styles/tungphat-admin';
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/montserrat-vietnamese.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/montserrat-latin.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 100 900;
+}

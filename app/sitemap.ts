@@ -16,10 +16,10 @@ import { getMaterialDataset } from "@/lib/materials";
 
 export const dynamic = "force-static";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const materialDataset = getMaterialDataset();
-  const articles = getPublishedArticles();
-  const projects = getPublishedProjects();
+  const articles = await getPublishedArticles();
+  const projects = await getPublishedProjects();
   const staticRouteRules = [
     { route: "/", include: true },
     { route: "/san-pham/", include: true },
@@ -50,7 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: route === "/" ? 1 : 0.7,
     }));
   const rootContent = (slug: string) => !isReservedRootSlug(slug);
-  const products: MetadataRoute.Sitemap = getProducts()
+  const products: MetadataRoute.Sitemap = (await getProducts())
     .filter((entry) => rootContent(entry.slug))
     .map((entry) => ({
       url: absoluteUrl(`/${entry.slug}/`),
@@ -58,7 +58,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     }));
-  const services: MetadataRoute.Sitemap = getServicePages()
+  const services: MetadataRoute.Sitemap = (await getServicePages())
     .filter((entry) => rootContent(entry.slug))
     .map((entry) => ({
       url: absoluteUrl(`/${entry.slug}/`),

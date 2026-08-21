@@ -82,8 +82,8 @@ const brands = [
   { name: "Ba Thanh", slug: "ba-thanh", logo: "/partners/ba-thanh-logo.webp" }
 ] as const;
 
-export function HomeContent() {
-  const products = getProducts();
+export async function HomeContent() {
+  const products = await getProducts();
   const publishedProductSlugs = new Set(products.map((product) => product.slug));
   const commonSpecProducts = ["van-mdf", "mdf-chong-am", "go-ghep-cao-su", "go-ghep-tram"]
     .map((slug) => products.find((product) => product.slug === slug))

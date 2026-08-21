@@ -17,7 +17,7 @@
       "tolerance": null,
       "edgeRequirements": "Xác nhận mặt chính, cạnh để lộ và bước hoàn thiện.",
       "limitations": "Kiểm tra cốt, độ dày, bề mặt, file, số lượng và chi tiết trước khi xác nhận.",
-      "source": "content/pages/gia-cong-cnc-mdf.md"
+      "source": "payload://pages/gia-cong-cnc-mdf"
     },
     {
       "material": "MDF chống ẩm",
@@ -33,7 +33,7 @@
       "tolerance": null,
       "edgeRequirements": "Xác nhận mã vật liệu, bề mặt, cạnh và môi trường sử dụng.",
       "limitations": "Chống ẩm không đồng nghĩa chống nước; khả năng gia công được xác nhận theo tấm và file.",
-      "source": "content/pages/gia-cong-cnc-mdf.md"
+      "source": "payload://pages/gia-cong-cnc-mdf"
     },
     {
       "material": "Gỗ ghép đã xác nhận loại và quy cách",
@@ -49,7 +49,7 @@
       "tolerance": null,
       "edgeRequirements": "Xác nhận mặt sử dụng, màu/vân, mối ghép, cạnh và hoàn thiện.",
       "limitations": "Kiểm tra mẫu/lô hàng, quy cách, file và chi tiết trước khi xác nhận.",
-      "source": "content/pages/cat-cnc-go.md"
+      "source": "payload://pages/cat-cnc-go"
     }
   ]
 }

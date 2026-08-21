@@ -1,9 +1,6 @@
-import fs from "node:fs";
-import path from "node:path";
-import matter from "gray-matter";
 import business from "@/content/settings/business.json";
 import seo from "@/content/settings/seo.json";
-import { articleSchema, productSchema, projectSchema, servicePageSchema } from "@/lib/content-schema";
+import { getArticles, getProducts, getProjects, getServicePages } from "@/lib/content";
 import { absolutePageUrl, absoluteUrl } from "@/lib/seo";
 import materialDataset from "@/data/materials/materials.json";
 import cncPreflight from "@/data/cnc-preflight-checklist.json";
@@ -24,17 +21,14 @@ type KnowledgePage = {
   surfaces?: string[];
 };
 
-export function buildKnowledgeIndex() {
-  function readCollection<T>(folder: string, schema: { parse: (value: unknown) => T }) {
-    const directory = path.join(process.cwd(), "content", folder);
-    if (!fs.existsSync(directory)) return [] as Array<T & { body: string }>;
-    return fs.readdirSync(directory).filter((file) => /\.mdx?$/u.test(file)).map((file) => {
-      const parsed = matter(fs.readFileSync(path.join(directory, file), "utf8"));
-      return { ...schema.parse(parsed.data), body: parsed.content.trim() };
-    });
-  }
-
-  const products: KnowledgePage[] = readCollection("products", productSchema).filter((entry) => !entry.draft && !entry.noindex).map((entry) => ({
+export async function buildKnowledgeIndex() {
+  const [productEntries, serviceEntries, articleEntries, projectEntries] = await Promise.all([
+    getProducts(),
+    getServicePages(),
+    getArticles(),
+    getProjects(),
+  ]);
+  const products: KnowledgePage[] = productEntries.map((entry) => ({
     url: absolutePageUrl(`/${entry.slug}`),
     type: entry.status === "guide" ? "CollectionPage" : "Product",
     name: entry.title,
@@ -49,7 +43,7 @@ export function buildKnowledgeIndex() {
     thicknesses: entry.thicknesses,
     surfaces: entry.surfaces,
   }));
-  const services: KnowledgePage[] = readCollection("pages", servicePageSchema).filter((entry) => !entry.draft && !entry.noindex).map((entry) => ({
+  const services: KnowledgePage[] = serviceEntries.map((entry) => ({
     url: absolutePageUrl(`/${entry.slug}`),
     type: "Service",
     name: entry.title,
@@ -57,7 +51,7 @@ export function buildKnowledgeIndex() {
     updatedAt: entry.updatedAt,
     applications: entry.workItems,
   }));
-  const articles: KnowledgePage[] = readCollection("articles", articleSchema).filter((entry) => !entry.draft && !entry.noindex).map((entry) => ({
+  const articles: KnowledgePage[] = articleEntries.map((entry) => ({
     url: absolutePageUrl(`/bai-viet/${entry.slug}`),
     type: "Article",
     name: entry.title,
@@ -65,7 +59,7 @@ export function buildKnowledgeIndex() {
     updatedAt: entry.updatedAt,
     category: entry.category,
   }));
-  const projects: KnowledgePage[] = readCollection("projects", projectSchema).filter((entry) => !entry.draft && !entry.noindex).map((entry) => ({
+  const projects: KnowledgePage[] = projectEntries.map((entry) => ({
     url: absolutePageUrl(`/du-an/${entry.slug}`),
     type: "CreativeWork",
     name: entry.title,

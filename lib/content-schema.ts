@@ -10,8 +10,8 @@ const slug = z
 export const imagePathSchema = z
   .string()
   .regex(
-    /^\/[^\s]+\.(?:avif|webp|png|jpe?g)$/i,
-    "Ảnh phải nằm trong public và dùng AVIF, WebP, PNG hoặc JPEG",
+    /^(?:\/|https:\/\/cms\.mdftungphat\.com\/)[^\s]+\.(?:avif|webp|png|jpe?g)$/i,
+    "Ảnh phải là public path hoặc Payload media URL hợp lệ",
   );
 
 const optionalImage = z.union([z.literal(""), imagePathSchema]).default("");
@@ -21,7 +21,7 @@ const optionalVideo = z
     z
       .string()
       .regex(
-        /^\/[^\s]+\.(?:mp4|webm)$/i,
+        /^(?:\/|https:\/\/cms\.mdftungphat\.com\/)[^\s]+\.(?:mp4|webm)$/i,
         "Video phải nằm trong public và dùng MP4/WebM",
       ),
   ])
@@ -29,7 +29,7 @@ const optionalVideo = z
 const optionalPdf = z
   .union([
     z.literal(""),
-    z.string().regex(/^\/[^\s]+\.pdf$/i, "PDF phải nằm trong public"),
+    z.string().regex(/^(?:\/|https:\/\/cms\.mdftungphat\.com\/)[^\s]+\.pdf$/i, "PDF phải là public path hoặc Payload media URL hợp lệ"),
   ])
   .default("");
 const optionalCanonical = z
@@ -234,6 +234,9 @@ export const seoSettingsSchema = z.object({
   defaultTitle: z.string().min(20).max(65),
   defaultDescription: z.string().min(80).max(170),
   defaultOgImage: imagePathSchema,
+  defaultOgImageWidth: z.number().int().positive(),
+  defaultOgImageHeight: z.number().int().positive(),
+  defaultOgImageType: z.string().startsWith("image/"),
 });
 
 export const staticPagesSettingsSchema = z.object({

@@ -11,27 +11,27 @@ type RootContentRouteProps = { params: Promise<{ slug: string }> };
 
 export const dynamicParams = false;
 
-function rootContent(slug: string) {
+async function rootContent(slug: string) {
   if (isReservedRootSlug(slug)) return undefined;
-  return getProducts().find((entry) => entry.slug === slug) ?? getServicePages().find((entry) => entry.slug === slug);
+  return (await getProducts()).find((entry) => entry.slug === slug) ?? (await getServicePages()).find((entry) => entry.slug === slug);
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return dynamicRootContentParams([
-    ...getProducts().map((entry) => ({ ...entry, collection: "products" as const })),
-    ...getServicePages().map((entry) => ({ ...entry, collection: "pages" as const }))
+    ...(await getProducts()).map((entry) => ({ ...entry, collection: "products" as const })),
+    ...(await getServicePages()).map((entry) => ({ ...entry, collection: "pages" as const }))
   ]);
 }
 
 export async function generateMetadata({ params }: RootContentRouteProps): Promise<Metadata> {
   const { slug } = await params;
-  const entry = rootContent(slug);
+  const entry = await rootContent(slug);
   return entry ? createContentMetadata(entry, `/${entry.slug}`) : {};
 }
 
 export default async function RootContentRoute({ params }: RootContentRouteProps) {
   const { slug } = await params;
-  const entry = rootContent(slug);
+  const entry = await rootContent(slug);
   if (!entry) notFound();
 
   return "status" in entry ? <ProductLanding product={entry} /> : <ServiceLanding page={entry} />;

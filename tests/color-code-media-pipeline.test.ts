@@ -43,7 +43,7 @@ describe("color-code media discovery", () => {
     const artifact = discoverAnCuongColorMedia();
     const renamed = artifact.entries.find((entry) => entry.codeRaw === "LK 4458 A");
 
-    expect(renamed?.localPath).toBe("/catalog/an-cuong/laminate/lk-4458-a-swatch.webp");
+    expect(renamed?.localAssets?.[0]?.localPath).toBe("/catalog/an-cuong/laminate/lk-4458-a-fullsheet.webp");
     expect(artifact.entries.every((entry) =>
       (entry.localAssets ?? []).every((asset) => !asset.localPath.includes("/panel/")),
     )).toBe(true);

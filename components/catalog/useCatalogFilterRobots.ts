@@ -20,6 +20,8 @@ export function useCatalogFilterRobots(active: boolean) {
     } else {
       robots?.remove();
     }
-    return () => document.head.querySelector(selector)?.remove();
+    return () => {
+      document.head.querySelector(selector)?.remove();
+    };
   }, [active]);
 }

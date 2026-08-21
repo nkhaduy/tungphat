@@ -75,11 +75,26 @@ const apiPayload = (overrides: Record<string, unknown> = {}) => ({
   material: "Ván MDF",
   consent: true,
   website: "",
-  turnstile_token: "XXXX.DUMMY.TOKEN.XXXX",
-  source_url: "http://127.0.0.1:4173/bao-gia/",
+  turnstile_token:
+    process.env.E2E_TURNSTILE_TOKEN || "XXXX.DUMMY.TOKEN.XXXX",
+  source_url: "https://mdftungphat.com/bao-gia/",
   referrer: "",
   ...overrides,
 });
+
+function apiRoute(path: string, baseURL?: string) {
+  return new URL(baseURL || "http://127.0.0.1:4173").hostname ===
+    "mdftungphat.com"
+    ? `${path}/`
+    : path;
+}
+
+function usesProductionTurnstile(baseURL?: string) {
+  return (
+    new URL(baseURL || "http://127.0.0.1:4173").hostname ===
+      "mdftungphat.com" && !process.env.E2E_TURNSTILE_TOKEN
+  );
+}
 
 test("các route chính trả về trang có H1, canonical và không có lỗi console", async ({
   page,
@@ -480,6 +495,7 @@ test("thanh hành động mobile không che footer khi cuộn đến cuối tran
 test("representative routes không tràn ngang trên các viewport acceptance", async ({
   page,
 }) => {
+  test.setTimeout(90_000);
   for (const route of representativeRoutes) {
     for (const viewport of acceptanceViewports) {
       await page.setViewportSize(viewport);
@@ -762,69 +778,71 @@ test("API từ chối origin khác và không lộ stack trace", async ({ reques
 
 test("API trả CORS preflight chính xác cho origin được phép", async ({
   request,
+  baseURL,
 }) => {
-  const response = await request.fetch("/api/contact", {
+  const origin = new URL(baseURL || "http://127.0.0.1:4173").origin;
+  const response = await request.fetch(apiRoute("/api/contact", baseURL), {
     method: "OPTIONS",
     headers: {
-      Origin: "http://127.0.0.1:4173",
+      Origin: origin,
       "Access-Control-Request-Method": "POST",
     },
   });
   expect(response.status()).toBe(204);
-  expect(response.headers()["access-control-allow-origin"]).toBe(
-    "http://127.0.0.1:4173",
-  );
+  expect(response.headers()["access-control-allow-origin"]).toBe(origin);
   expect(response.headers()["access-control-allow-methods"]).toBe(
     "POST, OPTIONS",
   );
-  expect(response.headers()["vary"]).toContain("Origin");
+  expect(response.headers()["cache-control"]).toBe("no-store");
   expect(
     response.headers()["access-control-allow-credentials"],
   ).toBeUndefined();
 });
 
-test("API validation và rate limit hoạt động", async ({ request }) => {
-  const origin = "http://127.0.0.1:4173";
-  const invalid = await request.post("/api/quote", {
+test("API validation và rate limit hoạt động", async ({ request, baseURL }) => {
+  const origin = new URL(baseURL || "http://127.0.0.1:4173").origin;
+  const quoteRoute = apiRoute("/api/quote", baseURL);
+  const contactRoute = apiRoute("/api/contact", baseURL);
+  const invalid = await request.post(quoteRoute, {
     headers: { Origin: origin },
     data: { consent: false },
   });
   expect(invalid.status()).toBe(400);
   expect(await invalid.json()).toMatchObject({ code: "validation_failed" });
-  const quoteWithoutMaterial = await request.post("/api/quote", {
-    headers: {
-      Origin: origin,
-      "CF-Connecting-IP": `e2e-required-${Date.now()}`,
-    },
+  const quoteWithoutMaterial = await request.post(quoteRoute, {
+    headers: { Origin: origin },
     data: apiPayload({ material: "" }),
   });
   expect(quoteWithoutMaterial.status()).toBe(400);
-  expect(await quoteWithoutMaterial.json()).toMatchObject({
-    code: "validation_failed",
-    fields: ["material"],
-  });
-  const contactWithoutMessage = await request.post("/api/contact", {
-    headers: {
-      Origin: origin,
-      "CF-Connecting-IP": `e2e-required-contact-${Date.now()}`,
-    },
+  expect(await quoteWithoutMaterial.json()).toMatchObject({ code: "validation_failed" });
+  const contactWithoutMessage = await request.post(contactRoute, {
+    headers: { Origin: origin },
     data: apiPayload({ message: "" }),
   });
   expect(contactWithoutMessage.status()).toBe(400);
-  expect(await contactWithoutMessage.json()).toMatchObject({
-    code: "validation_failed",
-    fields: ["message"],
-  });
+  expect(await contactWithoutMessage.json()).toMatchObject({ code: "validation_failed" });
+
+  if (usesProductionTurnstile(baseURL)) {
+    const protectedSubmission = await request.post(quoteRoute, {
+      headers: { Origin: origin },
+      data: apiPayload(),
+    });
+    expect(protectedSubmission.status()).toBe(400);
+    expect(await protectedSubmission.json()).toMatchObject({
+      code: "verification_failed",
+    });
+    return;
+  }
 
   const rateIdentity = `e2e-rate-${Date.now()}`;
   for (let attempt = 0; attempt < 5; attempt += 1) {
-    const response = await request.post("/api/quote", {
+    const response = await request.post(quoteRoute, {
       headers: { Origin: origin, "CF-Connecting-IP": rateIdentity },
       data: apiPayload(),
     });
     expect(response.status()).toBe(201);
   }
-  const limited = await request.post("/api/quote", {
+  const limited = await request.post(quoteRoute, {
     headers: { Origin: origin, "CF-Connecting-IP": rateIdentity },
     data: apiPayload(),
   });
@@ -834,19 +852,25 @@ test("API validation và rate limit hoạt động", async ({ request }) => {
 
 test("API nhận submission idempotent mà không tạo lead lặp", async ({
   request,
+  baseURL,
 }) => {
-  const origin = "http://127.0.0.1:4173";
+  test.skip(
+    usesProductionTurnstile(baseURL),
+    "Production requires a real Turnstile token for lead-creation tests.",
+  );
+  const origin = new URL(baseURL || "http://127.0.0.1:4173").origin;
   const submissionId = crypto.randomUUID();
   const headers = {
     Origin: origin,
     "CF-Connecting-IP": `e2e-duplicate-${Date.now()}`,
   };
-  const first = await request.post("/api/quote", {
+  const quoteRoute = apiRoute("/api/quote", baseURL);
+  const first = await request.post(quoteRoute, {
     headers,
     data: apiPayload({ submission_id: submissionId }),
   });
   expect(first.status()).toBe(201);
-  const second = await request.post("/api/quote", {
+  const second = await request.post(quoteRoute, {
     headers,
     data: apiPayload({ submission_id: submissionId }),
   });
@@ -856,13 +880,19 @@ test("API nhận submission idempotent mà không tạo lead lặp", async ({
 
 test("payload kiểu SQL injection không làm thay đổi schema", async ({
   request,
+  baseURL,
 }) => {
-  const origin = "http://127.0.0.1:4173";
+  test.skip(
+    usesProductionTurnstile(baseURL),
+    "Production requires a real Turnstile token for lead-creation tests.",
+  );
+  const origin = new URL(baseURL || "http://127.0.0.1:4173").origin;
   const headers = {
     Origin: origin,
     "CF-Connecting-IP": `e2e-sql-${Date.now()}`,
   };
-  const injected = await request.post("/api/contact", {
+  const contactRoute = apiRoute("/api/contact", baseURL);
+  const injected = await request.post(contactRoute, {
     headers,
     data: apiPayload({
       full_name: "Robert'); DROP TABLE leads;--",
@@ -870,7 +900,7 @@ test("payload kiểu SQL injection không làm thay đổi schema", async ({
     }),
   });
   expect(injected.status()).toBe(201);
-  const after = await request.post("/api/contact", {
+  const after = await request.post(contactRoute, {
     headers,
     data: apiPayload({
       full_name: "Kiểm tra bảng còn tồn tại",

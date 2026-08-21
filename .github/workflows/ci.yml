@@ -21,15 +21,15 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm ci --prefix cloudflare-cms
+      - run: npm ci --prefix payload-cms
       - run: npm run lint
       - run: npm run typecheck
       - run: npm test
-      - run: npm --prefix cloudflare-cms run lint
-      - run: npm --prefix cloudflare-cms run typecheck
-      - run: npm --prefix cloudflare-cms test
-      - run: npm --prefix cloudflare-cms run build
-      - run: npm --prefix cloudflare-cms run cms:dry-run
+      - run: npm --prefix payload-cms run lint
+      - run: npm --prefix payload-cms run typecheck
+      - run: npm --prefix payload-cms run integration
+      - run: npm --prefix payload-cms run build:cloudflare
+      - run: npm --prefix payload-cms exec wrangler deploy -- --env production --dry-run
       - run: npm run validate:content
       - run: npm run images:check
       - run: npm run media:check-git
@@ -57,6 +57,4 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run build
-      - run: printf '%s\n' 'TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA' 'IP_HASH_SALT=ci-only-not-a-production-secret-00000001' > .dev.vars
-      - run: npm run d1:migrate:local
       - run: npm run test:e2e

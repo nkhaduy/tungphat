@@ -28,6 +28,9 @@ const TITLE_SUFFIX = ` | ${TITLE_BRAND}`;
 export const DEFAULT_SOCIAL_IMAGE = createSocialImage({
   url: seo.defaultOgImage,
   alt: "Tùng Phát – Vật liệu gỗ và giải pháp gia công CNC",
+  width: seo.defaultOgImageWidth,
+  height: seo.defaultOgImageHeight,
+  type: seo.defaultOgImageType,
 });
 
 export function absoluteUrl(path = "/") {

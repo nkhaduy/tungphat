@@ -30,11 +30,11 @@ reports/
 .superpowers/
 .codex/
 .worktrees/
-payload-cms/
 *.tsbuildinfo
 .vercel
 .indexnow-state.json
 public/indexnow-key.txt
+/content/
 
 # An Cuong crawler runtime data. Review fixtures, manifests and exports are force-added explicitly.
 data/imports/ancuong/raw/
@@ -42,3 +42,8 @@ data/imports/ancuong/state/
 data/imports/ancuong/media/
 data/imports/ancuong/cache/
 data/imports/ancuong/logs/
+
+# Generated R2 cleanup audit manifests; retain externally when recovery evidence is needed.
+r2-cleanup-dry-run.json
+r2-delete-safety-manifest.json
+.env*

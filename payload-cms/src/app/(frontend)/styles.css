@@ -1,0 +1,15 @@
+@font-face { font-family: Montserrat; src: url('/fonts/montserrat-vietnamese.woff2') format('woff2'); font-display: swap; font-weight: 100 900; }
+* { box-sizing: border-box; }
+html, body { min-height: 100%; margin: 0; }
+body { font-family: Montserrat, 'Helvetica Neue', sans-serif; color: #17211d; background: #f5f8f6; }
+.home { min-height: 100vh; display: grid; place-items: center; padding: 24px; background: linear-gradient(rgba(3,63,45,.76), rgba(3,63,45,.82)), url('/brand/workshop-login.webp') center / cover; }
+.home-card { width: min(640px, 100%); padding: clamp(28px, 6vw, 54px); border-radius: 16px; background: #fff; box-shadow: 0 20px 60px rgba(3,63,45,.2); }
+.home-card img { width: min(260px, 75%); height: auto; }
+.eyebrow { margin: 34px 0 8px; color: #064b36; font-size: 12px; font-weight: 800; letter-spacing: .13em; }
+h1 { margin: 0 0 14px; font-size: clamp(32px, 6vw, 54px); line-height: 1.04; letter-spacing: -.04em; }
+.home-card > p:last-of-type { max-width: 54ch; color: #5f6e67; line-height: 1.65; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.links a { min-height: 46px; display: inline-flex; align-items: center; padding: 0 16px; border: 1px solid #dce6e1; border-radius: 8px; color: #064b36; text-decoration: none; font-weight: 700; }
+.links .admin { color: #fff; background: #064b36; border-color: #064b36; }
+a:focus-visible { outline: 2px solid #f37421; outline-offset: 3px; }
+@media (max-width: 520px) { .home { padding: 14px; } .home-card { border-radius: 12px; } .links a { width: 100%; justify-content: center; } }

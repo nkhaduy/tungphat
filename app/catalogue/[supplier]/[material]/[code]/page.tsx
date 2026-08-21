@@ -36,6 +36,7 @@ export default async function SupplierColorCodeRoute({ params }: RouteProps) {
   const images = imagePriority.flatMap((role) => record.images.filter((image) => image.role === role && image.localPath));
   const galleryImages = images.map((image) => ({
     src: image.localPath!,
+    thumbnailSrc: image.thumbnailSrc,
     originalUrl: image.originalUrl,
     alt: `${record.codeRaw} ${image.role}`,
   }));

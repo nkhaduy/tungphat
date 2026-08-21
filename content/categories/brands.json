@@ -3,7 +3,7 @@
     {
       "slug": "an-cuong",
       "name": "An Cường",
-      "logo": "/partners/an-cuong-logo.webp",
+      "logo": "https://cms.mdftungphat.com/media/uploads/an-cuong-logo.webp",
       "description": "Các dòng vật liệu và bề mặt mang thương hiệu An Cường đang được Tùng Phát giới thiệu theo nhu cầu từng hạng mục.",
       "catalogues": [],
       "products": []
@@ -11,7 +11,7 @@
     {
       "slug": "thanh-thuy",
       "name": "Thanh Thùy",
-      "logo": "/partners/thanh-thuy-logo.webp",
+      "logo": "https://cms.mdftungphat.com/media/uploads/thanh-thuy-logo.webp",
       "description": "Thông tin vật liệu mang thương hiệu Thanh Thùy, phù hợp để tham khảo trước khi kiểm tra quy cách và catalogue.",
       "catalogues": [],
       "products": []
@@ -19,7 +19,7 @@
     {
       "slug": "ba-thanh",
       "name": "Ba Thanh",
-      "logo": "/partners/ba-thanh-logo.webp",
+      "logo": "https://cms.mdftungphat.com/media/uploads/ba-thanh-logo.webp",
       "description": "Trang tổng hợp thông tin vật liệu mang thương hiệu Ba Thanh tại Tùng Phát; dữ liệu chi tiết đang được bổ sung.",
       "catalogues": [],
       "products": []

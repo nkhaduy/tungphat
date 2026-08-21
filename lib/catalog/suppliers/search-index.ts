@@ -65,7 +65,7 @@ function localThumbnail(record: PublicSupplierColorCode): string {
   const rolePriority = ["swatch", "fullsheet", "actual-photo", "product", "application"] as const;
   for (const role of rolePriority) {
     const image = record.images.find((candidate) => candidate.role === role && candidate.localPath);
-    if (image?.localPath) return image.localPath;
+    if (image?.thumbnailSrc || image?.localPath) return image.thumbnailSrc || image.localPath || "";
   }
   return "";
 }

@@ -41,6 +41,7 @@ export type SupplierColorImage = {
   role: SupplierColorImageRole;
   sourceUrl: string;
   localPath?: string;
+  thumbnailSrc?: string;
   mimeType?: string;
   width?: number;
   height?: number;

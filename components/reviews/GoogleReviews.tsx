@@ -8,7 +8,7 @@ import { parseReviewPayload } from "./google-review-utils";
 const CMS_ORIGIN = process.env.NEXT_PUBLIC_FORMS_API_BASE?.trim() || "https://cms.mdftungphat.com";
 
 function ReviewsSkeleton() {
-  return <div role="status" className="mt-10 space-y-5" aria-label="Đang tải đánh giá từ Google" aria-busy="true">{[0, 1].map((row) => <div key={row} className="grid min-h-[287px] animate-pulse gap-5 md:grid-cols-[minmax(13rem,16rem)_minmax(0,1fr)]"><div className="rounded-[0.9rem] border border-forest-900/5 bg-white p-5"><div className="h-9 w-9 rounded-full bg-slate-100" /><div className="mt-5 h-4 w-4/5 rounded bg-slate-100" /><div className="mt-8 h-10 w-20 rounded bg-slate-100" /></div><div className="flex gap-4 overflow-hidden"><div className="h-[287px] w-[19rem] shrink-0 rounded-[0.9rem] bg-white" /><div className="h-[287px] w-[19rem] shrink-0 rounded-[0.9rem] bg-white" /></div></div>)}</div>;
+  return <div className="mt-10 space-y-5" role="status" aria-label="Đang tải đánh giá từ Google" aria-busy="true">{[0, 1].map((row) => <div key={row} className="grid min-h-[287px] animate-pulse gap-5 md:grid-cols-[minmax(13rem,16rem)_minmax(0,1fr)]"><div className="rounded-[0.9rem] border border-forest-900/5 bg-white p-5"><div className="h-9 w-9 rounded-full bg-slate-100" /><div className="mt-5 h-4 w-4/5 rounded bg-slate-100" /><div className="mt-8 h-10 w-20 rounded bg-slate-100" /></div><div className="flex gap-4 overflow-hidden"><div className="h-[287px] w-[19rem] shrink-0 rounded-[0.9rem] bg-white" /><div className="h-[287px] w-[19rem] shrink-0 rounded-[0.9rem] bg-white" /></div></div>)}</div>;
 }
 
 export function GoogleReviews() {

@@ -1,7 +1,0 @@
-/*
-  X-Robots-Tag: noindex, nofollow, noarchive
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: no-referrer
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Cache-Control: private, no-store, max-age=0
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://mdftungphat.com; font-src 'self' data:; connect-src 'self' blob: https://mdftungphat.com; frame-src 'self' blob: https://mdftungphat.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests

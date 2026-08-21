@@ -212,7 +212,7 @@ The repository has no public catalogue deployment script. The website uses Verce
 git push -u origin codex/catalog-full-supplier-import
 ```
 
-Do not run a production deploy while media rights are `UNCONFIRMED`. Cloudflare CMS commands such as `npm run cms:deploy` are unrelated to the public catalogue and are out of scope.
+Do not run a production deploy while media rights are `UNCONFIRMED`. Payload deployment and supplier synchronization are separate operations; use the production migration runbook for CMS changes.
 
 ## Pagination Troubleshooting
 

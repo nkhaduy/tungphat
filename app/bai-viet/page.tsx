@@ -10,8 +10,8 @@ import { getArticles } from "@/lib/content";
 import { mediaUrl } from "@/lib/media";
 import { breadcrumbSchema, createPageMetadata, webPageSchema } from "@/lib/seo";
 
-export default function ArticlesPage() {
-  const articles = getArticles();
+export default async function ArticlesPage() {
+  const articles = await getArticles();
   return (
     <>
       <JsonLd data={[webPageSchema({ path: "/bai-viet", name: "Kiến thức vật liệu và CNC", description: "Thư viện nội dung đã được publish về vật liệu gỗ và gia công CNC.", type: "CollectionPage" }), breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Bài viết", path: "/bai-viet" }])]} />
@@ -23,7 +23,7 @@ export default function ArticlesPage() {
   );
 }
 
-export function generateMetadata() {
-  const articles = getArticles();
+export async function generateMetadata() {
+  const articles = await getArticles();
   return createPageMetadata({ title: "Kiến thức vật liệu gỗ và gia công CNC", description: "Bài viết đã được Tùng Phát kiểm tra về gỗ ghép, ván MDF, cách chọn vật liệu và chuẩn bị yêu cầu gia công CNC.", path: "/bai-viet", noIndex: articles.length === 0, followWhenNoIndex: true });
 }

@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import { buildKnowledgeIndex } from "@/lib/knowledge";
 
 describe("machine-readable knowledge index", () => {
-  it("contains only public published content with canonical URLs", () => {
-    const index = buildKnowledgeIndex();
+  it("contains only public published content with canonical URLs", async () => {
+    const index = await buildKnowledgeIndex();
     const urls = index.pages.map((page) => page.url);
 
     expect(index.schemaVersion).toBe("1.0");

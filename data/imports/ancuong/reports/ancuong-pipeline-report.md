@@ -6,8 +6,8 @@ Generated: 2026-08-05T02:25:40.160Z
 
 - errors: 0
 - media: 20
-- products: 7
-- relations: 65
+- products: 2682
+- relations: 26116
 - warnings: 0
 
 ## Diff
