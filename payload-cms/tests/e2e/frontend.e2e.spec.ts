@@ -1,13 +1,11 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Frontend', () => {
-  test('can go on homepage', async ({ page }) => {
+  test('opens the CMS login directly', async ({ page }) => {
     await page.goto('/')
 
-    await expect(page).toHaveTitle(/Tùng Phát/)
-
-    const heading = page.locator('h1').first()
-
-    await expect(heading).toHaveText('Payload CMS Tùng Phát')
+    await expect(page).toHaveURL(/\/admin\/login(?:\?.*)?$/)
+    await expect(page.getByRole('heading', { name: 'CMS', exact: true })).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Đăng nhập' })).toBeVisible()
   })
 })

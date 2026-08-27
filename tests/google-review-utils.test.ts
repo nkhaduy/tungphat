@@ -44,7 +44,7 @@ describe("Google review presentation utilities", () => {
         { review_id: "invalid", reviewer_display_name: "", rating: 9 },
       ],
     }] });
-    expect(payload?.branches[0]).toMatchObject({ branchKey: "tp2", mapsUrl: "https://share.google/sv4nkFEznsGsWhRAQ" });
+    expect(payload?.branches[0]).toMatchObject({ branchKey: "tp2", mapsUrl: null });
     expect(payload?.branches[0].reviews.map((item) => item.review_id)).toEqual(["valid"]);
   });
 });

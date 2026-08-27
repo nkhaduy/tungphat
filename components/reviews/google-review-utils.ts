@@ -1,6 +1,5 @@
 import type { Review, ReviewBranch, ReviewPayload } from "./google-review-types";
 
-const TP2_GOOGLE_URL = "https://share.google/sv4nkFEznsGsWhRAQ";
 
 function record(value: unknown): Record<string, unknown> | null {
   return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : null;
@@ -21,6 +20,7 @@ function reviewFrom(value: unknown): Review | null {
     review_id: reviewId,
     reviewer_display_name: reviewerName,
     reviewer_photo_url: safePhotoUrl(item.reviewer_photo_url),
+    reviewer_uri: safeExternalUrl(item.reviewer_uri),
     rating,
     comment: nullableText(item.comment),
     create_time: nullableText(item.create_time),
@@ -41,7 +41,7 @@ function branchFrom(value: unknown): ReviewBranch | null {
     branchKey: item.branchKey,
     status: reviews.length ? "ready" : status,
     location: nullableText(item.location) || `Tùng Phát · Chi nhánh ${item.branchKey === "tp1" ? "1" : "2"}`,
-    mapsUrl: safeExternalUrl(item.mapsUrl) || (item.branchKey === "tp2" ? TP2_GOOGLE_URL : null),
+    mapsUrl: safeExternalUrl(item.mapsUrl),
     count: Math.max(0, Number(item.count) || 0),
     averageRating: Math.min(5, Math.max(0, Number(item.averageRating) || 0)),
     lastSyncedAt: Number.isFinite(Number(item.lastSyncedAt)) ? Number(item.lastSyncedAt) : null,

@@ -2,11 +2,13 @@ export type Review = {
   review_id: string;
   reviewer_display_name: string;
   reviewer_photo_url: string | null;
+  reviewer_uri?: string | null;
   rating: number;
   comment: string | null;
   create_time: string | null;
   update_time: string | null;
   owner_reply: string | null;
+  source?: "google-places-api";
 };
 
 export type ReviewBranch = {

@@ -3,7 +3,7 @@
 /* Reviewer photos come from Google and are not known at build time. */
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
-import { Check, ChevronDown, ChevronUp, Star } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, ExternalLink, Star } from "lucide-react";
 import type { Review } from "./google-review-types";
 import { reviewerInitial, reviewDateLabel, safePhotoUrl } from "./google-review-utils";
 
@@ -28,7 +28,7 @@ export function ReviewCard({ review, duplicate = false }: { review: Review; dupl
       </div>
       {comment ? <div className="mt-4"><p className={hasLongComment && !expanded ? "line-clamp-5 text-sm leading-6 text-slate-700" : "text-sm leading-6 text-slate-700"}>{comment}</p>{hasLongComment ? <button type="button" tabIndex={duplicate ? -1 : undefined} onClick={() => setExpanded((value) => !value)} className="mt-2 inline-flex items-center gap-1 text-xs font-extrabold text-forest-900 underline decoration-forest-900/25 underline-offset-4">{expanded ? "Thu gọn" : "Xem thêm"}{expanded ? <ChevronUp size={13} aria-hidden="true" /> : <ChevronDown size={13} aria-hidden="true" />}</button> : null}</div> : null}
       {review.owner_reply ? <p className="mt-4 border-l-2 border-wood-500/50 pl-3 text-xs leading-5 text-slate-600"><strong className="text-forest-900">Tùng Phát trả lời:</strong> {review.owner_reply}</p> : null}
-      <p className="mt-auto flex items-center gap-1.5 pt-5 text-[10px] font-bold uppercase tracking-[.1em] text-slate-600"><span className="grid h-4 w-4 place-items-center rounded-full bg-[#f2f5f3] text-[9px] font-black normal-case text-[#4285f4]">G</span><Check size={12} className="text-forest-700" aria-hidden="true" /> Đánh giá trên Google</p>
+      <p className="mt-auto flex items-center gap-1.5 pt-5 text-[10px] font-bold uppercase tracking-[.1em] text-slate-600"><span className="grid h-4 w-4 place-items-center rounded-full bg-[#f2f5f3] text-[9px] font-black normal-case text-[#4285f4]">G</span><Check size={12} className="text-forest-700" aria-hidden="true" /> {review.reviewer_uri ? <a href={review.reviewer_uri} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline underline-offset-2">Đánh giá trên Google <ExternalLink size={11} aria-hidden="true" /></a> : "Đánh giá trên Google"}</p>
     </article>
   );
 }

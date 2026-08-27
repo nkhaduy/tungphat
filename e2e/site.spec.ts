@@ -998,7 +998,7 @@ test("two-branch Google reviews render real profiles and content-first order", a
         { review_id: "stars", reviewer_display_name: "Chỉ sao", rating: 5 },
         { review_id: "long", reviewer_display_name: "Nguyễn An", reviewer_photo_url: "https://lh3.googleusercontent.com/reviewer.jpg", rating: 5, update_time: "2026-08-01T00:00:00Z", comment: "Tư vấn rất kỹ và có tâm. ".repeat(18) },
       ] },
-      { branchKey: "tp2", status: "ready", location: "Tùng Phát · Chi nhánh 2", mapsUrl: null, count: 8, averageRating: 4.9, reviews: [
+      { branchKey: "tp2", status: "ready", location: "Tùng Phát · Chi nhánh 2", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY", count: 8, averageRating: 4.9, reviews: [
         { review_id: "tp2-long", reviewer_display_name: "Trần Lan", rating: 5, comment: "Giao hàng đúng hẹn và hỗ trợ nhiệt tình." },
       ] },
     ] }),
@@ -1013,7 +1013,7 @@ test("two-branch Google reviews render real profiles and content-first order", a
   await expect(branches.nth(0).locator("[data-review-card]").first()).toContainText("Tư vấn rất kỹ");
   await expect(branches.nth(0).locator("img[alt='Ảnh đại diện của Nguyễn An']")).toBeVisible();
   await expect(branches.nth(1).locator("[data-review-initial]")).toContainText("T");
-  await expect(branches.nth(1).locator("a[target='_blank']")).toHaveAttribute("href", "https://share.google/sv4nkFEznsGsWhRAQ");
+  await expect(branches.nth(1).locator("a[target='_blank']")).toHaveAttribute("href", "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY");
   const sizes = await branches.evaluateAll((items) => items.map((item) => Math.round(item.getBoundingClientRect().height)));
   expect(Math.abs(sizes[0] - sizes[1])).toBeLessThanOrEqual(2);
   await branches.nth(0).getByRole("button", { name: "Xem thêm" }).click();

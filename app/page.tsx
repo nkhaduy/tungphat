@@ -23,7 +23,7 @@ export const metadata = {
 async function getInitialReviews() {
   const origin = process.env.NEXT_PUBLIC_FORMS_API_BASE?.trim() || "https://cms.mdftungphat.com";
   try {
-    const response = await fetch(`${origin}/api/gbp/reviews`, { cache: "force-cache", headers: { Accept: "application/json" } });
+    const response = await fetch(`${origin}/api/gbp/reviews?provider=google-places-v1`, { cache: "force-cache", headers: { Accept: "application/json" } });
     if (!response.ok) return null;
     return parseReviewPayload(await response.json());
   } catch {

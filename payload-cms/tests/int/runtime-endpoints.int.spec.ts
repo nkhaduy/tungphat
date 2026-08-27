@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { reviewPayloadFromDocs, analyticsDataFromLegacyBody, leadDataFromLegacyBody } from '@/endpoints/runtime'
+import { runtimeEndpoints, reviewPayloadFromDocs, analyticsDataFromLegacyBody, leadDataFromLegacyBody } from '@/endpoints/runtime'
 
 describe('Payload runtime compatibility endpoints', () => {
   it('maps Payload reviews to the existing public review widget contract', () => {
@@ -54,5 +54,71 @@ describe('Payload runtime compatibility endpoints', () => {
     expect(leadDataFromLegacyBody({ ...base, message: '' }, 'contact')).toBeNull()
     expect(leadDataFromLegacyBody({ ...base, material: '' }, 'quote')).toBeNull()
     expect(leadDataFromLegacyBody({ ...base, message: 'Xin chào', website: 'spam' }, 'contact')).toMatchObject({ honeypot: true })
+  })
+
+  it('queries both verified Places IDs and isolates a failed branch', async () => {
+    const previousKey = process.env.GOOGLE_PLACES_API_KEY
+    process.env.GOOGLE_PLACES_API_KEY = 'test-key'
+    const requests: string[] = []
+    const originalFetch = globalThis.fetch
+    globalThis.fetch = (async (input) => {
+      const url = String(input)
+      requests.push(url)
+      if (url.includes('ChIJjWMBUikndTERNFK1M-j02ZY')) throw new Error('branch 2 unavailable')
+      return new Response(JSON.stringify({ displayName: { text: 'Branch 1' }, rating: 4.8, userRatingCount: 11, googleMapsUri: 'https://www.google.com/maps/place/one', reviews: [{ name: 'places/one/reviews/r1', rating: 5, publishTime: '2026-08-01T00:00:00Z', text: { text: 'Google review' }, authorAttribution: { displayName: 'Google User' } }] }), { status: 200 })
+    }) as typeof fetch
+    const writes: unknown[] = []
+    const payload = { find: async () => ({ docs: [] }), create: async (value: unknown) => { writes.push(value); return {} }, update: async () => ({}) }
+    try {
+      const endpoint = runtimeEndpoints.find((item) => item.path === '/gbp/reviews' && item.method === 'get')!
+      const response = await endpoint.handler({ payload } as never)
+      const result = await response.json() as { branches: Array<{ branchKey: string; status: string; reviews: Array<{ comment: string | null }> }> }
+      expect(requests).toHaveLength(2)
+      expect(result.branches).toEqual(expect.arrayContaining([
+        expect.objectContaining({ branchKey: 'tp1', status: 'ready', reviews: [expect.objectContaining({ comment: 'Google review' })] }),
+        expect.objectContaining({ branchKey: 'tp2', status: 'error' }),
+      ]))
+      expect(writes.length).toBe(1)
+    } finally {
+      globalThis.fetch = originalFetch
+      if (previousKey === undefined) delete process.env.GOOGLE_PLACES_API_KEY
+      else process.env.GOOGLE_PLACES_API_KEY = previousKey
+    }
+  })
+
+  it('never exposes pre-existing CMS reviews as Google reviews or cache data', async () => {
+    const previousKey = process.env.GOOGLE_PLACES_API_KEY
+    delete process.env.GOOGLE_PLACES_API_KEY
+    const payload = { find: async () => ({ docs: [{ stableKey: 'manual', source: 'google', branchKey: 'tp1', reviewerName: 'CMS editor', rating: 5, comment: 'Manual text', sourcePayload: { provider: 'legacy-import' } }] }) }
+    try {
+      const endpoint = runtimeEndpoints.find((item) => item.path === '/gbp/reviews' && item.method === 'get')!
+      const response = await endpoint.handler({ payload } as never)
+      const result = await response.json() as { branches: Array<{ status: string; reviews: unknown[] }> }
+      expect(result.branches.every((branch) => branch.reviews.length === 0)).toBe(true)
+    } finally {
+      if (previousKey === undefined) delete process.env.GOOGLE_PLACES_API_KEY
+      else process.env.GOOGLE_PLACES_API_KEY = previousKey
+    }
+  })
+
+  it('uses only the last successful Google cache when the API is unavailable', async () => {
+    const previousKey = process.env.GOOGLE_PLACES_API_KEY
+    process.env.GOOGLE_PLACES_API_KEY = 'test-key'
+    const originalFetch = globalThis.fetch
+    globalThis.fetch = (async () => { throw new Error('temporarily unavailable') }) as typeof fetch
+    const payload = { find: async () => ({ docs: [{ stableKey: 'cached', source: 'google', branchKey: 'tp1', reviewerName: 'Google User', rating: 5, comment: 'Cached Google review', reviewedAt: '2026-08-01T00:00:00Z', updatedAt: '2026-08-01T00:00:00Z', sourcePayload: { provider: 'google-places-api-v1', location: 'Branch 1', mapsUrl: 'https://www.google.com/maps/place/one', userRatingCount: 7, aggregateRating: 5, lastSyncedAt: 1 } }] }) }
+    try {
+      const endpoint = runtimeEndpoints.find((item) => item.path === '/gbp/reviews' && item.method === 'get')!
+      const response = await endpoint.handler({ payload } as never)
+      const result = await response.json() as { branches: Array<{ branchKey: string; status: string; reviews: Array<{ comment: string | null }> }> }
+      expect(result.branches).toEqual(expect.arrayContaining([
+        expect.objectContaining({ branchKey: 'tp1', status: 'ready', reviews: [expect.objectContaining({ comment: 'Cached Google review' })] }),
+        expect.objectContaining({ branchKey: 'tp2', status: 'error', reviews: [] }),
+      ]))
+    } finally {
+      globalThis.fetch = originalFetch
+      if (previousKey === undefined) delete process.env.GOOGLE_PLACES_API_KEY
+      else process.env.GOOGLE_PLACES_API_KEY = previousKey
+    }
   })
 })
