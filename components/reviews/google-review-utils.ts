@@ -45,6 +45,7 @@ function branchFrom(value: unknown): ReviewBranch | null {
     count: Math.max(0, Number(item.count) || 0),
     averageRating: Math.min(5, Math.max(0, Number(item.averageRating) || 0)),
     lastSyncedAt: Number.isFinite(Number(item.lastSyncedAt)) ? Number(item.lastSyncedAt) : null,
+    errorCode: typeof item.errorCode === "string" ? item.errorCode as ReviewBranch["errorCode"] : undefined,
     reviews,
   };
 }

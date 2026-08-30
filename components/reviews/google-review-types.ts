@@ -19,6 +19,7 @@ export type ReviewBranch = {
   count: number;
   averageRating: number;
   lastSyncedAt: number | null;
+  errorCode?: "missing_configuration" | "google_bad_request" | "google_unauthorized" | "google_forbidden" | "google_rate_limited" | "google_request_failed";
   reviews: Review[];
 };
 

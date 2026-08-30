@@ -1011,6 +1011,8 @@ test("two-branch Google reviews render real profiles and content-first order", a
   const branches = page.locator("[data-review-branch]");
   await expect(branches).toHaveCount(2);
   await expect(branches.nth(0).locator("[data-review-card]").first()).toContainText("Tư vấn rất kỹ");
+  await expect(branches.nth(0).locator("aside svg.lucide-star")).toHaveCount(5);
+  await expect(branches.nth(0)).not.toContainText("svgsvg");
   await expect(branches.nth(0).locator("img[alt='Ảnh đại diện của Nguyễn An']")).toBeVisible();
   await expect(branches.nth(1).locator("[data-review-initial]")).toContainText("T");
   await expect(branches.nth(1).locator("a[target='_blank']")).toHaveAttribute("href", "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY");

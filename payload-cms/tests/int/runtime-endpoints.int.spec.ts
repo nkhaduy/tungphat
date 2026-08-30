@@ -86,16 +86,83 @@ describe('Payload runtime compatibility endpoints', () => {
     }
   })
 
-  it('never exposes pre-existing CMS reviews as Google reviews or cache data', async () => {
+  it('reports missing Places credentials as an error instead of zero Google reviews', async () => {
     const previousKey = process.env.GOOGLE_PLACES_API_KEY
     delete process.env.GOOGLE_PLACES_API_KEY
     const payload = { find: async () => ({ docs: [{ stableKey: 'manual', source: 'google', branchKey: 'tp1', reviewerName: 'CMS editor', rating: 5, comment: 'Manual text', sourcePayload: { provider: 'legacy-import' } }] }) }
     try {
       const endpoint = runtimeEndpoints.find((item) => item.path === '/gbp/reviews' && item.method === 'get')!
       const response = await endpoint.handler({ payload } as never)
-      const result = await response.json() as { branches: Array<{ status: string; reviews: unknown[] }> }
-      expect(result.branches.every((branch) => branch.reviews.length === 0)).toBe(true)
+      const result = await response.json() as { branches: Array<{ status: string; errorCode?: string; reviews: unknown[] }> }
+      expect(result.branches).toEqual([
+        expect.objectContaining({ status: 'error', errorCode: 'missing_configuration', reviews: [] }),
+        expect.objectContaining({ status: 'error', errorCode: 'missing_configuration', reviews: [] }),
+      ])
     } finally {
+      if (previousKey === undefined) delete process.env.GOOGLE_PLACES_API_KEY
+      else process.env.GOOGLE_PLACES_API_KEY = previousKey
+    }
+  })
+
+  it('preserves a last successful Google cache when Places returns 429', async () => {
+    const previousKey = process.env.GOOGLE_PLACES_API_KEY
+    process.env.GOOGLE_PLACES_API_KEY = 'test-key'
+    const originalFetch = globalThis.fetch
+    globalThis.fetch = (async () => new Response(JSON.stringify({ error: { status: 'RESOURCE_EXHAUSTED' } }), { status: 429 })) as typeof fetch
+    const payload = { find: async () => ({ docs: [{ stableKey: 'cached', source: 'google', branchKey: 'tp1', reviewerName: 'Google User', rating: 5, comment: 'Cached Google review', reviewedAt: '2026-08-01T00:00:00Z', updatedAt: '2026-08-01T00:00:00Z', sourcePayload: { provider: 'google-places-api-v1', location: 'Branch 1', mapsUrl: 'https://www.google.com/maps/place/one', userRatingCount: 7, aggregateRating: 5, lastSyncedAt: 1 } }] }) }
+    try {
+      const endpoint = runtimeEndpoints.find((item) => item.path === '/gbp/reviews' && item.method === 'get')!
+      const response = await endpoint.handler({ payload } as never)
+      const result = await response.json() as { branches: Array<{ branchKey: string; status: string; errorCode?: string; reviews: Array<{ comment: string | null }> }> }
+      expect(result.branches).toEqual(expect.arrayContaining([
+        expect.objectContaining({ branchKey: 'tp1', status: 'ready', reviews: [expect.objectContaining({ comment: 'Cached Google review' })] }),
+        expect.objectContaining({ branchKey: 'tp2', status: 'error', errorCode: 'google_rate_limited', reviews: [] }),
+      ]))
+    } finally {
+      globalThis.fetch = originalFetch
+      if (previousKey === undefined) delete process.env.GOOGLE_PLACES_API_KEY
+      else process.env.GOOGLE_PLACES_API_KEY = previousKey
+    }
+  })
+
+  it('reports a Places 403 as an integration error instead of zero reviews', async () => {
+    const previousKey = process.env.GOOGLE_PLACES_API_KEY
+    process.env.GOOGLE_PLACES_API_KEY = 'test-key'
+    const originalFetch = globalThis.fetch
+    globalThis.fetch = (async () => new Response(JSON.stringify({ error: { status: 'PERMISSION_DENIED' } }), { status: 403 })) as typeof fetch
+    const payload = { find: async () => ({ docs: [] }) }
+    try {
+      const endpoint = runtimeEndpoints.find((item) => item.path === '/gbp/reviews' && item.method === 'get')!
+      const response = await endpoint.handler({ payload } as never)
+      const result = await response.json() as { branches: Array<{ status: string; errorCode?: string }> }
+      expect(result.branches).toEqual([
+        expect.objectContaining({ status: 'error', errorCode: 'google_forbidden' }),
+        expect.objectContaining({ status: 'error', errorCode: 'google_forbidden' }),
+      ])
+    } finally {
+      globalThis.fetch = originalFetch
+      if (previousKey === undefined) delete process.env.GOOGLE_PLACES_API_KEY
+      else process.env.GOOGLE_PLACES_API_KEY = previousKey
+    }
+  })
+
+  it('keeps a verified Google zero-review response distinct from an integration error', async () => {
+    const previousKey = process.env.GOOGLE_PLACES_API_KEY
+    process.env.GOOGLE_PLACES_API_KEY = 'test-key'
+    const originalFetch = globalThis.fetch
+    globalThis.fetch = (async () => new Response(JSON.stringify({ displayName: { text: 'New branch' }, rating: 0, userRatingCount: 0, googleMapsUri: 'https://www.google.com/maps/place/new', reviews: [] }), { status: 200 })) as typeof fetch
+    const payload = { find: async () => ({ docs: [] }), create: async () => ({}), update: async () => ({}) }
+    try {
+      const endpoint = runtimeEndpoints.find((item) => item.path === '/gbp/reviews' && item.method === 'get')!
+      const response = await endpoint.handler({ payload } as never)
+      const result = await response.json() as { branches: Array<{ status: string; count: number; averageRating: number; errorCode?: string }> }
+      expect(result.branches).toEqual([
+        expect.objectContaining({ status: 'empty', count: 0, averageRating: 0 }),
+        expect.objectContaining({ status: 'empty', count: 0, averageRating: 0 }),
+      ])
+      for (const branch of result.branches) expect(branch).not.toHaveProperty('errorCode')
+    } finally {
+      globalThis.fetch = originalFetch
       if (previousKey === undefined) delete process.env.GOOGLE_PLACES_API_KEY
       else process.env.GOOGLE_PLACES_API_KEY = previousKey
     }

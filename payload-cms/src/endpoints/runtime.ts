@@ -54,6 +54,14 @@ type GooglePlacesPayload = {
   reviews?: GooglePlacesReview[]
 }
 
+type GoogleReviewErrorCode = 'missing_configuration' | 'google_bad_request' | 'google_unauthorized' | 'google_forbidden' | 'google_rate_limited' | 'google_request_failed'
+
+class GooglePlacesError extends Error {
+  constructor(readonly code: GoogleReviewErrorCode) {
+    super(code)
+  }
+}
+
 const GOOGLE_REVIEW_CACHE_PROVIDER = 'google-places-api-v1'
 const GOOGLE_PLACES_LOCATIONS = [
   { branchKey: 'tp1', location: 'Tùng Phát - Chi nhánh 1', placeId: 'ChIJ6dw2A6YndTERr5eaiym-l-M', mapsUrl: 'https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M' },
@@ -72,13 +80,13 @@ export const runtimeEndpoints: Endpoint[] = [
       const apiKey = process.env.GOOGLE_PLACES_API_KEY || process.env.GOOGLE_MAPS_API_KEY || process.env.GOOGLE_API_KEY
       const cached = await readGoogleReviewCache(req)
       const branches = await Promise.all(GOOGLE_PLACES_LOCATIONS.map(async (location) => {
-        if (!apiKey) return cached.get(location.branchKey) ?? emptyGoogleBranch(location)
+        if (!apiKey) return cached.get(location.branchKey) ?? errorGoogleBranch(location, 'missing_configuration')
         try {
           const fresh = await fetchGooglePlace(location, apiKey)
           await writeGoogleReviewCache(req, fresh)
           return fresh
-        } catch {
-          return cached.get(location.branchKey) ?? errorGoogleBranch(location)
+        } catch (error) {
+          return cached.get(location.branchKey) ?? errorGoogleBranch(location, googleReviewErrorCode(error))
         }
       }))
       const payload = { provider: 'google-places-api', status: branches.some((branch) => branch.status === 'ready') ? 'ready' : 'empty', branches }
@@ -103,7 +111,7 @@ async function fetchGooglePlace(location: typeof GOOGLE_PLACES_LOCATIONS[number]
     headers: { 'X-Goog-Api-Key': apiKey, 'X-Goog-FieldMask': 'displayName,rating,userRatingCount,reviews,googleMapsUri' },
     signal: AbortSignal.timeout(8000),
   })
-  if (!response.ok) throw new Error(`Google Places returned ${response.status}`)
+  if (!response.ok) throw new GooglePlacesError(googleReviewErrorCodeFromStatus(response.status))
   const place = await response.json() as GooglePlacesPayload
   const reviews = (place.reviews ?? []).flatMap((review) => {
     const rating = Number(review.rating)
@@ -123,15 +131,39 @@ async function fetchGooglePlace(location: typeof GOOGLE_PLACES_LOCATIONS[number]
     }]
   })
   const syncedAt = Date.now()
-  return { branchKey: location.branchKey, status: reviews.length ? 'ready' : 'empty', location: place.displayName?.text?.trim() || location.location, mapsUrl: place.googleMapsUri || location.mapsUrl, count: Math.max(0, Number(place.userRatingCount) || 0), averageRating: Math.min(5, Math.max(0, Number(place.rating) || 0)), lastSyncedAt: syncedAt, reviews, source: GOOGLE_REVIEW_CACHE_PROVIDER }
+  const count = Math.max(0, Number(place.userRatingCount) || 0)
+  const averageRating = Math.min(5, Math.max(0, Number(place.rating) || 0))
+  return { branchKey: location.branchKey, status: count > 0 ? 'ready' : 'empty', location: place.displayName?.text?.trim() || location.location, mapsUrl: safeGoogleMapsUrl(place.googleMapsUri) || location.mapsUrl, count, averageRating, lastSyncedAt: syncedAt, reviews, source: GOOGLE_REVIEW_CACHE_PROVIDER }
 }
 
 function emptyGoogleBranch(location: typeof GOOGLE_PLACES_LOCATIONS[number]) {
   return { branchKey: location.branchKey, status: 'empty' as const, location: location.location, mapsUrl: location.mapsUrl, count: 0, averageRating: 0, lastSyncedAt: null, reviews: [], source: 'google-places-api' }
 }
 
-function errorGoogleBranch(location: typeof GOOGLE_PLACES_LOCATIONS[number]) {
-  return { ...emptyGoogleBranch(location), status: 'error' as const }
+function errorGoogleBranch(location: typeof GOOGLE_PLACES_LOCATIONS[number], errorCode: GoogleReviewErrorCode) {
+  return { ...emptyGoogleBranch(location), status: 'error' as const, errorCode }
+}
+
+function googleReviewErrorCode(error: unknown): GoogleReviewErrorCode {
+  return error instanceof GooglePlacesError ? error.code : 'google_request_failed'
+}
+
+function googleReviewErrorCodeFromStatus(status: number): GoogleReviewErrorCode {
+  if (status === 400) return 'google_bad_request'
+  if (status === 401) return 'google_unauthorized'
+  if (status === 403) return 'google_forbidden'
+  if (status === 429) return 'google_rate_limited'
+  return 'google_request_failed'
+}
+
+function safeGoogleMapsUrl(value: unknown) {
+  if (typeof value !== 'string') return null
+  try {
+    const url = new URL(value)
+    return url.protocol === 'https:' ? url.toString() : null
+  } catch {
+    return null
+  }
 }
 
 async function readGoogleReviewCache(req: Parameters<typeof runtimeEndpoints[number]['handler']>[0]) {
@@ -366,7 +398,7 @@ function leadResponse(body: unknown, status: number, origin?: string | null, ext
 }
 
 function publicHeaders() {
-  return { 'Cache-Control': 'public, max-age=300, stale-while-revalidate=86400, stale-if-error=86400', 'Access-Control-Allow-Origin': 'https://mdftungphat.com', Vary: 'Origin', 'X-Robots-Tag': 'noindex, nofollow, noarchive' }
+  return { 'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400, stale-if-error=86400', 'Access-Control-Allow-Origin': 'https://mdftungphat.com', Vary: 'Origin', 'X-Robots-Tag': 'noindex, nofollow, noarchive' }
 }
 
 function noStoreHeaders() {

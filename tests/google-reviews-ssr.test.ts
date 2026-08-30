@@ -24,4 +24,25 @@ describe("Google reviews SSR", () => {
     expect(html).toContain("Google API review 2");
     expect(html).not.toContain("CMS editor");
   });
+
+  it("does not present a Google synchronization error as zero reviews or placeholder stars", () => {
+    const html = renderToStaticMarkup(createElement(GoogleReviews, { initialPayload: {
+      status: "empty",
+      branches: [{
+        branchKey: "tp1",
+        status: "error",
+        location: "Tùng Phát - Chi nhánh 1",
+        mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
+        count: 0,
+        averageRating: 0,
+        lastSyncedAt: null,
+        reviews: [],
+      }],
+    } }));
+
+    expect(html).toContain("Chưa thể tải đánh giá của chi nhánh này lúc này.");
+    expect(html).not.toContain("Chưa có đánh giá</span>");
+    expect(html).not.toContain("lucide-star");
+    expect(html).not.toContain("svgsvg");
+  });
 });
