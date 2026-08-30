@@ -54,6 +54,8 @@ describe("Trustindex reviews SSR", () => {
     expect(html).toContain('href="https://www.google.com/maps/search/?api=1&amp;query=Google&amp;query_place_id=two"');
     expect(html).toContain("Có nội dung");
     expect(html).toContain("Đánh giá thật");
+    expect(html).toContain("Tùng Phát 1");
+    expect(html).toContain("Tùng Phát 2");
     expect(html).not.toContain("Chỉ có điểm");
   });
 });
