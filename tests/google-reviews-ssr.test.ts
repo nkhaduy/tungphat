@@ -1,48 +1,31 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import { GoogleReviews } from "../components/reviews/GoogleReviews";
-import type { ReviewPayload } from "../components/reviews/google-review-types";
+import { TrustindexReviews, type TrustindexReviewData } from "../components/reviews/TrustindexReviews";
 
-describe("Google reviews SSR", () => {
-  it("renders only Google-derived branch data in the initial HTML", () => {
-    const initialPayload: ReviewPayload = {
-      status: "ready",
-      branches: ["tp1", "tp2"].map((branchKey, index) => ({
-        branchKey: branchKey as "tp1" | "tp2",
-        status: "ready",
-        location: `Google branch ${index + 1}`,
-        mapsUrl: `https://www.google.com/maps/place/${index + 1}`,
-        count: 10 + index,
-        averageRating: 5,
-        lastSyncedAt: 1,
-        reviews: [{ review_id: `places/reviews/${index + 1}`, reviewer_display_name: `Google reviewer ${index + 1}`, reviewer_photo_url: null, reviewer_uri: null, rating: 5, comment: `Google API review ${index + 1}`, create_time: "2026-08-01T00:00:00Z", update_time: "2026-08-01T00:00:00Z", owner_reply: null }],
-      })),
+describe("Trustindex reviews SSR", () => {
+  it("renders the verified public Google source without any Places configuration", () => {
+    const data: TrustindexReviewData = {
+      sourceUrl: "https://public.trustindex.io/reviews/mdftungphat.com/lang/vi",
+      source: "Google",
+      rating: 4.8,
+      reviewCount: 26,
+      verified: true,
+      googleLinks: ["https://www.google.com/maps/search/?api=1&query=Google&query_place_id=ChIJ6dw2A6YndTERr5eaiym-l-M"],
+      refreshedAt: "2026-08-30T00:00:00.000Z",
+      reviews: [{ id: "r1", reviewerName: "Thuy Pham", avatarUrl: null, rating: 5, text: "Đa dạng sản phẩm, sản xuất nhanh", date: "2025.11.25" }],
     };
-    const html = renderToStaticMarkup(createElement(GoogleReviews, { initialPayload }));
-    expect(html).toContain("Google API review 1");
-    expect(html).toContain("Google API review 2");
-    expect(html).not.toContain("CMS editor");
+    const html = renderToStaticMarkup(createElement(TrustindexReviews, { data }));
+    expect(html).toContain("Đa dạng sản phẩm, sản xuất nhanh");
+    expect(html).toContain("4.8");
+    expect(html).toContain("26 đánh giá");
+    expect(html).toContain("Verified by Trustindex");
+    expect(html).toContain("google.com/maps");
+    expect(html).not.toContain("svgsvg");
   });
 
-  it("does not present a Google synchronization error as zero reviews or placeholder stars", () => {
-    const html = renderToStaticMarkup(createElement(GoogleReviews, { initialPayload: {
-      status: "empty",
-      branches: [{
-        branchKey: "tp1",
-        status: "error",
-        location: "Tùng Phát - Chi nhánh 1",
-        mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJ6dw2A6YndTERr5eaiym-l-M",
-        count: 0,
-        averageRating: 0,
-        lastSyncedAt: null,
-        reviews: [],
-      }],
-    } }));
-
-    expect(html).toContain("Chưa thể tải đánh giá của chi nhánh này lúc này.");
-    expect(html).not.toContain("Chưa có đánh giá</span>");
-    expect(html).not.toContain("lucide-star");
-    expect(html).not.toContain("svgsvg");
+  it("omits Trustindex verification when the public source does not assert it", () => {
+    const data: TrustindexReviewData = { sourceUrl: "https://public.trustindex.io/reviews/mdftungphat.com/lang/vi", source: "Google", rating: 5, reviewCount: 1, verified: false, googleLinks: ["https://www.google.com/maps/search/?api=1"], refreshedAt: "2026-08-30T00:00:00.000Z", reviews: [{ id: "r1", reviewerName: "Khách hàng", avatarUrl: null, rating: 5, text: "Đánh giá thật", date: "2025.01.01" }] };
+    expect(renderToStaticMarkup(createElement(TrustindexReviews, { data }))).not.toContain("Verified by Trustindex");
   });
 });

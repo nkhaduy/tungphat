@@ -990,47 +990,37 @@ test("ngân sách Web Vitals lab không regression rõ rệt", async ({ page }) 
   expect(metrics.cls).toBeLessThan(0.1);
 });
 
-test("two-branch Google reviews render real profiles and content-first order", async ({ page }) => {
-  await page.route("**/api/gbp/reviews", async (route) => route.fulfill({
-    contentType: "application/json",
-    body: JSON.stringify({ status: "ready", branches: [
-      { branchKey: "tp1", status: "ready", location: "Tùng Phát · Chi nhánh 1", mapsUrl: "https://maps.google.com/tp1", count: 13, averageRating: 5, reviews: [
-        { review_id: "stars", reviewer_display_name: "Chỉ sao", rating: 5 },
-        { review_id: "long", reviewer_display_name: "Nguyễn An", reviewer_photo_url: "https://lh3.googleusercontent.com/reviewer.jpg", rating: 5, update_time: "2026-08-01T00:00:00Z", comment: "Tư vấn rất kỹ và có tâm. ".repeat(18) },
-      ] },
-      { branchKey: "tp2", status: "ready", location: "Tùng Phát · Chi nhánh 2", mapsUrl: "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY", count: 8, averageRating: 4.9, reviews: [
-        { review_id: "tp2-long", reviewer_display_name: "Trần Lan", rating: 5, comment: "Giao hàng đúng hẹn và hỗ trợ nhiệt tình." },
-      ] },
-    ] }),
-  }));
-  await page.route("https://lh3.googleusercontent.com/reviewer.jpg", async (route) => route.fulfill({
-    contentType: "image/png",
-    body: Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=", "base64"),
-  }));
+test("Trustindex review slider renders current source data and remains usable on mobile", async ({ page }) => {
   await page.goto("/", { waitUntil: "networkidle" });
-  const branches = page.locator("[data-review-branch]");
-  await expect(branches).toHaveCount(2);
-  await expect(branches.nth(0).locator("[data-review-card]").first()).toContainText("Tư vấn rất kỹ");
-  await expect(branches.nth(0).locator("aside svg.lucide-star")).toHaveCount(5);
-  await expect(branches.nth(0)).not.toContainText("svgsvg");
-  await expect(branches.nth(0).locator("img[alt='Ảnh đại diện của Nguyễn An']")).toBeVisible();
-  await expect(branches.nth(1).locator("[data-review-initial]")).toContainText("T");
-  await expect(branches.nth(1).locator("a[target='_blank']")).toHaveAttribute("href", "https://www.google.com/maps/place/?q=place_id:ChIJjWMBUikndTERNFK1M-j02ZY");
-  const sizes = await branches.evaluateAll((items) => items.map((item) => Math.round(item.getBoundingClientRect().height)));
-  expect(Math.abs(sizes[0] - sizes[1])).toBeLessThanOrEqual(2);
-  await branches.nth(0).getByRole("button", { name: "Xem thêm" }).click();
-  await expect(branches.nth(0).getByRole("button", { name: "Thu gọn" })).toBeVisible();
+  const section = page.locator("[data-trustindex-reviews]");
+  await expect(section).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Đánh giá từ Trustindex" })).toBeVisible();
+  await expect(section).toContainText("4.8");
+  await expect(section).toContainText("26 đánh giá");
+  await expect(section).toContainText("Thuy Pham");
+  await expect(section).toContainText("Đa dạng sản phẩm, sản xuất nhanh");
+  await expect(section.locator("[data-trustindex-card]").first()).not.toContainText("svgsvg");
+  await expect(section.getByRole("link", { name: /Google/i }).first()).toHaveAttribute("href", /google\.com\/maps/);
+  await expect(section.getByText("Verified by Trustindex")).toBeVisible();
+  const previous = section.getByRole("button", { name: "Đánh giá trước" });
+  const next = section.getByRole("button", { name: "Đánh giá tiếp theo" });
+  const rail = section.locator("[data-trustindex-rail]");
+  await expect.poll(() => rail.getAttribute("data-active-index"), { timeout: 7_000 }).toBe("1");
+  await previous.click();
+  await expect(rail).toHaveAttribute("data-active-index", "0");
+  await next.click();
+  await expect(rail).toHaveAttribute("data-active-index", "1");
+  await previous.click();
+  await expect(rail).toHaveAttribute("data-active-index", "0");
   await page.setViewportSize({ width: 390, height: 844 });
   const mobileLayout = await page.evaluate(() => {
-    const rail = document.querySelector<HTMLElement>(".google-review-rail");
-    const wrap = document.querySelector<HTMLElement>(".google-review-rail-wrap");
+    const rail = document.querySelector<HTMLElement>("[data-trustindex-rail]");
+    const wrap = document.querySelector<HTMLElement>("[data-trustindex-viewport]");
     return {
       pageOverflow: document.documentElement.scrollWidth - window.innerWidth,
-      railScrollable: Boolean(rail && wrap && rail.scrollWidth > wrap.clientWidth),
-      animationName: rail ? getComputedStyle(rail).animationName : "missing",
+      oneCardVisible: Boolean(rail && wrap && rail.querySelector<HTMLElement>("[data-trustindex-card]")?.getBoundingClientRect().width && rail.querySelector<HTMLElement>("[data-trustindex-card]")!.getBoundingClientRect().width <= wrap.clientWidth * 1.05),
     };
   });
   expect(mobileLayout.pageOverflow).toBeLessThanOrEqual(1);
-  expect(mobileLayout.railScrollable).toBe(true);
-  expect(mobileLayout.animationName).toBe("none");
+  expect(mobileLayout.oneCardVisible).toBe(true);
 });

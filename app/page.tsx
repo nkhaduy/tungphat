@@ -6,8 +6,8 @@ import { SiteShell } from "@/components/site/SiteShell";
 import { TrackedLink } from "@/components/TrackedLink";
 import { JsonLd } from "@/components/JsonLd";
 import { ZALO_URL, createPageMetadata, webPageSchema } from "@/lib/seo";
-import { GoogleReviews } from "@/components/reviews/GoogleReviews";
-import { parseReviewPayload } from "@/components/reviews/google-review-utils";
+import { TrustindexReviews, type TrustindexReviewData } from "@/components/reviews/TrustindexReviews";
+import trustindexReviews from "@/data/trustindex-reviews.json";
 
 const homepageTitle = "Tùng Phát | Ván MDF, MFC, gỗ ghép & gia công CNC TP.HCM";
 
@@ -20,19 +20,7 @@ export const metadata = {
   title: { absolute: homepageTitle }
 };
 
-async function getInitialReviews() {
-  const origin = process.env.NEXT_PUBLIC_FORMS_API_BASE?.trim() || "https://cms.mdftungphat.com";
-  try {
-    const response = await fetch(`${origin}/api/gbp/reviews?provider=google-places-v1`, { cache: "force-cache", headers: { Accept: "application/json" } });
-    if (!response.ok) return null;
-    return parseReviewPayload(await response.json());
-  } catch {
-    return null;
-  }
-}
-
 export default async function Home() {
-  const initialReviews = await getInitialReviews();
   return (
     <>
       <JsonLd data={webPageSchema({ path: "/", name: homepageTitle, description: "Tùng Phát cung cấp MDF, MFC, plywood, gỗ ghép, vật liệu bề mặt và nhận gia công CNC theo quy cách tại TP.HCM.", primaryEntityId: "https://mdftungphat.com/#organization" })} />
@@ -40,7 +28,7 @@ export default async function Home() {
       <HomeHero />
       <RequirementFinder />
       <HomeBenefits />
-      <GoogleReviews initialPayload={initialReviews} />
+      <TrustindexReviews data={trustindexReviews as TrustindexReviewData} />
       <HomeContent />
       <TrackedLink
         href={ZALO_URL}
