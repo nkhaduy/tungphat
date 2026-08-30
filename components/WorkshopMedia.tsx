@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Check } from "lucide-react";
 import { SectionTitle } from "@/components/SectionTitle";
 import { vi as t } from "@/lib/i18n";
+import { resolveMediaUrl } from "@/lib/media";
 
 const gallery = [
   ["hero-workshop4.webp", 0],
@@ -14,13 +15,12 @@ const gallery = [
   ["wood-panels.webp", 5],
 ] as const;
 
-function allowedProcessVideo(value: string) {
-  if (value.startsWith("/")) return value;
+export function allowedProcessVideo(value: string) {
+  if (!value) return "";
   try {
-    const url = new URL(value);
-    if (url.origin === "https://media.mdftungphat.com") return value;
-    if (url.origin === "https://cms.mdftungphat.com" && url.pathname.startsWith("/media/videos/")) return value;
-    return "";
+    const resolved = resolveMediaUrl(value);
+    const url = new URL(resolved);
+    return url.hostname === "cdn.mdftungphat.com" && url.pathname.startsWith("/videos/") ? resolved : "";
   } catch {
     return "";
   }

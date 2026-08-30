@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { resolveMediaUrl } from "../lib/media";
 
 const DEFAULT_PAYLOAD_URL = "https://cms.mdftungphat.com";
 const OUTPUTS = {
@@ -12,54 +13,67 @@ const OUTPUTS = {
 };
 const PAYLOAD_METADATA = new Set(["id", "createdAt", "updatedAt", "globalType"]);
 
-function absoluteMediaUrl(value, baseUrl = DEFAULT_PAYLOAD_URL) {
+function publicMediaUrl(value: unknown) {
   if (typeof value !== "string" || !value) return value;
-  if (/^https?:\/\//u.test(value)) return value;
-  if (value.startsWith("/media/")) return new URL(value, baseUrl).toString();
+  if (/^(?:https?:\/\/|\/(?:catalog|gallery|media|supplier|thumbnails|uploads|uploads-thumbnails|vendor|videos)(?:\/|$)|(?:catalog|gallery|media|supplier|thumbnails|uploads|uploads-thumbnails|vendor|videos)(?:\/|$))/iu.test(value)) {
+    return resolveMediaUrl(value);
+  }
   return value;
 }
 
-function normalizeValue(value, baseUrl) {
+function normalizeValue(value: unknown): unknown {
   if (Array.isArray(value)) {
     if (value.every((entry) => entry && typeof entry === "object" && "value" in entry)) {
-      return value.map((entry) => normalizeValue(entry.value, baseUrl));
+      return value.map((entry) => normalizeValue((entry as { value: unknown }).value));
     }
-    return value.map((entry) => normalizeValue(entry, baseUrl));
+    return value.map((entry) => normalizeValue(entry));
   }
-  if (!value || typeof value !== "object") return absoluteMediaUrl(value, baseUrl);
-  if (typeof value.url === "string") return absoluteMediaUrl(value.url, baseUrl);
+  if (!value || typeof value !== "object") return publicMediaUrl(value);
 
-  const normalized = {};
-  for (const [key, entry] of Object.entries(value)) {
+  const record = value as Record<string, unknown>;
+  if (typeof record.url === "string") return publicMediaUrl(record.url);
+
+  const normalized: Record<string, unknown> = {};
+  for (const [key, entry] of Object.entries(record)) {
     if (PAYLOAD_METADATA.has(key) || key === "locationId") continue;
-    normalized[key] = normalizeValue(entry, baseUrl);
+    normalized[key] = normalizeValue(entry);
   }
-  if (typeof value.locationId === "string") normalized.id = value.locationId;
+  if (typeof record.locationId === "string") normalized.id = record.locationId;
   return normalized;
 }
 
-export function normalizePayloadGlobal(slug, value, baseUrl = DEFAULT_PAYLOAD_URL) {
-  const normalized = normalizeValue(value, baseUrl);
-  if (slug === "seo-defaults" && value.defaultOgImage && typeof value.defaultOgImage === "object") {
-    normalized.defaultOgImageWidth = value.defaultOgImage.width;
-    normalized.defaultOgImageHeight = value.defaultOgImage.height;
-    normalized.defaultOgImageType = value.defaultOgImage.mimeType;
+export function normalizePayloadGlobal(slug: string, value: Record<string, unknown>) {
+  const normalized = normalizeValue(value) as Record<string, unknown>;
+  const defaultOgImage = value.defaultOgImage as Record<string, unknown> | undefined;
+  if (slug === "seo-defaults" && defaultOgImage) {
+    normalized.defaultOgImageWidth = defaultOgImage.width;
+    normalized.defaultOgImageHeight = defaultOgImage.height;
+    normalized.defaultOgImageType = defaultOgImage.mimeType;
   }
   if (slug === "static-pages" && typeof value.updatedAt === "string") {
     normalized.updatedAt = value.updatedAt.slice(0, 10);
   }
   if (slug === "brands" && Array.isArray(normalized.items)) {
-    normalized.items = normalized.items.map((brand) => ({
-      ...brand,
-      logo: brand.logo ?? "",
-      products: brand.products ?? [],
-    }));
+    normalized.items = normalized.items.map((item) => {
+      const brand = item as Record<string, unknown>;
+      return {
+        ...brand,
+        logo: brand.logo ?? "",
+        products: brand.products ?? [],
+      };
+    });
   }
   return normalized;
 }
 
-export async function fetchPayloadGlobal(slug, baseUrl, fetchImpl = fetch, maxAttempts = 3, retryDelayMs = 500) {
-  let lastError;
+export async function fetchPayloadGlobal(
+  slug: string,
+  baseUrl: string,
+  fetchImpl: typeof fetch = fetch,
+  maxAttempts = 3,
+  retryDelayMs = 500,
+) {
+  let lastError: unknown;
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     try {
       const response = await fetchImpl(`${baseUrl}/api/globals/${slug}?depth=1`);
@@ -81,16 +95,23 @@ export async function syncPayloadBuildData({
   baseUrl = process.env.PAYLOAD_PUBLIC_URL || DEFAULT_PAYLOAD_URL,
   root = process.cwd(),
   fetchImpl = fetch,
+}: {
+  baseUrl?: string;
+  root?: string;
+  fetchImpl?: typeof fetch;
 } = {}) {
   for (const [slug, relativeOutput] of Object.entries(OUTPUTS)) {
-    const value = await fetchPayloadGlobal(slug, baseUrl, fetchImpl);
+    const value = await fetchPayloadGlobal(slug, baseUrl, fetchImpl) as Record<string, unknown>;
     const output = path.join(root, relativeOutput);
     await mkdir(path.dirname(output), { recursive: true });
-    await writeFile(output, `${JSON.stringify(normalizePayloadGlobal(slug, value, baseUrl), null, 2)}\n`);
+    await writeFile(output, `${JSON.stringify(normalizePayloadGlobal(slug, value), null, 2)}\n`);
   }
   console.log(`Synced ${Object.keys(OUTPUTS).length} Payload globals for frontend build.`);
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  await syncPayloadBuildData();
+  syncPayloadBuildData().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
 }

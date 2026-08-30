@@ -10,6 +10,7 @@ import {
 } from "@/lib/content-schema";
 import { filterPublishedContent } from "@/lib/listing-indexability";
 import { hasMinimumProductEvidence } from "@/lib/content-evidence";
+import { resolveMediaUrl } from "@/lib/media";
 
 type MediaMetadata = { width?: number; height?: number; type?: string };
 export type ContentEntry<T> = T & { body: string; sourcePath: string; mediaMetadata?: { featuredImage?: MediaMetadata; ogImage?: MediaMetadata } };
@@ -99,7 +100,7 @@ function mediaList(value: unknown): string[] { return Array.isArray(value) ? val
 function mediaURL(value: unknown): string {
   const raw = typeof value === "string" ? value : text(object(value).url);
   if (!raw) return "";
-  return raw.startsWith("/") ? `${cmsOrigin}${raw}` : raw;
+  return resolveMediaUrl(raw);
 }
 function mediaMetadata(value: unknown): MediaMetadata | undefined {
   const media = object(value);

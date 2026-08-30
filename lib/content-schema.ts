@@ -10,7 +10,7 @@ const slug = z
 export const imagePathSchema = z
   .string()
   .regex(
-    /^(?:\/|https:\/\/cms\.mdftungphat\.com\/)[^\s]+\.(?:avif|webp|png|jpe?g)$/i,
+    /^(?:\/|https:\/\/(?:cdn|cms|media)\.mdftungphat\.com\/)[^\s]+\.(?:avif|webp|png|jpe?g)$/i,
     "Ảnh phải là public path hoặc Payload media URL hợp lệ",
   );
 
@@ -21,7 +21,7 @@ const optionalVideo = z
     z
       .string()
       .regex(
-        /^(?:\/|https:\/\/cms\.mdftungphat\.com\/)[^\s]+\.(?:mp4|webm)$/i,
+        /^(?:\/|https:\/\/(?:cdn|cms|media)\.mdftungphat\.com\/)[^\s]+\.(?:mp4|webm)$/i,
         "Video phải nằm trong public và dùng MP4/WebM",
       ),
   ])
@@ -29,7 +29,7 @@ const optionalVideo = z
 const optionalPdf = z
   .union([
     z.literal(""),
-    z.string().regex(/^(?:\/|https:\/\/cms\.mdftungphat\.com\/)[^\s]+\.pdf$/i, "PDF phải là public path hoặc Payload media URL hợp lệ"),
+    z.string().regex(/^(?:\/|https:\/\/(?:cdn|cms|media)\.mdftungphat\.com\/)[^\s]+\.pdf$/i, "PDF phải là public path hoặc Payload media URL hợp lệ"),
   ])
   .default("");
 const optionalCanonical = z

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
-import { absoluteUrl, createPageMetadata, ZALO_URL } from "@/lib/seo";
+import { absoluteMediaUrl } from "@/lib/media";
+import { createPageMetadata, SITE_URL, ZALO_URL } from "@/lib/seo";
 import type { ThanhThuyCategory } from "@/lib/thanh-thuy";
 
 export type ThanhThuySeoRecord = {
@@ -56,7 +57,7 @@ export function createThanhThuyMetadata(
     noIndex: !isIndexable(record),
   });
   if (!record.image) return metadata;
-  const image = absoluteUrl(record.image);
+  const image = absoluteMediaUrl(record.image, SITE_URL);
   return {
     ...metadata,
     openGraph: {

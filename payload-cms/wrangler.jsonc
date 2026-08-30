@@ -85,6 +85,7 @@
         "CMS_ENVIRONMENT": "production",
         "PAYLOAD_PUBLIC_SERVER_URL": "https://cms.mdftungphat.com",
         "NEXT_PUBLIC_SITE_URL": "https://mdftungphat.com",
+        "NEXT_PUBLIC_MEDIA_BASE_URL": "https://cdn.mdftungphat.com",
         "BUILD_VERSION": "payload-3.88-production-20260817"
       },
       "d1_databases": [

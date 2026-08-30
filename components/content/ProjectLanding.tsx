@@ -11,7 +11,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import type { ContentEntry } from "@/lib/content";
 import type { ProjectFrontmatter } from "@/lib/content-schema";
-import { absoluteMediaUrl, mediaUrl } from "@/lib/media";
+import { absoluteMediaUrl, resolveMediaUrl } from "@/lib/media";
 import { SITE_URL, ZALO_URL, absolutePageUrl, breadcrumbSchema, schemaPageId, webPageSchema } from "@/lib/seo";
 
 type ProjectGalleryProps = { title: string; images: string[]; projectTitle: string };
@@ -25,7 +25,7 @@ function ProjectGallery({ title, images, projectTitle }: ProjectGalleryProps) {
         <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {images.map((src, index) => (
             <figure key={`${src}-${index}`} className="overflow-hidden border border-forest-900/10 bg-[#f7f8f5] shadow-sm">
-              <div className="relative aspect-[4/3]"><Image src={mediaUrl(src)} alt={`${title} của ${projectTitle}, ảnh ${index + 1}`} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover" /></div>
+              <div className="relative aspect-[4/3]"><Image src={resolveMediaUrl(src)} alt={`${title} của ${projectTitle}, ảnh ${index + 1}`} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover" /></div>
               <figcaption className="p-4 text-sm font-bold text-forest-950">Ảnh {index + 1} · {title}</figcaption>
             </figure>
           ))}
@@ -67,7 +67,7 @@ export function ProjectLanding({ project }: { project: ContentEntry<ProjectFront
             eyebrow={`Dự án CNC · ${project.completedAt}`}
             title={project.title}
             description={`${project.materialType} · ${project.processingType}`}
-            image={{ src: mediaUrl(project.featuredImage), alt: project.featuredImageAlt, priority: true }}
+            image={{ src: resolveMediaUrl(project.featuredImage), alt: project.featuredImageAlt, priority: true }}
             actions={
               <>
                 <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: `${project.slug}_hero` }} className="pressable inline-flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-6 text-sm font-extrabold text-white hover:bg-wood-600"><MessageCircle size={18} aria-hidden="true" />{project.quoteCta}</TrackedLink>

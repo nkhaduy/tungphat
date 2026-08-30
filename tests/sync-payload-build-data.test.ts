@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { fetchPayloadGlobal, normalizePayloadGlobal } from "../scripts/sync-payload-build-data.mjs";
+import { fetchPayloadGlobal, normalizePayloadGlobal } from "../scripts/sync-payload-build-data";
 
 describe("Payload build data normalization", () => {
   it("converts Payload relationship and array shapes to frontend settings", () => {
@@ -21,7 +21,7 @@ describe("Payload build data normalization", () => {
       locations: [{
         id: "chi-nhanh-1",
         name: "Chi nhánh 1",
-        image: "https://cms.mdftungphat.com/media/uploads/location.webp",
+        image: "https://cdn.mdftungphat.com/uploads/location.webp",
       }],
     });
   });
@@ -39,7 +39,7 @@ describe("Payload build data normalization", () => {
     })).toEqual({
       items: [{
         slug: "an-cuong",
-        logo: "https://cms.mdftungphat.com/media/uploads/logo.webp",
+        logo: "https://cdn.mdftungphat.com/uploads/logo.webp",
         catalogues: ["/catalogue.pdf"],
         products: [],
       }],
@@ -68,7 +68,7 @@ describe("Payload build data normalization", () => {
         mimeType: "image/jpeg",
       },
     })).toEqual({
-      defaultOgImage: "https://cms.mdftungphat.com/media/uploads/og.jpg",
+      defaultOgImage: "https://cdn.mdftungphat.com/uploads/og.jpg",
       defaultOgImageWidth: 1200,
       defaultOgImageHeight: 630,
       defaultOgImageType: "image/jpeg",

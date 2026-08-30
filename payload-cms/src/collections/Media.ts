@@ -32,7 +32,10 @@ export const Media: CollectionConfig = {
     }],
     afterRead: [({ doc }) => {
       if (typeof doc.r2Key === 'string' && doc.r2Key) {
-        doc.url = `/media/${doc.r2Key}`
+        const publicMediaBase = process.env.NEXT_PUBLIC_MEDIA_BASE_URL?.trim().replace(/\/$/u, '')
+        doc.url = publicMediaBase
+          ? new URL(doc.r2Key, `${publicMediaBase}/`).toString()
+          : `/media/${doc.r2Key}`
         doc.thumbnailURL = doc.url
       }
       return doc

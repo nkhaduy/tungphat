@@ -1,4 +1,4 @@
-import { mediaUrl, type MediaReference } from "@/lib/media";
+import { resolveMediaUrl, type MediaReference } from "@/lib/media";
 
 export type SocialImage = {
   url: string;
@@ -50,7 +50,7 @@ function expectedMimeType(pathname: string) {
 }
 
 export function createSocialImage(input: SocialImageInput): SocialImage {
-  const url = mediaUrl(input.url);
+  const url = resolveMediaUrl(input.url);
   const alt = input.alt.trim();
   if (!alt) throw new Error("Social image alt must not be empty.");
 

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { resolveMediaSrcSet, resolveMediaUrl } from "@/lib/media";
 
 export type ThanhThuySeoStatus =
   | "READY_TO_INDEX"
@@ -159,8 +160,15 @@ function normalizeProduct(value: unknown): ThanhThuyProduct | undefined {
 
   const price = optionalNumber(raw.price);
   const imageVariants = Array.isArray(image.variants)
-    ? image.variants.map(objectValue).map((variant) => ({ src: stringValue(variant.src), width: optionalNumber(variant.width) })).filter((variant) => variant.src && variant.width)
+    ? image.variants.map(objectValue).map((variant) => ({ src: resolveMediaUrl(stringValue(variant.src)), width: optionalNumber(variant.width) })).filter((variant) => variant.src && variant.width)
     : [];
+  const imageReference = stringValue(
+    raw.imagePath,
+    raw.localImage,
+    image.path,
+    image.src,
+    image.publicPath,
+  );
   return {
     id:
       typeof raw.id === "string" || typeof raw.id === "number"
@@ -173,17 +181,11 @@ function normalizeProduct(value: unknown): ThanhThuyProduct | undefined {
     categoryName,
     seriesSlug: stringValue(raw.seriesSlug, series.slug) || undefined,
     seriesName: stringValue(raw.seriesName, series.name) || undefined,
-    image: stringValue(
-      raw.imagePath,
-      raw.localImage,
-      image.path,
-      image.src,
-      image.publicPath,
-    ),
+    image: resolveMediaUrl(imageReference),
     imageAlt: stringValue(raw.imageAlt, image.alt, `Mẫu ${name}`),
     imageWidth: optionalNumber(raw.imageWidth, image.width),
     imageHeight: optionalNumber(raw.imageHeight, image.height),
-    imageSrcSet: imageVariants.length ? imageVariants.map((variant) => `${variant.src} ${variant.width}w`).join(", ") : undefined,
+    imageSrcSet: imageVariants.length ? resolveMediaSrcSet(imageVariants.map((variant) => `${variant.src} ${variant.width}w`).join(", ")) : undefined,
     description: stringValue(
       raw.description,
       raw.originalDescription,

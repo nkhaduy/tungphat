@@ -1,10 +1,12 @@
 import artifact from "@/data/catalogs/supplier-color-codes.json";
 import fullArtifact from "@/data/catalogs/supplier-search-index.json";
+import { resolveMediaUrl } from "@/lib/media";
 import {
   classifyCatalogGroup,
   materialTaxonomyOptions,
 } from "../material-taxonomy";
 import type { PublicSupplierColorCode } from "../color-codes/types";
+import { getPublicColorCodes } from "../color-codes/public";
 import type { CatalogSearchEntry, SupplierId } from "../core/types";
 
 type SearchIndexRecord = CatalogSearchEntry & {
@@ -119,7 +121,7 @@ function buildTotals(records: SearchIndexRecord[]): SupplierTotals {
   ) as SupplierTotals;
 }
 
-const colorCodeRecords = source.records.map(toSearchRecord);
+const colorCodeRecords = getPublicColorCodes().map(toSearchRecord);
 const fullRecords = (fullArtifact as {
   records: Array<CatalogSearchEntry & { id: string; recordType: string }>;
 }).records;
@@ -127,6 +129,7 @@ const familyRecords: SearchIndexRecord[] = fullRecords
   .filter((record) => record.recordType === "family")
   .map((record) => ({
     ...record,
+    thumbnail: record.thumbnail ? resolveMediaUrl(record.thumbnail) : "",
     recordType: "family",
     sourceGroup: record.sourceGroup ?? record.group,
     canonicalGroup:

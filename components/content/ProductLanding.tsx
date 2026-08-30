@@ -11,7 +11,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import type { ContentEntry } from "@/lib/content";
 import type { ProductFrontmatter } from "@/lib/content-schema";
-import { absoluteMediaUrl, mediaUrl } from "@/lib/media";
+import { absoluteMediaUrl, resolveMediaUrl } from "@/lib/media";
 import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, absolutePageUrl, breadcrumbSchema, schemaPageId, webPageSchema } from "@/lib/seo";
 
 export function ProductLanding({ product }: { product: ContentEntry<ProductFrontmatter> }) {
@@ -53,7 +53,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
           eyebrow={product.category}
           title={product.title}
           description={product.excerpt}
-          image={{ src: mediaUrl(product.featuredImage), alt: product.featuredImageAlt, priority: true }}
+          image={{ src: resolveMediaUrl(product.featuredImage), alt: product.featuredImageAlt, priority: true }}
           actions={
             <>
               <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: `${product.slug}_hero` }} className="pressable inline-flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-6 text-sm font-extrabold text-white hover:bg-wood-600"><MessageCircle size={18} aria-hidden="true" />{product.quoteCta}</TrackedLink>

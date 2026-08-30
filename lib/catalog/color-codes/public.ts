@@ -1,7 +1,21 @@
 import artifact from "@/data/catalogs/supplier-color-codes.json";
+import { resolveMediaUrl } from "@/lib/media";
 import type { PublicSupplierColorCode, SupplierColorCodeSupplier } from "./types";
 
-const records = (artifact.records as PublicSupplierColorCode[]);
+function optionalMediaUrl(value: string | undefined): string | undefined {
+  return value ? resolveMediaUrl(value) : undefined;
+}
+
+const records = (artifact.records as PublicSupplierColorCode[]).map((record) => ({
+  ...record,
+  images: record.images.map((image) => ({
+    ...image,
+    localPath: optionalMediaUrl(image.localPath),
+    thumbnailSrc: optionalMediaUrl(image.thumbnailSrc),
+    originalPath: optionalMediaUrl(image.originalPath),
+    originalUrl: optionalMediaUrl(image.originalUrl),
+  })),
+}));
 
 export function getPublicColorCodes(): PublicSupplierColorCode[] {
   return records;

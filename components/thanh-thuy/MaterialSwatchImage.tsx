@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { resolveMediaSrcSet, resolveMediaUrl } from "@/lib/media";
 
 type MaterialSwatchImageProps = {
   src: string;
@@ -28,8 +29,8 @@ export function MaterialSwatchImage({
     // The importer provides its own content-hashed responsive derivatives.
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={failed ? "/images/wood-panels.webp" : src}
-      srcSet={failed ? undefined : srcSet}
+      src={failed ? "/images/wood-panels.webp" : resolveMediaUrl(src)}
+      srcSet={failed ? undefined : resolveMediaSrcSet(srcSet)}
       alt={alt}
       width={failed ? 800 : width}
       height={failed ? 600 : height}

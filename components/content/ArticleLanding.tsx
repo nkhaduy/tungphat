@@ -9,7 +9,7 @@ import { ContactCTA } from "@/components/ui/ContactCTA";
 import { PageHero } from "@/components/ui/PageHero";
 import type { ContentEntry } from "@/lib/content";
 import type { ArticleFrontmatter } from "@/lib/content-schema";
-import { absoluteMediaUrl, mediaUrl } from "@/lib/media";
+import { absoluteMediaUrl, resolveMediaUrl } from "@/lib/media";
 import { SITE_URL, absolutePageUrl, breadcrumbSchema, schemaPageId, webPageSchema } from "@/lib/seo";
 
 function readableSlug(slug: string) {
@@ -51,7 +51,7 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
             eyebrow={article.category}
             title={article.title}
             description={article.excerpt}
-            image={{ src: mediaUrl(article.featuredImage), alt: article.featuredImageAlt, priority: true }}
+            image={{ src: resolveMediaUrl(article.featuredImage), alt: article.featuredImageAlt, priority: true }}
           />
 
           <section className="section-space bg-white">

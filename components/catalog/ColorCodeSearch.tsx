@@ -11,7 +11,7 @@ import { useCatalogFilterRobots } from "@/components/catalog/useCatalogFilterRob
 import {
   normalizeBaThanhSearch,
   sortBaThanhCodesByDemand,
-} from "@/lib/catalog/ba-thanh";
+} from "@/lib/catalog/ba-thanh-search";
 import {
   buildCatalogCollectionSearchParams,
   parseCatalogCollectionUrlState,

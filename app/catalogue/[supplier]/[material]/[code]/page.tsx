@@ -7,11 +7,12 @@ import { PageContainer } from "@/components/ui/PageContainer";
 import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
 import { getPublicColorCodes } from "@/lib/catalog/color-codes/public";
 import { supplierDefinitions } from "@/lib/catalog/core/registry";
-import { absoluteUrl, breadcrumbSchema, createPageMetadata, ZALO_URL } from "@/lib/seo";
+import { absoluteUrl, breadcrumbSchema, createPageMetadata, SITE_URL, ZALO_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteShell } from "@/components/site/SiteShell";
 import { humanizeCatalogLabel } from "@/lib/catalog/ui";
 import { SupplierMediaGallery } from "@/components/catalog/SupplierMediaGallery";
+import { absoluteMediaUrl } from "@/lib/media";
 
 type RouteProps = { params: Promise<{ supplier: string; material: string; code: string }> };
 const imagePriority = ["swatch", "fullsheet", "actual-photo", "product", "application"] as const;
@@ -44,7 +45,7 @@ export default async function SupplierColorCodeRoute({ params }: RouteProps) {
   return <SiteShell>
     <JsonLd data={[
       breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Mã màu", path: "/catalogue/" }, { name: supplierName, path: `/catalogue/${record.supplier}/` }, { name: materialLabel, path: `/catalogue/${record.supplier}/${material}/` }, { name: record.codeRaw, path }]),
-      { "@context": "https://schema.org", "@type": "Product", name: record.displayName ?? record.codeRaw, sku: record.codeRaw, brand: { "@type": "Brand", name: supplierName }, category: materialLabel, url: absoluteUrl(path), ...(images.length ? { image: images.map((image) => absoluteUrl(image.localPath!)) } : {}) },
+      { "@context": "https://schema.org", "@type": "Product", name: record.displayName ?? record.codeRaw, sku: record.codeRaw, brand: { "@type": "Brand", name: supplierName }, category: materialLabel, url: absoluteUrl(path), ...(images.length ? { image: images.map((image) => absoluteMediaUrl(image.localPath!, SITE_URL)) } : {}) },
     ]} />
     <section className="border-b border-forest-900/10 bg-[#f7f8f5] pb-8 pt-[calc(2rem+4.5rem)] sm:pb-10 sm:pt-[calc(2.5rem+4.5rem)] lg:pb-14 lg:pt-[calc(3.5rem+4.5rem)]">
       <PageContainer>

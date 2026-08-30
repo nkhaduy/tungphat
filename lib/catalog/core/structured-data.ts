@@ -1,4 +1,5 @@
-import { absoluteUrl } from "@/lib/seo";
+import { absoluteMediaUrl } from "@/lib/media";
+import { absoluteUrl, SITE_URL } from "@/lib/seo";
 import type { SupplierDefinition } from "./types";
 
 type ProductJsonLdInput = {
@@ -22,8 +23,7 @@ export function buildSupplierProductJsonLd(
     brand: { "@type": "Brand" as const, name: supplier.brandName },
     ...(input.category ? { category: input.category } : {}),
     ...(input.description ? { description: input.description } : {}),
-    ...(input.images?.length ? { image: input.images.map(absoluteUrl) } : {}),
+    ...(input.images?.length ? { image: input.images.map((image) => absoluteMediaUrl(image, SITE_URL)) } : {}),
     url: absoluteUrl(input.canonicalRoute),
   };
 }
-

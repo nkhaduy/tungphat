@@ -11,7 +11,8 @@ describe("supplier media gallery", () => {
       { src: "/catalog/room-thumb.webp", originalUrl: "https://cms.mdftungphat.com/media/supplier/a/room.jpg", alt: "Room", type: "application" },
     ] }));
 
-    expect(html).toContain("%2Fcatalog%2Fthumb.webp");
+    expect(html).toContain("https%3A%2F%2Fcdn.mdftungphat.com%2Fcatalog%2Fthumb.webp");
+    expect(html).not.toContain("src=\"/catalog/");
     expect(html).not.toContain("original.jpg");
     expect(html).not.toContain("room.jpg");
     expect(html).toContain("Mở thư viện 2 ảnh");

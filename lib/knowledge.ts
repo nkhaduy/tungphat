@@ -2,6 +2,7 @@ import business from "@/content/settings/business.json";
 import seo from "@/content/settings/seo.json";
 import { getArticles, getProducts, getProjects, getServicePages } from "@/lib/content";
 import { absolutePageUrl, absoluteUrl } from "@/lib/seo";
+import { resolveMediaUrl } from "@/lib/media";
 import materialDataset from "@/data/materials/materials.json";
 import cncPreflight from "@/data/cnc-preflight-checklist.json";
 
@@ -82,7 +83,7 @@ export async function buildKnowledgeIndex() {
     },
     locations: business.locations.map(({ embedSrc, ...location }) => {
       void embedSrc;
-      return location;
+      return { ...location, image: resolveMediaUrl(location.image) };
     }),
     resources: [
       {

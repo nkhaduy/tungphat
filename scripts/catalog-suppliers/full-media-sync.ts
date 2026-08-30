@@ -5,6 +5,7 @@ import path from "node:path";
 import { promisify } from "node:util";
 import sharp from "sharp";
 import { supplierOriginalKey } from "../../lib/catalog/supplier-media/resolve";
+import { resolveMediaUrl } from "../../lib/media";
 
 const execFileAsync = promisify(execFile);
 const root = process.cwd();
@@ -12,7 +13,6 @@ const inputPath = path.join(root, "data/catalogs/supplier-color-codes.json");
 const reportPath = path.join(root, "data/imports/suppliers/media-audit.json");
 const cacheDirectory = path.join(root, ".cache/supplier-originals");
 const bucket = process.env.MEDIA_R2_BUCKET ?? "tung-phat-media";
-const mediaBase = "https://cms.mdftungphat.com/media/";
 const upload = process.argv.includes("--upload");
 const retryFailures = process.argv.includes("--retry-failures");
 
@@ -160,7 +160,7 @@ async function main() {
       Object.assign(image, {
         originalSourceUrl: source.url,
         originalPath,
-        originalUrl: new URL(objectKey, mediaBase).toString(),
+        originalUrl: resolveMediaUrl(objectKey),
         originalWidth: source.width,
         originalHeight: source.height,
         originalBytes: source.bytes.length,
@@ -188,7 +188,7 @@ async function main() {
         rejectedCandidates: source.rejected,
         checksum: source.checksum,
         r2ObjectKey: objectKey,
-        r2Url: new URL(objectKey, mediaBase).toString(),
+        r2Url: resolveMediaUrl(objectKey),
         uploadStatus: image.uploadStatus,
         finalCatalogueReference: originalPath,
       });

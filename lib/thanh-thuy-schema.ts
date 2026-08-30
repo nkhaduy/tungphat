@@ -1,4 +1,5 @@
-import { absoluteUrl } from "@/lib/seo";
+import { absoluteMediaUrl } from "@/lib/media";
+import { absoluteUrl, SITE_URL } from "@/lib/seo";
 
 export type ThanhThuySchemaProduct = {
   name: string;
@@ -43,7 +44,7 @@ export function createThanhThuyProductSchema(
   if (product.categoryName) schema.material = product.categoryName;
   if (product.color) schema.color = product.color;
   if (product.description) schema.description = product.description;
-  if (product.image) schema.image = absoluteUrl(product.image);
+  if (product.image) schema.image = absoluteMediaUrl(product.image, SITE_URL);
   if (
     typeof product.price === "number" &&
     product.price > 0 &&

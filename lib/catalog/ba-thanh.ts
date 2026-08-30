@@ -1,7 +1,17 @@
 import legacyData from "@/data/catalogs/ba-thanh.json";
-import publicArtifact from "@/data/catalogs/supplier-color-codes.json";
+import { getPublicColorCodes } from "@/lib/catalog/color-codes/public";
 import type { SupplierColorCode } from "@/lib/catalog/types";
 import type { PublicSupplierColorCode, SupplierColorImageRole } from "@/lib/catalog/color-codes/types";
+import {
+  normalizeBaThanhSearch,
+  sortBaThanhCodesByDemand,
+} from "@/lib/catalog/ba-thanh-search";
+
+export {
+  getBaThanhMerchandisingScore,
+  normalizeBaThanhSearch,
+  sortBaThanhCodesByDemand,
+} from "@/lib/catalog/ba-thanh-search";
 
 export type BaThanhCategory = {
   slug: string;
@@ -82,7 +92,7 @@ const categoryCopy: Record<string, Omit<BaThanhCategory, "slug" | "count">> = {
 
 const legacyRecords = legacyData as SupplierColorCode[];
 const legacyByCode = new Map(legacyRecords.map((record) => [record.codeNormalized, record]));
-const publicRecords = (publicArtifact.records as PublicSupplierColorCode[])
+const publicRecords = getPublicColorCodes()
   .filter((record) => record.supplier === "ba-thanh" && record.materialType === "melamine");
 
 function categoryForPattern(pattern?: string): string {
@@ -190,52 +200,6 @@ export function getBaThanhHubFeaturedCodes() {
 export function getBaThanhCanonicalRoute(record: SupplierColorCode): string {
   const canonical = publicRecords.find((item) => item.codeNormalized === record.codeNormalized);
   return canonical?.canonicalRoute ?? `/catalogue/ba-thanh/melamine/${record.slug}/`;
-}
-
-type BaThanhMerchandisingRecord = Pick<
-  SupplierColorCode,
-  "displayName" | "category" | "images" | "seoStatus"
->;
-
-const categoryDemandWeights: Record<string, number> = {
-  "van-go": 36,
-  "don-sac": 32,
-  "van-da": 24,
-  "van-vai": 18,
-};
-
-export function getBaThanhMerchandisingScore(
-  record: BaThanhMerchandisingRecord,
-): number {
-  return (
-    (record.seoStatus === "READY_TO_INDEX" ? 100 : 0) +
-    (categoryDemandWeights[record.category] ?? 0) +
-    (record.images.length ? 12 : 0) +
-    (record.displayName.trim() ? 8 : 0)
-  );
-}
-
-export function sortBaThanhCodesByDemand<
-  Record extends BaThanhMerchandisingRecord,
->(items: Record[]): Record[] {
-  return [...items].sort(
-    (left, right) =>
-      getBaThanhMerchandisingScore(right) -
-        getBaThanhMerchandisingScore(left) ||
-      left.displayName.localeCompare(right.displayName, "vi"),
-  );
-}
-
-function fold(value: string) {
-  return value
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/đ/gi, "d")
-    .toUpperCase();
-}
-
-export function normalizeBaThanhSearch(value: string) {
-  return fold(value).replace(/[^A-Z0-9]+/g, "");
 }
 
 export function searchBaThanhCodes(query: string, category?: string) {

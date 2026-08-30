@@ -21,6 +21,7 @@ import { buildVerifiedMapIdentity } from "@/lib/entity-schema";
 import business from "@/content/settings/business.json";
 import seo from "@/content/settings/seo.json";
 import { montserratVariables } from "@/app/fonts";
+import { absoluteMediaUrl, DEFAULT_PUBLIC_MEDIA_BASE_URL } from "@/lib/media";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -108,7 +109,7 @@ const siteSchema = {
         "@id": schemaPageId("/", location.id),
         name: location.name,
         url: schemaPageId("/lien-he", location.id),
-        image: absoluteUrl(location.image),
+        image: absoluteMediaUrl(location.image, SITE_URL),
         telephone: PHONE_E164,
         email: business.email,
         parentOrganization: { "@id": schemaPageId("/", "organization") },
@@ -136,6 +137,7 @@ export default function RootLayout({
   return (
     <html lang={SITE_LANGUAGE} className={montserratVariables}>
       <head>
+        <link rel="preconnect" href={DEFAULT_PUBLIC_MEDIA_BASE_URL} crossOrigin="anonymous" />
         <JsonLd data={siteSchema} />
       </head>
       <body>

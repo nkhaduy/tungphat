@@ -28,7 +28,7 @@ describe("createSocialImage", () => {
     });
   });
 
-  it("accepts an explicit JPEG page override without changing its URL", () => {
+  it("canonicalizes an explicit first-party JPEG page override", () => {
     expect(createSocialImage({
       url: "/uploads/mẫu-dự-án.jpg",
       width: 1600,
@@ -36,7 +36,7 @@ describe("createSocialImage", () => {
       type: "image/jpeg",
       alt: "Mẫu dự án nội thất bằng gỗ",
     })).toEqual({
-      url: "/uploads/mẫu-dự-án.jpg",
+      url: "https://cdn.mdftungphat.com/uploads/m%E1%BA%ABu-d%E1%BB%B1-%C3%A1n.jpg",
       width: 1600,
       height: 900,
       type: "image/jpeg",

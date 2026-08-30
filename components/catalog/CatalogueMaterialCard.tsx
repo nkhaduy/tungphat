@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { SupplierId } from "@/lib/catalog/core/types";
 import { supplierRegistry } from "@/lib/catalog/core/registry";
+import { resolveMediaUrl } from "@/lib/media";
 
 type CatalogueMaterialCardProps = {
   href: string;
@@ -37,7 +38,7 @@ export function CatalogueMaterialCard({
         <div className="relative aspect-[4/3] overflow-hidden bg-[#e9ede8]">
           {thumbnail ? (
             <Image
-              src={thumbnail}
+              src={resolveMediaUrl(thumbnail)}
               alt={thumbnailAlt}
               fill
               sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw"

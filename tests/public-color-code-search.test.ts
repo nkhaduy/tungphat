@@ -29,7 +29,9 @@ describe("public Mã màu search index", () => {
     expect(searchSupplierCatalog(getSupplierSearchIndex().records, query)[0]).toMatchObject({
       supplierId: "thanh-thuy",
       code: query,
-      thumbnail: expect.stringMatching(/^\/catalog\/thanh-thuy\/veneer-/),
+      thumbnail: expect.stringMatching(
+        /^https:\/\/cdn\.mdftungphat\.com\/catalog\/thanh-thuy\/veneer-/,
+      ),
       canonicalRoute: route,
     });
   });

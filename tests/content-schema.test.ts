@@ -34,6 +34,12 @@ const product = {
 
 describe("productSchema", () => {
   it("chấp nhận đầy đủ field sản phẩm", () => expect(productSchema.safeParse(product).success).toBe(true));
+  it("chấp nhận canonical CDN cho media Payload", () => {
+    expect(productSchema.safeParse({
+      ...product,
+      featuredImage: "https://cdn.mdftungphat.com/uploads/v%E1%BA%ADt-li%E1%BB%87u.webp",
+    }).success).toBe(true);
+  });
   it("chuẩn hóa Date từ dữ liệu migration cũ", () => {
     const result = productSchema.safeParse({
       ...product,

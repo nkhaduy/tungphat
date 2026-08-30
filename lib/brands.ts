@@ -1,4 +1,5 @@
 import data from "@/content/categories/brands.json";
+import { resolveMediaUrl } from "@/lib/media";
 
 export type Product = {
   name: string;
@@ -27,7 +28,20 @@ export type Brand = {
   products: Product[];
 };
 
-export const brands = data.items as Brand[];
+export const brands = (data.items as Brand[]).map((brand) => ({
+  ...brand,
+  logo: resolveMediaUrl(brand.logo),
+  catalogues: brand.catalogues.map((catalogue) => ({
+    ...catalogue,
+    thumbnail: resolveMediaUrl(catalogue.thumbnail),
+    pdfUrl: resolveMediaUrl(catalogue.pdfUrl),
+  })),
+  products: brand.products.map((product) => ({
+    ...product,
+    image: resolveMediaUrl(product.image),
+    catalogueUrl: resolveMediaUrl(product.catalogueUrl),
+  })),
+}));
 
 export function getBrand(slug: string) {
   return brands.find((brand) => brand.slug === slug);

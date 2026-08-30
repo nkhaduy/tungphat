@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { absoluteUrl, SITE_NAME } from "@/lib/seo";
+import { absoluteMediaUrl } from "@/lib/media";
+import { absoluteUrl, SITE_NAME, SITE_URL } from "@/lib/seo";
 import type { SupplierColorCode } from "@/lib/catalog/types";
 import { getBaThanhCanonicalRoute, getBaThanhIndexableCodes } from "@/lib/catalog/ba-thanh";
 
@@ -21,7 +22,7 @@ export function buildBaThanhCodeMetadata(record: SupplierColorCode): Metadata {
       siteName: SITE_NAME,
       locale: "vi_VN",
       type: "website",
-      images: record.images.length ? [{ url: absoluteUrl(record.images[0].src), alt: record.images[0].alt }] : undefined,
+      images: record.images.length ? [{ url: absoluteMediaUrl(record.images[0].src, SITE_URL), alt: record.images[0].alt }] : undefined,
     },
   };
 }
@@ -35,7 +36,7 @@ export function buildBaThanhProductSchema(record: SupplierColorCode) {
     sku: record.displayName,
     brand: { "@type": "Brand", name: "Ba Thanh" },
     category: "Melamine",
-    image: record.images.map((image) => absoluteUrl(image.src)),
+    image: record.images.map((image) => absoluteMediaUrl(image.src, SITE_URL)),
     description,
     url: absoluteUrl(getBaThanhCanonicalRoute(record)),
   };

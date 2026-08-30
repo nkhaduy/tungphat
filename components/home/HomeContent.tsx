@@ -21,7 +21,7 @@ import { TrackedLink } from "@/components/TrackedLink";
 import { getArticles, getProducts } from "@/lib/content";
 import { getPublicColorCodes } from "@/lib/catalog/color-codes/public";
 import { locations } from "@/lib/locations";
-import { mediaUrl } from "@/lib/media";
+import { resolveMediaUrl } from "@/lib/media";
 import { PHONE_DISPLAY, PHONE_HREF, ZALO_URL } from "@/lib/seo";
 
 type SectionIntroProps = {
@@ -299,7 +299,7 @@ export async function HomeContent() {
               {latestArticles.map((article) => (
                 <article key={article.slug} className="group overflow-hidden border border-forest-900/10 bg-white shadow-[0_8px_24px_rgba(7,59,40,.045)]">
                   <Link href={`/bai-viet/${article.slug}`} className="relative block aspect-[16/10] overflow-hidden bg-[#ecefe9]">
-                    <Image src={mediaUrl(article.featuredImage)} alt={article.featuredImageAlt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition duration-300 group-hover:scale-[1.025]" />
+                    <Image src={resolveMediaUrl(article.featuredImage)} alt={article.featuredImageAlt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition duration-300 group-hover:scale-[1.025]" />
                   </Link>
                   <div className="p-6">
                     <p className="text-xs font-extrabold uppercase tracking-[.14em] text-wood-600">{article.category}</p>
