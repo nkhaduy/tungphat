@@ -8,6 +8,7 @@ const outputPath = path.resolve(process.env.MEDIA_CDN_AUDIT_JSON || "reports/med
 const exactPath = "/catalog/thanh-thuy/0330-mw-ambassador-1600w-f9875836c598.webp";
 const exactUrl = `https://cdn.mdftungphat.com${exactPath}`;
 const exactRoute = "/san-pham/melamine/thanh-thuy-0330-mw-ambassador/";
+const exactCatalogueRoute = "/catalogue/thanh-thuy/melamine/0330/";
 const minimumRuntimeMedia = Number(process.env.MEDIA_CDN_MIN_RUNTIME_REQUESTS || 30);
 type AuditFailure = { layer: string; reference: string; reason: string };
 
@@ -92,6 +93,7 @@ async function main() {
   const context = await browser.newContext({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 });
   const page = await context.newPage();
   const runtimeReferences = new Set<string>();
+  const domReferences = new Set<string>();
   const brokenReferences = new Set<string>();
   const consoleErrors: string[] = [];
   observePage(page, runtimeReferences, brokenReferences, consoleErrors);
@@ -104,13 +106,14 @@ async function main() {
     await scrollPage(page);
     await page.waitForTimeout(300);
     const content = await page.content();
-    extractMediaReferences(content).forEach((reference) => runtimeReferences.add(reference));
+    extractMediaReferences(content).forEach((reference) => domReferences.add(reference));
     const performanceUrls = await page.evaluate(() => performance.getEntriesByType("resource").map((entry) => entry.name));
     performanceUrls.forEach((reference) => runtimeReferences.add(reference));
     if (auditMediaReferences(runtimeReferences).inspected >= minimumRuntimeMedia) break;
   }
 
   const mobileReferences = new Set<string>();
+  const mobileDomReferences = new Set<string>();
   const mobileBrokenReferences = new Set<string>();
   const mobileContext = await browser.newContext({
     viewport: { width: 390, height: 844 },
@@ -120,14 +123,15 @@ async function main() {
   });
   const mobilePage = await mobileContext.newPage();
   observePage(mobilePage, mobileReferences, mobileBrokenReferences, consoleErrors);
-  await mobilePage.goto(`${origin}${exactRoute}`, { waitUntil: "domcontentloaded", timeout: 60_000 });
+  await mobilePage.goto(`${origin}${exactCatalogueRoute}`, { waitUntil: "domcontentloaded", timeout: 60_000 });
   browserPagesChecked += 1;
   await scrollPage(mobilePage);
   await mobilePage.waitForTimeout(300);
-  extractMediaReferences(await mobilePage.content()).forEach((reference) => mobileReferences.add(reference));
+  extractMediaReferences(await mobilePage.content()).forEach((reference) => mobileDomReferences.add(reference));
   const mobilePerformanceUrls = await mobilePage.evaluate(() => performance.getEntriesByType("resource").map((entry) => entry.name));
   mobilePerformanceUrls.forEach((reference) => mobileReferences.add(reference));
   mobileReferences.forEach((reference) => runtimeReferences.add(reference));
+  mobileDomReferences.forEach((reference) => domReferences.add(reference));
   mobileBrokenReferences.forEach((reference) => brokenReferences.add(reference));
   await browser.close();
 
@@ -141,6 +145,7 @@ async function main() {
     }
   });
   const rawAudit = auditMediaReferences(rawReferences);
+  const domAudit = auditMediaReferences(domReferences);
   const runtimeAudit = auditMediaReferences(runtimeReferences, brokenReferences);
   const mobileAudit = auditMediaReferences(mobileReferences, mobileBrokenReferences);
   const mobileExactRuntime = [...mobileReferences].some((reference) => {
@@ -153,6 +158,7 @@ async function main() {
   });
   const failures: AuditFailure[] = [
     ...rawAudit.failures.map((failure) => ({ layer: "html-rsc-api", ...failure })),
+    ...domAudit.failures.map((failure) => ({ layer: "browser-dom", ...failure })),
     ...runtimeAudit.failures.map((failure) => ({ layer: "browser-runtime", ...failure })),
     ...mobileAudit.failures.map((failure) => ({ layer: "browser-mobile", ...failure })),
   ];
@@ -173,6 +179,7 @@ async function main() {
     pagesCrawled: routes.length + 1,
     browserPages: browserPagesChecked,
     raw: rawAudit,
+    dom: domAudit,
     runtime: runtimeAudit,
     mobile: {
       viewport: "390x844@2x",
