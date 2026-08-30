@@ -45,17 +45,19 @@ export function parseTrustindexHtml(html) {
   const reviews = [...html.matchAll(/<article class="review\b[\s\S]*?data-id="([^"]+)"[\s\S]*?<\/article>/gi)]
     .map((match) => {
       const article = match[0];
+      if (!/\bsource-Google\b/i.test(article)) return null;
       const reviewerName = matchText(article, /<span class="name">([\s\S]*?)<\/span>/i);
       const date = matchText(article, /<div class="author-text">[\s\S]*?<span class="name">[\s\S]*?<\/span>\s*<span>([\s\S]*?)<\/span>/i);
       const text = matchText(article, /<span class="ti-review-content">([\s\S]*?)<\/span>/i);
       const avatarMatch = article.match(/data-src="([^"]+)"/i) || article.match(/<img[^>]+src="([^"]+)"/i);
       const avatarUrl = avatarMatch ? safeHttpsUrl(avatarMatch[1]) : null;
       const stars = (article.match(/class="ti-star f"/g) || []).length;
-      return reviewerName && text && stars >= 1 && stars <= 5
+      return reviewerName && stars >= 1 && stars <= 5
         ? { id: decodeHtml(match[1]), reviewerName, avatarUrl, rating: stars, text, date }
         : null;
     })
-    .filter(Boolean);
+    .filter(Boolean)
+    .filter((review, index, all) => all.findIndex((candidate) => candidate.id === review.id) === index);
 
   if (!Number.isFinite(rating) || rating < 1 || rating > 5 || !Number.isInteger(reviewCount) || reviewCount < 1 || !googleLinks.length || !reviews.length) {
     throw new Error(`Trustindex profile structure or review data is unavailable (rating=${rating}, count=${reviewCount}, Google links=${googleLinks.length}, reviews=${reviews.length})`);

@@ -1024,3 +1024,16 @@ test("Trustindex review slider renders current source data and remains usable on
   expect(mobileLayout.pageOverflow).toBeLessThanOrEqual(1);
   expect(mobileLayout.oneCardVisible).toBe(true);
 });
+
+test("Trustindex review slider has no serious accessibility violations", async ({ page }) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  const results = await new AxeBuilder({ page })
+    .include("[data-trustindex-reviews]")
+    .analyze();
+  expect(
+    results.violations.filter(
+      (violation) =>
+        violation.impact === "critical" || violation.impact === "serious",
+    ),
+  ).toEqual([]);
+});

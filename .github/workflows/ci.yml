@@ -29,7 +29,7 @@ jobs:
       - run: npm --prefix payload-cms run typecheck
       - run: npm --prefix payload-cms run integration
       - run: npm --prefix payload-cms run build:cloudflare
-      - run: npm --prefix payload-cms exec wrangler deploy -- --env production --dry-run
+      - run: npm --prefix payload-cms run verify
       - run: npm run validate:content
       - run: npm run images:check
       - run: npm run media:check-git

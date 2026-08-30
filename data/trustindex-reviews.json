@@ -8,7 +8,7 @@
     "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=ChIJ6dw2A6YndTERr5eaiym-l-M",
     "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=ChIJjWMBUikndTERNFK1M-j02ZY"
   ],
-  "refreshedAt": "2026-08-30T19:09:05.774Z",
+  "refreshedAt": "2026-08-30T19:34:10.593Z",
   "reviews": [
     {
       "id": "264028606",
@@ -25,6 +25,46 @@
       "rating": 1,
       "text": "Trải nghiệm mua hàng siêu tệ. Nhân viên tư vấn không cần khách. Mình đã ngồi chờ 5 phút. Sau đó lại bảo đi đón con và bảo mình chờ thêm 10-15 phút để người khác về cắt cho mình một tấm MDF. Và cửa hàng thì không có ai. Không đảm bảo phòng cháy chữa cháy. Mình không nghĩ là một doanh nghiệp tư nhân được đánh giá ổn ở địa phương lại có thể làm việc thiếu trách nhiệm và ảnh hưởng đến khách hàng như vậy.",
       "date": "2025.09.18"
+    },
+    {
+      "id": "264028631",
+      "reviewerName": "Tùng Dương Mạc Phạm",
+      "avatarUrl": "https://lh3.googleusercontent.com/a-/ALV-UjVdQdY-fXL7mky0dRsyp5eLeELuzEx_R7YkQrOwjPCDjhRPlPxa=s120-c-rp-mo-br100",
+      "rating": 5,
+      "text": "",
+      "date": "2025.09.16"
+    },
+    {
+      "id": "264028607",
+      "reviewerName": "Tùng Dương Mạc Phạm",
+      "avatarUrl": "https://lh3.googleusercontent.com/a-/ALV-UjVdQdY-fXL7mky0dRsyp5eLeELuzEx_R7YkQrOwjPCDjhRPlPxa=s120-c-rp-mo-br100",
+      "rating": 5,
+      "text": "",
+      "date": "2025.09.16"
+    },
+    {
+      "id": "264028608",
+      "reviewerName": "Thanh Trúc",
+      "avatarUrl": "https://lh3.googleusercontent.com/a-/ALV-UjVV4NxXsg05z4ZP5tK9qH-EPUe9pZsfOeAZzp9EyghPBO02tJ4O=s120-c-rp-mo-br100",
+      "rating": 5,
+      "text": "",
+      "date": "2025.09.16"
+    },
+    {
+      "id": "264028632",
+      "reviewerName": "Thanh Trúc",
+      "avatarUrl": "https://lh3.googleusercontent.com/a-/ALV-UjVV4NxXsg05z4ZP5tK9qH-EPUe9pZsfOeAZzp9EyghPBO02tJ4O=s120-c-rp-mo-br100",
+      "rating": 5,
+      "text": "",
+      "date": "2025.09.16"
+    },
+    {
+      "id": "264028633",
+      "reviewerName": "quy nguyen",
+      "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIgH0SCt-ng2YiHOnZZttMqraxYRakRq6l7Ya_gEsTbFx-e6w=s120-c-rp-mo-br100",
+      "rating": 5,
+      "text": "",
+      "date": "2025.08.24"
     },
     {
       "id": "264028634",

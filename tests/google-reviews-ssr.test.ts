@@ -24,10 +24,31 @@ describe("Trustindex reviews SSR", () => {
     expect(html).toContain('src="/brand/google-g.png"');
     expect(html).not.toContain("cdn.trustindex.io/assets/platform/Google/icon.svg");
     expect(html).not.toContain("svgsvg");
+    expect(html).toMatch(/<span role="img"[^>]+aria-label="5 trên 5 sao"/);
   });
 
   it("omits Trustindex verification when the public source does not assert it", () => {
     const data: TrustindexReviewData = { sourceUrl: "https://public.trustindex.io/reviews/mdftungphat.com/lang/vi", source: "Google", rating: 5, reviewCount: 1, verified: false, googleLinks: ["https://www.google.com/maps/search/?api=1"], refreshedAt: "2026-08-30T00:00:00.000Z", reviews: [{ id: "r1", reviewerName: "Khách hàng", avatarUrl: null, rating: 5, text: "Đánh giá thật", date: "2025.01.01" }] };
     expect(renderToStaticMarkup(createElement(TrustindexReviews, { data }))).not.toContain("Verified by Trustindex");
+  });
+
+  it("renders both aggregated Google location links while keeping rating-only cards clean", () => {
+    const data: TrustindexReviewData = {
+      sourceUrl: "https://public.trustindex.io/reviews/mdftungphat.com/lang/vi",
+      source: "Google",
+      rating: 4.8,
+      reviewCount: 26,
+      verified: true,
+      googleLinks: [
+        "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=one",
+        "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=two",
+      ],
+      refreshedAt: "2026-08-30T00:00:00.000Z",
+      reviews: [{ id: "r1", reviewerName: "Chỉ có điểm", avatarUrl: null, rating: 5, text: "", date: "2025.01.01" }],
+    };
+    const html = renderToStaticMarkup(createElement(TrustindexReviews, { data }));
+    expect(html).toContain('href="https://www.google.com/maps/search/?api=1&amp;query=Google&amp;query_place_id=one"');
+    expect(html).toContain('href="https://www.google.com/maps/search/?api=1&amp;query=Google&amp;query_place_id=two"');
+    expect(html).not.toContain('data-trustindex-review-body');
   });
 });

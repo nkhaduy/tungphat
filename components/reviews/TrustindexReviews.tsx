@@ -30,7 +30,7 @@ function initials(name: string) {
 }
 
 function StarRating({ rating }: { rating: number }) {
-  return <span className="flex gap-0.5 text-[#f6b400]" aria-label={`${rating} trên 5 sao`}>{Array.from({ length: 5 }, (_, index) => <Star key={index} size={15} fill={index < rating ? "currentColor" : "none"} className={index < rating ? "" : "text-slate-200"} aria-hidden="true" />)}</span>;
+  return <span role="img" className="flex gap-0.5 text-[#f6b400]" aria-label={`${rating} trên 5 sao`}>{Array.from({ length: 5 }, (_, index) => <Star key={index} size={15} fill={index < rating ? "currentColor" : "none"} className={index < rating ? "" : "text-slate-200"} aria-hidden="true" />)}</span>;
 }
 
 function ReviewCard({ review, googleUrl, onReadMore }: { review: TrustindexReview; googleUrl: string; onReadMore: () => void }) {
@@ -45,7 +45,7 @@ function ReviewCard({ review, googleUrl, onReadMore }: { review: TrustindexRevie
       <img src="/brand/google-g.png" alt="Google" width={21} height={21} loading="lazy" className="h-[21px] w-[21px] shrink-0" />
     </div>
     <div className="mt-5"><StarRating rating={review.rating} /></div>
-    <div className="mt-4"><p className={needsDialog ? "line-clamp-6 whitespace-pre-line text-sm leading-6 text-slate-700" : "whitespace-pre-line text-sm leading-6 text-slate-700"}>{review.text}</p>{needsDialog ? <button type="button" onClick={onReadMore} className="mt-3 text-xs font-extrabold text-forest-900 underline decoration-forest-900/35 underline-offset-4">Đọc toàn bộ đánh giá</button> : null}</div>
+    {review.text ? <div data-trustindex-review-body className="mt-4"><p className={needsDialog ? "line-clamp-6 whitespace-pre-line text-sm leading-6 text-slate-700" : "whitespace-pre-line text-sm leading-6 text-slate-700"}>{review.text}</p>{needsDialog ? <button type="button" onClick={onReadMore} className="mt-3 text-xs font-extrabold text-forest-900 underline decoration-forest-900/35 underline-offset-4">Đọc toàn bộ đánh giá</button> : null}</div> : null}
     <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-1.5 pt-6 text-xs font-bold text-slate-500 transition-colors hover:text-forest-900">Xem nguồn Google <ExternalLink size={13} aria-hidden="true" /></a>
   </article>;
 }
@@ -55,9 +55,11 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
   const [autoplay, setAutoplay] = useState(true);
   const [selectedReview, setSelectedReview] = useState<TrustindexReview | null>(null);
   const cardRefs = useRef<Array<HTMLElement | null>>([]);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const reducedMotion = useRef(false);
   const reviews = data.reviews;
-  const googleUrl = data.googleLinks[0] || data.sourceUrl;
+  const googleUrls = data.googleLinks.length ? data.googleLinks : [data.sourceUrl];
+  const googleUrl = googleUrls[0];
 
   useEffect(() => {
     reducedMotion.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -72,6 +74,7 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
 
   useEffect(() => {
     if (!selectedReview) return;
+    closeButtonRef.current?.focus();
     const onKeyDown = (event: KeyboardEvent) => { if (event.key === "Escape") setSelectedReview(null); };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
@@ -93,22 +96,24 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
           <div className="mt-4"><StarRating rating={5} /></div>
           <p className="mt-4 text-4xl font-extrabold tracking-[-0.04em]">{data.rating.toFixed(1)}</p>
           <p className="mt-1 text-sm text-white/75">Dựa trên {data.reviewCount} đánh giá</p>
-          <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex w-fit items-center gap-2 text-sm font-extrabold text-white hover:text-[#f6b400]"><img src="/brand/google-g.png" alt="Google" width={20} height={20} className="h-5 w-5" />Google <ExternalLink size={13} aria-hidden="true" /></a>
+          <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2">
+            {googleUrls.map((url, index) => <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={`Google - Chi nhánh ${index + 1}`} className="inline-flex items-center gap-2 text-sm font-extrabold text-white hover:text-[#f6b400]"><img src="/brand/google-g.png" alt={index === 0 ? "Google" : ""} width={20} height={20} className="h-5 w-5" aria-hidden={index > 0 ? "true" : undefined} />{index === 0 ? "Google" : `CN ${index + 1}`} <ExternalLink size={13} aria-hidden="true" /></a>)}
+          </div>
           {data.verified ? <a href={data.sourceUrl} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-1.5 pt-7 text-xs font-bold text-white/75 hover:text-white"><BadgeCheck size={15} aria-hidden="true" />Verified by Trustindex</a> : null}
         </aside>
         <div className="min-w-0">
-          <div data-trustindex-viewport className="trustindex-review-viewport" aria-label="Đánh giá khách hàng" aria-live="polite">
+          <div data-trustindex-viewport className="trustindex-review-viewport" aria-label="Đánh giá khách hàng" aria-live="polite" onPointerDown={() => setAutoplay(false)}>
             <div data-trustindex-rail data-active-index={activeIndex} className="trustindex-review-rail">
               {reviews.map((review, index) => <div key={review.id} ref={(element) => { cardRefs.current[index] = element; }} className="basis-full shrink-0 snap-start md:basis-[275px]"><ReviewCard review={review} googleUrl={googleUrl} onReadMore={() => { setAutoplay(false); setSelectedReview(review); }} /></div>)}
             </div>
           </div>
           <div className="mt-5 flex items-center justify-between gap-4">
-            <p className="text-xs text-slate-500"><span className="font-bold text-forest-950">{activeIndex + 1}</span> / {reviews.length}</p>
+            <p className="text-xs text-slate-600"><span className="font-bold text-forest-950">{activeIndex + 1}</span> / {reviews.length}</p>
             <div className="flex gap-2"><button type="button" aria-label="Đánh giá trước" onClick={() => move(-1)} className="grid min-h-11 min-w-11 place-items-center rounded-full border border-forest-900/20 bg-white text-forest-950 transition-colors hover:border-forest-900 hover:bg-forest-900 hover:text-white"><ChevronLeft size={18} aria-hidden="true" /></button><button type="button" aria-label="Đánh giá tiếp theo" onClick={() => move(1)} className="grid min-h-11 min-w-11 place-items-center rounded-full border border-forest-900/20 bg-white text-forest-950 transition-colors hover:border-forest-900 hover:bg-forest-900 hover:text-white"><ChevronRight size={18} aria-hidden="true" /></button></div>
           </div>
         </div>
       </div>
     </div>
-    {selectedReview ? <div role="dialog" aria-modal="true" aria-label={`Toàn bộ đánh giá của ${selectedReview.reviewerName}`} className="fixed inset-0 z-[1000] grid place-items-center bg-forest-950/65 p-4" onMouseDown={() => setSelectedReview(null)}><div className="relative max-h-[min(36rem,calc(100dvh-2rem))] w-full max-w-xl overflow-y-auto rounded-xl bg-white p-7 shadow-2xl" onMouseDown={(event) => event.stopPropagation()}><button type="button" aria-label="Đóng đánh giá" onClick={() => setSelectedReview(null)} className="absolute right-4 top-4 grid min-h-11 min-w-11 place-items-center rounded-full text-forest-950 hover:bg-[#edf4ef]"><X size={19} aria-hidden="true" /></button><p className="pr-12 text-base font-extrabold text-forest-950">{selectedReview.reviewerName}</p><div className="mt-4"><StarRating rating={selectedReview.rating} /></div><p className="mt-5 whitespace-pre-line text-sm leading-7 text-slate-700">{selectedReview.text}</p></div></div> : null}
+    {selectedReview ? <div role="dialog" aria-modal="true" aria-label={`Toàn bộ đánh giá của ${selectedReview.reviewerName}`} className="fixed inset-0 z-[1000] grid place-items-center bg-forest-950/65 p-4" onMouseDown={() => setSelectedReview(null)}><div className="relative max-h-[min(36rem,calc(100dvh-2rem))] w-full max-w-xl overflow-y-auto rounded-xl bg-white p-7 shadow-2xl" onMouseDown={(event) => event.stopPropagation()}><button ref={closeButtonRef} type="button" aria-label="Đóng đánh giá" onClick={() => setSelectedReview(null)} className="absolute right-4 top-4 grid min-h-11 min-w-11 place-items-center rounded-full text-forest-950 hover:bg-[#edf4ef]"><X size={19} aria-hidden="true" /></button><p className="pr-12 text-base font-extrabold text-forest-950">{selectedReview.reviewerName}</p><div className="mt-4"><StarRating rating={selectedReview.rating} /></div><p className="mt-5 whitespace-pre-line text-sm leading-7 text-slate-700">{selectedReview.text}</p></div></div> : null}
   </section>;
 }
