@@ -57,7 +57,8 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
   const cardRefs = useRef<Array<HTMLElement | null>>([]);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const reducedMotion = useRef(false);
-  const reviews = data.reviews;
+  // Preserve the public aggregate count while keeping the carousel focused on written feedback.
+  const reviews = data.reviews.filter((review) => review.text);
   const googleUrls = data.googleLinks.length ? data.googleLinks : [data.sourceUrl];
   const googleUrl = googleUrls[0];
 

@@ -32,7 +32,7 @@ describe("Trustindex reviews SSR", () => {
     expect(renderToStaticMarkup(createElement(TrustindexReviews, { data }))).not.toContain("Verified by Trustindex");
   });
 
-  it("renders both aggregated Google location links while keeping rating-only cards clean", () => {
+  it("keeps rating-only reviews in the summary but only displays cards with review text", () => {
     const data: TrustindexReviewData = {
       sourceUrl: "https://public.trustindex.io/reviews/mdftungphat.com/lang/vi",
       source: "Google",
@@ -44,11 +44,16 @@ describe("Trustindex reviews SSR", () => {
         "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=two",
       ],
       refreshedAt: "2026-08-30T00:00:00.000Z",
-      reviews: [{ id: "r1", reviewerName: "Chỉ có điểm", avatarUrl: null, rating: 5, text: "", date: "2025.01.01" }],
+      reviews: [
+        { id: "r1", reviewerName: "Có nội dung", avatarUrl: null, rating: 5, text: "Đánh giá thật", date: "2025.01.01" },
+        { id: "r2", reviewerName: "Chỉ có điểm", avatarUrl: null, rating: 5, text: "", date: "2025.01.02" },
+      ],
     };
     const html = renderToStaticMarkup(createElement(TrustindexReviews, { data }));
     expect(html).toContain('href="https://www.google.com/maps/search/?api=1&amp;query=Google&amp;query_place_id=one"');
     expect(html).toContain('href="https://www.google.com/maps/search/?api=1&amp;query=Google&amp;query_place_id=two"');
-    expect(html).not.toContain('data-trustindex-review-body');
+    expect(html).toContain("Có nội dung");
+    expect(html).toContain("Đánh giá thật");
+    expect(html).not.toContain("Chỉ có điểm");
   });
 });
