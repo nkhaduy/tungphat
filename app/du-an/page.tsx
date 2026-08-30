@@ -9,12 +9,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { getProjects } from "@/lib/content";
 import { resolveMediaUrl } from "@/lib/media";
 import { breadcrumbSchema, createPageMetadata, webPageSchema } from "@/lib/seo";
-
-const workshopImages = [
-  { src: "/images/cnc-service.webp", alt: "Ảnh minh họa máy CNC gia công một tấm ván", caption: "Ảnh minh họa máy CNC" },
-  { src: "/images/contact/chi-nhanh-1.webp", alt: "Mặt tiền cửa hàng Tùng Phát tại 14 Tam Bình", caption: "Mặt tiền chi nhánh 1" },
-  { src: "/images/contact/chi-nhanh-2.webp", alt: "Mặt tiền chi nhánh Tùng Phát tại 81B Tam Bình", caption: "Mặt tiền chi nhánh 2" },
-];
+import { workshopImages } from "@/lib/workshop-images";
 
 export default async function ProjectsPage() {
   const projects = await getProjects();

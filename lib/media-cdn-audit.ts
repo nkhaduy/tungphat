@@ -1,5 +1,5 @@
 const MEDIA_PATH = /^(?:\/)?(?:assets\/catalog|catalog|gallery|media|supplier|thumbnails|uploads|uploads-thumbnails|vendor|videos)(?:\/|$)/iu;
-const MEDIA_URL = /(?:https?:)?\/\/[^\s"'<>\\]+|\/?(?:assets\/catalog|catalog|gallery|media|supplier|thumbnails|uploads|uploads-thumbnails|vendor|videos)\/[^\s"'<>\\),]+/giu;
+const MEDIA_URL = /(?:https?:)?\/\/[^\s"'<>\\]+|\/(?:assets\/catalog|catalog|gallery|media|supplier|thumbnails|uploads|uploads-thumbnails|vendor|videos)\/[^\s"'<>\\),]+/giu;
 const MAIN_HOSTS = new Set(["mdftungphat.com", "www.mdftungphat.com"]);
 const CMS_HOSTS = new Set(["cms.mdftungphat.com", "media.mdftungphat.com"]);
 const MEDIA_FILE = /\.(?:avif|gif|jpe?g|mp4|pdf|png|svg|webm|webp)$/iu;
@@ -28,8 +28,50 @@ function trimReference(value: string) {
   return value.replace(/[.;:]+$/gu, "");
 }
 
+function decodeEncodedMarkup(value: string) {
+  let decoded = value;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      const next = decodeURIComponent(decoded);
+      if (next === decoded) break;
+      decoded = next;
+    } catch {
+      break;
+    }
+  }
+  return decoded;
+}
+
 export function extractMediaReferences(body: string) {
-  return [...new Set([...decodedMarkup(body).matchAll(MEDIA_URL)].map((match) => trimReference(match[0])))];
+  const candidates = new Set<string>();
+  for (const markup of new Set([decodedMarkup(body), decodeEncodedMarkup(decodedMarkup(body))])) {
+    for (const match of markup.matchAll(MEDIA_URL)) candidates.add(trimReference(match[0]));
+  }
+  return [...candidates];
+}
+
+export function extractMediaReferencesFromPayload(body: string) {
+  const references = new Set(extractMediaReferences(body));
+  try {
+    const payload = JSON.parse(body) as unknown;
+    const visit = (value: unknown): void => {
+      if (typeof value === "string") {
+        extractMediaReferences(value).forEach((reference) => references.add(reference));
+        return;
+      }
+      if (Array.isArray(value)) {
+        value.forEach(visit);
+        return;
+      }
+      if (value && typeof value === "object") {
+        Object.values(value).forEach(visit);
+      }
+    };
+    visit(payload);
+  } catch {
+    // Non-JSON responses are still covered by the raw extractor.
+  }
+  return [...references];
 }
 
 function mediaCategory(reference: string) {
@@ -45,7 +87,9 @@ function mediaCategory(reference: string) {
     return undefined;
   }
 
-  const isMediaPath = (MEDIA_PATH.test(url.pathname) || url.pathname.startsWith("/tung-phat-media/")) && MEDIA_FILE.test(url.pathname);
+  const isImageFile = MEDIA_FILE.test(url.pathname);
+  if (CMS_HOSTS.has(url.hostname) && isImageFile) return "cms" as const;
+  const isMediaPath = (MEDIA_PATH.test(url.pathname) || url.pathname.startsWith("/tung-phat-media/")) && isImageFile;
   if (!isMediaPath) return undefined;
   if (url.hostname === "cdn.mdftungphat.com") return "cdn" as const;
   if (MAIN_HOSTS.has(url.hostname)) return "mainDomain" as const;

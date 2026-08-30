@@ -11,6 +11,7 @@ import { getBrand } from "@/lib/brands";
 import { getThanhThuyProduct } from "@/lib/thanh-thuy";
 import { createThanhThuyMetadata } from "@/lib/thanh-thuy-seo";
 import { createThanhThuyProductSchema } from "@/lib/thanh-thuy-schema";
+import { homeGallery, workshopImages } from "@/lib/workshop-images";
 
 const samplePath = "catalog/thanh-thuy/0330-mw-ambassador-1600w-f9875836c598.webp";
 const sampleUrl = `https://cdn.mdftungphat.com/${samplePath}`;
@@ -36,6 +37,16 @@ describe("public media boundaries", () => {
   it("normalizes CMS-backed brand and location images", () => {
     expect(getBrand("an-cuong")?.logo).toBe("https://cdn.mdftungphat.com/uploads/an-cuong-logo.webp");
     expect(locations[0]?.image).toBe("https://cdn.mdftungphat.com/uploads/chi-nhanh-1.webp");
+  });
+
+  it("uses canonical location media in every branch gallery", () => {
+    const branchImages = [
+      locations[0]?.image,
+      locations[1]?.image,
+    ];
+
+    expect(homeGallery.slice(1).map((item) => item.src)).toEqual(branchImages);
+    expect(workshopImages.slice(1).map((item) => item.src)).toEqual(branchImages);
   });
 
   it("renders direct CDN src and every responsive candidate", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { auditMediaReferences, extractMediaReferences } from "@/lib/media-cdn-audit";
+import { auditMediaReferences, extractMediaReferences, extractMediaReferencesFromPayload } from "@/lib/media-cdn-audit";
 
 describe("media CDN audit", () => {
   it("extracts responsive, metadata, JSON-LD, CSS, and RSC media references", () => {
@@ -53,5 +53,22 @@ describe("media CDN audit", () => {
   it("covers every generated media storage namespace", () => {
     const references = extractMediaReferences("/gallery/a.webp /thumbnails/a.webp /uploads-thumbnails/a.webp /vendor/a.webp");
     expect(auditMediaReferences(references)).toMatchObject({ inspected: 4, relative: 4 });
+  });
+
+  it("extracts percent-encoded media URLs from rendered attributes", () => {
+    const references = extractMediaReferences(
+      '<img src="https%3A%2F%2Fcms.mdftungphat.com%2Fmedia%2Fuploads%2Fchi-nhanh-1.webp">',
+    );
+
+    expect(references).toContain("https://cms.mdftungphat.com/media/uploads/chi-nhanh-1.webp");
+  });
+
+  it("scans nested CMS payload URLs without treating R2 keys as browser paths", () => {
+    const references = extractMediaReferencesFromPayload(JSON.stringify({
+      r2Key: "uploads/chi-nhanh-1.webp",
+      url: "https://cms.mdftungphat.com/media/uploads/chi-nhanh-1.webp",
+    }));
+
+    expect(auditMediaReferences(references)).toMatchObject({ inspected: 1, cms: 1, relative: 0 });
   });
 });

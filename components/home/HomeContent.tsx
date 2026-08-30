@@ -23,6 +23,7 @@ import { getPublicColorCodes } from "@/lib/catalog/color-codes/public";
 import { locations } from "@/lib/locations";
 import { resolveMediaUrl } from "@/lib/media";
 import { PHONE_DISPLAY, PHONE_HREF, ZALO_URL } from "@/lib/seo";
+import { homeGallery } from "@/lib/workshop-images";
 
 type SectionIntroProps = {
   eyebrow: string;
@@ -60,12 +61,6 @@ const cncCapabilities: { title: string; description: string; icon: LucideIcon }[
   { title: "Cắt biên dạng", description: "Gia công chi tiết theo đường cắt trong file hoặc bản phác thảo đã duyệt.", icon: PenTool },
   { title: "Cắt hoa văn", description: "Kiểm tra đường trùng, điểm hở và tỷ lệ trước khi xếp lịch gia công.", icon: Box }
 ];
-
-const gallery = [
-  { src: "/images/cnc-service.webp", alt: "Ảnh minh họa máy CNC gia công một tấm ván", label: "Ảnh minh họa máy CNC" },
-  { src: "/images/contact/chi-nhanh-1.webp", alt: "Mặt tiền cửa hàng Tùng Phát tại 14 Tam Bình", label: "Mặt tiền chi nhánh 1" },
-  { src: "/images/contact/chi-nhanh-2.webp", alt: "Mặt tiền chi nhánh Tùng Phát tại 81B Tam Bình", label: "Mặt tiền chi nhánh 2" }
-] as const;
 
 const brands = [
   { name: "An Cường", slug: "an-cuong", logo: "/partners/an-cuong-logo.webp" },
@@ -236,7 +231,7 @@ export async function HomeContent() {
         <div className="container-shell">
           <SectionIntro eyebrow="Hình ảnh thực tế" title="Xưởng CNC và hai chi nhánh Tùng Phát" description="Hình ảnh máy gia công và mặt tiền tại đường Tam Bình giúp khách hàng nhận diện đúng địa điểm trước khi đến xem vật liệu hoặc trao đổi đơn hàng." />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {gallery.map((item, index) => (
+            {homeGallery.map((item, index) => (
               <figure key={item.src} className={`group overflow-hidden rounded-xl border border-forest-900/10 bg-[#f7f9f6] ${index === 0 ? "md:col-span-2" : ""}`}>
                 <div className={`relative overflow-hidden ${index === 0 ? "aspect-[16/9]" : "aspect-[4/5]"}`}>
                   <Image src={item.src} alt={item.alt} fill sizes={index === 0 ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"} className="object-cover transition duration-300 group-hover:scale-[1.02]" />
