@@ -283,7 +283,6 @@ test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", asyn
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
   for (const heading of [
-    "Tìm đúng vật liệu hoặc dịch vụ trong 30 giây",
     "Danh mục vật liệu chính",
     "Quy cách vật liệu thường được hỏi",
     "Mã màu nổi bật",

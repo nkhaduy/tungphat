@@ -150,7 +150,7 @@ export async function HomeContent() {
                   <span>
                     <span className="block text-xs font-extrabold uppercase tracking-[.14em] text-wood-600">{supplierLabels[record.supplier]}</span>
                     <strong className="mt-2 block text-lg text-forest-950">{record.displayName || record.codeRaw}</strong>
-                    <span className="mt-2 block text-xs font-bold text-slate-500">Mã {record.codeRaw} · {record.materialType === "melamine" ? "Melamine" : "Laminate"}</span>
+                    <span className="mt-2 block text-xs font-bold text-slate-600">Mã {record.codeRaw} · {record.materialType === "melamine" ? "Melamine" : "Laminate"}</span>
                   </span>
                   <ArrowRight size={18} className="shrink-0 text-forest-900 transition group-hover:translate-x-1" aria-hidden="true" />
                 </Link>
@@ -198,7 +198,7 @@ export async function HomeContent() {
           <div className="p-6 sm:p-9 lg:p-12">
             <SectionIntro eyebrow="Báo giá theo quy cách" title="Báo giá ván MDF, MFC & ván gỗ công nghiệp" description="Giá phụ thuộc thương hiệu, độ dày, bề mặt và số lượng. Xem hướng dẫn báo giá đang áp dụng hoặc gửi quy cách để Tùng Phát kiểm tra." />
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="/bao-gia" className="inline-flex min-h-14 items-center justify-center gap-2 rounded-md bg-wood-500 px-6 text-sm font-extrabold text-white transition hover:bg-wood-600">Xem báo giá ván MDF <ArrowRight size={17} aria-hidden="true" /></Link>
+              <Link href="/bao-gia" className="inline-flex min-h-14 items-center justify-center gap-2 rounded-md bg-wood-600 px-6 text-sm font-extrabold text-white transition hover:bg-wood-700">Xem báo giá ván MDF <ArrowRight size={17} aria-hidden="true" /></Link>
               <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_file_quote", channel: "zalo" }} className="inline-flex min-h-14 items-center justify-center gap-2 rounded-md border border-forest-900/20 px-6 text-sm font-extrabold text-forest-950 hover:border-forest-900">
                 <Send size={17} aria-hidden="true" /> Gửi quy cách qua Zalo
               </TrackedLink>
@@ -308,7 +308,7 @@ export async function HomeContent() {
             <h2 className="mt-3 text-balance text-2xl font-extrabold leading-tight sm:text-3xl">Bạn đã có quy cách vật liệu hoặc file CNC?</h2>
             <p className="mt-3 text-sm leading-6 text-white/70">Gửi thông tin đang có để Tùng Phát kiểm tra vật liệu, nội dung gia công và những điểm cần làm rõ trước khi báo giá.</p>
           </div>
-          <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_final_cta", channel: "zalo" }} className="inline-flex min-h-14 shrink-0 items-center justify-center gap-2 rounded-md bg-wood-500 px-6 text-sm font-extrabold text-white transition hover:bg-wood-600"><MessageCircle size={18} aria-hidden="true" />Gửi quy cách nhận báo giá</TrackedLink>
+          <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_final_cta", channel: "zalo" }} className="inline-flex min-h-14 shrink-0 items-center justify-center gap-2 rounded-md bg-wood-600 px-6 text-sm font-extrabold text-white transition hover:bg-wood-700"><MessageCircle size={18} aria-hidden="true" />Gửi quy cách nhận báo giá</TrackedLink>
         </div>
       </section>
     </>

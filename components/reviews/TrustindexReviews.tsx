@@ -40,13 +40,13 @@ function ReviewCard({ review, googleUrl, onReadMore }: { review: TrustindexRevie
     <div className="flex items-start justify-between gap-4">
       <div className="flex min-w-0 items-center gap-3.5">
         {review.avatarUrl && !photoFailed ? <img src={review.avatarUrl} alt={`Ảnh đại diện của ${review.reviewerName}`} width={48} height={48} loading="lazy" referrerPolicy="no-referrer" onError={() => setPhotoFailed(true)} className="h-12 w-12 shrink-0 rounded-full object-cover" /> : <span aria-hidden="true" className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#edf4ef] text-xs font-extrabold text-forest-900">{initials(review.reviewerName)}</span>}
-        <div className="min-w-0"><h3 className="truncate text-sm font-extrabold text-forest-950">{review.reviewerName}</h3><p className="mt-1 text-xs text-slate-500">{review.date}</p></div>
+        <div className="min-w-0"><h3 className="truncate text-sm font-extrabold text-forest-950">{review.reviewerName}</h3><p className="mt-1 text-xs text-slate-600">{review.date}</p></div>
       </div>
       <img src="/brand/google-g.png" alt="Google" width={21} height={21} loading="lazy" className="h-[21px] w-[21px] shrink-0" />
     </div>
     <div className="mt-5"><StarRating rating={review.rating} /></div>
     {review.text ? <div data-trustindex-review-body className="mt-4"><p className={needsDialog ? "line-clamp-6 whitespace-pre-line text-sm leading-6 text-slate-700" : "whitespace-pre-line text-sm leading-6 text-slate-700"}>{review.text}</p>{needsDialog ? <button type="button" onClick={onReadMore} className="mt-3 text-xs font-extrabold text-forest-900 underline decoration-forest-900/35 underline-offset-4">Đọc toàn bộ đánh giá</button> : null}</div> : null}
-    <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-1.5 pt-6 text-xs font-bold text-slate-500 transition-colors hover:text-forest-900">Xem nguồn Google <ExternalLink size={13} aria-hidden="true" /></a>
+    <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-1.5 pt-6 text-xs font-bold text-slate-600 transition-colors hover:text-forest-900">Xem nguồn Google <ExternalLink size={13} aria-hidden="true" /></a>
   </article>;
 }
 
