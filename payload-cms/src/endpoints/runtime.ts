@@ -89,7 +89,12 @@ export const runtimeEndpoints: Endpoint[] = [
           return cached.get(location.branchKey) ?? errorGoogleBranch(location, googleReviewErrorCode(error))
         }
       }))
-      const payload = { provider: 'google-places-api', status: branches.some((branch) => branch.status === 'ready') ? 'ready' : 'empty', branches }
+      const status = branches.some((branch) => branch.status === 'ready')
+        ? 'ready'
+        : branches.some((branch) => branch.status === 'error')
+          ? 'error'
+          : 'empty'
+      const payload = { provider: 'google-places-api', status, branches }
       return Response.json(payload, { headers: publicHeaders() })
     },
   },

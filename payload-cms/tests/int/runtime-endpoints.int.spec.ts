@@ -93,7 +93,8 @@ describe('Payload runtime compatibility endpoints', () => {
     try {
       const endpoint = runtimeEndpoints.find((item) => item.path === '/gbp/reviews' && item.method === 'get')!
       const response = await endpoint.handler({ payload } as never)
-      const result = await response.json() as { branches: Array<{ status: string; errorCode?: string; reviews: unknown[] }> }
+      const result = await response.json() as { status: string; branches: Array<{ status: string; errorCode?: string; reviews: unknown[] }> }
+      expect(result.status).toBe('error')
       expect(result.branches).toEqual([
         expect.objectContaining({ status: 'error', errorCode: 'missing_configuration', reviews: [] }),
         expect.objectContaining({ status: 'error', errorCode: 'missing_configuration', reviews: [] }),
