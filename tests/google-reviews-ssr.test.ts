@@ -21,6 +21,8 @@ describe("Trustindex reviews SSR", () => {
     expect(html).toContain("26 đánh giá");
     expect(html).toContain("Verified by Trustindex");
     expect(html).toContain("google.com/maps");
+    expect(html).toContain('src="/brand/google-g.png"');
+    expect(html).not.toContain("cdn.trustindex.io/assets/platform/Google/icon.svg");
     expect(html).not.toContain("svgsvg");
   });
 

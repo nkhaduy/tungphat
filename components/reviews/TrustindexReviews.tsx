@@ -42,7 +42,7 @@ function ReviewCard({ review, googleUrl, onReadMore }: { review: TrustindexRevie
         {review.avatarUrl && !photoFailed ? <img src={review.avatarUrl} alt={`Ảnh đại diện của ${review.reviewerName}`} width={48} height={48} loading="lazy" referrerPolicy="no-referrer" onError={() => setPhotoFailed(true)} className="h-12 w-12 shrink-0 rounded-full object-cover" /> : <span aria-hidden="true" className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#edf4ef] text-xs font-extrabold text-forest-900">{initials(review.reviewerName)}</span>}
         <div className="min-w-0"><h3 className="truncate text-sm font-extrabold text-forest-950">{review.reviewerName}</h3><p className="mt-1 text-xs text-slate-500">{review.date}</p></div>
       </div>
-      <img src="https://cdn.trustindex.io/assets/platform/Google/icon.svg" alt="Google" width={21} height={21} loading="lazy" className="h-[21px] w-[21px] shrink-0" />
+      <img src="/brand/google-g.png" alt="Google" width={21} height={21} loading="lazy" className="h-[21px] w-[21px] shrink-0" />
     </div>
     <div className="mt-5"><StarRating rating={review.rating} /></div>
     <div className="mt-4"><p className={needsDialog ? "line-clamp-6 whitespace-pre-line text-sm leading-6 text-slate-700" : "whitespace-pre-line text-sm leading-6 text-slate-700"}>{review.text}</p>{needsDialog ? <button type="button" onClick={onReadMore} className="mt-3 text-xs font-extrabold text-forest-900 underline decoration-forest-900/35 underline-offset-4">Đọc toàn bộ đánh giá</button> : null}</div>
@@ -93,7 +93,7 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
           <div className="mt-4"><StarRating rating={5} /></div>
           <p className="mt-4 text-4xl font-extrabold tracking-[-0.04em]">{data.rating.toFixed(1)}</p>
           <p className="mt-1 text-sm text-white/75">Dựa trên {data.reviewCount} đánh giá</p>
-          <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex w-fit items-center gap-2 text-sm font-extrabold text-white hover:text-[#f6b400]"><img src="https://cdn.trustindex.io/assets/platform/Google/icon.svg" alt="Google" width={20} height={20} className="h-5 w-5" />Google <ExternalLink size={13} aria-hidden="true" /></a>
+          <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex w-fit items-center gap-2 text-sm font-extrabold text-white hover:text-[#f6b400]"><img src="/brand/google-g.png" alt="Google" width={20} height={20} className="h-5 w-5" />Google <ExternalLink size={13} aria-hidden="true" /></a>
           {data.verified ? <a href={data.sourceUrl} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-1.5 pt-7 text-xs font-bold text-white/75 hover:text-white"><BadgeCheck size={15} aria-hidden="true" />Verified by Trustindex</a> : null}
         </aside>
         <div className="min-w-0">
