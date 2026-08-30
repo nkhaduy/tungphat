@@ -1,4 +1,5 @@
 import { createElement } from "react";
+import { readFileSync } from "node:fs";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { TrustindexReviews, type TrustindexReviewData } from "../components/reviews/TrustindexReviews";
@@ -57,5 +58,37 @@ describe("Trustindex reviews SSR", () => {
     expect(html).toContain("Tùng Phát 1");
     expect(html).toContain("Tùng Phát 2");
     expect(html).not.toContain("Chỉ có điểm");
+  });
+
+  it("curates the carousel to written five-star reviews without changing the aggregate", () => {
+    const data: TrustindexReviewData = {
+      sourceUrl: "https://public.trustindex.io/reviews/mdftungphat.com/lang/vi",
+      source: "Google",
+      rating: 4.8,
+      reviewCount: 26,
+      verified: true,
+      googleLinks: ["https://www.google.com/maps/search/?api=1"],
+      refreshedAt: "2026-08-30T00:00:00.000Z",
+      reviews: [
+        { id: "bad", reviewerName: "Một sao", avatarUrl: null, rating: 1, text: "Không hài lòng", date: "2026.01.01" },
+        { id: "short", reviewerName: "Năm sao ngắn", avatarUrl: null, rating: 5, text: "Tốt", date: "2026.01.02" },
+        { id: "useful", reviewerName: "Năm sao hữu ích", avatarUrl: null, rating: 5, text: "Tư vấn rõ ràng, giao hàng đúng hẹn và vật liệu đúng mô tả.", date: "2026.01.03" },
+      ],
+    };
+    const html = renderToStaticMarkup(createElement(TrustindexReviews, { data }));
+    expect(html).toContain("Năm sao hữu ích");
+    expect(html).toContain("Năm sao ngắn");
+    expect(html).not.toContain("Một sao");
+    expect(html.indexOf("Năm sao hữu ích")).toBeLessThan(html.indexOf("Năm sao ngắn"));
+    expect(html).toContain("4.8");
+    expect(html).toContain("26 đánh giá");
+    expect(html).not.toContain("Đánh giá từ Trustindex");
+    expect(html).not.toContain("Phản hồi khách hàng được Trustindex");
+  });
+
+  it("scrolls the review viewport horizontally instead of scrolling the document", () => {
+    const source = readFileSync("components/reviews/TrustindexReviews.tsx", "utf8");
+    expect(source).toContain("scrollTo");
+    expect(source).not.toContain("scrollIntoView");
   });
 });

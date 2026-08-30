@@ -55,10 +55,13 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
   const [autoplay, setAutoplay] = useState(true);
   const [selectedReview, setSelectedReview] = useState<TrustindexReview | null>(null);
   const cardRefs = useRef<Array<HTMLElement | null>>([]);
+  const viewportRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const reducedMotion = useRef(false);
   // Preserve the public aggregate count while keeping the carousel focused on written feedback.
-  const reviews = data.reviews.filter((review) => review.text);
+  const reviews = data.reviews
+    .filter((review) => review.text && review.rating >= 5)
+    .sort((left, right) => right.text.length - left.text.length);
   const googleUrls = data.googleLinks.length ? data.googleLinks : [data.sourceUrl];
   const googleUrl = googleUrls[0];
 
@@ -70,7 +73,15 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
   }, [autoplay, reviews.length]);
 
   useEffect(() => {
-    cardRefs.current[activeIndex]?.scrollIntoView({ behavior: reducedMotion.current ? "auto" : "smooth", block: "nearest", inline: "start" });
+    const viewport = viewportRef.current;
+    const card = cardRefs.current[activeIndex];
+    if (!viewport || !card) return;
+    const viewportRect = viewport.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    viewport.scrollTo({
+      left: viewport.scrollLeft + cardRect.left - viewportRect.left,
+      behavior: reducedMotion.current ? "auto" : "smooth",
+    });
   }, [activeIndex]);
 
   useEffect(() => {
@@ -87,11 +98,9 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
   }
 
   if (!reviews.length) return null;
-  return <section id="google-reviews" data-trustindex-reviews aria-labelledby="trustindex-reviews-title" className="border-y border-forest-900/10 bg-[#f4f7f4] py-16 lg:py-24">
+  return <section id="google-reviews" data-trustindex-reviews aria-label="Đánh giá khách hàng" className="border-y border-forest-900/10 bg-[#f4f7f4] py-16 lg:py-24">
     <div className="container-shell">
-      <h2 id="trustindex-reviews-title" className="text-balance max-w-2xl font-display text-3xl font-extrabold leading-tight tracking-[-.035em] text-forest-950 sm:text-4xl">Đánh giá từ Trustindex</h2>
-      <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">Phản hồi khách hàng được Trustindex công khai từ Google cho Tùng Phát.</p>
-      <div className="mt-10 grid gap-7 lg:grid-cols-[13.75rem_minmax(0,1fr)] lg:items-stretch">
+      <div className="grid gap-7 lg:grid-cols-[13.75rem_minmax(0,1fr)] lg:items-stretch">
         <aside className="flex min-h-[21rem] flex-col rounded-xl bg-forest-950 p-7 text-white shadow-[0_14px_32px_rgba(6,43,29,0.18)]">
           <p className="text-xs font-extrabold tracking-[0.16em] text-white/70">XUẤT SẮC</p>
           <div className="mt-4"><StarRating rating={5} /></div>
@@ -103,7 +112,7 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
           {data.verified ? <a href={data.sourceUrl} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-1.5 pt-7 text-xs font-bold text-white/75 hover:text-white"><BadgeCheck size={15} aria-hidden="true" />Verified by Trustindex</a> : null}
         </aside>
         <div className="min-w-0">
-          <div data-trustindex-viewport className="trustindex-review-viewport" aria-label="Đánh giá khách hàng" aria-live="polite" onPointerDown={() => setAutoplay(false)}>
+          <div ref={viewportRef} data-trustindex-viewport className="trustindex-review-viewport" aria-label="Đánh giá khách hàng" aria-live="polite" onPointerDown={() => setAutoplay(false)}>
             <div data-trustindex-rail data-active-index={activeIndex} className="trustindex-review-rail">
               {reviews.map((review, index) => <div key={review.id} ref={(element) => { cardRefs.current[index] = element; }} className="basis-full shrink-0 snap-start md:basis-[275px]"><ReviewCard review={review} googleUrl={googleUrl} onReadMore={() => { setAutoplay(false); setSelectedReview(review); }} /></div>)}
             </div>

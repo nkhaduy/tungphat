@@ -195,9 +195,10 @@ test("homepage có hero vật liệu editorial, CTA gọn và một ảnh LCP ư
       name: "Ván MDF, MFC, Plywood & gia công CNC tại TP.HCM",
     }),
   ).toBeVisible();
-  await expect(hero.getByRole("link", { name: "Liên hệ Zalo" })).toBeVisible();
-  await expect(hero.getByRole("link", { name: "Xem báo giá" })).toBeVisible();
+  await expect(hero.getByRole("link")).toHaveCount(2);
   await expect(hero.getByRole("link", { name: "Xem mã màu" })).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Liên hệ" })).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Xem báo giá" })).toHaveCount(0);
   await expect(hero.locator(".material-panels-hero-image")).toBeVisible();
   await expect(hero.locator('source[type="image/avif"]')).toHaveAttribute(
     "srcset",
@@ -312,48 +313,14 @@ test("CTA báo giá vật liệu có accessible name khớp nhãn hiển thị",
   ).toBeVisible();
 });
 
-test("requirement finder tạo nội dung có cấu trúc mà không gọi Forms API", async ({
+test("homepage removes the utility blocks and keeps contact actions focused", async ({
   page,
 }) => {
-  const formRequests: string[] = [];
-  await page.addInitScript(() => {
-    Object.defineProperty(navigator, "clipboard", {
-      configurable: true,
-      value: { writeText: async () => undefined },
-    });
-    window.open = () => null;
-  });
-  page.on("request", (request) => {
-    if (
-      /\/api\/(quote|contact)|cms\.mdftungphat\.com\/api\/(quote|contact)/i.test(
-        request.url(),
-      )
-    )
-      formRequests.push(request.url());
-  });
-
   await page.goto("/");
-  const finder = page.locator("#requirement-finder");
-  await expect(
-    finder.getByRole("heading", {
-      level: 2,
-      name: "Tìm đúng vật liệu hoặc dịch vụ trong 30 giây",
-    }),
-  ).toBeVisible();
-  await finder.getByRole("button", { name: "Gia công CNC theo file" }).click();
-  await finder.getByRole("button", { name: "MDF chống ẩm" }).click();
-  await finder.getByLabel("Độ dày").fill("18 mm");
-  await finder.getByLabel("Kích thước").fill("600 x 1200 mm");
-  await finder.getByLabel("Số lượng").fill("12 chi tiết");
-  await finder.getByLabel("Nội dung yêu cầu").fill("Soi rãnh theo file DXF");
-  await finder.getByLabel("Số điện thoại hoặc Zalo").fill("0909259160");
-  await finder
-    .getByRole("button", { name: "Chuẩn bị nội dung và mở Zalo" })
-    .click();
-  await expect(finder.getByRole("status")).toContainText(
-    "Đã chuẩn bị nội dung",
-  );
-  expect(formRequests).toEqual([]);
+  await expect(page.locator("#requirement-finder")).toHaveCount(0);
+  await expect(page.getByText("Công cụ gửi yêu cầu nhanh", { exact: true })).toHaveCount(0);
+  await expect(page.getByText("Lợi ích chính", { exact: true })).toHaveCount(0);
+  await expect(page.locator("[data-answer-block]")).toHaveCount(0);
 });
 
 test("mobile navigation contract supports focus, Escape, and a solid surface", async ({
@@ -994,11 +961,13 @@ test("Trustindex review slider renders current source data and remains usable on
   await page.goto("/", { waitUntil: "networkidle" });
   const section = page.locator("[data-trustindex-reviews]");
   await expect(section).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Đánh giá từ Trustindex" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Đánh giá từ Trustindex" })).toHaveCount(0);
+  await expect(section.getByText("Phản hồi khách hàng được Trustindex công khai từ Google cho Tùng Phát.", { exact: true })).toHaveCount(0);
   await expect(section).toContainText("4.8");
   await expect(section).toContainText("26 đánh giá");
   await expect(section).toContainText("Thuy Pham");
   await expect(section).toContainText("Đa dạng sản phẩm, sản xuất nhanh");
+  await expect(section.getByText("Lưu Phúc Điền", { exact: true })).toHaveCount(0);
   await expect(section.locator("[data-trustindex-card]").first()).not.toContainText("svgsvg");
   await expect(section.getByRole("link", { name: /Google/i }).first()).toHaveAttribute("href", /google\.com\/maps/);
   await expect(section.getByText("Verified by Trustindex")).toBeVisible();

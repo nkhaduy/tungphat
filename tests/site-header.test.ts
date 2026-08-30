@@ -21,13 +21,11 @@ describe("site header presentation", () => {
     expect(getSiteHeaderClasses(true, tone)).toContain("site-header--tone-dark");
   });
 
-  it("uses the shorter Zalo contact action and the supplied wordmark asset", () => {
+  it("uses the shorter Zalo contact action and keeps the supplied asset", () => {
     const header = readFileSync("components/site/SiteHeader.tsx", "utf8");
-    const hero = readFileSync("components/home/HomeHero.tsx", "utf8");
     expect(header).toContain("Liên hệ Zalo");
     expect(header).not.toContain("Gửi quy cách nhận báo giá");
     expect(existsSync("public/images/logo-zalo.webp")).toBe(true);
-    expect(hero).toContain('/images/logo-zalo.webp');
   });
 
   it("gives the shared header a little more vertical presence", () => {

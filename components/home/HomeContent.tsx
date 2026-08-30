@@ -89,14 +89,6 @@ export async function HomeContent() {
 
   return (
     <>
-      <section data-answer-block className="border-y border-forest-900/10 bg-[#edf4ef] py-12 sm:py-16">
-        <div className="container-shell max-w-4xl">
-          <p className="eyebrow">Trả lời nhanh</p>
-          <h2 className="text-balance mt-4 font-display text-3xl font-extrabold leading-tight tracking-[-.035em] text-forest-950 sm:text-4xl">Tùng Phát cung cấp gì và phục vụ ở đâu?</h2>
-          <p className="mt-5 max-w-3xl text-base leading-8 text-slate-700">Công ty TNHH TMDV Gỗ Tùng Phát cung cấp vật liệu gỗ dạng tấm như MDF, MFC, plywood, gỗ ghép và các nhóm vật liệu liên quan đang được giới thiệu trên website. Tùng Phát cũng tiếp nhận cắt, khoan, soi rãnh và gia công CNC theo kích thước, file kỹ thuật hoặc bản phác thảo đã được kiểm tra. Doanh nghiệp có hai chi nhánh tại đường Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh và phục vụ khu vực TP. Hồ Chí Minh. Khi yêu cầu báo giá, khách hàng nên gửi loại vật liệu, độ dày, kích thước, số lượng, bề mặt và file nếu có; khả năng cung ứng, quy cách và giá chỉ được xác nhận sau khi đối chiếu dữ liệu thực tế.</p>
-        </div>
-      </section>
-
       <section id="vat-lieu" className="scroll-mt-24 bg-[#f7f9f6] py-16 lg:py-24">
         <div className="container-shell">
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">

@@ -19,9 +19,11 @@ describe("homepage editorial material hero", () => {
 
   it("keeps the homepage hero editorial and leaves the catalogue hero untouched", () => {
     expect(hero).toContain('id="trang-chu"');
-    expect(hero).toContain("Vật liệu gỗ &amp; gia công tại xưởng");
+    expect(hero).toContain("CÔNG TY TNHH TMDV GỖ TÙNG PHÁT");
+    expect(hero).not.toContain("Vật liệu gỗ &amp; gia công tại xưởng");
     expect(hero).toContain("home-hero-copy");
     expect(hero).toContain("home-hero-visual");
+    expect(hero).toContain("leading-[1.04]");
     expect(hero).not.toContain("home-dot-grid");
     expect(hero).not.toContain("cnc-service-home.webp");
     expect(catalogue).toContain("catalogue-material-hero");
@@ -29,11 +31,23 @@ describe("homepage editorial material hero", () => {
     expect(catalogue).not.toContain("material-panels-hero");
   });
 
-  it("uses the color-code and Zalo language in the primary hero actions", () => {
+  it("keeps exactly the two requested hero actions", () => {
     expect(hero).toContain("Xem mã màu");
-    expect(hero).toContain("Liên hệ Zalo");
-    expect(hero).not.toContain("Xem catalogue");
-    expect(hero).not.toContain("Nhận tư vấn");
+    expect(hero).toContain("Liên hệ");
+    expect(hero).not.toContain("Xem báo giá");
+    expect(hero).not.toContain("Liên hệ Zalo");
+    expect(hero.match(/className="pressable inline-flex/g)).toHaveLength(2);
+  });
+
+  it("removes the homepage utility, benefits, and answer blocks", () => {
+    const page = readFileSync("app/page.tsx", "utf8");
+    const content = readFileSync("components/home/HomeContent.tsx", "utf8");
+    expect(page).not.toContain("RequirementFinder");
+    expect(page).not.toContain("HomeBenefits");
+    expect(page).not.toContain("thirdMobileAction");
+    expect(page).not.toContain("requirement-finder");
+    expect(content).not.toContain("data-answer-block");
+    expect(content).not.toContain("Trả lời nhanh");
   });
 
   it("keeps the hero image covering the full frame without exposed edges", () => {
