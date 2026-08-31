@@ -10,7 +10,7 @@ import business from "@/content/settings/business.json";
 import { locations } from "@/lib/locations";
 import { BUSINESS_NAME, PHONE_DISPLAY, PHONE_HREF, SITE_URL, TAX_ID, ZALO_URL, breadcrumbSchema, createPageMetadata, webPageSchema } from "@/lib/seo";
 
-export const metadata = createPageMetadata({ title: "Liên hệ Tùng Phát tại Thủ Đức", description: "Liên hệ Tùng Phát qua Zalo, email hoặc điện thoại; xem địa chỉ và chỉ đường đến hai chi nhánh tại Tam Bình, Thủ Đức, TP.HCM.", path: "/lien-he" });
+export const metadata = createPageMetadata({ title: "Liên hệ tại Thủ Đức", description: "Liên hệ Tùng Phát qua Zalo, email hoặc điện thoại; xem địa chỉ và chỉ đường đến hai chi nhánh tại Tam Bình, Thủ Đức, TP.HCM.", path: "/lien-he" });
 const contactPageSchema = { ...webPageSchema({ path: "/lien-he", name: "Liên hệ Tùng Phát tại Thủ Đức", description: "Thông tin liên hệ và địa chỉ hai chi nhánh Tùng Phát tại Tam Bình, Thủ Đức.", type: "ContactPage", primaryEntityId: `${SITE_URL}/#organization` }), "@type": "ContactPage" };
 const contactIntro = "Gọi hoặc nhắn Zalo để hỏi vật liệu, mã bề mặt, quy cách cắt và phần CNC. Bạn có thể gửi trước kích thước, độ dày, số lượng hoặc file để trao đổi nhanh hơn.";
 const phones: ContactPhone[] = [{ display: `${PHONE_DISPLAY} (Mr. Tùng)`, href: PHONE_HREF }];

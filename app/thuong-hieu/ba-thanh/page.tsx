@@ -10,7 +10,7 @@ import { absoluteUrl, createPageMetadata, ZALO_URL } from "@/lib/seo";
 import { locations } from "@/lib/locations";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Ba Thanh tại Tùng Phát – Catalogue Melamine và dịch vụ gia công",
+  title: "Ba Thanh – Catalogue Melamine và dịch vụ gia công",
   description:
     "Tra cứu mã Melamine Ba Thanh tại Tùng Phát, gửi mã để kiểm tra quy cách và kết nối dịch vụ cắt ván, dán cạnh, CNC tại TP.HCM.",
   path: "/thuong-hieu/ba-thanh/",

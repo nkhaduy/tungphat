@@ -62,4 +62,13 @@ describe("Wave 2 public copy", () => {
     expect(title?.match(/Tùng Phát/giu)).toHaveLength(1);
     expect(title).toContain("LP 101/104G");
   });
+
+  it("keeps one brand mention in scoped local and brand metadata", () => {
+    const brandPage = fs.readFileSync("app/thuong-hieu/ba-thanh/page.tsx", "utf8");
+    const contactPage = fs.readFileSync("app/lien-he/page.tsx", "utf8");
+    expect(brandPage).toContain('title: "Ba Thanh – Catalogue Melamine và dịch vụ gia công"');
+    expect(contactPage).toContain('title: "Liên hệ tại Thủ Đức"');
+    expect(brandPage).not.toContain("Ba Thanh tại Tùng Phát – Catalogue Melamine và dịch vụ gia công");
+    expect(contactPage).not.toContain("title: \"Liên hệ Tùng Phát tại Thủ Đức\"");
+  });
 });
