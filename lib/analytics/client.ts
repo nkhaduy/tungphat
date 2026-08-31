@@ -82,12 +82,12 @@ function buildPayload(
 function sendFirstParty(payload: AnalyticsPayload, preferBeacon = false) {
   const body = JSON.stringify(payload);
   if (preferBeacon && navigator.sendBeacon) {
-    const blob = new Blob([body], { type: "application/json" });
+    const blob = new Blob([body], { type: "text/plain;charset=UTF-8" });
     if (navigator.sendBeacon(`${API_BASE}/api/analytics/track`, blob)) return;
   }
   void fetch(`${API_BASE}/api/analytics/track`, {
     method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    headers: { "Content-Type": "text/plain;charset=UTF-8", Accept: "application/json" },
     body,
     keepalive: true,
     credentials: "omit",
