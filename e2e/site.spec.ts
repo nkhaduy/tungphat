@@ -164,7 +164,7 @@ test("representative routes expose breadcrumbs, intact images, and no horizontal
 }) => {
   const errors = await pageErrors(page);
   for (const route of representativeRoutes.filter((route) => route !== "/")) {
-    await page.goto(route, { waitUntil: "networkidle" });
+    await page.goto(route, { waitUntil: "domcontentloaded" });
     await expect(
       page.getByRole("navigation", { name: "Breadcrumb" }),
       route,
