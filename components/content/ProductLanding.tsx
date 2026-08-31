@@ -16,6 +16,8 @@ import { getLocalSeoCopy } from "@/lib/local-seo";
 import { absoluteMediaUrl, resolveMediaUrl } from "@/lib/media";
 import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, absolutePageUrl, breadcrumbSchema, schemaPageId, webPageSchema } from "@/lib/seo";
 
+const waveOneProductSlugs = new Set(["go-ghep", "go-ghep-cao-su", "go-ghep-tram", "van-mdf", "mdf-chong-am", "van-go-cong-nghiep"]);
+
 export function ProductLanding({ product }: { product: ContentEntry<ProductFrontmatter> }) {
   const productPath = `/${product.slug}`;
   const productUrl = absolutePageUrl(productPath);
@@ -47,6 +49,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
 
   const specGroups = [["Kích thước", product.dimensions], ["Độ dày", product.thicknesses], ["Bề mặt", product.surfaces], ["Tiêu chuẩn", product.standards]] as const;
   const detailGroups = [["Ứng dụng", product.applications], ["Điểm phù hợp", product.advantages], ["Lưu ý khi chọn", product.limitations]] as const;
+  const isWaveOneProduct = waveOneProductSlugs.has(product.slug);
 
   return (
     <>
@@ -75,25 +78,25 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
           <div className="container-shell max-w-4xl">
             <p className="text-xs font-extrabold uppercase tracking-[.15em] text-wood-600">Trả lời nhanh</p>
             <h2 id="direct-answer-title" className="mt-2 text-2xl font-extrabold text-forest-950">{localCopy?.answerTitle ?? `${displayTitle} là gì và phù hợp với ai?`}</h2>
-            <p className="mt-3 text-base leading-8 text-slate-700">{localCopy?.answerDescription ?? `${product.excerpt} Phù hợp cụ thể còn phụ thuộc vào ứng dụng, quy cách, bề mặt và điều kiện sử dụng; hãy xác nhận mã hàng thực tế trước khi chốt.`}</p>
+            <p className="mt-3 text-base leading-8 text-slate-700">{localCopy?.answerDescription ?? `${product.excerpt} Chọn theo hạng mục, quy cách, bề mặt và điều kiện sử dụng; nếu đã có mã, gửi kèm để hỏi đúng dòng hàng.`}</p>
           </div>
         </section>
 
         <section data-analytics-content className="section-space bg-white">
           <div className="container-shell grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
-            <SectionHeader eyebrow="Thông tin vật liệu" title="Quy cách cần xác nhận trước khi báo giá" description="Tùng Phát không niêm yết giá hoặc tồn kho khi chưa kiểm tra dữ liệu thực tế. Hãy gửi loại vật liệu, quy cách và số lượng để nhận thông tin phù hợp tại thời điểm yêu cầu." />
+            <SectionHeader eyebrow="Thông tin vật liệu" title="Quy cách nên có khi hỏi hàng" description="Gửi loại vật liệu, quy cách và số lượng để hỏi mã, giá và hàng hiện tại. Với bề mặt đã chọn, gửi luôn mã màu hoặc ảnh mẫu." />
             <dl className="grid gap-3 sm:grid-cols-2">
               {specGroups.map(([label, values]) => (
                 <div key={label} className="border border-forest-900/10 bg-[#f7f8f5] p-6">
                   <dt className="font-extrabold text-forest-950">{label}</dt>
-                  <dd className="mt-3 text-sm leading-6 text-slate-700">{values.length ? values.join("; ") : "Liên hệ để kiểm tra quy cách hiện có."}</dd>
+                  <dd className="mt-3 text-sm leading-6 text-slate-700">{values.length ? values.join("; ") : "Gửi quy cách cần dùng để hỏi hàng hiện tại."}</dd>
                 </div>
               ))}
             </dl>
           </div>
         </section>
 
-        <section className="section-space bg-[#f7f8f5]">
+        {!isWaveOneProduct && <section className="section-space bg-[#f7f8f5]">
           <div className="container-shell grid gap-5 lg:grid-cols-3">
             {detailGroups.map(([title, items]) => (
               <article key={title} className="border border-forest-900/10 bg-white p-7 shadow-[0_8px_24px_rgba(7,59,40,.045)]">
@@ -104,7 +107,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
               </article>
             ))}
           </div>
-        </section>
+        </section>}
 
         <section className="section-space bg-white">
           <div className="container-shell grid gap-10 lg:grid-cols-[1fr_.42fr]">
@@ -114,7 +117,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
               <ol className="mt-5 space-y-4 text-sm leading-6 text-slate-700">
                 {product.orderingSteps.map((step, index) => <li key={step} className="flex gap-3"><strong className="shrink-0 text-wood-600">{String(index + 1).padStart(2, "0")}</strong><span>{step}</span></li>)}
               </ol>
-              <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: `${product.slug}_specs` }} className="pressable mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-wood-500 px-5 text-sm font-extrabold text-white hover:bg-wood-600"><MessageCircle size={17} aria-hidden="true" />Kiểm tra hàng qua Zalo</TrackedLink>
+              <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: `${product.slug}_specs` }} className="pressable mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-wood-500 px-5 text-sm font-extrabold text-white hover:bg-wood-600"><MessageCircle size={17} aria-hidden="true" />Gửi quy cách qua Zalo</TrackedLink>
             </aside>
           </div>
         </section>
@@ -127,7 +130,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
         </section>
         <LocalIntentLinks currentSlug={product.slug} />
         <FaqList items={product.faq} />
-        <ContactCTA title="Gửi quy cách để Tùng Phát kiểm tra vật liệu" description="Chuẩn bị loại vật liệu, độ dày, kích thước, số lượng và yêu cầu bề mặt hoặc CNC nếu có. Tùng Phát sẽ xác nhận theo dữ liệu thực tế trước khi báo giá." />
+        <ContactCTA title="Gửi quy cách để hỏi đúng vật liệu" description="Chuẩn bị loại vật liệu, độ dày, kích thước, số lượng và yêu cầu bề mặt hoặc CNC nếu có. Mã, quy cách và tồn kho có thể thay đổi theo từng dòng hàng." />
       </SiteShell>
     </>
   );
