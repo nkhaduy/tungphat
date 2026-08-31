@@ -26,3 +26,13 @@ Production targets:
 - Never expose or commit `.env*`, `.dev.vars*`, `.vercel`, tokens, credentials, or secret values.
 - Supplier discovery and media synchronization can perform large network or production writes. Validation commands are safe; do not run upload/sync/delete commands merely as tests.
 - Do not force-push `main` or rewrite production history during normal development.
+
+## Public-facing Vietnamese content
+
+For any task that writes or rewrites public Vietnamese copy (homepage, product/category/service/local pages, knowledge articles, FAQ, CTA, metadata), use the repository skill:
+
+`$tung-phat-writing` → `.agents/skills/tung-phat-writing/SKILL.md`
+
+The skill is authoritative for Tùng Phát voice: natural trade-expert Vietnamese, buyer-first structure, anti-AI editing, and fact-safe claims. Combine it with SEO tooling/rules when the task also changes search architecture or technical SEO.
+
+Do not use competitor copy as factual evidence for Tùng Phát. Competitors may be studied only for communication patterns; Tùng Phát-specific product, price, stock, standard, service, branch and capability claims must come from Tùng Phát data or authoritative supplier/manufacturer sources.
