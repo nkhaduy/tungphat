@@ -12,10 +12,46 @@ import type { ArticleFrontmatter } from "@/lib/content-schema";
 import { absoluteMediaUrl, resolveMediaUrl } from "@/lib/media";
 import { SITE_URL, absolutePageUrl, breadcrumbSchema, schemaPageId, webPageSchema } from "@/lib/seo";
 
+const relatedLabels: Record<string, string> = {
+  "cat-cnc-go": "Cắt CNC gỗ",
+  "chuan-bi-file-cnc": "Chuẩn bị file CNC",
+  "gia-cong-cnc": "Gia công CNC",
+  "gia-cong-cnc-mdf": "Gia công CNC MDF",
+  "go-ghep": "Gỗ ghép",
+  "go-ghep-cao-su": "Gỗ ghép cao su",
+  "go-ghep-la-gi": "Gỗ ghép là gì?",
+  "go-ghep-tram": "Gỗ ghép tràm",
+  "mdf-chong-am": "MDF chống ẩm",
+  "mdf-thuong-va-chong-am": "MDF thường và chống ẩm",
+  "van-mdf": "Ván MDF",
+};
+
 function readableSlug(slug: string) {
+  if (relatedLabels[slug]) return relatedLabels[slug];
   const label = slug.replace(/-/g, " ");
   return label.charAt(0).toLocaleUpperCase("vi") + label.slice(1);
 }
+
+const articleCtas: Record<string, { eyebrow: string; title: string; description: string; zaloLabel: string }> = {
+  "chuan-bi-file-cnc": {
+    eyebrow: "Gửi file CNC",
+    title: "Đã có file cần báo giá?",
+    description: "Gửi file hoặc bản vẽ kèm vật liệu, độ dày, số lượng và những điểm còn cần trao đổi.",
+    zaloLabel: "Gửi file qua Zalo",
+  },
+  "go-ghep-la-gi": {
+    eyebrow: "Gửi quy cách gỗ",
+    title: "Đang chọn gỗ ghép cho hạng mục?",
+    description: "Gửi loại gỗ dự kiến, mặt sử dụng, kích thước, độ dày và số lượng để trao đổi đúng tấm cần tìm.",
+    zaloLabel: "Gửi quy cách qua Zalo",
+  },
+  "mdf-thuong-va-chong-am": {
+    eyebrow: "Chọn cốt MDF",
+    title: "Chưa biết chọn MDF thường hay chống ẩm?",
+    description: "Gửi hạng mục, môi trường sử dụng, bề mặt, độ dày và số lượng để trao đổi hướng vật liệu phù hợp.",
+    zaloLabel: "Gửi quy cách qua Zalo",
+  },
+};
 
 export function ArticleLanding({ article }: { article: ContentEntry<ArticleFrontmatter> }) {
   const articlePath = `/bai-viet/${article.slug}`;
@@ -39,6 +75,12 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
     ...article.relatedProducts.map((slug) => ({ href: `/${slug}`, label: readableSlug(slug), type: "Vật liệu" })),
     ...article.relatedArticles.map((slug) => ({ href: `/bai-viet/${slug}`, label: readableSlug(slug), type: "Bài viết" })),
   ];
+  const cta = articleCtas[article.slug] ?? {
+    eyebrow: "Trao đổi về vật liệu",
+    title: "Cần hỏi thêm về vật liệu hoặc gia công?",
+    description: "Gửi loại vật liệu, quy cách, số lượng và hình ảnh hoặc file liên quan để trao đổi rõ việc cần làm.",
+    zaloLabel: "Gửi yêu cầu qua Zalo",
+  };
 
   return (
     <>
@@ -87,7 +129,7 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
           </section>
         </article>
         <FaqList items={article.faq} />
-        <ContactCTA title="Cần kiểm tra vật liệu hoặc yêu cầu gia công?" description="Gửi loại vật liệu, quy cách, số lượng và hình ảnh hoặc file liên quan để Tùng Phát đối chiếu theo dữ liệu thực tế." />
+        <ContactCTA eyebrow={cta.eyebrow} title={cta.title} description={cta.description} zaloLabel={cta.zaloLabel} />
       </SiteShell>
     </>
   );
