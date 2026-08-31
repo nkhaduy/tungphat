@@ -14,6 +14,12 @@ type ThanhThuyProductDetailProps = {
   related: ThanhThuyProduct[];
 };
 
+function productIntro(product: ThanhThuyProduct) {
+  const group = product.seriesName || product.categoryName;
+  const color = product.color ? ` Nhóm màu được ghi nhận: ${product.color}.` : "";
+  return `${product.name} thuộc nhóm ${group} của Thanh Thuỳ.${color} Xem mẫu và thông tin đang có trước khi hỏi cốt ván, quy cách hoặc phần gia công.`;
+}
+
 export function ThanhThuyProductDetail({
   product,
   related,
@@ -95,7 +101,7 @@ export function ThanhThuyProductDetail({
                   </strong>
                 </div>
                 <p className="mt-6 text-base leading-8 text-slate-600">
-                  {product.description}
+                  {productIntro(product)}
                 </p>
                 <div className="mt-6 flex items-start gap-3 border-l-2 border-wood-500 bg-[#fff8ed] p-4 text-sm leading-6 text-forest-950">
                   <Info
@@ -104,9 +110,8 @@ export function ThanhThuyProductDetail({
                     size={18}
                   />
                   <p>
-                    <strong>Trạng thái:</strong> Liên hệ kiểm tra tồn kho. Tùng
-                    Phát không hiển thị “còn hàng” khi chưa xác nhận tại thời
-                    điểm yêu cầu.
+                    Tồn kho và khả năng làm theo quy cách thay đổi theo từng mã.
+                    Gửi mã kèm kích thước và số lượng để hỏi trước khi đặt.
                   </p>
                 </div>
                 {product.code ? (
@@ -173,8 +178,8 @@ export function ThanhThuyProductDetail({
                     className="mt-0.5 shrink-0 text-wood-500"
                     size={18}
                   />
-                  Tùng Phát hỗ trợ cắt ván, dán cạnh và CNC sau khi xác nhận
-                  mẫu, nền ván và file kỹ thuật.
+                  Nếu cần cắt ván, dán cạnh hoặc CNC, gửi kèm nền ván, kích thước
+                  và file kỹ thuật nếu có.
                 </li>
               </ul>
               <Link
@@ -214,9 +219,9 @@ export function ThanhThuyProductDetail({
         ) : null}
         <section className="bg-[#f6f7f5] py-8">
           <div className="container-shell text-xs leading-5 text-slate-600">
-            Nguồn dữ liệu: {product.sourceName || "Gỗ Thanh Thuỳ"}. Nội dung
-            tư vấn và CTA do Tùng Phát biên soạn; vui lòng kiểm tra mẫu thực tế
-            trước khi đặt.
+            Thông tin nguồn: {product.sourceName || "Gỗ Thanh Thuỳ"}. Màu và
+            vân nên được xem trên mẫu thực tế trước khi đặt; khi cần gia công,
+            gửi mã cùng quy cách và file nếu có.
           </div>
         </section>
       </div>

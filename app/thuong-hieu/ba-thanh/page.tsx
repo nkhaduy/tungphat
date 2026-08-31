@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, MapPin, MessageCircle } from "lucide-react";
 import { SiteShell } from "@/components/site/SiteShell";
 import { JsonLd } from "@/components/JsonLd";
 import { MaterialDisclaimer } from "@/components/catalog/MaterialDisclaimer";
 import { ProductInquiryCTA } from "@/components/catalog/ProductInquiryCTA";
 import { baThanhCategories, getBaThanhCodes } from "@/lib/catalog/ba-thanh";
-import { absoluteUrl, createPageMetadata } from "@/lib/seo";
+import { absoluteUrl, createPageMetadata, ZALO_URL } from "@/lib/seo";
 import { locations } from "@/lib/locations";
 
 export const metadata: Metadata = createPageMetadata({
@@ -69,15 +69,15 @@ export default function BaThanhBrandPage() {
             </nav>
             <div className="mt-12 max-w-4xl">
               <p className="eyebrow eyebrow-on-dark">
-                NHÓM VẬT LIỆU TẠI TÙNG PHÁT
+                MÃ MELAMINE BA THANH
               </p>
               <h1 className="mt-5 max-w-3xl text-balance font-display text-4xl font-extrabold leading-[1.1] tracking-[-.04em] sm:text-5xl lg:text-7xl">
-                Ba Thanh, tra đúng mã để làm đúng hạng mục.
+                Ba Thanh: tra mã trước khi chọn ván.
               </h1>
               <p className="mt-6 max-w-2xl text-pretty text-base leading-8 text-white/72 sm:text-lg">
-                Tùng Phát cung cấp và nhận kiểm tra các dòng ván, bề mặt và mã
-                Melamine Ba Thanh theo nhu cầu thực tế. Gửi mã, quy cách và file
-                gia công để đội ngũ tư vấn sát với đơn hàng.
+                Chọn nhóm vân gỗ, đơn sắc, vân đá hoặc vân vải trong bảng mã
+                Melamine Ba Thanh. Khi đã có mã, gửi kèm cốt ván, kích thước,
+                số lượng và file nếu cần cắt hoặc CNC.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link
@@ -87,12 +87,14 @@ export default function BaThanhBrandPage() {
                   Mở bảng mã Melamine{" "}
                   <ArrowRight size={17} aria-hidden="true" />
                 </Link>
-                <Link
-                  href="/lien-he/"
-                  className="inline-flex min-h-13 items-center justify-center border border-white/25 px-6 text-sm font-extrabold text-white transition-colors hover:border-white"
+                <a
+                  href={ZALO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-13 items-center justify-center gap-2 border border-white/25 px-6 text-sm font-extrabold text-white transition-colors hover:border-white"
                 >
-                  Trao đổi nhu cầu
-                </Link>
+                  <MessageCircle size={17} aria-hidden="true" /> Gửi mã qua Zalo
+                </a>
               </div>
             </div>
           </div>
@@ -103,19 +105,19 @@ export default function BaThanhBrandPage() {
             <div>
               <p className="text-3xl font-extrabold text-forest-950">{verifiedMelamineCodes}</p>
               <p className="mt-1 text-xs font-bold uppercase tracking-[.14em] text-slate-500">
-                mã đã xác minh từ index
+                mã trong bảng tra cứu
               </p>
             </div>
             <div>
               <p className="text-3xl font-extrabold text-forest-950">{baThanhCategories.length}</p>
               <p className="mt-1 text-xs font-bold uppercase tracking-[.14em] text-slate-500">
-                nhóm bề mặt phát hiện
+                nhóm bề mặt
               </p>
             </div>
             <div>
               <p className="text-3xl font-extrabold text-forest-950">1</p>
               <p className="mt-1 text-xs font-bold uppercase tracking-[.14em] text-slate-500">
-                quy trình gửi mã rõ ràng
+                bước gửi mã
               </p>
             </div>
           </div>
@@ -126,12 +128,12 @@ export default function BaThanhBrandPage() {
             <div className="max-w-3xl">
               <p className="eyebrow">ĐI THẲNG VÀO NHU CẦU</p>
               <h2 className="mt-4 font-display text-3xl font-extrabold tracking-[-.035em] text-forest-950 sm:text-5xl">
-                Chọn nhóm màu, sau đó gửi mã.
+                Chọn nhóm bề mặt, sau đó gửi mã.
               </h2>
               <p className="mt-5 leading-7 text-slate-600">
-                Bảng mã giúp bạn tra theo nhóm vân thay vì phải lục lại từng
-                catalogue. Mã hiển thị bằng chữ, ảnh chỉ dùng để đối chiếu cảm
-                quan.
+                Bảng mã giúp bạn đi thẳng vào nhóm vân đang tìm thay vì lục lại
+                từng catalogue. Ảnh dùng để xem nhanh; màu thực tế nên xem trên
+                mẫu hoặc catalogue trước khi chốt.
               </p>
             </div>
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -166,20 +168,20 @@ export default function BaThanhBrandPage() {
             <div>
               <p className="eyebrow eyebrow-on-dark">CÁCH ĐẶT HÀNG THEO MÃ</p>
               <h2 className="mt-4 font-display text-3xl font-extrabold tracking-[-.035em] sm:text-5xl">
-                Một tin nhắn đủ dữ liệu sẽ tiết kiệm nhiều vòng hỏi lại.
+                Gửi đủ thông tin để hỏi đúng mã và quy cách.
               </h2>
               <p className="mt-5 leading-7 text-white/70">
-                Gửi mã hiển thị, loại cốt ván mong muốn, kích thước cắt, độ dày,
-                số lượng và file CNC nếu có. Tùng Phát sẽ kiểm tra lại mã và quy
-                cách trước khi báo giá.
+                Gửi mã hiển thị, loại cốt ván, kích thước cắt, độ dày, số lượng
+                và file CNC nếu có. Tin nhắn càng rõ, phần vật liệu và gia công
+                càng dễ trao đổi.
               </p>
             </div>
             <ol className="grid gap-3 sm:grid-cols-2">
               {[
                 "Chọn mã trong bảng màu",
-                "Nêu MDF, MDF chống ẩm hoặc MFC",
+                "Nêu cốt MDF, MDF chống ẩm hoặc MFC",
                 "Gửi kích thước và số lượng",
-                "Xác nhận cắt, dán cạnh hoặc CNC",
+                "Nêu phần cắt, dán cạnh hoặc CNC",
               ].map((step, index) => (
                 <li
                   key={step}
@@ -202,7 +204,7 @@ export default function BaThanhBrandPage() {
             <div className="max-w-3xl">
               <p className="eyebrow">TỪ MÃ ĐẾN TẤM VÁN</p>
               <h2 className="mt-4 font-display text-3xl font-extrabold tracking-[-.035em] text-forest-950 sm:text-5xl">
-                Kết nối catalogue với xưởng và quy cách thực tế.
+                Từ mã màu đến tấm ván cần làm.
               </h2>
             </div>
             <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -215,7 +217,7 @@ export default function BaThanhBrandPage() {
                 [
                   "MDF chống ẩm",
                   "/mdf-chong-am/",
-                  "Kiểm tra lựa chọn cốt khi công trình cần cân nhắc môi trường sử dụng.",
+                  "Xem hướng chọn cốt khi hạng mục có yêu cầu riêng về môi trường.",
                 ],
                 [
                   "Cắt và dán cạnh",
@@ -225,7 +227,7 @@ export default function BaThanhBrandPage() {
                 [
                   "Gia công CNC",
                   "/gia-cong-cnc/",
-                  "Đính kèm file kỹ thuật để xác nhận đường cắt và lỗ khoan.",
+                  "Gửi file kỹ thuật nếu có đường cắt, lỗ hoặc rãnh.",
                 ],
               ].map(([title, href, text]) => (
                 <Link
@@ -255,7 +257,7 @@ export default function BaThanhBrandPage() {
             <div>
               <p className="eyebrow">KHU VỰC PHỤC VỤ</p>
               <h2 className="mt-4 font-display text-3xl font-extrabold text-forest-950 sm:text-4xl">
-                Kiểm tra mã tại hai chi nhánh Tùng Phát.
+                Xem địa chỉ trước khi ghé.
               </h2>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -287,21 +289,21 @@ export default function BaThanhBrandPage() {
             <div className="mt-10 grid gap-4">
               <details className="group border-b border-forest-900/15 py-4">
                 <summary className="cursor-pointer list-none pr-8 text-base font-extrabold text-forest-950 marker:hidden">
-                  Tùng Phát có phải đại lý độc quyền Ba Thanh không?
+                  Thông tin quan hệ thương hiệu được thể hiện thế nào?
                 </summary>
                 <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">
-                  Trang này không tuyên bố đại lý chính thức hay độc quyền. Tùng
-                  Phát nhận kiểm tra mã, quy cách và tình trạng thực tế theo
-                  từng nhu cầu.
+                  Trang này tập trung vào việc tra cứu mã Melamine Ba Thanh. Mọi
+                  thông tin về đại lý hoặc độc quyền không được suy ra từ việc
+                  mã xuất hiện trong bảng; khi cần, hãy hỏi trực tiếp theo mã.
                 </p>
               </details>
               <details className="group border-b border-forest-900/15 py-4">
                 <summary className="cursor-pointer list-none pr-8 text-base font-extrabold text-forest-950 marker:hidden">
-                  Cần gửi gì để nhận báo giá?
+                  Cần gửi gì để hỏi đúng mã?
                 </summary>
                 <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">
-                  Bạn nên gửi mã, loại cốt ván, độ dày, khổ cắt, số lượng, yêu
-                  cầu dán cạnh và file CNC nếu có.
+                  Gửi mã, loại cốt ván, độ dày, khổ cắt, số lượng, yêu cầu dán
+                  cạnh và file CNC nếu có.
                 </p>
               </details>
               <details className="group border-b border-forest-900/15 py-4">

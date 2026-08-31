@@ -62,8 +62,7 @@ export function ThanhThuyCategoryPage({
               {category.name} Thanh Thuỳ tại Tùng Phát
             </h1>
             <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700 sm:text-base">
-              {copy.description} Tùng Phát hỗ trợ đối chiếu mã, kiểm tra tồn kho
-              thực tế và tư vấn quy cách gia công tại TP.HCM.
+              {copy.description}
             </p>
             <ThanhThuyExplorer
               items={items}
@@ -77,15 +76,14 @@ export function ThanhThuyCategoryPage({
           <div className="container-shell grid gap-5 md:grid-cols-3">
             {copy.applications.map((application) => (
               <article
-                key={application}
+                key={application.title}
                 className="border-l-2 border-wood-500 bg-[#fffdf8] p-5"
               >
                 <h2 className="text-base font-extrabold text-forest-950">
-                  {application}
+                  {application.title}
                 </h2>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
-                  Tư vấn nền ván, màu cạnh và quy cách cắt theo hạng mục thực
-                  tế.
+                  {application.description}
                 </p>
               </article>
             ))}
@@ -97,7 +95,7 @@ export function ThanhThuyCategoryPage({
               rel="noopener noreferrer"
               className="pressable inline-flex min-h-12 touch-manipulation items-center justify-center gap-2 bg-wood-500 px-6 text-sm font-extrabold text-white hover:bg-wood-600 focus-visible:ring-2 focus-visible:ring-wood-600"
             >
-              <MessageCircle aria-hidden="true" size={17} /> Gửi mã để kiểm tra
+              <MessageCircle aria-hidden="true" size={17} /> {copy.ctaLabel}
             </a>
             <Link
               href="/gia-cong-cnc/"
@@ -127,7 +125,7 @@ export function ThanhThuyCategoryPage({
                 href="/lien-he/"
                 className="inline-flex min-h-11 touch-manipulation items-center gap-2 border border-forest-900/15 px-5 text-sm font-bold text-forest-950 transition-colors hover:border-wood-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wood-600"
               >
-                Liên hệ Tùng Phát
+                Xem địa chỉ và cách gửi
                 <ArrowRight aria-hidden="true" size={16} />
               </Link>
             </div>

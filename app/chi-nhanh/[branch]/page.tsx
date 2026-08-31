@@ -68,7 +68,7 @@ export default async function BranchPage({ params }: BranchRouteProps) {
           <div className="container-shell max-w-4xl">
             <p className="text-xs font-extrabold uppercase tracking-[.15em] text-wood-600">Thông tin nhanh</p>
             <h2 id="branch-answer-title" className="mt-2 text-2xl font-extrabold text-forest-950">Địa chỉ và cách liên hệ chi nhánh</h2>
-            <p className="mt-3 text-base leading-8 text-slate-700">{location.address}. Gọi hoặc nhắn Zalo để Tùng Phát kiểm tra vật liệu, quy cách và yêu cầu gia công trước khi bạn đến.</p>
+            <p className="mt-3 text-base leading-8 text-slate-700">{location.address}. {config.visitGuidance}</p>
           </div>
         </section>
 
@@ -84,14 +84,9 @@ export default async function BranchPage({ params }: BranchRouteProps) {
               <TrackedLink href={location.directionsUrl} target="_blank" rel="noopener noreferrer" eventName="click_directions" eventProperties={{ location: branch }} className="pressable mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-forest-900 px-5 text-sm font-extrabold text-white hover:bg-forest-800">Mở Google Maps <ExternalLink size={17} aria-hidden="true" /></TrackedLink>
             </div>
             <div>
-              <SectionHeader eyebrow="Trao đổi trước khi đến" title="Kiểm tra đúng vật liệu và phần việc cần làm" description="Hai chi nhánh cùng dùng đầu mối liên hệ của Tùng Phát. Gửi trước loại ván, quy cách, số lượng hoặc file CNC để nhân viên đối chiếu nhu cầu thực tế." />
+              <SectionHeader eyebrow={config.sectionEyebrow} title={config.sectionTitle} description={config.sectionDescription} />
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                {[
-                  ["Vật liệu", "Gỗ ghép, MDF, MDF chống ẩm, MFC và Plywood theo danh mục đang giới thiệu."],
-                  ["Gia công", "Cắt, khoan, soi rãnh hoặc CNC theo thông tin và file đã được kiểm tra."],
-                  ["Cách gửi yêu cầu", "Nhắn Zalo hoặc gọi, kèm kích thước, độ dày, số lượng và ảnh/file nếu có."],
-                  ["Đi đến chi nhánh", "Mở Google Maps từ nút chỉ đường để đến đúng điểm trên đường Tam Bình."],
-                ].map(([title, text]) => <article key={title} className="border border-forest-900/10 bg-[#fbfcfa] p-6"><h3 className="text-lg font-extrabold text-forest-950">{title}</h3><p className="mt-3 text-sm leading-7 text-slate-700">{text}</p></article>)}
+                {config.checklist.map(({ title, text }) => <article key={title} className="border border-forest-900/10 bg-[#fbfcfa] p-6"><h3 className="text-lg font-extrabold text-forest-950">{title}</h3><p className="mt-3 text-sm leading-7 text-slate-700">{text}</p></article>)}
               </div>
             </div>
           </div>
@@ -101,12 +96,12 @@ export default async function BranchPage({ params }: BranchRouteProps) {
           <div className="container-shell">
             <SectionHeader eyebrow="Trang liên quan" title="Xem vật liệu và dịch vụ trước khi liên hệ" description="Các trang dưới đây giúp bạn gửi nhu cầu rõ hơn trước khi gọi hoặc nhắn Zalo cho chi nhánh." />
             <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {[["Gỗ ghép tại Thủ Đức", "/go-ghep/"], ["Ván MDF tại Thủ Đức", "/van-mdf/"], ["Cắt CNC gỗ tại Thủ Đức", "/cat-cnc-go/"], ["Gia công CNC tại Thủ Đức", "/gia-cong-cnc/"]].map(([label, href]) => <Link key={href} href={href} className="group flex min-h-16 items-center justify-between gap-3 border border-forest-900/10 bg-white px-5 text-sm font-extrabold text-forest-950 hover:border-wood-500/50 hover:text-wood-600">{label}<ArrowRight size={16} className="shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" /></Link>)}
+              {config.relatedLinks.map(([label, href]) => <Link key={href} href={href} className="group flex min-h-16 items-center justify-between gap-3 border border-forest-900/10 bg-white px-5 text-sm font-extrabold text-forest-950 hover:border-wood-500/50 hover:text-wood-600">{label}<ArrowRight size={16} className="shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" /></Link>)}
             </div>
           </div>
         </section>
         <LocalIntentLinks />
-        <ContactCTA eyebrow="Liên hệ chi nhánh" title="Cần kiểm tra vật liệu trước khi đến Thủ Đức?" description="Gửi loại ván, quy cách, số lượng hoặc file cần gia công. Tùng Phát sẽ phản hồi theo dữ liệu thực tế qua điện thoại hoặc Zalo." zaloLabel="Nhắn Zalo cho Tùng Phát" />
+        <ContactCTA eyebrow="Liên hệ chi nhánh" title={config.finalTitle} description={config.finalDescription} zaloLabel="Nhắn Zalo cho Tùng Phát" />
       </SiteShell>
     </>
   );
