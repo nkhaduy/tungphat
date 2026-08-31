@@ -28,6 +28,8 @@ const publicRoutes = [
   "/du-an/",
   "/bai-viet/",
   "/lien-he/",
+  "/chi-nhanh/14-tam-binh/",
+  "/chi-nhanh/81b-tam-binh/",
   "/chinh-sach-bao-mat/",
   "/dieu-khoan-su-dung/",
 ];
@@ -42,6 +44,7 @@ const representativeRoutes = [
   "/san-pham/an-cuong/",
   "/catalogue/an-cuong/",
   "/lien-he/",
+  "/chi-nhanh/14-tam-binh/",
   "/chinh-sach-bao-mat/",
   "/bai-viet/",
 ];
@@ -192,12 +195,13 @@ test("homepage có hero vật liệu editorial, CTA gọn và một ảnh LCP ư
   await expect(
     hero.getByRole("heading", {
       level: 1,
-      name: "Ván MDF, MFC, Plywood & gia công CNC tại TP.HCM",
+      name: "Kho ván gỗ công nghiệp, gỗ ghép & gia công CNC tại Thủ Đức",
     }),
   ).toBeVisible();
-  await expect(hero.getByRole("link")).toHaveCount(2);
-  await expect(hero.getByRole("link", { name: "Xem mã màu" })).toBeVisible();
-  await expect(hero.getByRole("link", { name: "Liên hệ" })).toBeVisible();
+  await expect(hero.getByRole("link")).toHaveCount(3);
+  await expect(hero.getByRole("link", { name: "Gửi quy cách qua Zalo" })).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Xem nhóm vật liệu" })).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Hai chi nhánh" })).toBeVisible();
   await expect(hero.getByRole("link", { name: "Xem báo giá" })).toHaveCount(0);
   await expect(hero.locator(".material-panels-hero-image")).toBeVisible();
   await expect(hero.locator('source[type="image/avif"]')).toHaveAttribute(
@@ -284,13 +288,15 @@ test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", asyn
   await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
   for (const heading of [
     "Danh mục vật liệu chính",
+    "Một đầu mối cho vật liệu và gia công tại Thủ Đức",
     "Quy cách vật liệu thường được hỏi",
+    "Gỗ ghép cao su, gỗ ghép tràm và hướng gia công",
     "Mã màu nổi bật",
-    "Năng lực gia công CNC",
-    "Báo giá ván MDF, MFC & ván gỗ công nghiệp",
-    "Xưởng CNC và hai chi nhánh Tùng Phát",
+    "Cắt và gia công CNC theo quy cách",
+    "Gửi loại ván, quy cách hoặc file cần cắt",
+    "Máy CNC tham khảo và hai chi nhánh Tùng Phát",
     "Tra cứu mã vật liệu theo nhà cung cấp",
-    "Hai chi nhánh tại đường Tam Bình, TP.HCM",
+    "Hai chi nhánh tại Tam Bình, Thủ Đức",
     "Bài viết hữu ích từ Tùng Phát",
   ]) {
     await expect(
@@ -966,7 +972,7 @@ test("Trustindex review slider renders current source data and remains usable on
   await expect(section).toContainText("26 đánh giá");
   await expect(section).toContainText("Thuy Pham");
   await expect(section).toContainText("Đa dạng sản phẩm, sản xuất nhanh");
-  await expect(section.getByText("Lưu Phúc Điền", { exact: true })).toHaveCount(0);
+  await expect(section.getByText("Lưu Phúc Điền", { exact: true })).toBeVisible();
   await expect(section.locator("[data-trustindex-card]").first()).not.toContainText("svgsvg");
   await expect(section.getByRole("link", { name: /Google/i }).first()).toHaveAttribute("href", /google\.com\/maps/);
   await expect(section.getByText("Verified by Trustindex")).toBeVisible();

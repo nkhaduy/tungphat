@@ -1,8 +1,7 @@
 "use client";
 
-/* Trustindex exposes these public avatar URLs with the corresponding review. */
-/* eslint-disable @next/next/no-img-element */
 import { BadgeCheck, ChevronLeft, ChevronRight, ExternalLink, Star, X } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 export type TrustindexReview = {
@@ -34,15 +33,14 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 function ReviewCard({ review, googleUrl, onReadMore }: { review: TrustindexReview; googleUrl: string; onReadMore: () => void }) {
-  const [photoFailed, setPhotoFailed] = useState(false);
   const needsDialog = review.text.length > 260;
   return <article data-trustindex-card className="flex min-h-[21rem] basis-full snap-start flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-[0_12px_28px_rgba(15,23,42,0.10)] sm:p-7 md:basis-[275px]">
     <div className="flex items-start justify-between gap-4">
       <div className="flex min-w-0 items-center gap-3.5">
-        {review.avatarUrl && !photoFailed ? <img src={review.avatarUrl} alt={`Ảnh đại diện của ${review.reviewerName}`} width={48} height={48} loading="lazy" referrerPolicy="no-referrer" onError={() => setPhotoFailed(true)} className="h-12 w-12 shrink-0 rounded-full object-cover" /> : <span aria-hidden="true" className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#edf4ef] text-xs font-extrabold text-forest-900">{initials(review.reviewerName)}</span>}
+        <span aria-hidden="true" className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#edf4ef] text-xs font-extrabold text-forest-900">{initials(review.reviewerName)}</span>
         <div className="min-w-0"><h3 className="truncate text-sm font-extrabold text-forest-950">{review.reviewerName}</h3><p className="mt-1 text-xs text-slate-600">{review.date}</p></div>
       </div>
-      <img src="/brand/google-g.png" alt="Google" width={21} height={21} loading="lazy" className="h-[21px] w-[21px] shrink-0" />
+    <Image src="/brand/google-g.png" alt="Google" width={21} height={21} className="h-[21px] w-[21px] shrink-0" />
     </div>
     <div className="mt-5"><StarRating rating={review.rating} /></div>
     {review.text ? <div data-trustindex-review-body className="mt-4"><p className={needsDialog ? "line-clamp-6 whitespace-pre-line text-sm leading-6 text-slate-700" : "whitespace-pre-line text-sm leading-6 text-slate-700"}>{review.text}</p>{needsDialog ? <button type="button" onClick={onReadMore} className="mt-3 text-xs font-extrabold text-forest-900 underline decoration-forest-900/35 underline-offset-4">Đọc toàn bộ đánh giá</button> : null}</div> : null}
@@ -58,10 +56,10 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const reducedMotion = useRef(false);
-  // Preserve the public aggregate count while keeping the carousel focused on written feedback.
+  // Show every sourced written review; place lower ratings later without changing the aggregate.
   const reviews = data.reviews
-    .filter((review) => review.text && review.rating >= 5)
-    .sort((left, right) => right.text.length - left.text.length);
+    .filter((review) => review.text)
+    .sort((left, right) => right.rating - left.rating || right.text.length - left.text.length);
   const googleUrls = data.googleLinks.length ? data.googleLinks : [data.sourceUrl];
   const googleUrl = googleUrls[0];
 
@@ -107,7 +105,7 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
           <p className="mt-4 text-4xl font-extrabold tracking-[-0.04em]">{data.rating.toFixed(1)}</p>
           <p className="mt-1 text-sm text-white/75">Dựa trên {data.reviewCount} đánh giá</p>
           <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2">
-            {googleUrls.map((url, index) => <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={`Google - Chi nhánh ${index + 1}`} className="inline-flex items-center gap-2 text-sm font-extrabold text-white hover:text-[#f6b400]"><img src="/brand/google-g.png" alt={index === 0 ? "Google" : ""} width={20} height={20} className="h-5 w-5" aria-hidden={index > 0 ? "true" : undefined} />{`Tùng Phát ${index + 1}`} <ExternalLink size={13} aria-hidden="true" /></a>)}
+          {googleUrls.map((url, index) => <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={`Google - Chi nhánh ${index + 1}`} className="inline-flex items-center gap-2 text-sm font-extrabold text-white hover:text-[#f6b400]"><Image src="/brand/google-g.png" alt={index === 0 ? "Google" : ""} width={20} height={20} className="h-5 w-5" aria-hidden={index > 0 ? "true" : undefined} />{`Tùng Phát ${index + 1}`} <ExternalLink size={13} aria-hidden="true" /></a>)}
           </div>
           {data.verified ? <a href={data.sourceUrl} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-1.5 pt-7 text-xs font-bold text-white/75 hover:text-white"><BadgeCheck size={15} aria-hidden="true" />Verified by Trustindex</a> : null}
         </aside>

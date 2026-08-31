@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { TrackedLink } from "@/components/TrackedLink";
+import { branchPathForLocationId } from "@/lib/branch-pages";
 import { getArticles, getProducts } from "@/lib/content";
 import { getPublicColorCodes } from "@/lib/catalog/color-codes/public";
 import { locations } from "@/lib/locations";
@@ -118,6 +119,19 @@ export async function HomeContent() {
         </div>
       </section>
 
+      <section className="border-b border-forest-900/10 bg-white py-16 lg:py-20">
+        <div className="container-shell">
+          <SectionIntro eyebrow="Vì sao liên hệ Tùng Phát" title="Một đầu mối cho vật liệu và gia công tại Thủ Đức" description="Thông tin dưới đây chỉ dựa trên những gì Tùng Phát đang công khai: địa điểm liên hệ, nhóm vật liệu và các hạng mục gia công cần được xác nhận theo nhu cầu thực tế." />
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {[
+              ["Có điểm đến cụ thể", "Hai chi nhánh trên đường Tam Bình, phường Hiệp Bình, TP. Hồ Chí Minh."],
+              ["Có danh mục để tham khảo", "MDF, MDF chống ẩm, MFC, Plywood, gỗ ghép và các nhóm bề mặt đang được giới thiệu."],
+              ["Có thể trao đổi CNC", "Cắt, khoan, soi rãnh và gia công chi tiết theo file hoặc quy cách đã được kiểm tra."],
+            ].map(([title, description]) => <article key={title} className="border border-forest-900/10 bg-[#f7f8f5] p-7"><span className="text-xs font-extrabold uppercase tracking-[.15em] text-wood-600">Tùng Phát</span><h2 className="mt-4 text-xl font-extrabold leading-7 text-forest-950">{title}</h2><p className="mt-3 text-sm leading-7 text-slate-700">{description}</p></article>)}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white py-16 lg:py-24">
         <div className="container-shell">
           <SectionIntro eyebrow="Thông tin sản phẩm" title="Quy cách vật liệu thường được hỏi" description="Xem nhanh loại vật liệu, độ dày và quy cách đang được giới thiệu; Tùng Phát sẽ đối chiếu lại theo mã hàng và nhu cầu cụ thể khi báo giá." />
@@ -133,6 +147,22 @@ export async function HomeContent() {
                 <Link href={`/${product.slug}`} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-extrabold text-wood-600">Xem {product.title} <ArrowRight size={16} aria-hidden="true" /></Link>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="go-ghep-thu-duc" className="scroll-mt-24 border-y border-forest-900/10 bg-[#edf4ef] py-16 lg:py-24">
+        <div className="container-shell">
+          <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+            <SectionIntro eyebrow="Gỗ ghép tại Thủ Đức" title="Gỗ ghép cao su, gỗ ghép tràm và hướng gia công" description="Tùng Phát có trang riêng cho gỗ ghép, cao su và tràm. Xem thông tin từng nhóm rồi gửi quy cách để kiểm tra mẫu, lô hàng hoặc nhu cầu cắt CNC." />
+            <Link href="/go-ghep/" className="inline-flex min-h-11 shrink-0 items-center gap-2 self-start text-sm font-extrabold text-forest-950 hover:text-wood-600">Xem trang gỗ ghép <ArrowRight size={17} aria-hidden="true" /></Link>
+          </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {[
+              ["Gỗ ghép", "/go-ghep/", "/images/wood-panels.webp", "Gỗ ghép tại Thủ Đức", "Tổng quan nhóm gỗ ghép và cách gửi nhu cầu."],
+              ["Gỗ ghép cao su", "/go-ghep-cao-su/", "/images/wood-panels.webp", "Gỗ ghép cao su tại Thủ Đức", "Tham khảo mặt bàn, kệ, tủ và yêu cầu CNC."],
+              ["Gỗ ghép tràm", "/go-ghep-tram/", "/wood/veneer.webp", "Gỗ ghép tràm tại Thủ Đức", "Kiểm tra bề mặt, quy cách và nhu cầu hoàn thiện."],
+            ].map(([title, href, image, alt, description]) => <article key={href} className="group overflow-hidden border border-forest-900/10 bg-white shadow-[0_8px_24px_rgba(7,59,40,.045)]"><Link href={href} className="relative block aspect-[16/10] overflow-hidden"><Image src={image} alt={alt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition duration-300 group-hover:scale-[1.025]" /></Link><div className="p-6"><h3 className="text-xl font-extrabold text-forest-950"><Link href={href}>{title}</Link></h3><p className="mt-3 text-sm leading-7 text-slate-600">{description}</p><Link href={href} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-extrabold text-wood-600">Xem thông tin <ArrowRight size={16} aria-hidden="true" /></Link></div></article>)}
           </div>
         </div>
       </section>
@@ -167,7 +197,7 @@ export async function HomeContent() {
 
       <section id="nang-luc-cnc" className="scroll-mt-24 bg-white py-16 lg:py-24">
         <div className="container-shell">
-          <SectionIntro eyebrow="Gia công tại xưởng" title="Năng lực gia công CNC" description="Tùng Phát tiếp nhận các thao tác đã được mô tả trong nội dung dịch vụ hiện tại và xác nhận chi tiết kỹ thuật trước khi chạy máy." centered />
+          <SectionIntro eyebrow="Gia công tại Thủ Đức" title="Cắt và gia công CNC theo quy cách" description="Tùng Phát tiếp nhận các thao tác đã được mô tả trong nội dung dịch vụ hiện tại và xác nhận chi tiết kỹ thuật trước khi chạy máy." centered />
           <div className="mt-12 grid gap-6 lg:grid-cols-[.88fr_1.12fr]">
             <div className="relative min-h-[380px] overflow-hidden rounded-2xl lg:min-h-[570px]">
               <Image src="/images/cnc-service.webp" alt="Đầu máy CNC đang cắt biên dạng trên tấm ván" fill sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover" />
@@ -196,7 +226,7 @@ export async function HomeContent() {
       <section className="bg-[#edf4ef] py-16 lg:py-20">
         <div className="container-shell grid overflow-hidden rounded-2xl border border-forest-900/10 bg-white shadow-[0_20px_60px_rgba(7,59,40,.09)] lg:grid-cols-[1.05fr_.95fr]">
           <div className="p-6 sm:p-9 lg:p-12">
-            <SectionIntro eyebrow="Báo giá theo quy cách" title="Báo giá ván MDF, MFC & ván gỗ công nghiệp" description="Giá phụ thuộc thương hiệu, độ dày, bề mặt và số lượng. Xem hướng dẫn báo giá đang áp dụng hoặc gửi quy cách để Tùng Phát kiểm tra." />
+            <SectionIntro eyebrow="Kiểm tra hàng và báo giá" title="Gửi loại ván, quy cách hoặc file cần cắt" description="Gửi loại ván, độ dày, số lượng hoặc kích thước cần cắt để Tùng Phát kiểm tra và báo giá theo dữ liệu thực tế." />
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/bao-gia" className="inline-flex min-h-14 items-center justify-center gap-2 rounded-md bg-wood-600 px-6 text-sm font-extrabold text-white transition hover:bg-wood-700">Xem báo giá ván MDF <ArrowRight size={17} aria-hidden="true" /></Link>
               <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_file_quote", channel: "zalo" }} className="inline-flex min-h-14 items-center justify-center gap-2 rounded-md border border-forest-900/20 px-6 text-sm font-extrabold text-forest-950 hover:border-forest-900">
@@ -221,7 +251,7 @@ export async function HomeContent() {
 
       <section id="thu-vien-xuong" className="scroll-mt-24 bg-white py-16 lg:py-24">
         <div className="container-shell">
-          <SectionIntro eyebrow="Hình ảnh thực tế" title="Xưởng CNC và hai chi nhánh Tùng Phát" description="Hình ảnh máy gia công và mặt tiền tại đường Tam Bình giúp khách hàng nhận diện đúng địa điểm trước khi đến xem vật liệu hoặc trao đổi đơn hàng." />
+          <SectionIntro eyebrow="Hình ảnh và địa điểm" title="Máy CNC tham khảo và hai chi nhánh Tùng Phát" description="Ảnh máy CNC mang tính tham khảo; ảnh mặt tiền tại đường Tam Bình giúp khách hàng nhận diện đúng địa điểm trước khi đến trao đổi đơn hàng." />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {homeGallery.map((item, index) => (
               <figure key={item.src} className={`group overflow-hidden rounded-xl border border-forest-900/10 bg-[#f7f9f6] ${index === 0 ? "md:col-span-2" : ""}`}>
@@ -255,7 +285,7 @@ export async function HomeContent() {
 
       <section className="bg-white py-16 lg:py-24">
         <div className="container-shell">
-          <SectionIntro eyebrow="Địa điểm Tùng Phát" title="Hai chi nhánh tại đường Tam Bình, TP.HCM" description="Gọi trước để trao đổi vật liệu hoặc gia công, sau đó mở Google Maps để đến đúng chi nhánh Tùng Phát." centered />
+          <SectionIntro eyebrow="Địa điểm Tùng Phát" title="Hai chi nhánh tại Tam Bình, Thủ Đức" description="Gọi trước để trao đổi vật liệu hoặc gia công, sau đó mở Google Maps để đến đúng chi nhánh Tùng Phát tại TP. Hồ Chí Minh." centered />
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
             {locations.map((branch) => (
               <article key={branch.id} id={branch.id} className="grid overflow-hidden rounded-2xl border border-forest-900/10 bg-[#f8faf7] shadow-[0_12px_36px_rgba(7,59,40,.07)] sm:grid-cols-[.9fr_1.1fr]">
@@ -267,7 +297,10 @@ export async function HomeContent() {
                   <h3 className="mt-3 text-xl font-extrabold text-forest-950">{branch.name}</h3>
                   <p className="mt-4 flex items-start gap-3 text-sm font-semibold leading-6 text-slate-700"><MapPin size={18} className="mt-0.5 shrink-0 text-forest-800" aria-hidden="true" />{branch.address}</p>
                   <a href={PHONE_HREF} className="mt-4 inline-flex min-h-11 items-center gap-3 text-sm font-extrabold text-forest-950 hover:text-wood-600"><Phone size={17} className="text-wood-600" aria-hidden="true" />{PHONE_DISPLAY}</a>
-                  <a href={branch.directionsUrl} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-forest-900 px-5 text-sm font-extrabold text-white transition hover:bg-forest-800">Xem chỉ đường <ExternalLink size={16} aria-hidden="true" /></a>
+                  <div className="mt-auto grid gap-2 pt-5 sm:grid-cols-2">
+                    <Link href={branchPathForLocationId(branch.id)} className="inline-flex min-h-12 items-center justify-center border border-forest-900/20 px-4 text-center text-sm font-extrabold text-forest-950 hover:border-forest-900">Xem chi tiết</Link>
+                    <a href={branch.directionsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-forest-900 px-5 text-sm font-extrabold text-white transition hover:bg-forest-800">Xem chỉ đường <ExternalLink size={16} aria-hidden="true" /></a>
+                  </div>
                 </div>
               </article>
             ))}

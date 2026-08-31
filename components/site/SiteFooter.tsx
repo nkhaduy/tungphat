@@ -4,6 +4,7 @@ import { ExternalLink, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { TrackedLink } from "@/components/TrackedLink";
 import { LocalizedText } from "@/components/site/LocalizedText";
 import business from "@/content/settings/business.json";
+import { branchPathForLocationId } from "@/lib/branch-pages";
 import { PHONE_HREF, ZALO_URL } from "@/lib/seo";
 
 const materialLinks = [
@@ -116,12 +117,9 @@ export function SiteFooter() {
           </h2>
           <div className="mt-4 grid gap-3">
             {business.locations.map((location) => (
-              <a
+              <div
                 key={location.id}
-                href={location.directionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pressable group flex min-h-20 items-start gap-3 border border-forest-900/10 bg-white p-4 shadow-sm hover:border-wood-500/50"
+                className="flex min-h-20 items-start gap-3 border border-forest-900/10 bg-white p-4 shadow-sm"
               >
                 <MapPin
                   size={18}
@@ -133,13 +131,12 @@ export function SiteFooter() {
                     {location.name}
                   </strong>
                   {location.address}
+                  <span className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs font-extrabold">
+                    <Link href={branchPathForLocationId(location.id)} className="text-forest-900 hover:text-wood-600">Xem chi tiết</Link>
+                    <a href={location.directionsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-slate-600 hover:text-wood-600">Mở Maps <ExternalLink size={13} aria-hidden="true" /></a>
+                  </span>
                 </span>
-                <ExternalLink
-                  size={15}
-                  className="ml-auto mt-1 shrink-0 text-slate-500 group-hover:text-wood-600"
-                  aria-hidden="true"
-                />
-              </a>
+              </div>
             ))}
           </div>
           <TrackedLink

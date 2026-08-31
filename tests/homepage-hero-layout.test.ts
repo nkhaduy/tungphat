@@ -31,12 +31,12 @@ describe("homepage editorial material hero", () => {
     expect(catalogue).not.toContain("material-panels-hero");
   });
 
-  it("keeps exactly the two requested hero actions", () => {
-    expect(hero).toContain("Xem mã màu");
-    expect(hero).toContain("Liên hệ");
+  it("keeps focused local commercial hero actions", () => {
+    expect(hero).toContain("Gửi quy cách qua Zalo");
+    expect(hero).toContain("Xem nhóm vật liệu");
+    expect(hero).toContain("Hai chi nhánh");
     expect(hero).not.toContain("Xem báo giá");
-    expect(hero).not.toContain("Liên hệ Zalo");
-    expect(hero.match(/className="pressable inline-flex/g)).toHaveLength(2);
+    expect(hero.match(/className="pressable inline-flex/g)).toHaveLength(3);
   });
 
   it("removes the homepage utility, benefits, and answer blocks", () => {

@@ -13,6 +13,8 @@ import { getSupplierSitemapEntries } from "@/lib/catalog/suppliers/sitemap";
 import { getThanhThuyCatalog } from "@/lib/thanh-thuy";
 import { buildThanhThuySitemapEntries } from "@/lib/thanh-thuy-sitemap";
 import { getMaterialDataset } from "@/lib/materials";
+import { branchPathForLocationId } from "@/lib/branch-pages";
+import { locations } from "@/lib/locations";
 
 export const dynamic = "force-static";
 
@@ -27,10 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { route: "/catalogue/", include: true },
     { route: "/gia-cong-cnc/", include: true },
     { route: "/bao-gia/", include: true },
-    {
-      route: "/du-an/",
-      include: getListingIndexability(projects.length).includeInSitemap,
-    },
+    { route: "/du-an/", include: true },
     {
       route: "/bai-viet/",
       include: getListingIndexability(articles.length).includeInSitemap,
@@ -48,8 +47,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           ? materialDataset.lastVerified
           : staticPages.updatedAt,
       changeFrequency: route === "/" ? "weekly" : "monthly",
-      priority: route === "/" ? 1 : 0.7,
+        priority: route === "/" ? 1 : 0.7,
     }));
+  const branchEntries: MetadataRoute.Sitemap = locations.map((location) => ({
+    url: absoluteUrl(branchPathForLocationId(location.id)),
+    lastModified: staticPages.updatedAt,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
   const rootContent = (slug: string) => !isReservedRootSlug(slug);
   const products: MetadataRoute.Sitemap = (await getProducts())
     .filter((entry) => rootContent(entry.slug))
@@ -94,6 +99,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ).filter((entry) => !supplierUrls.has(entry.url));
   return [
     ...staticEntries,
+    ...branchEntries,
     ...products,
     ...services,
     ...articleEntries,

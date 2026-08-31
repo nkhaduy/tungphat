@@ -9,14 +9,19 @@ import { TrackedLink } from "@/components/TrackedLink";
 import { ContactCTA } from "@/components/ui/ContactCTA";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { LocalIntentLinks } from "@/components/content/LocalIntentLinks";
 import type { ContentEntry } from "@/lib/content";
 import type { ProductFrontmatter } from "@/lib/content-schema";
+import { getLocalSeoCopy } from "@/lib/local-seo";
 import { absoluteMediaUrl, resolveMediaUrl } from "@/lib/media";
 import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, absolutePageUrl, breadcrumbSchema, schemaPageId, webPageSchema } from "@/lib/seo";
 
 export function ProductLanding({ product }: { product: ContentEntry<ProductFrontmatter> }) {
   const productPath = `/${product.slug}`;
   const productUrl = absolutePageUrl(productPath);
+  const localCopy = getLocalSeoCopy(product.slug);
+  const displayTitle = localCopy?.h1 ?? product.title;
+  const pageDescription = localCopy?.heroDescription ?? product.excerpt;
   const isGuide = product.status === "guide";
   const entityId = isGuide ? undefined : schemaPageId(productPath, "product");
   const productSchema = isGuide
@@ -25,8 +30,8 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
         "@context": "https://schema.org",
         "@type": "Product",
         "@id": entityId,
-        name: product.title,
-        description: product.excerpt,
+        name: displayTitle,
+        description: pageDescription,
         image: [absoluteMediaUrl(product.featuredImage, SITE_URL)],
         category: product.category,
         material: product.materialType,
@@ -38,21 +43,21 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
           ...product.surfaces.map((value) => ({ "@type": "PropertyValue", name: "Bề mặt", value })),
         ],
       };
-  const pageSchema = webPageSchema({ path: productPath, name: product.title, description: product.excerpt, type: isGuide ? "CollectionPage" : "WebPage", primaryEntityId: entityId, datePublished: product.publishedAt, dateModified: product.updatedAt });
+  const pageSchema = webPageSchema({ path: productPath, name: displayTitle, description: pageDescription, type: isGuide ? "CollectionPage" : "WebPage", primaryEntityId: entityId, datePublished: product.publishedAt, dateModified: product.updatedAt });
 
   const specGroups = [["Kích thước", product.dimensions], ["Độ dày", product.thicknesses], ["Bề mặt", product.surfaces], ["Tiêu chuẩn", product.standards]] as const;
   const detailGroups = [["Ứng dụng", product.applications], ["Điểm phù hợp", product.advantages], ["Lưu ý khi chọn", product.limitations]] as const;
 
   return (
     <>
-      <JsonLd data={[pageSchema, breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Sản phẩm", path: "/san-pham" }, { name: product.title, path: productPath }]), ...(productSchema ? [productSchema] : [])]} />
+      <JsonLd data={[pageSchema, breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Sản phẩm", path: "/san-pham" }, { name: displayTitle, path: productPath }]), ...(productSchema ? [productSchema] : [])]} />
       <SiteShell>
         <ContentEngagementTracker contentType="product" contentId={product.slug} contentTitle={product.title} contentCategory={product.category} />
         <PageHero
-          breadcrumbs={[{ label: "Trang chủ", href: "/" }, { label: "Vật liệu", href: "/san-pham" }, { label: product.title }]}
+          breadcrumbs={[{ label: "Trang chủ", href: "/" }, { label: "Vật liệu", href: "/san-pham" }, { label: displayTitle }]}
           eyebrow={product.category}
-          title={product.title}
-          description={product.excerpt}
+          title={displayTitle}
+          description={pageDescription}
           image={{ src: resolveMediaUrl(product.featuredImage), alt: product.featuredImageAlt, priority: true }}
           actions={
             <>
@@ -69,8 +74,8 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
         <section data-answer-block className="border-b border-forest-900/10 bg-[#edf4ef] py-8" aria-labelledby="direct-answer-title">
           <div className="container-shell max-w-4xl">
             <p className="text-xs font-extrabold uppercase tracking-[.15em] text-wood-600">Trả lời nhanh</p>
-            <h2 id="direct-answer-title" className="mt-2 text-2xl font-extrabold text-forest-950">{product.title} là gì và phù hợp với ai?</h2>
-            <p className="mt-3 text-base leading-8 text-slate-700">{product.excerpt} Phù hợp cụ thể còn phụ thuộc vào ứng dụng, quy cách, bề mặt và điều kiện sử dụng; hãy xác nhận mã hàng thực tế trước khi chốt.</p>
+            <h2 id="direct-answer-title" className="mt-2 text-2xl font-extrabold text-forest-950">{localCopy?.answerTitle ?? `${displayTitle} là gì và phù hợp với ai?`}</h2>
+            <p className="mt-3 text-base leading-8 text-slate-700">{localCopy?.answerDescription ?? `${product.excerpt} Phù hợp cụ thể còn phụ thuộc vào ứng dụng, quy cách, bề mặt và điều kiện sử dụng; hãy xác nhận mã hàng thực tế trước khi chốt.`}</p>
           </div>
         </section>
 
@@ -120,6 +125,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
             <div className="flex flex-wrap gap-3"><Link href="/gia-cong-cnc" className="pressable inline-flex min-h-12 items-center gap-2 border border-forest-900/20 bg-white px-5 text-sm font-extrabold text-forest-950 hover:border-forest-900">Xem dịch vụ CNC <ArrowRight size={17} aria-hidden="true" /></Link><Link href="/san-pham" className="pressable inline-flex min-h-12 items-center gap-2 text-sm font-extrabold text-wood-600">Xem vật liệu khác <ArrowRight size={17} aria-hidden="true" /></Link></div>
           </div>
         </section>
+        <LocalIntentLinks currentSlug={product.slug} />
         <FaqList items={product.faq} />
         <ContactCTA title="Gửi quy cách để Tùng Phát kiểm tra vật liệu" description="Chuẩn bị loại vật liệu, độ dày, kích thước, số lượng và yêu cầu bề mặt hoặc CNC nếu có. Tùng Phát sẽ xác nhận theo dữ liệu thực tế trước khi báo giá." />
       </SiteShell>

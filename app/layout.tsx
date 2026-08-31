@@ -17,11 +17,11 @@ import {
 } from "@/lib/seo";
 import { twitterSocialImage } from "@/lib/social-images";
 import { locations } from "@/lib/locations";
-import { buildVerifiedMapIdentity } from "@/lib/entity-schema";
+import { branchPathForLocationId } from "@/lib/branch-pages";
 import business from "@/content/settings/business.json";
 import seo from "@/content/settings/seo.json";
 import { montserratVariables } from "@/app/fonts";
-import { absoluteMediaUrl, DEFAULT_PUBLIC_MEDIA_BASE_URL } from "@/lib/media";
+import { DEFAULT_PUBLIC_MEDIA_BASE_URL } from "@/lib/media";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -99,35 +99,9 @@ const siteSchema = {
       taxID: business.taxId,
       sameAs: business.socialLinks,
       department: locations.map((location) => ({
-        "@id": schemaPageId("/", location.id),
+        "@id": schemaPageId(branchPathForLocationId(location.id), "local-business"),
       })),
     },
-    ...locations.map((location) => {
-      const mapIdentity = buildVerifiedMapIdentity(location.directionsUrl);
-      return {
-        "@type": business.localBusinessType,
-        "@id": schemaPageId("/", location.id),
-        name: location.name,
-        url: schemaPageId("/lien-he", location.id),
-        image: absoluteMediaUrl(location.image, SITE_URL),
-        telephone: PHONE_E164,
-        email: business.email,
-        parentOrganization: { "@id": schemaPageId("/", "organization") },
-        areaServed: business.serviceAreas,
-        sameAs: mapIdentity.sameAs,
-        ...(mapIdentity.identifier ? { identifier: mapIdentity.identifier } : {}),
-        ...(business.openingHours.length
-          ? { openingHours: business.openingHours }
-          : {}),
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: location.streetAddress,
-          addressLocality: location.addressLocality,
-          addressRegion: location.addressRegion,
-          addressCountry: location.addressCountry,
-        },
-      };
-    }),
   ],
 };
 

@@ -22,7 +22,7 @@ describe("Trustindex reviews SSR", () => {
     expect(html).toContain("26 đánh giá");
     expect(html).toContain("Verified by Trustindex");
     expect(html).toContain("google.com/maps");
-    expect(html).toContain('src="/brand/google-g.png"');
+    expect(html).toContain("/_next/image?url=%2Fbrand%2Fgoogle-g.png");
     expect(html).not.toContain("cdn.trustindex.io/assets/platform/Google/icon.svg");
     expect(html).not.toContain("svgsvg");
     expect(html).toMatch(/<span role="img"[^>]+aria-label="5 trên 5 sao"/);
@@ -60,7 +60,7 @@ describe("Trustindex reviews SSR", () => {
     expect(html).not.toContain("Chỉ có điểm");
   });
 
-  it("curates the carousel to written five-star reviews without changing the aggregate", () => {
+  it("renders every written review while placing higher ratings first", () => {
     const data: TrustindexReviewData = {
       sourceUrl: "https://public.trustindex.io/reviews/mdftungphat.com/lang/vi",
       source: "Google",
@@ -78,7 +78,7 @@ describe("Trustindex reviews SSR", () => {
     const html = renderToStaticMarkup(createElement(TrustindexReviews, { data }));
     expect(html).toContain("Năm sao hữu ích");
     expect(html).toContain("Năm sao ngắn");
-    expect(html).not.toContain("Một sao");
+    expect(html).toContain("Một sao");
     expect(html.indexOf("Năm sao hữu ích")).toBeLessThan(html.indexOf("Năm sao ngắn"));
     expect(html).toContain("4.8");
     expect(html).toContain("26 đánh giá");
