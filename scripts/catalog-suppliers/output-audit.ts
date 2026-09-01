@@ -112,6 +112,35 @@ function collectBrandNames(value: unknown, results: string[] = []): string[] {
   return results;
 }
 
+function collectSchemaTypes(value: unknown, results: string[] = []): string[] {
+  if (Array.isArray(value)) {
+    for (const item of value) collectSchemaTypes(item, results);
+    return results;
+  }
+  if (!value || typeof value !== "object") return results;
+  const record = value as Record<string, unknown>;
+  const type = record["@type"];
+  if (typeof type === "string") results.push(type);
+  else if (Array.isArray(type)) {
+    results.push(...type.filter((item): item is string => typeof item === "string"));
+  }
+  for (const child of Object.values(record)) collectSchemaTypes(child, results);
+  return results;
+}
+
+function isCatalogueDetail(route: string) {
+  const segments = canonicalPath(route).split("/").filter(Boolean);
+  return segments[0] === "catalogue" && segments.length === 4;
+}
+
+function hasCdnImageWithAlt(html: string) {
+  return [...html.matchAll(/<img\b[^>]*>/gi)].some((match) => {
+    const tag = match[0];
+    return /^https:\/\/cdn\.mdftungphat\.com\//i.test(attribute(tag, "src"))
+      && Boolean(attribute(tag, "alt").trim());
+  });
+}
+
 function duplicates(values: Array<{ value: string; route: string }>) {
   const routesByValue = new Map<string, string[]>();
   for (const entry of values) {
@@ -191,6 +220,15 @@ export function auditSupplierPages(
       errors.push(
         `${route}: brand mismatch (${[...new Set(wrongBrands)].join(", ")})`,
       );
+    }
+    if (page.indexable && isCatalogueDetail(route)) {
+      const schemaTypes = collectSchemaTypes(metadata.jsonLd);
+      if (!schemaTypes.includes("Product")) errors.push(`${route}: missing Product schema`);
+      if (!schemaTypes.includes("BreadcrumbList")) errors.push(`${route}: missing BreadcrumbList schema`);
+      if (!hasCdnImageWithAlt(page.html)) errors.push(`${route}: missing CDN image with alt`);
+      if (!new RegExp(`Gửi\\s+mã\\s+[^<]+\\s+qua\\s+Zalo`, "iu").test(page.html)) {
+        errors.push(`${route}: missing code CTA`);
+      }
     }
   }
 

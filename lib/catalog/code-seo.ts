@@ -4,13 +4,8 @@ import { absoluteUrl, SITE_URL } from "@/lib/seo";
 
 export type CatalogueCodeTier = "A" | "B" | "C";
 
-export const CATALOGUE_CODE_SEO_PILOT_ROUTES = [
-  "/catalogue/thanh-thuy/melamine/301/",
-] as const;
-
 type CatalogueCodeSeoOptions = {
   supplierName: string;
-  pilotRoutes?: readonly string[];
 };
 
 function normalize(value: string | undefined) {
@@ -68,7 +63,7 @@ function contextIdentity(identity: string, material: string, supplierName: strin
 
 export function buildCatalogueCodeSeo(
   record: PublicSupplierColorCode,
-  { supplierName, pilotRoutes = CATALOGUE_CODE_SEO_PILOT_ROUTES }: CatalogueCodeSeoOptions,
+  { supplierName }: CatalogueCodeSeoOptions,
 ) {
   const hasImage = hasUsefulImage(record);
   const descriptiveName = hasDescriptiveName(record, supplierName);
@@ -80,8 +75,8 @@ export function buildCatalogueCodeSeo(
           ? "B"
           : "C"
       : "C";
-  const approvedForIndex = record.seoStatus === "READY_TO_INDEX" || pilotRoutes.includes(record.canonicalRoute);
-  const indexable = tier === "A" && approvedForIndex;
+  // Tier eligibility comes solely from verified record quality, never route approval.
+  const indexable = tier === "A";
   const identity = exactIdentity(record);
   const fullIdentity = contextIdentity(identity, record.materialType, supplierName);
 

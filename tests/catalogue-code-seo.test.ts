@@ -41,10 +41,9 @@ const baseRecord: PublicSupplierColorCode = {
 };
 
 describe("catalogue code SEO policy", () => {
-  it("indexes an approved Tier A pilot with exact searchable identity", () => {
+  it("indexes a Tier A record with exact searchable identity", () => {
     const seo = buildCatalogueCodeSeo(baseRecord, {
       supplierName: "Thanh Thuỳ",
-      pilotRoutes: [baseRecord.canonicalRoute],
     });
 
     expect(seo).toMatchObject({
@@ -59,7 +58,23 @@ describe("catalogue code SEO policy", () => {
     expect(seo.ctaLabel).toBe("Gửi mã 301 qua Zalo");
   });
 
-  it("keeps a Tier B record noindex until it receives explicit rollout approval", () => {
+  it("indexes every Tier A identity without a route allowlist", () => {
+    const seo = buildCatalogueCodeSeo({
+      ...baseRecord,
+      codeRaw: "AC-701",
+      codeNormalized: "AC701",
+      displayName: "AC-701 Natural Oak",
+      slug: "ac-701",
+      canonicalRoute: "/catalogue/an-cuong/laminate/ac-701/",
+      supplier: "an-cuong",
+      materialType: "laminate",
+      seoStatus: "NEEDS_ENRICHMENT",
+    }, { supplierName: "An Cường" });
+
+    expect(seo).toMatchObject({ tier: "A", indexable: true, robots: { index: true, follow: true } });
+  });
+
+  it("keeps a Tier B record noindex when its identity is not descriptive enough", () => {
     const seo = buildCatalogueCodeSeo({
       ...baseRecord,
       codeRaw: "NW 01",
@@ -70,7 +85,6 @@ describe("catalogue code SEO policy", () => {
       materialType: "pvc",
     }, {
       supplierName: "Thanh Thuỳ",
-      pilotRoutes: [baseRecord.canonicalRoute],
     });
 
     expect(seo).toMatchObject({ tier: "B", indexable: false, robots: { index: false, follow: true } });
@@ -86,7 +100,6 @@ describe("catalogue code SEO policy", () => {
       images: [],
     }, {
       supplierName: "Ba Thanh",
-      pilotRoutes: [baseRecord.canonicalRoute],
     });
 
     expect(seo).toMatchObject({ tier: "C", indexable: false, robots: { index: false, follow: true } });
@@ -98,7 +111,6 @@ describe("catalogue code SEO policy", () => {
       displayName: "301 Artistic Stripe Thanh Thuỳ",
     }, {
       supplierName: "Thanh Thuỳ",
-      pilotRoutes: [baseRecord.canonicalRoute],
     });
 
     expect(seo.title).toBe("301 Artistic Stripe Thanh Thuỳ - Melamine");
@@ -107,7 +119,6 @@ describe("catalogue code SEO policy", () => {
   it("emits fact-safe Product data with the code identity and no commerce claims", () => {
     const seo = buildCatalogueCodeSeo(baseRecord, {
       supplierName: "Thanh Thuỳ",
-      pilotRoutes: [baseRecord.canonicalRoute],
     });
     const schema = catalogueCodeProductSchema(baseRecord, seo, "Thanh Thuỳ");
 
@@ -134,7 +145,7 @@ describe("catalogue code SEO policy", () => {
     expect(related.map((record) => record.codeRaw)).toEqual(["302"]);
   });
 
-  it("renders the approved pilot as a complete server-side landing page", async () => {
+  it("renders the primary 301 record as a complete server-side landing page", async () => {
     const params = Promise.resolve({ supplier: "thanh-thuy", material: "melamine", code: "301" });
     const [metadata, page] = await Promise.all([
       generateMetadata({ params }),
@@ -158,7 +169,7 @@ describe("catalogue code SEO policy", () => {
     expect(markup).toContain('href="/catalogue/thanh-thuy/melamine"');
   });
 
-  it("includes the approved Tier A pilot in the sitemap and excludes a Tier C code", () => {
+  it("includes Tier A in the sitemap and excludes a Tier C code", () => {
     const paths = getSupplierSitemapEntries("2026-09-01T00:00:00.000Z").map((entry) => entry.path);
 
     expect(paths).toContain("/catalogue/thanh-thuy/melamine/301/");

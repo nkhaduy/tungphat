@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "broken-image",
+        "value": "<img>",
+        "createdAt": "2026-09-01T12:24:20.028Z",
+        "reason": "Audit parser regex only; no rendered image is created or changed."
+      }
+    ]
+  }
+}

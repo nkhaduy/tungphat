@@ -7,12 +7,12 @@
     "duplicateNoindexDescriptions": []
   },
   "summary": {
-    "pages": 2849,
-    "indexable": 27,
-    "noindex": 2822,
-    "uniqueTitles": 2849,
-    "uniqueDescriptions": 2849,
-    "canonicalsChecked": 2849,
+    "pages": 2930,
+    "indexable": 2621,
+    "noindex": 309,
+    "uniqueTitles": 2930,
+    "uniqueDescriptions": 2930,
+    "canonicalsChecked": 2930,
     "invalidJsonLd": 0,
     "brandMismatches": 0,
     "orphanIndexablePages": 0

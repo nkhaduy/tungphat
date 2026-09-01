@@ -155,4 +155,22 @@ describe("supplier static output audit", () => {
       },
     ]);
   });
+
+  it("requires catalogue detail pages to retain Product, BreadcrumbList, CDN image alt text and a code CTA", () => {
+    const detail = page({
+      route: "/catalogue/thanh-thuy/melamine/301/",
+      supplierId: "thanh-thuy",
+      brand: "Thanh Thuỳ",
+      title: "301 Artistic Stripe - Melamine Thanh Thuỳ | Tùng Phát",
+      description: "Tra cứu mã 301 Artistic Stripe thuộc bảng Melamine Thanh Thuỳ.",
+    });
+    detail.html = detail.html.replace('"@type":"Product"', '"@type":"Thing"');
+
+    const result = auditSupplierPages([detail], [detail.route]);
+
+    expect(result.errors.join("\n")).toMatch(/missing Product schema/i);
+    expect(result.errors.join("\n")).toMatch(/missing BreadcrumbList schema/i);
+    expect(result.errors.join("\n")).toMatch(/missing CDN image with alt/i);
+    expect(result.errors.join("\n")).toMatch(/missing code CTA/i);
+  });
 });
