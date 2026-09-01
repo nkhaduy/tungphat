@@ -1,6 +1,4 @@
 import type { PublicSupplierColorCode } from "./color-codes/types";
-import { absoluteMediaUrl } from "@/lib/media";
-import { absoluteUrl, SITE_URL } from "@/lib/seo";
 
 export type CatalogueCodeTier = "A" | "B" | "C";
 
@@ -93,27 +91,6 @@ export function buildCatalogueCodeSeo(
     description: `Tra cứu mã ${identity} thuộc bảng ${materialLabel(record.materialType)} ${supplierName}, kèm hình ảnh mã màu và đường dẫn gửi mã qua Zalo.`,
     imageAlt: `Mã ${identity} - ${materialLabel(record.materialType)} ${supplierName}`,
     ctaLabel: `Gửi mã ${record.codeRaw} qua Zalo`,
-  };
-}
-
-export function catalogueCodeProductSchema(
-  record: PublicSupplierColorCode,
-  seo: ReturnType<typeof buildCatalogueCodeSeo>,
-  supplierName: string,
-) {
-  const images = record.images
-    .filter((image) => image.localPath)
-    .map((image) => absoluteMediaUrl(image.localPath!, SITE_URL));
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: seo.title,
-    sku: record.codeRaw,
-    brand: { "@type": "Brand", name: supplierName },
-    category: materialLabel(record.materialType),
-    url: absoluteUrl(record.canonicalRoute),
-    ...(images.length ? { image: images } : {}),
   };
 }
 

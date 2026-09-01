@@ -4,7 +4,6 @@ import CatalogueCodeRoute, { generateMetadata } from "@/app/catalogue/[supplier]
 import type { PublicSupplierColorCode } from "@/lib/catalog/color-codes/types";
 import {
   buildCatalogueCodeSeo,
-  catalogueCodeProductSchema,
   findRelatedCatalogueCodes,
 } from "@/lib/catalog/code-seo";
 import { getSupplierSitemapEntries } from "@/lib/catalog/suppliers/sitemap";
@@ -116,23 +115,13 @@ describe("catalogue code SEO policy", () => {
     expect(seo.title).toBe("301 Artistic Stripe Thanh Thuỳ - Melamine");
   });
 
-  it("emits fact-safe Product data with the code identity and no commerce claims", () => {
-    const seo = buildCatalogueCodeSeo(baseRecord, {
-      supplierName: "Thanh Thuỳ",
-    });
-    const schema = catalogueCodeProductSchema(baseRecord, seo, "Thanh Thuỳ");
+  it("does not emit unsupported Product JSON-LD on catalogue detail pages", async () => {
+    const params = Promise.resolve({ supplier: "thanh-thuy", material: "melamine", code: "301" });
+    const markup = renderToStaticMarkup(await CatalogueCodeRoute({ params }));
 
-    expect(schema).toMatchObject({
-      "@type": "Product",
-      name: "301 Artistic Stripe - Melamine Thanh Thuỳ",
-      sku: "301",
-      brand: { "@type": "Brand", name: "Thanh Thuỳ" },
-      category: "Melamine",
-      url: "https://mdftungphat.com/catalogue/thanh-thuy/melamine/301/",
-      image: ["https://cdn.mdftungphat.com/catalog/thanh-thuy/301.webp"],
-    });
-    expect(schema).not.toHaveProperty("offers");
-    expect(JSON.stringify(schema)).not.toMatch(/price|availability|aggregateRating/i);
+    expect(markup).toContain('"@type":"BreadcrumbList"');
+    expect(markup).not.toContain('"@type":"Product"');
+    expect(markup).not.toMatch(/"offers"|"review"|"aggregateRating"/i);
   });
 
   it("links only a verified sibling with the same named color family", () => {

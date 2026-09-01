@@ -32,6 +32,6 @@ describe("supplier color-code detail route", () => {
     const html = renderToStaticMarkup(createElement(() => page));
 
     expect(html).toContain("VENEER CHEERY");
-    expect(html).toContain("/catalog/thanh-thuy/veneer-cheery-");
+    expect(html).toContain("https%3A%2F%2Fcdn.mdftungphat.com%2Fcatalog%2Fthanh-thuy%2Fveneer-cheery-");
   });
 });

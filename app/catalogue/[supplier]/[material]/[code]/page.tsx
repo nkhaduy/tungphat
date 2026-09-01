@@ -7,7 +7,7 @@ import { CopyColorCodeButton } from "@/components/catalog/CopyColorCodeButton";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
 import { getPublicColorCode, getPublicColorCodeRelatedCodes, getPublicColorCodes } from "@/lib/catalog/color-codes/public";
-import { buildCatalogueCodeSeo, catalogueCodeProductSchema } from "@/lib/catalog/code-seo";
+import { buildCatalogueCodeSeo } from "@/lib/catalog/code-seo";
 import { supplierDefinitions } from "@/lib/catalog/core/registry";
 import { breadcrumbSchema, createPageMetadata, ZALO_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
@@ -49,7 +49,6 @@ export default async function SupplierColorCodeRoute({ params }: RouteProps) {
   return <SiteShell>
     <JsonLd data={[
       breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Mã màu", path: "/catalogue/" }, { name: supplierName, path: `/catalogue/${record.supplier}/` }, { name: materialLabel, path: `/catalogue/${record.supplier}/${material}/` }, { name: record.codeRaw, path }]),
-      catalogueCodeProductSchema(record, seo, supplierName),
     ]} />
     <section className="border-b border-forest-900/10 bg-[#f7f8f5] pb-8 pt-[calc(2rem+4.5rem)] sm:pb-10 sm:pt-[calc(2.5rem+4.5rem)] lg:pb-14 lg:pt-[calc(3.5rem+4.5rem)]">
       <PageContainer>

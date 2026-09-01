@@ -8,8 +8,25 @@ function page(input: {
   title: string;
   description: string;
   indexable?: boolean;
+  productSchema?: boolean;
+  breadcrumbSchema?: boolean;
+  completeDetail?: boolean;
 }) {
   const canonical = `https://mdftungphat.com${input.route}`;
+  const schemas = [
+    input.productSchema === false ? null : {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: input.title,
+      brand: { "@type": "Brand", name: input.brand },
+      url: canonical,
+    },
+    input.breadcrumbSchema ? {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [],
+    } : null,
+  ].filter(Boolean);
   return {
     route: input.route,
     supplierId: input.supplierId,
@@ -19,14 +36,8 @@ function page(input: {
       <meta name="description" content="${input.description}">
       <meta name="robots" content="${input.indexable === false ? "noindex, follow" : "index, follow"}">
       <link rel="canonical" href="${canonical}">
-      <script type="application/ld+json">${JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Product",
-        name: input.title,
-        brand: { "@type": "Brand", name: input.brand },
-        url: canonical,
-      })}</script>
-    </head><body><h1>${input.title.replace(/ \| Tùng Phát$/, "")}</h1></body></html>`,
+      ${schemas.map((schema) => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`).join("")}
+    </head><body><h1>${input.title.replace(/ \| Tùng Phát$/, "")}</h1>${input.completeDetail ? '<img src="https://cdn.mdftungphat.com/catalogue/301.webp" alt="301 Artistic Stripe"><a>Gửi mã 301 qua Zalo</a>' : ""}</body></html>`,
   };
 }
 
@@ -156,21 +167,36 @@ describe("supplier static output audit", () => {
     ]);
   });
 
-  it("requires catalogue detail pages to retain Product, BreadcrumbList, CDN image alt text and a code CTA", () => {
+  it("accepts catalogue detail pages without Product schema when BreadcrumbList and SEO signals remain", () => {
     const detail = page({
       route: "/catalogue/thanh-thuy/melamine/301/",
       supplierId: "thanh-thuy",
       brand: "Thanh Thuỳ",
       title: "301 Artistic Stripe - Melamine Thanh Thuỳ | Tùng Phát",
       description: "Tra cứu mã 301 Artistic Stripe thuộc bảng Melamine Thanh Thuỳ.",
+      productSchema: false,
+      breadcrumbSchema: true,
+      completeDetail: true,
     });
-    detail.html = detail.html.replace('"@type":"Product"', '"@type":"Thing"');
 
     const result = auditSupplierPages([detail], [detail.route]);
 
-    expect(result.errors.join("\n")).toMatch(/missing Product schema/i);
-    expect(result.errors.join("\n")).toMatch(/missing BreadcrumbList schema/i);
-    expect(result.errors.join("\n")).toMatch(/missing CDN image with alt/i);
-    expect(result.errors.join("\n")).toMatch(/missing code CTA/i);
+    expect(result.errors).toEqual([]);
+  });
+
+  it("rejects Product schema on unsupported catalogue detail pages", () => {
+    const detail = page({
+      route: "/catalogue/thanh-thuy/melamine/301/",
+      supplierId: "thanh-thuy",
+      brand: "Thanh Thuỳ",
+      title: "301 Artistic Stripe - Melamine Thanh Thuỳ | Tùng Phát",
+      description: "Tra cứu mã 301 Artistic Stripe thuộc bảng Melamine Thanh Thuỳ.",
+      breadcrumbSchema: true,
+      completeDetail: true,
+    });
+
+    const result = auditSupplierPages([detail], [detail.route]);
+
+    expect(result.errors.join("\n")).toMatch(/unsupported Product schema/i);
   });
 });

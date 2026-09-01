@@ -223,7 +223,7 @@ export function auditSupplierPages(
     }
     if (page.indexable && isCatalogueDetail(route)) {
       const schemaTypes = collectSchemaTypes(metadata.jsonLd);
-      if (!schemaTypes.includes("Product")) errors.push(`${route}: missing Product schema`);
+      if (schemaTypes.includes("Product")) errors.push(`${route}: unsupported Product schema`);
       if (!schemaTypes.includes("BreadcrumbList")) errors.push(`${route}: missing BreadcrumbList schema`);
       if (!hasCdnImageWithAlt(page.html)) errors.push(`${route}: missing CDN image with alt`);
       if (!new RegExp(`Gửi\\s+mã\\s+[^<]+\\s+qua\\s+Zalo`, "iu").test(page.html)) {
