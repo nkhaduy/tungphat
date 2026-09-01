@@ -1,4 +1,5 @@
 import artifact from "@/data/catalogs/supplier-color-codes.json";
+import { createCatalogueCodeSeoIndex } from "@/lib/catalog/code-seo";
 import { resolveMediaUrl } from "@/lib/media";
 import type { PublicSupplierColorCode, SupplierColorCodeSupplier } from "./types";
 
@@ -16,6 +17,7 @@ const records = (artifact.records as PublicSupplierColorCode[]).map((record) => 
     originalUrl: optionalMediaUrl(image.originalUrl),
   })),
 }));
+const seoIndex = createCatalogueCodeSeoIndex(records);
 
 export function getPublicColorCodes(): PublicSupplierColorCode[] {
   return records;
@@ -42,4 +44,8 @@ export function getPublicColorCodesForMaterial(supplier: SupplierColorCodeSuppli
 
 export function getPublicColorCodeMaterials(supplier: SupplierColorCodeSupplier) {
   return [...new Set(getPublicColorCodesForSupplier(supplier).map((record) => record.materialType))];
+}
+
+export function getPublicColorCodeRelatedCodes(record: PublicSupplierColorCode) {
+  return seoIndex.relatedFor(record);
 }

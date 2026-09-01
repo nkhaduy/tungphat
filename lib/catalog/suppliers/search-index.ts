@@ -7,6 +7,7 @@ import {
 } from "../material-taxonomy";
 import type { PublicSupplierColorCode } from "../color-codes/types";
 import { getPublicColorCodes } from "../color-codes/public";
+import { buildCatalogueCodeSeo } from "../code-seo";
 import type { CatalogSearchEntry, SupplierId } from "../core/types";
 
 type SearchIndexRecord = CatalogSearchEntry & {
@@ -73,10 +74,12 @@ function localThumbnail(record: PublicSupplierColorCode): string {
 }
 
 function toSearchRecord(record: PublicSupplierColorCode): SearchIndexRecord {
+  const displaySupplierName = supplierName(record.supplier);
+  const seo = buildCatalogueCodeSeo(record, { supplierName: displaySupplierName });
   return {
     id: record.id,
     supplierId: record.supplier,
-    supplierName: supplierName(record.supplier),
+    supplierName: displaySupplierName,
     kind: "color-code",
     recordType: "color-code",
     code: record.codeRaw,
@@ -96,7 +99,7 @@ function toSearchRecord(record: PublicSupplierColorCode): SearchIndexRecord {
     ]),
     material: materialSlug(record),
     seoStatus: record.seoStatus,
-    indexable: record.seoStatus === "READY_TO_INDEX",
+    indexable: seo.indexable,
     demandScore: record.demandScore,
   };
 }

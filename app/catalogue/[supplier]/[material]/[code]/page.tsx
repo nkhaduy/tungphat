@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { CopyColorCodeButton } from "@/components/catalog/CopyColorCodeButton";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
-import { getPublicColorCodes } from "@/lib/catalog/color-codes/public";
+import { getPublicColorCode, getPublicColorCodeRelatedCodes, getPublicColorCodes } from "@/lib/catalog/color-codes/public";
+import { buildCatalogueCodeSeo, catalogueCodeProductSchema } from "@/lib/catalog/code-seo";
 import { supplierDefinitions } from "@/lib/catalog/core/registry";
-import { absoluteUrl, breadcrumbSchema, createPageMetadata, SITE_URL, ZALO_URL } from "@/lib/seo";
+import { breadcrumbSchema, createPageMetadata, ZALO_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteShell } from "@/components/site/SiteShell";
-import { humanizeCatalogLabel } from "@/lib/catalog/ui";
 import { SupplierMediaGallery } from "@/components/catalog/SupplierMediaGallery";
-import { absoluteMediaUrl } from "@/lib/media";
 
 type RouteProps = { params: Promise<{ supplier: string; material: string; code: string }> };
 const imagePriority = ["swatch", "fullsheet", "actual-photo", "product", "application"] as const;
@@ -23,29 +23,33 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: RouteProps): Promise<Metadata> {
   const { supplier, material, code } = await params;
-  const record = getPublicColorCodes().find((item) => item.supplier === supplier && item.materialType === material && item.slug === code);
+  const record = getPublicColorCode(supplier, material, code);
   if (!record) return {};
-  return createPageMetadata({ title: `${record.codeRaw} · ${record.displayName ?? "Mã màu"}`, description: `Mã màu ${record.codeRaw} của ${supplierDefinitions.find((item) => item.id === supplier)?.displayName ?? supplier}.`, path: record.canonicalRoute, noIndex: record.seoStatus !== "READY_TO_INDEX", followWhenNoIndex: true });
+  const supplierName = supplierDefinitions.find((item) => item.id === supplier)?.displayName ?? supplier;
+  const seo = buildCatalogueCodeSeo(record, { supplierName });
+  return createPageMetadata({ title: seo.title, description: seo.description, path: record.canonicalRoute, noIndex: !seo.indexable, followWhenNoIndex: true });
 }
 
 export default async function SupplierColorCodeRoute({ params }: RouteProps) {
   const { supplier, material, code } = await params;
-  const record = getPublicColorCodes().find((item) => item.supplier === supplier && item.materialType === material && item.slug === code);
+  const record = getPublicColorCode(supplier, material, code);
   if (!record) notFound();
   const supplierName = supplierDefinitions.find((item) => item.id === record.supplier)?.displayName ?? record.supplier;
-  const materialLabel = humanizeCatalogLabel(material);
+  const seo = buildCatalogueCodeSeo(record, { supplierName });
+  const materialLabel = seo.materialLabel;
+  const relatedCodes = seo.indexable ? getPublicColorCodeRelatedCodes(record) : [];
   const images = imagePriority.flatMap((role) => record.images.filter((image) => image.role === role && image.localPath));
   const galleryImages = images.map((image) => ({
     src: image.localPath!,
     thumbnailSrc: image.thumbnailSrc,
     originalUrl: image.originalUrl,
-    alt: `${record.codeRaw} ${image.role}`,
+    alt: seo.imageAlt,
   }));
   const path = record.canonicalRoute;
   return <SiteShell>
     <JsonLd data={[
       breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Mã màu", path: "/catalogue/" }, { name: supplierName, path: `/catalogue/${record.supplier}/` }, { name: materialLabel, path: `/catalogue/${record.supplier}/${material}/` }, { name: record.codeRaw, path }]),
-      { "@context": "https://schema.org", "@type": "Product", name: record.displayName ?? record.codeRaw, sku: record.codeRaw, brand: { "@type": "Brand", name: supplierName }, category: materialLabel, url: absoluteUrl(path), ...(images.length ? { image: images.map((image) => absoluteMediaUrl(image.localPath!, SITE_URL)) } : {}) },
+      catalogueCodeProductSchema(record, seo, supplierName),
     ]} />
     <section className="border-b border-forest-900/10 bg-[#f7f8f5] pb-8 pt-[calc(2rem+4.5rem)] sm:pb-10 sm:pt-[calc(2.5rem+4.5rem)] lg:pb-14 lg:pt-[calc(3.5rem+4.5rem)]">
       <PageContainer>
@@ -54,14 +58,15 @@ export default async function SupplierColorCodeRoute({ params }: RouteProps) {
           <div><SupplierMediaGallery images={galleryImages} /></div>
           <div className="border border-forest-900/10 bg-white p-6 shadow-card sm:p-8">
             <p className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">{supplierName} · {materialLabel}</p>
-            <h1 className="mt-3 break-words font-mono text-3xl font-extrabold text-forest-950" translate="no">{record.codeRaw}</h1>
-            <h2 className="mt-3 text-xl font-extrabold text-forest-950">{record.displayName ?? record.codeRaw}</h2>
-            <dl className="mt-6 grid gap-3 text-sm text-slate-700"><div><dt className="font-bold text-forest-950">Bề mặt</dt><dd>{record.surfaceEffect || "Đang đối chiếu theo nguồn supplier"}</dd></div><div><dt className="font-bold text-forest-950">Loại vân</dt><dd>{record.patternType || "Chưa công bố"}</dd></div><div><dt className="font-bold text-forest-950">Bộ sưu tập</dt><dd>{record.collection || "Chưa công bố"}</dd></div></dl>
+            <h1 className="mt-3 break-words text-3xl font-extrabold leading-tight text-forest-950" translate="no">{seo.h1}</h1>
+            <p className="mt-3 text-sm leading-6 text-slate-700">Tra cứu mã bề mặt theo dữ liệu catalogue đã xác minh.</p>
+            <dl className="mt-6 grid gap-3 text-sm text-slate-700"><div><dt className="font-bold text-forest-950">Mã</dt><dd translate="no">{record.codeRaw}</dd></div><div><dt className="font-bold text-forest-950">Tên</dt><dd>{record.displayName ?? record.codeRaw}</dd></div><div><dt className="font-bold text-forest-950">Bề mặt</dt><dd>{record.surfaceEffect || materialLabel}</dd></div><div><dt className="font-bold text-forest-950">Loại vân</dt><dd>{record.patternType || "Chưa công bố"}</dd></div><div><dt className="font-bold text-forest-950">Bộ sưu tập</dt><dd>{record.collection || "Chưa công bố"}</dd></div><div><dt className="font-bold text-forest-950">Nguồn catalogue</dt><dd><a href={record.sourceUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-wood-600 hover:text-wood-700">Mở nguồn</a></dd></div></dl>
             <CopyColorCodeButton code={record.codeRaw} />
-            <a href={buildSupplierZaloInquiryUrl(ZALO_URL, supplierName, record.codeRaw)} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-wood-500 px-4 text-sm font-extrabold text-white hover:bg-wood-600"><MessageCircle size={17} aria-hidden="true" />Gửi mã qua Zalo</a>
+            <a href={buildSupplierZaloInquiryUrl(ZALO_URL, supplierName, record.codeRaw)} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-wood-500 px-4 text-sm font-extrabold text-white hover:bg-wood-600"><MessageCircle size={17} aria-hidden="true" />{seo.ctaLabel}</a>
             <p className="mt-5 text-xs leading-5 text-slate-500">Màu trên màn hình có thể khác mẫu thật; nên xem mẫu thực tế trước khi đặt.</p>
           </div>
         </div>
+        {relatedCodes.length ? <section className="mt-8 border-t border-forest-900/10 pt-6" aria-labelledby="related-codes-heading"><h2 id="related-codes-heading" className="text-xl font-extrabold text-forest-950">Mã cùng tên {record.colorFamily}</h2><p className="mt-2 text-sm leading-6 text-slate-700">Các mã dưới đây cùng thuộc nhóm {record.colorFamily} trong catalogue {supplierName}.</p><div className="mt-4 flex flex-wrap gap-2">{relatedCodes.map((related) => <Link key={related.id} href={related.canonicalRoute} className="pressable inline-flex min-h-11 items-center border border-forest-900/15 bg-white px-4 text-sm font-bold text-forest-950 hover:border-wood-500" translate="no">{related.displayName ?? related.codeRaw}</Link>)}</div></section> : null}
       </PageContainer>
     </section>
   </SiteShell>;

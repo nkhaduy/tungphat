@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
+import { findReferencedExportAssetPaths } from "./lib/export-image-source-references.mjs";
 
 const out = path.join(process.cwd(), "out");
-const textExtensions = /\.(?:css|html|js|json|txt|webmanifest|xml)$/i;
 
 function walk(directory) {
   if (!fs.existsSync(directory)) return [];
@@ -12,17 +12,22 @@ function walk(directory) {
 }
 
 const files = walk(out);
-const searchable = files
-  .filter((file) => textExtensions.test(file))
-  .map((file) => fs.readFileSync(file, "utf8"))
-  .join("\n");
 const removed = [];
+const sourceImages = files.filter((file) => /\.(?:png|jpe?g)$/i.test(file));
+const candidates = sourceImages
+  .filter((source) => fs.existsSync(source.replace(/\.(?:png|jpe?g)$/i, ".webp")))
+  .map((source) => `/${path.relative(out, source).split(path.sep).join("/")}`);
+const referenced = findReferencedExportAssetPaths(
+  files,
+  candidates,
+  (file) => fs.readFileSync(file, "utf8"),
+);
 
-for (const source of files.filter((file) => /\.(?:png|jpe?g)$/i.test(file))) {
+for (const source of sourceImages) {
   const optimized = source.replace(/\.(?:png|jpe?g)$/i, ".webp");
   if (!fs.existsSync(optimized)) continue;
   const publicPath = `/${path.relative(out, source).split(path.sep).join("/")}`;
-  if (searchable.includes(publicPath)) continue;
+  if (referenced.has(publicPath)) continue;
   fs.unlinkSync(source);
   removed.push(publicPath);
 }

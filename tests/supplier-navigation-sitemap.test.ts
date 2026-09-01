@@ -57,7 +57,7 @@ describe("supplier catalogue navigation", () => {
 });
 
 describe("composed supplier sitemap", () => {
-  it("contains hubs and READY_TO_INDEX color detail routes only", () => {
+  it("contains hubs and indexable color detail routes only", () => {
     const entries = getSupplierSitemapEntries("2026-08-05T00:00:00.000Z");
     const bySupplier = (supplierId: string) =>
       entries.filter((entry) => entry.supplierId === supplierId);
@@ -68,7 +68,7 @@ describe("composed supplier sitemap", () => {
     expect(entries.every((entry) => entry.indexable)).toBe(true);
     expect(entries.filter((entry) => entry.path.split("/").filter(Boolean).length === 4).every((entry) => {
       const searchEntry = getSupplierSearchEntries().find((record) => record.canonicalRoute === entry.path);
-      return searchEntry?.seoStatus === "READY_TO_INDEX";
+      return searchEntry?.indexable === true;
     })).toBe(true);
     expect(new Set(entries.map((entry) => entry.path)).size).toBe(
       entries.length,
