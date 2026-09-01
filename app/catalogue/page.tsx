@@ -15,7 +15,7 @@ import {
 } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "Mã màu vật liệu tại Tùng Phát",
+  title: "Mã màu vật liệu",
   description:
     "Tìm nhanh mã màu, tên màu hoặc thương hiệu An Cường, Thanh Thuỳ và Ba Thanh theo bề mặt thực tế.",
   path: "/catalogue/",

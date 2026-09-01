@@ -17,7 +17,8 @@ describe("supplier color-code detail route", () => {
     expect(html).toContain('id="noi-dung-chinh"');
     expect(html).toContain('aria-label="Điều hướng chính"');
     expect(html).toContain("MFC - MS 465 SC04");
-    expect(html).toContain("Media rights: UNCONFIRMED");
+    expect(html).toContain("Màu trên màn hình có thể khác mẫu thật");
+    expect(html).not.toContain("Media rights: UNCONFIRMED");
   });
 
   it("renders an official Thanh Thuy Veneer surface route with its local swatch", async () => {

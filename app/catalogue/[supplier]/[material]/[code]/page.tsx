@@ -59,7 +59,7 @@ export default async function SupplierColorCodeRoute({ params }: RouteProps) {
             <dl className="mt-6 grid gap-3 text-sm text-slate-700"><div><dt className="font-bold text-forest-950">Bề mặt</dt><dd>{record.surfaceEffect || "Đang đối chiếu theo nguồn supplier"}</dd></div><div><dt className="font-bold text-forest-950">Loại vân</dt><dd>{record.patternType || "Chưa công bố"}</dd></div><div><dt className="font-bold text-forest-950">Bộ sưu tập</dt><dd>{record.collection || "Chưa công bố"}</dd></div></dl>
             <CopyColorCodeButton code={record.codeRaw} />
             <a href={buildSupplierZaloInquiryUrl(ZALO_URL, supplierName, record.codeRaw)} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-wood-500 px-4 text-sm font-extrabold text-white hover:bg-wood-600"><MessageCircle size={17} aria-hidden="true" />Gửi mã qua Zalo</a>
-            <p className="mt-5 text-xs leading-5 text-slate-500">Màu hiển thị chỉ để đối chiếu. Media rights: UNCONFIRMED. Vui lòng xác nhận mẫu thực tế trước khi đặt.</p>
+            <p className="mt-5 text-xs leading-5 text-slate-500">Màu trên màn hình có thể khác mẫu thật; nên xem mẫu thực tế trước khi đặt.</p>
           </div>
         </div>
       </PageContainer>
