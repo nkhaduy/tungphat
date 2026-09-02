@@ -1,12 +1,13 @@
 'use client'
 
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 
 type Props = { canUseAdvanced: boolean }
 type AdminMode = 'simple' | 'advanced'
 
 export default function ModeSwitcherClient({ canUseAdvanced }: Props) {
   const [mode, setMode] = useState<AdminMode>('simple')
+  const activeModeRef = useRef<AdminMode>('simple')
 
   useLayoutEffect(() => {
     let activeMode: AdminMode = 'simple'
@@ -17,14 +18,8 @@ export default function ModeSwitcherClient({ canUseAdvanced }: Props) {
       activeMode = 'simple'
     }
 
-    const applyMode = () => {
-      document.documentElement.dataset.tpAdminMode = activeMode
-      document.body.dataset.tpAdminMode = activeMode
-      document.querySelectorAll<HTMLElement>('.nav-group').forEach((group) => {
-        const label = group.querySelector('.nav-group__label')?.textContent?.trim()
-        if (label === 'Quản trị hệ thống') group.hidden = activeMode === 'simple'
-      })
-    }
+    activeModeRef.current = activeMode
+    const applyMode = () => applyAdminMode(activeModeRef.current)
 
     const observer = new MutationObserver(applyMode)
     observer.observe(document.body, { childList: true, subtree: true })
@@ -35,18 +30,14 @@ export default function ModeSwitcherClient({ canUseAdvanced }: Props) {
 
   const changeMode = (nextMode: AdminMode) => {
     if (nextMode === 'advanced' && !canUseAdvanced) return
+    activeModeRef.current = nextMode
     setMode(nextMode)
-    document.documentElement.dataset.tpAdminMode = nextMode
-    document.body.dataset.tpAdminMode = nextMode
+    applyAdminMode(nextMode)
     try {
       window.localStorage.setItem('tp-admin-mode', nextMode)
     } catch {
       // Keep the session usable when storage is unavailable.
     }
-    document.querySelectorAll<HTMLElement>('.nav-group').forEach((group) => {
-      const label = group.querySelector('.nav-group__label')?.textContent?.trim()
-      if (label === 'Quản trị hệ thống') group.hidden = nextMode === 'simple'
-    })
   }
 
   return (
@@ -64,4 +55,13 @@ export default function ModeSwitcherClient({ canUseAdvanced }: Props) {
       {canUseAdvanced ? <small>Mục kỹ thuật chỉ hiện khi chọn Nâng cao.</small> : null}
     </aside>
   )
+}
+
+function applyAdminMode(mode: AdminMode) {
+  document.documentElement.dataset.tpAdminMode = mode
+  document.body.dataset.tpAdminMode = mode
+  document.querySelectorAll<HTMLElement>('.nav-group').forEach((group) => {
+    const label = group.querySelector('.nav-group__label')?.textContent?.trim()
+    if (label === 'Quản trị hệ thống') group.hidden = mode === 'simple'
+  })
 }

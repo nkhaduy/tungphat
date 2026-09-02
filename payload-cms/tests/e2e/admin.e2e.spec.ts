@@ -107,6 +107,19 @@ test.describe('Admin Panel', () => {
     await page.getByRole('button', { name: 'Đóng Menu', exact: true }).click()
   })
 
+  test('chuyển từ Nâng cao về Đơn giản vẫn ẩn field kỹ thuật', async () => {
+    await page.goto('/admin')
+    await page.evaluate(() => window.localStorage.setItem('tp-admin-mode', 'advanced'))
+    await page.goto('/admin/collections/material-codes/create')
+    await expect(page.locator('body')).toHaveAttribute('data-tp-admin-mode', 'advanced')
+
+    await page.getByRole('button', { name: 'Mở Menu', exact: true }).click()
+    await page.getByRole('button', { name: 'Đơn giản', exact: true }).click()
+
+    await page.waitForTimeout(300)
+    await expect(page.locator('body')).toHaveAttribute('data-tp-admin-mode', 'simple')
+  })
+
   test('can navigate to list view', async () => {
     await page.goto('/admin/collections/articles')
     await expect(page).toHaveURL(/\/admin\/collections\/articles/)
