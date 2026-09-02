@@ -4,9 +4,9 @@ import { faqField, stringArray, vietnameseText } from '@/fields/common'
 
 export const Pages: CollectionConfig = contentCollection({
   slug: 'pages',
-  labels: { singular: 'Trang dịch vụ CNC', plural: 'Trang dịch vụ CNC' },
+  labels: { singular: 'Trang dịch vụ', plural: 'Trang dịch vụ' },
   admin: {
-    group: 'Nội dung',
+    group: 'Nội dung website',
     useAsTitle: 'title',
     description: 'Trang dịch vụ public ở route gốc; slug được kiểm tra để không đè route hệ thống.',
     defaultColumns: ['title', 'slug', '_status', 'updatedAt'],

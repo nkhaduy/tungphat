@@ -3,8 +3,8 @@ import { contentGlobalAccess } from './access'
 import { imageRelationship, vietnameseText } from '@/fields/common'
 
 export const SeoDefaults: GlobalConfig = {
-  slug: 'seo-defaults', label: 'SEO mặc định', access: contentGlobalAccess,
-  admin: { group: 'Cấu hình website', description: 'Giá trị SEO dự phòng của website; không ghi đè SEO đã nhập ở từng nội dung.' },
+  slug: 'seo-defaults', label: 'SEO nâng cao', access: contentGlobalAccess,
+  admin: { group: 'Quản trị hệ thống', description: 'Giá trị SEO dự phòng của website; không ghi đè SEO đã nhập ở từng nội dung.' },
   fields: [
     { name: 'siteUrl', label: 'Canonical domain', type: 'text', required: true, defaultValue: 'https://mdftungphat.com', validate: (value: unknown) => value === 'https://mdftungphat.com' || 'Canonical bắt buộc là https://mdftungphat.com' },
     vietnameseText('siteName', 'Tên site', { required: true, minLength: 2, maxLength: 80 }),

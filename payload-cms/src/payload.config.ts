@@ -69,6 +69,7 @@ export default buildConfig({
     components: {
       graphics: { Logo: '/components/admin/Brand#Logo', Icon: '/components/admin/Brand#Icon' },
       actions: ['/components/admin/OpenWebsite'],
+      beforeNavLinks: ['/components/admin/ModeSwitcher', '/components/admin/OperatorNavHome'],
       providers: ['/components/admin/AccessibilityProvider'],
       views: {
         dashboard: { Component: '/components/admin/Dashboard' },
@@ -92,8 +93,8 @@ export default buildConfig({
       ],
     },
   },
-  collections: [Users, Media, Suppliers, Categories, MaterialCodes, Products, Articles, Projects, Pages, Reviews, GbpConnections, Leads, AnalyticsEvents, Redirects],
-  globals: [BusinessSettings, SeoDefaults, StaticPages, MaterialCategories, Brands],
+  collections: [Leads, Reviews, Products, MaterialCodes, Suppliers, Categories, Media, Articles, Projects, Pages, AnalyticsEvents, Redirects, GbpConnections, Users],
+  globals: [StaticPages, BusinessSettings, MaterialCategories, Brands, SeoDefaults],
   endpoints: runtimeEndpoints,
   defaultDepth: 0,
   i18n: { supportedLanguages: { vi }, fallbackLanguage: 'vi' },

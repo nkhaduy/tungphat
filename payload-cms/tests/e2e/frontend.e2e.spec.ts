@@ -1,6 +1,15 @@
 import { test, expect } from '@playwright/test'
+import { cleanupTestUser, seedTestUser } from '../helpers/seedUser'
 
 test.describe('Frontend', () => {
+  test.beforeEach(async () => {
+    await seedTestUser()
+  })
+
+  test.afterEach(async () => {
+    await cleanupTestUser()
+  })
+
   test('opens the CMS login directly', async ({ page }) => {
     await page.goto('/')
 

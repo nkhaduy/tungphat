@@ -4,12 +4,12 @@ import { MAX_MEDIA_BYTES } from '@/security/mediaUpload'
 
 export const Media: CollectionConfig = {
   slug: 'media',
-  labels: { singular: 'Hình ảnh và tệp', plural: 'Hình ảnh và tệp' },
+  labels: { singular: 'Hình ảnh & tài liệu', plural: 'Hình ảnh & tài liệu' },
   admin: {
-    group: 'Hình ảnh',
+    group: 'Hình ảnh & tài liệu',
     useAsTitle: 'filename',
     description: 'Ảnh, video và catalogue dùng cho website. Hãy nhập alt text mô tả nội dung ảnh.',
-    defaultColumns: ['filename', 'alt', 'mediaKind', 'mimeType', 'filesize', 'createdAt'],
+    defaultColumns: ['filename', 'mediaKind', 'alt', 'updatedAt'],
     listSearchableFields: ['filename', 'alt', 'caption'],
   },
   access: {
@@ -52,10 +52,10 @@ export const Media: CollectionConfig = {
       { label: 'Catalogue / tài liệu', value: 'document' },
       { label: 'Video', value: 'video' },
     ] },
-    { name: 'uploadedBy', label: 'Người tải lên', type: 'relationship', relationTo: 'users', access: { read: ({ req }) => Boolean(req.user) }, admin: { readOnly: true, position: 'sidebar' } },
-    { name: 'r2Key', label: 'R2 object key', type: 'text', unique: true, index: true, admin: { readOnly: true } },
-    { name: 'sourceURL', label: 'URL nguồn', type: 'text', admin: { readOnly: true } },
-    { name: 'checksum', label: 'Checksum', type: 'text', index: true, admin: { readOnly: true } },
+    { name: 'uploadedBy', label: 'Người tải lên', type: 'relationship', relationTo: 'users', access: { read: ({ req }) => Boolean(req.user) }, admin: { readOnly: true, position: 'sidebar', className: 'tp-advanced-field' } },
+    { name: 'r2Key', label: 'R2 object key', type: 'text', unique: true, index: true, admin: { readOnly: true, className: 'tp-advanced-field' } },
+    { name: 'sourceURL', label: 'URL nguồn', type: 'text', admin: { readOnly: true, className: 'tp-advanced-field' } },
+    { name: 'checksum', label: 'Checksum', type: 'text', index: true, admin: { readOnly: true, className: 'tp-advanced-field' } },
     { name: 'roomApplication', label: 'Ảnh phòng / ứng dụng', type: 'checkbox', defaultValue: false },
   ],
   upload: {

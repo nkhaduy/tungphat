@@ -66,8 +66,8 @@ export const seoFields: Field[] = [
     fields: [
       { name: 'title', label: 'SEO title', type: 'text', required: true, minLength: 20, maxLength: 65 },
       { name: 'description', label: 'Meta description', type: 'textarea', required: true, minLength: 80, maxLength: 170 },
-      { name: 'canonical', label: 'Canonical tùy chỉnh', type: 'text', required: false, validate: (value: unknown) => !value || (typeof value === 'string' && /^https:\/\/mdftungphat\.com(?:\/.*)?$/.test(value)) || 'Canonical phải thuộc https://mdftungphat.com' },
-      { name: 'noindex', label: 'Không lập chỉ mục', type: 'checkbox', defaultValue: false },
+      { name: 'canonical', label: 'Canonical tùy chỉnh', type: 'text', required: false, admin: { className: 'tp-advanced-field' }, validate: (value: unknown) => !value || (typeof value === 'string' && /^https:\/\/mdftungphat\.com(?:\/.*)?$/.test(value)) || 'Canonical phải thuộc https://mdftungphat.com' },
+      { name: 'noindex', label: 'Không lập chỉ mục', type: 'checkbox', defaultValue: false, admin: { className: 'tp-advanced-field' } },
       { name: 'ogImage', label: 'Ảnh Open Graph', type: 'relationship', relationTo: 'media', required: false },
     ],
   },

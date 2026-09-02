@@ -5,7 +5,7 @@ export const Users: CollectionConfig = {
   slug: 'users',
   labels: { singular: 'Tài khoản', plural: 'Tài khoản' },
   admin: {
-    group: 'Tài khoản',
+    group: 'Quản trị hệ thống',
     useAsTitle: 'name',
     description: 'Tài khoản quản trị Payload. Chỉ Super Admin được quản lý người dùng và phân quyền.',
     defaultColumns: ['name', 'email', 'role', 'updatedAt'],

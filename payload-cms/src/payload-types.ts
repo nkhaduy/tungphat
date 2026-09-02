@@ -20,20 +20,20 @@ export interface Config {
   };
   blocks: {};
   collections: {
-    users: User;
-    media: Media;
+    leads: Lead;
+    reviews: Review;
+    products: Product;
+    'material-codes': MaterialCode;
     suppliers: Supplier;
     categories: Category;
-    'material-codes': MaterialCode;
-    products: Product;
+    media: Media;
     articles: Article;
     projects: Project;
     pages: Page;
-    reviews: Review;
-    'gbp-connections': GbpConnection;
-    leads: Lead;
     'analytics-events': AnalyticsEvent;
     redirects: Redirect;
+    'gbp-connections': GbpConnection;
+    users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -41,20 +41,20 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
-    users: UsersSelect<false> | UsersSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
+    leads: LeadsSelect<false> | LeadsSelect<true>;
+    reviews: ReviewsSelect<false> | ReviewsSelect<true>;
+    products: ProductsSelect<false> | ProductsSelect<true>;
+    'material-codes': MaterialCodesSelect<false> | MaterialCodesSelect<true>;
     suppliers: SuppliersSelect<false> | SuppliersSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
-    'material-codes': MaterialCodesSelect<false> | MaterialCodesSelect<true>;
-    products: ProductsSelect<false> | ProductsSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
-    reviews: ReviewsSelect<false> | ReviewsSelect<true>;
-    'gbp-connections': GbpConnectionsSelect<false> | GbpConnectionsSelect<true>;
-    leads: LeadsSelect<false> | LeadsSelect<true>;
     'analytics-events': AnalyticsEventsSelect<false> | AnalyticsEventsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
+    'gbp-connections': GbpConnectionsSelect<false> | GbpConnectionsSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -65,18 +65,18 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
-    'business-settings': BusinessSetting;
-    'seo-defaults': SeoDefault;
     'static-pages': StaticPage;
+    'business-settings': BusinessSetting;
     'material-categories': MaterialCategory;
     brands: Brand;
+    'seo-defaults': SeoDefault;
   };
   globalsSelect: {
-    'business-settings': BusinessSettingsSelect<false> | BusinessSettingsSelect<true>;
-    'seo-defaults': SeoDefaultsSelect<false> | SeoDefaultsSelect<true>;
     'static-pages': StaticPagesSelect<false> | StaticPagesSelect<true>;
+    'business-settings': BusinessSettingsSelect<false> | BusinessSettingsSelect<true>;
     'material-categories': MaterialCategoriesSelect<false> | MaterialCategoriesSelect<true>;
     brands: BrandsSelect<false> | BrandsSelect<true>;
+    'seo-defaults': SeoDefaultsSelect<false> | SeoDefaultsSelect<true>;
   };
   locale: null;
   widgets: {
@@ -107,127 +107,30 @@ export interface UserAuthOperations {
   };
 }
 /**
- * Tài khoản quản trị Payload. Chỉ Super Admin được quản lý người dùng và phân quyền.
- *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "leads".
  */
-export interface User {
+export interface Lead {
   id: number;
-  name: string;
-  role: 'super-admin' | 'admin' | 'editor';
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-  collection: 'users';
-}
-/**
- * Ảnh, video và catalogue dùng cho website. Hãy nhập alt text mô tả nội dung ảnh.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: number;
-  /**
-   * Mô tả ngắn nội dung và mục đích của ảnh; không bắt đầu bằng “Hình ảnh…”.
-   */
-  alt: string;
-  caption?: string | null;
-  mediaKind: 'content' | 'product' | 'project' | 'brand' | 'document' | 'video';
-  uploadedBy?: (number | null) | User;
-  r2Key?: string | null;
+  legacyID?: string | null;
+  submissionKey: string;
+  type: 'contact' | 'quote';
+  fullName: string;
+  phone: string;
+  email?: string | null;
+  company?: string | null;
+  city?: string | null;
+  product?: string | null;
+  material?: string | null;
+  thickness?: string | null;
+  dimensions?: string | null;
+  quantity?: string | null;
+  cncRequirement?: string | null;
+  message?: string | null;
   sourceURL?: string | null;
-  checksum?: string | null;
-  roomApplication?: boolean | null;
-  prefix?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "suppliers".
- */
-export interface Supplier {
-  id: number;
-  key: string;
-  name: string;
-  slug: string;
-  description?: string | null;
-  logo?: (number | null) | Media;
-  sourceURL?: string | null;
-  enabled?: boolean | null;
-  lastSyncedAt?: string | null;
-  syncChecksum?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
- */
-export interface Category {
-  id: number;
-  name: string;
-  slug: string;
-  supplier?: (number | null) | Supplier;
-  parent?: (number | null) | Category;
-  description?: string | null;
-  sourceID?: string | null;
-  displayOrder?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "material-codes".
- */
-export interface MaterialCode {
-  id: number;
-  stableKey: string;
-  supplier: number | Supplier;
-  code: string;
-  name: string;
-  slug: string;
-  category?: (number | null) | Category;
-  subcategory?: string | null;
-  description?: string | null;
-  materialType?: string | null;
-  finish?: string | null;
-  dimensions?:
-    | {
-        value: string;
-        id?: string | null;
-      }[]
-    | null;
-  thicknesses?:
-    | {
-        value: string;
-        id?: string | null;
-      }[]
-    | null;
-  specifications?:
+  ipHash?: string | null;
+  userAgent?: string | null;
+  attribution?:
     | {
         [k: string]: unknown;
       }
@@ -236,34 +139,37 @@ export interface MaterialCode {
     | number
     | boolean
     | null;
-  featuredImage?: (number | null) | Media;
-  gallery?:
+  status: 'new' | 'contacted' | 'quoted' | 'won' | 'lost' | 'spam' | 'archived';
+  consentAt: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews".
+ */
+export interface Review {
+  id: number;
+  stableKey: string;
+  source: 'google' | 'managed';
+  branchKey: string;
+  reviewerName: string;
+  reviewerPhotoURL?: string | null;
+  rating: number;
+  comment?: string | null;
+  ownerReply?: string | null;
+  reviewedAt?: string | null;
+  published?: boolean | null;
+  displayOrder?: number | null;
+  sourcePayload?:
     | {
-        image: number | Media;
-        id?: string | null;
-      }[]
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
     | null;
-  applicationGallery?:
-    | {
-        image: number | Media;
-        id?: string | null;
-      }[]
-    | null;
-  sourceURL?: string | null;
-  sourceID?: string | null;
-  syncChecksum?: string | null;
-  lastSyncedAt?: string | null;
-  status: 'published' | 'draft' | 'archived';
-  /**
-   * Thông tin dùng cho kết quả tìm kiếm và Open Graph. Không thay đổi SEO production trong bước này.
-   */
-  seo: {
-    title: string;
-    description: string;
-    canonical?: string | null;
-    noindex?: boolean | null;
-    ogImage?: (number | null) | Media;
-  };
   updatedAt: string;
   createdAt: string;
 }
@@ -375,6 +281,167 @@ export interface Product {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * Ảnh, video và catalogue dùng cho website. Hãy nhập alt text mô tả nội dung ảnh.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  /**
+   * Mô tả ngắn nội dung và mục đích của ảnh; không bắt đầu bằng “Hình ảnh…”.
+   */
+  alt: string;
+  caption?: string | null;
+  mediaKind: 'content' | 'product' | 'project' | 'brand' | 'document' | 'video';
+  uploadedBy?: (number | null) | User;
+  r2Key?: string | null;
+  sourceURL?: string | null;
+  checksum?: string | null;
+  roomApplication?: boolean | null;
+  prefix?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
+/**
+ * Tài khoản quản trị Payload. Chỉ Super Admin được quản lý người dùng và phân quyền.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  name: string;
+  role: 'super-admin' | 'admin' | 'editor';
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'users';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "material-codes".
+ */
+export interface MaterialCode {
+  id: number;
+  stableKey: string;
+  supplier: number | Supplier;
+  code: string;
+  name: string;
+  slug: string;
+  category?: (number | null) | Category;
+  subcategory?: string | null;
+  description?: string | null;
+  materialType?: string | null;
+  finish?: string | null;
+  dimensions?:
+    | {
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  thicknesses?:
+    | {
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  specifications?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  featuredImage?: (number | null) | Media;
+  gallery?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  applicationGallery?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  sourceURL?: string | null;
+  sourceID?: string | null;
+  syncChecksum?: string | null;
+  lastSyncedAt?: string | null;
+  status: 'published' | 'draft' | 'archived';
+  /**
+   * Thông tin dùng cho kết quả tìm kiếm và Open Graph. Không thay đổi SEO production trong bước này.
+   */
+  seo: {
+    title: string;
+    description: string;
+    canonical?: string | null;
+    noindex?: boolean | null;
+    ogImage?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "suppliers".
+ */
+export interface Supplier {
+  id: number;
+  key: string;
+  name: string;
+  slug: string;
+  description?: string | null;
+  logo?: (number | null) | Media;
+  sourceURL?: string | null;
+  enabled?: boolean | null;
+  lastSyncedAt?: string | null;
+  syncChecksum?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  name: string;
+  slug: string;
+  supplier?: (number | null) | Supplier;
+  parent?: (number | null) | Category;
+  description?: string | null;
+  sourceID?: string | null;
+  displayOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * Tin tức và nội dung hướng dẫn của Tùng Phát.
@@ -604,94 +671,6 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "reviews".
- */
-export interface Review {
-  id: number;
-  stableKey: string;
-  source: 'google' | 'managed';
-  branchKey: string;
-  reviewerName: string;
-  reviewerPhotoURL?: string | null;
-  rating: number;
-  comment?: string | null;
-  ownerReply?: string | null;
-  reviewedAt?: string | null;
-  published?: boolean | null;
-  displayOrder?: number | null;
-  sourcePayload?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gbp-connections".
- */
-export interface GbpConnection {
-  id: number;
-  branchKey: string;
-  projectID: string;
-  accountName?: string | null;
-  locationName?: string | null;
-  locationTitle?: string | null;
-  placeID?: string | null;
-  accessTokenCiphertext?: string | null;
-  refreshTokenCiphertext?: string | null;
-  tokenExpiresAt?: string | null;
-  status: 'not_configured' | 'connected' | 'error';
-  lastSyncedAt?: string | null;
-  lastErrorSafe?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "leads".
- */
-export interface Lead {
-  id: number;
-  legacyID?: string | null;
-  submissionKey: string;
-  type: 'contact' | 'quote';
-  fullName: string;
-  phone: string;
-  email?: string | null;
-  company?: string | null;
-  city?: string | null;
-  product?: string | null;
-  material?: string | null;
-  thickness?: string | null;
-  dimensions?: string | null;
-  quantity?: string | null;
-  cncRequirement?: string | null;
-  message?: string | null;
-  sourceURL?: string | null;
-  ipHash?: string | null;
-  userAgent?: string | null;
-  attribution?:
-    | {
-        [k: string]: unknown;
-      }
-    | unknown[]
-    | string
-    | number
-    | boolean
-    | null;
-  status: 'new' | 'contacted' | 'quoted' | 'won' | 'lost' | 'spam' | 'archived';
-  consentAt: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "analytics-events".
  */
 export interface AnalyticsEvent {
@@ -734,6 +713,27 @@ export interface Redirect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gbp-connections".
+ */
+export interface GbpConnection {
+  id: number;
+  branchKey: string;
+  projectID: string;
+  accountName?: string | null;
+  locationName?: string | null;
+  locationTitle?: string | null;
+  placeID?: string | null;
+  accessTokenCiphertext?: string | null;
+  refreshTokenCiphertext?: string | null;
+  tokenExpiresAt?: string | null;
+  status: 'not_configured' | 'connected' | 'error';
+  lastSyncedAt?: string | null;
+  lastErrorSafe?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -757,12 +757,20 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
-        relationTo: 'users';
-        value: number | User;
+        relationTo: 'leads';
+        value: number | Lead;
       } | null)
     | ({
-        relationTo: 'media';
-        value: number | Media;
+        relationTo: 'reviews';
+        value: number | Review;
+      } | null)
+    | ({
+        relationTo: 'products';
+        value: number | Product;
+      } | null)
+    | ({
+        relationTo: 'material-codes';
+        value: number | MaterialCode;
       } | null)
     | ({
         relationTo: 'suppliers';
@@ -773,12 +781,8 @@ export interface PayloadLockedDocument {
         value: number | Category;
       } | null)
     | ({
-        relationTo: 'material-codes';
-        value: number | MaterialCode;
-      } | null)
-    | ({
-        relationTo: 'products';
-        value: number | Product;
+        relationTo: 'media';
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'articles';
@@ -793,24 +797,20 @@ export interface PayloadLockedDocument {
         value: number | Page;
       } | null)
     | ({
-        relationTo: 'reviews';
-        value: number | Review;
-      } | null)
-    | ({
-        relationTo: 'gbp-connections';
-        value: number | GbpConnection;
-      } | null)
-    | ({
-        relationTo: 'leads';
-        value: number | Lead;
-      } | null)
-    | ({
         relationTo: 'analytics-events';
         value: number | AnalyticsEvent;
       } | null)
     | ({
         relationTo: 'redirects';
         value: number | Redirect;
+      } | null)
+    | ({
+        relationTo: 'gbp-connections';
+        value: number | GbpConnection;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -856,139 +856,50 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
+ * via the `definition` "leads_select".
  */
-export interface UsersSelect<T extends boolean = true> {
-  name?: T;
-  role?: T;
-  updatedAt?: T;
-  createdAt?: T;
+export interface LeadsSelect<T extends boolean = true> {
+  legacyID?: T;
+  submissionKey?: T;
+  type?: T;
+  fullName?: T;
+  phone?: T;
   email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
-    | T
-    | {
-        id?: T;
-        createdAt?: T;
-        expiresAt?: T;
-      };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
- */
-export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
-  caption?: T;
-  mediaKind?: T;
-  uploadedBy?: T;
-  r2Key?: T;
+  company?: T;
+  city?: T;
+  product?: T;
+  material?: T;
+  thickness?: T;
+  dimensions?: T;
+  quantity?: T;
+  cncRequirement?: T;
+  message?: T;
   sourceURL?: T;
-  checksum?: T;
-  roomApplication?: T;
-  prefix?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "suppliers_select".
- */
-export interface SuppliersSelect<T extends boolean = true> {
-  key?: T;
-  name?: T;
-  slug?: T;
-  description?: T;
-  logo?: T;
-  sourceURL?: T;
-  enabled?: T;
-  lastSyncedAt?: T;
-  syncChecksum?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories_select".
- */
-export interface CategoriesSelect<T extends boolean = true> {
-  name?: T;
-  slug?: T;
-  supplier?: T;
-  parent?: T;
-  description?: T;
-  sourceID?: T;
-  displayOrder?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "material-codes_select".
- */
-export interface MaterialCodesSelect<T extends boolean = true> {
-  stableKey?: T;
-  supplier?: T;
-  code?: T;
-  name?: T;
-  slug?: T;
-  category?: T;
-  subcategory?: T;
-  description?: T;
-  materialType?: T;
-  finish?: T;
-  dimensions?:
-    | T
-    | {
-        value?: T;
-        id?: T;
-      };
-  thicknesses?:
-    | T
-    | {
-        value?: T;
-        id?: T;
-      };
-  specifications?: T;
-  featuredImage?: T;
-  gallery?:
-    | T
-    | {
-        image?: T;
-        id?: T;
-      };
-  applicationGallery?:
-    | T
-    | {
-        image?: T;
-        id?: T;
-      };
-  sourceURL?: T;
-  sourceID?: T;
-  syncChecksum?: T;
-  lastSyncedAt?: T;
+  ipHash?: T;
+  userAgent?: T;
+  attribution?: T;
   status?: T;
-  seo?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        canonical?: T;
-        noindex?: T;
-        ogImage?: T;
-      };
+  consentAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews_select".
+ */
+export interface ReviewsSelect<T extends boolean = true> {
+  stableKey?: T;
+  source?: T;
+  branchKey?: T;
+  reviewerName?: T;
+  reviewerPhotoURL?: T;
+  rating?: T;
+  comment?: T;
+  ownerReply?: T;
+  reviewedAt?: T;
+  published?: T;
+  displayOrder?: T;
+  sourcePayload?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1092,6 +1003,120 @@ export interface ProductsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "material-codes_select".
+ */
+export interface MaterialCodesSelect<T extends boolean = true> {
+  stableKey?: T;
+  supplier?: T;
+  code?: T;
+  name?: T;
+  slug?: T;
+  category?: T;
+  subcategory?: T;
+  description?: T;
+  materialType?: T;
+  finish?: T;
+  dimensions?:
+    | T
+    | {
+        value?: T;
+        id?: T;
+      };
+  thicknesses?:
+    | T
+    | {
+        value?: T;
+        id?: T;
+      };
+  specifications?: T;
+  featuredImage?: T;
+  gallery?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  applicationGallery?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  sourceURL?: T;
+  sourceID?: T;
+  syncChecksum?: T;
+  lastSyncedAt?: T;
+  status?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        canonical?: T;
+        noindex?: T;
+        ogImage?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "suppliers_select".
+ */
+export interface SuppliersSelect<T extends boolean = true> {
+  key?: T;
+  name?: T;
+  slug?: T;
+  description?: T;
+  logo?: T;
+  sourceURL?: T;
+  enabled?: T;
+  lastSyncedAt?: T;
+  syncChecksum?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  supplier?: T;
+  parent?: T;
+  description?: T;
+  sourceID?: T;
+  displayOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  caption?: T;
+  mediaKind?: T;
+  uploadedBy?: T;
+  r2Key?: T;
+  sourceURL?: T;
+  checksum?: T;
+  roomApplication?: T;
+  prefix?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1291,75 +1316,6 @@ export interface PagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "reviews_select".
- */
-export interface ReviewsSelect<T extends boolean = true> {
-  stableKey?: T;
-  source?: T;
-  branchKey?: T;
-  reviewerName?: T;
-  reviewerPhotoURL?: T;
-  rating?: T;
-  comment?: T;
-  ownerReply?: T;
-  reviewedAt?: T;
-  published?: T;
-  displayOrder?: T;
-  sourcePayload?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gbp-connections_select".
- */
-export interface GbpConnectionsSelect<T extends boolean = true> {
-  branchKey?: T;
-  projectID?: T;
-  accountName?: T;
-  locationName?: T;
-  locationTitle?: T;
-  placeID?: T;
-  accessTokenCiphertext?: T;
-  refreshTokenCiphertext?: T;
-  tokenExpiresAt?: T;
-  status?: T;
-  lastSyncedAt?: T;
-  lastErrorSafe?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "leads_select".
- */
-export interface LeadsSelect<T extends boolean = true> {
-  legacyID?: T;
-  submissionKey?: T;
-  type?: T;
-  fullName?: T;
-  phone?: T;
-  email?: T;
-  company?: T;
-  city?: T;
-  product?: T;
-  material?: T;
-  thickness?: T;
-  dimensions?: T;
-  quantity?: T;
-  cncRequirement?: T;
-  message?: T;
-  sourceURL?: T;
-  ipHash?: T;
-  userAgent?: T;
-  attribution?: T;
-  status?: T;
-  consentAt?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "analytics-events_select".
  */
 export interface AnalyticsEventsSelect<T extends boolean = true> {
@@ -1389,6 +1345,50 @@ export interface RedirectsSelect<T extends boolean = true> {
   note?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gbp-connections_select".
+ */
+export interface GbpConnectionsSelect<T extends boolean = true> {
+  branchKey?: T;
+  projectID?: T;
+  accountName?: T;
+  locationName?: T;
+  locationTitle?: T;
+  placeID?: T;
+  accessTokenCiphertext?: T;
+  refreshTokenCiphertext?: T;
+  tokenExpiresAt?: T;
+  status?: T;
+  lastSyncedAt?: T;
+  lastErrorSafe?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  name?: T;
+  role?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1429,6 +1429,21 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * Nội dung ngắn của trang chủ, liên hệ và báo giá.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "static-pages".
+ */
+export interface StaticPage {
+  id: number;
+  legacyUpdatedAt: string;
+  homeHeroDescription: string;
+  contactIntro: string;
+  quoteIntro: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * Thông tin liên hệ, địa điểm và CTA dùng trên website.
@@ -1484,40 +1499,6 @@ export interface BusinessSetting {
   primaryCtaLabel: string;
   primaryCtaUrl: string;
   localBusinessType?: string | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * Giá trị SEO dự phòng của website; không ghi đè SEO đã nhập ở từng nội dung.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "seo-defaults".
- */
-export interface SeoDefault {
-  id: number;
-  siteUrl: string;
-  siteName: string;
-  defaultTitle: string;
-  defaultDescription: string;
-  /**
-   * Chọn ảnh từ Media; Alt text nằm ngay bên dưới để bảo đảm khả năng tiếp cận.
-   */
-  defaultOgImage: number | Media;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * Nội dung ngắn của trang chủ, liên hệ và báo giá.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "static-pages".
- */
-export interface StaticPage {
-  id: number;
-  legacyUpdatedAt: string;
-  homeHeroDescription: string;
-  contactIntro: string;
-  quoteIntro: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1590,6 +1571,38 @@ export interface Brand {
   createdAt?: string | null;
 }
 /**
+ * Giá trị SEO dự phòng của website; không ghi đè SEO đã nhập ở từng nội dung.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo-defaults".
+ */
+export interface SeoDefault {
+  id: number;
+  siteUrl: string;
+  siteName: string;
+  defaultTitle: string;
+  defaultDescription: string;
+  /**
+   * Chọn ảnh từ Media; Alt text nằm ngay bên dưới để bảo đảm khả năng tiếp cận.
+   */
+  defaultOgImage: number | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "static-pages_select".
+ */
+export interface StaticPagesSelect<T extends boolean = true> {
+  legacyUpdatedAt?: T;
+  homeHeroDescription?: T;
+  contactIntro?: T;
+  quoteIntro?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "business-settings_select".
  */
@@ -1647,33 +1660,6 @@ export interface BusinessSettingsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "seo-defaults_select".
- */
-export interface SeoDefaultsSelect<T extends boolean = true> {
-  siteUrl?: T;
-  siteName?: T;
-  defaultTitle?: T;
-  defaultDescription?: T;
-  defaultOgImage?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "static-pages_select".
- */
-export interface StaticPagesSelect<T extends boolean = true> {
-  legacyUpdatedAt?: T;
-  homeHeroDescription?: T;
-  contactIntro?: T;
-  quoteIntro?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "material-categories_select".
  */
 export interface MaterialCategoriesSelect<T extends boolean = true> {
@@ -1713,6 +1699,20 @@ export interface BrandsSelect<T extends boolean = true> {
         legacyProducts?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo-defaults_select".
+ */
+export interface SeoDefaultsSelect<T extends boolean = true> {
+  siteUrl?: T;
+  siteName?: T;
+  defaultTitle?: T;
+  defaultDescription?: T;
+  defaultOgImage?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

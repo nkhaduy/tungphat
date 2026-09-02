@@ -81,6 +81,32 @@ test.describe('Admin Panel', () => {
     await expect(page.getByRole('heading', { name: /Xin chào/ })).toBeVisible()
   })
 
+  test('dashboard operator có việc cần xử lý, tìm kiếm và chế độ nâng cao', async () => {
+    await page.goto('/admin')
+    await expect(page.getByRole('heading', { name: 'Tìm mọi thứ', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Việc cần xử lý', exact: true })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'Tìm mã màu', exact: true })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'Xem khách hỏi', exact: true })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'Tổng quan', exact: true })).toBeVisible()
+    await expect(page.getByText('Trạng thái hệ thống', { exact: true })).toHaveCount(0)
+    const systemGroup = page.locator('[id="nav-group-Quản trị hệ thống"]')
+    await expect(systemGroup).toBeHidden()
+
+    const search = page.getByRole('combobox', { name: 'Tìm mọi thứ' })
+    await search.fill('301')
+    await expect(page.getByRole('listbox', { name: 'Kết quả tìm kiếm' })).toBeVisible()
+    await expect(page.getByText(/Chưa có kết quả|Mã màu/).first()).toBeVisible()
+    await search.press('Escape')
+    await expect(search).toHaveAttribute('aria-expanded', 'false')
+
+    await page.getByRole('button', { name: 'Mở Menu', exact: true }).click()
+    await page.getByRole('button', { name: 'Nâng cao', exact: true }).click()
+    await expect(systemGroup).toBeVisible()
+    await page.getByRole('button', { name: 'Đơn giản', exact: true }).click()
+    await expect(systemGroup).toBeHidden()
+    await page.getByRole('button', { name: 'Đóng Menu', exact: true }).click()
+  })
+
   test('can navigate to list view', async () => {
     await page.goto('/admin/collections/articles')
     await expect(page).toHaveURL(/\/admin\/collections\/articles/)

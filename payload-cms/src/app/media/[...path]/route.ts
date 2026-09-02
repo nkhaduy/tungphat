@@ -22,6 +22,10 @@ async function mediaResponse(context: RouteContext, head: boolean) {
     ETag: object.httpEtag,
     'X-Content-Type-Options': 'nosniff',
   })
-  object.writeHttpMetadata(headers)
+  const metadata = object.httpMetadata
+  if (metadata?.contentDisposition) headers.set('Content-Disposition', metadata.contentDisposition)
+  if (metadata?.contentEncoding) headers.set('Content-Encoding', metadata.contentEncoding)
+  if (metadata?.contentLanguage) headers.set('Content-Language', metadata.contentLanguage)
+  if (metadata?.contentType) headers.set('Content-Type', metadata.contentType)
   return new Response(head ? null : object.body, { headers })
 }

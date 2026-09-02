@@ -3,8 +3,8 @@ import { canDeleteContent, canManageContent } from '@/access/roles'
 
 export const Redirects: CollectionConfig = {
   slug: 'redirects',
-  labels: { singular: 'Chuyển hướng', plural: 'Chuyển hướng' },
-  admin: { group: 'SEO', useAsTitle: 'source', defaultColumns: ['source', 'destination', 'statusCode', 'active'] },
+  labels: { singular: 'URL cũ / chuyển hướng', plural: 'URL cũ / chuyển hướng' },
+  admin: { group: 'Quản trị hệ thống', useAsTitle: 'source', defaultColumns: ['source', 'destination', 'statusCode', 'active'] },
   access: { create: canManageContent, read: () => true, update: canManageContent, delete: canDeleteContent },
   fields: [
     { name: 'source', type: 'text', required: true, unique: true, index: true },

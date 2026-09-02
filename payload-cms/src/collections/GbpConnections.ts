@@ -3,8 +3,8 @@ import { isSuperAdmin } from '@/access/roles'
 
 export const GbpConnections: CollectionConfig = {
   slug: 'gbp-connections',
-  labels: { singular: 'Kết nối Google Business', plural: 'Kết nối Google Business' },
-  admin: { group: 'Google Business', useAsTitle: 'branchKey' },
+  labels: { singular: 'Kết nối Google', plural: 'Kết nối Google' },
+  admin: { group: 'Quản trị hệ thống', useAsTitle: 'branchKey' },
   access: { create: isSuperAdmin, read: isSuperAdmin, update: isSuperAdmin, delete: isSuperAdmin },
   fields: [
     { name: 'branchKey', type: 'text', required: true, unique: true },

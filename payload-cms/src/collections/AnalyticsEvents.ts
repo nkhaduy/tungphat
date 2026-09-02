@@ -3,8 +3,8 @@ import { canManageContent } from '@/access/roles'
 
 export const AnalyticsEvents: CollectionConfig = {
   slug: 'analytics-events',
-  labels: { singular: 'Sự kiện analytics', plural: 'Sự kiện analytics' },
-  admin: { group: 'Analytics', useAsTitle: 'eventName', defaultColumns: ['eventName', 'path', 'occurredAt'] },
+  labels: { singular: 'Số liệu truy cập', plural: 'Số liệu truy cập' },
+  admin: { group: 'Quản trị hệ thống', useAsTitle: 'eventName', defaultColumns: ['eventName', 'path', 'occurredAt'] },
   access: { create: () => true, read: canManageContent, update: () => false, delete: canManageContent },
   fields: [
     { name: 'eventID', type: 'text', required: true, unique: true, index: true },

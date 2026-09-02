@@ -6,7 +6,7 @@ export const Articles: CollectionConfig = contentCollection({
   slug: 'articles',
   labels: { singular: 'Bài viết', plural: 'Bài viết' },
   admin: {
-    group: 'Nội dung',
+    group: 'Nội dung website',
     useAsTitle: 'title',
     description: 'Tin tức và nội dung hướng dẫn của Tùng Phát.',
     defaultColumns: ['title', 'category', '_status', 'publishedAt'],

@@ -4,9 +4,9 @@ import { faqField, stringArray, vietnameseText } from '@/fields/common'
 
 export const Products: CollectionConfig = contentCollection({
   slug: 'products',
-  labels: { singular: 'Sản phẩm', plural: 'Sản phẩm' },
+  labels: { singular: 'Sản phẩm / vật liệu', plural: 'Sản phẩm / vật liệu' },
   admin: {
-    group: 'Sản phẩm và dịch vụ',
+    group: 'Sản phẩm & mã hàng',
     useAsTitle: 'title',
     description: 'Vật liệu và sản phẩm đang được Tùng Phát giới thiệu trên website.',
     defaultColumns: ['title', 'category', '_status', 'updatedAt'],

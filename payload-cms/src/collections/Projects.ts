@@ -6,7 +6,7 @@ export const Projects: CollectionConfig = contentCollection({
   slug: 'projects',
   labels: { singular: 'Dự án CNC', plural: 'Dự án CNC' },
   admin: {
-    group: 'Sản phẩm và dịch vụ',
+    group: 'Nội dung website',
     useAsTitle: 'title',
     description: 'Dự án CNC đã được phép công bố. Không nhập thông tin nhận dạng khách hàng.',
     defaultColumns: ['title', 'materialType', '_status', 'completedAt'],

@@ -4,7 +4,7 @@ import { imageRelationship, slugField, vietnameseText } from '@/fields/common'
 
 export const Brands: GlobalConfig = {
   slug: 'brands', label: 'Thương hiệu', access: contentGlobalAccess,
-  admin: { group: 'Sản phẩm và dịch vụ', description: 'Thương hiệu và catalogue được website giới thiệu.' },
+  admin: { group: 'Sản phẩm & mã hàng', description: 'Thương hiệu và catalogue được website giới thiệu.' },
   fields: [{
     name: 'items', label: 'Danh sách thương hiệu', type: 'array', required: true, minRows: 1,
     fields: [
@@ -15,7 +15,7 @@ export const Brands: GlobalConfig = {
         { name: 'description', label: 'Mô tả', type: 'textarea', maxLength: 300 },
         { name: 'pdf', label: 'PDF', type: 'relationship', relationTo: 'media' },
       ] },
-      { name: 'legacyProducts', label: 'Sản phẩm legacy', type: 'json', access: { read: ({ req }) => Boolean(req.user) }, admin: { readOnly: true, description: 'Giữ để đối chiếu migration; website hiện không có contract ổn định cho field này.' } },
+      { name: 'legacyProducts', label: 'Sản phẩm legacy', type: 'json', access: { read: ({ req }) => Boolean(req.user) }, admin: { readOnly: true, className: 'tp-advanced-field', description: 'Giữ để đối chiếu migration; website hiện không có contract ổn định cho field này.' } },
     ],
   }],
 }

@@ -1,5 +1,6 @@
-import type { Endpoint } from 'payload'
+import type { Endpoint, Where } from 'payload'
 import { z } from 'zod'
+import { normalizeSearchText, rankOperatorSearchResults, toOperatorSearchResult, type OperatorSearchSource } from '@/lib/operator-search'
 
 type LeadType = 'contact' | 'quote'
 
@@ -21,7 +22,71 @@ const leadSchema = z.object({
   consent: z.literal(true), website: z.string().max(200).default(''), turnstile_token: z.string().min(1).max(2048),
 })
 
+const operatorSearchEndpoint: Endpoint = {
+  path: '/search',
+  method: 'get',
+  handler: async (req) => {
+    if (!req.user) return Response.json({ results: [] }, { status: 401, headers: { 'Cache-Control': 'no-store' } })
+    const query = new URL(req.url ?? 'https://cms.mdftungphat.com').searchParams.get('q')?.trim() ?? ''
+    if (query.length < 2) return Response.json({ results: [] }, { headers: { 'Cache-Control': 'no-store' } })
+
+    const normalizedQuery = normalizeSearchText(query)
+    const supplierResult = await req.payload.find({
+      collection: 'suppliers',
+      limit: 100,
+      depth: 0,
+      select: { name: true },
+      req,
+      overrideAccess: false,
+    })
+    const supplierIds = supplierResult.docs
+      .filter((doc) => normalizeSearchText(typeof doc.name === 'string' ? doc.name : '').includes(normalizedQuery))
+      .map((doc) => doc.id)
+
+    const sources: OperatorSearchSource[] = ['material-codes', 'products', 'articles', 'leads']
+    const records = (await Promise.all(sources.map(async (collection) => {
+      const searchOptions = {
+        collection,
+        where: searchWhere(collection, query, supplierIds),
+        limit: collection === 'material-codes' ? 80 : 60,
+        depth: collection === 'material-codes' ? 1 : 0,
+        sort: '-updatedAt',
+        select: searchSelect(collection) as never,
+        req,
+        overrideAccess: false,
+      }
+      const result = await req.payload.find(searchOptions)
+      const docs = result.docs.length ? result.docs : (await req.payload.find({
+        collection,
+        limit: collection === 'material-codes' ? 5000 : 500,
+        depth: collection === 'material-codes' ? 1 : 0,
+        sort: '-updatedAt',
+        select: searchSelect(collection) as never,
+        req,
+        overrideAccess: false,
+      })).docs
+      return docs.map((doc) => toOperatorSearchResult(collection, doc as unknown as Record<string, unknown> & { id: string | number }))
+    }))).flat()
+
+    return Response.json({ results: rankOperatorSearchResults(records, query).slice(0, 12) }, { headers: { 'Cache-Control': 'no-store' } })
+  },
+}
+
+function searchWhere(collection: OperatorSearchSource, query: string, supplierIds: Array<string | number>): Where {
+  const value = query.replace(/[%_]/g, ' ').replace(/\s+/g, ' ').trim()
+  const fields: Record<OperatorSearchSource, string[]> = {
+    'material-codes': ['code', 'name', 'materialType', 'finish'],
+    products: ['title', 'category', 'materialType', 'supplier'],
+    articles: ['title', 'category', 'author'],
+    leads: ['fullName', 'phone', 'product', 'material', 'message'],
+  }
+  const or = fields[collection].map((field) => ({ [field]: { like: value } } as Where))
+  if (collection === 'material-codes' && supplierIds.length) or.push({ supplier: { in: supplierIds } } as Where)
+  return { or }
+}
+
 export const runtimeEndpoints: Endpoint[] = [
+  operatorSearchEndpoint,
   leadEndpoint('contact'),
   leadEndpoint('quote'),
   leadOptionsEndpoint('contact'),
@@ -38,6 +103,13 @@ export const runtimeEndpoints: Endpoint[] = [
     },
   },
 ]
+
+function searchSelect(collection: OperatorSearchSource) {
+  if (collection === 'material-codes') return { code: true, name: true, supplier: true, category: true, materialType: true, finish: true, status: true, updatedAt: true }
+  if (collection === 'products') return { title: true, category: true, materialType: true, supplier: true, _status: true, updatedAt: true }
+  if (collection === 'articles') return { title: true, category: true, author: true, _status: true, updatedAt: true }
+  return { fullName: true, phone: true, type: true, product: true, material: true, message: true, status: true, createdAt: true, updatedAt: true }
+}
 
 function leadEndpoint(type: LeadType): Endpoint {
   return {
