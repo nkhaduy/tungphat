@@ -31,6 +31,13 @@ describe('operator-first CMS IA', () => {
 		expect(fieldLabel(Leads.fields, 'status')).toBe('Trạng thái')
 	})
 
+	it('keeps internal media metadata out of the default operator table', () => {
+		expect(Media.admin?.defaultColumns).toEqual(['mediaKind', 'roomApplication', 'updatedAt'])
+		expect(Media.admin?.defaultColumns).not.toContain('alt')
+		expect(Media.admin?.defaultColumns).not.toContain('checksum')
+		expect(Media.admin?.defaultColumns).not.toContain('sourceURL')
+	})
+
 	it('searches exact material codes, supplier names and Vietnamese accents', async () => {
 		const endpoint = runtimeEndpoints.find((item) => item.path === '/search' && item.method === 'get')
 		expect(endpoint).toBeDefined()

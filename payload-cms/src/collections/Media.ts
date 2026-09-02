@@ -9,7 +9,7 @@ export const Media: CollectionConfig = {
     group: 'Hình ảnh & tài liệu',
     useAsTitle: 'filename',
     description: 'Ảnh, video và catalogue dùng cho website. Hãy nhập alt text mô tả nội dung ảnh.',
-    defaultColumns: ['filename', 'mediaKind', 'alt', 'updatedAt'],
+    defaultColumns: ['mediaKind', 'roomApplication', 'updatedAt'],
     listSearchableFields: ['filename', 'alt', 'caption'],
   },
   access: {
