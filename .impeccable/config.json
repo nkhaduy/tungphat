@@ -8,6 +8,12 @@
         "value": "<img>",
         "createdAt": "2026-09-01T12:24:20.028Z",
         "reason": "Audit parser regex only; no rendered image is created or changed."
+      },
+      {
+        "rule": "overused-font",
+        "value": "montserrat",
+        "createdAt": "2026-09-02T20:52:28.229Z",
+        "reason": "Codex: existing production CMS typography retained for visual continuity; evidence: stabilized UI audit found no P0/P1 issue and changing the incumbent font is outside Session 1 scope."
       }
     ]
   }

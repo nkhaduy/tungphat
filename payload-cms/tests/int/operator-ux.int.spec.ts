@@ -19,6 +19,18 @@ describe('operator-first CMS IA', () => {
 		expect(Articles.admin?.group).toBe('Nội dung website')
 	})
 
+	it('uses Vietnamese labels in the common operator tables', () => {
+		expect(fieldLabel(MaterialCodes.fields, 'code')).toBe('Mã màu')
+		expect(fieldLabel(MaterialCodes.fields, 'name')).toBe('Tên mã')
+		expect(fieldLabel(MaterialCodes.fields, 'supplier')).toBe('Nhà cung cấp')
+		expect(fieldLabel(MaterialCodes.fields, 'category')).toBe('Nhóm vật liệu')
+		expect(fieldLabel(MaterialCodes.fields, 'status')).toBe('Trạng thái')
+		expect(fieldLabel(Leads.fields, 'fullName')).toBe('Họ và tên')
+		expect(fieldLabel(Leads.fields, 'phone')).toBe('Số điện thoại')
+		expect(fieldLabel(Leads.fields, 'type')).toBe('Nhu cầu')
+		expect(fieldLabel(Leads.fields, 'status')).toBe('Trạng thái')
+	})
+
 	it('searches exact material codes, supplier names and Vietnamese accents', async () => {
 		const endpoint = runtimeEndpoints.find((item) => item.path === '/search' && item.method === 'get')
 		expect(endpoint).toBeDefined()
@@ -115,3 +127,9 @@ describe('operator-first CMS IA', () => {
 		expect(unknownMarkup).not.toContain('Nâng cao')
 	})
 })
+
+function fieldLabel(fields: readonly unknown[], name: string): string | undefined {
+	const field = fields.find((candidate) => typeof candidate === 'object' && candidate !== null && 'name' in candidate && candidate.name === name)
+	if (!field || typeof field !== 'object' || !('label' in field)) return undefined
+	return typeof field.label === 'string' ? field.label : undefined
+}
