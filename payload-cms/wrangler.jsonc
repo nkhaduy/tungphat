@@ -17,9 +17,6 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS",
   },
-  "limits": {
-    "cpu_ms": 30000,
-  },
   "d1_databases": [
     {
       "binding": "D1",

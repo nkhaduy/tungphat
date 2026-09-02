@@ -36,4 +36,30 @@ describe('Pages hostname gateway', () => {
     expect(rejected.status).toBe(404)
     expect(upstreamFetch).toHaveBeenCalledTimes(1)
   })
+
+  it('retries transient public content failures once', async () => {
+    const upstreamFetch = vi.fn()
+      .mockResolvedValueOnce(new Response('temporary failure', { status: 503 }))
+      .mockResolvedValueOnce(new Response('{"docs":[]}', { status: 200, headers: { 'content-type': 'application/json' } }))
+    vi.stubGlobal('fetch', upstreamFetch)
+
+    const response = await gateway.fetch(new Request('https://cms.mdftungphat.com/api/pages?limit=100&depth=1&sort=slug'))
+
+    expect(response.status).toBe(200)
+    expect(upstreamFetch).toHaveBeenCalledTimes(2)
+  })
+
+  it('serves public content cache hits without calling the Payload Worker', async () => {
+    const upstreamFetch = vi.fn()
+    const cache = { match: vi.fn(async () => new Response('{"docs":[{"slug":"cached"}]}', { status: 200 })), put: vi.fn() }
+    vi.stubGlobal('fetch', upstreamFetch)
+    vi.stubGlobal('caches', { default: cache })
+
+    const response = await gateway.fetch(new Request('https://cms.mdftungphat.com/api/articles?limit=100&depth=1&sort=slug'))
+
+    expect(response.status).toBe(200)
+    expect(await response.text()).toContain('cached')
+    expect(upstreamFetch).not.toHaveBeenCalled()
+    expect(cache.match).toHaveBeenCalledTimes(1)
+  })
 })
