@@ -41,43 +41,42 @@ const coreMaterials = [
   {
     title: "Ván MDF",
     href: "/van-mdf",
-    image: "/wood/mdfmfc.webp",
-    alt: "Các tấm ván MDF dùng để tham khảo nhóm vật liệu",
+    image: "/images/materials/mdf-sample.jpg",
+    alt: "Các tấm ván MDF dùng để tham khảo nhóm sản phẩm",
     description: "Xem thông tin nền, độ dày và cách gửi quy cách khi hỏi ván MDF.",
   },
   {
     title: "MDF chống ẩm",
     href: "/mdf-chong-am",
-    image: "/wood/vanchongam.webp",
-    alt: "Tấm MDF chống ẩm dùng để tham khảo vật liệu",
+    image: "/images/materials/mdf-orange.jpg",
+    alt: "Tấm MDF dùng để tham khảo nhóm sản phẩm chống ẩm",
     description: "Tách riêng nhu cầu dùng ở môi trường ẩm hơn phòng khô trước khi hỏi hàng.",
   },
   {
-    title: "MFC & Plywood",
+    title: "MFC",
     href: "/van-go-cong-nghiep",
-    image: "/wood/plywood.webp",
-    alt: "Các lớp vật liệu của tấm plywood",
-    description: "Mở trang ván gỗ công nghiệp để xem nhóm MFC, Plywood và bề mặt liên quan.",
+    image: "/images/materials/particle-board.jpg",
+    alt: "Mặt cắt tấm particle board dùng để tham khảo nhóm MFC",
+    description: "Mở trang ván gỗ công nghiệp để xem nhóm MFC và bề mặt liên quan.",
+  },
+  {
+    title: "Plywood",
+    href: "/van-go-cong-nghiep",
+    image: "/images/materials/plywood.jpg",
+    alt: "Các lớp veneer của tấm plywood dùng để tham khảo nhóm sản phẩm",
+    description: "Xem nhóm plywood, cấu tạo lớp veneer và thông tin cần gửi khi hỏi hàng.",
   },
   {
     title: "Gỗ ghép",
     href: "/go-ghep",
-    image: "/images/wood-panels.webp",
-    alt: "Các tấm gỗ ghép dùng để tham khảo nhóm vật liệu",
+    image: "/images/materials/edge-glued-panel.jpg",
+    alt: "Tấm gỗ ghép dùng để tham khảo nhóm sản phẩm",
     description: "Bắt đầu từ nhóm gỗ ghép, sau đó chọn cao su hoặc tràm theo hạng mục.",
     children: [
       ["Gỗ ghép cao su", "/go-ghep-cao-su"],
       ["Gỗ ghép tràm", "/go-ghep-tram"],
     ],
   },
-] as const;
-
-const surfaceLinks = [
-  ["Melamine", "/catalogue/an-cuong/melamine/"],
-  ["Laminate", "/catalogue/thanh-thuy/laminate/"],
-  ["Acrylic", "/catalogue/an-cuong/acrylic/"],
-  ["Veneer", "/catalogue/an-cuong/veneer/"],
-  ["PVC và chỉ dán cạnh", "/catalogue/thanh-thuy/pvc/"],
 ] as const;
 
 const supplierCards = [
@@ -92,11 +91,20 @@ const supplierLabels = {
   "ba-thanh": "Ba Thanh",
 } as const;
 
-const cncCapabilities: { title: string; description: string; icon: LucideIcon }[] = [
-  { title: "Cắt theo kích thước", description: "Gửi danh sách chi tiết, vật liệu, độ dày và số lượng.", icon: ScanLine },
-  { title: "Khoan liên kết", description: "Ghi vị trí, đường kính và mặt gia công trên bản vẽ hoặc file.", icon: CircleDotDashed },
-  { title: "Soi rãnh", description: "Làm rõ chiều rộng, chiều sâu và hướng rãnh trước khi chạy máy.", icon: Layers3 },
-  { title: "Cắt biên dạng", description: "Gửi file hoặc bản phác thảo thể hiện đường cắt cần làm.", icon: PenTool },
+const cncCapabilities: { title: string; icon: LucideIcon }[] = [
+  { title: "Cắt và gia công CNC", icon: ScanLine },
+  { title: "Dán chỉ", icon: CircleDotDashed },
+  { title: "Thiết kế theo hình ảnh, yêu cầu", icon: Layers3 },
+  { title: "Báo giá rõ ràng trước khi cắt", icon: PenTool },
+];
+
+const preferredThanhThuyIds = [
+  "thanh-thuy:301",
+  "thanh-thuy:0029",
+  "thanh-thuy:021",
+  "thanh-thuy:0212",
+  "thanh-thuy:0215",
+  "thanh-thuy:025",
 ];
 
 export async function HomeContent() {
@@ -113,14 +121,22 @@ export async function HomeContent() {
   const requiredFeaturedCode = sortedFeaturedColorCodes.find(
     (record) => record.id === "thanh-thuy:301",
   );
-  const featuredColorCodes = requiredFeaturedCode
-    ? [
-        requiredFeaturedCode,
-        ...sortedFeaturedColorCodes
-          .filter((record) => record.id !== requiredFeaturedCode.id)
-          .slice(0, 5),
-      ]
-    : sortedFeaturedColorCodes;
+  const preferredThanhThuyCodes = [
+    requiredFeaturedCode,
+    ...preferredThanhThuyIds
+      .filter((id) => id !== requiredFeaturedCode?.id)
+      .map((id) => sortedFeaturedColorCodes.find((record) => record.id === id)),
+  ].filter((record): record is (typeof sortedFeaturedColorCodes)[number] => Boolean(record));
+  const supplierQueues = {
+    "an-cuong": sortedFeaturedColorCodes.filter((record) => record.supplier === "an-cuong").slice(0, 6),
+    "thanh-thuy": preferredThanhThuyCodes,
+    "ba-thanh": sortedFeaturedColorCodes.filter((record) => record.supplier === "ba-thanh").slice(0, 6),
+  } as const;
+  const featuredColorCodes = Array.from({ length: 6 }, (_, index) => [
+    supplierQueues["an-cuong"][index],
+    supplierQueues["thanh-thuy"][index],
+    supplierQueues["ba-thanh"][index],
+  ]).flat().filter((record): record is (typeof sortedFeaturedColorCodes)[number] => Boolean(record));
   const latestArticles = articles.slice(0, 3);
 
   return (
@@ -129,7 +145,7 @@ export async function HomeContent() {
         <div className="container-shell">
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <SectionIntro
-              eyebrow="Cốt ván / vật liệu"
+              eyebrow="Sản phẩm"
               title="MDF, MFC, Plywood và gỗ ghép"
               description="Chọn nhóm vật liệu trước, sau đó mở trang chi tiết để xem hướng sử dụng và thông tin nên gửi khi hỏi quy cách."
             />
@@ -163,9 +179,8 @@ export async function HomeContent() {
         <div className="container-shell">
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <SectionIntro
-              eyebrow="Bề mặt / mã màu"
-              title="Mã màu và bề mặt"
-              description="Melamine, Laminate, Acrylic, Veneer và PVC là các nhóm bề mặt để tra cứu mã. Mã bề mặt không tự xác định cốt ván; hãy gửi cả nhu cầu sử dụng khi hỏi hàng."
+              title="Mã màu"
+              description="Tra cứu theo thương hiệu và mã màu. Mã bề mặt không tự xác định cốt ván; hãy gửi cả nhu cầu sử dụng khi hỏi hàng."
             />
             <Link href="/catalogue" prefetch={false} className="inline-flex min-h-11 shrink-0 items-center gap-2 self-start text-sm font-extrabold text-forest-950 hover:text-wood-600">
               Mở catalogue <ArrowRight size={17} aria-hidden="true" />
@@ -174,28 +189,23 @@ export async function HomeContent() {
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[.78fr_1.22fr]">
             <div className="border border-forest-900/10 bg-[#f7f9f6] p-6 sm:p-7">
-              <h3 className="text-xl font-extrabold text-forest-950">Chọn nhóm bề mặt</h3>
-              <ul className="mt-5 grid gap-1 border-t border-forest-900/10 pt-3">
-                {surfaceLinks.map(([label, href]) => (
-                  <li key={href}>
-                    <Link href={href} prefetch={false} className="flex min-h-12 items-center justify-between gap-4 border-b border-forest-900/10 text-sm font-extrabold text-forest-950 hover:text-wood-600">
-                      {label}<ArrowRight size={16} aria-hidden="true" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <h3 className="text-xl font-extrabold text-forest-950">Mã màu theo vật liệu</h3>
+              <p className="mt-4 text-sm leading-6 text-slate-600">Chọn vật liệu, thương hiệu hoặc mã màu trong catalogue. Mã bề mặt không tự xác định cốt ván; hãy gửi cả nhu cầu sử dụng khi hỏi hàng.</p>
+              <Link href="/catalogue" prefetch={false} className="mt-6 inline-flex min-h-12 w-full items-center justify-between gap-4 border border-forest-900/20 bg-white px-4 text-sm font-extrabold text-forest-950 hover:border-wood-500 hover:text-wood-600">
+                Mở catalogue <span className="grid h-8 w-8 shrink-0 place-items-center border border-forest-900/15"><ArrowRight size={16} aria-hidden="true" /></span>
+              </Link>
               <p className="mt-5 text-xs leading-5 text-slate-600">Quy cách, mã màu và tồn kho có thể thay đổi theo từng dòng hàng. Gửi mã hoặc ảnh mẫu để kiểm tra trước khi báo giá.</p>
             </div>
 
-            <div>
-              <p className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">Nhà cung cấp &amp; bảng mã</p>
-              <div className="mt-4 grid gap-4 sm:grid-cols-3">
+            <div className="min-w-0">
+              <p className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">MÃ MÀU</p>
+              <div className="mt-4 grid gap-4 sm:grid-cols-[repeat(3,minmax(0,1fr))]">
                 {supplierCards.map((supplier) => (
-                  <Link key={supplier.slug} href={`/catalogue/${supplier.slug}`} prefetch={false} className="group flex min-h-[142px] flex-col items-center justify-between border border-forest-900/10 bg-white p-5 shadow-[0_8px_24px_rgba(7,59,40,.045)] transition hover:-translate-y-1 hover:border-wood-500/40">
+                  <Link key={supplier.slug} href={`/catalogue/${supplier.slug}`} prefetch={false} className="group flex min-h-[142px] min-w-0 flex-col items-center justify-between border border-forest-900/10 bg-white p-5 shadow-[0_8px_24px_rgba(7,59,40,.045)] transition hover:-translate-y-1 hover:border-wood-500/40">
                     <span className="relative block h-14 w-full">
                       <Image src={supplier.logo} alt={`Logo ${supplier.name}`} fill sizes="180px" className="object-contain" />
                     </span>
-                    <span className="mt-4 inline-flex min-h-9 items-center gap-2 text-xs font-extrabold text-forest-950 group-hover:text-wood-600">Mở bảng mã <ArrowRight size={14} aria-hidden="true" /></span>
+                    <span className="mt-4 inline-flex min-h-9 items-center gap-2 text-xs font-extrabold text-forest-950 group-hover:text-wood-600">Mở mã màu <ArrowRight size={14} aria-hidden="true" /></span>
                   </Link>
                 ))}
               </div>
@@ -205,15 +215,16 @@ export async function HomeContent() {
                     <h3 className="text-xl font-extrabold text-forest-950">Một số mã đang có trang tra cứu</h3>
                     <Link href="/catalogue" prefetch={false} className="inline-flex min-h-10 shrink-0 items-center gap-2 text-xs font-extrabold text-wood-600">Tìm mã khác <ArrowRight size={15} aria-hidden="true" /></Link>
                   </div>
-                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <div className="color-code-slider mt-4 min-w-0 flex gap-3 overflow-x-auto pb-3" data-color-code-slider aria-label="Một số mã màu nổi bật">
                     {featuredColorCodes.map((record) => (
-                      <Link key={record.id} href={record.canonicalRoute} className="group flex min-h-20 items-center justify-between gap-4 border border-forest-900/10 bg-[#fbfcfa] px-4 py-3 hover:border-wood-500/50">
+                      <Link key={record.id} href={record.canonicalRoute} className="group flex min-h-[13rem] w-[12.5rem] shrink-0 snap-start flex-col justify-end gap-3 border border-forest-900/10 bg-[#fbfcfa] p-3 hover:border-wood-500/50">
+                        <span className="relative block aspect-[4/3] w-full overflow-hidden bg-[#edf1ec]">
+                          {record.images[0]?.localPath ? <Image src={record.images[0].localPath} alt={`Mã màu ${record.codeRaw} ${record.displayName || ""}`} fill sizes="200px" className="object-cover transition duration-300 group-hover:scale-[1.025]" /> : null}
+                        </span>
                         <span>
                           <span className="block text-[11px] font-extrabold uppercase tracking-[.12em] text-wood-600">{supplierLabels[record.supplier as keyof typeof supplierLabels]}</span>
                           <strong className="mt-1 block text-sm text-forest-950">{record.displayName || record.codeRaw}</strong>
-                          <span className="mt-1 block text-xs text-slate-600">Mã {record.codeRaw}</span>
                         </span>
-                        <ArrowRight size={17} className="shrink-0 text-forest-900 transition group-hover:translate-x-1" aria-hidden="true" />
                       </Link>
                     ))}
                   </div>
@@ -227,9 +238,8 @@ export async function HomeContent() {
       <section id="nang-luc-cnc" className="scroll-mt-24 bg-[#f7f9f6] py-16 lg:py-24">
         <div className="container-shell">
           <SectionIntro
-            eyebrow="Cắt &amp; CNC"
-            title="Cắt và gia công CNC theo quy cách"
-            description="Gửi file hoặc bản phác thảo cùng vật liệu, độ dày, số lượng và phần việc cần làm để xưởng kiểm tra trước."
+            title="Cắt và gia công CNC"
+            description="Gửi vật liệu, độ dày, số lượng và file hoặc hình ảnh yêu cầu để xưởng kiểm tra trước."
             centered
           />
           <div className="mt-10 grid gap-6 lg:grid-cols-[.82fr_1.18fr]">
@@ -242,16 +252,15 @@ export async function HomeContent() {
               </div>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
-              {cncCapabilities.map(({ title, description, icon: Icon }) => (
+              {cncCapabilities.map(({ title, icon: Icon }) => (
                 <article key={title} className="rounded-xl border border-forest-900/10 bg-white p-6 shadow-[0_8px_24px_rgba(7,59,40,.045)]">
                   <span className="grid h-11 w-11 place-items-center rounded-lg bg-[#edf4ef] text-forest-900"><Icon size={22} aria-hidden="true" /></span>
                   <h3 className="mt-5 text-lg font-extrabold text-forest-950">{title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
                 </article>
               ))}
               <div className="sm:col-span-2 flex flex-col gap-3 border-t border-forest-900/10 pt-5 sm:flex-row">
                 <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_cnc", channel: "zalo" }} className="inline-flex min-h-12 items-center justify-center gap-2 bg-wood-600 px-5 text-sm font-extrabold text-white hover:bg-wood-700">
-                  <MessageCircle size={17} aria-hidden="true" /> Gửi quy cách qua Zalo
+                  <MessageCircle size={17} aria-hidden="true" /> Liên hệ báo giá
                 </TrackedLink>
                 <Link href="/gia-cong-cnc" className="inline-flex min-h-12 items-center justify-center gap-2 border border-forest-900/20 px-5 text-sm font-extrabold text-forest-950 hover:border-forest-900">
                   Xem dịch vụ CNC <ArrowRight size={17} aria-hidden="true" />
@@ -265,28 +274,30 @@ export async function HomeContent() {
       <section id="chi-nhanh" className="scroll-mt-24 bg-white py-16 lg:py-24">
         <div className="container-shell">
           <SectionIntro
-            eyebrow="Địa điểm Tùng Phát"
-            title="Xưởng và chi nhánh tại Thủ Đức"
-            description="Hai địa chỉ trên đường Tam Bình. Gọi trước nếu bạn cần hỏi mã, quy cách hoặc phần gia công; khi đến có thể mở Maps theo từng chi nhánh."
+            title="Địa chỉ"
+            description="Xem tên cửa hàng, địa chỉ và bản đồ của từng chi nhánh trước khi đến."
             centered
           />
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
             {locations.map((branch) => (
-              <article key={branch.id} className="grid overflow-hidden rounded-2xl border border-forest-900/10 bg-[#f8faf7] shadow-[0_12px_36px_rgba(7,59,40,.07)] sm:grid-cols-[.82fr_1.18fr]">
-                <div className="relative min-h-[250px] sm:min-h-[300px]">
-                  <Image src={branch.image} alt={branch.imageAlt} fill sizes="(max-width: 640px) 100vw, 42vw" className="object-cover" />
-                </div>
-                <div className="flex flex-col p-6 sm:p-7">
-                  <span className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">{branch.shortId}</span>
-                  <h3 className="mt-3 text-xl font-extrabold text-forest-950">{branch.name}</h3>
-                  <p className="mt-4 flex items-start gap-3 text-sm font-semibold leading-6 text-slate-700"><MapPin size={18} className="mt-0.5 shrink-0 text-forest-800" aria-hidden="true" />{branch.address}</p>
-                  <a href={PHONE_HREF} className="mt-4 inline-flex min-h-11 items-center gap-3 text-sm font-extrabold text-forest-950 hover:text-wood-600"><Phone size={17} className="text-wood-600" aria-hidden="true" />Gọi {PHONE_DISPLAY}</a>
-                  <div className="mt-auto grid gap-2 pt-5 sm:grid-cols-2">
-                    <Link href={branchPathForLocationId(branch.id)} className="inline-flex min-h-12 items-center justify-center border border-forest-900/20 px-4 text-center text-sm font-extrabold text-forest-950 hover:border-forest-900">Xem chi nhánh</Link>
-                    <a href={branch.directionsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-forest-900 px-5 text-sm font-extrabold text-white transition hover:bg-forest-800">Mở Maps <ExternalLink size={16} aria-hidden="true" /></a>
+              <div key={branch.id} className="overflow-hidden rounded-2xl border border-forest-900/10 bg-[#f8faf7] shadow-[0_12px_36px_rgba(7,59,40,.07)]">
+                <article className="grid sm:grid-cols-[.82fr_1.18fr]">
+                  <div className="relative min-h-[250px] sm:min-h-[300px]">
+                    <Image src={branch.image} alt={branch.imageAlt} fill sizes="(max-width: 640px) 100vw, 42vw" className="object-cover" />
                   </div>
-                </div>
-              </article>
+                  <div className="flex flex-col p-6 sm:p-7">
+                    <span className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">{branch.shortId}</span>
+                    <h3 className="mt-3 text-xl font-extrabold text-forest-950">{branch.name}</h3>
+                    <p className="mt-4 flex items-start gap-3 text-sm font-semibold leading-6 text-slate-700"><MapPin size={18} className="mt-0.5 shrink-0 text-forest-800" aria-hidden="true" />{branch.address}</p>
+                    <a href={PHONE_HREF} className="mt-4 inline-flex min-h-11 items-center gap-3 text-sm font-extrabold text-forest-950 hover:text-wood-600"><Phone size={17} className="text-wood-600" aria-hidden="true" />Gọi {PHONE_DISPLAY}</a>
+                    <div className="mt-auto grid gap-2 pt-5 sm:grid-cols-2">
+                      <Link href={branchPathForLocationId(branch.id)} className="inline-flex min-h-12 items-center justify-center border border-forest-900/20 px-4 text-center text-sm font-extrabold text-forest-950 hover:border-forest-900">Xem chi nhánh</Link>
+                      <a href={branch.directionsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-forest-900 px-5 text-sm font-extrabold text-white transition hover:bg-forest-800">Mở Maps <ExternalLink size={16} aria-hidden="true" /></a>
+                    </div>
+                  </div>
+                </article>
+                <iframe title={`Google Maps - ${branch.name}`} src={branch.embedSrc} loading="lazy" className="h-52 w-full border-0" referrerPolicy="no-referrer-when-downgrade" />
+              </div>
             ))}
           </div>
         </div>
@@ -296,8 +307,8 @@ export async function HomeContent() {
         <section className="border-t border-forest-900/10 bg-[#f7f9f6] py-14 lg:py-18">
           <div className="container-shell">
             <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
-              <SectionIntro eyebrow="Kiến thức" title="Kiến thức vật liệu và CNC" description="Một vài bài viết để chuẩn bị thông tin trước khi chọn ván hoặc gửi file."
-              />
+                <SectionIntro title="Bài viết nổi bật"
+                />
               <Link href="/bai-viet" className="inline-flex min-h-11 shrink-0 items-center gap-2 self-start text-sm font-extrabold text-forest-950 hover:text-wood-600">Xem tất cả bài viết <ArrowRight size={17} aria-hidden="true" /></Link>
             </div>
             <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -314,16 +325,6 @@ export async function HomeContent() {
         </section>
       ) : null}
 
-      <section className="bg-[#edf4ef] py-14 lg:py-18">
-        <div className="container-shell flex flex-col items-start justify-between gap-7 rounded-2xl bg-forest-950 p-7 text-white shadow-[0_18px_50px_rgba(7,59,40,.16)] sm:p-10 lg:flex-row lg:items-center">
-          <div className="max-w-3xl">
-            <p className="text-xs font-extrabold uppercase tracking-[.17em] text-orange-300">Trao đổi nhu cầu thực tế</p>
-            <h2 className="mt-3 text-balance text-2xl font-extrabold leading-tight sm:text-3xl">Đã có mã, quy cách hoặc file CNC?</h2>
-            <p className="mt-3 text-sm leading-6 text-white/70">Gửi vật liệu, độ dày, kích thước, số lượng và file nếu cần cắt hoặc gia công.</p>
-          </div>
-          <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_final_cta", channel: "zalo" }} className="inline-flex min-h-14 shrink-0 items-center justify-center gap-2 rounded-md bg-wood-600 px-6 text-sm font-extrabold text-white transition hover:bg-wood-700"><MessageCircle size={18} aria-hidden="true" />Gửi quy cách qua Zalo</TrackedLink>
-        </div>
-      </section>
     </>
   );
 }

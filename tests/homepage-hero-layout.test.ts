@@ -34,12 +34,36 @@ describe("homepage editorial material hero", () => {
   it("keeps focused local commercial hero actions", () => {
     expect(hero).toContain("Xem vật liệu");
     expect(hero).toContain("Mở catalogue");
-    expect(hero).toContain("Gửi quy cách qua Zalo");
+    expect(hero).toContain("Liên hệ báo giá");
     expect(hero).toContain("/catalogue");
     expect(hero).toContain("/san-pham");
-    expect(hero).not.toContain("Liên hệ");
     expect(hero).not.toContain("Xem báo giá");
     expect(hero.match(/className="pressable inline-flex/g)).toHaveLength(3);
+  });
+
+  it("art-directs the mobile hero so the full material stack stays visible", () => {
+    expect(hero).toContain('media="(max-width: 767px)"');
+    expect(hero).toContain("material-panels-hero-mobile");
+    expect(hero).toContain("object-contain");
+  });
+
+  it("keeps the homepage color-code slider constrained to its viewport", () => {
+    const content = readFileSync("components/home/HomeContent.tsx", "utf8");
+    expect(content).toContain("min-w-0");
+    expect(content).toContain("repeat(3,minmax(0,1fr))");
+  });
+
+  it("uses credited real material references for product cards", () => {
+    const content = readFileSync("components/home/HomeContent.tsx", "utf8");
+    expect(content).toContain("/images/materials/mdf-sample.jpg");
+    expect(content).toContain("/images/materials/mdf-orange.jpg");
+    expect(content).toContain("/images/materials/particle-board.jpg");
+    expect(content).toContain("/images/materials/plywood.jpg");
+    expect(content).toContain("/images/materials/edge-glued-panel.jpg");
+    expect(content).not.toContain("/wood/mdfmfc.webp");
+    expect(content).not.toContain("/wood/vanchongam.webp");
+    expect(content).not.toContain("/wood/plywood.webp");
+    expect(content).not.toContain("/images/wood-panels.webp");
   });
 
   it("removes the homepage utility, benefits, and answer blocks", () => {
@@ -53,9 +77,10 @@ describe("homepage editorial material hero", () => {
     expect(content).not.toContain("Trả lời nhanh");
   });
 
-  it("keeps the hero image covering the full frame without exposed edges", () => {
+  it("keeps the hero image framed without exposed edges", () => {
     const styles = readFileSync("app/globals.css", "utf8");
     expect(styles).toContain(".material-panels-hero-image");
-    expect(styles).toContain("transform: scale(1.01)");
+    expect(styles).toContain(".material-panels-hero-mobile-image");
+    expect(styles).toContain("object-fit: contain");
   });
 });

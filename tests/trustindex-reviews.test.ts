@@ -23,4 +23,13 @@ describe("Trustindex public source parser", () => {
     expect(data.reviews).toHaveLength(2);
     expect(data.reviews[1]).toMatchObject({ reviewerName: "Chỉ có điểm", rating: 5, text: "" });
   });
+
+  it("preserves cached local avatar paths across source refreshes", async () => {
+    const { mergeCachedAvatarUrls } = await import("../scripts/sync-trustindex-reviews.mjs");
+    const next = mergeCachedAvatarUrls(
+      [{ id: "1", avatarUrl: "https://lh3.googleusercontent.com/new" }],
+      [{ id: "1", avatarUrl: "/reviews/avatars/1.png" }],
+    );
+    expect(next[0].avatarUrl).toBe("/reviews/avatars/1.png");
+  });
 });

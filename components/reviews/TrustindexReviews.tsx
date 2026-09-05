@@ -32,12 +32,18 @@ function StarRating({ rating }: { rating: number }) {
   return <span role="img" className="flex gap-0.5 text-[#f6b400]" aria-label={`${rating} trên 5 sao`}>{Array.from({ length: 5 }, (_, index) => <Star key={index} size={15} fill={index < rating ? "currentColor" : "none"} className={index < rating ? "" : "text-slate-200"} aria-hidden="true" />)}</span>;
 }
 
+function ReviewAvatar({ review }: { review: TrustindexReview }) {
+  return <span aria-hidden="true" className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-full bg-[#edf4ef] text-xs font-extrabold text-forest-900">
+    {review.avatarUrl ? <Image src={review.avatarUrl} alt="" width={48} height={48} className="h-full w-full object-cover" /> : initials(review.reviewerName)}
+  </span>;
+}
+
 function ReviewCard({ review, googleUrl, onReadMore }: { review: TrustindexReview; googleUrl: string; onReadMore: () => void }) {
   const needsDialog = review.text.length > 260;
   return <article data-trustindex-card className="flex min-h-[21rem] basis-full snap-start flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-[0_12px_28px_rgba(15,23,42,0.10)] sm:p-7 md:basis-[275px]">
     <div className="flex items-start justify-between gap-4">
       <div className="flex min-w-0 items-center gap-3.5">
-        <span aria-hidden="true" className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-[#edf4ef] text-xs font-extrabold text-forest-900">{initials(review.reviewerName)}</span>
+        <ReviewAvatar review={review} />
         <div className="min-w-0"><h3 className="truncate text-sm font-extrabold text-forest-950">{review.reviewerName}</h3><p className="mt-1 text-xs text-slate-600">{review.date}</p></div>
       </div>
     <Image src="/brand/google-g.png" alt="Google" width={21} height={21} className="h-[21px] w-[21px] shrink-0" />
@@ -50,8 +56,10 @@ function ReviewCard({ review, googleUrl, onReadMore }: { review: TrustindexRevie
 
 export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [autoplay, setAutoplay] = useState(true);
+  const [autoplay, setAutoplay] = useState(false);
   const [selectedReview, setSelectedReview] = useState<TrustindexReview | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const cardRefs = useRef<Array<HTMLElement | null>>([]);
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -64,11 +72,33 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
   const googleUrl = googleUrls[0];
 
   useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      const nextVisible = Boolean(entry?.isIntersecting);
+      setIsVisible(nextVisible);
+      if (nextVisible) setAutoplay(true);
+      else setAutoplay(false);
+    }, { threshold: 0.35 });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     reducedMotion.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion.current || !autoplay || reviews.length < 2) return;
-    const timer = window.setInterval(() => setActiveIndex((value) => (value + 1) % reviews.length), 6000);
+    const section = sectionRef.current;
+    if (reducedMotion.current || !section || !isVisible || !autoplay || reviews.length < 2) return;
+    const timer = window.setInterval(() => {
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      if (rect.bottom <= 0 || rect.top >= viewportHeight) {
+        setAutoplay(false);
+        return;
+      }
+      setActiveIndex((value) => (value + 1) % reviews.length);
+    }, 6000);
     return () => window.clearInterval(timer);
-  }, [autoplay, reviews.length]);
+  }, [autoplay, isVisible, reviews.length]);
 
   useEffect(() => {
     const viewport = viewportRef.current;
@@ -96,7 +126,7 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
   }
 
   if (!reviews.length) return null;
-  return <section id="google-reviews" data-trustindex-reviews aria-label="Đánh giá khách hàng" className="border-y border-forest-900/10 bg-[#f4f7f4] py-16 lg:py-24">
+  return <section ref={sectionRef} id="google-reviews" data-trustindex-reviews aria-label="Đánh giá khách hàng" className="border-y border-forest-900/10 bg-[#f4f7f4] py-16 lg:py-24">
     <div className="container-shell">
       <div className="grid gap-7 lg:grid-cols-[13.75rem_minmax(0,1fr)] lg:items-stretch">
         <aside className="flex min-h-[21rem] flex-col rounded-xl bg-forest-950 p-7 text-white shadow-[0_14px_32px_rgba(6,43,29,0.18)]">

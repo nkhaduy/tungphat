@@ -75,6 +75,16 @@ export function parseTrustindexHtml(html) {
   };
 }
 
+export function mergeCachedAvatarUrls(reviews, previousReviews) {
+  const previousById = new Map((previousReviews ?? []).map((review) => [review.id, review]));
+  return reviews.map((review) => {
+    const cached = previousById.get(review.id)?.avatarUrl;
+    return typeof cached === "string" && cached.startsWith("/")
+      ? { ...review, avatarUrl: cached }
+      : review;
+  });
+}
+
 export async function syncTrustindexReviews({ fetchImpl = fetch } = {}) {
   const response = await fetchImpl(TRUSTINDEX_URL, {
     headers: { Accept: "text/html", "User-Agent": "TungPhat review source refresh" },
@@ -84,6 +94,7 @@ export async function syncTrustindexReviews({ fetchImpl = fetch } = {}) {
   const data = parseTrustindexHtml(await response.text());
   const current = await readFile(OUTPUT_PATH, "utf8").catch(() => "");
   const previous = current ? JSON.parse(current) : null;
+  if (previous) data.reviews = mergeCachedAvatarUrls(data.reviews, previous.reviews);
   if (previous && JSON.stringify({ ...previous, refreshedAt: undefined }) === JSON.stringify({ ...data, refreshedAt: undefined })) {
     data.refreshedAt = previous.refreshedAt;
   }

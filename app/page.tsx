@@ -13,7 +13,7 @@ const homepageTitle = "MDF, MFC, Plywood, Gỗ Ghép & Gia Công CNC tại Thủ
 export const metadata = {
   ...createPageMetadata({
     title: homepageTitle,
-    description: "Tùng Phát cung cấp gỗ ghép, MDF, MFC, Plywood và chỉ dán cạnh; nhận cắt và gia công CNC tại Thủ Đức, TP.HCM. Tra cứu mã bề mặt và gửi quy cách để hỏi hàng.",
+    description: "Tùng Phát cung cấp gỗ ghép, MDF, MFC, Plywood và chỉ dán cạnh; nhận cắt và gia công CNC tại Thủ Đức, TP.HCM. Tra cứu mã màu và liên hệ báo giá.",
     path: "/"
   }),
   title: { absolute: homepageTitle }
@@ -27,25 +27,25 @@ export default async function Home() {
         <HomeHero />
         <HomeContent />
         <TrustindexReviews data={trustindexReviews as TrustindexReviewData} />
-        <TrackedLink
-          href={ZALO_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          eventName="click_zalo"
-          eventProperties={{ location: "home_floating" }}
-          aria-label="Mở Zalo Tùng Phát"
-          className="floating-zalo fixed bottom-[max(16px,env(safe-area-inset-bottom))] right-4 z-40 hidden h-16 w-16 place-items-center rounded-full border-2 border-white bg-white p-0.5 md:grid md:bottom-5 md:right-5"
-        >
-          <Image
-            src="/images/zalo-contact.png"
-            alt=""
-            width={64}
-            height={64}
-            className="h-full w-full rounded-full object-contain"
-            aria-hidden="true"
-          />
-        </TrackedLink>
       </SiteShell>
+      <TrackedLink
+        href={ZALO_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        eventName="click_zalo"
+        eventProperties={{ location: "home_floating" }}
+        aria-label="Mở Zalo Tùng Phát"
+        className="floating-zalo fixed bottom-[calc(5.25rem+env(safe-area-inset-bottom))] right-4 z-[60] grid h-16 w-16 place-items-center rounded-full border-2 border-white bg-white p-0.5 md:bottom-5 md:right-5"
+      >
+        <Image
+          src="/images/zalo-contact.png"
+          alt=""
+          width={64}
+          height={64}
+          className="h-full w-full rounded-full object-contain"
+          aria-hidden="true"
+        />
+      </TrackedLink>
     </>
   );
 }

@@ -91,4 +91,13 @@ describe("Trustindex reviews SSR", () => {
     expect(source).toContain("scrollTo");
     expect(source).not.toContain("scrollIntoView");
   });
+
+  it("uses cached-or-fallback avatars and waits for the review section to enter view", () => {
+    const source = readFileSync("components/reviews/TrustindexReviews.tsx", "utf8");
+    expect(source).toContain("review.avatarUrl");
+    expect(source).toContain("IntersectionObserver");
+    expect(source).toContain("isIntersecting");
+    expect(source).toContain("section.getBoundingClientRect");
+    expect(source).not.toContain("const [autoplay, setAutoplay] = useState(true)");
+  });
 });

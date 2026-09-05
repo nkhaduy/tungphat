@@ -13,6 +13,12 @@ export function HomeHero() {
       <div className="home-hero-image-layer absolute inset-0 z-0" aria-hidden="true">
         <picture>
           <source
+            media="(max-width: 767px)"
+            type="image/png"
+            srcSet="/images/material-panels-hero-mobile.png 1276w"
+            sizes="100vw"
+          />
+          <source
             type="image/avif"
             srcSet="/images/material-panels-hero-960.avif 960w, /images/material-panels-hero-1440.avif 1440w, /images/material-panels-hero.avif 1916w"
             sizes="100vw"
@@ -32,7 +38,7 @@ export function HomeHero() {
             fetchPriority="high"
             loading="eager"
             decoding="async"
-            className="material-panels-hero-image"
+            className="material-panels-hero-image material-panels-hero-mobile-image"
           />
         </picture>
       </div>
@@ -58,10 +64,10 @@ export function HomeHero() {
               Xem vật liệu <ArrowRight size={17} aria-hidden="true" />
             </Link>
             <Link href="/catalogue" prefetch={false} className="pressable inline-flex min-h-12 items-center justify-center gap-2 border border-forest-900/25 bg-white/90 px-5 text-sm font-extrabold text-forest-950 hover:border-wood-500 hover:bg-white">
-              Mở catalogue <ArrowRight size={17} aria-hidden="true" />
+              Mở catalogue <span className="grid h-8 w-8 shrink-0 place-items-center border border-forest-900/15"><ArrowRight size={16} aria-hidden="true" /></span>
             </Link>
             <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_hero", channel: "zalo" }} className="pressable inline-flex min-h-12 items-center justify-center gap-2 bg-forest-900 px-5 text-sm font-extrabold text-white hover:bg-forest-800">
-              <Image src="/images/zalo-contact.png" alt="" width={22} height={22} aria-hidden="true" className="h-[22px] w-[22px] object-contain" /> Gửi quy cách qua Zalo
+              <Image src="/images/zalo-contact.png" alt="" width={22} height={22} aria-hidden="true" className="h-[22px] w-[22px] object-contain" /> Liên hệ báo giá
             </TrackedLink>
           </div>
         </div>

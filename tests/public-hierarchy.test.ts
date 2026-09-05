@@ -13,20 +13,60 @@ describe("public SEO and UX hierarchy", () => {
     expect(hero).toMatch(/Vật liệu gỗ[\s\S]*và gia công CNC tại Thủ Đức/);
     expect(hero).toContain('href="/san-pham"');
     expect(hero).toContain('href="/catalogue"');
-    expect(hero).toContain("Gửi quy cách qua Zalo");
+    expect(hero).toContain("Liên hệ báo giá");
   });
 
-  it("keeps core materials and surface catalogue as separate homepage groups", () => {
+  it("keeps products and color-code lookup as separate homepage groups", () => {
     const content = readFileSync("components/home/HomeContent.tsx", "utf8");
 
     expect(content).toContain("MDF, MFC, Plywood và gỗ ghép");
-    expect(content).toContain("Cốt ván / vật liệu");
-    expect(content).toContain("Mã màu và bề mặt");
-    expect(content).toContain("Nhà cung cấp &amp; bảng mã");
+    expect(content).toContain('eyebrow="Sản phẩm"');
+    expect(content).toContain("Mã màu theo vật liệu");
+    expect(content).toContain('>MÃ MÀU<');
+    expect(content).toContain("Mở mã màu");
+    expect(content).not.toContain("Cốt ván / vật liệu");
+    expect(content).not.toContain("Nhà cung cấp &amp; bảng mã");
+    expect(content).not.toContain("Chọn nhóm bề mặt");
+    expect(content).not.toContain("Melamine");
+    expect(content).not.toContain("Laminate");
+    expect(content).not.toContain("Acrylic");
+    expect(content).not.toContain("Veneer");
+    expect(content).not.toContain("PVC");
     expect(content).toContain('record.id === "thanh-thuy:301"');
     expect(content).toContain("record.canonicalRoute");
     expect(content).not.toContain("Sản phẩm nổi bật");
     expect(content).not.toContain("Bắt đầu với loại ván và độ dày cần dùng");
+  });
+
+  it("keeps the homepage floating Zalo bubble outside the animated content wrapper", () => {
+    const page = readFileSync("app/page.tsx", "utf8");
+    const siteShellEnd = page.indexOf("</SiteShell>");
+    const floatingZalo = page.indexOf('className="floating-zalo fixed');
+
+    expect(siteShellEnd).toBeGreaterThan(-1);
+    expect(floatingZalo).toBeGreaterThan(siteShellEnd);
+  });
+
+  it("uses the shorter CNC, address, article, and quote labels", () => {
+    const content = readFileSync("components/home/HomeContent.tsx", "utf8");
+
+    for (const label of [
+      "Cắt và gia công CNC",
+      "Dán chỉ",
+      "Thiết kế theo hình ảnh, yêu cầu",
+      "Báo giá rõ ràng trước khi cắt",
+      "Địa chỉ",
+      "Bài viết nổi bật",
+      "Liên hệ báo giá",
+    ]) {
+      expect(content).toContain(label);
+    }
+    expect(content).not.toContain("Khoan liên kết");
+    expect(content).not.toContain("Soi rãnh");
+    expect(content).not.toContain("Cắt biên dạng");
+    expect(content).not.toContain("Địa điểm Tùng Phát");
+    expect(content).not.toContain("Trao đổi nhu cầu thực tế");
+    expect(content).not.toContain("Gửi danh sách chi tiết, vật liệu, độ dày và số lượng.");
   });
 
   it("uses controlled navigation groups and keeps catalogue payload deferred", () => {
@@ -48,7 +88,7 @@ describe("public SEO and UX hierarchy", () => {
 
     expect(footer).toContain("MST");
     expect(footer).toContain("Mở Maps");
-    expect(footer).toContain("Gửi quy cách qua Zalo");
+    expect(footer).toContain("Liên hệ báo giá");
     expect(footer).not.toContain("facebook.com/plugins/page.php");
     expect(footer).not.toContain("<iframe");
   });

@@ -201,7 +201,7 @@ test("homepage có hero vật liệu editorial, CTA gọn và một ảnh LCP ư
   await expect(hero.getByRole("link")).toHaveCount(3);
   await expect(hero.getByRole("link", { name: "Xem vật liệu" })).toBeVisible();
   await expect(hero.getByRole("link", { name: "Mở catalogue" })).toBeVisible();
-  await expect(hero.getByRole("link", { name: "Gửi quy cách qua Zalo" })).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Liên hệ báo giá" })).toBeVisible();
   await expect(hero.getByRole("link", { name: "Xem báo giá" })).toHaveCount(0);
   await expect(hero.locator(".material-panels-hero-image")).toBeVisible();
   await expect(hero.locator('source[type="image/avif"]')).toHaveAttribute(
@@ -235,7 +235,7 @@ test("homepage does not prefetch the catalogue payload before user intent", asyn
   expect(catalogueRequests).toEqual([]);
 });
 
-test("homepage uses the branded floating Zalo control only outside mobile", async ({
+test("homepage keeps the branded floating Zalo control visible on every viewport", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
@@ -249,7 +249,7 @@ test("homepage uses the branded floating Zalo control only outside mobile", asyn
   await expect(floatingZalo).toHaveClass(/floating-zalo/);
 
   await page.setViewportSize({ width: 390, height: 844 });
-  await expect(floatingZalo).toBeHidden();
+  await expect(floatingZalo).toBeVisible();
   await expect(
     page.getByRole("navigation", { name: "Liên hệ nhanh" }),
   ).toBeVisible();
@@ -288,10 +288,10 @@ test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", asyn
   await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
   for (const heading of [
     "MDF, MFC, Plywood và gỗ ghép",
-    "Mã màu và bề mặt",
-    "Cắt và gia công CNC theo quy cách",
-    "Xưởng và chi nhánh tại Thủ Đức",
-    "Kiến thức vật liệu và CNC",
+    "Mã màu",
+    "Cắt và gia công CNC",
+    "Địa chỉ",
+    "Bài viết nổi bật",
   ]) {
     await expect(
       page.getByRole("heading", { level: 2, name: heading }),
@@ -313,7 +313,7 @@ test("CTA báo giá vật liệu có accessible name khớp nhãn hiển thị",
   await page.goto("/");
   await expect(
     page.getByRole("link", {
-      name: "Gửi quy cách qua Zalo",
+      name: "Liên hệ báo giá",
       exact: true,
     }),
   ).toBeVisible();
@@ -980,6 +980,8 @@ test("Trustindex review slider renders current source data and remains usable on
   const previous = section.getByRole("button", { name: "Đánh giá trước" });
   const next = section.getByRole("button", { name: "Đánh giá tiếp theo" });
   const rail = section.locator("[data-trustindex-rail]");
+  await expect(rail).toHaveAttribute("data-active-index", "0");
+  await section.scrollIntoViewIfNeeded();
   await expect.poll(() => rail.getAttribute("data-active-index"), { timeout: 7_000 }).toBe("1");
   await previous.click();
   await expect(rail).toHaveAttribute("data-active-index", "0");

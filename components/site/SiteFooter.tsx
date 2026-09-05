@@ -75,7 +75,7 @@ export function SiteFooter() {
             ))}
           </div>
           <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: "site_footer" }} className="pressable mt-4 inline-flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-5 text-sm font-extrabold text-white hover:bg-wood-600">
-            <MessageCircle size={17} aria-hidden="true" />Gửi quy cách qua Zalo
+            <MessageCircle size={17} aria-hidden="true" />Liên hệ báo giá
           </TrackedLink>
         </div>
       </div>
