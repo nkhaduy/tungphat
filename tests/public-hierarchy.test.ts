@@ -23,6 +23,8 @@ describe("public SEO and UX hierarchy", () => {
     expect(content).toContain("Cốt ván / vật liệu");
     expect(content).toContain("Mã màu và bề mặt");
     expect(content).toContain("Nhà cung cấp &amp; bảng mã");
+    expect(content).toContain('record.id === "thanh-thuy:301"');
+    expect(content).toContain("record.canonicalRoute");
     expect(content).not.toContain("Sản phẩm nổi bật");
     expect(content).not.toContain("Bắt đầu với loại ván và độ dày cần dùng");
   });

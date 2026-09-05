@@ -101,7 +101,7 @@ const cncCapabilities: { title: string; description: string; icon: LucideIcon }[
 
 export async function HomeContent() {
   const articles = await getArticles();
-  const featuredColorCodes = getPublicColorCodes()
+  const sortedFeaturedColorCodes = getPublicColorCodes()
     .filter((record) => {
       const supplierName = supplierLabels[record.supplier as keyof typeof supplierLabels];
       return supplierName
@@ -109,8 +109,18 @@ export async function HomeContent() {
         : false;
     })
     .sort((left, right) => right.demandScore - left.demandScore || left.codeRaw.localeCompare(right.codeRaw, "vi"))
-    .filter((record, index, records) => records.findIndex((candidate) => candidate.supplier === record.supplier && candidate.codeRaw === record.codeRaw) === index)
-    .slice(0, 6);
+    .filter((record, index, records) => records.findIndex((candidate) => candidate.supplier === record.supplier && candidate.codeRaw === record.codeRaw) === index);
+  const requiredFeaturedCode = sortedFeaturedColorCodes.find(
+    (record) => record.id === "thanh-thuy:301",
+  );
+  const featuredColorCodes = requiredFeaturedCode
+    ? [
+        requiredFeaturedCode,
+        ...sortedFeaturedColorCodes
+          .filter((record) => record.id !== requiredFeaturedCode.id)
+          .slice(0, 5),
+      ]
+    : sortedFeaturedColorCodes;
   const latestArticles = articles.slice(0, 3);
 
   return (

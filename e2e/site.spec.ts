@@ -300,6 +300,13 @@ test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", asyn
   await expect(page.locator('iframe[src*="google.com/maps"]')).toHaveCount(0);
 });
 
+test("homepage exposes the exact 301 catalogue landing route", async ({ page }) => {
+  await page.goto("/");
+  await expect(
+    page.locator('a[href="/catalogue/thanh-thuy/melamine/301/"]'),
+  ).toBeVisible();
+});
+
 test("CTA báo giá vật liệu có accessible name khớp nhãn hiển thị", async ({
   page,
 }) => {
