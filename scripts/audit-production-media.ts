@@ -106,7 +106,7 @@ function observePage(
   routeReferences: Map<string, Set<string>>,
   activeRoute: { value: string },
 ) {
-  const payloadTasks: Promise<void>[] = [];
+  const payloadTasks = new Set<Promise<void>>();
   const add = (reference: string, route = activeRoute.value) => {
     references.add(reference);
     routeReferences.get(route)?.add(reference);
@@ -126,11 +126,11 @@ function observePage(
     const resourceType = response.request().resourceType();
     if (!["document", "fetch", "xhr", "stylesheet"].includes(resourceType) && !/json|html|css/iu.test(contentType)) return;
     const route = activeRoute.value;
-    payloadTasks.push(
-      response.text()
-        .then((body) => extractMediaReferencesFromPayload(body).forEach((reference) => add(reference, route)))
-        .catch(() => undefined),
-    );
+    const task = response.text()
+      .then((body) => extractMediaReferencesFromPayload(body).forEach((reference) => add(reference, route)))
+      .catch(() => undefined);
+    payloadTasks.add(task);
+    task.then(() => payloadTasks.delete(task));
   });
   page.on("console", (message) => {
     if (message.type() === "error") consoleErrors.push(message.text());
@@ -179,11 +179,15 @@ async function main() {
   let browserPagesChecked = 0;
   for (const route of routes) {
     activeRoute.value = route;
-    routeReferences.set(route, new Set());
+    if (route === "/") routeReferences.set(route, new Set());
     await page.goto(`${origin}${route}`, { waitUntil: "domcontentloaded", timeout: 60_000 });
     browserPagesChecked += 1;
-    await scrollPage(page);
-    await page.waitForTimeout(300);
+    // Raw/RSC payloads cover every route; scroll only representative lazy-load pages.
+    const shouldScroll = route === "/" || route === exactRoute || route === exactCatalogueRoute;
+    if (shouldScroll) {
+      await scrollPage(page);
+      await page.waitForTimeout(300);
+    }
     const routeSet = routeReferences.get(route) || new Set<string>();
     const domValues = await browserMediaValues(page);
     addReferences(domReferences, domValues);
