@@ -18,6 +18,7 @@ import { getArticles } from "@/lib/content";
 import { buildCatalogueCodeSeo } from "@/lib/catalog/code-seo";
 import { getPublicColorCodes } from "@/lib/catalog/color-codes/public";
 import { locations } from "@/lib/locations";
+import { coreMaterialCards, surfaceCatalogueCards } from "@/lib/product-taxonomy";
 import { PHONE_DISPLAY, PHONE_HREF, ZALO_URL } from "@/lib/seo";
 
 type SectionIntroProps = {
@@ -36,48 +37,6 @@ function SectionIntro({ eyebrow, title, description, centered = false }: Section
     </div>
   );
 }
-
-const coreMaterials = [
-  {
-    title: "Ván MDF",
-    href: "/van-mdf",
-    image: "/images/materials/mdf-sample.jpg",
-    alt: "Các tấm ván MDF dùng để tham khảo nhóm sản phẩm",
-    description: "Xem thông tin nền, độ dày và cách gửi quy cách khi hỏi ván MDF.",
-  },
-  {
-    title: "MDF chống ẩm",
-    href: "/mdf-chong-am",
-    image: "/images/materials/mdf-orange.jpg",
-    alt: "Tấm MDF dùng để tham khảo nhóm sản phẩm chống ẩm",
-    description: "Tách riêng nhu cầu dùng ở môi trường ẩm hơn phòng khô trước khi hỏi hàng.",
-  },
-  {
-    title: "MFC",
-    href: "/van-go-cong-nghiep",
-    image: "/images/materials/particle-board.jpg",
-    alt: "Mặt cắt tấm particle board dùng để tham khảo nhóm MFC",
-    description: "Mở trang ván gỗ công nghiệp để xem nhóm MFC và bề mặt liên quan.",
-  },
-  {
-    title: "Plywood",
-    href: "/van-go-cong-nghiep",
-    image: "/images/materials/plywood.jpg",
-    alt: "Các lớp veneer của tấm plywood dùng để tham khảo nhóm sản phẩm",
-    description: "Xem nhóm plywood, cấu tạo lớp veneer và thông tin cần gửi khi hỏi hàng.",
-  },
-  {
-    title: "Gỗ ghép",
-    href: "/go-ghep",
-    image: "/images/materials/edge-glued-panel.jpg",
-    alt: "Tấm gỗ ghép dùng để tham khảo nhóm sản phẩm",
-    description: "Bắt đầu từ nhóm gỗ ghép, sau đó chọn cao su hoặc tràm theo hạng mục.",
-    children: [
-      ["Gỗ ghép cao su", "/go-ghep-cao-su"],
-      ["Gỗ ghép tràm", "/go-ghep-tram"],
-    ],
-  },
-] as const;
 
 const supplierCards = [
   { name: "An Cường", slug: "an-cuong", logo: "/partners/an-cuong-logo.webp" },
@@ -153,24 +112,55 @@ export async function HomeContent() {
               Xem tất cả vật liệu <ArrowRight size={17} aria-hidden="true" />
             </Link>
           </div>
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {coreMaterials.map((material) => (
-              <article key={material.href} className="group flex flex-col overflow-hidden rounded-xl border border-forest-900/10 bg-white shadow-[0_8px_26px_rgba(7,59,40,.055)] transition duration-200 hover:-translate-y-1 hover:border-wood-500/50 hover:shadow-[0_16px_38px_rgba(7,59,40,.1)]">
-                <Link href={material.href} aria-label={`Mở trang ${material.title}`} className="relative block aspect-[4/3] overflow-hidden bg-[#ecefe9]">
-                  <Image src={material.image} alt={material.alt} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover transition duration-300 group-hover:scale-[1.025]" />
-                </Link>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-xl font-extrabold leading-7 text-forest-950"><Link href={material.href}>{material.title}</Link></h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">{material.description}</p>
-                  <Link href={material.href} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-extrabold text-wood-600">Xem {material.title} <ArrowRight size={16} aria-hidden="true" /></Link>
-                  {"children" in material ? (
-                    <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 border-t border-forest-900/10 pt-3 text-xs font-extrabold text-forest-900">
-                      {material.children.map(([label, href]) => <Link key={href} href={href} className="inline-flex min-h-9 items-center hover:text-wood-600">{label}</Link>)}
+          <div data-product-groups className="mt-10">
+            <div>
+              <div className="flex items-center justify-between gap-4">
+                <h3 className="text-xs font-extrabold uppercase tracking-[.16em] text-forest-900">Cốt ván / vật liệu chính</h3>
+                <span className="text-xs text-slate-500">{coreMaterialCards.length} nhóm</span>
+              </div>
+              <div className="mt-4 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+                {coreMaterialCards.map((material) => (
+                  <article key={material.id} data-product-card={material.id} className="group flex flex-col overflow-hidden rounded-xl border border-forest-900/10 bg-white shadow-[0_8px_26px_rgba(7,59,40,.055)] transition duration-200 hover:-translate-y-1 hover:border-wood-500/50 hover:shadow-[0_16px_38px_rgba(7,59,40,.1)]">
+                    <Link href={material.href} aria-label={`Mở trang ${material.title}`} className="relative block aspect-[4/3] overflow-hidden bg-[#18281f]">
+                      <Image src={material.image} alt={material.alt} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-contain transition duration-300 group-hover:scale-[1.025]" />
+                    </Link>
+                    <div className="flex flex-1 flex-col p-5">
+                      <h3 className="text-xl font-extrabold leading-7 text-forest-950"><Link href={material.href}>{material.title}</Link></h3>
+                      <p className="mt-3 text-sm leading-6 text-slate-600">{material.description}</p>
+                      <Link href={material.href} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-extrabold text-wood-600">Xem {material.title} <ArrowRight size={16} aria-hidden="true" /></Link>
+                      {material.children ? (
+                        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 border-t border-forest-900/10 pt-3 text-xs font-extrabold text-forest-900">
+                          {material.children.map(([label, href]) => <Link key={href} href={href} className="inline-flex min-h-9 items-center hover:text-wood-600">{label}</Link>)}
+                        </div>
+                      ) : null}
                     </div>
-                  ) : null}
-                </div>
-              </article>
-            ))}
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-12 border-t border-forest-900/10 pt-8">
+              <div className="flex items-center justify-between gap-4">
+                <h3 className="text-xs font-extrabold uppercase tracking-[.16em] text-forest-900">Bề mặt / catalogue</h3>
+                <Link href="/catalogue" prefetch={false} className="inline-flex min-h-10 items-center gap-2 text-xs font-extrabold text-wood-600">Mở toàn bộ catalogue <ArrowRight size={15} aria-hidden="true" /></Link>
+              </div>
+              <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                {surfaceCatalogueCards.map((surface) => (
+                  <Link key={surface.id} href={surface.href} prefetch={false} data-product-card={surface.id} className="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-forest-900/10 bg-white shadow-[0_8px_24px_rgba(7,59,40,.045)] transition duration-200 hover:-translate-y-1 hover:border-wood-500/50">
+                    <span className="relative block aspect-[4/3] overflow-hidden bg-[#18281f]">
+                      <Image src={surface.image} alt={surface.alt} fill sizes="(max-width: 640px) 100vw, 25vw" className="object-contain transition duration-300 group-hover:scale-[1.025]" />
+                    </span>
+                    <span className="flex flex-1 items-center justify-between gap-3 p-4">
+                      <span>
+                        <strong className="block text-base font-extrabold text-forest-950">{surface.title}</strong>
+                        <span className="mt-1 block text-xs leading-5 text-slate-600">{surface.description}</span>
+                      </span>
+                      <ArrowRight size={17} className="shrink-0 text-wood-600" aria-hidden="true" />
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

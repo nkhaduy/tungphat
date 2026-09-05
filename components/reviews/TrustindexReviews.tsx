@@ -24,6 +24,17 @@ export type TrustindexReviewData = {
   reviews: TrustindexReview[];
 };
 
+export function getGoogleReviewUrls(data: Pick<TrustindexReviewData, "googleLinks">) {
+  return data.googleLinks.filter((value) => {
+    try {
+      const url = new URL(value);
+      return url.protocol === "https:" && (url.hostname === "www.google.com" || url.hostname === "google.com") && url.pathname.startsWith("/maps/");
+    } catch {
+      return false;
+    }
+  });
+}
+
 function initials(name: string) {
   return name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join("").toLocaleUpperCase("vi-VN") || "TP";
 }
@@ -38,7 +49,7 @@ function ReviewAvatar({ review }: { review: TrustindexReview }) {
   </span>;
 }
 
-function ReviewCard({ review, googleUrl, onReadMore }: { review: TrustindexReview; googleUrl: string; onReadMore: () => void }) {
+function ReviewCard({ review, googleUrl, onReadMore }: { review: TrustindexReview; googleUrl?: string; onReadMore: () => void }) {
   const needsDialog = review.text.length > 260;
   return <article data-trustindex-card className="flex min-h-[21rem] basis-full snap-start flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-[0_12px_28px_rgba(15,23,42,0.10)] sm:p-7 md:basis-[275px]">
     <div className="flex items-start justify-between gap-4">
@@ -50,7 +61,7 @@ function ReviewCard({ review, googleUrl, onReadMore }: { review: TrustindexRevie
     </div>
     <div className="mt-5"><StarRating rating={review.rating} /></div>
     {review.text ? <div data-trustindex-review-body className="mt-4"><p className={needsDialog ? "line-clamp-6 whitespace-pre-line text-sm leading-6 text-slate-700" : "whitespace-pre-line text-sm leading-6 text-slate-700"}>{review.text}</p>{needsDialog ? <button type="button" onClick={onReadMore} className="mt-3 text-xs font-extrabold text-forest-900 underline decoration-forest-900/35 underline-offset-4">Đọc toàn bộ đánh giá</button> : null}</div> : null}
-    <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-1.5 pt-6 text-xs font-bold text-slate-600 transition-colors hover:text-forest-900">Xem nguồn Google <ExternalLink size={13} aria-hidden="true" /></a>
+    {googleUrl ? <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-1.5 pt-6 text-xs font-bold text-slate-600 transition-colors hover:text-forest-900">Xem nguồn Google <ExternalLink size={13} aria-hidden="true" /></a> : null}
   </article>;
 }
 
@@ -68,7 +79,7 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
   const reviews = data.reviews
     .filter((review) => review.text)
     .sort((left, right) => right.rating - left.rating || right.text.length - left.text.length);
-  const googleUrls = data.googleLinks.length ? data.googleLinks : [data.sourceUrl];
+  const googleUrls = getGoogleReviewUrls(data);
   const googleUrl = googleUrls[0];
 
   useEffect(() => {
@@ -137,7 +148,7 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
           <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2">
           {googleUrls.map((url, index) => <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={`Google - Chi nhánh ${index + 1}`} className="inline-flex items-center gap-2 text-sm font-extrabold text-white hover:text-[#f6b400]"><Image src="/brand/google-g.png" alt={index === 0 ? "Google" : ""} width={20} height={20} className="h-5 w-5" aria-hidden={index > 0 ? "true" : undefined} />{`Tùng Phát ${index + 1}`} <ExternalLink size={13} aria-hidden="true" /></a>)}
           </div>
-          {data.verified ? <a href={data.sourceUrl} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-1.5 pt-7 text-xs font-bold text-white/75 hover:text-white"><BadgeCheck size={15} aria-hidden="true" />Verified by Trustindex</a> : null}
+          {data.verified && googleUrl ? <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-1.5 pt-7 text-xs font-bold text-white/75 hover:text-white"><BadgeCheck size={15} aria-hidden="true" />Nguồn đánh giá Google</a> : null}
         </aside>
         <div className="min-w-0">
           <div ref={viewportRef} data-trustindex-viewport className="trustindex-review-viewport" aria-label="Đánh giá khách hàng" aria-live="polite" onPointerDown={() => setAutoplay(false)}>

@@ -9,7 +9,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { brands } from "@/lib/brands";
 import { getProducts } from "@/lib/content";
-import { resolveMediaUrl } from "@/lib/media";
+import { coreMaterialCards, surfaceCatalogueCards } from "@/lib/product-taxonomy";
 import { ZALO_URL, absolutePageUrl, breadcrumbSchema, createPageMetadata, schemaPageId, webPageSchema } from "@/lib/seo";
 
 export const metadata = createPageMetadata({ title: "Vật liệu gỗ công nghiệp và bề mặt nội thất", description: "Chọn MDF, MFC, plywood, gỗ ghép hoặc bề mặt theo hạng mục. Gửi mã, quy cách và file nếu cần cắt ván hay gia công CNC tại TP.HCM.", path: "/san-pham" });
@@ -47,7 +47,49 @@ export default async function ProductsPage() {
         <section className="section-space bg-[#f7f8f5]">
           <div className="container-shell"><SectionHeader eyebrow="Chuẩn bị báo giá" title="Mua tấm nguyên hay gửi danh sách chi tiết?" description="Tấm nguyên phù hợp khi bạn đã biết loại ván và số lượng. Danh sách chi tiết phù hợp khi cần cắt theo bản vẽ hoặc làm tiếp phần CNC." /><div className="mt-8 overflow-x-auto"><table className="w-full min-w-[720px] border-collapse bg-white text-left text-sm"><caption className="sr-only">So sánh mua ván nguyên tấm và gửi danh sách chi tiết</caption><thead><tr className="border-b border-forest-900/15 text-xs uppercase tracking-wide text-slate-500"><th className="p-4">Nội dung</th><th className="p-4">Mua ván nguyên tấm</th><th className="p-4">Danh sách chi tiết</th></tr></thead><tbody>{[["Nên gửi", "Loại cốt, bề mặt, độ dày, khổ tấm và số tấm", "Mã chi tiết, dài × rộng, số lượng, vật liệu và độ dày"], ["Có thể hỏi", "Mã hàng, bề mặt và phương án nhận tấm", "Vật liệu, phần cắt và bước gia công đi kèm"], ["Nên chốt trước", "Quy cách tấm, mã màu và số lượng", "Đơn vị đo, mặt sử dụng, cạnh, lỗ/rãnh và phiên bản file"], ["Hợp với", "Khách tự bố trí cắt hoặc cần nhận tấm", "Khách có bản vẽ, file hoặc nhiều chi tiết cần làm cùng nhau"]].map(([criterion, sheet, parts]) => <tr key={criterion} className="border-b border-forest-900/10 align-top"><th scope="row" className="p-4 font-bold text-forest-950">{criterion}</th><td className="p-4 leading-7 text-slate-700">{sheet}</td><td className="p-4 leading-7 text-slate-700">{parts}</td></tr>)}</tbody></table></div><p className="mt-5 text-sm leading-7 text-slate-600">Giá và tồn kho thay đổi theo mã hàng. Gửi thông tin bạn đã có để được trả lời phần còn thiếu.</p></div>
         </section>
-        <section className="section-space bg-white"><div className="container-shell"><SectionHeader eyebrow="Các nhóm vật liệu" title="Chọn theo hạng mục sử dụng" description="Mở từng trang để xem cốt ván, bề mặt, ứng dụng và thông tin nên gửi khi hỏi giá." /><div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-3">{products.map((product) => <article key={product.slug} className="group overflow-hidden border border-forest-900/10 bg-white shadow-[0_8px_24px_rgba(7,59,40,.045)]"><Link href={`/${product.slug}`} className="relative block aspect-[16/10] overflow-hidden bg-[#eef1ed]"><Image src={resolveMediaUrl(product.featuredImage)} alt={product.featuredImageAlt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.02]" /></Link><div className="p-6"><p className="text-xs font-extrabold uppercase tracking-wider text-wood-600">{product.category}</p><h2 className="mt-3 text-xl font-extrabold text-forest-950"><Link href={`/${product.slug}`}>{product.title}</Link></h2><p className="mt-3 text-sm leading-7 text-slate-700">{product.excerpt}</p><Link href={`/${product.slug}`} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-extrabold text-wood-600">Mở trang vật liệu <ArrowRight size={16} aria-hidden="true" /></Link></div></article>)}</div></div></section>
+        <section className="section-space bg-white">
+          <div className="container-shell">
+            <SectionHeader eyebrow="Các nhóm vật liệu" title="Chọn theo cốt ván trước" description="Nhóm vật liệu chính giúp khoanh đúng loại tấm. MFC và Plywood đang được giới thiệu trong trang hướng dẫn ván gỗ công nghiệp; gỗ ghép có thêm trang riêng theo từng loại gỗ." />
+            <div data-product-groups className="mt-9">
+              <div className="flex items-center justify-between gap-4">
+                <h2 className="text-xs font-extrabold uppercase tracking-[.16em] text-forest-900">Cốt ván / vật liệu chính</h2>
+                <span className="text-xs text-slate-500">{coreMaterialCards.length} nhóm</span>
+              </div>
+              <div className="mt-4 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+                {coreMaterialCards.map((material) => (
+                  <article key={material.id} data-product-card={material.id} className="group flex flex-col overflow-hidden border border-forest-900/10 bg-white shadow-[0_8px_24px_rgba(7,59,40,.045)]">
+                    <Link href={material.href} aria-label={`Mở trang ${material.title}`} className="relative block aspect-[4/3] overflow-hidden bg-[#18281f]">
+                      <Image src={material.image} alt={material.alt} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-contain transition-transform duration-300 group-hover:scale-[1.025]" />
+                    </Link>
+                    <div className="flex flex-1 flex-col p-6">
+                      <h3 className="text-xl font-extrabold text-forest-950"><Link href={material.href}>{material.title}</Link></h3>
+                      <p className="mt-3 text-sm leading-7 text-slate-700">{material.description}</p>
+                      <Link href={material.href} className="mt-auto inline-flex min-h-11 items-center gap-2 pt-5 text-sm font-extrabold text-wood-600">Mở trang vật liệu <ArrowRight size={16} aria-hidden="true" /></Link>
+                      {material.children ? <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 border-t border-forest-900/10 pt-3 text-xs font-extrabold text-forest-900">{material.children.map(([label, href]) => <Link key={href} href={href} className="inline-flex min-h-9 items-center hover:text-wood-600">{label}</Link>)}</div> : null}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+            <div className="mt-12 border-t border-forest-900/10 pt-8">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <h2 className="text-xs font-extrabold uppercase tracking-[.16em] text-forest-900">Bề mặt / catalogue</h2>
+                  <p className="mt-2 text-sm text-slate-600">Màu và vân được tra cứu riêng; mã bề mặt không tự xác định cốt ván bên dưới.</p>
+                </div>
+                <Link href="/catalogue/" prefetch={false} className="inline-flex min-h-10 shrink-0 items-center gap-2 text-xs font-extrabold text-wood-600">Mở catalogue <ArrowRight size={15} aria-hidden="true" /></Link>
+              </div>
+              <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                {surfaceCatalogueCards.map((surface) => (
+                  <Link key={surface.id} href={surface.href} prefetch={false} data-product-card={surface.id} className="group flex min-w-0 flex-col overflow-hidden border border-forest-900/10 bg-white shadow-[0_8px_24px_rgba(7,59,40,.045)]">
+                    <span className="relative block aspect-[4/3] overflow-hidden bg-[#18281f]"><Image src={surface.image} alt={surface.alt} fill sizes="(max-width: 640px) 100vw, 25vw" className="object-contain transition-transform duration-300 group-hover:scale-[1.025]" /></span>
+                    <span className="flex min-h-20 items-center justify-between gap-3 p-4"><span><strong className="block text-base font-extrabold text-forest-950">{surface.title}</strong><span className="mt-1 block text-xs leading-5 text-slate-600">{surface.description}</span></span><ArrowRight size={17} className="shrink-0 text-wood-600" aria-hidden="true" /></span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
         <section className="section-space bg-[#f7f8f5]"><div className="container-shell grid gap-8 lg:grid-cols-[.75fr_1.25fr]"><SectionHeader eyebrow="Thông tin nên gửi" title="Bốn điều giúp hỏi đúng ván" description="Không cần nhớ tên sản phẩm ngay từ đầu. Hãy mô tả hạng mục, môi trường, quy cách và phần gia công bạn cần." /><ol className="grid gap-3 sm:grid-cols-2">{[["01", "Hạng mục", "Tủ, bàn, kệ, vách hay chi tiết dạng tấm."], ["02", "Môi trường", "Khô, có độ ẩm hoặc có nước trực tiếp."], ["03", "Quy cách", "Độ dày, kích thước và số lượng dự kiến."], ["04", "Gia công", "Cắt, khoan, soi rãnh, dán cạnh hoặc CNC."]].map(([number, title, text]) => <li key={number} className="border border-forest-900/10 bg-white p-5"><span className="text-xs font-extrabold text-wood-600">{number}</span><h3 className="mt-3 font-extrabold text-forest-950">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-700">{text}</p></li>)}</ol></div></section>
         <section id="thuong-hieu" className="section-space scroll-mt-32 bg-white"><div id="catalogue" className="container-shell scroll-mt-32"><SectionHeader eyebrow="Mã màu và catalogue" title="Tra cứu thêm theo thương hiệu" description="Nếu đã có thương hiệu hoặc mã bề mặt, mở catalogue tương ứng rồi gửi mã, ảnh mẫu hoặc quy cách cần làm." /><div className="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-4">{displayBrands.map((brand) => <article key={brand.slug} className="flex flex-col overflow-hidden border border-forest-900/10 bg-white shadow-sm">{brand.logo ? <div className="relative aspect-[4/3] bg-[#f7f8f5]"><Image src={brand.logo} alt={`Logo ${brand.name}`} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-contain p-8" /></div> : <BrandPlaceholder label={brand.name} className="aspect-[4/3]" />}<div className="flex flex-1 flex-col p-6"><h2 className="text-xl font-extrabold text-forest-950">{brand.name}</h2><p className="mt-3 flex-1 text-sm leading-7 text-slate-700">{brand.description}</p><div className="mt-6 grid gap-2"><Link href={brandPageHref(brand.slug)} className="pressable inline-flex min-h-12 items-center justify-between bg-forest-900 px-4 text-sm font-extrabold text-white">Xem trang thương hiệu <ArrowRight size={16} aria-hidden="true" /></Link>{brand.slug !== "kes" ? <Link href={`/catalogue/${brand.slug}`} className="pressable inline-flex min-h-12 items-center justify-between border border-forest-900/20 px-4 text-sm font-extrabold text-forest-950">Mở catalogue <BookOpen size={16} aria-hidden="true" /></Link> : null}</div></div></article>)}</div></div></section>
         <ContactCTA title="Đã có mã hoặc quy cách cần hỏi?" description="Gửi ảnh mẫu, mã màu, cốt ván, kích thước, độ dày, số lượng và hạng mục sử dụng. Tùng Phát sẽ trả lời theo thông tin của từng dòng hàng." />

@@ -18,20 +18,22 @@ describe("public SEO and UX hierarchy", () => {
 
   it("keeps products and color-code lookup as separate homepage groups", () => {
     const content = readFileSync("components/home/HomeContent.tsx", "utf8");
+    const taxonomy = readFileSync("lib/product-taxonomy.ts", "utf8");
 
     expect(content).toContain("MDF, MFC, Plywood và gỗ ghép");
     expect(content).toContain('eyebrow="Sản phẩm"');
     expect(content).toContain("Mã màu theo vật liệu");
     expect(content).toContain('>MÃ MÀU<');
     expect(content).toContain("Mở mã màu");
-    expect(content).not.toContain("Cốt ván / vật liệu");
+    expect(content).toContain("Cốt ván / vật liệu chính");
+    expect(content).toContain("Bề mặt / catalogue");
     expect(content).not.toContain("Nhà cung cấp &amp; bảng mã");
     expect(content).not.toContain("Chọn nhóm bề mặt");
-    expect(content).not.toContain("Melamine");
-    expect(content).not.toContain("Laminate");
-    expect(content).not.toContain("Acrylic");
-    expect(content).not.toContain("Veneer");
-    expect(content).not.toContain("PVC");
+    expect(taxonomy).toContain("Melamine");
+    expect(taxonomy).toContain("Laminate");
+    expect(taxonomy).toContain("Acrylic");
+    expect(taxonomy).toContain("Veneer");
+    expect(taxonomy).not.toContain("PVC");
     expect(content).toContain('record.id === "thanh-thuy:301"');
     expect(content).toContain("record.canonicalRoute");
     expect(content).not.toContain("Sản phẩm nổi bật");

@@ -300,6 +300,21 @@ test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", asyn
   await expect(page.locator('iframe[src*="google.com/maps"]')).toHaveCount(0);
 });
 
+test("homepage product taxonomy exposes core materials and catalogue surfaces", async ({ page }) => {
+  await page.goto("/");
+  const groups = page.locator("[data-product-groups]");
+  await expect(groups.locator('[data-product-card="mdf"]')).toBeVisible();
+  await expect(groups.locator('[data-product-card="mdf-moisture-resistant"]')).toBeVisible();
+  await expect(groups.locator('[data-product-card="mfc"] a').first()).toHaveAttribute("href", "/van-go-cong-nghiep/");
+  await expect(groups.locator('[data-product-card="plywood"] a').first()).toHaveAttribute("href", "/van-go-cong-nghiep/");
+  await expect(groups.locator('[data-product-card="joined-wood"]')).toBeVisible();
+  await expect(groups.locator('[data-product-card="melamine"]')).toHaveAttribute("href", "/catalogue/an-cuong/melamine/");
+  await expect(groups.locator('[data-product-card="laminate"]')).toHaveAttribute("href", "/catalogue/an-cuong/laminate/");
+  await expect(groups.locator('[data-product-card="acrylic"]')).toHaveAttribute("href", "/catalogue/an-cuong/acrylic/");
+  await expect(groups.locator('[data-product-card="veneer"]')).toHaveAttribute("href", "/catalogue/an-cuong/veneer/");
+  expect(await groups.locator("[data-product-card]").count()).toBe(9);
+});
+
 test("homepage exposes the exact 301 catalogue landing route", async ({ page }) => {
   await page.goto("/");
   await expect(
@@ -976,7 +991,12 @@ test("Trustindex review slider renders current source data and remains usable on
   await expect(section.getByText("Lưu Phúc Điền", { exact: true })).toBeVisible();
   await expect(section.locator("[data-trustindex-card]").first()).not.toContainText("svgsvg");
   await expect(section.getByRole("link", { name: /Google/i }).first()).toHaveAttribute("href", /google\.com\/maps/);
-  await expect(section.getByText("Verified by Trustindex")).toBeVisible();
+  await expect(section.getByText("Nguồn đánh giá Google")).toBeVisible();
+  const sourceLinks = section.locator('a:has-text("Google")');
+  const sourceHrefs = await sourceLinks.evaluateAll((links) => links.map((link) => (link as HTMLAnchorElement).href));
+  expect(sourceHrefs.length).toBeGreaterThanOrEqual(3);
+  expect(sourceHrefs.every((href) => href.startsWith("https://www.google.com/maps/"))).toBe(true);
+  expect(sourceHrefs.some((href) => href.includes("mdftungphat.com"))).toBe(false);
   const previous = section.getByRole("button", { name: "Đánh giá trước" });
   const next = section.getByRole("button", { name: "Đánh giá tiếp theo" });
   const rail = section.locator("[data-trustindex-rail]");

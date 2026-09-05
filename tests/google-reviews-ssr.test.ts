@@ -2,7 +2,7 @@ import { createElement } from "react";
 import { readFileSync } from "node:fs";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import { TrustindexReviews, type TrustindexReviewData } from "../components/reviews/TrustindexReviews";
+import { getGoogleReviewUrls, TrustindexReviews, type TrustindexReviewData } from "../components/reviews/TrustindexReviews";
 
 describe("Trustindex reviews SSR", () => {
   it("renders the verified public Google source without any Places configuration", () => {
@@ -20,7 +20,8 @@ describe("Trustindex reviews SSR", () => {
     expect(html).toContain("Đa dạng sản phẩm, sản xuất nhanh");
     expect(html).toContain("4.8");
     expect(html).toContain("26 đánh giá");
-    expect(html).toContain("Verified by Trustindex");
+    expect(html).toContain("Nguồn đánh giá Google");
+    expect(html).not.toContain('href="https://public.trustindex.io');
     expect(html).toContain("google.com/maps");
     expect(html).toContain("/_next/image?url=%2Fbrand%2Fgoogle-g.png");
     expect(html).not.toContain("cdn.trustindex.io/assets/platform/Google/icon.svg");
@@ -31,6 +32,24 @@ describe("Trustindex reviews SSR", () => {
   it("omits Trustindex verification when the public source does not assert it", () => {
     const data: TrustindexReviewData = { sourceUrl: "https://public.trustindex.io/reviews/mdftungphat.com/lang/vi", source: "Google", rating: 5, reviewCount: 1, verified: false, googleLinks: ["https://www.google.com/maps/search/?api=1"], refreshedAt: "2026-08-30T00:00:00.000Z", reviews: [{ id: "r1", reviewerName: "Khách hàng", avatarUrl: null, rating: 5, text: "Đánh giá thật", date: "2025.01.01" }] };
     expect(renderToStaticMarkup(createElement(TrustindexReviews, { data }))).not.toContain("Verified by Trustindex");
+  });
+
+  it("never falls back to a Trustindex or internal URL as a Google review source", () => {
+    const data: TrustindexReviewData = {
+      sourceUrl: "https://public.trustindex.io/reviews/mdftungphat.com/lang/vi",
+      source: "Google",
+      rating: 4.8,
+      reviewCount: 1,
+      verified: true,
+      googleLinks: ["https://mdftungphat.com/reviews", "not-a-url"],
+      refreshedAt: "2026-08-30T00:00:00.000Z",
+      reviews: [{ id: "r1", reviewerName: "Khách hàng", avatarUrl: null, rating: 5, text: "Đánh giá thật", date: "2025.01.01" }],
+    };
+    const html = renderToStaticMarkup(createElement(TrustindexReviews, { data }));
+    expect(getGoogleReviewUrls(data)).toEqual([]);
+    expect(html).not.toContain("Xem nguồn Google");
+    expect(html).not.toContain("Nguồn đánh giá Google");
+    expect(html).not.toContain("mdftungphat.com/reviews");
   });
 
   it("keeps rating-only reviews in the summary but only displays cards with review text", () => {

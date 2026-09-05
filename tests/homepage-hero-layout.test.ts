@@ -53,17 +53,16 @@ describe("homepage editorial material hero", () => {
     expect(content).toContain("repeat(3,minmax(0,1fr))");
   });
 
-  it("uses credited real material references for product cards", () => {
+  it("uses the approved cohesive material image set for product cards", () => {
     const content = readFileSync("components/home/HomeContent.tsx", "utf8");
-    expect(content).toContain("/images/materials/mdf-sample.jpg");
-    expect(content).toContain("/images/materials/mdf-orange.jpg");
-    expect(content).toContain("/images/materials/particle-board.jpg");
-    expect(content).toContain("/images/materials/plywood.jpg");
-    expect(content).toContain("/images/materials/edge-glued-panel.jpg");
-    expect(content).not.toContain("/wood/mdfmfc.webp");
-    expect(content).not.toContain("/wood/vanchongam.webp");
-    expect(content).not.toContain("/wood/plywood.webp");
-    expect(content).not.toContain("/images/wood-panels.webp");
+    expect(content).toContain("coreMaterialCards");
+    expect(content).toContain("surfaceCatalogueCards");
+    expect(content).toContain('className="object-contain');
+    expect(content).not.toContain("/images/materials/mdf-sample.jpg");
+    expect(content).not.toContain("/images/materials/mdf-orange.jpg");
+    expect(content).not.toContain("/images/materials/particle-board.jpg");
+    expect(content).not.toContain("/images/materials/plywood.jpg");
+    expect(content).not.toContain("/images/materials/edge-glued-panel.jpg");
   });
 
   it("removes the homepage utility, benefits, and answer blocks", () => {
