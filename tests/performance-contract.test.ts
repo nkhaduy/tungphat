@@ -23,9 +23,9 @@ describe("homepage performance contracts", () => {
     );
     expect(header).toContain("prefetch={item.prefetch}");
     expect(mobileNavigation).toContain("prefetch={item.prefetch}");
-    expect(hero).toContain('href="/san-pham"');
+    expect(hero).toContain('href="/catalogue"');
     expect(hero).toContain("prefetch={false}");
-    expect(footer).toContain('["Mã màu", "/catalogue"]');
+    expect(footer).toContain('["Mã màu / Catalogue", "/catalogue"]');
     expect(footer).toContain('prefetch={href === "/catalogue" ? false : undefined}');
   });
 });

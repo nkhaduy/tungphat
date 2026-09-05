@@ -12,6 +12,14 @@ export type NavigationItem = {
   href: string;
   active: boolean;
   prefetch?: boolean;
+  children?: NavigationChild[];
+};
+
+export type NavigationChild = {
+  label: string;
+  href: string;
+  active: boolean;
+  prefetch?: boolean;
 };
 
 type MobileNavigationProps = {
@@ -82,18 +90,35 @@ export function MobileNavigation({ open, items, lang, languageLabel, onClose, on
       </div>
       <nav aria-label="Điều hướng trên thiết bị di động" className="container-shell py-4">
         {items.map((item, index) => (
-          <Link
-            key={`${item.label}-${item.href}`}
-            ref={index === 0 ? firstLinkRef : undefined}
-            href={item.href}
-            prefetch={item.prefetch}
-            aria-current={item.active ? "page" : undefined}
-            onClick={() => onClose(false)}
-            className={`flex min-h-14 items-center justify-between border-b border-forest-900/10 px-1 text-base font-bold ${item.active ? "text-wood-600" : "text-forest-950"}`}
-          >
-            {item.label}
-            {item.active ? <span className="text-xs font-extrabold uppercase tracking-[.14em] text-wood-600">Đang xem</span> : null}
-          </Link>
+          <div key={`${item.label}-${item.href}`} className="border-b border-forest-900/10 py-1">
+            <Link
+              ref={index === 0 ? firstLinkRef : undefined}
+              href={item.href}
+              prefetch={item.prefetch}
+              aria-current={item.active ? "page" : undefined}
+              onClick={() => onClose(false)}
+              className={`flex min-h-14 items-center justify-between px-1 text-base font-bold ${item.active ? "text-wood-600" : "text-forest-950"}`}
+            >
+              {item.label}
+              {item.active ? <span className="text-xs font-extrabold uppercase tracking-[.14em] text-wood-600">Đang xem</span> : null}
+            </Link>
+            {item.children?.length ? (
+              <div className="mb-2 grid gap-1 border-l-2 border-wood-500/40 pl-4">
+                {item.children.map((child) => (
+                  <Link
+                    key={`${child.label}-${child.href}`}
+                    href={child.href}
+                    prefetch={child.prefetch}
+                    aria-current={child.active ? "page" : undefined}
+                    onClick={() => onClose(false)}
+                    className={`flex min-h-11 items-center text-sm font-bold ${child.active ? "text-wood-600" : "text-slate-700"}`}
+                  >
+                    {child.label}
+                  </Link>
+                ))}
+              </div>
+            ) : null}
+          </div>
         ))}
         <TrackedLink
           href={ZALO_URL}
@@ -104,7 +129,7 @@ export function MobileNavigation({ open, items, lang, languageLabel, onClose, on
           className="pressable mt-6 flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-5 text-sm font-extrabold text-white hover:bg-wood-600"
         >
           <MessageCircle size={18} aria-hidden="true" />
-          Gửi quy cách nhận báo giá
+          Gửi quy cách qua Zalo
         </TrackedLink>
         <button
           type="button"

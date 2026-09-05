@@ -8,12 +8,12 @@ import { ZALO_URL, createPageMetadata, webPageSchema } from "@/lib/seo";
 import { TrustindexReviews, type TrustindexReviewData } from "@/components/reviews/TrustindexReviews";
 import trustindexReviews from "@/data/trustindex-reviews.json";
 
-const homepageTitle = "Ván MDF, Gỗ Ghép Thủ Đức & Gia Công CNC | Tùng Phát";
+const homepageTitle = "MDF, MFC, Plywood, Gỗ Ghép & Gia Công CNC tại Thủ Đức | Tùng Phát";
 
 export const metadata = {
   ...createPageMetadata({
     title: homepageTitle,
-    description: "Tùng Phát là kho ván gỗ công nghiệp, gỗ ghép và gia công CNC tại Thủ Đức. Xem MDF, MFC, Plywood, gỗ ghép và gửi quy cách để kiểm tra tại TP.HCM.",
+    description: "Tùng Phát cung cấp gỗ ghép, MDF, MFC, Plywood và chỉ dán cạnh; nhận cắt và gia công CNC tại Thủ Đức, TP.HCM. Tra cứu mã bề mặt và gửi quy cách để hỏi hàng.",
     path: "/"
   }),
   title: { absolute: homepageTitle }
@@ -22,7 +22,7 @@ export const metadata = {
 export default async function Home() {
   return (
     <>
-      <JsonLd data={webPageSchema({ path: "/", name: homepageTitle, description: "Tùng Phát là kho ván gỗ công nghiệp, gỗ ghép và gia công CNC tại Thủ Đức, TP.HCM.", primaryEntityId: "https://mdftungphat.com/#organization" })} />
+      <JsonLd data={webPageSchema({ path: "/", name: homepageTitle, description: "Tùng Phát cung cấp gỗ ghép, MDF, MFC, Plywood và chỉ dán cạnh; nhận cắt và gia công CNC tại Thủ Đức, TP.HCM.", primaryEntityId: "https://mdftungphat.com/#organization" })} />
       <SiteShell>
         <HomeHero />
         <HomeContent />

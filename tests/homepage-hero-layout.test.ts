@@ -23,7 +23,7 @@ describe("homepage editorial material hero", () => {
     expect(hero).not.toContain("Vật liệu gỗ &amp; gia công tại xưởng");
     expect(hero).toContain("home-hero-copy");
     expect(hero).toContain("home-hero-visual");
-    expect(hero).toContain("leading-[1.04]");
+    expect(hero).toContain("leading-[1.12]");
     expect(hero).not.toContain("home-dot-grid");
     expect(hero).not.toContain("cnc-service-home.webp");
     expect(catalogue).toContain("catalogue-material-hero");
@@ -32,9 +32,12 @@ describe("homepage editorial material hero", () => {
   });
 
   it("keeps focused local commercial hero actions", () => {
+    expect(hero).toContain("Xem vật liệu");
+    expect(hero).toContain("Mở catalogue");
     expect(hero).toContain("Gửi quy cách qua Zalo");
-    expect(hero).toContain("Xem nhóm vật liệu");
-    expect(hero).toContain("Hai chi nhánh");
+    expect(hero).toContain("/catalogue");
+    expect(hero).toContain("/san-pham");
+    expect(hero).not.toContain("Liên hệ");
     expect(hero).not.toContain("Xem báo giá");
     expect(hero.match(/className="pressable inline-flex/g)).toHaveLength(3);
   });

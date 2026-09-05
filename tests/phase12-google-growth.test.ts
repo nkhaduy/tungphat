@@ -49,6 +49,6 @@ describe("Phase 12 Google evidence fixes", () => {
 
   it("links the homepage's generic wood-panel intent to the canonical go-ghep hub", () => {
     const homepage = readFileSync("components/home/HomeContent.tsx", "utf8");
-    expect(homepage).toContain('{ name: "Gỗ ghép", href: "/go-ghep"');
+    expect(homepage).toMatch(/title: "Gỗ ghép"[\s\S]*href: "\/go-ghep"/);
   });
 });

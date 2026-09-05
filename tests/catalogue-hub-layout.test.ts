@@ -10,14 +10,15 @@ describe("catalogue hub customer journey", () => {
     const heading = "Tra cứu mã màu";
     const placeholder = "Nhập mã màu, tên màu hoặc thương hiệu...";
     const selector = "Melamine";
-    const supplier = "Thanh Thuỳ";
 
     expect(markup).toContain(heading);
     expect(markup).toContain(placeholder);
     expect(markup).toContain(selector);
     expect(markup.indexOf(heading)).toBeLessThan(markup.indexOf(placeholder));
     expect(markup.indexOf(placeholder)).toBeLessThan(markup.indexOf(selector));
-    expect(markup.indexOf(selector)).toBeLessThan(markup.indexOf(supplier));
+    expect(markup.indexOf("catalogue-filter-deck")).toBeLessThan(
+      markup.indexOf("Theo nhà cung cấp"),
+    );
   });
 
   it("renders only one catalogue search interface", () => {

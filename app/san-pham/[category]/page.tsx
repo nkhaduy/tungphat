@@ -16,15 +16,15 @@ import {
   thanhThuyZaloUrl,
 } from "@/lib/thanh-thuy-seo";
 
-type BrandRouteProps = { params: Promise<{ brand: string }> };
+type BrandRouteProps = { params: Promise<{ category: string }> };
 
 export function generateStaticParams() {
   return [
     ...brands
       .filter((brand) => brand.slug !== "thanh-thuy")
-      .map((brand) => ({ brand: brand.slug })),
+      .map((brand) => ({ category: brand.slug })),
     ...getThanhThuyTopCategories().map((category) => ({
-      brand: category.slug,
+      category: category.slug,
     })),
   ];
 }
@@ -32,9 +32,9 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: BrandRouteProps): Promise<Metadata> {
-  const { brand: brandSlug } = await params;
-  const brand = getBrand(brandSlug);
-  const category = getThanhThuyCategory(brandSlug);
+  const { category: categorySlug } = await params;
+  const brand = getBrand(categorySlug);
+  const category = getThanhThuyCategory(categorySlug);
 
   if (!brand && category) {
     return createThanhThuyCategoryMetadata(
@@ -55,9 +55,9 @@ export async function generateMetadata({
 }
 
 export default async function BrandRoute({ params }: BrandRouteProps) {
-  const { brand: brandSlug } = await params;
-  const brand = getBrand(brandSlug);
-  const category = getThanhThuyCategory(brandSlug);
+  const { category: categorySlug } = await params;
+  const brand = getBrand(categorySlug);
+  const category = getThanhThuyCategory(categorySlug);
 
   if (!brand && category) {
     const catalog = getThanhThuyCatalog();

@@ -6,19 +6,19 @@ import { SiteShell } from "@/components/site/SiteShell";
 import { brands, getBrand } from "@/lib/brands";
 import { breadcrumbSchema, createPageMetadata } from "@/lib/seo";
 
-type RouteProps = { params: Promise<{ brand: string }> };
+type RouteProps = { params: Promise<{ supplier: string }> };
 
 export function generateStaticParams() {
   return brands
     .filter((b) => b.slug !== "kes")
-    .map((brand) => ({ brand: brand.slug }));
+    .map((brand) => ({ supplier: brand.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: RouteProps): Promise<Metadata> {
-  const { brand: brandSlug } = await params;
-  const brand = getBrand(brandSlug);
+  const { supplier: supplierSlug } = await params;
+  const brand = getBrand(supplierSlug);
   if (!brand) return {};
   return createPageMetadata({
     title: `Mã màu ${brand.name}`,
@@ -28,8 +28,8 @@ export async function generateMetadata({
 }
 
 export default async function CatalogueRoute({ params }: RouteProps) {
-  const { brand: brandSlug } = await params;
-  const brand = getBrand(brandSlug);
+  const { supplier: supplierSlug } = await params;
+  const brand = getBrand(supplierSlug);
   if (!brand || brand.slug === "kes") notFound();
 
   return (

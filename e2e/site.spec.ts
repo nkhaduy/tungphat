@@ -195,13 +195,13 @@ test("homepage có hero vật liệu editorial, CTA gọn và một ảnh LCP ư
   await expect(
     hero.getByRole("heading", {
       level: 1,
-      name: "Kho ván gỗ công nghiệp, gỗ ghép & gia công CNC tại Thủ Đức",
+      name: "Vật liệu gỗ và gia công CNC tại Thủ Đức",
     }),
   ).toBeVisible();
   await expect(hero.getByRole("link")).toHaveCount(3);
+  await expect(hero.getByRole("link", { name: "Xem vật liệu" })).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Mở catalogue" })).toBeVisible();
   await expect(hero.getByRole("link", { name: "Gửi quy cách qua Zalo" })).toBeVisible();
-  await expect(hero.getByRole("link", { name: "Xem nhóm vật liệu" })).toBeVisible();
-  await expect(hero.getByRole("link", { name: "Hai chi nhánh" })).toBeVisible();
   await expect(hero.getByRole("link", { name: "Xem báo giá" })).toHaveCount(0);
   await expect(hero.locator(".material-panels-hero-image")).toBeVisible();
   await expect(hero.locator('source[type="image/avif"]')).toHaveAttribute(
@@ -287,17 +287,11 @@ test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", asyn
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
   for (const heading of [
-    "Danh mục vật liệu chính",
-    "Một đầu mối cho vật liệu và gia công tại Thủ Đức",
-    "Quy cách vật liệu thường được hỏi",
-    "Gỗ ghép cao su, gỗ ghép tràm và hướng gia công",
-    "Mã màu nổi bật",
+    "MDF, MFC, Plywood và gỗ ghép",
+    "Mã màu và bề mặt",
     "Cắt và gia công CNC theo quy cách",
-    "Gửi loại ván, quy cách hoặc file cần cắt",
-    "Máy CNC tham khảo và hai chi nhánh Tùng Phát",
-    "Tra cứu mã vật liệu theo nhà cung cấp",
-    "Hai chi nhánh tại Tam Bình, Thủ Đức",
-    "Bài viết hữu ích từ Tùng Phát",
+    "Xưởng và chi nhánh tại Thủ Đức",
+    "Kiến thức vật liệu và CNC",
   ]) {
     await expect(
       page.getByRole("heading", { level: 2, name: heading }),
@@ -312,7 +306,7 @@ test("CTA báo giá vật liệu có accessible name khớp nhãn hiển thị",
   await page.goto("/");
   await expect(
     page.getByRole("link", {
-      name: "Kiểm tra hàng / báo giá Ván MDF",
+      name: "Gửi quy cách qua Zalo",
       exact: true,
     }),
   ).toBeVisible();
