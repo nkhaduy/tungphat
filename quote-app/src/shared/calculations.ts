@@ -117,6 +117,11 @@ export function lifecycleStatusForPayment(
   return hasIssuedVersion ? "ISSUED" : "DRAFT";
 }
 
+export function formatVndInput(value: number): string {
+  assertVnd(value, "Số tiền");
+  return new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 }).format(value);
+}
+
 export function formatVnd(value: number): string {
   return new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND", maximumFractionDigits: 0 }).format(value);
 }
