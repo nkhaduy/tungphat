@@ -1,7 +1,7 @@
 import { Check, Eye, FileDown, Printer, Save, Wifi } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { calculateLineTotal, calculateTotals, formatVnd } from "../../shared/calculations";
+import { calculateLineTotal, calculateTotals, formatVnd, formatVndInput } from "../../shared/calculations";
 import { buildQuotePdfFilename, formatEmployeeContact } from "../../shared/display";
 import type { AppSettings, CustomerRecord, PaymentStatus, QuoteRecord } from "../../shared/types";
 import { api, downloadProtected } from "../api";
@@ -134,7 +134,7 @@ export function MoneyInput({ name, label, value, onChange }: MoneyInputProps) {
   return (
     <label className="money-input">
       <span>{label}</span>
-      <input name={name} inputMode="numeric" value={value || ""} onChange={(event) => onChange(parseVndInput(event.target.value))} />
+      <input name={name} inputMode="numeric" value={value ? formatVndInput(value) : ""} onChange={(event) => onChange(parseVndInput(event.target.value))} />
       <small>đ</small>
     </label>
   );
