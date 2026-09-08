@@ -4,12 +4,20 @@ import {
   calculateTotals,
   derivePaymentStatus,
   deriveQuoteStatus,
+  formatVndInput,
   normalizePayment,
   quantityFromMilli,
   quantityToMilli,
 } from "../src/shared/calculations";
 
 describe("quote calculations", () => {
+  it("formats editable VND values with Vietnamese thousand separators", () => {
+    expect(formatVndInput(0)).toBe("0");
+    expect(formatVndInput(1_000)).toBe("1.000");
+    expect(formatVndInput(125_000)).toBe("125.000");
+    expect(formatVndInput(1_250_000)).toBe("1.250.000");
+  });
+
   it("calculates each product line using integer VND", () => {
     expect(calculateLineTotal(8, 203_000)).toBe(1_624_000);
   });
