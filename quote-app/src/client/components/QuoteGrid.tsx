@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowUp, Copy, Plus, Trash2 } from "lucide-react";
 import { useEffect, type ClipboardEvent, type KeyboardEvent } from "react";
-import { calculateLineTotal } from "../../shared/calculations";
+import { calculateLineTotal, formatVndInput } from "../../shared/calculations";
 
 export type EditorRow = {
   clientId: string;
@@ -145,7 +145,7 @@ export function QuoteGrid({ rows, onChange, readOnly = false }: { rows: EditorRo
                     data-grid-row={rowIndex}
                     data-grid-col={columnIndex}
                     aria-label={`${columnLabels[column]} dòng ${rowIndex + 1}`}
-                    value={column === "quantity" || column === "unitPrice" ? (row[column] || "") : row[column]}
+                    value={column === "unitPrice" ? (row.unitPrice ? formatVndInput(row.unitPrice) : "") : column === "quantity" ? (row.quantity || "") : row[column]}
                     inputMode={column === "quantity" ? "decimal" : column === "unitPrice" ? "numeric" : "text"}
                     readOnly={readOnly}
                     onChange={(event) => update(rowIndex, column, event.target.value)}
