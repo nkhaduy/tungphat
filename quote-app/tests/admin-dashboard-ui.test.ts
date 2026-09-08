@@ -54,6 +54,11 @@ describe("admin dashboard quick view", () => {
     expect(html).toContain("TP81-140826-001");
     expect(html).toContain("Đã nhận");
     expect(html).toContain("MDF chống ẩm");
+    expect(html).toContain("500.000");
+    expect(html).toContain("1.000.000");
+    expect(html).toContain("1.080.000");
+    expect(html).toContain("200.000");
+    expect(html).toContain("880.000");
     expect(html).toContain("Đóng");
     expect(html).toContain('href="/bao-gia/quote-1/chinh-sua"');
     expect(html).toContain("Chỉnh báo giá");

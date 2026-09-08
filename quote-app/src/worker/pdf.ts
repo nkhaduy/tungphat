@@ -1,7 +1,7 @@
 import fontkit from "@pdf-lib/fontkit";
 import type { Context } from "hono";
 import { PDFDocument, type PDFFont, type PDFImage, type PDFPage, rgb } from "pdf-lib";
-import { deriveQuoteStatus, formatVnd } from "../shared/calculations";
+import { deriveQuoteStatus, formatQuantity, formatVnd, formatVndNumber } from "../shared/calculations";
 import { OFFICIAL_BRANCHES } from "../shared/branches";
 import { buildQuotePdfContentDisposition, formatEmployeeContact } from "../shared/display";
 import { paymentReceivedLabel, shouldShowPaymentQr } from "../shared/payment";
@@ -307,22 +307,22 @@ function drawTableHeader(page: PDFPage, font: PDFFont, y: number, columns: Colum
   return y - height;
 }
 
-function itemValues(quote: QuoteRecord, index: number): Record<string, string> {
+export function buildPdfItemValues(quote: QuoteRecord, index: number): Record<string, string> {
   const item = quote.items[index];
   return {
     position: String(index + 1),
     product: item.productName,
     spec: item.specification,
-    quantity: item.quantity.toLocaleString("vi-VN"),
+    quantity: formatQuantity(item.quantity),
     unit: item.unit,
-    price: item.unitPrice.toLocaleString("vi-VN"),
-    total: item.lineTotal.toLocaleString("vi-VN"),
+    price: formatVndNumber(item.unitPrice),
+    total: formatVndNumber(item.lineTotal),
     note: item.note,
   };
 }
 
 function measureItemRow(font: PDFFont, quote: QuoteRecord, index: number, columns: Column[]): { wrapped: string[][]; height: number } {
-  const values = itemValues(quote, index);
+  const values = buildPdfItemValues(quote, index);
   const wrapped = columns.map((column) => wrapText(values[column.key] ?? "", font, 8.2, column.width - 10));
   return { wrapped, height: Math.max(29, Math.max(...wrapped.map((lines) => lines.length)) * 11.2 + 11) };
 }

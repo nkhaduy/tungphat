@@ -5,17 +5,34 @@ import {
   derivePaymentStatus,
   deriveQuoteStatus,
   formatVndInput,
+  formatVnd,
   normalizePayment,
+  parseVndInput,
   quantityFromMilli,
   quantityToMilli,
 } from "../src/shared/calculations";
 
 describe("quote calculations", () => {
   it("formats editable VND values with Vietnamese thousand separators", () => {
-    expect(formatVndInput(0)).toBe("0");
-    expect(formatVndInput(1_000)).toBe("1.000");
-    expect(formatVndInput(125_000)).toBe("125.000");
-    expect(formatVndInput(1_250_000)).toBe("1.250.000");
+    const cases: Array<[number, string]> = [
+      [0, "0"],
+      [1, "1"],
+      [999, "999"],
+      [1_000, "1.000"],
+      [25_000, "25.000"],
+      [125_000, "125.000"],
+      [1_250_000, "1.250.000"],
+      [15_250_000, "15.250.000"],
+    ];
+    cases.forEach(([value, expected]) => expect(formatVndInput(value)).toBe(expected));
+    expect(formatVnd(15_250_000)).toContain("15.250.000");
+  });
+
+  it("parses grouped and pasted VND input into integer values", () => {
+    ["1.250.000", "1250000", "1,250,000", "1 250 000"].forEach((value) => {
+      expect(parseVndInput(value)).toBe(1_250_000);
+    });
+    expect(parseVndInput("")).toBe(0);
   });
 
   it("calculates each product line using integer VND", () => {

@@ -4,7 +4,7 @@ import { PDFDocument } from "pdf-lib";
 import { describe, expect, it } from "vitest";
 import type { AppSettings, QuoteRecord } from "../src/shared/types";
 import { buildVietQrUrl } from "../src/shared/vietqr";
-import { buildPdfTotalsRows, generateQuotePdf, type QuoteSnapshot } from "../src/worker/pdf";
+import { buildPdfItemValues, buildPdfTotalsRows, generateQuotePdf, type QuoteSnapshot } from "../src/worker/pdf";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const settings: AppSettings = {
@@ -35,6 +35,12 @@ function snapshot(sourceQuote: QuoteRecord): QuoteSnapshot {
 }
 
 describe("server PDF", () => {
+  it("formats product money values with Vietnamese separators", () => {
+    const values = buildPdfItemValues(quote(1), 0);
+    expect(values.price).toBe("203.000");
+    expect(values.total).toBe("406.000");
+  });
+
   it("places old debt directly after the grand total without adding it to the total", () => {
     const source = { ...quote(), oldDebtAmount: 450_000 };
     const rows = buildPdfTotalsRows(source);

@@ -1,7 +1,7 @@
 import { Check, Eye, FileDown, Printer, Save, Wifi } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { calculateLineTotal, calculateTotals, formatVnd, formatVndInput } from "../../shared/calculations";
+import { calculateLineTotal, calculateTotals, formatVnd, formatVndInput, parseVndInput } from "../../shared/calculations";
 import { buildQuotePdfFilename, formatEmployeeContact } from "../../shared/display";
 import type { AppSettings, CustomerRecord, PaymentStatus, QuoteRecord } from "../../shared/types";
 import { api, downloadProtected } from "../api";
@@ -114,13 +114,6 @@ function cachedForm(raw: string | null, meta: Meta): QuoteForm {
   } catch {
     return fallback;
   }
-}
-
-function parseVndInput(value: string): number {
-  const digits = value.replace(/\D/g, "");
-  if (!digits) return 0;
-  const parsed = Number(digits);
-  return Number.isSafeInteger(parsed) ? parsed : Number.MAX_SAFE_INTEGER;
 }
 
 type MoneyInputProps = {

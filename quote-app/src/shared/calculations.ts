@@ -119,6 +119,18 @@ export function lifecycleStatusForPayment(
 
 export function formatVndInput(value: number): string {
   assertVnd(value, "Số tiền");
+  return formatVndNumber(value);
+}
+
+export function parseVndInput(value: string): number {
+  const digits = value.replace(/\D/g, "");
+  if (!digits) return 0;
+  const parsed = Number(digits);
+  return Number.isSafeInteger(parsed) ? parsed : MAX_VND;
+}
+
+export function formatVndNumber(value: number): string {
+  assertVnd(value, "Số tiền");
   return new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 }).format(value);
 }
 

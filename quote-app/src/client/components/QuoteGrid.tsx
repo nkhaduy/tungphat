@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowUp, Copy, Plus, Trash2 } from "lucide-react";
 import { useEffect, type ClipboardEvent, type KeyboardEvent } from "react";
-import { calculateLineTotal, formatVndInput } from "../../shared/calculations";
+import { calculateLineTotal, formatVndInput, formatVndNumber, parseVndInput } from "../../shared/calculations";
 
 export type EditorRow = {
   clientId: string;
@@ -27,11 +27,6 @@ export function emptyRow(): EditorRow {
   return { clientId: crypto.randomUUID(), productName: "", specification: "", quantity: 0, unit: "", unitPrice: 0, note: "" };
 }
 
-function parseVnd(value: string): number {
-  const normalized = value.replace(/[^0-9]/g, "");
-  return normalized ? Math.min(Number(normalized), Number.MAX_SAFE_INTEGER) : 0;
-}
-
 export function parseQuantityInput(value: string): number {
   const normalized = value.trim().replace(/\s/g, "").replace(",", ".").replace(/[^0-9.]/g, "");
   const separator = normalized.indexOf(".");
@@ -51,7 +46,7 @@ export function pasteGridText(rows: EditorRow[], text: string, startRow: number,
       const target = next[startRow + rowOffset];
       if (!column || !target) return;
       if (column === "quantity") target.quantity = parseQuantityInput(value);
-      else if (column === "unitPrice") target.unitPrice = parseVnd(value);
+      else if (column === "unitPrice") target.unitPrice = parseVndInput(value);
       else target[column] = value.trim();
     });
   });
@@ -59,7 +54,7 @@ export function pasteGridText(rows: EditorRow[], text: string, startRow: number,
 }
 
 function displayLineTotal(row: EditorRow): string {
-  try { return calculateLineTotal(row.quantity, row.unitPrice).toLocaleString("vi-VN"); }
+  try { return formatVndNumber(calculateLineTotal(row.quantity, row.unitPrice)); }
   catch { return "Quá lớn"; }
 }
 
@@ -75,7 +70,7 @@ export function QuoteGrid({ rows, onChange, readOnly = false }: { rows: EditorRo
   const update = (rowIndex: number, column: EditableColumn, value: string) => {
     const next = rows.map((row, index) => index === rowIndex ? {
       ...row,
-      [column]: column === "quantity" ? parseQuantityInput(value) : column === "unitPrice" ? parseVnd(value) : value,
+      [column]: column === "quantity" ? parseQuantityInput(value) : column === "unitPrice" ? parseVndInput(value) : value,
     } : row);
     onChange(next);
   };

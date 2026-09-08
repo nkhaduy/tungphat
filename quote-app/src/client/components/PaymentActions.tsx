@@ -1,6 +1,6 @@
 import { Banknote, CheckCircle2, HandCoins, PencilLine, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { formatVnd, formatVndInput, normalizePayment } from "../../shared/calculations";
+import { formatVnd, formatVndInput, normalizePayment, parseVndInput } from "../../shared/calculations";
 import { paymentActionAmount, paymentActionsInitiallyVisible, shouldPromptForPaymentAmount } from "../../shared/payment";
 import type { PaymentStatus } from "../../shared/types";
 
@@ -12,13 +12,6 @@ type PaymentActionsProps = {
   compact?: boolean;
   onChange: (paymentStatus: PaymentStatus, receivedAmount: number) => void;
 };
-
-function parseVnd(value: string): number {
-  const digits = value.replace(/\D/g, "");
-  if (!digits) return 0;
-  const parsed = Number(digits);
-  return Number.isSafeInteger(parsed) ? parsed : Number.MAX_SAFE_INTEGER;
-}
 
 export function PaymentActions({ paymentStatus, receivedAmount, grandTotal, disabled = false, compact = false, onChange }: PaymentActionsProps) {
   const [editing, setEditing] = useState(() => paymentActionsInitiallyVisible(paymentStatus));
@@ -93,7 +86,7 @@ export function PaymentActions({ paymentStatus, receivedAmount, grandTotal, disa
           <button type="button" className="payment-dialog-close" aria-label="Đóng" disabled={disabled} onClick={() => setAmountStatus(null)}><X size={18} /></button>
           <h2 id="payment-amount-title">{amountStatus === "DEPOSITED" ? "Nhập số tiền cọc" : "Nhập số tiền đã nhận"}</h2>
           <p>Số tiền phải lớn hơn 0 và nhỏ hơn tổng thanh toán {formatVnd(grandTotal)}.</p>
-          <label className="payment-dialog-input"><span>Số tiền thực nhận</span><input autoFocus inputMode="numeric" value={draftAmount ? formatVndInput(draftAmount) : ""} onChange={(event) => setDraftAmount(parseVnd(event.target.value))} /><small>đ</small></label>
+          <label className="payment-dialog-input"><span>Số tiền thực nhận</span><input autoFocus inputMode="numeric" value={draftAmount ? formatVndInput(draftAmount) : ""} onChange={(event) => setDraftAmount(parseVndInput(event.target.value))} /><small>đ</small></label>
           {error ? <p className="payment-error" role="alert">{error}</p> : null}
           <div className="confirm-dialog-actions">
             <button className="button secondary" type="button" disabled={disabled} onClick={() => setAmountStatus(null)}>Hủy</button>
