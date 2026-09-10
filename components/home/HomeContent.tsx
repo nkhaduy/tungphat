@@ -2,24 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  CircleDotDashed,
   ExternalLink,
-  Layers3,
   MapPin,
-  MessageCircle,
-  PenTool,
   Phone,
-  ScanLine,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-import { TrackedLink } from "@/components/TrackedLink";
 import { branchPathForLocationId } from "@/lib/branch-pages";
 import { getArticles } from "@/lib/content";
 import { buildCatalogueCodeSeo } from "@/lib/catalog/code-seo";
 import { getPublicColorCodes } from "@/lib/catalog/color-codes/public";
 import { locations } from "@/lib/locations";
 import { coreMaterialCards, surfaceCatalogueCards } from "@/lib/product-taxonomy";
-import { PHONE_DISPLAY, PHONE_HREF, ZALO_URL } from "@/lib/seo";
+import { PHONE_DISPLAY, PHONE_HREF } from "@/lib/seo";
 
 type SectionIntroProps = {
   eyebrow?: string;
@@ -49,13 +42,6 @@ const supplierLabels = {
   "thanh-thuy": "Thanh Thuỳ",
   "ba-thanh": "Ba Thanh",
 } as const;
-
-const cncCapabilities: { title: string; icon: LucideIcon }[] = [
-  { title: "Cắt và gia công CNC", icon: ScanLine },
-  { title: "Dán chỉ", icon: CircleDotDashed },
-  { title: "Thiết kế theo hình ảnh, yêu cầu", icon: Layers3 },
-  { title: "Báo giá rõ ràng trước khi cắt", icon: PenTool },
-];
 
 const preferredThanhThuyIds = [
   "thanh-thuy:301",
@@ -97,16 +83,34 @@ export async function HomeContent() {
     supplierQueues["ba-thanh"][index],
   ]).flat().filter((record): record is (typeof sortedFeaturedColorCodes)[number] => Boolean(record));
   const latestArticles = articles.slice(0, 3);
+  const primaryBranch = locations[0];
 
   return (
     <>
+      {primaryBranch ? (
+        <section id="gioi-thieu" className="scroll-mt-24 bg-white py-16 lg:py-24">
+          <div className="container-shell grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#edf4ef]">
+              <Image src={primaryBranch.image} alt={primaryBranch.imageAlt} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+            </div>
+            <div className="max-w-xl">
+              <p className="eyebrow">Giới thiệu về</p>
+              <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight tracking-[-.035em] text-forest-950 sm:text-4xl">Tùng Phát</h2>
+              <p className="mt-5 text-base leading-8 text-slate-700">Tùng Phát cung cấp MDF, MFC, Plywood, gỗ ghép và chỉ dán cạnh; đồng thời nhận cắt và gia công CNC tại Thủ Đức.</p>
+              <p className="mt-4 text-sm leading-7 text-slate-600">Khách có thể xem nhóm vật liệu, tra mã màu rồi gửi kích thước hoặc file cần làm để trao đổi tiếp.</p>
+              <Link href="#chi-nhanh" className="mt-7 inline-flex min-h-12 items-center gap-2 border border-forest-900/20 px-5 text-sm font-extrabold text-forest-950 hover:border-wood-500 hover:text-wood-600">Xem địa chỉ <ArrowRight size={17} aria-hidden="true" /></Link>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <section id="vat-lieu" className="scroll-mt-24 bg-[#f7f9f6] py-16 lg:py-24">
         <div className="container-shell">
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <SectionIntro
               eyebrow="Sản phẩm"
-              title="MDF, MFC, Plywood và gỗ ghép"
-              description="Chọn nhóm vật liệu trước, sau đó mở trang chi tiết để xem hướng sử dụng và thông tin nên gửi khi hỏi quy cách."
+              title="Danh mục sản phẩm"
+              description="Chọn cốt ván, bề mặt hoặc chỉ dán cạnh theo hạng mục bạn đang làm."
             />
             <Link href="/san-pham" className="inline-flex min-h-11 shrink-0 items-center gap-2 self-start text-sm font-extrabold text-forest-950 hover:text-wood-600">
               Xem tất cả vật liệu <ArrowRight size={17} aria-hidden="true" />
@@ -177,85 +181,60 @@ export async function HomeContent() {
             </Link>
           </div>
 
-          <div className="mt-10 grid gap-8 lg:grid-cols-[.78fr_1.22fr]">
-            <div className="border border-forest-900/10 bg-[#f7f9f6] p-6 sm:p-7">
-              <h3 className="text-xl font-extrabold text-forest-950">Mã màu theo vật liệu</h3>
-              <p className="mt-4 text-sm leading-6 text-slate-600">Chọn vật liệu, thương hiệu hoặc mã màu trong catalogue. Mã bề mặt không tự xác định cốt ván; hãy gửi cả nhu cầu sử dụng khi hỏi hàng.</p>
-              <Link href="/catalogue" prefetch={false} className="mt-6 inline-flex min-h-12 w-full items-center justify-between gap-4 border border-forest-900/20 bg-white px-4 text-sm font-extrabold text-forest-950 hover:border-wood-500 hover:text-wood-600">
-                Mở catalogue <span className="grid h-8 w-8 shrink-0 place-items-center border border-forest-900/15"><ArrowRight size={16} aria-hidden="true" /></span>
-              </Link>
-              <p className="mt-5 text-xs leading-5 text-slate-600">Quy cách, mã màu và tồn kho có thể thay đổi theo từng dòng hàng. Gửi mã hoặc ảnh mẫu để kiểm tra trước khi báo giá.</p>
+          <div className="mt-10 min-w-0">
+            <div className="grid gap-4 sm:grid-cols-[repeat(3,minmax(0,1fr))]">
+              {supplierCards.map((supplier) => (
+                <Link key={supplier.slug} href={`/catalogue/${supplier.slug}`} prefetch={false} className="group flex min-h-[142px] min-w-0 flex-col items-center justify-between border border-forest-900/10 bg-white p-5 shadow-[0_8px_24px_rgba(7,59,40,.045)] transition hover:-translate-y-1 hover:border-wood-500/40">
+                  <span className="relative block h-14 w-full">
+                    <Image src={supplier.logo} alt={`Logo ${supplier.name}`} fill sizes="180px" className="object-contain" />
+                  </span>
+                  <span className="mt-4 inline-flex min-h-9 items-center gap-2 text-xs font-extrabold text-forest-950 group-hover:text-wood-600">Xem mã màu <ArrowRight size={14} aria-hidden="true" /></span>
+                </Link>
+              ))}
             </div>
-
-            <div className="min-w-0">
-              <p className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">MÃ MÀU</p>
-              <div className="mt-4 grid gap-4 sm:grid-cols-[repeat(3,minmax(0,1fr))]">
-                {supplierCards.map((supplier) => (
-                  <Link key={supplier.slug} href={`/catalogue/${supplier.slug}`} prefetch={false} className="group flex min-h-[142px] min-w-0 flex-col items-center justify-between border border-forest-900/10 bg-white p-5 shadow-[0_8px_24px_rgba(7,59,40,.045)] transition hover:-translate-y-1 hover:border-wood-500/40">
-                    <span className="relative block h-14 w-full">
-                      <Image src={supplier.logo} alt={`Logo ${supplier.name}`} fill sizes="180px" className="object-contain" />
-                    </span>
-                    <span className="mt-4 inline-flex min-h-9 items-center gap-2 text-xs font-extrabold text-forest-950 group-hover:text-wood-600">Mở mã màu <ArrowRight size={14} aria-hidden="true" /></span>
-                  </Link>
-                ))}
-              </div>
-              {featuredColorCodes.length ? (
-                <div className="mt-8">
-                  <div className="flex items-center justify-between gap-4">
-                    <h3 className="text-xl font-extrabold text-forest-950">Một số mã đang có trang tra cứu</h3>
-                    <Link href="/catalogue" prefetch={false} className="inline-flex min-h-10 shrink-0 items-center gap-2 text-xs font-extrabold text-wood-600">Tìm mã khác <ArrowRight size={15} aria-hidden="true" /></Link>
-                  </div>
-                  <div className="color-code-slider mt-4 min-w-0 flex gap-3 overflow-x-auto pb-3" data-color-code-slider aria-label="Một số mã màu nổi bật">
-                    {featuredColorCodes.map((record) => (
-                      <Link key={record.id} href={record.canonicalRoute} className="group flex min-h-[13rem] w-[12.5rem] shrink-0 snap-start flex-col justify-end gap-3 border border-forest-900/10 bg-[#fbfcfa] p-3 hover:border-wood-500/50">
-                        <span className="relative block aspect-[4/3] w-full overflow-hidden bg-[#edf1ec]">
-                          {record.images[0]?.localPath ? <Image src={record.images[0].localPath} alt={`Mã màu ${record.codeRaw} ${record.displayName || ""}`} fill sizes="200px" className="object-cover transition duration-300 group-hover:scale-[1.025]" /> : null}
-                        </span>
-                        <span>
-                          <span className="block text-[11px] font-extrabold uppercase tracking-[.12em] text-wood-600">{supplierLabels[record.supplier as keyof typeof supplierLabels]}</span>
-                          <strong className="mt-1 block text-sm text-forest-950">{record.displayName || record.codeRaw}</strong>
-                        </span>
-                      </Link>
-                    ))}
+            {featuredColorCodes.length ? (
+              <div className="mt-10">
+                <div className="flex items-center justify-between gap-4">
+                  <h3 className="text-xl font-extrabold text-forest-950">Các màu nổi bật</h3>
+                  <Link href="/catalogue" prefetch={false} className="inline-flex min-h-10 shrink-0 items-center gap-2 text-xs font-extrabold text-wood-600">Tìm mã khác <ArrowRight size={15} aria-hidden="true" /></Link>
+                </div>
+                <div className="color-code-marquee mt-4" data-color-code-marquee aria-label="Các mã màu nổi bật">
+                  <div className="color-code-marquee-track">
+                    {[...featuredColorCodes, ...featuredColorCodes].map((record, index) => {
+                      const supplier = supplierCards.find((item) => item.slug === record.supplier);
+                      const duplicate = index >= featuredColorCodes.length;
+                      return (
+                        <Link key={`${record.id}-${index}`} href={record.canonicalRoute} aria-hidden={duplicate || undefined} tabIndex={duplicate ? -1 : undefined} className="group color-code-marquee-card">
+                          <span className="relative block aspect-[4/3] w-full overflow-hidden bg-[#edf1ec]">
+                            {record.images[0]?.localPath ? <Image src={record.images[0].localPath} alt={`Mã màu ${record.codeRaw} ${record.displayName || ""}`} fill sizes="200px" className="object-cover transition duration-300 group-hover:scale-[1.025]" /> : null}
+                          </span>
+                          <span className="flex items-center justify-between gap-3 pt-3">
+                            <strong className="min-w-0 text-sm text-forest-950">{record.displayName || record.codeRaw}</strong>
+                            {supplier ? <Image src={supplier.logo} alt={`Logo ${supplier.name}`} width={72} height={24} className="h-6 w-[72px] shrink-0 object-contain object-right" /> : null}
+                          </span>
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
-              ) : null}
-            </div>
+              </div>
+            ) : null}
           </div>
         </div>
       </section>
 
       <section id="nang-luc-cnc" className="scroll-mt-24 bg-[#f7f9f6] py-16 lg:py-24">
         <div className="container-shell">
-          <SectionIntro
-            title="Cắt và gia công CNC"
-            description="Gửi vật liệu, độ dày, số lượng và file hoặc hình ảnh yêu cầu để xưởng kiểm tra trước."
-            centered
-          />
-          <div className="mt-10 grid gap-6 lg:grid-cols-[.82fr_1.18fr]">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-14">
             <div className="relative min-h-[350px] overflow-hidden rounded-2xl lg:min-h-[470px]">
-              <Image src="/images/cnc-service.webp" alt="Đầu máy CNC đang cắt biên dạng trên tấm ván" fill sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/80 via-transparent to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-8">
-                <p className="text-xs font-extrabold uppercase tracking-[.16em] text-orange-300">Từ file đến đường cắt</p>
-                <p className="mt-3 max-w-md text-lg font-extrabold leading-7">Chốt vật liệu, độ dày, đơn vị đo và đường gia công trước khi sản xuất.</p>
-              </div>
+              <Image src="/images/cnc-service.webp" alt="Đầu máy CNC đang cắt biên dạng trên tấm ván" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {cncCapabilities.map(({ title, icon: Icon }) => (
-                <article key={title} className="rounded-xl border border-forest-900/10 bg-white p-6 shadow-[0_8px_24px_rgba(7,59,40,.045)]">
-                  <span className="grid h-11 w-11 place-items-center rounded-lg bg-[#edf4ef] text-forest-900"><Icon size={22} aria-hidden="true" /></span>
-                  <h3 className="mt-5 text-lg font-extrabold text-forest-950">{title}</h3>
-                </article>
-              ))}
-              <div className="sm:col-span-2 flex flex-col gap-3 border-t border-forest-900/10 pt-5 sm:flex-row">
-                <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_cnc", channel: "zalo" }} className="inline-flex min-h-12 items-center justify-center gap-2 bg-wood-600 px-5 text-sm font-extrabold text-white hover:bg-wood-700">
-                  <MessageCircle size={17} aria-hidden="true" /> Liên hệ báo giá
-                </TrackedLink>
-                <Link href="/gia-cong-cnc" className="inline-flex min-h-12 items-center justify-center gap-2 border border-forest-900/20 px-5 text-sm font-extrabold text-forest-950 hover:border-forest-900">
-                  Xem dịch vụ CNC <ArrowRight size={17} aria-hidden="true" />
-                </Link>
-              </div>
+            <div className="max-w-xl">
+              <p className="eyebrow">Gia công CNC</p>
+              <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight tracking-[-.035em] text-forest-950 sm:text-4xl">Cắt và gia công CNC theo quy cách</h2>
+              <p className="mt-5 text-base leading-8 text-slate-700">Tùng Phát nhận cắt và gia công CNC cho các chi tiết dạng tấm. Khi đã có kích thước hoặc file, khách có thể gửi trước để trao đổi phần vật liệu và hạng mục cần làm.</p>
+              <p className="mt-4 text-sm leading-7 text-slate-600">Cần chốt đúng vật liệu, độ dày, đơn vị đo và đường cắt trước khi chạy máy.</p>
+              <Link href="/gia-cong-cnc/" className="mt-7 inline-flex min-h-12 items-center gap-2 bg-forest-900 px-5 text-sm font-extrabold text-white hover:bg-forest-800">Xem dịch vụ CNC <ArrowRight size={17} aria-hidden="true" /></Link>
             </div>
           </div>
         </div>
@@ -303,11 +282,16 @@ export async function HomeContent() {
             </div>
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {latestArticles.map((article) => (
-                <article key={article.slug} className="border border-forest-900/10 bg-white p-6 shadow-[0_8px_24px_rgba(7,59,40,.045)]">
-                  <p className="text-xs font-extrabold uppercase tracking-[.14em] text-wood-600">{article.category}</p>
-                  <h3 className="mt-3 text-lg font-extrabold leading-7 text-forest-950"><Link href={`/bai-viet/${article.slug}`}>{article.title}</Link></h3>
-                  <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">{article.excerpt}</p>
-                  <Link href={`/bai-viet/${article.slug}`} className="mt-4 inline-flex min-h-10 items-center gap-2 text-sm font-extrabold text-wood-600">Đọc bài <ArrowRight size={16} aria-hidden="true" /></Link>
+                <article key={article.slug} className="overflow-hidden border border-forest-900/10 bg-white shadow-[0_8px_24px_rgba(7,59,40,.045)]">
+                  <Link href={`/bai-viet/${article.slug}`} className="relative block aspect-[16/10] overflow-hidden bg-[#edf4ef]">
+                    <Image src={article.featuredImage} alt={article.featuredImageAlt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition duration-300 hover:scale-[1.025]" />
+                  </Link>
+                  <div className="flex min-h-[15rem] flex-col p-6">
+                    <p className="text-xs font-extrabold uppercase tracking-[.14em] text-wood-600">{article.category}</p>
+                    <h3 className="mt-3 text-lg font-extrabold leading-7 text-forest-950"><Link href={`/bai-viet/${article.slug}`}>{article.title}</Link></h3>
+                    <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">{article.excerpt}</p>
+                    <Link href={`/bai-viet/${article.slug}`} className="mt-auto inline-flex min-h-10 items-center gap-2 pt-4 text-sm font-extrabold text-wood-600">Đọc bài <ArrowRight size={16} aria-hidden="true" /></Link>
+                  </div>
                 </article>
               ))}
             </div>

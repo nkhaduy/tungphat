@@ -6,13 +6,10 @@ describe("public SEO and UX hierarchy", () => {
     const page = readFileSync("app/page.tsx", "utf8");
     const hero = readFileSync("components/home/HomeHero.tsx", "utf8");
 
-    expect(page).toContain(
-      "MDF, MFC, Plywood, Gỗ Ghép & Gia Công CNC tại Thủ Đức | Tùng Phát",
-    );
+    expect(page).toContain("Tùng Phát | Ván gỗ công nghiệp & Gia công CNC tại Thủ Đức");
     expect(page).toContain("gỗ ghép, MDF, MFC, Plywood và chỉ dán cạnh");
-    expect(hero).toMatch(/Vật liệu gỗ[\s\S]*và gia công CNC tại Thủ Đức/);
-    expect(hero).toContain('href="/san-pham"');
-    expect(hero).toContain('href="/catalogue"');
+    expect(hero).toMatch(/Ván gỗ công nghiệp[\s\S]*gia công CNC tại Thủ Đức/);
+    expect(hero).toContain('href="#ma-mau"');
     expect(hero).toContain("Liên hệ báo giá");
   });
 
@@ -20,11 +17,11 @@ describe("public SEO and UX hierarchy", () => {
     const content = readFileSync("components/home/HomeContent.tsx", "utf8");
     const taxonomy = readFileSync("lib/product-taxonomy.ts", "utf8");
 
-    expect(content).toContain("MDF, MFC, Plywood và gỗ ghép");
+    expect(content).toContain("Danh mục sản phẩm");
     expect(content).toContain('eyebrow="Sản phẩm"');
-    expect(content).toContain("Mã màu theo vật liệu");
-    expect(content).toContain('>MÃ MÀU<');
-    expect(content).toContain("Mở mã màu");
+    expect(content).not.toContain("Mã màu theo vật liệu");
+    expect(content).toContain("Các màu nổi bật");
+    expect(content).toContain("Xem mã màu");
     expect(content).toContain("Cốt ván / vật liệu chính");
     expect(content).toContain("Bề mặt / catalogue");
     expect(content).not.toContain("Nhà cung cấp &amp; bảng mã");
@@ -54,12 +51,9 @@ describe("public SEO and UX hierarchy", () => {
 
     for (const label of [
       "Cắt và gia công CNC",
-      "Dán chỉ",
-      "Thiết kế theo hình ảnh, yêu cầu",
-      "Báo giá rõ ràng trước khi cắt",
+      "Cắt và gia công CNC theo quy cách",
       "Địa chỉ",
       "Bài viết nổi bật",
-      "Liên hệ báo giá",
     ]) {
       expect(content).toContain(label);
     }
@@ -92,7 +86,8 @@ describe("public SEO and UX hierarchy", () => {
     expect(footer).toContain("Mở Maps");
     expect(footer).toContain("Liên hệ báo giá");
     expect(footer).not.toContain("facebook.com/plugins/page.php");
-    expect(footer).not.toContain("<iframe");
+    expect(footer).toContain("Google Maps");
+    expect(footer).toContain('loading="lazy"');
   });
 
   it("derives legacy brand presentation from verified catalogue data", () => {

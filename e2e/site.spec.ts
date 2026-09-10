@@ -187,7 +187,7 @@ test("representative routes expose breadcrumbs, intact images, and no horizontal
   expect(errors).toEqual([]);
 });
 
-test("homepage có hero vật liệu editorial, CTA gọn và một ảnh LCP ưu tiên", async ({
+test("homepage có hero ván gỗ, hai CTA và một ảnh LCP ưu tiên", async ({
   page,
 }) => {
   await page.goto("/");
@@ -195,12 +195,12 @@ test("homepage có hero vật liệu editorial, CTA gọn và một ảnh LCP ư
   await expect(
     hero.getByRole("heading", {
       level: 1,
-      name: "Vật liệu gỗ và gia công CNC tại Thủ Đức",
+      name: "Ván gỗ công nghiệp & gia công CNC tại Thủ Đức",
     }),
   ).toBeVisible();
-  await expect(hero.getByRole("link")).toHaveCount(3);
-  await expect(hero.getByRole("link", { name: "Xem vật liệu" })).toBeVisible();
-  await expect(hero.getByRole("link", { name: "Mở catalogue" })).toBeVisible();
+  await expect(hero.getByRole("link")).toHaveCount(2);
+  await expect(hero.getByRole("link", { name: "Xem mã màu" })).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Mở catalogue" })).toHaveCount(0);
   await expect(hero.getByRole("link", { name: "Liên hệ báo giá" })).toBeVisible();
   await expect(hero.getByRole("link", { name: "Xem báo giá" })).toHaveCount(0);
   await expect(hero.locator(".material-panels-hero-image")).toBeVisible();
@@ -318,7 +318,7 @@ test("homepage product taxonomy exposes core materials and catalogue surfaces", 
 test("homepage exposes the exact 301 catalogue landing route", async ({ page }) => {
   await page.goto("/");
   await expect(
-    page.locator('a[href="/catalogue/thanh-thuy/melamine/301/"]'),
+    page.locator('a[href="/catalogue/thanh-thuy/melamine/301/"]').first(),
   ).toBeVisible();
 });
 
@@ -327,7 +327,7 @@ test("CTA báo giá vật liệu có accessible name khớp nhãn hiển thị",
 }) => {
   await page.goto("/");
   await expect(
-    page.getByRole("link", {
+    page.locator("#trang-chu").getByRole("link", {
       name: "Liên hệ báo giá",
       exact: true,
     }),
@@ -342,6 +342,27 @@ test("homepage removes the utility blocks and keeps contact actions focused", as
   await expect(page.getByText("Công cụ gửi yêu cầu nhanh", { exact: true })).toHaveCount(0);
   await expect(page.getByText("Lợi ích chính", { exact: true })).toHaveCount(0);
   await expect(page.locator("[data-answer-block]")).toHaveCount(0);
+});
+
+test("homepage marquee stays horizontal without causing vertical movement", async ({ page }) => {
+  for (const viewport of [
+    { width: 1440, height: 900 },
+    { width: 1280, height: 800 },
+    { width: 430, height: 844 },
+    { width: 390, height: 844 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto("/");
+    const marquee = page.locator("[data-color-code-marquee]");
+    await marquee.scrollIntoViewIfNeeded();
+    const before = await page.evaluate(() => window.scrollY);
+    const track = marquee.locator(".color-code-marquee-track");
+    const transformBefore = await track.evaluate((element) => getComputedStyle(element).transform);
+    await page.waitForTimeout(350);
+    expect(await page.evaluate(() => window.scrollY), `${viewport.width}px scroll`).toBe(before);
+    expect(await track.evaluate((element) => getComputedStyle(element).transform), `${viewport.width}px marquee`).not.toBe(transformBefore);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth), `${viewport.width}px overflow`).toBeLessThanOrEqual(1);
+  }
 });
 
 test("mobile navigation contract supports focus, Escape, and a solid surface", async ({

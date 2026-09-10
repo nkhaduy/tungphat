@@ -35,6 +35,20 @@ export function getGoogleReviewUrls(data: Pick<TrustindexReviewData, "googleLink
   });
 }
 
+export function getFeaturedReviews(reviews: TrustindexReview[]) {
+  const selected = new Map<string, TrustindexReview>();
+  const ranked = reviews
+    .filter((review) => review.rating > 1 && review.text.trim())
+    .sort((left, right) => right.text.trim().length - left.text.trim().length || right.date.localeCompare(left.date));
+
+  for (const review of ranked) {
+    const identity = review.reviewerName.trim().toLocaleLowerCase("vi-VN");
+    if (!selected.has(identity)) selected.set(identity, review);
+  }
+
+  return [...selected.values()];
+}
+
 function initials(name: string) {
   return name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join("").toLocaleUpperCase("vi-VN") || "TP";
 }
@@ -75,10 +89,8 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const reducedMotion = useRef(false);
-  // Show every sourced written review; place lower ratings later without changing the aggregate.
-  const reviews = data.reviews
-    .filter((review) => review.text)
-    .sort((left, right) => right.rating - left.rating || right.text.length - left.text.length);
+  // The homepage is a curated, deduplicated display; the source rating/count remain untouched.
+  const reviews = getFeaturedReviews(data.reviews);
   const googleUrls = getGoogleReviewUrls(data);
   const googleUrl = googleUrls[0];
 

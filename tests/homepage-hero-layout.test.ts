@@ -31,14 +31,16 @@ describe("homepage editorial material hero", () => {
     expect(catalogue).not.toContain("material-panels-hero");
   });
 
-  it("keeps focused local commercial hero actions", () => {
-    expect(hero).toContain("Xem vật liệu");
-    expect(hero).toContain("Mở catalogue");
+  it("keeps the two approved colour-code and quote actions", () => {
+    expect(hero).not.toContain("Xem vật liệu");
+    expect(hero).toContain("Xem mã màu");
     expect(hero).toContain("Liên hệ báo giá");
-    expect(hero).toContain("/catalogue");
-    expect(hero).toContain("/san-pham");
+    expect(hero).toContain("#ma-mau");
+    expect(hero).not.toContain("Mở catalogue");
+    expect(hero).not.toContain("Gỗ ghép, MDF, MFC, Plywood");
+    expect(hero).toContain("Ván gỗ công nghiệp");
     expect(hero).not.toContain("Xem báo giá");
-    expect(hero.match(/className="pressable inline-flex/g)).toHaveLength(3);
+    expect(hero.match(/className="pressable inline-flex/g)).toHaveLength(2);
   });
 
   it("art-directs the mobile hero so the full material stack stays visible", () => {

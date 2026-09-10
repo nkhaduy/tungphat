@@ -8,7 +8,7 @@ import { ZALO_URL, createPageMetadata, webPageSchema } from "@/lib/seo";
 import { TrustindexReviews, type TrustindexReviewData } from "@/components/reviews/TrustindexReviews";
 import trustindexReviews from "@/data/trustindex-reviews.json";
 
-const homepageTitle = "MDF, MFC, Plywood, Gỗ Ghép & Gia Công CNC tại Thủ Đức | Tùng Phát";
+const homepageTitle = "Tùng Phát | Ván gỗ công nghiệp & Gia công CNC tại Thủ Đức";
 
 export const metadata = {
   ...createPageMetadata({
