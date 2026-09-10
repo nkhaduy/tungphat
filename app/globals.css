@@ -383,6 +383,28 @@ textarea:focus-visible {
   border-color: var(--site-header-control-border);
 }
 
+.contact-hero-image {
+  object-position: center center;
+}
+
+.contact-hero-overlay {
+  background:
+    linear-gradient(90deg, rgba(3, 24, 16, 0.84) 0%, rgba(3, 24, 16, 0.68) 43%, rgba(3, 24, 16, 0.24) 77%, rgba(3, 24, 16, 0.18) 100%),
+    linear-gradient(180deg, rgba(3, 24, 16, 0.36) 0%, transparent 42%, rgba(3, 24, 16, 0.38) 100%);
+}
+
+@media (max-width: 767px) {
+  .contact-hero-image {
+    object-position: 60% center;
+  }
+
+  .contact-hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(3, 24, 16, 0.68) 0%, rgba(3, 24, 16, 0.56) 52%, rgba(3, 24, 16, 0.76) 100%),
+      linear-gradient(90deg, rgba(3, 24, 16, 0.42), rgba(3, 24, 16, 0.12));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .site-header,
   .site-header-logo {
