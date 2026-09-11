@@ -22,8 +22,10 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
   const { lang, setLang } = useLang();
   const pathname = (usePathname() || "/").replace(/\/$/, "") || "/";
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const navigationRef = useRef<HTMLElement>(null);
   const languageLabel =
     lang === "vi"
       ? "Chuyển ngôn ngữ VI | EN"
@@ -81,11 +83,28 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
     if (restoreFocus) requestAnimationFrame(() => triggerRef.current?.focus());
   }, []);
 
+  const handleDropdownKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    if (event.key === "Escape") {
+      setOpenDropdown(null);
+      (event.currentTarget as HTMLElement).focus();
+    }
+  };
+
   useEffect(() => {
     const updateScrolled = () => setScrolled(window.scrollY > 12);
     updateScrolled();
     window.addEventListener("scroll", updateScrolled, { passive: true });
     return () => window.removeEventListener("scroll", updateScrolled);
+  }, []);
+
+  useEffect(() => {
+    const closeOnOutsideClick = (event: MouseEvent) => {
+      if (navigationRef.current && !navigationRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener("click", closeOnOutsideClick);
+    return () => document.removeEventListener("click", closeOnOutsideClick);
   }, []);
 
   return (
@@ -120,32 +139,44 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
             />
           </Link>
           <nav
+            ref={navigationRef}
             aria-label="Điều hướng chính"
+            onKeyDown={handleDropdownKeyDown}
             className="hidden items-center gap-3 xl:flex"
           >
             {items.map((item) => (
-              item.children?.length ? (
-                <details key={`${item.label}-${item.href}`} className="site-header-nav-group group relative">
-                  <summary className={`site-header-nav-link inline-flex min-h-11 cursor-pointer list-none items-center gap-1 text-[13px] font-extrabold transition-colors marker:hidden ${item.active ? "site-header-nav-link--active text-wood-600" : "hover:text-wood-600"}`}>
-                    {item.label}<ChevronDown size={15} aria-hidden="true" className="transition-transform group-open:rotate-180" />
-                  </summary>
-                  <div className="absolute left-1/2 top-full z-20 mt-1 min-w-56 -translate-x-1/2 border border-forest-900/10 bg-white p-2 shadow-[0_16px_40px_rgba(7,59,40,.14)]">
-                    <Link href={item.href} prefetch={item.prefetch} className="flex min-h-10 items-center px-3 text-sm font-extrabold text-forest-950 hover:bg-[#f7f9f6] hover:text-wood-600">
-                      {lang === "vi" ? `Tổng quan ${item.label.toLowerCase()}` : `Overview ${item.label}`}
-                    </Link>
-                    {item.children.map((child) => (
-                      <Link key={`${child.label}-${child.href}`} href={child.href} prefetch={child.prefetch} aria-current={child.active ? "page" : undefined} className={`flex min-h-10 items-center px-3 text-sm font-bold ${child.active ? "bg-[#edf4ef] text-wood-600" : "text-slate-700 hover:bg-[#f7f9f6] hover:text-wood-600"}`}>
-                        {child.label}
-                      </Link>
-                    ))}
+              item.children?.length ? (() => {
+                const dropdownId = `site-navigation-menu-${item.href.replaceAll("/", "-").replaceAll("-", "")}`;
+                const isOpen = openDropdown === item.href;
+                return (
+                  <div key={`${item.label}-${item.href}`} className="relative">
+                    <button
+                      type="button"
+                      aria-expanded={openDropdown === item.href}
+                      aria-controls={dropdownId}
+                      onClick={() => setOpenDropdown(item.href)}
+                      className={`site-header-nav-link inline-flex min-h-11 items-center gap-1 text-[13px] font-extrabold transition-colors ${item.active ? "site-header-nav-link--active" : "hover:text-wood-600"}`}
+                    >
+                      {item.label}<ChevronDown size={15} aria-hidden="true" className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                    </button>
+                    {isOpen ? (
+                      <div id={dropdownId} className="absolute left-1/2 top-full z-20 mt-2 w-56 -translate-x-1/2 border border-forest-900/10 bg-white p-1.5 shadow-[0_12px_28px_rgba(7,59,40,.12)]">
+                        {item.children.map((child) => (
+                          <Link key={`${child.label}-${child.href}`} href={child.href} prefetch={child.prefetch} aria-current={child.active ? "page" : undefined} onClick={() => setOpenDropdown(null)} className={`flex min-h-11 items-center px-3 text-[15px] font-bold transition-colors ${child.active ? "bg-[#edf4ef] text-wood-600" : "text-slate-700 hover:bg-[#f7f9f6] hover:text-wood-600"}`}>
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : null}
                   </div>
-                </details>
-              ) : (
+                );
+              })() : (
                 <Link
                   key={`${item.label}-${item.href}`}
                   href={item.href}
                   prefetch={item.prefetch}
                   aria-current={item.active ? "page" : undefined}
+                  onClick={() => setOpenDropdown(null)}
                   className={`site-header-nav-link relative inline-flex min-h-11 items-center text-[13px] font-extrabold transition-colors ${item.active ? "site-header-nav-link--active after:absolute after:inset-x-0 after:bottom-1 after:h-0.5 after:bg-wood-500" : "hover:text-wood-600"}`}
                 >
                   {item.label}
