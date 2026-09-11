@@ -23,8 +23,8 @@ describe("homepage performance contracts", () => {
     );
     expect(header).toContain("prefetch={item.prefetch}");
     expect(mobileNavigation).toContain("prefetch={item.prefetch}");
-    expect(hero).toContain('href="/catalogue"');
-    expect(hero).toContain("prefetch={false}");
+    expect(hero).toContain('href="#ma-mau"');
+    expect(hero).not.toContain('href="/catalogue"');
     expect(footer).toContain('["Mã màu / Catalogue", "/catalogue"]');
     expect(footer).toContain('prefetch={href === "/catalogue" ? false : undefined}');
   });

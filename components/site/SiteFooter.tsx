@@ -74,6 +74,13 @@ export function SiteFooter() {
               </div>
             ))}
           </div>
+          <div className="mt-4 overflow-hidden border border-forest-900/10 bg-white">
+            <div className="flex items-center justify-between gap-3 px-4 py-3">
+              <span className="text-xs font-extrabold uppercase tracking-[.12em] text-forest-900">Google Maps</span>
+              {business.locations[0] ? <a href={business.locations[0].directionsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center gap-1 text-xs font-extrabold text-wood-600 hover:text-wood-700">Mở Maps <ExternalLink size={13} aria-hidden="true" /></a> : null}
+            </div>
+            {business.locations[0] ? <iframe title="Google Maps - Tùng Phát" src={business.locations[0].embedSrc} loading="lazy" className="h-36 w-full border-0" referrerPolicy="no-referrer-when-downgrade" /> : null}
+          </div>
           <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: "site_footer" }} className="pressable mt-4 inline-flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-5 text-sm font-extrabold text-white hover:bg-wood-600">
             <MessageCircle size={17} aria-hidden="true" />Liên hệ báo giá
           </TrackedLink>

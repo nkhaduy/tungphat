@@ -47,24 +47,16 @@ export function HomeHero() {
         <div className="home-hero-copy max-w-[47rem] pb-10 pt-[calc(3.25rem+var(--site-header-height))] sm:pb-12 sm:pt-[calc(3.75rem+var(--site-header-height))] lg:pb-14 lg:pt-[calc(4.25rem+var(--site-header-height))]">
           <p className="eyebrow">CÔNG TY TNHH TMDV GỖ TÙNG PHÁT</p>
           <h1 className="text-balance mt-4 max-w-[42rem] font-display text-[clamp(2.35rem,6.5vw,4.25rem)] font-extrabold leading-[1.12] tracking-[-.04em] text-forest-950">
-            Vật liệu gỗ
-            <span className="block text-wood-600">và gia công CNC tại Thủ Đức</span>
+            Ván gỗ công nghiệp
+            <span className="block text-wood-600">&amp; gia công CNC tại Thủ Đức</span>
           </h1>
           <p className="text-pretty mt-5 max-w-[39rem] text-[15px] leading-7 text-slate-700 sm:text-[1.0625rem] sm:leading-8">
             Tùng Phát cung cấp các loại vật liệu gồm gỗ ghép, MDF, MFC, Plywood và chỉ dán cạnh;
             đồng thời nhận cắt và gia công CNC theo yêu cầu.
           </p>
-          <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs font-extrabold text-forest-900 sm:text-sm">
-            <li>Gỗ ghép, MDF, MFC, Plywood &amp; chỉ dán cạnh</li>
-            <li>Cắt và gia công CNC</li>
-            <li>Tra cứu mã màu</li>
-          </ul>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Link href="/san-pham" className="pressable inline-flex min-h-12 items-center justify-center gap-2 bg-wood-600 px-5 text-sm font-extrabold text-white hover:bg-wood-700">
-              Xem vật liệu <ArrowRight size={17} aria-hidden="true" />
-            </Link>
-            <Link href="/catalogue" prefetch={false} className="pressable inline-flex min-h-12 items-center justify-center gap-2 border border-forest-900/25 bg-white/90 px-5 text-sm font-extrabold text-forest-950 hover:border-wood-500 hover:bg-white">
-              Mở catalogue <span className="grid h-8 w-8 shrink-0 place-items-center border border-forest-900/15"><ArrowRight size={16} aria-hidden="true" /></span>
+            <Link href="#ma-mau" className="pressable inline-flex min-h-12 items-center justify-center gap-2 bg-wood-600 px-5 text-sm font-extrabold text-white hover:bg-wood-700">
+              Xem mã màu <ArrowRight size={17} aria-hidden="true" />
             </Link>
             <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_hero", channel: "zalo" }} className="pressable inline-flex min-h-12 items-center justify-center gap-2 bg-forest-900 px-5 text-sm font-extrabold text-white hover:bg-forest-800">
               <Image src="/images/zalo-contact.png" alt="" width={22} height={22} aria-hidden="true" className="h-[22px] w-[22px] object-contain" /> Liên hệ báo giá
