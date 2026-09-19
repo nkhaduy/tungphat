@@ -14,6 +14,7 @@ import type { ContentEntry } from "@/lib/content";
 import type { ProductFrontmatter } from "@/lib/content-schema";
 import { getLocalSeoCopy } from "@/lib/local-seo";
 import { absoluteMediaUrl, resolveMediaUrl } from "@/lib/media";
+import { getProductContent } from "@/lib/product-content-overrides";
 import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, absolutePageUrl, breadcrumbSchema, schemaPageId, webPageSchema } from "@/lib/seo";
 
 const waveOneProductSlugs = new Set(["go-ghep", "go-ghep-cao-su", "go-ghep-tram", "van-mdf", "mdf-chong-am", "van-go-cong-nghiep"]);
@@ -25,6 +26,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
   const displayTitle = localCopy?.h1 ?? product.title;
   const pageDescription = localCopy?.heroDescription ?? product.excerpt;
   const isGuide = product.status === "guide";
+  const content = getProductContent(product.slug, { orderingSteps: product.orderingSteps, faq: product.faq });
   const entityId = isGuide ? undefined : schemaPageId(productPath, "product");
   const productSchema = isGuide
     ? null
@@ -115,7 +117,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
             <aside className="h-fit border border-forest-900/10 bg-[#edf4ef] p-7 lg:sticky lg:top-32">
               <h2 className="text-xl font-extrabold text-forest-950">Quy trình đặt hàng</h2>
               <ol className="mt-5 space-y-4 text-sm leading-6 text-slate-700">
-                {product.orderingSteps.map((step, index) => <li key={step} className="flex gap-3"><strong className="shrink-0 text-wood-600">{String(index + 1).padStart(2, "0")}</strong><span>{step}</span></li>)}
+                {content.orderingSteps.map((step, index) => <li key={step} className="flex gap-3"><strong className="shrink-0 text-wood-600">{String(index + 1).padStart(2, "0")}</strong><span>{step}</span></li>)}
               </ol>
               <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: `${product.slug}_specs` }} className="pressable mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-wood-500 px-5 text-sm font-extrabold text-white hover:bg-wood-600"><MessageCircle size={17} aria-hidden="true" />Gửi quy cách qua Zalo</TrackedLink>
             </aside>
@@ -129,7 +131,7 @@ export function ProductLanding({ product }: { product: ContentEntry<ProductFront
           </div>
         </section>
         <LocalIntentLinks currentSlug={product.slug} />
-        <FaqList items={product.faq} />
+        <FaqList items={content.faq} />
         <ContactCTA title="Gửi quy cách để hỏi đúng vật liệu" description="Chuẩn bị loại vật liệu, độ dày, kích thước, số lượng và yêu cầu bề mặt hoặc CNC nếu có. Mã, quy cách và tồn kho có thể thay đổi theo từng dòng hàng." />
       </SiteShell>
     </>

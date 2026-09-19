@@ -13,6 +13,7 @@ import type { ContentEntry } from "@/lib/content";
 import type { ServicePageFrontmatter } from "@/lib/content-schema";
 import { getLocalSeoCopy } from "@/lib/local-seo";
 import { resolveMediaUrl } from "@/lib/media";
+import { getServiceContent } from "@/lib/product-content-overrides";
 import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, absolutePageUrl, breadcrumbSchema, schemaPageId, webPageSchema } from "@/lib/seo";
 
 const waveOneServiceSlugs = new Set(["cat-cnc-go", "gia-cong-cnc-mdf"]);
@@ -27,6 +28,7 @@ export function ServiceLanding({ page }: { page: ContentEntry<ServicePageFrontma
   const serviceSchema = { "@context": "https://schema.org", "@type": "Service", "@id": serviceId, name: displayTitle, description: pageDescription, serviceType: "Gia công CNC ván gỗ", url: serviceUrl, areaServed: { "@type": "City", name: "TP. Hồ Chí Minh" }, provider: { "@id": `${SITE_URL}/#organization` } };
   const pageSchema = webPageSchema({ path: servicePath, name: displayTitle, description: pageDescription, primaryEntityId: serviceId, datePublished: page.publishedAt, dateModified: page.updatedAt });
   const isWaveOneService = waveOneServiceSlugs.has(page.slug);
+  const content = getServiceContent(page.slug, { faq: page.faq });
   const jobInputs = [...new Set([...page.materialTypes, ...page.workItems])];
   const process = isWaveOneService ? page.process.slice(0, 4) : page.process;
   const fileGuidance = isWaveOneService ? page.fileGuidance.slice(0, 4) : page.fileGuidance;
@@ -68,7 +70,7 @@ export function ServiceLanding({ page }: { page: ContentEntry<ServicePageFrontma
           </div>
         </section>
         <LocalIntentLinks currentSlug={page.slug} />
-        <FaqList items={page.faq} />
+        <FaqList items={content.faq} />
         <ContactCTA eyebrow="Gửi file qua Zalo" title="Chuẩn bị file và thông tin để nhận báo giá CNC" description="Gửi file qua Zalo cùng vật liệu, độ dày, số lượng, đơn vị đo và các yêu cầu khoan, soi rãnh hoặc xử lý cạnh." zaloLabel="Gửi file qua Zalo" />
       </SiteShell>
     </>
