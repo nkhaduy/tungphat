@@ -16,6 +16,8 @@
     "test": "vitest run --maxWorkers=2",
     "verify": "npm run lint && npm run typecheck && npm test && npm run catalog:suppliers:validate && npm run catalog:suppliers:test && npm --prefix payload-cms run verify && npm run build && npm run validate:links && git diff --check",
     "deploy:site": "npm run verify && vercel --prod",
+    "deploy:cloudflare:preview": "npm run verify && wrangler pages deploy out --project-name tungphat-website --branch cloudflare-migration",
+    "deploy:cloudflare": "npm run verify && wrangler pages deploy out --project-name tungphat-website --branch main",
     "deploy:cms": "npm --prefix payload-cms run deploy:verified",
     "test:coverage": "vitest run --maxWorkers=2 --coverage",
     "test:e2e": "NEXT_PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA NEXT_PUBLIC_ANALYTICS_TEST_MODE=1 npm run build && playwright test --reporter=list",
