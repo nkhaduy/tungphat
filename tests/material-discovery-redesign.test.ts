@@ -16,10 +16,10 @@ describe("material discovery redesign", () => {
     expect(hero).toContain('fetchPriority="high"');
   });
 
-  it("puts Thanh Thuy before Ba Thanh and keeps An Cuong off the home feature", () => {
-    expect(home.indexOf('name: "Thanh Thùy"')).toBeLessThan(home.indexOf('name: "Ba Thanh"'));
-    expect(home).not.toContain('name: "An Cường"');
+  it("keeps supplier catalogues available through color-code discovery", () => {
     expect(home).toContain("getPublicColorCodes");
+    expect(home).toContain('featuredCodes("thanh-thuy", 8)');
+    expect(home).toContain('featuredCodes("ba-thanh", 8)');
     expect(home).toContain("FAQ");
   });
 

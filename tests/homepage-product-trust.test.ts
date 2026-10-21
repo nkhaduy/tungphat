@@ -15,7 +15,6 @@ describe("homepage product and trust refinement", () => {
     expect(content).not.toContain("Mã màu theo vật liệu");
     expect(content).toContain(">Mã màu</h2>");
     expect(content).toContain("FeaturedColorCodes");
-    expect(content).toContain("supplier.logo");
     expect(content).not.toContain("scrollIntoView");
   });
 

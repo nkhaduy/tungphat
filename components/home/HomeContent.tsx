@@ -10,25 +10,6 @@ import { locations } from "@/lib/locations";
 import { coreMaterialCards, surfaceCatalogueCards, type ProductDiscoveryCard } from "@/lib/product-taxonomy";
 import { PHONE_DISPLAY, PHONE_HREF } from "@/lib/seo";
 
-const suppliers = [
-  {
-    name: "Thanh Thùy",
-    slug: "thanh-thuy",
-    logo: "/partners/thanh-thuy-logo.webp",
-    title: "Bề mặt trang trí và mã màu",
-    description: "Xem Melamine, Laminate, Acrylic, PVC Film, Veneer và chỉ nẹp theo từng dòng. Mã bề mặt cần đi cùng cốt ván và quy cách khi hỏi hàng.",
-    groups: ["Melamine", "Laminate", "Acrylic", "PVC Film", "Veneer", "Chỉ nẹp"],
-  },
-  {
-    name: "Ba Thanh",
-    slug: "ba-thanh",
-    logo: "/partners/ba-thanh-logo.webp",
-    title: "Cốt ván, bề mặt và vật tư",
-    description: "Tham khảo MDF, HDF, ván chống ẩm, MFC, Plywood, Melamine và Laminate Way. Gửi mã hoặc cấu hình để kiểm tra nguồn hàng.",
-    groups: ["MDF / HDF", "MFC", "Plywood", "Melamine", "Laminate Way"],
-  },
-] as const;
-
 const faqs = [
   ["MDF thường và MDF chống ẩm khác nhau thế nào?", "MDF chống ẩm dùng cho môi trường ẩm hơn phòng khô. Lõi xanh không có nghĩa là tấm ván chống nước hoàn toàn; bề mặt, cạnh và vị trí sử dụng vẫn cần chọn đúng."],
   ["Melamine và Laminate khác nhau ra sao?", "Cả hai là bề mặt trang trí, không phải cốt ván. Laminate là tấm phủ riêng, còn Melamine thường được ép lên cốt ván. Khi chọn cần nói rõ cốt nền, bề mặt và phần cạnh."],
@@ -100,28 +81,6 @@ export async function HomeContent() {
             <span className="font-bold text-forest-950">Vật tư hoàn thiện</span>
             <Link href="/thuong-hieu/thanh-thuy/" className="min-h-10 content-center text-slate-700 underline underline-offset-4">Chỉ nẹp Thanh Thùy</Link>
             <Link href="/thuong-hieu/ba-thanh/" className="min-h-10 content-center text-slate-700 underline underline-offset-4">Chỉ cạnh, keo Ba Thanh</Link>
-          </div>
-        </div>
-      </section>
-
-      <section id="thuong-hieu" className="scroll-mt-24 border-b border-forest-900/10 bg-white py-16 lg:py-24">
-        <div className="container-shell">
-          <p className="text-xs font-bold uppercase tracking-[.18em] text-slate-500">Nhà cung cấp vật liệu</p>
-          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-[-.035em] text-forest-950 sm:text-4xl">Chọn theo thương hiệu</h2>
-          <div className="mt-8 grid gap-5 lg:grid-cols-2">
-            {suppliers.map((supplier, index) => (
-              <article key={supplier.slug} className="flex min-w-0 flex-col rounded-xl border border-forest-900/10 bg-white p-6 sm:p-8">
-                <div className="flex items-center justify-between gap-4">
-                  <div className="relative h-14 w-36"><Image src={supplier.logo} alt={`Logo ${supplier.name}`} fill sizes="144px" className="object-contain object-left" /></div>
-                  <span className="text-xs font-bold uppercase tracking-[.12em] text-slate-500">{index === 0 ? "Thương hiệu chủ lực" : "Thương hiệu bổ sung"}</span>
-                </div>
-                <h3 className="mt-8 text-2xl font-bold text-forest-950">{supplier.name}</h3>
-                <p className="mt-1 text-sm font-semibold text-slate-700">{supplier.title}</p>
-                <p className="mt-4 max-w-[55ch] text-sm leading-7 text-slate-600">{supplier.description}</p>
-                <p className="mt-5 text-xs leading-6 text-slate-500">{supplier.groups.join(" · ")}</p>
-                <Link href={`/thuong-hieu/${supplier.slug}/`} className="mt-auto inline-flex min-h-12 items-center gap-2 self-start border-b-2 border-forest-950 pt-7 text-sm font-bold text-forest-950">Xem sản phẩm {supplier.name} <ArrowRight size={16} aria-hidden="true" /></Link>
-              </article>
-            ))}
           </div>
         </div>
       </section>

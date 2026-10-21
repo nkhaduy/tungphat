@@ -14,10 +14,11 @@ describe("public SEO and UX hierarchy", () => {
     expect(hero).toContain("ZALO_URL");
   });
 
-  it("separates materials, brands, color codes and services", () => {
-    for (const anchor of ['id="vat-lieu"', 'id="thuong-hieu"', 'id="ma-mau"', 'id="nang-luc-cnc"', 'id="chi-nhanh"']) {
+  it("separates materials, color codes and services", () => {
+    for (const anchor of ['id="vat-lieu"', 'id="ma-mau"', 'id="nang-luc-cnc"', 'id="chi-nhanh"']) {
       expect(home).toContain(anchor);
     }
+    expect(home).not.toContain('id="thuong-hieu"');
     expect(home).toContain("coreMaterialCards");
     expect(home).toContain("surfaceCatalogueCards");
     expect(home).toContain("FeaturedColorCodes");
