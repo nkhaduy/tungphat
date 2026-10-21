@@ -42,7 +42,7 @@ export function FeaturedColorCodes({ thanhThuy, baThanh }: { thanhThuy: Featured
             const duplicate = index >= codes.length;
             const supplier = code.id.startsWith("thanh-thuy:") ? suppliers[0] : suppliers[1];
             return (
-              <Link key={`${code.id}-${index}`} href={code.href} aria-hidden={duplicate || undefined} tabIndex={duplicate ? -1 : undefined} className="group color-code-marquee-card rounded-lg">
+              <Link key={`${code.id}-${index}`} href={code.href} prefetch={false} aria-hidden={duplicate || undefined} tabIndex={duplicate ? -1 : undefined} className="group color-code-marquee-card rounded-lg">
                 <span className="relative block aspect-[4/3] w-full overflow-hidden bg-[#edf1ec]"><Image src={code.image} alt={duplicate ? "" : `Mã màu ${code.code} ${code.name}`} fill sizes="200px" className="object-cover transition-transform duration-300 group-hover:scale-[1.025]" /></span>
                 <span className="flex items-center justify-between gap-3 pt-3"><strong className="min-w-0 text-sm leading-5 text-forest-950">{code.name}</strong><Image src={supplier.logo} alt={duplicate ? "" : supplier.name} width={72} height={24} className="h-6 w-[72px] shrink-0 object-contain object-right" /></span>
                 <span className="mt-1 block text-xs text-slate-600">{code.code} · {code.material}</span>

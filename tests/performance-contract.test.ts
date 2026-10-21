@@ -16,6 +16,7 @@ describe("homepage performance contracts", () => {
       "utf8",
     );
     const hero = readFileSync("components/home/HomeHero.tsx", "utf8");
+    const featuredCodes = readFileSync("components/home/FeaturedColorCodes.tsx", "utf8");
     const footer = readFileSync("components/site/SiteFooter.tsx", "utf8");
 
     expect(header).toMatch(
@@ -26,6 +27,7 @@ describe("homepage performance contracts", () => {
     expect(hero).toContain('href="#ma-mau"');
     expect(hero).toContain('fetchPriority="high"');
     expect(hero).not.toContain('href="/catalogue"');
+    expect(featuredCodes).toContain('href={code.href} prefetch={false}');
     expect(footer).toContain('["Mã màu / Catalogue", "/catalogue"]');
     expect(footer).toContain('prefetch={href === "/catalogue" ? false : undefined}');
   });
