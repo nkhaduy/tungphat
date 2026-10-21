@@ -12,12 +12,14 @@ describe("public product taxonomy", () => {
       "MFC",
       "Plywood",
       "Gỗ ghép",
+      "Gỗ ghép cao su",
     ]);
     expect(surfaceCatalogueCards.map((card) => card.title)).toEqual([
       "Melamine",
       "Laminate",
       "Acrylic",
       "Veneer",
+      "PVC Film / PET",
     ]);
   });
 
@@ -34,6 +36,6 @@ describe("public product taxonomy", () => {
       ["Gỗ ghép cao su", "/go-ghep-cao-su/"],
       ["Gỗ ghép tràm", "/go-ghep-tram/"],
     ]);
-    expect(surfaceCatalogueCards.every((card) => card.href.startsWith("/catalogue/an-cuong/"))).toBe(true);
+    expect(surfaceCatalogueCards.every((card) => card.href.startsWith("/catalogue/thanh-thuy/"))).toBe(true);
   });
 });

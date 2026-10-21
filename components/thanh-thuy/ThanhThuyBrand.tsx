@@ -15,6 +15,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { createThanhThuyItemListSchema } from "@/lib/thanh-thuy-schema";
 import type { ThanhThuyCategory } from "@/lib/thanh-thuy";
+import { getSupplierTotals } from "@/lib/catalog/suppliers/search-index";
 
 type ThanhThuyBrandProps = {
   items: ThanhThuyExplorerItem[];
@@ -73,6 +74,9 @@ export function ThanhThuyBrandPage({
             <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-700 sm:text-base">
               Tìm theo mã, tên hoặc nhóm vật liệu. Liên hệ Tùng Phát để đối
               chiếu mẫu, cốt ván, quy cách và tình trạng hàng thực tế.
+            </p>
+            <p className="mt-3 max-w-3xl text-xs leading-6 text-slate-600">
+              Trang này có {items.length} mục sản phẩm từ danh mục nguồn, gồm cả mục chưa có mã riêng. Bảng tra cứu mã màu có {getSupplierTotals()["thanh-thuy"].colorCodes} mã; hai số đếm khác phạm vi.
             </p>
             <ThanhThuyExplorer items={items} categories={categories} compact />
           </PageContainer>

@@ -54,13 +54,21 @@ export const coreMaterialCards: readonly ProductDiscoveryCard[] = [
       ["Gỗ ghép tràm", "/go-ghep-tram/"],
     ],
   },
+  {
+    id: "rubberwood",
+    title: "Gỗ ghép cao su",
+    href: "/go-ghep-cao-su/",
+    image: "/images/wood-panels.webp",
+    alt: "Tấm gỗ ghép với mối nối và vân gỗ nhìn rõ trên bề mặt",
+    description: "Xem cách chọn mặt tấm, quy cách và ứng dụng trước khi hỏi hàng.",
+  },
 ];
 
 export const surfaceCatalogueCards: readonly ProductDiscoveryCard[] = [
   {
     id: "melamine",
     title: "Melamine",
-    href: "/catalogue/an-cuong/melamine/",
+    href: "/catalogue/thanh-thuy/melamine/",
     image: "/wood/melamine.webp",
     alt: "Các tấm bề mặt Melamine với màu và vân gỗ khác nhau",
     description: "Tra cứu màu và vân trong catalogue, rồi gửi mã cùng loại cốt ván cần dùng.",
@@ -68,7 +76,7 @@ export const surfaceCatalogueCards: readonly ProductDiscoveryCard[] = [
   {
     id: "laminate",
     title: "Laminate",
-    href: "/catalogue/an-cuong/laminate/",
+    href: "/catalogue/thanh-thuy/laminate/",
     image: "/wood/laminate.webp",
     alt: "Các tấm bề mặt Laminate được dựng đứng để xem mẫu",
     description: "Mở bảng mã Laminate và đối chiếu nền dán, kích thước, cạnh hoàn thiện.",
@@ -76,7 +84,7 @@ export const surfaceCatalogueCards: readonly ProductDiscoveryCard[] = [
   {
     id: "acrylic",
     title: "Acrylic",
-    href: "/catalogue/an-cuong/acrylic/",
+    href: "/catalogue/thanh-thuy/acrylic/",
     image: "/wood/arcrylic.webp",
     alt: "Các tấm Acrylic có bề mặt bóng phản chiếu ánh sáng",
     description: "Tra cứu bề mặt bóng và mã màu; nên duyệt mẫu theo điều kiện ánh sáng thực tế.",
@@ -84,9 +92,17 @@ export const surfaceCatalogueCards: readonly ProductDiscoveryCard[] = [
   {
     id: "veneer",
     title: "Veneer",
-    href: "/catalogue/an-cuong/veneer/",
+    href: "/catalogue/thanh-thuy/veneer/",
     image: "/wood/veneer.webp",
     alt: "Các tấm bề mặt Veneer có vân gỗ tự nhiên",
     description: "Xem nhóm veneer theo mã và vân, sau đó chốt cốt nền cùng quy cách hoàn thiện.",
+  },
+  {
+    id: "pvc-film",
+    title: "PVC Film / PET",
+    href: "/catalogue/thanh-thuy/pvc/",
+    image: "/wood/tamtrangtri.webp",
+    alt: "Các tấm bề mặt trang trí dựng đứng để xem màu và độ bóng",
+    description: "Xem dòng màng trang trí Thanh Thùy; hỏi rõ cốt nền và cách gia công.",
   },
 ];

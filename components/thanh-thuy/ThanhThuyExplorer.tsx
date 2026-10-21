@@ -140,7 +140,7 @@ export function ThanhThuyExplorer({
               </p>
             </div>
             <p className="text-sm font-bold text-forest-900" aria-live="polite">
-              {filtered.length} mã phù hợp
+              {filtered.length} mục phù hợp
             </p>
           </div>
         )}
@@ -198,7 +198,7 @@ export function ThanhThuyExplorer({
             className="mt-4 text-sm font-bold text-forest-900"
             aria-live="polite"
           >
-            {filtered.length} mã phù hợp
+            {filtered.length} mục phù hợp
           </p>
         ) : null}
 

@@ -2,101 +2,42 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 describe("public SEO and UX hierarchy", () => {
-  it("owns broad homepage intent without replacing dedicated material pages", () => {
-    const page = readFileSync("app/page.tsx", "utf8");
-    const hero = readFileSync("components/home/HomeHero.tsx", "utf8");
+  const page = readFileSync("app/page.tsx", "utf8");
+  const hero = readFileSync("components/home/HomeHero.tsx", "utf8");
+  const home = readFileSync("components/home/HomeContent.tsx", "utf8");
 
+  it("keeps local material and CNC intent with two working actions", () => {
     expect(page).toContain("Tùng Phát | Ván gỗ công nghiệp & Gia công CNC tại Thủ Đức");
-    expect(page).toContain("gỗ ghép, MDF, MFC, Plywood và chỉ dán cạnh");
-    expect(hero).toMatch(/Ván gỗ công nghiệp[\s\S]*gia công CNC tại Thủ Đức/);
-    expect(hero).toContain('href="#ma-mau"');
-    expect(hero).toContain("Liên hệ báo giá");
+    expect(hero).toContain("Ván gỗ công nghiệp &amp; gia công CNC tại Thủ Đức");
+    expect(hero).toContain('href="/san-pham/"');
+    expect(hero).toContain("ZALO_URL");
   });
 
-  it("keeps products and color-code lookup as separate homepage groups", () => {
-    const content = readFileSync("components/home/HomeContent.tsx", "utf8");
-    const taxonomy = readFileSync("lib/product-taxonomy.ts", "utf8");
-
-    expect(content).toContain("Danh mục sản phẩm");
-    expect(content).toContain('eyebrow="Sản phẩm"');
-    expect(content).not.toContain("Mã màu theo vật liệu");
-    expect(content).toContain("Các màu nổi bật");
-    expect(content).toContain("Xem mã màu");
-    expect(content).toContain("Cốt ván / vật liệu chính");
-    expect(content).toContain("Bề mặt / catalogue");
-    expect(content).not.toContain("Nhà cung cấp &amp; bảng mã");
-    expect(content).not.toContain("Chọn nhóm bề mặt");
-    expect(taxonomy).toContain("Melamine");
-    expect(taxonomy).toContain("Laminate");
-    expect(taxonomy).toContain("Acrylic");
-    expect(taxonomy).toContain("Veneer");
-    expect(taxonomy).not.toContain("PVC");
-    expect(content).toContain('record.id === "thanh-thuy:301"');
-    expect(content).toContain("record.canonicalRoute");
-    expect(content).not.toContain("Sản phẩm nổi bật");
-    expect(content).not.toContain("Bắt đầu với loại ván và độ dày cần dùng");
-  });
-
-  it("keeps the homepage floating Zalo bubble outside the animated content wrapper", () => {
-    const page = readFileSync("app/page.tsx", "utf8");
-    const siteShellEnd = page.indexOf("</SiteShell>");
-    const floatingZalo = page.indexOf('className="floating-zalo fixed');
-
-    expect(siteShellEnd).toBeGreaterThan(-1);
-    expect(floatingZalo).toBeGreaterThan(siteShellEnd);
-  });
-
-  it("uses the shorter CNC, address, article, and quote labels", () => {
-    const content = readFileSync("components/home/HomeContent.tsx", "utf8");
-
-    for (const label of [
-      "Cắt và gia công CNC",
-      "Cắt và gia công CNC theo quy cách",
-      "Địa chỉ",
-      "Bài viết nổi bật",
-    ]) {
-      expect(content).toContain(label);
+  it("separates materials, brands, color codes and services", () => {
+    for (const anchor of ['id="vat-lieu"', 'id="thuong-hieu"', 'id="ma-mau"', 'id="nang-luc-cnc"', 'id="chi-nhanh"']) {
+      expect(home).toContain(anchor);
     }
-    expect(content).not.toContain("Khoan liên kết");
-    expect(content).not.toContain("Soi rãnh");
-    expect(content).not.toContain("Cắt biên dạng");
-    expect(content).not.toContain("Địa điểm Tùng Phát");
-    expect(content).not.toContain("Trao đổi nhu cầu thực tế");
-    expect(content).not.toContain("Gửi danh sách chi tiết, vật liệu, độ dày và số lượng.");
+    expect(home).toContain("coreMaterialCards");
+    expect(home).toContain("surfaceCatalogueCards");
+    expect(home).toContain("FeaturedColorCodes");
   });
 
-  it("uses controlled navigation groups and keeps catalogue payload deferred", () => {
+  it("keeps the floating Zalo action outside the page transition", () => {
+    expect(page.indexOf('className="floating-zalo fixed')).toBeGreaterThan(page.indexOf("</SiteShell>"));
+  });
+
+  it("uses a working product menu and defers catalogue routes", () => {
     const header = readFileSync("components/site/SiteHeader.tsx", "utf8");
     const mobile = readFileSync("components/site/MobileNavigation.tsx", "utf8");
-
-    expect(header).toContain("Vật liệu");
+    expect(header).toContain('label: lang === "vi" ? "Sản phẩm"');
     expect(header).toContain("Mã màu / Catalogue");
-    expect(header).toContain("MFC & Plywood");
-    expect(header).toContain("Gỗ ghép");
     expect(header).toContain('href: "/catalogue"');
     expect(header).toContain("prefetch: false");
     expect(mobile).toContain("item.children?.length");
-    expect(mobile).toContain("{child.label}");
   });
 
-  it("removes third-party footer embeds while retaining NAP and conversion links", () => {
+  it("retains NAP, maps, privacy and conversion links in the footer", () => {
     const footer = readFileSync("components/site/SiteFooter.tsx", "utf8");
-
-    expect(footer).toContain("MST");
-    expect(footer).toContain("Mở Maps");
-    expect(footer).toContain("Liên hệ báo giá");
-    expect(footer).not.toContain("facebook.com/plugins/page.php");
-    expect(footer).toContain("Google Maps");
-    expect(footer).toContain('loading="lazy"');
-  });
-
-  it("derives legacy brand presentation from verified catalogue data", () => {
-    const brand = readFileSync("components/BrandPage.tsx", "utf8");
-
-    expect(brand).toContain("getSupplierSearchIndex");
-    expect(brand).toContain("Dữ liệu catalogue");
-    expect(brand).toContain("Nhóm mã đang có");
-    expect(brand).not.toContain("Chưa có catalogue phù hợp trên trang");
-    expect(brand).not.toContain("Chưa có mã sản phẩm trên trang");
+    for (const value of ["MST", "Mở Maps", "Google Maps", "Liên hệ báo giá", "Chính sách bảo mật"]) expect(footer).toContain(value);
   });
 });

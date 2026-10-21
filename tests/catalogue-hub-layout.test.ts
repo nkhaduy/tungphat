@@ -119,7 +119,7 @@ describe("catalogue hub customer journey", () => {
     expect(markup).not.toContain(">Chi tiết<");
   });
 
-  it("renders reusable supplier logos inside compact catalogue cards", () => {
+  it("renders supplier logos and routes while deferring the full code grid", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
 
     expect(markup).toContain("%2Fpartners%2Fthanh-thuy-logo.png");
@@ -128,6 +128,7 @@ describe("catalogue hub customer journey", () => {
       "/partners/ba-thanh-logo.png",
       "/partners/an-cuong-logo.png",
     ]);
-    expect(markup).toContain('data-testid="catalogue-card-link"');
+    expect(markup).toContain("Mở mã màu Thanh Thuỳ");
+    expect(markup).not.toContain('data-testid="catalogue-card-link"');
   });
 });

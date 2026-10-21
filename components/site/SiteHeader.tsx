@@ -35,16 +35,21 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
     { label: lang === "vi" ? "MDF chống ẩm" : "Moisture-resistant MDF", href: "/mdf-chong-am", active: pathname === "/mdf-chong-am" },
     { label: lang === "vi" ? "MFC & Plywood" : "MFC & Plywood", href: "/van-go-cong-nghiep", active: pathname === "/van-go-cong-nghiep" },
     { label: lang === "vi" ? "Gỗ ghép" : "Joined wood", href: "/go-ghep", active: pathname === "/go-ghep" || pathname === "/go-ghep-cao-su" || pathname === "/go-ghep-tram" },
+    { label: "Melamine Thanh Thùy", href: "/catalogue/thanh-thuy/melamine", active: pathname === "/catalogue/thanh-thuy/melamine", prefetch: false },
+    { label: "Laminate Thanh Thùy", href: "/catalogue/thanh-thuy/laminate", active: pathname === "/catalogue/thanh-thuy/laminate", prefetch: false },
+    { label: "Acrylic Thanh Thùy", href: "/catalogue/thanh-thuy/acrylic", active: pathname === "/catalogue/thanh-thuy/acrylic", prefetch: false },
+    { label: "PVC Film / PET", href: "/catalogue/thanh-thuy/pvc", active: pathname === "/catalogue/thanh-thuy/pvc", prefetch: false },
+    { label: "Chỉ nẹp & vật tư", href: "/thuong-hieu/thanh-thuy", active: pathname === "/thuong-hieu/thanh-thuy" },
   ];
   const catalogueChildren: NavigationChild[] = [
     { label: lang === "vi" ? "Tìm mã màu" : "Find a surface code", href: "/catalogue", active: pathname === "/catalogue", prefetch: false },
-    { label: "An Cường", href: "/catalogue/an-cuong", active: pathname.startsWith("/catalogue/an-cuong"), prefetch: false },
     { label: "Thanh Thuỳ", href: "/catalogue/thanh-thuy", active: pathname.startsWith("/catalogue/thanh-thuy"), prefetch: false },
     { label: "Ba Thanh", href: "/catalogue/ba-thanh", active: pathname.startsWith("/catalogue/ba-thanh"), prefetch: false },
+    { label: "An Cường", href: "/catalogue/an-cuong", active: pathname.startsWith("/catalogue/an-cuong"), prefetch: false },
   ];
   const items: NavigationItem[] = [
     {
-      label: lang === "vi" ? "Vật liệu" : "Materials",
+      label: lang === "vi" ? "Sản phẩm" : "Materials",
       href: "/san-pham",
       active: pathname === "/san-pham" || materialChildren.some((child) => child.active),
       children: materialChildren,
@@ -160,7 +165,7 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
                       {item.label}<ChevronDown size={15} aria-hidden="true" className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
                     </button>
                     {isOpen ? (
-                      <div id={dropdownId} className="absolute left-1/2 top-full z-20 mt-2 w-56 -translate-x-1/2 border border-forest-900/10 bg-white p-1.5 shadow-[0_12px_28px_rgba(7,59,40,.12)]">
+                      <div id={dropdownId} className={`absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 border border-slate-200 bg-white p-2 shadow-[0_12px_28px_rgba(7,59,40,.12)] ${item.href === "/san-pham" ? "grid w-[min(75vw,520px)] grid-cols-2" : "w-56"}`}>
                         {item.children.map((child) => (
                           <Link key={`${child.label}-${child.href}`} href={child.href} prefetch={child.prefetch} aria-current={child.active ? "page" : undefined} onClick={() => setOpenDropdown(null)} className={`flex min-h-11 items-center px-3 text-[15px] font-bold transition-colors ${child.active ? "bg-[#edf4ef] text-wood-600" : "text-slate-700 hover:bg-[#f7f9f6] hover:text-wood-600"}`}>
                             {child.label}

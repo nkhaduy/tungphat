@@ -25,7 +25,7 @@ const navigationLinks = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-forest-900/10 bg-[#f7f8f5] text-copy">
+    <footer className="border-t border-slate-200 bg-white text-copy">
       <div className="container-shell grid gap-10 py-11 sm:grid-cols-2 lg:grid-cols-[1.3fr_.9fr_.9fr_1.2fr] lg:py-12">
         <div>
           <Image src="/logo-horizontal.webp" alt="Tùng Phát" width={800} height={240} sizes="210px" className="h-auto w-[200px]" />
@@ -86,10 +86,10 @@ export function SiteFooter() {
           </TrackedLink>
         </div>
       </div>
-      <div className="bg-forest-950 py-4 text-white">
-        <div className="container-shell flex flex-col gap-2 text-xs text-white/85 sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-slate-200 bg-white py-4 text-slate-600">
+        <div className="container-shell flex flex-col gap-2 text-xs sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 {business.businessName} · MST {business.taxId}</span>
-          <Link href="/" className="min-h-11 content-center hover:text-orange-200">mdftungphat.com</Link>
+          <Link href="/" className="min-h-11 content-center hover:text-slate-950">mdftungphat.com</Link>
         </div>
       </div>
     </footer>

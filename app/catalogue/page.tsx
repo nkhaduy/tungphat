@@ -1,11 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, MessageCircle, Phone } from "lucide-react";
 import { SupplierCatalogSearch } from "@/components/catalog/shared/SupplierCatalogSearch";
 import { SiteShell } from "@/components/site/SiteShell";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
-import { getAllSupplierSearchEntriesForCatalogue } from "@/lib/catalog/suppliers/search";
 import { getSupplierTotals } from "@/lib/catalog/suppliers/search-index";
 import {
   createPageMetadata,
@@ -25,6 +25,7 @@ function supplierCards() {
   const totals = getSupplierTotals();
   return [{
     name: "Thanh Thuỳ",
+    logo: "/partners/thanh-thuy-logo.png",
     count: `${totals["thanh-thuy"].colorCodes} mã màu`,
     description:
       "Tra cứu mã bề mặt Thanh Thuỳ theo màu, vân và loại vật liệu.",
@@ -33,6 +34,7 @@ function supplierCards() {
   },
   {
     name: "Ba Thanh",
+    logo: "/partners/ba-thanh-logo.png",
     count: `${totals["ba-thanh"].colorCodes} mã màu`,
     description:
       "Tra cứu Melamine và Laminate Ba Thanh theo mã màu/bề mặt thực tế.",
@@ -41,6 +43,7 @@ function supplierCards() {
   },
   {
     name: "An Cường",
+    logo: "/partners/an-cuong-logo.png",
     count: `${totals["an-cuong"].colorCodes} mã màu`,
     description:
       "Tra cứu Melamine, Laminate, Acrylic, Veneer, PPET/PVC, Mặt Top và mã cạnh An Cường.",
@@ -50,7 +53,6 @@ function supplierCards() {
 }
 
 export default function SupplierCataloguePage() {
-  const entries = getAllSupplierSearchEntriesForCatalogue();
   const suppliers = supplierCards();
 
   return (
@@ -60,10 +62,10 @@ export default function SupplierCataloguePage() {
     >
       <section
         id="tra-cuu-catalogue"
-        className="catalogue-page scroll-mt-28 overflow-clip border-b border-forest-900/10 bg-[#f5f4ef] pb-6 sm:pb-8 lg:pb-10"
+        className="catalogue-page scroll-mt-28 overflow-clip border-b border-slate-200 bg-white pb-6 sm:pb-8 lg:pb-10"
       >
         <PageContainer className="relative">
-          <SupplierCatalogSearch entries={entries} />
+          <SupplierCatalogSearch />
         </PageContainer>
       </section>
 
@@ -79,8 +81,9 @@ export default function SupplierCataloguePage() {
               <Link
                 key={supplier.name}
                 href={supplier.href}
-                className="pressable group flex min-h-[220px] flex-col border border-forest-900/10 bg-[#fbfaf6] p-6 hover:border-wood-500/50 hover:bg-white hover:shadow-card focus-visible:ring-2 focus-visible:ring-wood-600"
+                className="pressable group flex min-h-[220px] flex-col border border-slate-200 bg-white p-6 hover:border-slate-500 focus-visible:ring-2 focus-visible:ring-slate-950"
               >
+                <span className="relative mb-4 block h-11 w-36"><Image src={supplier.logo} alt={`Logo ${supplier.name}`} fill sizes="144px" className="object-contain object-left" /></span>
                 <p className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">
                   Nhà cung cấp
                 </p>
@@ -107,7 +110,7 @@ export default function SupplierCataloguePage() {
         </PageContainer>
       </section>
 
-      <section className="border-y border-forest-900/10 bg-[#edf4ef] py-12 lg:py-16">
+      <section className="border-y border-slate-200 bg-white py-12 lg:py-16">
         <PageContainer className="grid gap-8 lg:grid-cols-[1.15fr_.85fr] lg:items-center">
           <div>
             <p className="eyebrow">Hiểu đúng trước khi đặt</p>

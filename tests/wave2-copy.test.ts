@@ -32,7 +32,7 @@ describe("Wave 2 public copy", () => {
   it("keeps hub and contact copy at the route boundary", () => {
     const productHub = fs.readFileSync("app/san-pham/page.tsx", "utf8");
     const contactPage = fs.readFileSync("app/lien-he/page.tsx", "utf8");
-    expect(productHub).toContain("Tra cứu các nhóm vật liệu và bề mặt An Cường");
+    expect(productHub).toContain("MDF, MFC, Plywood và gỗ ghép là nhóm vật liệu");
     expect(contactPage).toContain("Tùng Phát cung cấp các loại vật liệu gồm gỗ ghép, MDF, MFC, Plywood và chỉ dán cạnh");
   });
 

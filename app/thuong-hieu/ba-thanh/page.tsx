@@ -1,13 +1,31 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, MapPin, MessageCircle } from "lucide-react";
+import { ArrowRight, ExternalLink, MapPin, MessageCircle } from "lucide-react";
 import { SiteShell } from "@/components/site/SiteShell";
 import { JsonLd } from "@/components/JsonLd";
 import { MaterialDisclaimer } from "@/components/catalog/MaterialDisclaimer";
 import { ProductInquiryCTA } from "@/components/catalog/ProductInquiryCTA";
 import { baThanhCategories, getBaThanhCodes } from "@/lib/catalog/ba-thanh";
+import { getSupplierTotals } from "@/lib/catalog/suppliers/search-index";
 import { absoluteUrl, createPageMetadata, ZALO_URL } from "@/lib/seo";
 import { locations } from "@/lib/locations";
+
+const supplierGroups = [
+  ["MDF thường", "/san-pham/mdf-hdf"],
+  ["HDF", "/san-pham/mdf-hdf"],
+  ["MDF chống ẩm LMR / MMR / HMR", "/san-pham/lmr-mmr-hmr"],
+  ["Okal / MFC", "/san-pham/okal-mfc"],
+  ["Plywood", "/san-pham/van-ep-plywood"],
+  ["Plywood Melamine", "/san-pham/plywood-phu-melamine"],
+  ["Melamine", "/catalogue/fullsize"],
+  ["Laminate Way", "/catalogue/laminate-way"],
+  ["Veneer", "/san-pham/veneer"],
+  ["Gỗ ghép", "/san-pham/go-ghep"],
+  ["Ván nhựa PVC", "/san-pham/van-nhua"],
+  ["Ván sàn Dongwha", "/san-pham/van-san"],
+  ["Chỉ cạnh PVC", "/san-pham/san-pham-ho-tro"],
+  ["Keo dán cạnh", "/san-pham/san-pham-ho-tro"],
+] as const;
 
 export const metadata: Metadata = createPageMetadata({
   title: "Ba Thanh – Catalogue Melamine và dịch vụ gia công",
@@ -100,6 +118,22 @@ export default function BaThanhBrandPage() {
           </div>
         </section>
 
+        <section className="border-b border-slate-200 bg-white py-14 lg:py-20">
+          <div className="container-shell">
+            <p className="text-xs font-bold uppercase tracking-[.15em] text-slate-500">Danh mục nguồn Ba Thanh</p>
+            <h2 className="mt-3 max-w-3xl font-display text-3xl font-extrabold tracking-[-.035em] text-slate-950">Các dòng ván, bề mặt và vật tư để tham khảo</h2>
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-700">Đây là các nhóm trên website Ba Thanh. Liên kết mở nguồn nhà cung cấp để xem thông tin dòng hàng; nếu muốn mua tại Tùng Phát, gửi tên nhóm, mã hoặc quy cách để kiểm tra trước.</p>
+            <div className="mt-8 grid gap-x-6 sm:grid-cols-2 lg:grid-cols-3">
+              {supplierGroups.map(([name, path]) => (
+                <a key={name} href={`https://www.bathanhtaybac.com${path}`} target="_blank" rel="noopener noreferrer" className="flex min-h-14 items-center justify-between gap-3 border-t border-slate-200 py-3 text-sm font-bold text-slate-950 hover:text-slate-600">
+                  {name}<ExternalLink size={15} className="shrink-0" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm font-bold"><Link href="/catalogue/ba-thanh/melamine/" className="min-h-11 content-center underline underline-offset-4">Tra mã Melamine tại Tùng Phát</Link><Link href="/catalogue/ba-thanh/laminate/" className="min-h-11 content-center underline underline-offset-4">Tra mã Laminate tại Tùng Phát</Link></div>
+          </div>
+        </section>
+
         <section className="border-b border-forest-900/10 bg-[#f4f6f1] py-7">
           <div className="container-shell grid gap-5 sm:grid-cols-3">
             <div>
@@ -121,6 +155,7 @@ export default function BaThanhBrandPage() {
               </p>
             </div>
           </div>
+          <p className="container-shell mt-5 text-xs leading-6 text-slate-600">Trang này đếm riêng mã Melamine. Catalogue Ba Thanh có {getSupplierTotals()["ba-thanh"].colorCodes} mã bề mặt gồm các nhóm khác; số liệu lấy từ chỉ mục tra cứu, không phải tồn kho.</p>
         </section>
 
         <section className="py-16 lg:py-24">

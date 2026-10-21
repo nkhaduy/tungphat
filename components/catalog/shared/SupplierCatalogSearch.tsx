@@ -37,6 +37,7 @@ import { AutoLoadMore } from "@/components/catalog/shared/AutoLoadMore";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 const PAGE_SIZE = 48;
+const EMPTY_ENTRIES: CatalogSearchEntry[] = [];
 
 type PrimarySelection = {
   value: string;
@@ -51,10 +52,13 @@ const supplierOptions = supplierDefinitions.map((supplier) => ({
   label: supplier.displayName,
 }));
 export function SupplierCatalogSearch({
-  entries,
+  entries: initialEntries = EMPTY_ENTRIES,
 }: {
-  entries: CatalogSearchEntry[];
+  entries?: CatalogSearchEntry[];
 }) {
+  const [entries, setEntries] = useState<CatalogSearchEntry[]>(initialEntries);
+  const [loadedSuppliers, setLoadedSuppliers] = useState<SupplierId[]>([]);
+  const [loadError, setLoadError] = useState(false);
   const [query, setQuery] = useState("");
   const [supplierId, setSupplierId] = useState<SupplierId | "">("");
   const [type, setType] = useState<CatalogSearchIntent>("all");
@@ -62,6 +66,33 @@ export function SupplierCatalogSearch({
   const [pattern, setPattern] = useState<CanonicalCatalogGroup | "">("");
   const [visibleLimit, setVisibleLimit] = useState(PAGE_SIZE);
   const deferredQuery = useDeferredValue(query);
+  const loadingPrimary = !initialEntries.length && !loadedSuppliers.includes("thanh-thuy") && !loadError;
+  const loadingAdditional = !initialEntries.length && (Boolean(deferredQuery.trim()) || supplierId === "an-cuong") && !loadedSuppliers.includes("an-cuong") && !loadError;
+  useEffect(() => {
+    if (initialEntries.length) return;
+    const controller = new AbortController();
+    Promise.all((["thanh-thuy", "ba-thanh"] as SupplierId[]).map(async (supplier) => {
+      const response = await fetch(`/data/catalogue-search-${supplier}.json`, { signal: controller.signal });
+      if (!response.ok) throw new Error(`Search index: ${response.status}`);
+      return response.json() as Promise<CatalogSearchEntry[]>;
+    })).then(([thanhThuy, baThanh]) => {
+      setEntries((current) => [...thanhThuy, ...baThanh, ...current.filter((entry) => entry.supplierId === "an-cuong")]);
+      setLoadedSuppliers((current) => [...current, "thanh-thuy", "ba-thanh"]);
+    }).catch((error) => { if (error.name !== "AbortError") setLoadError(true); });
+    return () => controller.abort();
+  }, [initialEntries]);
+
+  useEffect(() => {
+    if (initialEntries.length || loadedSuppliers.includes("an-cuong") || (!deferredQuery.trim() && supplierId !== "an-cuong")) return;
+    const controller = new AbortController();
+    fetch("/data/catalogue-search-an-cuong.json", { signal: controller.signal })
+      .then((response) => { if (!response.ok) throw new Error(`Search index: ${response.status}`); return response.json() as Promise<CatalogSearchEntry[]>; })
+      .then((anCuong) => {
+        setEntries((current) => [...current.filter((entry) => entry.supplierId !== "an-cuong"), ...anCuong]);
+        setLoadedSuppliers((current) => [...current, "an-cuong"]);
+      }).catch((error) => { if (error.name !== "AbortError") setLoadError(true); });
+    return () => controller.abort();
+  }, [deferredQuery, initialEntries, loadedSuppliers, supplierId]);
   const primarySelections: PrimarySelection[] = useMemo(
     () =>
       materialTaxonomyOptionsForSupplier(entries, supplierId).map(
@@ -246,6 +277,9 @@ export function SupplierCatalogSearch({
       </div>
 
       <div className="catalogue-search-panel relative z-20 py-5 sm:py-6 lg:py-7">
+        <p role="status" className="mb-3 text-center text-xs text-slate-600">
+          {loadError ? "Không tải được chỉ mục tra cứu. Vui lòng tải lại trang hoặc mở catalogue theo thương hiệu bên dưới." : loadingPrimary || loadingAdditional ? "Đang tải mã màu để tra cứu..." : !initialEntries.length && !deferredQuery.trim() && !supplierId ? "Đang hiển thị Thanh Thùy và Ba Thanh. Chọn hoặc tìm An Cường để tải thêm." : ""}
+        </p>
         <label className="catalogue-hero-search mx-auto block max-w-4xl">
           <span className="sr-only">Tra cứu mã màu</span>
           <span className="relative block rounded-md border border-forest-900/25 bg-white p-1 shadow-[0_8px_24px_rgba(6,43,29,.07)]">
@@ -419,7 +453,7 @@ export function SupplierCatalogSearch({
               </p>
               <h3 className="mt-2 text-2xl font-extrabold tracking-[-.025em] text-forest-950 sm:text-3xl">
                 {hasSearchIntent || showAllResults
-                  ? `${results.length.toLocaleString("vi-VN")} sản phẩm`
+                  ? `${results.length.toLocaleString("vi-VN")} mục tra cứu`
                   : "Bắt đầu từ các mã có dữ liệu đầy đủ"}
               </h3>
             </div>

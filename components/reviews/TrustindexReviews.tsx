@@ -65,7 +65,7 @@ function ReviewAvatar({ review }: { review: TrustindexReview }) {
 
 function ReviewCard({ review, googleUrl, onReadMore }: { review: TrustindexReview; googleUrl?: string; onReadMore: () => void }) {
   const needsDialog = review.text.length > 260;
-  return <article data-trustindex-card className="flex min-h-[21rem] basis-full snap-start flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-[0_12px_28px_rgba(15,23,42,0.10)] sm:p-7 md:basis-[275px]">
+  return <article data-trustindex-card className="flex min-h-[21rem] basis-full snap-start flex-col border border-slate-200 bg-white p-6 sm:p-7 md:basis-[275px]">
     <div className="flex items-start justify-between gap-4">
       <div className="flex min-w-0 items-center gap-3.5">
         <ReviewAvatar review={review} />
@@ -149,18 +149,18 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
   }
 
   if (!reviews.length) return null;
-  return <section ref={sectionRef} id="google-reviews" data-trustindex-reviews aria-label="Đánh giá khách hàng" className="border-y border-forest-900/10 bg-[#f4f7f4] py-16 lg:py-24">
+  return <section ref={sectionRef} id="google-reviews" data-trustindex-reviews aria-label="Đánh giá khách hàng" className="border-y border-slate-200 bg-white py-16 lg:py-24">
     <div className="container-shell">
       <div className="grid gap-7 lg:grid-cols-[13.75rem_minmax(0,1fr)] lg:items-stretch">
-        <aside className="flex min-h-[21rem] flex-col rounded-xl bg-forest-950 p-7 text-white shadow-[0_14px_32px_rgba(6,43,29,0.18)]">
-          <p className="text-xs font-extrabold tracking-[0.16em] text-white/70">XUẤT SẮC</p>
+        <aside className="flex min-h-[21rem] flex-col border border-slate-200 bg-white p-7 text-slate-950">
+          <p className="text-xs font-extrabold tracking-[0.16em] text-slate-500">XUẤT SẮC</p>
           <div className="mt-4"><StarRating rating={5} /></div>
           <p className="mt-4 text-4xl font-extrabold tracking-[-0.04em]">{data.rating.toFixed(1)}</p>
-          <p className="mt-1 text-sm text-white/75">Dựa trên {data.reviewCount} đánh giá</p>
+          <p className="mt-1 text-sm text-slate-600">Dựa trên {data.reviewCount} đánh giá</p>
           <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2">
-          {googleUrls.map((url, index) => <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={`Google - Chi nhánh ${index + 1}`} className="inline-flex items-center gap-2 text-sm font-extrabold text-white hover:text-[#f6b400]"><Image src="/brand/google-g.png" alt={index === 0 ? "Google" : ""} width={20} height={20} className="h-5 w-5" aria-hidden={index > 0 ? "true" : undefined} />{`Tùng Phát ${index + 1}`} <ExternalLink size={13} aria-hidden="true" /></a>)}
+          {googleUrls.map((url, index) => <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={`Google - Chi nhánh ${index + 1}`} className="inline-flex items-center gap-2 text-sm font-extrabold text-slate-900 hover:text-slate-600"><Image src="/brand/google-g.png" alt={index === 0 ? "Google" : ""} width={20} height={20} className="h-5 w-5" aria-hidden={index > 0 ? "true" : undefined} />{`Tùng Phát ${index + 1}`} <ExternalLink size={13} aria-hidden="true" /></a>)}
           </div>
-          {data.verified && googleUrl ? <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-1.5 pt-7 text-xs font-bold text-white/75 hover:text-white"><BadgeCheck size={15} aria-hidden="true" />Nguồn đánh giá Google</a> : null}
+          {data.verified && googleUrl ? <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-1.5 pt-7 text-xs font-bold text-slate-600 hover:text-slate-950"><BadgeCheck size={15} aria-hidden="true" />Nguồn đánh giá Google</a> : null}
         </aside>
         <div className="min-w-0">
           <div ref={viewportRef} data-trustindex-viewport className="trustindex-review-viewport" aria-label="Đánh giá khách hàng" aria-live="polite" onPointerDown={() => setAutoplay(false)}>

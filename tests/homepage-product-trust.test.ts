@@ -13,18 +13,17 @@ describe("homepage product and trust refinement", () => {
 
   it("keeps colour discovery compact and motion-safe", () => {
     expect(content).not.toContain("Mã màu theo vật liệu");
-    expect(content).toContain("Các màu nổi bật");
-    expect(content).toContain("data-color-code-marquee");
+    expect(content).toContain("Mã màu nổi bật");
+    expect(content).toContain("FeaturedColorCodes");
     expect(content).toContain("supplier.logo");
     expect(content).not.toContain("scrollIntoView");
   });
 
   it("uses the company, CNC, article-image, and Google Maps trust surfaces", () => {
-    expect(content).toContain("Giới thiệu về");
-    expect(content).toContain(">Tùng Phát<");
-    expect(content).toContain("Xem dịch vụ CNC");
+    expect(content).toContain("Xưởng &amp; chi nhánh");
+    expect(content).toContain("Gửi kích thước / file để nhận báo giá");
     expect(content).toContain("article.featuredImage");
-    expect(content).toContain('loading="lazy"');
+    expect(content).toContain("branch.directionsUrl");
     expect(footer).toContain("Google Maps");
   });
 

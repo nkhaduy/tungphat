@@ -1,73 +1,45 @@
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import { TrackedLink } from "@/components/TrackedLink";
+import Link from "next/link";
+import { ArrowRight, MapPin } from "lucide-react";
+import { locations } from "@/lib/locations";
 import { ZALO_URL } from "@/lib/seo";
+import { TrackedLink } from "@/components/TrackedLink";
 
 export function HomeHero() {
-  return (
-    <section
-      id="trang-chu"
-      className="home-hero relative isolate overflow-hidden border-b border-forest-900/10 bg-white"
-    >
-      <div className="home-hero-image-layer absolute inset-0 z-0" aria-hidden="true">
-        <picture>
-          <source
-            media="(max-width: 767px)"
-            type="image/png"
-            srcSet="/images/material-panels-hero-mobile.png 1276w"
-            sizes="100vw"
-          />
-          <source
-            type="image/avif"
-            srcSet="/images/material-panels-hero-960.avif 960w, /images/material-panels-hero-1440.avif 1440w, /images/material-panels-hero.avif 1916w"
-            sizes="100vw"
-          />
-          <source
-            type="image/webp"
-            srcSet="/images/material-panels-hero-960.webp 960w, /images/material-panels-hero-1440.webp 1440w, /images/material-panels-hero.webp 1916w"
-            sizes="100vw"
-          />
-          {/* Static export needs a native picture to serve format and width variants. */}
-          <img
-            src="/images/material-panels-hero.webp"
-            alt=""
-            width="1916"
-            height="821"
-            sizes="100vw"
-            fetchPriority="high"
-            loading="eager"
-            decoding="async"
-            className="material-panels-hero-image material-panels-hero-mobile-image"
-          />
-        </picture>
-      </div>
+  const branch = locations[0];
 
-      <div className="container-shell relative z-10 grid lg:min-h-[560px] lg:grid-cols-[minmax(0,47rem)_1fr] lg:items-center">
-        <div className="home-hero-copy max-w-[47rem] pb-10 pt-[calc(3.25rem+var(--site-header-height))] sm:pb-12 sm:pt-[calc(3.75rem+var(--site-header-height))] lg:pb-14 lg:pt-[calc(4.25rem+var(--site-header-height))]">
-          <p className="eyebrow">CÔNG TY TNHH TMDV GỖ TÙNG PHÁT</p>
-          <h1 className="text-balance mt-4 max-w-[42rem] font-display text-[clamp(2.35rem,6.5vw,4.25rem)] font-extrabold leading-[1.12] tracking-[-.04em] text-forest-950">
-            Ván gỗ công nghiệp
-            <span className="block text-wood-600">&amp; gia công CNC tại Thủ Đức</span>
+  return (
+    <section id="trang-chu" className="border-b border-slate-200 bg-white pt-[var(--site-header-height)]">
+      <div className="container-shell grid min-w-0 gap-10 py-12 md:py-16 lg:min-h-[620px] lg:grid-cols-[1.08fr_.92fr] lg:items-center lg:gap-16 lg:py-20">
+        <div className="home-hero-copy min-w-0">
+          <p className="text-xs font-bold uppercase tracking-[.19em] text-slate-600">Công ty TNHH TMDV Gỗ Tùng Phát</p>
+          <h1 className="mt-5 max-w-[16ch] text-balance font-display text-[clamp(2.4rem,4.3vw,4.15rem)] font-extrabold leading-[1.1] tracking-[-.055em] text-slate-950">
+            Ván gỗ công nghiệp &amp; gia công CNC tại Thủ Đức
           </h1>
-          <p className="text-pretty mt-5 max-w-[39rem] text-[15px] leading-7 text-slate-700 sm:text-[1.0625rem] sm:leading-8">
-            Tùng Phát cung cấp các loại vật liệu gồm gỗ ghép, MDF, MFC, Plywood và chỉ dán cạnh;
-            đồng thời nhận cắt và gia công CNC theo yêu cầu.
+          <p className="mt-6 max-w-[58ch] text-base leading-8 text-slate-700 md:text-lg">
+            Tùng Phát cung cấp cốt ván, bề mặt trang trí và vật tư hoàn thiện từ Thanh Thùy, Ba Thanh; đồng thời nhận cắt và gia công CNC theo yêu cầu.
           </p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Link href="#ma-mau" className="pressable inline-flex min-h-12 items-center justify-center gap-2 bg-wood-600 px-5 text-sm font-extrabold text-white hover:bg-wood-700">
-              Xem mã màu <ArrowRight size={17} aria-hidden="true" />
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link href="/san-pham/" className="inline-flex min-h-12 items-center justify-center gap-2 bg-slate-950 px-6 text-sm font-bold text-white transition-colors hover:bg-slate-800">
+              Khám phá sản phẩm <ArrowRight size={17} aria-hidden="true" />
             </Link>
-            <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_hero", channel: "zalo" }} className="pressable inline-flex min-h-12 items-center justify-center gap-2 bg-forest-900 px-5 text-sm font-extrabold text-white hover:bg-forest-800">
-              <Image src="/images/zalo-contact.png" alt="" width={22} height={22} aria-hidden="true" className="h-[22px] w-[22px] object-contain" /> Liên hệ báo giá
+            <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_hero", channel: "zalo" }} className="inline-flex min-h-12 items-center justify-center border border-slate-300 bg-white px-6 text-sm font-bold text-slate-950 transition-colors hover:border-slate-950">
+              Nhận tư vấn &amp; báo giá
             </TrackedLink>
           </div>
+          <p className="mt-8 border-t border-slate-200 pt-5 text-sm text-slate-600">Chọn vật liệu, tra mã màu, rồi gửi kích thước hoặc file cần gia công.</p>
         </div>
-
-        <div
-          className="home-hero-visual min-h-[clamp(250px,69vw,330px)] lg:min-h-0"
-          aria-hidden="true"
-        />
+        {branch ? (
+          <figure className="min-w-0">
+            <div className="relative aspect-[4/3] overflow-hidden border border-slate-200 bg-white lg:aspect-[5/4]">
+              <Image src={branch.image} alt={branch.imageAlt} fill sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover object-top" priority />
+            </div>
+            <figcaption className="mt-3 flex items-start gap-2 text-xs leading-5 text-slate-600">
+              <MapPin size={15} className="mt-0.5 shrink-0" aria-hidden="true" />
+              Ảnh cửa hàng Tùng Phát · {branch.address}
+            </figcaption>
+          </figure>
+        ) : null}
       </div>
     </section>
   );

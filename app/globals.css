@@ -340,6 +340,11 @@ textarea:focus-visible {
   --site-header-control-border: rgba(7, 59, 40, 0.24);
 }
 
+.site-header--tone-light.site-header--top {
+  background: #fff;
+  box-shadow: inset 0 -1px 0 rgba(15, 23, 42, 0.1);
+}
+
 .site-header--tone-dark.site-header--top {
   --site-header-foreground: #fffdf8;
   --site-header-muted: rgba(255, 253, 248, 0.56);
