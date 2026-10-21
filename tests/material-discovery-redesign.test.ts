@@ -8,12 +8,12 @@ describe("material discovery redesign", () => {
   const thanhThuyBrand = readFileSync("components/thanh-thuy/ThanhThuyBrand.tsx", "utf8");
   const baThanhBrand = readFileSync("app/thuong-hieu/ba-thanh/page.tsx", "utf8");
 
-  it("starts with a white two-column hero and a real branch photo", () => {
+  it("restores the supplied board hero while preserving working discovery and quote actions", () => {
     expect(hero).toContain("bg-white");
-    expect(hero).toContain("locations[0]");
-    expect(hero).toContain("Khám phá sản phẩm");
-    expect(hero).toContain("priority");
-    expect(hero).not.toContain("material-panels-hero");
+    expect(hero).toContain("material-panels-hero.webp");
+    expect(hero).toContain('href="#ma-mau"');
+    expect(hero).toContain("ZALO_URL");
+    expect(hero).toContain('fetchPriority="high"');
   });
 
   it("puts Thanh Thuy before Ba Thanh and keeps An Cuong off the home feature", () => {

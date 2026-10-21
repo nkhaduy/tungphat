@@ -39,14 +39,14 @@ const faqs = [
 
 function MaterialCard({ card }: { card: ProductDiscoveryCard }) {
   return (
-    <article className="group flex min-w-0 flex-col overflow-hidden border border-slate-200 bg-white transition-colors hover:border-slate-400">
-      <Link href={card.href} className="relative block aspect-[4/3] overflow-hidden bg-slate-50" aria-label={`Xem ${card.title}`}>
+    <article className="group flex min-w-0 flex-col overflow-hidden rounded-xl border border-forest-900/10 bg-white shadow-[0_8px_24px_rgba(7,59,40,.045)] transition-colors hover:border-wood-500/50">
+      <Link href={card.href} className="relative block aspect-[4/3] overflow-hidden bg-[#18281f]" aria-label={`Xem ${card.title}`}>
         <Image src={card.image} alt={card.alt} fill sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" className="object-contain transition-transform duration-200 group-hover:scale-[1.025]" />
       </Link>
       <div className="flex flex-1 flex-col p-4 sm:p-5">
-        <h3 className="text-lg font-bold text-slate-950"><Link href={card.href}>{card.title}</Link></h3>
+        <h3 className="text-lg font-extrabold text-forest-950"><Link href={card.href}>{card.title}</Link></h3>
         <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-600">{card.description}</p>
-        <Link href={card.href} className="mt-auto inline-flex min-h-11 items-center gap-2 pt-4 text-sm font-bold text-slate-900">Xem chi tiết <ArrowRight size={15} aria-hidden="true" /></Link>
+        <Link href={card.href} className="mt-auto inline-flex min-h-11 items-center gap-2 pt-4 text-sm font-extrabold text-wood-600">Xem chi tiết <ArrowRight size={15} aria-hidden="true" /></Link>
       </div>
     </article>
   );
@@ -78,89 +78,103 @@ export async function HomeContent() {
   const articles = (await getArticles()).slice(0, 3);
   return (
     <>
-      <section id="vat-lieu" className="scroll-mt-24 border-b border-slate-200 bg-white py-16 lg:py-24">
+      <section id="vat-lieu" className="scroll-mt-24 border-b border-forest-900/10 bg-white py-16 lg:py-24">
         <div className="container-shell">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
               <p className="text-xs font-bold uppercase tracking-[.18em] text-slate-500">Danh mục sản phẩm</p>
-              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-[-.04em] text-slate-950 sm:text-4xl">Khám phá vật liệu tại Tùng Phát</h2>
+              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-[-.035em] text-forest-950 sm:text-4xl">Khám phá vật liệu tại Tùng Phát</h2>
               <p className="mt-4 text-base leading-7 text-slate-600">Bắt đầu từ cốt ván, sau đó chọn bề mặt và phần hoàn thiện. Mỗi nhóm dẫn đến trang vật liệu hoặc mã màu đang có dữ liệu.</p>
             </div>
-            <Link href="/san-pham/" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-slate-950 underline underline-offset-4">Xem toàn bộ sản phẩm <ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link href="/san-pham/" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-forest-950 underline underline-offset-4">Xem toàn bộ sản phẩm <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
           <div className="mt-10">
             <h3 className="mb-4 text-sm font-bold text-slate-700">Cốt ván / vật liệu</h3>
             <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">{coreMaterialCards.map((card) => <MaterialCard key={card.id} card={card} />)}</div>
           </div>
-          <div className="mt-10 border-t border-slate-200 pt-8">
+          <div className="mt-10 border-t border-forest-900/10 pt-8">
             <h3 className="mb-4 text-sm font-bold text-slate-700">Bề mặt trang trí</h3>
             <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">{surfaceCatalogueCards.map((card) => <MaterialCard key={card.id} card={card} />)}</div>
           </div>
-          <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-slate-200 pt-6 text-sm">
-            <span className="font-bold text-slate-950">Vật tư hoàn thiện</span>
+          <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-forest-900/10 pt-6 text-sm">
+            <span className="font-bold text-forest-950">Vật tư hoàn thiện</span>
             <Link href="/thuong-hieu/thanh-thuy/" className="min-h-10 content-center text-slate-700 underline underline-offset-4">Chỉ nẹp Thanh Thùy</Link>
             <Link href="/thuong-hieu/ba-thanh/" className="min-h-10 content-center text-slate-700 underline underline-offset-4">Chỉ cạnh, keo Ba Thanh</Link>
           </div>
         </div>
       </section>
 
-      <section id="thuong-hieu" className="scroll-mt-24 border-b border-slate-200 bg-white py-16 lg:py-24">
+      <section id="thuong-hieu" className="scroll-mt-24 border-b border-forest-900/10 bg-white py-16 lg:py-24">
         <div className="container-shell">
           <p className="text-xs font-bold uppercase tracking-[.18em] text-slate-500">Nhà cung cấp vật liệu</p>
-          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-[-.04em] text-slate-950 sm:text-4xl">Chọn theo thương hiệu</h2>
+          <h2 className="mt-3 font-display text-3xl font-extrabold tracking-[-.035em] text-forest-950 sm:text-4xl">Chọn theo thương hiệu</h2>
           <div className="mt-8 grid gap-5 lg:grid-cols-2">
             {suppliers.map((supplier, index) => (
-              <article key={supplier.slug} className="flex min-w-0 flex-col border border-slate-200 bg-white p-6 sm:p-8">
+              <article key={supplier.slug} className="flex min-w-0 flex-col rounded-xl border border-forest-900/10 bg-white p-6 sm:p-8">
                 <div className="flex items-center justify-between gap-4">
                   <div className="relative h-14 w-36"><Image src={supplier.logo} alt={`Logo ${supplier.name}`} fill sizes="144px" className="object-contain object-left" /></div>
                   <span className="text-xs font-bold uppercase tracking-[.12em] text-slate-500">{index === 0 ? "Thương hiệu chủ lực" : "Thương hiệu bổ sung"}</span>
                 </div>
-                <h3 className="mt-8 text-2xl font-bold text-slate-950">{supplier.name}</h3>
+                <h3 className="mt-8 text-2xl font-bold text-forest-950">{supplier.name}</h3>
                 <p className="mt-1 text-sm font-semibold text-slate-700">{supplier.title}</p>
                 <p className="mt-4 max-w-[55ch] text-sm leading-7 text-slate-600">{supplier.description}</p>
                 <p className="mt-5 text-xs leading-6 text-slate-500">{supplier.groups.join(" · ")}</p>
-                <Link href={`/thuong-hieu/${supplier.slug}/`} className="mt-auto inline-flex min-h-12 items-center gap-2 self-start border-b-2 border-slate-950 pt-7 text-sm font-bold text-slate-950">Xem sản phẩm {supplier.name} <ArrowRight size={16} aria-hidden="true" /></Link>
+                <Link href={`/thuong-hieu/${supplier.slug}/`} className="mt-auto inline-flex min-h-12 items-center gap-2 self-start border-b-2 border-forest-950 pt-7 text-sm font-bold text-forest-950">Xem sản phẩm {supplier.name} <ArrowRight size={16} aria-hidden="true" /></Link>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="ma-mau" className="scroll-mt-24 border-b border-slate-200 bg-white py-16 lg:py-24">
+      <section id="ma-mau" className="scroll-mt-24 border-b border-forest-900/10 bg-white py-16 lg:py-24">
         <div className="container-shell">
           <div className="flex flex-wrap items-end justify-between gap-5">
-            <div className="max-w-2xl"><p className="text-xs font-bold uppercase tracking-[.18em] text-slate-500">Catalogue</p><h2 className="mt-3 font-display text-3xl font-extrabold tracking-[-.04em] text-slate-950 sm:text-4xl">Mã màu nổi bật</h2><p className="mt-4 text-sm leading-7 text-slate-600">Tra mã và xem ảnh bề mặt đã có trong catalogue. Chọn mã trước, sau đó gửi cốt ván và độ dày để hỏi hàng.</p></div>
-            <Link href="/catalogue/" prefetch={false} className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-slate-950 underline underline-offset-4">Tìm mã khác <ArrowRight size={16} aria-hidden="true" /></Link>
+            <div className="max-w-3xl"><h2 className="font-display text-3xl font-extrabold tracking-[-.035em] text-forest-950 sm:text-4xl">Mã màu</h2><p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">Tra cứu theo thương hiệu và mã màu. Mã bề mặt không tự xác định cốt ván; hãy gửi cả nhu cầu sử dụng khi hỏi hàng.</p></div>
+            <Link href="/catalogue/" prefetch={false} className="inline-flex min-h-11 items-center gap-2 text-sm font-extrabold text-forest-950 hover:text-wood-600">Mở catalogue <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
-          <div className="mt-7"><FeaturedColorCodes thanhThuy={featuredCodes("thanh-thuy", 8)} baThanh={featuredCodes("ba-thanh", 8)} /></div>
+          <div className="mt-10"><FeaturedColorCodes thanhThuy={featuredCodes("thanh-thuy", 8)} baThanh={featuredCodes("ba-thanh", 8)} /></div>
         </div>
       </section>
 
-      <section id="nang-luc-cnc" className="scroll-mt-24 border-b border-slate-200 bg-white py-16 lg:py-24">
+      <section id="nang-luc-cnc" className="scroll-mt-24 border-b border-forest-900/10 bg-white py-16 lg:py-24">
         <div className="container-shell grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <div className="relative aspect-[4/3] overflow-hidden border border-slate-200"><Image src="/images/cnc-service.webp" alt="Đầu máy CNC đang cắt biên dạng trên tấm ván" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" /></div>
-          <div><p className="text-xs font-bold uppercase tracking-[.18em] text-slate-500">Cắt ván &amp; CNC</p><h2 className="mt-3 font-display text-3xl font-extrabold tracking-[-.04em] text-slate-950 sm:text-4xl">Gửi kích thước, xưởng kiểm tra cách làm</h2><p className="mt-5 text-base leading-8 text-slate-700">Tùng Phát nhận cắt ván và gia công CNC cho chi tiết dạng tấm. Khi gửi yêu cầu, hãy ghi loại ván, độ dày, kích thước, số lượng và file nếu đã có.</p><Link href="/gia-cong-cnc/" className="mt-7 inline-flex min-h-12 items-center gap-2 bg-slate-950 px-6 text-sm font-bold text-white hover:bg-slate-800">Gửi kích thước / file để nhận báo giá <ArrowRight size={16} aria-hidden="true" /></Link></div>
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl"><Image src="/images/cnc-service.webp" alt="Đầu máy CNC đang cắt biên dạng trên tấm ván" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" /></div>
+          <div><p className="text-xs font-bold uppercase tracking-[.18em] text-slate-500">Cắt ván &amp; CNC</p><h2 className="mt-3 font-display text-3xl font-extrabold tracking-[-.035em] text-forest-950 sm:text-4xl">Gửi kích thước, xưởng kiểm tra cách làm</h2><p className="mt-5 text-base leading-8 text-slate-700">Tùng Phát nhận cắt ván và gia công CNC cho chi tiết dạng tấm. Khi gửi yêu cầu, hãy ghi loại ván, độ dày, kích thước, số lượng và file nếu đã có.</p><Link href="/gia-cong-cnc/" className="mt-7 inline-flex min-h-12 items-center gap-2 bg-forest-900 px-6 text-sm font-bold text-white hover:bg-forest-800">Gửi kích thước / file để nhận báo giá <ArrowRight size={16} aria-hidden="true" /></Link></div>
         </div>
       </section>
 
-      <section id="chi-nhanh" className="scroll-mt-24 border-b border-slate-200 bg-white py-16 lg:py-24">
+      <section id="chi-nhanh" className="scroll-mt-24 border-b border-forest-900/10 bg-white py-16 lg:py-24">
         <div className="container-shell">
-          <h2 className="font-display text-3xl font-extrabold tracking-[-.04em] text-slate-950 sm:text-4xl">Xưởng &amp; chi nhánh</h2>
-          <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600">Xem địa chỉ và đường đi trước khi đến. Có thể gửi mã vật liệu, kích thước hoặc file qua Zalo để trao đổi trước.</p>
-          <div className="mt-8 grid gap-5 lg:grid-cols-2">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="font-display text-3xl font-extrabold tracking-[-.035em] text-forest-950 sm:text-4xl">Địa chỉ</h2>
+            <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base">Xem tên cửa hàng, địa chỉ và bản đồ của từng chi nhánh trước khi đến.</p>
+          </div>
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
             {locations.map((branch) => (
-              <article key={branch.id} className="overflow-hidden border border-slate-200 bg-white">
-                <div className="relative aspect-[16/9]"><Image src={branch.image} alt={branch.imageAlt} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" /></div>
-                <div className="p-5 sm:p-6"><p className="text-xs font-bold text-slate-500">{branch.shortId}</p><h3 className="mt-2 text-xl font-bold text-slate-950">{branch.name}</h3><p className="mt-3 flex gap-2 text-sm leading-6 text-slate-700"><MapPin size={17} className="mt-1 shrink-0" aria-hidden="true" />{branch.address}</p><div className="mt-5 flex flex-wrap gap-x-6 gap-y-1 text-sm font-bold text-slate-950"><Link href={branchPathForLocationId(branch.id)} className="inline-flex min-h-11 items-center underline underline-offset-4">Xem chi nhánh</Link><a href={branch.directionsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1 underline underline-offset-4">Mở Maps <ExternalLink size={14} aria-hidden="true" /></a><a href={PHONE_HREF} className="inline-flex min-h-11 items-center gap-1 underline underline-offset-4"><Phone size={14} aria-hidden="true" />{PHONE_DISPLAY}</a></div></div>
-              </article>
+              <div key={branch.id} className="overflow-hidden rounded-2xl border border-forest-900/10 bg-[#f8faf7] shadow-[0_12px_36px_rgba(7,59,40,.07)]">
+                <article className="grid sm:grid-cols-[.82fr_1.18fr]">
+                  <div className="relative min-h-[250px] sm:min-h-[300px]"><Image src={branch.image} alt={branch.imageAlt} fill sizes="(max-width: 640px) 100vw, 42vw" className="object-cover" /></div>
+                  <div className="flex flex-col p-6 sm:p-7">
+                    <span className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">{branch.shortId}</span>
+                    <h3 className="mt-3 text-xl font-extrabold text-forest-950">{branch.name}</h3>
+                    <p className="mt-4 flex items-start gap-3 text-sm font-semibold leading-6 text-slate-700"><MapPin size={18} className="mt-0.5 shrink-0 text-forest-800" aria-hidden="true" />{branch.address}</p>
+                    <a href={PHONE_HREF} className="mt-4 inline-flex min-h-11 items-center gap-3 text-sm font-extrabold text-forest-950 hover:text-wood-600"><Phone size={17} className="text-wood-600" aria-hidden="true" />Gọi {PHONE_DISPLAY}</a>
+                    <div className="mt-auto grid gap-2 pt-5 sm:grid-cols-2">
+                      <Link href={branchPathForLocationId(branch.id)} className="inline-flex min-h-12 items-center justify-center border border-forest-900/20 px-4 text-center text-sm font-extrabold text-forest-950 hover:border-forest-900">Xem chi nhánh</Link>
+                      <a href={branch.directionsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-forest-900 px-5 text-sm font-extrabold text-white transition hover:bg-forest-800">Mở Maps <ExternalLink size={16} aria-hidden="true" /></a>
+                    </div>
+                  </div>
+                </article>
+                <iframe title={`Google Maps - ${branch.name}`} src={branch.embedSrc} loading="lazy" className="h-52 w-full border-0" referrerPolicy="no-referrer-when-downgrade" />
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {articles.length ? <section className="border-b border-slate-200 bg-white py-16 lg:py-20"><div className="container-shell"><div className="flex flex-wrap items-end justify-between gap-4"><h2 className="font-display text-3xl font-extrabold tracking-[-.04em] text-slate-950">Kiến thức chọn vật liệu</h2><Link href="/bai-viet/" className="text-sm font-bold text-slate-950 underline underline-offset-4">Xem tất cả bài viết</Link></div><div className="mt-7 grid gap-5 md:grid-cols-3">{articles.map((article) => <article key={article.slug} className="border border-slate-200 bg-white"><Link href={`/bai-viet/${article.slug}/`} className="relative block aspect-[16/10]"><Image src={article.featuredImage} alt={article.featuredImageAlt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" /></Link><div className="p-5"><p className="text-xs text-slate-500">{article.category}</p><h3 className="mt-2 text-lg font-bold leading-7 text-slate-950"><Link href={`/bai-viet/${article.slug}/`}>{article.title}</Link></h3></div></article>)}</div></div></section> : null}
+      {articles.length ? <section className="border-b border-forest-900/10 bg-white py-16 lg:py-20"><div className="container-shell"><div className="flex flex-wrap items-end justify-between gap-4"><h2 className="font-display text-3xl font-extrabold tracking-[-.035em] text-forest-950">Kiến thức chọn vật liệu</h2><Link href="/bai-viet/" className="text-sm font-bold text-forest-950 underline underline-offset-4">Xem tất cả bài viết</Link></div><div className="mt-7 grid gap-5 md:grid-cols-3">{articles.map((article) => <article key={article.slug} className="rounded-xl border border-forest-900/10 bg-white"><Link href={`/bai-viet/${article.slug}/`} className="relative block aspect-[16/10]"><Image src={article.featuredImage} alt={article.featuredImageAlt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" /></Link><div className="p-5"><p className="text-xs text-slate-500">{article.category}</p><h3 className="mt-2 text-lg font-bold leading-7 text-forest-950"><Link href={`/bai-viet/${article.slug}/`}>{article.title}</Link></h3></div></article>)}</div></div></section> : null}
 
-      <section className="border-b border-slate-200 bg-white py-16 lg:py-20" aria-labelledby="home-faq-title"><div className="container-shell grid gap-8 lg:grid-cols-[.65fr_1.35fr] lg:gap-16"><div><p className="text-xs font-bold uppercase tracking-[.18em] text-slate-500">FAQ</p><h2 id="home-faq-title" className="mt-3 font-display text-3xl font-extrabold tracking-[-.04em] text-slate-950">Hỏi trước khi chọn ván</h2></div><div>{faqs.map(([question, answer]) => <details key={question} className="group border-t border-slate-200 py-5 last:border-b"><summary className="cursor-pointer pr-6 text-base font-bold leading-7 text-slate-950 marker:text-slate-500">{question}</summary><p className="mt-3 max-w-[70ch] text-sm leading-7 text-slate-700">{answer}</p></details>)}</div></div></section>
+      <section className="border-b border-forest-900/10 bg-white py-16 lg:py-20" aria-labelledby="home-faq-title"><div className="container-shell grid gap-8 lg:grid-cols-[.65fr_1.35fr] lg:gap-16"><div><p className="text-xs font-bold uppercase tracking-[.18em] text-slate-500">FAQ</p><h2 id="home-faq-title" className="mt-3 font-display text-3xl font-extrabold tracking-[-.035em] text-forest-950">Hỏi trước khi chọn ván</h2></div><div>{faqs.map(([question, answer]) => <details key={question} className="group border-t border-forest-900/10 py-5 last:border-b"><summary className="cursor-pointer pr-6 text-base font-bold leading-7 text-forest-950 marker:text-slate-500">{question}</summary><p className="mt-3 max-w-[70ch] text-sm leading-7 text-slate-700">{answer}</p></details>)}</div></div></section>
     </>
   );
 }

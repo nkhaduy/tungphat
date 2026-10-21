@@ -8,8 +8,9 @@ describe("public SEO and UX hierarchy", () => {
 
   it("keeps local material and CNC intent with two working actions", () => {
     expect(page).toContain("Tùng Phát | Ván gỗ công nghiệp & Gia công CNC tại Thủ Đức");
-    expect(hero).toContain("Ván gỗ công nghiệp &amp; gia công CNC tại Thủ Đức");
-    expect(hero).toContain('href="/san-pham/"');
+    expect(hero).toContain("Ván gỗ công nghiệp");
+    expect(hero).toContain("&amp; gia công CNC tại Thủ Đức");
+    expect(hero).toContain('href="#ma-mau"');
     expect(hero).toContain("ZALO_URL");
   });
 

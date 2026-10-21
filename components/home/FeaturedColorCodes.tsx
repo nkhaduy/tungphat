@@ -1,8 +1,6 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 export type FeaturedCode = {
   id: string;
@@ -14,36 +12,46 @@ export type FeaturedCode = {
 };
 
 export function FeaturedColorCodes({ thanhThuy, baThanh }: { thanhThuy: FeaturedCode[]; baThanh: FeaturedCode[] }) {
-  const [brand, setBrand] = useState<"thanh-thuy" | "ba-thanh">("thanh-thuy");
-  const codes = brand === "thanh-thuy" ? thanhThuy : baThanh;
-  const brandName = brand === "thanh-thuy" ? "Thanh Thùy" : "Ba Thanh";
+  const suppliers = [
+    { name: "Thanh Thùy", slug: "thanh-thuy", logo: "/partners/thanh-thuy-logo.webp" },
+    { name: "Ba Thanh", slug: "ba-thanh", logo: "/partners/ba-thanh-logo.webp" },
+    { name: "An Cường", slug: "an-cuong", logo: "/partners/an-cuong-logo.webp" },
+  ] as const;
+  const codes = Array.from({ length: Math.max(thanhThuy.length, baThanh.length) }, (_, index) => [
+    thanhThuy[index],
+    baThanh[index],
+  ]).flat().filter((code): code is FeaturedCode => Boolean(code));
 
   return (
     <div>
-      <div role="group" aria-label="Chọn thương hiệu mã màu" className="inline-flex border border-slate-300 bg-white p-1">
-        {(["thanh-thuy", "ba-thanh"] as const).map((value) => (
-          <button key={value} type="button" aria-pressed={brand === value} onClick={() => setBrand(value)} className={`min-h-11 px-5 text-sm font-bold transition-colors ${brand === value ? "bg-slate-950 text-white" : "text-slate-700 hover:bg-slate-100"}`}>
-            {value === "thanh-thuy" ? "Thanh Thùy" : "Ba Thanh"}
-          </button>
+      <div className="grid gap-4 sm:grid-cols-3">
+        {suppliers.map((supplier) => (
+          <Link key={supplier.slug} href={`/catalogue/${supplier.slug}/`} prefetch={false} className="group flex min-h-[142px] min-w-0 flex-col items-center justify-between rounded-lg border border-forest-900/10 bg-white p-5 shadow-[0_8px_24px_rgba(7,59,40,.045)] transition-colors hover:border-wood-500/40">
+            <span className="relative block h-14 w-full"><Image src={supplier.logo} alt={`Logo ${supplier.name}`} fill sizes="180px" className="object-contain" /></span>
+            <span className="mt-4 inline-flex min-h-9 items-center gap-2 text-xs font-extrabold text-forest-950 group-hover:text-wood-600">Xem mã màu <ArrowRight size={14} aria-hidden="true" /></span>
+          </Link>
         ))}
       </div>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {codes.map((code) => (
-          <article key={code.id} className="min-w-0 border border-slate-200 bg-white">
-            <Link href={code.href} className="group block">
-              <span className="relative block aspect-[4/3] overflow-hidden bg-slate-100">
-                <Image src={code.image} alt={`Mẫu bề mặt ${brandName} mã ${code.code}`} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover transition-transform duration-200 group-hover:scale-[1.025]" />
-              </span>
-              <span className="block p-4">
-                <span className="block text-xs font-semibold text-slate-500">{brandName} · {code.material}</span>
-                <strong className="mt-2 block text-base text-slate-950">{code.name === code.code || code.name.startsWith(`${code.code} `) ? code.name : `${code.code} · ${code.name}`}</strong>
-                <span className="mt-3 block text-sm font-bold text-slate-800 underline underline-offset-4">Xem mã &amp; hỏi giá</span>
-              </span>
-            </Link>
-          </article>
-        ))}
+      <div className="mt-10 flex flex-wrap items-center justify-between gap-4">
+        <h3 className="font-display text-xl font-extrabold text-forest-950 sm:text-2xl">Các màu nổi bật</h3>
+        <Link href="/catalogue/" prefetch={false} className="inline-flex min-h-11 items-center gap-2 text-sm font-extrabold text-wood-600">Tìm mã khác <ArrowRight size={16} aria-hidden="true" /></Link>
       </div>
-      <p className="mt-4 text-xs leading-6 text-slate-500">Ảnh mẫu giúp tra cứu mã; màu hiển thị có thể khác mẫu vật liệu thực tế. Gửi mã để kiểm tra quy cách và tồn kho.</p>
+      <div className="color-code-marquee mt-4" aria-label="Các mã màu nổi bật">
+        <div className="color-code-marquee-track">
+          {[...codes, ...codes].map((code, index) => {
+            const duplicate = index >= codes.length;
+            const supplier = code.id.startsWith("thanh-thuy:") ? suppliers[0] : suppliers[1];
+            return (
+              <Link key={`${code.id}-${index}`} href={code.href} aria-hidden={duplicate || undefined} tabIndex={duplicate ? -1 : undefined} className="group color-code-marquee-card rounded-lg">
+                <span className="relative block aspect-[4/3] w-full overflow-hidden bg-[#edf1ec]"><Image src={code.image} alt={duplicate ? "" : `Mã màu ${code.code} ${code.name}`} fill sizes="200px" className="object-cover transition-transform duration-300 group-hover:scale-[1.025]" /></span>
+                <span className="flex items-center justify-between gap-3 pt-3"><strong className="min-w-0 text-sm leading-5 text-forest-950">{code.name}</strong><Image src={supplier.logo} alt={duplicate ? "" : supplier.name} width={72} height={24} className="h-6 w-[72px] shrink-0 object-contain object-right" /></span>
+                <span className="mt-1 block text-xs text-slate-600">{code.code} · {code.material}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+      <p className="mt-4 text-xs leading-6 text-slate-600">Ảnh mẫu giúp tra cứu mã; màu hiển thị có thể khác mẫu vật liệu thực tế. Gửi mã để kiểm tra quy cách và tồn kho.</p>
     </div>
   );
 }
