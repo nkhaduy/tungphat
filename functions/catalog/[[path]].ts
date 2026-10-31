@@ -1,34 +1,30 @@
-const REPRESENTATIVE_WEBP =
-  "UklGRioAAABXRUJQVlA4IB4AAABwAQCdASoBAAEAAUAmJZwCdAF1AAD++9nAa8sAAAA=";
-
-const mediaHeaders = {
-  "Cache-Control": "public, max-age=604800, stale-while-revalidate=86400",
-  "Content-Type": "image/webp",
-  "X-Content-Type-Options": "nosniff",
-};
-
-function representativeMedia(): ArrayBuffer {
-  const decoded = atob(REPRESENTATIVE_WEBP);
-  const media = new ArrayBuffer(decoded.length);
-  const bytes = new Uint8Array(media);
-
-  for (let index = 0; index < decoded.length; index += 1) {
-    bytes[index] = decoded.charCodeAt(index);
+/** Preserve legacy catalogue URLs without buffering or substituting media. */
+export const onRequest: PagesFunction = async ({ request }) => {
+  if (request.method !== "GET" && request.method !== "HEAD") {
+    return new Response(null, { status: 405, headers: { Allow: "GET, HEAD" } });
   }
 
-  return media;
-}
+  const incoming = new URL(request.url);
+  const upstream = new URL("https://cms.mdftungphat.com");
+  upstream.pathname = `/media${incoming.pathname}`;
+  upstream.search = incoming.search;
+  const headers = new Headers();
+  for (const name of ["accept", "range", "if-range", "if-none-match", "if-modified-since"]) {
+    const value = request.headers.get(name);
+    if (value) headers.set(name, value);
+  }
 
-export const onRequest: PagesFunction<CloudflareEnv> = async ({ request }) => {
-  if (request.method !== "GET" && request.method !== "HEAD") {
-    return new Response(null, {
-      status: 405,
-      headers: { Allow: "GET, HEAD" },
+  try {
+    return await fetch(new Request(upstream, {
+      method: request.method,
+      headers,
+      redirect: "manual",
+      signal: AbortSignal.timeout(15000),
+    }));
+  } catch {
+    return new Response("Media origin unavailable", {
+      status: 502,
+      headers: { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" },
     });
   }
-
-  return new Response(request.method === "HEAD" ? null : representativeMedia(), {
-    status: 200,
-    headers: mediaHeaders,
-  });
 };

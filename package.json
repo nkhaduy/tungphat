@@ -7,17 +7,17 @@
     "sync:payload-build-data": "tsx scripts/sync-payload-build-data.ts",
     "prebuild": "npm run sync:payload-build-data && node scripts/sync-trustindex-reviews.mjs && node scripts/prepare-indexnow-key.mjs && node scripts/generate-material-reference.mjs && node scripts/generate-cnc-preflight.mjs && tsx scripts/catalog-suppliers/build-browser-index.ts",
     "build": "npm run validate:content && npm run images:check && node ./node_modules/next/dist/bin/next build",
-    "postbuild": "node scripts/clean-empty-collection-routes.mjs && node scripts/clean-export-image-sources.mjs && node scripts/check-static-output.mjs && npm run check:media-cdn-output && node scripts/check-cloudflare-pages-capacity.mjs && JS_BUDGET_OUTPUT=reports/phase6-js-budgets.json tsx scripts/check-js-budgets.ts && node scripts/check-sitemap-output.mjs && node scripts/check-metadata-output.mjs && tsx scripts/audit-seo-output.ts && CATALOGUE_QUALITY_OUTPUT=reports/phase6-catalogue-quality.json tsx scripts/audit-catalogue-quality.ts && npm run audit:catalogue-seo && node scripts/validate-structured-data.mjs",
+    "postbuild": "node scripts/clean-empty-collection-routes.mjs && node scripts/clean-export-image-sources.mjs && node scripts/check-static-output.mjs && npm run check:media-cdn-output && node scripts/check-cloudflare-pages-capacity.mjs && JS_BUDGET_OUTPUT=reports/phase6-js-budgets.json tsx scripts/check-js-budgets.ts && node scripts/check-sitemap-output.mjs && node scripts/check-metadata-output.mjs && tsx scripts/audit-seo-output.ts && CATALOGUE_QUALITY_OUTPUT=reports/phase6-catalogue-quality.json tsx scripts/audit-catalogue-quality.ts && npm run audit:catalogue-seo && node scripts/validate-structured-data.mjs && node scripts/prepare-cloudflare-artifact.mjs",
     "start": "serve out -l 4173",
-    "lint": "eslint app components lib scripts tests e2e eslint.config.mjs next.config.mjs postcss.config.mjs vitest.config.ts playwright.config.ts --max-warnings=0",
+    "lint": "eslint app components lib scripts tests e2e functions eslint.config.mjs next.config.mjs postcss.config.mjs vitest.config.ts playwright.config.ts --max-warnings=0",
     "pretypecheck": "npm run sync:payload-build-data",
     "typecheck": "tsc --noEmit",
     "pretest": "npm run sync:payload-build-data",
     "test": "vitest run --maxWorkers=2",
-    "verify": "npm run lint && npm run typecheck && npm test && npm run catalog:suppliers:validate && npm run catalog:suppliers:test && npm --prefix payload-cms run verify && npm run build && npm run validate:links && git diff --check",
-    "deploy:site": "npm run verify && vercel --prod",
-    "deploy:cloudflare:preview": "npm run verify && wrangler pages deploy out --project-name tungphat-website --branch cloudflare-migration",
-    "deploy:cloudflare": "npm run verify && wrangler pages deploy out --project-name tungphat-website --branch main",
+    "verify": "npm run lint && npm run typecheck && npm run typecheck:edge && npm test && npm run catalog:suppliers:validate && npm run catalog:suppliers:test && npm --prefix payload-cms run verify && npm run build && npm run validate:links && git diff --check",
+    "deploy:site": "npm run deploy:cloudflare",
+    "deploy:cloudflare:preview": "CLOUDFLARE_PREVIEW=1 npm run verify && wrangler pages deploy out --project-name tungphat --branch cloudflare-migration",
+    "deploy:cloudflare": "npm run verify && wrangler pages deploy out --project-name tungphat --branch main",
     "deploy:cms": "npm --prefix payload-cms run deploy:verified",
     "test:coverage": "vitest run --maxWorkers=2 --coverage",
     "test:e2e": "NEXT_PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA NEXT_PUBLIC_ANALYTICS_TEST_MODE=1 npm run build && playwright test --reporter=list",
@@ -105,20 +105,21 @@
     "catalog:suppliers:media:full-sync": "tsx scripts/catalog-suppliers/full-media-sync.ts --upload",
     "catalog:suppliers:search-index": "tsx scripts/catalog-suppliers/build-search-index.ts",
     "catalog:suppliers:color-codes": "tsx scripts/catalog-suppliers/build-color-code-index.ts",
-    "catalog:suppliers:sync:payload": "npm run catalog:suppliers:validate && npm run catalog:suppliers:search-index && npm run catalog:suppliers:color-codes && npm --prefix payload-cms run sync:suppliers:production"
+    "catalog:suppliers:sync:payload": "npm run catalog:suppliers:validate && npm run catalog:suppliers:search-index && npm run catalog:suppliers:color-codes && npm --prefix payload-cms run sync:suppliers:production",
+    "typecheck:edge": "tsc --project tsconfig.cloudflare.json"
   },
   "dependencies": {
     "lucide-react": "^1.24.0",
-    "next": "15.5.21",
+    "next": "15.5.28",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
-    "zod": "^4.4.3"
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
-    "@cloudflare/workers-types": "^5.20260718.1",
+    "@cloudflare/workers-types": "^5.20261031.1",
     "@eslint/eslintrc": "^3.3.6",
     "@noble/hashes": "^2.2.0",
     "@playwright/test": "^1.61.1",
@@ -129,15 +130,15 @@
     "@vitest/coverage-v8": "^4.1.10",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.39.5",
-    "eslint-config-next": "15.5.21",
+    "eslint-config-next": "15.5.28",
     "postcss": "^8.5.20",
     "serve": "^14.2.6",
-    "sharp": "^0.35.3",
+    "sharp": "0.35.5",
     "tailwindcss": "^3.4.16",
     "tsx": "^4.23.1",
     "typescript": "^5.9.3",
     "vitest": "^4.1.10",
-    "wrangler": "^4.112.0",
+    "wrangler": "^4.156.0",
     "yaml": "^2.9.0"
   },
   "engines": {
@@ -145,6 +146,7 @@
   },
   "overrides": {
     "postcss": "$postcss",
-    "sharp": "$sharp"
+    "sharp": "$sharp",
+    "source-map-js": "1.2.2"
   }
 }

@@ -1,0 +1,22 @@
+# Cloudflare exit execution checkpoint
+
+Started 2026-10-31 (Asia/Ho_Chi_Minh). User explicitly authorizes implementation, push, deployment and DNS cutover; never delete Vercel project, enable paid usage, or destroy production data. Preserve existing unrelated `quote-app/` and `data/imports/ba-thanh/validation-report.json` changes.
+
+Checkpoint: `migration/pre-cloudflare-exit-20261031` = `5b1b324`. origin/main is identical. Local credentials: GitHub authenticated; Wrangler OAuth authenticated, zone read but no DNS write scope. Public DNS is Tenten; no matching Cloudflare zone in account. Apex A 216.198.79.1; www CNAME d69b5815ccf0cf8d.vercel-dns-017.com. CMS/CDN already Cloudflare Pages gateway → Payload Worker → D1/R2. RDAP registrar GMO/Onamae (IANA 49), not Vercel. Read-only evidence is in ignored reports/cloudflare-exit/ (no secret values).
+
+Architecture: frontend Next 15.5.21 static export, images unoptimized, no application server required; existing tungphat-website Pages project domains are deactivated, old deployment 2026-09-27. Existing public/_redirects has unsupported external 200 proxy requiring a verified replacement. Existing tests depend on vercel.json. Payload uses Next 16.2.11, Payload 3.88.0, OpenNext. Cloudflare UI confirms Workers Free 10ms CPU/100k requests/day; an existing CMS resource-limit error is visible in a browser tab. Verify actual CMS runtime and compressed size before declaring Free suitable. Never silently switch billing or replace CMS architecture.
+
+Plan:
+- [x] Capture git/DNS/registrar/access checkpoint.
+- [ ] Complete baseline sitemap crawl, media URLs, screenshot and payload measurements.
+- [ ] Inspect Cloudflare live projects/settings/bindings/usage; Vercel service and environment names.
+- [ ] Preserve static frontend and current CMS/media architecture; use Pages free static delivery. Evaluate exact Free blockers.
+- [ ] Replace Vercel deployment/config references and test coupling; preserve all redirects/proxy semantics, preview noindex and canonical host behavior.
+- [ ] Audit source assets and hashes; delete only proven unused/duplicate assets with recoverable Git history; never delete R2 objects.
+- [ ] Set up GitHub validation → preview → production pipeline using same verified artifact; no duplicate Git build pipelines.
+- [ ] Run npm run verify, representative browser regression and full URL/media checks on preview.
+- [ ] Cut over only with complete DNS backup and DNS/zone access, then verify production. DNS access question is pending asynchronously.
+- [ ] Produce INFRA_AUDIT.md, ASSET_CLEANUP_REPORT.md, CLOUDFLARE_MIGRATION_REPORT.md, VERCEL_DELETION_CHECKLIST.md, Cloudflare-only recovery.
+- [ ] Commit/push reviewed migration files; leave user changes untouched. Final status must be NOT READY unless every acceptance gate has evidence.
+
+Checkpoint 2026-10-31 21:35 ICT: full final npm verify exited 0; proxy regressions pass; root prod dependency audit 0 vulnerabilities. Corrected mobile image test: naturalWidth is density-corrected, assert complete+>1 rather than encoded width. Full browser run against local Pages is in progress with several historical expectation/API failures; do not claim full browser PASS. D1 export restored locally, SHA and 97 tables in report. R2 backup running via local-only read-only remote binding, no deletion endpoint. One pre-existing missing image restored with exact manifest hash. CPU sample and R2 >10GB are Free blockers; DNS access question unanswered. Preparing branch push for existing Cloudflare Git integration (tungphat project, not tungphat-website). Vercel branch deploy disabled only for codex/cloudflare-* to avoid duplicate preview; main/live untouched.
