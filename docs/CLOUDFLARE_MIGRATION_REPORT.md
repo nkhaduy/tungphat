@@ -4,7 +4,7 @@
 
 **NOT READY TO DELETE VERCEL**
 
-Production apex and www still route to Vercel. Tenten DNS/registrar access and a complete zone export are unavailable in this session. The current CMS does not demonstrate reliable operation within Workers Free's CPU budget, and the existing R2 bucket exceeds the 10 GB included allowance. No billing upgrade, destructive data migration, DNS change or Vercel deletion has been performed.
+Production apex and www still route to Vercel. Authenticated Tenten DNS access and a complete six-record backup are now available. This session does not expose registrar nameserver editing; no supported apex delegation/cutover has occurred. The current CMS does not demonstrate reliable operation within Workers Free's CPU budget, and the existing R2 bucket exceeds the 10 GB included allowance. No billing upgrade, destructive data migration, DNS change or Vercel deletion has been performed.
 
 This is an implementation checkpoint with working Cloudflare preparation, not a completed production migration. Remaining operations must use the acceptance checklist below; a preview that loads is not deletion readiness.
 
@@ -57,11 +57,11 @@ Mobile hero: PNG 1,385,310 bytes → WebP 86,294 bytes at 768px or 195,980 bytes
 
 Baseline: all **2,652 sitemap URLs 200**, **2,836 unique asset URLs**, one pre-existing missing swatch now restored with matching SHA-256. Baseline visible text, metadata/canonical/robots/schema counts and media references are saved in ignored `reports/cloudflare-exit/`.
 
-Local final `npm run verify` exited 0 after the source changes: public lint/types/tests, edge types, all supplier validation/tests, Payload integration/build/dry-run, static build, metadata/schema/catalogue/JS budgets, **239,672 internal links**, **2,652 valid sitemap URLs**. Regression results, remote Git build, preview deployment ID, full candidate comparison and Lighthouse follow-up are appended after they finish.
+Local final `npm run verify` exited 0 after the source changes: public lint/types/tests, edge types, all supplier validation/tests, Payload integration/build/dry-run, static build, metadata/schema/catalogue/JS budgets, **239,672 internal links**, **2,652 valid sitemap URLs**. Remote Git build, preview ID, full candidate comparison and Lighthouse results are recorded below.
 
 Proxy regression first failed against the fabricated image implementation; all four cases pass after replacement (actual bytes, range/status, missing-image 404, credential stripping/HEAD/write rejection). Mobile browser regression first failed on the production PNG; it checks modern-format selection and payload after the fix. Responsive `naturalWidth` is density-corrected, so it must not be interpreted as raw encoded pixels.
 
-One baseline mobile Lighthouse lab run: **74**, LCP **11,234 ms**, FCP **1,087 ms**, TBT **12 ms**, CLS **0**, transferred **2,762,852 bytes**. Equivalent Cloudflare preview measurement is still required; local-vs-production differences must be labelled and cannot prove field improvement. No field INP/p75 improvement is claimed.
+One baseline mobile Lighthouse lab run: **74**, LCP **11,234 ms**, FCP **1,087 ms**, TBT **12 ms**, CLS **0**, transferred **2,762,852 bytes**. Cloudflare preview lab results are recorded below; localhost timing is labelled separately and cannot prove field improvement. No field INP/p75 improvement is claimed.
 
 ## Cloudflare-only deployment
 
@@ -97,9 +97,9 @@ The pre-migration code tag is `migration/pre-cloudflare-exit-20261031`; this tag
 
 D1 backup: ignored `backups/cloudflare-exit-20261031/d1.sql`, **17,353,860 bytes**, SHA-256 **a105ba471b887b847aab43780788ef06c0bdb6c4423f745f86492802a9a89572**. A local SQLite restore passed integrity check and has 97 tables. It contains private CMS data: keep it out of Git and access-controlled. Store an independently controlled additional backup copy before deleting any infrastructure.
 
-Media backup: `backups/cloudflare-exit-20261031/media/` and `media-manifest.json`. Completion, total bytes and verification failures must be recorded before calling this a usable full backup. The missing swatch restored after inventory is also retained at `local-media/cloudflare-exit/p-2052-g-swatch.webp`; include it in the final backup manifest.
+Media backup: `backups/cloudflare-exit-20261031/media/` and `media-manifest.json`. All inventory objects were verified and totals are recorded below. The missing swatch restored after inventory is retained at `local-media/cloudflare-exit/p-2052-g-swatch.webp` and has been included in the final backup manifest.
 
-Public DNS snapshot: `reports/cloudflare-exit/dns-public-before.json`; registry snapshot: `rdap-before.json`. A **full** Tenten zone export is still missing. Never replace a zone using only the public snapshot. Before cutover, store the complete zone export in the controlled backup alongside the eventual Cloudflare zone ID, nameservers, records and redirect rule export.
+Public DNS snapshot: `reports/cloudflare-exit/dns-public-before.json`; registry snapshot: `rdap-before.json`. The full authenticated six-record Tenten table is saved at `docs/evidence/tenten-zone-before.json` and in the controlled backup. This UI does not offer a native zone-export action or registrar nameserver controls. Never replace a zone using only public DNS guesses. Before cutover, store the complete zone export in the controlled backup alongside the eventual Cloudflare zone ID, nameservers, records and redirect rule export.
 
 Required public build variable names (values belong in Cloudflare configuration): `PAYLOAD_PUBLIC_URL`, `NEXT_PUBLIC_FORMS_API_BASE`, `NEXT_PUBLIC_ANALYTICS_API_BASE`, `NEXT_PUBLIC_MEDIA_BASE_URL`, `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, optional `NEXT_PUBLIC_GA_MEASUREMENT_ID`, `NEXT_PUBLIC_PROCESS_VIDEO_URL`, `INDEXNOW_KEY`. Cloudflare build controls: `NODE_VERSION=22`, `SKIP_DEPENDENCY_INSTALL=1`.
 
@@ -117,4 +117,61 @@ Recovery sequence:
 
 ## Remaining acceptance gates
 
-See [VERCEL_DELETION_CHECKLIST.md](VERCEL_DELETION_CHECKLIST.md). Blocking work includes full DNS access/backup and supported apex cutover; exact Free budget/reliability remediation without losing media or CMS functionality; staging/production regression closure; Cloudflare-only release/rollback evidence and secure secret escrow. No Vercel disconnection/deletion is appropriate yet.
+See [VERCEL_DELETION_CHECKLIST.md](VERCEL_DELETION_CHECKLIST.md). Blocking work includes registrar delegation control and supported apex cutover; exact Free budget/reliability remediation without losing media or CMS functionality; staging/production regression closure; Cloudflare-only release/rollback evidence and secure secret escrow. No Vercel disconnection/deletion is appropriate yet.
+
+## Verified checkpoint results
+
+- Source checkpoint: `d7eee5e` on `codex/cloudflare-exit`, pushed to GitHub. Configuration correction: `2385493`, also pushed. `main` remains `5b1b324`; no production promotion occurred.
+- Independent Cloudflare Git build attempt `cfe58000-c138-44c2-aa89-67235d8d8ac8` cloned GitHub successfully but failed before dependencies: the Pages build validator rejects `account_id` in Wrangler. The correction removes it from Wrangler; the explicit account stays in `config/cloudflare-pages-project.json`. Retry `d496182d-e562-4a24-a43d-3aadc33b6f6a` succeeded after its clean build and verify gate.
+- Final local verify: **139 public test files / 708 tests**, **44 supplier test files / 313 tests**, **9 CMS integration files / 28 tests**, all passed. Focused post-configuration tests: **10 passed**. Pages Function compilation passed. Root production dependency audit: **0 vulnerabilities**.
+- Full browser suite against local Pages: **45 passed / 29 failed**. It is NOT a passing production regression result. Failures include inherited homepage taxonomy/navigation selectors, contrast/target-size findings, and obsolete same-origin API assumptions (static Pages returns 405 for those old requests). Analytics tests also expect a dedicated test-mode build. Three selected homepage content/taxonomy/accessibility failures reproduced on the unchanged Vercel production baseline. Not every failure has been classified; unresolved cases remain gates.
+- Mobile hero regression: passed after the format change. All **33 concrete Pages redirect rules** passed local status/location checks. Actual local media proxy returned **7,894 bytes with the manifest SHA-256**; a missing media path returned **404**.
+- Full local candidate crawl: **2,652/2,652 routes 200**. Titles, descriptions, canonical URLs, robots and schema counts matched baseline on every route. Five visible-text hashes differ: homepage, article listing and the three article detail pages. Their text comes from the current CMS article snapshot versus the frozen Vercel export; no catalogue or article copy was authored in this change. This was isolated to stale local generated fetch cache; the fresh Cloudflare Git build matches all baseline text, as documented below.
+- Initial R2 backup: **11,223 objects / 10,374,930,514 bytes**, all size/ETag checks passed, **0 failures**. Including the restored missing swatch: **11,224 files / 10,374,938,408 bytes**. Backup manifest SHA-256: `290a7b597495920e931f4efc4b648fd517b57fd18eb46b4d71f35e1e7b2a9c51`. Full object list and per-object SHA-256 are in the ignored backup manifest. No remote object was deleted.
+- Local mobile Lighthouse after optimization: score **90**, LCP **3,554 ms**, transfer **1,318,424 bytes**, CLS **0**. This is a localhost lab observation. Its score/timing cannot be treated as a controlled comparison with the production baseline; a remote Cloudflare run is required.
+- Compressed public baseline is committed at `docs/evidence/cloudflare-baseline.json.gz` (187,285 bytes), SHA-256 `58dee5d4e942ee630db41cebe9c2f298384e19e746fbd27d742ae8ad3a12123e`. It includes all route signals, build totals and public DNS snapshot, without secrets. Decode with `gzip -dc docs/evidence/cloudflare-baseline.json.gz`.
+
+The catalogue index still contains **2,910 verified codes**: Thanh Thuỳ 342, Ba Thanh 373, An Cường 2,195. Live CMS API counts observed during audit: 6 product documents, 3 articles, 0 project documents. Product families, colour records and searchable codes are distinct counts; do not equate them. Migration source changes do not modify supplier/catalogue records.
+
+## Remote Cloudflare release verification
+
+Cloudflare Git preview **d496182d-e562-4a24-a43d-3aadc33b6f6a**, commit **2385493387ab21b187bddd8762b82b79670a184a**, deployed successfully at **2026-10-31 14:47:48 UTC** (21:47 ICT). URL: **https://d496182d.tungphat-i9i.pages.dev/**. This was a clean GitHub checkout and Cloudflare build running the mandatory verify gate, independent of local `.next`, Vercel credentials, deployment history and artifacts.
+
+Remote crawl: **2,652/2,652 URLs 200**, **zero differences** against baseline in titles, descriptions, canonical URLs, robots, structured-data count **and visible-text hashes**. This closes the earlier five local text differences for the released candidate. Local Next `force-cache` data was stale: the independently restored D1 article titles match both the fresh Git build and production baseline. Before a manual release from an existing checkout, clear only generated Next fetch cache (or use a clean checkout); do not seed releases from old output folders.
+
+```sh
+# In the canonical repository only; this removes generated fetch cache.
+node -e 'require("node:fs").rmSync(".next/cache/fetch-cache", {recursive:true, force:true})'
+npm run verify
+```
+
+Remote browser regression subset: **14/14 passed**, covering mobile hero, normalized exact-code search, aliases for Ba Thanh/Thanh Thuỳ, supplier counts, verified image, pagination, empty results, cards, desktop/tablet/mobile search placement, Ba Thanh material collections, no-JavaScript usefulness and mobile overflow. The wider historical suite's 29 failures remain recorded at `docs/evidence/cloudflare-browser-failures.json`; the focused pass does not replace its unresolved acceptance gates.
+
+With every browser request to a Vercel hostname intercepted and aborted, eight representative preview routes returned 200 with exactly one H1; exact-code search navigated to the expected detail page. No Vercel request was attempted and no browser page error occurred. Contact page retained 5 phone links, 4 Zalo links and 5 map links; no phone call, Zalo message or live lead submission was sent. First simulation attempt pressed Enter before asynchronous results loaded; the corrected runner waits for the visible result, matching the passing journey test.
+
+Preview HTTPS is valid, default missing page returns **404**, `/ma-mau/` returns **308**, and `X-Robots-Tag: noindex, nofollow, noarchive` is present. **31 new/changed first-party asset URLs** returned 200; unchanged CDN references reuse the full baseline availability check, with the missing swatch separately restored and verified. Desktop/mobile screenshots are `output/playwright/cloudflare-{desktop,mobile}.png`.
+
+| Mobile Lighthouse, one lab run per host | Vercel baseline | Cloudflare preview |
+| --- | ---: | ---: |
+| Performance score | 74 | 94 |
+| FCP | 1,087 ms | 1,442 ms |
+| LCP | 11,234 ms | 2,554 ms |
+| TBT | 12 ms | 0 ms |
+| CLS | 0 | 0 |
+| Transferred bytes | 2,762,852 | 1,230,618 |
+
+Observed transfer falls **1,532,234 bytes (55.5%)**; FCP is 355 ms higher in the single Cloudflare run while still within the good lab threshold. Different networks/cache states and single samples prevent a statistical claim; no field CWV/INP gain is asserted. The image resource saving is independently measured. No meaningful JS/CSS payload regression was found (+911 JS bytes, unchanged CSS).
+
+Authenticated Tenten backup now includes **all six configured records**, with no configured MX/SPF/DKIM/DMARC/CAA. Registrar remains independent of Vercel. `docs/evidence/cloudflare-zone-target-plan.json` records the **unapplied** Free zone target, exact preserved records, HTTPS and path/query-preserving www redirect. No nameserver, DNS record, zone redirect rule or production domain attachment was changed.
+
+The CMS production dependency audit separately reports **25 findings (3 critical, 10 high, 11 moderate, 1 low)**. This is an existing CMS issue, distinct from the patched public app's zero production dependency findings. No untested CMS upgrade or billing change was pushed to its live Worker.
+
+**Final status remains NOT READY TO DELETE VERCEL.** Static frontend independence is demonstrated on Cloudflare preview; the complete system's Free, production cutover, full regression and production rollback gates are not satisfied. Deleting Vercel now would break apex/www.
+
+Vercel Git settings UI also confirms **no deploy hooks**. Its Git connection remains active intentionally until production cutover passes. No account/project deletion or integration disconnection has been performed.
+
+Final live production check (before any DNS change): apex 200 on Vercel; www 308 preserves `/van-mdf/?audit=1`; CMS health 200; deliberately invalid contact POST rejects with 400 `validation_failed` and the correct production CORS origin, without creating a lead. The OPTIONS preflight returned **503**, so the real CMS/form reliability gate remains failed. These are pre-cutover observations, not post-cutover validation.
+
+The media backup was also checked on disk: **11,224 distinct case-normalized paths**, **11,224 files**, exact size sum **10,374,938,408 bytes**, matching the hash manifest. Summary evidence is versioned at `docs/evidence/cloudflare-validation-summary.json`.
+
+Production promotion is deliberately blocked by the user's acceptance gate: unresolved Free CPU/storage requirements, live preflight failure, historical browser failures, missing registrar delegation control and no verified Cloudflare production rollback/cutover. A supported Free architecture needs these constraints resolved while preserving all CMS and catalogue functions. No paid workaround was activated.

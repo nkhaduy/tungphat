@@ -1,0 +1,41 @@
+{
+  "scope": "Local Pages full regression; production artifact without dedicated analytics test mode",
+  "passed": 45,
+  "failed": 29,
+  "baselineReproductions": [
+    "homepage structure expectations",
+    "homepage product taxonomy expectations",
+    "homepage contrast audit"
+  ],
+  "failures": [
+    "e2e/analytics.spec.ts:5:5 › tracks App Router pages, content and CTA once, then honors opt-out ",
+    "e2e/ba-thanh-accessibility.spec.ts:12:7 › homepage has no serious accessibility violations ",
+    "e2e/ba-thanh-accessibility.spec.ts:12:7 › Ba Thanh category has no serious accessibility violations ",
+    "e2e/ba-thanh-accessibility.spec.ts:26:5 › homepage hero content stays readable before hydration ",
+    "e2e/site.spec.ts:121:5 › shared header is transparent over the first section and solid after scroll ",
+    "e2e/site.spec.ts:162:5 › representative routes expose breadcrumbs, intact images, and no horizontal overflow ",
+    "e2e/site.spec.ts:284:5 › homepage có đủ cấu trúc nội dung chính và chỉ một H1 ────",
+    "e2e/site.spec.ts:303:5 › homepage product taxonomy exposes core materials and catalogue surfaces ",
+    "e2e/site.spec.ts:318:5 › homepage exposes the exact 301 catalogue landing route ──",
+    "e2e/site.spec.ts:347:5 › homepage marquee stays horizontal without causing vertical movement ",
+    "e2e/site.spec.ts:368:5 › mobile navigation contract supports focus, Escape, and a solid surface ",
+    "e2e/site.spec.ts:449:5 › shared navigation links meet the 44px target contract ──",
+    "e2e/site.spec.ts:740:5 › homepage không có lỗi accessibility nghiêm trọng ───────",
+    "e2e/site.spec.ts:775:5 › API từ chối origin khác và không lộ stack trace ────────",
+    "e2e/site.spec.ts:788:5 › API trả CORS preflight chính xác cho origin được phép ──",
+    "e2e/site.spec.ts:811:5 › API validation và rate limit hoạt động ─────────────────",
+    "e2e/site.spec.ts:862:5 › API nhận submission idempotent mà không tạo lead lặp ───",
+    "e2e/site.spec.ts:890:5 › payload kiểu SQL injection không làm thay đổi schema ───",
+    "e2e/site.spec.ts:1002:5 › Trustindex review slider renders current source data and remains usable on mobile ",
+    "e2e/supplier-catalogue.spec.ts:7:7 › Mã màu customer journeys › site navigation exposes the public Mã màu experience ",
+    "e2e/supplier-catalogue.spec.ts:147:7 › Mã màu customer journeys › hub Tất cả auto-loads beyond the featured first page ",
+    "e2e/supplier-catalogue.spec.ts:162:7 › Mã màu customer journeys › Thanh Thuỳ exposes edge families and merged Melamine subgroups ",
+    "e2e/supplier-catalogue.spec.ts:219:7 › Mã màu customer journeys › catalogue filters expose clear selected states and supplier filtering ",
+    "e2e/supplier-catalogue.spec.ts:344:7 › Mã màu customer journeys › detail pages prioritize the code, breadcrumb and local source media ",
+    "e2e/supplier-catalogue.spec.ts:363:7 › Mã màu customer journeys › Thanh Thuỳ Veneer collection exposes the official surface identifier and swatch ",
+    "e2e/supplier-catalogue.spec.ts:381:7 › Mã màu customer journeys › Ba Thanh invalid source media renders an explicit source-missing state ",
+    "e2e/supplier-catalogue.spec.ts:412:7 › Mã màu mobile navigation › mobile menu uses Mã màu and restores background scrolling ",
+    "e2e/thanh-thuy.spec.ts:49:5 › sparse code page is useful but noindex ────────────",
+    "e2e/thanh-thuy.spec.ts:91:5 › mobile catalogue has labels, focus and no horizontal overflow "
+  ]
+}

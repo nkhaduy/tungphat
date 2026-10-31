@@ -24,16 +24,16 @@ Status: migration in progress; production cutover is blocked. The pre-migration 
 | Blob / KV / Postgres / Edge Config | No API/client, connection variable or runtime reference found. Vercel project's Storage UI shows no connected database/store. |
 | Analytics / Speed Insights | No Vercel analytics packages or scripts. Existing Google Analytics and first-party CMS endpoints remain independent. |
 | Edge Functions / serverless / cron | No public Next server functions, middleware, server actions or cron dependency. CMS APIs/background services already live on Cloudflare. |
-| Environment / hooks | Public build inputs use CMS/CDN/Google/Turnstile/IndexNow. No source deploy hook or runtime Vercel secret. UI inventory completed: NEXT_PUBLIC_MEDIA_BASE_URL, INDEXNOW_KEY, NEXT_PUBLIC_GA_MEASUREMENT_ID, NEXT_PUBLIC_PROCESS_VIDEO_URL, NEXT_PUBLIC_TURNSTILE_SITE_KEY, NEXT_PUBLIC_FORMS_API_BASE. Values were not revealed. |
+| Environment / hooks | Public build inputs use CMS/CDN/Google/Turnstile/IndexNow. Vercel Git settings confirms no deploy hooks; no source deploy hook or runtime Vercel secret. UI inventory completed: NEXT_PUBLIC_MEDIA_BASE_URL, INDEXNOW_KEY, NEXT_PUBLIC_GA_MEASUREMENT_ID, NEXT_PUBLIC_PROCESS_VIDEO_URL, NEXT_PUBLIC_TURNSTILE_SITE_KEY, NEXT_PUBLIC_FORMS_API_BASE. Values were not revealed. |
 | DNS / registrar | Tenten nameservers, GMO/Onamae registrar (IANA 49), verified in registry RDAP. Domain expiration 2027-04-15. Registration is independent of Vercel. |
 | Transitive @vercel/og | Next internal package/tracing reference; bundled implementation, not a network/storage account dependency. Do not remove framework internals by vendor name. |
 | vercel.app security exclusions, robots, historical docs | Non-operational references; not dependencies. Historical documents remain evidence. |
 
 ## DNS, HTTPS and email
 
-Nameservers: `ns-a1.tenten.vn`, `ns-a2.tenten.vn`, `ns-a3.tenten.vn`. Cloudflare account `b9ae472cee29c5729ee90ccbb3533f33` currently has no `mdftungphat.com` zone. Wrangler OAuth has zone read, no DNS edit permission. A complete Tenten zone export and registrar access are still required: public DNS queries cannot discover every DKIM selector, TXT record or subdomain.
+Nameservers: `ns-a1.tenten.vn`, `ns-a2.tenten.vn`, `ns-a3.tenten.vn`. Cloudflare account `b9ae472cee29c5729ee90ccbb3533f33` currently has no `mdftungphat.com` zone. Wrangler OAuth has zone read, no DNS edit permission. The user subsequently supplied an authenticated Tenten DNS session. Its unfiltered table contains exactly 6/6 records; all are backed up in docs/evidence/tenten-zone-before.json, including authoritative TTL cross-checks. This DNS-only session does not expose registrar nameserver editing.
 
-Public queries found no apex MX, SPF, CAA or _dmarc record; Google verification TXT is present. This is a snapshot, not proof that no email service exists. Preserve ALL authoritative records during any nameserver migration. Cloudflare Pages requires the apex to be an active zone in the same account; an apex A record pointed at generic Pages IPs is not a supported substitute. No production DNS has been changed.
+Public queries found no apex MX, SPF, CAA or _dmarc record; Google verification TXT is present. The authenticated full table also contains no MX/SPF/DKIM/DMARC/CAA record; all six configured records are captured. Preserve every record during any nameserver migration. Cloudflare Pages requires the apex to be an active zone in the same account; an apex A record pointed at generic Pages IPs is not a supported substitute. No production DNS has been changed.
 
 ## Baseline and evidence
 
@@ -54,3 +54,5 @@ Whole-system Free acceptance is **not established**. The existing CMS used **18â
 R2 inventory: **11,223 objects, 10,374,930,514 payload bytes**, above the 10,000,000,000-byte included storage allowance. At least one object is 30,337,989 bytes, above the Pages 25 MiB file limit. Supplier originals are referenced as provenance and must not be deleted to force a budget claim. No billing upgrade or remote deletion was performed.
 
 Official references checked 2026-10-31: [Pages limits](https://developers.cloudflare.com/pages/platform/limits/), [Workers limits](https://developers.cloudflare.com/workers/platform/limits/), [R2 pricing](https://developers.cloudflare.com/r2/pricing/), [R2 decimal units](https://r2-calculator.cloudflare.com/), [D1 limits](https://developers.cloudflare.com/d1/platform/limits/), [Pages apex requirements](https://developers.cloudflare.com/pages/configuration/custom-domains/), [external proxy restriction](https://developers.cloudflare.com/pages/configuration/redirects/).
+
+Existing CMS browser evidence confirms Cloudflare **Error 1102**, Worker exceeded resource limits, at 2026-10-31 13:28:53 UTC, Ray ID a53301678ade6047. It is historical evidence from the same production Worker, not a claim that every current HTTP 500 has that cause.

@@ -1,17 +1,19 @@
 # Deployment
 
-## Architecture
+Current production apex/www still use Vercel while the Cloudflare exit gates remain blocked. Do not delete the Vercel project. The verified Cloudflare candidate runs at https://d496182d.tungphat-i9i.pages.dev from GitHub commit 2385493. Follow [the migration report](CLOUDFLARE_MIGRATION_REPORT.md) and [deletion checklist](VERCEL_DELETION_CHECKLIST.md) for current evidence and blockers.
 
-- Public static Next.js site: Vercel project `lmskis/tungphat`, production `https://mdftungphat.com`.
-- Payload CMS: Cloudflare Worker `tungphat-payload-cms`, D1 `tungphat-payload-cms`, R2 `tung-phat-media`.
-- CMS hostname: Cloudflare Pages project `tungphat-light-cms-production` forwards `https://cms.mdftungphat.com` to the Worker.
+## Cloudflare deployment path
 
-## Commands
+The default local site command is now `npm run deploy:site` → `npm run deploy:cloudflare`; it never invokes Vercel CLI. Both manual deploy commands run `npm run verify` first. Preview: `npm run deploy:cloudflare:preview`. Target is Pages project `tungphat` (`tungphat-i9i.pages.dev`), account `b9ae472cee29c5729ee90ccbb3533f33`.
 
-`npm run verify` is the mandatory pre-deploy gate. `npm run deploy:site` verifies and deploys the linked Vercel project to production. `npm run deploy:cms` verifies Payload, performs an OpenNext Worker deploy, then deploys the Pages hostname gateway. Neither command migrates D1, synchronizes suppliers, or deletes R2 objects.
+Existing Cloudflare Git integration clones `nkhaduy/tungphat`, installs both npm lockfiles and runs `npm run verify` before deploying `out`. Only main is production; allowed preview branches match `codex/cloudflare-*`. PR CI validates separately and reuses its build artifact for browser tests. GitHub remains the code source; no Vercel credential, hook, CLI or build history is needed for the candidate.
 
-Normal website production is also deployed by Vercel Git Integration from `main`. Do not push `main` until the intended commit passes verification.
+For a manual release from an existing checkout, clear generated `.next/cache/fetch-cache` or use a clean checkout so old cached CMS content cannot enter a release. Do not use old `out` folders as source. Required variable names and exact recovery commands are in the migration report. Account ID is in `config/cloudflare-pages-project.json`; it must not be placed in the Pages Wrangler file because the Pages Git-build validator rejects that field.
 
-After every deploy verify `https://mdftungphat.com`, `https://www.mdftungphat.com`, `https://cms.mdftungphat.com`, `https://cms.mdftungphat.com/api/health`, representative catalogue/detail routes, forms/API behavior, and media responses.
+## Existing CMS and media
 
-Cloudflare Worker secrets are `IP_HASH_SALT`, `PAYLOAD_SECRET`, `PREVIEW_SECRET`, and `TURNSTILE_SECRET_KEY`. Store them only with Cloudflare secret management. Vercel variable names are documented in `.env.example`.
+Payload remains Worker `tungphat-payload-cms`, D1 `tungphat-payload-cms`, R2 `tung-phat-media`; gateway Pages project `tungphat-light-cms-production` serves cms/cdn hostnames. `npm run deploy:cms` runs its verified OpenNext Worker and gateway path. No data migration, supplier synchronization or media deletion is part of a normal deploy.
+
+CMS secrets: `IP_HASH_SALT`, `PAYLOAD_SECRET`, `PREVIEW_SECRET`, `TURNSTILE_SECRET_KEY`. Keep values only in Cloudflare and independent secure escrow. The current CMS Free CPU/reliability and R2 storage budget are unresolved; a passing public static build does not certify them.
+
+After a future authorized production cutover, verify apex/www/CDN/CMS HTTPS, all sitemap routes, metadata/redirects, catalogue images/search, service/contact actions and API behavior. Record DNS, Cloudflare deployment ID and source revision. Localhost or preview alone does not close the production gate.

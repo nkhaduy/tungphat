@@ -19,8 +19,10 @@ The owner must not delete project `lmskis/tungphat` yet. This checklist is the d
 ## Required before deletion
 
 - [ ] Resolve whole-system Free blockers: CMS exceeds the Free CPU budget on sampled requests and has intermittent HTTP 500/503; R2 payload is above 10 GB.
-- [ ] Finish and verify complete R2 backup; keep another independently controlled backup copy and escrow CMS secret values securely.
-- [ ] Obtain Tenten registrar/DNS access; export the FULL authoritative zone including DKIM/selectors/subdomains. Public DNS sampling is not a complete backup.
+- [x] Finish and verify complete R2 backup (11,224 files including restored swatch; no failures).
+- [ ] Keep an additional independently controlled backup copy and escrow CMS secret values securely.
+- [x] Obtain authenticated Tenten DNS access and back up the FULL displayed zone: 6/6 records, no configured email records.
+- [ ] Obtain registrar nameserver editing access; the DNS-only session has no delegation control.
 - [ ] Add the domain to Cloudflare Free in the intended account, reproduce every record, then change nameservers through Tenten. Preserve mail and existing CMS/CDN/baogia records. Handle any DNSSEC delegation deliberately.
 - [ ] Attach apex/www to the chosen Pages project; verify active TLS, apex 200, www permanent redirect preserving path/query and HTTP→HTTPS.
 - [ ] Verify Cloudflare staging and GitHub clean build; compare all 2,652 valid sitemap routes, metadata, structured data, text and media to baseline.
@@ -37,10 +39,10 @@ The owner must not delete project `lmskis/tungphat` yet. This checklist is the d
 | Question | Current answer |
 | --- | --- |
 | Hosting disappears? | **FAIL**: current apex/www DNS still use Vercel. |
-| Build history disappears? | Candidate source/deploy commands use GitHub + Cloudflare; remote Git build still needs final result recorded. |
+| Build history disappears? | **PASS for candidate**: clean GitHub clone, verify and deploy succeeded on Cloudflare preview, commit 2385493. |
 | Image optimizer disappears? | Public images are unoptimized/direct. Catalogue proxy no longer fabricates images. |
 | Vercel storage disappears? | No connected project stores; catalogue lives in Cloudflare D1/R2. |
 | Vercel DNS disappears? | Authoritative DNS is Tenten, but apex/www records still target Vercel. |
-| Vercel environment disappears? | Candidate build uses existing Cloudflare project variables/defaults; clean Git build is the proof gate. |
+| Vercel environment disappears? | **PASS for candidate**: Cloudflare built and deployed without Vercel credentials or artifacts. |
 | Registrar independent? | **PASS**: registry RDAP reports GMO/Onamae IANA 49. |
-| Recover without Vercel? | D1 restore verified; complete media backup, secret escrow, Cloudflare production deployment and DNS cutover remain required. |
+| Recover without Vercel? | D1 local restore and complete media backup verified; secret escrow, a verified Cloudflare production release/rollback and DNS cutover remain required. |

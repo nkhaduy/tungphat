@@ -1,0 +1,255 @@
+{
+  "status": "NOT READY TO DELETE VERCEL",
+  "deployment": {
+    "id": "d496182d-e562-4a24-a43d-3aadc33b6f6a",
+    "url": "https://d496182d.tungphat-i9i.pages.dev",
+    "latest_stage": {
+      "name": "deploy",
+      "started_on": "2026-10-31T14:46:56.140961Z",
+      "ended_on": "2026-10-31T14:47:48.655636Z",
+      "status": "success"
+    },
+    "stages": [
+      {
+        "name": "queued",
+        "started_on": "2026-10-31T14:39:33.481413Z",
+        "ended_on": "2026-10-31T14:39:33.488274Z",
+        "status": "success"
+      },
+      {
+        "name": "initialize",
+        "started_on": "2026-10-31T14:39:33.488274Z",
+        "ended_on": "2026-10-31T14:39:34.704804Z",
+        "status": "success"
+      },
+      {
+        "name": "clone_repo",
+        "started_on": "2026-10-31T14:39:34.704804Z",
+        "ended_on": "2026-10-31T14:39:51.231288Z",
+        "status": "success"
+      },
+      {
+        "name": "build",
+        "started_on": "2026-10-31T14:39:51.231288Z",
+        "ended_on": "2026-10-31T14:46:56.140961Z",
+        "status": "success"
+      },
+      {
+        "name": "deploy",
+        "started_on": "2026-10-31T14:46:56.140961Z",
+        "ended_on": "2026-10-31T14:47:48.655636Z",
+        "status": "success"
+      }
+    ],
+    "deployment_trigger": {
+      "type": "github:push",
+      "metadata": {
+        "branch": "codex/cloudflare-exit",
+        "commit_hash": "2385493387ab21b187bddd8762b82b79670a184a",
+        "commit_message": "fix: use Pages-compatible Wrangler configuration",
+        "commit_dirty": false
+      }
+    }
+  },
+  "baseline": {
+    "origin": "https://mdftungphat.com",
+    "checkedAt": "2026-10-31T14:18:55.719Z",
+    "pages": 2652,
+    "statuses": {
+      "200": 2652
+    },
+    "assets": 2836,
+    "assetErrors": [
+      {
+        "url": "https://cdn.mdftungphat.com/catalog/ba-thanh/laminate/p-2052-g-swatch.webp",
+        "status": 404,
+        "bytes": 0,
+        "type": "text/plain;charset=UTF-8",
+        "location": null
+      }
+    ],
+    "htmlBytes": 297927579
+  },
+  "remoteParity": {
+    "routes": 2652,
+    "seoMismatches": [],
+    "visibleTextDifferences": [],
+    "statuses": {
+      "200": 2652
+    }
+  },
+  "remoteFocusedBrowser": {
+    "passed": 14,
+    "failed": 0
+  },
+  "historicalFullBrowser": {
+    "passed": 45,
+    "failed": 29
+  },
+  "vercelBlockedBrowser": {
+    "results": [
+      {
+        "path": "/",
+        "status": 200,
+        "h1": 1
+      },
+      {
+        "path": "/van-mdf/",
+        "status": 200,
+        "h1": 1
+      },
+      {
+        "path": "/catalogue/",
+        "status": 200,
+        "h1": 1
+      },
+      {
+        "path": "/catalogue/ba-thanh/melamine/bt99/",
+        "status": 200,
+        "h1": 1
+      },
+      {
+        "path": "/catalogue/thanh-thuy/melamine/301/",
+        "status": 200,
+        "h1": 1
+      },
+      {
+        "path": "/gia-cong-cnc/",
+        "status": 200,
+        "h1": 1
+      },
+      {
+        "path": "/lien-he/",
+        "status": 200,
+        "h1": 1
+      },
+      {
+        "path": "/bai-viet/",
+        "status": 200,
+        "h1": 1
+      }
+    ],
+    "contact": {
+      "phone": 5,
+      "zalo": 4,
+      "map": 5
+    },
+    "searchResult": "https://d496182d.tungphat-i9i.pages.dev/catalogue/an-cuong/melamine/mfc-ms-465-sc04/",
+    "blocked": [],
+    "errors": []
+  },
+  "remoteRouting": {
+    "redirects": 33,
+    "failures": [],
+    "media": {
+      "status": 200,
+      "bytes": 7894,
+      "sha256": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e"
+    }
+  },
+  "newAssets": {
+    "newAssets": 31,
+    "failed": []
+  },
+  "d1Backup": {
+    "bytes": 17353860,
+    "sha256": "a105ba471b887b847aab43780788ef06c0bdb6c4423f745f86492802a9a89572",
+    "integrity": "ok",
+    "tables": 97
+  },
+  "r2Backup": {
+    "checkedAt": "2026-10-31T14:37:44.496Z",
+    "objects": 11224,
+    "bytes": 10374938408,
+    "failed": [],
+    "manifestSha256": "290a7b597495920e931f4efc4b648fd517b57fd18eb46b4d71f35e1e7b2a9c51"
+  },
+  "backupFilesystem": {
+    "files": 11224,
+    "bytes": 10374938408,
+    "manifestFiles": 11224,
+    "manifestBytes": 10374938408,
+    "caseNormalizedPaths": 11224,
+    "match": true
+  },
+  "productionFinalChecks": [
+    {
+      "url": "https://mdftungphat.com/",
+      "method": "GET",
+      "status": 200,
+      "location": null,
+      "server": "Vercel",
+      "robots": null,
+      "cors": "*"
+    },
+    {
+      "url": "https://www.mdftungphat.com/van-mdf/?audit=1",
+      "method": "GET",
+      "status": 308,
+      "location": "https://mdftungphat.com/van-mdf/?audit=1",
+      "server": "Vercel",
+      "robots": null,
+      "cors": null
+    },
+    {
+      "url": "https://cms.mdftungphat.com/api/health",
+      "method": "GET",
+      "status": 200,
+      "location": null,
+      "server": "cloudflare",
+      "robots": null,
+      "cors": null
+    },
+    {
+      "url": "https://cms.mdftungphat.com/api/contact",
+      "method": "OPTIONS",
+      "status": 503,
+      "location": null,
+      "server": "cloudflare",
+      "robots": null,
+      "cors": null
+    },
+    {
+      "url": "https://cms.mdftungphat.com/api/contact",
+      "method": "POST",
+      "status": 400,
+      "location": null,
+      "server": "cloudflare",
+      "robots": "noindex, nofollow, noarchive",
+      "cors": "https://mdftungphat.com",
+      "code": "validation_failed"
+    }
+  ],
+  "buildBefore": {
+    "files": 7311,
+    "bytes": 602553673,
+    "jsBytes": 1246919,
+    "cssBytes": 87949
+  },
+  "buildAfter": {
+    "files": 7308,
+    "bytes": 601345305,
+    "jsBytes": 1247830,
+    "cssBytes": 87949
+  },
+  "lighthouse-before-mobile": {
+    "score": 0.74,
+    "audits": {
+      "largest-contentful-paint": 11233.782,
+      "first-contentful-paint": 1086.995,
+      "total-blocking-time": 12,
+      "cumulative-layout-shift": 0,
+      "total-byte-weight": 2762852
+    }
+  },
+  "lighthouse-after-cloudflare-mobile": {
+    "score": 0.94,
+    "audits": {
+      "largest-contentful-paint": 2553.547,
+      "first-contentful-paint": 1441.547,
+      "total-blocking-time": 0,
+      "cumulative-layout-shift": 0,
+      "total-byte-weight": 1230618
+    }
+  }
+}
