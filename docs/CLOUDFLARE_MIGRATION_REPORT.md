@@ -11,7 +11,17 @@ Production apex and www still route to Vercel. Authenticated Tenten DNS access a
 
 This is an implementation checkpoint with working Cloudflare preparation, not a completed production migration. Remaining operations must use the acceptance checklist below; a preview that loads is not deletion readiness.
 
-## Latest independent verification — 2026-11-01
+## Current verified release — 2026-11-01
+
+Clean GitHub revision `95f52aa1f85eae3b65a9506ca1e147f8423b1df5` deployed successfully to Cloudflare Pages: **62373703-64a6-49ea-b5f5-1068a809b623**, https://62373703.tungphat-i9i.pages.dev. Clone, build and deployment succeeded with `commit_dirty=false`. The build ran 12:46:14–12:54:19 UTC; deployment completed at 12:55:25 UTC. [GitHub CI 41308042213](https://github.com/nkhaduy/tungphat/actions/runs/41308042213) passed 716 frontend, 313 supplier and 38 CMS tests, plus all 81 browser cases. The complete browser suite also passed 81/81 against the real Cloudflare deployment. No test was removed or disabled.
+
+The live crawl checked **3,611 URLs**: 3,578 public pages returned 200; all 33 expected redirects matched their status and destination (one 307, thirty-two 308). All **3,260 rendered asset references returned 200**. The 2,652 sitemap routes match the frozen baseline in status, title, description, canonical, robots, structured-data count, visible-text hash and length. No page referenced a Vercel endpoint. Every preview page returning 200 carries a noindex HTTP header.
+
+With Vercel hostnames blocked, all 15 representative routes, including the seven repaired source-missing pages, returned 200 with one H1. Catalogue search and contact links worked; there were no attempted Vercel requests, page errors or desktop/mobile overflow. The seven codes retain their original manufacturer source and provenance, using the existing missing-image state instead of a broken image.
+
+The current public artifact contains **7,308 files / 601,300,772 bytes**. JS is 1,247,830 bytes; CSS is 87,949 bytes. The media correction saves another 44,533 bytes compared with revision 682f853, without changing JS/CSS payload. Earlier pending build and browser checks are closed by these results. Post-cutover production validation remains blocked because apex/www still use Vercel.
+
+## Earlier verified checkpoint — 2026-11-01, revision682f853
 
 Clean GitHub commit `682f853b582cde4b595733957a4289a7ef8d7541` built and deployed successfully through the existing Cloudflare Git integration: deployment `1a89886e-f122-4832-a7da-fbb7941e5565`, https://1a89886e.tungphat-i9i.pages.dev. Build 08:07:10–08:14:58 UTC; deployment completed 08:15:44 UTC. GitHub CI [41287589823](https://github.com/nkhaduy/tungphat/actions/runs/41287589823) passed, including all74 browser tests. Branch `codex/cloudflare-exit`, draft [PR35](https://github.com/nkhaduy/tungphat/pull/35); main has not been overwritten or force-pushed.
 
@@ -41,7 +51,7 @@ Vercel project environment names were inspected without revealing values: `NEXT_
 | --- | --- | --- |
 | Pages static files | 7,308 files vs 20,000 Free limit | 63.5% file-count headroom; no public server runtime |
 | Pages asset size | Assets under 25 MiB | Gate passes; original media remains on CDN |
-| Pages Git builds | 500/month; 1 concurrent; 20-minute timeout | One deploy pipeline; path/branch filters reduce unnecessary builds; latest clean Git build 7m48s; deploy 46s |
+| Pages Git builds | 500/month; 1 concurrent; 20-minute timeout | One deploy pipeline; path/branch filters reduce unnecessary builds; latest clean Git build8m04.5s; deploy65.8s |
 | Workers requests | Account UI 2,799/100,000 on observed day | Snapshot only; shares quota with other applications, which were not modified |
 | Workers CPU / memory | Thin Worker 0–1 ms sampled; 128 MiB | Payload runs in the Free SQLite DO workspace (30 s CPU); sampled secure bootstrap 3,915 ms. Gateway handles preflight/media directly. |
 | Durable Object duration | 13,000 GB-s/day Free, account-wide | One continuously active 128 MB workspace: 11,059.2 GB-s/day; staging/other objects share the remaining 1,940.8. |
@@ -61,7 +71,7 @@ See [ASSET_CLEANUP_REPORT.md](ASSET_CLEANUP_REPORT.md) for all classifications a
 | Full artifact | Before | After | Difference |
 | --- | ---: | ---: | ---: |
 | Files | 7,311 | 7,308 | -3 |
-| Total bytes | 602,553,673 | 601,345,305 | -1,208,368 |
+| Total bytes | 602,553,673 | 601,300,772 | -1,252,901 |
 | JS bytes | 1,246,919 | 1,247,830 | +911 |
 | CSS bytes | 87,949 | 87,949 | 0 |
 
@@ -224,3 +234,16 @@ Regression:7new unit cases failed before the correction;18focused cases passed a
 
 
 GitHub CI41307217555 subsequently passed the complete81-case browser suite and716+313+38 engineering tests forccc9178. The first Cloudflare build of this revision failed only because a fully mocked supplier-cache unit case exceeded its default5s wall timer (715/716passed). Exact shared-runner CPU-versus-tempFS cause is not observable. The bounded correction gives this one case15s, retains its cache/status assertions and strengthens exact initial/resume/refresh request counts to1/0/1. Focused36cases and the complete mandatory gate passed locally after that test-only change; the next Cloudflare Git build is required to verify it remotely. This is not a Worker CPU-limit increase or a skipped assertion.
+
+
+## Final continuation result — 2026-11-01 13:06UTC
+
+**NOT READY TO DELETE VERCEL.** All independent implementation/staging work above is verified; the current apex/www still use Vercel and will fail if it is deleted now. The registrar holder must participate in the coordinated delegation described in [exact DNS handoff](CLOUDFLARE_DNS_CUTOVER.md). Main/production hostname promotion, post-cutover production validation and an actual custom-domain Pages rollback remain required. No final DNS record, nameserver, Vercel integration or Vercel project deletion was performed. Owner-only secure secret escrow/additional backup custody is still unverified.
+
+Current release95f52aa closes the earlier pending media-correction build/browser checks. Both the all-exported crawl and full81-case real-preview browser command exited0. The complete public route/asset signals are saved in [compressed snapshot](evidence/cloudflare-final-preview.json.gz),410,056bytes, SHA256`23844b6b216f80c46ee0741943c5ef45527ae6beeb8728e514c92501e2289783`. This includes all3,611route results and3,260asset statuses; earlier baseline snapshot remains unchanged. The seven raw legacy missing swatch URLs remain404 in retained provenance; their live pages/search cards now show the existing missing-image state. No unavailable colour was fabricated and all2,910codes remain.
+
+Final production boundary check: verified TLS certificates/hostnames for apex/www/CMS/CDN/current preview; apex200 and www308still confirm Vercel alongside the unchanged public DNS. Node production checks returned CMS health200, allowed preflight204/correct origin, disallowed preflight403, invalid contact400without a lead, restored CDN swatch200with the original7,894-byte SHA256, and baogia200. CDN directory root404is expected. A default Python-urllib probe got an edge403AccessDenied; changing only the UA in the same Node transport reproduced403, while Node default and the named verification UA returned200. This is retained as a test-client/access-policy observation, not hidden as a Payload error or addressed by disabling protections.
+
+No new Lighthouse score is claimed for95f52aa; the dated before/after lab comparison remains above. Current JS/CSS bytes are unchanged and the corrected export is44,533bytes smaller than the previous candidate. Remaining lower dependency findings, shared Free quotas/GB-month accounting, seven original missing swatches and unverified off-device/secret custody remain documented operational limits.
+
+Repository state: implementation commits682f853,ccc9178,95f52aa are pushed on`codex/cloudflare-exit`; the final follow-up contains documentation/evidence only. DraftPR35remains open against untouched main. No force-push or unrelated quote-app/validation-report commit occurred. Resume from these reports and current Git state; do not repeat completed audits or recreate services. The consumed quota-resume automation is removed because remaining production work requires external registrar authority, not periodic retries.

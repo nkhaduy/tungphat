@@ -169,7 +169,7 @@
     "changedRemoteObjects": 0,
     "redUnitCases": 7,
     "initialFocusedGreenCases": 18,
-    "finalBuildAndBrowserValidation": "Full verify exit0;716+313+38 tests;7/7 added browser cases pass locally; next Cloudflare Git build/full81 browser verification pending",
+    "finalBuildAndBrowserValidation": "Cloudflare clean Git62373703 /95f52aa and CI41308042213 pass;81/81 real-preview browsers. All3578public HTML routes200,33expectedredirects correct;3260renderedassets200;2652indexedroute metadata/text/schema comparison zero differences.",
     "unitTests": 716,
     "unitStatus": "passed",
     "engineeringGate": "npm run verify exit0; 716 frontend +313 supplier +38 CMS",

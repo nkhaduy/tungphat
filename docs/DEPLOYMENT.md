@@ -1,6 +1,6 @@
 # Deployment
 
-Current production apex/www still use Vercel while the Cloudflare exit gates remain blocked. Do not delete the Vercel project. The verified Cloudflare candidate runs at https://1a89886e.tungphat-i9i.pages.dev from GitHub commit 682f853. Follow [the migration report](CLOUDFLARE_MIGRATION_REPORT.md) and [deletion checklist](VERCEL_DELETION_CHECKLIST.md) for current evidence and blockers.
+Current production apex/www still use Vercel while the Cloudflare exit gates remain blocked. Do not delete the Vercel project. The verified Cloudflare candidate runs at https://62373703.tungphat-i9i.pages.dev from GitHub commit95f52aa. Follow [the migration report](CLOUDFLARE_MIGRATION_REPORT.md) and [deletion checklist](VERCEL_DELETION_CHECKLIST.md) for current evidence and blockers.
 
 ## Cloudflare deployment path
 
@@ -20,7 +20,7 @@ After a future authorized production cutover, verify apex/www/CDN/CMS HTTPS, all
 
 ## Verified recovery checkpoints
 
-The secure CMS deployment is `7c72815f-65ae-43dd-87e1-cd8e0358e54b`; gateway `cb234e0b-1cb9-4c9c-b57c-57792056e21b`; static archive `1eb0a303`; frontend clean Git build `1a89886e-f122-4832-a7da-fbb7941e5565`. Rebuild the recorded Git SHA through the existing verified pipeline when a Pages production rollback is unavailable. An actual custom-domain production rollback remains a post-cutover gate.
+The secure CMS deployment is `7c72815f-65ae-43dd-87e1-cd8e0358e54b`; gateway `cb234e0b-1cb9-4c9c-b57c-57792056e21b`; static archive `1eb0a303`; frontend clean Git build `62373703-64a6-49ea-b5f5-1068a809b623`. Rebuild the recorded Git SHA through the existing verified pipeline when a Pages production rollback is unavailable. An actual custom-domain production rollback remains a post-cutover gate.
 
 To recover the exact-byte archive from the independently controlled media backup:
 

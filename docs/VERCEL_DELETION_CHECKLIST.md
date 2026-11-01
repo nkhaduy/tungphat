@@ -29,7 +29,7 @@ The owner must not delete project `lmskis/tungphat` yet. This checklist is the d
 - [x] Create pending Cloudflare Free zone and mirror all6 original records DNS-onlyTTL600.
 - [ ] Registrar holder changes nameservers after coordinated cutover preparation; owner confirms they do not control that account. Preserve mail/CMS/CDN/baogia. Handle any DNSSEC delegation deliberately.
 - [ ] Attach apex/www to the chosen Pages project; verify active TLS, apex 200, www permanent redirect preserving path/query and HTTP→HTTPS.
-- [x] Verify current GitHub clean build/CI and real preview browser74/74; all2,652 routes200 with identical baseline metadata/text/schema counts. Media checks are recorded in the current report.
+- [x] Verify current GitHub clean build/CI and real preview browser81/81; all2,652 routes200 with identical baseline metadata/text/schema counts. Media checks are recorded in the current report.
 - [ ] Cut over only after critical tests pass; then repeat full production crawl/browser/API tests and cross-check DNS, project domains, deployment revision and bindings.
 - [ ] Verify Cloudflare-only rollback/redeploy, independent backups and required environment names/secret access.
 - [ ] Remove `vercel.json`, `.vercelignore` and remaining tests coupled to those files only after their replacements have passed production verification.
@@ -43,7 +43,7 @@ The owner must not delete project `lmskis/tungphat` yet. This checklist is the d
 | Question | Current answer |
 | --- | --- |
 | Hosting disappears? | **FAIL**: current apex/www DNS still use Vercel. |
-| Build history disappears? | **PASS for candidate**: clean GitHub clone, verify and deploy succeeded on Cloudflare preview, commit682f853, deployment1a89886e. |
+| Build history disappears? | **PASS for candidate**: clean GitHub clone, verify and deploy succeeded on Cloudflare preview, commit95f52aa, deployment62373703. |
 | Image optimizer disappears? | Public images are unoptimized/direct. Catalogue proxy no longer fabricates images. |
 | Vercel storage disappears? | No connected project stores; catalogue lives in Cloudflare D1/R2. |
 | Vercel DNS disappears? | Authoritative DNS is Tenten, but apex/www records still target Vercel. |
@@ -59,10 +59,15 @@ Continuation checkpoint (2026-10-31): see [blocker progress](CLOUDFLARE_BLOCKERS
 
 Cloudflare zone4cc9a59d98651da1950571a2bf07252e is Free/pending. Six original records are mirrored; active Tenten DNS is untouched. The holder of the registrar account must eventually replace ns-a1/ns-a2/ns-a3.tenten.vn with **lia.ns.cloudflare.com** and **nero.ns.cloudflare.com**, coordinated with Pages hostname attachment and final CNAME changes. No registrar transfer or password disclosure is needed. The DNS-only account cannot perform this action. Until it is done and production cutover passes, Vercel remains required for apex/www.
 
-- [x] Full browser74/74 and current engineering gate708+313+38 pass.
+- [x] Full browser81/81 and current engineering gate716+313+38 pass.
 - [x] Real staged CMS browser/auth/editor/media workflows pass.
 - [x] Production CMS/gateway deployed and D1 counts preserved.
 - [x] Independent exact-byte media archive and guarded restore procedure tested for reads.
-- [x] Current runtime revision682f853 clean GitHub build1a89886e and CI41287589823 verified; final custom-domain frontend release remains pending.
+- [x] Current runtime revision95f52aa clean GitHub build62373703 and CI41308042213 verified; final custom-domain frontend release remains pending.
 - [ ] Live apex/www on Cloudflare, full2652-route post-cutover crawl and Vercel-blocking proof.
 - [ ] Only after these checks: detach obsolete Vercel Git integration/config and owner deletes old project.
+
+Nameserver-holder handoff and exact coordinated cutover steps: [DNS cutover](CLOUDFLARE_DNS_CUTOVER.md).
+
+
+Final staging evidence95f52aa/62373703:81/81real-preview and81/81GitHubCI browsers;3,578public pages200;33redirects correct;3,260assets200;all2,652indexed routes identical to baseline metadata/text. TLS and live CMS/CORS/CDN/baogia checks pass with normal clients. These do not mark the post-cutover production checks complete. Current apex/www still need Vercel. Secret escrow/additional independent backup custody and actual production Pages rollback remain owner/coordinator gates.

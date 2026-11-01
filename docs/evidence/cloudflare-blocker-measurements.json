@@ -4,11 +4,13 @@
   "productionGatewayDeployment": "cb234e0b-1cb9-4c9c-b57c-57792056e21b",
   "archiveDeployment": "1eb0a303",
   "browser": {
-    "passed": 74,
-    "failed": 0
+    "passed": 81,
+    "failed": 0,
+    "origin": "https://62373703.tungphat-i9i.pages.dev",
+    "note": "Full real-preview suite; form mutation cases use isolated local Payload/D1; separate real staging CMS workflow evidence retained."
   },
   "unitTests": {
-    "frontend": 708,
+    "frontend": 716,
     "supplier": 313,
     "cms": 38
   },
@@ -1148,14 +1150,14 @@
   },
   "engineeringGate": {
     "exitCode": 0,
-    "frontendTests": 708,
+    "frontendTests": 716,
     "supplierTests": 313,
     "cmsTests": 38,
     "internalLinks": 239672,
     "sitemapRoutes": 2652,
     "localArtifact": {
       "files": 7308,
-      "bytes": 601345305,
+      "bytes": 601300772,
       "jsBytes": 1247830,
       "cssBytes": 87949
     }
@@ -1213,5 +1215,405 @@
       "cause": "Single fully mocked cache/rate-limit unit case exceeded default 5s wall timer;715/716passed. Precise scheduling-vs-tempFS cause not observable.",
       "correction": "Only that test gets15s wall timeout; initial/resume/refresh request assertions strengthened to1/0/1; all previous status/cache assertions remain. Full verify passed after correction. Runtime code unchanged."
     }
+  },
+  "finalRelease": {
+    "id": "62373703-64a6-49ea-b5f5-1068a809b623",
+    "url": "https://62373703.tungphat-i9i.pages.dev",
+    "latest_stage": {
+      "name": "deploy",
+      "started_on": "2026-11-01T12:54:19.504176Z",
+      "ended_on": "2026-11-01T12:55:25.338662Z",
+      "status": "success"
+    },
+    "stages": [
+      {
+        "name": "queued",
+        "started_on": "2026-11-01T12:46:00.498545Z",
+        "ended_on": "2026-11-01T12:46:00.503525Z",
+        "status": "success"
+      },
+      {
+        "name": "initialize",
+        "started_on": "2026-11-01T12:46:00.503525Z",
+        "ended_on": "2026-11-01T12:46:05.772632Z",
+        "status": "success"
+      },
+      {
+        "name": "clone_repo",
+        "started_on": "2026-11-01T12:46:05.772632Z",
+        "ended_on": "2026-11-01T12:46:14.978346Z",
+        "status": "success"
+      },
+      {
+        "name": "build",
+        "started_on": "2026-11-01T12:46:14.978346Z",
+        "ended_on": "2026-11-01T12:54:19.504176Z",
+        "status": "success"
+      },
+      {
+        "name": "deploy",
+        "started_on": "2026-11-01T12:54:19.504176Z",
+        "ended_on": "2026-11-01T12:55:25.338662Z",
+        "status": "success"
+      }
+    ],
+    "deployment_trigger": {
+      "type": "github:push",
+      "metadata": {
+        "branch": "codex/cloudflare-exit",
+        "commit_hash": "95f52aa1f85eae3b65a9506ca1e147f8423b1df5",
+        "commit_message": "test: bound cache regression for shared build runners",
+        "commit_dirty": false
+      }
+    },
+    "githubCiRun": 41308042213,
+    "githubCiStatus": "success",
+    "githubCiBrowserPassed": 81,
+    "vercelBlockedBrowser": {
+      "checkedAt": "2026-11-01T12:57:25.709Z",
+      "origin": "https://62373703.tungphat-i9i.pages.dev",
+      "results": [
+        {
+          "path": "/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/van-mdf/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/bt99/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/thanh-thuy/melamine/301/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/gia-cong-cnc/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/lien-he/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/bai-viet/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/sc009mw/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/sc010mw/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/sc011mw/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/sc012mw/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/sc013mw/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/sc014mw/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/sc015mw/",
+          "status": 200,
+          "h1": 1
+        }
+      ],
+      "contact": {
+        "phone": 5,
+        "zalo": 4,
+        "map": 5
+      },
+      "searchResult": "https://62373703.tungphat-i9i.pages.dev/catalogue/an-cuong/melamine/mfc-ms-465-sc04/",
+      "screens": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "file": "output/playwright/final-runtime-1440.png",
+          "overflow": false
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "file": "output/playwright/final-runtime-390.png",
+          "overflow": false
+        }
+      ],
+      "blocked": [],
+      "errors": []
+    },
+    "fullCrawlStatus": "passed",
+    "crawl": {
+      "routeErrors": [],
+      "expectedRedirects": 33,
+      "origin": "https://62373703.tungphat-i9i.pages.dev",
+      "checkedAt": "2026-11-01T13:01:48.392Z",
+      "pages": 3611,
+      "sitemapRoutes": 2652,
+      "statuses": {
+        "200": 3578,
+        "307": 1,
+        "308": 32
+      },
+      "assets": 3260,
+      "assetErrors": [],
+      "htmlBytes": 378236987
+    },
+    "comparison": {
+      "indexedRoutes": 2652,
+      "allRoutes": 3611,
+      "baselineComparison": {
+        "status": {
+          "count": 0,
+          "examples": []
+        },
+        "title": {
+          "count": 0,
+          "examples": []
+        },
+        "description": {
+          "count": 0,
+          "examples": []
+        },
+        "canonical": {
+          "count": 0,
+          "examples": []
+        },
+        "robots": {
+          "count": 0,
+          "examples": []
+        },
+        "schemaCount": {
+          "count": 0,
+          "examples": []
+        },
+        "textHash": {
+          "count": 0,
+          "examples": []
+        },
+        "textLength": {
+          "count": 0,
+          "examples": []
+        }
+      },
+      "assetStatuses": {
+        "200": 3260
+      },
+      "assetRedirects": [],
+      "vendorEndpointPages": 0,
+      "previewNoindexHeaderPages": 3578
+    },
+    "publicSnapshot": {
+      "file": "docs/evidence/cloudflare-final-preview.json.gz",
+      "bytes": 410056,
+      "sha256": "23844b6b216f80c46ee0741943c5ef45527ae6beeb8728e514c92501e2289783"
+    },
+    "productionPreCutover": {
+      "checkedAt": "2026-11-01T13:00:06.432457+00:00",
+      "tls": {
+        "mdftungphat.com": {
+          "verified": true,
+          "protocol": "TLSv1.2",
+          "notAfter": "Dec 16 01:21:14 2026 GMT"
+        },
+        "www.mdftungphat.com": {
+          "verified": true,
+          "protocol": "TLSv1.2",
+          "notAfter": "Dec 15 04:53:00 2026 GMT"
+        },
+        "cms.mdftungphat.com": {
+          "verified": true,
+          "protocol": "TLSv1.2",
+          "notAfter": "Jan 10 00:28:10 2027 GMT"
+        },
+        "cdn.mdftungphat.com": {
+          "verified": true,
+          "protocol": "TLSv1.2",
+          "notAfter": "Jan 27 07:45:08 2027 GMT"
+        },
+        "62373703.tungphat-i9i.pages.dev": {
+          "verified": true,
+          "protocol": "TLSv1.2",
+          "notAfter": "Dec 12 17:58:43 2026 GMT"
+        }
+      },
+      "http": {
+        "https://mdftungphat.com/": {
+          "status": 200,
+          "location": null,
+          "server": "Vercel",
+          "vercelHeaderPresent": true
+        },
+        "https://www.mdftungphat.com/van-mdf/?audit=1": {
+          "status": 308,
+          "location": "https://mdftungphat.com/van-mdf/?audit=1",
+          "server": "Vercel",
+          "vercelHeaderPresent": true
+        },
+        "https://cms.mdftungphat.com/api/health": {
+          "status": 403,
+          "location": null,
+          "server": "cloudflare",
+          "vercelHeaderPresent": false
+        },
+        "https://cdn.mdftungphat.com/": {
+          "status": 403,
+          "location": null,
+          "server": "cloudflare",
+          "vercelHeaderPresent": false
+        },
+        "https://cdn.mdftungphat.com/catalog/ba-thanh/laminate/p-2052-g-swatch.webp": {
+          "status": 403,
+          "location": null,
+          "server": "cloudflare",
+          "vercelHeaderPresent": false
+        }
+      }
+    },
+    "productionUserAgentProbe": [
+      {
+        "url": "https://cms.mdftungphat.com/api/health",
+        "ua": "node-default",
+        "status": 200,
+        "type": "application/json",
+        "mitigated": null,
+        "bytes": 158
+      },
+      {
+        "url": "https://cms.mdftungphat.com/api/health",
+        "ua": "Python-urllib/3.9",
+        "status": 403,
+        "type": "text/html; charset=UTF-8",
+        "mitigated": null,
+        "bytes": 7159
+      },
+      {
+        "url": "https://cms.mdftungphat.com/api/health",
+        "ua": "TungPhatMigrationVerification/1.0",
+        "status": 200,
+        "type": "application/json",
+        "mitigated": null,
+        "bytes": 157
+      },
+      {
+        "url": "https://cdn.mdftungphat.com/catalog/ba-thanh/laminate/p-2052-g-swatch.webp",
+        "ua": "node-default",
+        "status": 200,
+        "type": "image/webp",
+        "mitigated": null,
+        "bytes": 7894
+      },
+      {
+        "url": "https://cdn.mdftungphat.com/catalog/ba-thanh/laminate/p-2052-g-swatch.webp",
+        "ua": "Python-urllib/3.9",
+        "status": 403,
+        "type": "text/html; charset=UTF-8",
+        "mitigated": null,
+        "bytes": 7159
+      },
+      {
+        "url": "https://cdn.mdftungphat.com/catalog/ba-thanh/laminate/p-2052-g-swatch.webp",
+        "ua": "TungPhatMigrationVerification/1.0",
+        "status": 200,
+        "type": "image/webp",
+        "mitigated": null,
+        "bytes": 7894
+      }
+    ],
+    "productionProbeClassification": "Python-urllib/3.9 gets an edge access-denied page; swapping only UA in the same Node transport reproduces403, while Node default and named verification UA return200. Preserve existing access policy; not a Payload500/503/1102.",
+    "liveProductionNodeCheck": {
+      "checkedAt": "2026-11-01T13:05:57.109Z",
+      "requests": [
+        {
+          "name": "health",
+          "status": 200,
+          "bytes": 158,
+          "allowOrigin": null
+        },
+        {
+          "name": "allowed-preflight",
+          "status": 204,
+          "bytes": 0,
+          "allowOrigin": "https://mdftungphat.com"
+        },
+        {
+          "name": "denied-preflight",
+          "status": 403,
+          "bytes": 0,
+          "allowOrigin": null
+        },
+        {
+          "name": "invalid-contact",
+          "status": 400,
+          "bytes": 39,
+          "allowOrigin": "https://mdftungphat.com"
+        },
+        {
+          "name": "cdn-root",
+          "status": 404,
+          "bytes": 9,
+          "allowOrigin": null
+        },
+        {
+          "name": "cdn-restored-swatch",
+          "status": 200,
+          "bytes": 7894,
+          "allowOrigin": null,
+          "sha256": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e"
+        },
+        {
+          "name": "baogia",
+          "status": 200,
+          "bytes": 522,
+          "allowOrigin": null
+        }
+      ]
+    }
+  },
+  "readiness": {
+    "status": "NOT READY TO DELETE VERCEL",
+    "blockingDependency": "Active apex/www still route to Vercel; registrar delegation is controlled by an inaccessible other account.",
+    "pendingGates": [
+      "Coordinated registrar delegation and approved production release/custom-domain/TLS cutover",
+      "Full post-cutover production crawl/browser/API/Vercel-blocked validation",
+      "Cloudflare custom-domain production rollback drill",
+      "Owner verification of additional backup custody and secure CMS secret escrow"
+    ],
+    "vercelProjectDeleted": false,
+    "activeDnsChanged": false
   }
 }

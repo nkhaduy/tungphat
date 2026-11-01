@@ -5,6 +5,10 @@
 
 Status: migration in progress; production cutover is blocked. The pre-migration Git tag is `migration/pre-cloudflare-exit-20261031` (`5b1b324`). GitHub `nkhaduy/tungphat` and local main matched at audit start. The pre-existing Ba Thanh validation-report modification and untracked quote-app are outside this change.
 
+## Current continuation — 2026-11-01
+
+The current candidate is a clean GitHub Pages build of95f52aa, deployment62373703-64a6-49ea-b5f5-1068a809b623; CI and the real-preview full81-case browser suite pass. CMS/gateway are the secure production releases recorded in the migration report, with Payload retained inside a Free SQLite DO and original D1/R2 preserved. The media bucket is8,590,643,653bytes after exact-byte archive offload. Seven pre-existing missing legacy swatches retain their code/source metadata and use the existing missing-image state; raw source references remain REVIEW. Original architecture and audit observations below are explicitly historical. Current cutover instructions are [here](CLOUDFLARE_DNS_CUTOVER.md). Apex/www DNS still requires Vercel; no registrar delegation authority is available.
+
 ## Verified original architecture
 
 - Apex `mdftungphat.com`: A `216.198.79.1`. `www`: CNAME `d69b5815ccf0cf8d.vercel-dns-017.com`. DNS, Vercel project UI and live responses jointly confirm Vercel hosting. Project `lmskis/tungphat`, ID `prj_53zuxv2QpKkGB1QUzltzj5I7a4mO`; UI production revision was the Oct 21 homepage supplier-section removal, matching `5b1b324`.

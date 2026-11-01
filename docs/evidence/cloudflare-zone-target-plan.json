@@ -5,7 +5,7 @@
   "plan": "free",
   "zone_id": "4cc9a59d98651da1950571a2bf07252e",
   "prerequisites": [
-    "Final correction is in GitHub CI/Cloudflare validation; prior full74-case staging and2652-route comparison passed",
+    "Current95f52aa clean Git deployment62373703,716+313+38tests,81real-preview browsers,3611route/3260asset checks passed; recheck current release/account quotas before future cutover",
     "Pending Free zone exists with all6 original DNS-only records mirrored; final target records and redirect remain unapplied",
     "Obtain registrar delegation control; current DNS-only session cannot change nameservers",
     "Attach apex/www to Pages, including moving deactivated historical hostname registrations deliberately"
