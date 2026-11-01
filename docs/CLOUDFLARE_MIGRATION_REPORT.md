@@ -1,5 +1,8 @@
 # Cloudflare migration report — 2026-10-31
 
+> Current status - 2026-11-01: **NOT READY TO DELETE VERCEL**. CMS CPU, media storage and browser blockers below have been resolved and deployed; the remaining cutover blocker is registrar authority. The owner confirmed that another account controls nameservers and they cannot access it. Active apex/www DNS still points to Vercel. Earlier dated sections are historical baseline evidence, not the current blocker list. See [current implementation checkpoint](CLOUDFLARE_BLOCKERS_PROGRESS.md) and [current measured results](evidence/cloudflare-blocker-measurements.json).
+
+
 ## Deletion readiness
 
 **NOT READY TO DELETE VERCEL**
@@ -175,3 +178,26 @@ Final live production check (before any DNS change): apex 200 on Vercel; www 308
 The media backup was also checked on disk: **11,224 distinct case-normalized paths**, **11,224 files**, exact size sum **10,374,938,408 bytes**, matching the hash manifest. Summary evidence is versioned at `docs/evidence/cloudflare-validation-summary.json`.
 
 Production promotion is deliberately blocked by the user's acceptance gate: unresolved Free CPU/storage requirements, live preflight failure, historical browser failures, missing registrar delegation control and no verified Cloudflare production rollback/cutover. A supported Free architecture needs these constraints resolved while preserving all CMS and catalogue functions. No paid workaround was activated.
+
+
+Continuation checkpoint (2026-10-31): see [blocker progress](CLOUDFLARE_BLOCKERS_PROGRESS.md) and [measured evidence](evidence/cloudflare-blocker-measurements.json). Security patches and gateway fast paths are under staging validation. Production DNS and media originals remain unchanged. Readiness remains **NOT READY TO DELETE VERCEL**; the new staging candidate has not passed the complete acceptance gate.
+
+
+## Current production implementation - 2026-11-01
+
+Production CMS version `7c72815f-65ae-43dd-87e1-cd8e0358e54b`, gateway deployment `cb234e0b-1cb9-4c9c-b57c-57792056e21b`, static original archive `1eb0a303.tungphat-media-archive.pages.dev`. CMS and CDN are already independent of Vercel. Frontend apex/www remain on Vercel until supported DNS authority becomes available.
+
+The CMS entry point lazily loads OpenNext/Payload inside one SQLite-backed Durable Object per CMS workspace. A thin Worker routes requests; D1/R2 remain authoritative and unchanged. Gateway handles read-only media and public preflight directly. This preserves REST/admin/auth/editorial workflows. [Cloudflare DO limits](https://developers.cloudflare.com/durable-objects/platform/limits/) allow30sCPU per invocation on Free; [Free pricing limits](https://developers.cloudflare.com/durable-objects/platform/pricing/) are100krequests/day and13,000GB-s/day. Even one continuously active128MB workspace consumes at most11,059.2GB-s/day; staging and any other account DO usage share the remaining allowance. Actual sampled outer CPU0-1ms; cold+bootstrap3915ms and warm login1491ms inside DO, below30s. Some tail events are absent and are recorded as null, never zero. Browser real login/dashboard/article editor passes desktop/mobile with0JS errors and0overflow. Real R2 uploads match bytes, media metadata edits work, editor drafts remain private, editor publish/user creation is denied, admin publish is public, sessions/logout pass.
+
+Security: Payload3.92.1, Next16.4.3, React19.2.9, OpenNext1.20.15; exact lockfile records all versions. Audit0critical/0high,10moderate/2low remain. New Payload600kPBKDF2 exceeds native Workers100kcap; audited noble implementation preserves exact secure hashes, with native WebCrypto for legacy25k hashes. No password work factor was reduced. Additive nullable users.reset_password_requested_at and media._objectkey migrations are applied by Payload; products6/articles3/media6573 unchanged. Fresh pre-update SQL backup17,388,196bytes SHA256997c34f58a0d4ec8b4970172ec545d1b8c369b1041938b17ea56d0671159a232 restored locally with integrityok. Never roll back to an old Payload version that cannot read the new hash format.
+
+Validation: full708frontend+313supplier+38CMS tests, full74/74 browser tests. All29 original browser failures classified in [resolution evidence](evidence/cloudflare-browser-resolution.json); none deleted or disabled. Actual media/archive and Free storage evidence is in [cleanup report](ASSET_CLEANUP_REPORT.md). Full sitemap2652 and239672internal links pass local static checks; production post-cutover crawl still mandatory.
+
+Pending Free zone `4cc9a59d98651da1950571a2bf07252e`, nameservers `lia.ns.cloudflare.com`, `nero.ns.cloudflare.com`; six original records mirrored DNS-onlyTTL600. No active authoritative records changed. Owner confirms another account holds registrar delegation. [Official Pages docs](https://developers.cloudflare.com/pages/configuration/custom-domains/) require Cloudflare NS for apex hosting; ALIAS is not a supported workaround. Keeping external DNS supports a subdomain such as www, but changing canonical behavior and providing independent HTTPS apex redirects would change the accepted requirements. No paid service is enabled.
+
+Cloudflare-only recovery: clean clone, checkout the verified release, `npm ci`, `npm ci --prefix payload-cms`, Node22.23.4+, `npm run verify`. Frontend Git integration deploys `out` from main; manual preview `npm run deploy:cloudflare:preview`. CMS `npm run deploy:cms` validates once then deploys existing original D1/R2 bindings and the gateway. Secrets remain PAYLOAD_SECRET/IP_HASH_SALT/PREVIEW_SECRET/TURNSTILE_SECRET_KEY in Cloudflare. Recover the100 immutable originals from the independent backup with the archive preparation/verification scripts. Recover missing R2 copies using the manifest-guarded loopback maintenance client; never restore over newer objects. Retain current secure CMS deployment as rollback, not the legacy3.88 runtime. Frontend rollback uses the last known-good Pages deployment or a fresh verified build. No step requires Vercel history or credentials.
+
+Final status remains **NOT READY TO DELETE VERCEL** until apex/www traffic and fresh-deploy/rollback/production crawl gates pass independently on Cloudflare. Do not remove the active Vercel integration/config prematurely.
+
+
+Remaining advisory exposure: esbuild development-server advisory is not active in the deployed Worker; glob/minimatch cancellation/amplification advisories concern trusted build filesystem patterns, not an exposed runtime glob service. Deepmerge4.3.1 is a Payload runtime dependency with a low returned-object prototype-poisoning advisory and no published patched release (`npm view`/audit verified); untrusted values must remain within validated schema fields and must never supply authorization objects. Staged editor/user escalation was denied. This residual low risk is recorded rather than claiming a zero-finding audit. See evidence/cms-remaining-advisories.json.

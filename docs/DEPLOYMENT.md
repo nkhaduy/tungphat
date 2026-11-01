@@ -12,8 +12,8 @@ For a manual release from an existing checkout, clear generated `.next/cache/fet
 
 ## Existing CMS and media
 
-Payload remains Worker `tungphat-payload-cms`, D1 `tungphat-payload-cms`, R2 `tung-phat-media`; gateway Pages project `tungphat-light-cms-production` serves cms/cdn hostnames. `npm run deploy:cms` runs its verified OpenNext Worker and gateway path. No data migration, supplier synchronization or media deletion is part of a normal deploy.
+Payload remains Worker `tungphat-payload-cms`, D1 `tungphat-payload-cms`, R2 `tung-phat-media`; gateway Pages project `tungphat-light-cms-production` serves cms/cdn hostnames. `npm run deploy:cms` runs the full root verification once, then uploads its already-built Worker and gateway. Node22.23.4 or compatible24.22.1+ is required. Do not downgrade Payload below3.90 after password hashes have been upgraded to600k iterations. No data migration, supplier synchronization or media deletion is part of a normal deploy.
 
-CMS secrets: `IP_HASH_SALT`, `PAYLOAD_SECRET`, `PREVIEW_SECRET`, `TURNSTILE_SECRET_KEY`. Keep values only in Cloudflare and independent secure escrow. The current CMS Free CPU/reliability and R2 storage budget are unresolved; a passing public static build does not certify them.
+CMS secrets: `IP_HASH_SALT`, `PAYLOAD_SECRET`, `PREVIEW_SECRET`, `TURNSTILE_SECRET_KEY`. Keep values only in Cloudflare and independent secure escrow. Production CMS now uses the verified SQLite Durable Object workspace runtime with the same D1/R2. Outer Worker CPU measured0-1ms; DO cold/editor requests remain below its documented Free30s limit. R2 originals offloaded to exact-byte Pages archive; main bucket now8,590,643,653bytes/11,124objects. See current evidence in the migration report.
 
 After a future authorized production cutover, verify apex/www/CDN/CMS HTTPS, all sitemap routes, metadata/redirects, catalogue images/search, service/contact actions and API behavior. Record DNS, Cloudflare deployment ID and source revision. Localhost or preview alone does not close the production gate.

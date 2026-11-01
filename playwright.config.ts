@@ -19,9 +19,8 @@ export function createPlaywrightConfig() {
       video: process.env.PLAYWRIGHT_NO_VIDEO ? "off" : "retain-on-failure",
     },
     projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"], channel: process.env.PLAYWRIGHT_CHANNEL || undefined } }],
-    webServer: externalBaseUrl
-      ? undefined
-      : {
+    webServer: [
+      ...(!externalBaseUrl ? [{
           command: "npm start",
           url: localBaseUrl,
           reuseExistingServer: !process.env.CI,
@@ -30,8 +29,15 @@ export function createPlaywrightConfig() {
             NEXT_PUBLIC_TURNSTILE_SITE_KEY: "1x00000000000000000000AA",
             NEXT_PUBLIC_FORMS_API_BASE: "",
             NEXT_PUBLIC_ANALYTICS_TEST_MODE: "1",
-          },
         },
+      }] : []),
+      {
+        command: "npm --prefix payload-cms run e2e:api-server",
+        url: "http://127.0.0.1:4190/health",
+        reuseExistingServer: !process.env.CI,
+        timeout: 120_000,
+      },
+    ],
   });
 }
 

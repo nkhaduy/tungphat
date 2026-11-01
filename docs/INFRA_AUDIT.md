@@ -1,5 +1,8 @@
 # Infrastructure audit — 2026-10-31
 
+> Current status - 2026-11-01: **NOT READY TO DELETE VERCEL**. CMS CPU, media storage and browser blockers below have been resolved and deployed; the remaining cutover blocker is registrar authority. The owner confirmed that another account controls nameservers and they cannot access it. Active apex/www DNS still points to Vercel. Earlier dated sections are historical baseline evidence, not the current blocker list. See [current implementation checkpoint](CLOUDFLARE_BLOCKERS_PROGRESS.md) and [current measured results](evidence/cloudflare-blocker-measurements.json).
+
+
 Status: migration in progress; production cutover is blocked. The pre-migration Git tag is `migration/pre-cloudflare-exit-20261031` (`5b1b324`). GitHub `nkhaduy/tungphat` and local main matched at audit start. The pre-existing Ba Thanh validation-report modification and untracked quote-app are outside this change.
 
 ## Verified original architecture
@@ -56,3 +59,6 @@ R2 inventory: **11,223 objects, 10,374,930,514 payload bytes**, above the 10,000
 Official references checked 2026-10-31: [Pages limits](https://developers.cloudflare.com/pages/platform/limits/), [Workers limits](https://developers.cloudflare.com/workers/platform/limits/), [R2 pricing](https://developers.cloudflare.com/r2/pricing/), [R2 decimal units](https://r2-calculator.cloudflare.com/), [D1 limits](https://developers.cloudflare.com/d1/platform/limits/), [Pages apex requirements](https://developers.cloudflare.com/pages/configuration/custom-domains/), [external proxy restriction](https://developers.cloudflare.com/pages/configuration/redirects/).
 
 Existing CMS browser evidence confirms Cloudflare **Error 1102**, Worker exceeded resource limits, at 2026-10-31 13:28:53 UTC, Ray ID a53301678ade6047. It is historical evidence from the same production Worker, not a claim that every current HTTP 500 has that cause.
+
+
+Continuation checkpoint (2026-10-31): see [blocker progress](CLOUDFLARE_BLOCKERS_PROGRESS.md) and [measured evidence](evidence/cloudflare-blocker-measurements.json). Security patches and gateway fast paths are under staging validation. Production DNS and media originals remain unchanged. Readiness remains **NOT READY TO DELETE VERCEL**; the new staging candidate has not passed the complete acceptance gate.

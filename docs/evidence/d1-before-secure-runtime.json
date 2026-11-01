@@ -1,0 +1,13 @@
+{
+  "backup": "backups/cloudflare-exit-20261101/d1-before-secure-runtime.sql",
+  "bytes": 17388196,
+  "sha256": "997c34f58a0d4ec8b4970172ec545d1b8c369b1041938b17ea56d0671159a232",
+  "integrity": "ok",
+  "counts": {
+    "products": 6,
+    "articles": 3,
+    "media": 6573,
+    "users": 1,
+    "leads": 2
+  }
+}

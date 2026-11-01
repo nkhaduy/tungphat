@@ -12,12 +12,15 @@ test.describe("Mã màu customer journeys", () => {
     await expect(
       page
         .getByRole("navigation", { name: "Điều hướng chính" })
-        .getByRole("link", { name: "Mã màu", exact: true }),
-    ).toHaveAttribute("href", "/catalogue/");
+        .getByRole("button", { name: "Mã màu / Catalogue", exact: true }),
+    ).toHaveAttribute("aria-expanded", "false");
+    const nav = page.getByRole("navigation", { name: "Điều hướng chính" });
+    await nav.getByRole("button", { name: "Mã màu / Catalogue", exact: true }).click();
+    await expect(nav.getByRole("link", { name: "Tìm mã màu", exact: true })).toHaveAttribute("href", "/catalogue/");
     await expect(
       page
         .getByRole("contentinfo")
-        .getByRole("link", { name: "Mã màu", exact: true }),
+        .getByRole("link", { name: "Mã màu / Catalogue", exact: true }),
     ).toHaveAttribute("href", "/catalogue/");
   });
 
@@ -150,7 +153,7 @@ test.describe("Mã màu customer journeys", () => {
       page.getByText("Kết quả phù hợp", { exact: true }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: "2.992 sản phẩm", exact: true }),
+      page.getByRole("heading", { name: "724 mục tra cứu", exact: true }),
     ).toBeVisible();
     const region = page.getByRole("region", { name: "Kết quả mã màu" });
     await expect(region.getByRole("article")).toHaveCount(48);
@@ -171,7 +174,7 @@ test.describe("Mã màu customer journeys", () => {
       /(?=.*supplier=thanh-thuy)(?=.*group=edge-banding)/,
     );
     await expect(
-      page.getByRole("heading", { name: "5 sản phẩm", exact: true }),
+      page.getByRole("heading", { name: "5 mục tra cứu", exact: true }),
     ).toBeVisible();
     const edgeRegion = page.getByRole("region", { name: "Kết quả mã màu" });
     for (const name of [
@@ -194,7 +197,7 @@ test.describe("Mã màu customer journeys", () => {
       /(?=.*supplier=thanh-thuy)(?=.*group=melamine)(?=.*pattern=woodgrain)/,
     );
     await expect(
-      page.getByRole("heading", { name: "40 sản phẩm", exact: true }),
+      page.getByRole("heading", { name: "40 mục tra cứu", exact: true }),
     ).toBeVisible();
     await expect(
       page.getByText("Danh mục: Melamine · Vân gỗ", { exact: false }).first(),
@@ -226,7 +229,7 @@ test.describe("Mã màu customer journeys", () => {
     await laminate.click();
     await expect(laminate).toHaveAttribute("aria-pressed", "true");
     await expect(
-      page.getByRole("heading", { name: "1.316 sản phẩm", exact: true }),
+      page.getByRole("heading", { name: "182 mục tra cứu", exact: true }),
     ).toBeVisible();
 
     const supplier = page.getByRole("combobox", {
@@ -235,7 +238,7 @@ test.describe("Mã màu customer journeys", () => {
     await supplier.selectOption("ba-thanh");
     await expect(supplier).toHaveValue("ba-thanh");
     await expect(
-      page.getByRole("heading", { name: "113 sản phẩm", exact: true }),
+      page.getByRole("heading", { name: "113 mục tra cứu", exact: true }),
     ).toBeVisible();
   });
 
@@ -347,7 +350,7 @@ test.describe("Mã màu customer journeys", () => {
     await page.goto("/catalogue/an-cuong/melamine/mfc-ms-465-sc04/");
 
     await expect(
-      page.getByRole("heading", { name: "MFC - MS 465 SC04", exact: true }),
+      page.getByRole("heading", { name: /MFC - MS 465 SC04.*Santana Oak/ }),
     ).toBeVisible();
     const breadcrumb = page.getByRole("navigation", { name: "Breadcrumb" });
     await expect(
@@ -356,7 +359,7 @@ test.describe("Mã màu customer journeys", () => {
     await expect(
       breadcrumb.getByRole("link", { name: "An Cường", exact: true }),
     ).toHaveAttribute("href", "/catalogue/an-cuong/");
-    await expect(page.getByRole("img", { name: /MFC - MS 465 SC04 swatch/i })).toBeVisible();
+    await expect(page.getByRole("img", { name: /Mã MFC - MS 465 SC04.*Melamine/i })).toBeVisible();
     await expect(page.locator('img[src=""]')).toHaveCount(0);
   });
 
@@ -368,12 +371,11 @@ test.describe("Mã màu customer journeys", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: "VENEER CHEERY",
-        exact: true,
+        name: /VENEER CHEERY/,
       }),
     ).toBeVisible();
     await expect(
-      page.getByRole("img", { name: /VENEER CHEERY swatch/i }),
+      page.getByRole("img", { name: /Mã VENEER CHEERY/ }),
     ).toHaveAttribute("src", /\/catalog\/thanh-thuy\/veneer-cheery-/);
     await expect(page.locator('img[src=""]')).toHaveCount(0);
   });
@@ -384,7 +386,7 @@ test.describe("Mã màu customer journeys", () => {
     await page.goto("/catalogue/ba-thanh/melamine/bt171ev/");
 
     await expect(
-      page.getByRole("heading", { name: "BT171EV", exact: true }),
+      page.getByRole("heading", { name: /BT\s*171EV/ }),
     ).toBeVisible();
     await expect(page.getByText("Ảnh đang cập nhật", { exact: true })).toBeVisible();
     await expect(page.locator("main img")).toHaveCount(0);
@@ -417,10 +419,10 @@ test.describe("Mã màu mobile navigation", () => {
 
     await expect(
       page
-        .getByRole("navigation", {
-          name: "Điều hướng trên thiết bị di động",
+        .getByRole("dialog", {
+          name: "Điều hướng di động",
         })
-        .getByRole("link", { name: "Mã màu", exact: true }),
+        .getByRole("link", { name: "Mã màu / Catalogue", exact: true }),
     ).toHaveAttribute("href", "/catalogue/");
     await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
 

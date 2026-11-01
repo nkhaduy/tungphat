@@ -1,5 +1,8 @@
 # Asset cleanup — 2026-10-31
 
+> Current status - 2026-11-01: **NOT READY TO DELETE VERCEL**. CMS CPU, media storage and browser blockers below have been resolved and deployed; the remaining cutover blocker is registrar authority. The owner confirmed that another account controls nameservers and they cannot access it. Active apex/www DNS still points to Vercel. Earlier dated sections are historical baseline evidence, not the current blocker list. See [current implementation checkpoint](CLOUDFLARE_BLOCKERS_PROGRESS.md) and [current measured results](evidence/cloudflare-blocker-measurements.json).
+
+
 No catalogue record, supplier relationship, wood code, article or remote media object was deleted. Full per-file classification and SHA-256 evidence are in [cloudflare-asset-classification.json](evidence/cloudflare-asset-classification.json).
 
 ## Inventory and decisions
@@ -35,3 +38,21 @@ Read-only R2 inventory found **11,223 objects / 10,374,930,514 bytes**. The larg
 The full baseline crawl found one missing optimized Ba Thanh image at `/catalog/ba-thanh/laminate/p-2052-g-swatch.webp`. The versioned catalogue manifest proves SHA-256 `9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e`, 7,894 bytes, is identical to the existing `f-0022-x-swatch.webp` object. That object was downloaded, hash-verified and restored at the missing key. Live CDN GET now verifies the expected hash. No substitute colour or newly inferred supplier association was introduced.
 
 A full R2 download backup verified all 11,223 inventory objects against size and ETag, with zero failures; the restored swatch was added separately, making 11,224 backup files. Backup results and locations are recorded in the migration report; raw backup data remains ignored by Git. No deletion or mass synchronization command was used as a test.
+
+
+Continuation checkpoint (2026-10-31): see [blocker progress](CLOUDFLARE_BLOCKERS_PROGRESS.md) and [measured evidence](evidence/cloudflare-blocker-measurements.json). Security patches and gateway fast paths are under staging validation. Production DNS and media originals remain unchanged. Readiness remains **NOT READY TO DELETE VERCEL**; the new staging candidate has not passed the complete acceptance gate.
+
+
+## Verified media offload - 2026-11-01
+
+| Metric | Before | After |
+|---|---:|---:|
+| R2 media objects |11,224|11,124|
+| R2 media bytes |10,374,938,408|8,590,643,653|
+| Exact-byte originals on static Pages archive |0|100|
+
+R2 reduction:1,784,294,755bytes. These100 supplier originals are content-addressed, each filename equals its SHA256, all under24MiB. They remain available at their existing CDN URLs through the verified gateway fallback. No re-encoding, swatch changes, catalogue-code deletions, D1 reference edits or CMS-upload removals occurred. Each removal required matching current ETag/size and a verified independent original; each canonical production URL was downloaded and hash-checked immediately after removal. On a failure, the maintenance client restores that object immediately and stops. Backups include original HTTP/custom metadata. Direct archive100/100, preview fallback100/100, production after-remove100/100 passed. See [actual final R2 inventory](evidence/r2-after-offload.json).
+
+Other account buckets observed before offload total149,069,908bytes; no other project was modified. Combined expected current payload8,739,713,561bytes gives~1.26GB headroom, excluding small metadata overhead. Free storage is account-wideGB-month. A conservative November projection retaining the initial10.524GB for8hours and8.740GB for the remaining712hours is8.760GB-month if other storage stays constant. Historical October usage cannot be undone; future quote/media growth must be monitored. This is an explicit projection, not a billing guarantee.
+
+Recovery: `node scripts/prepare-media-archive.mjs /absolute/media-backup /absolute/archive-output`; deploy from that isolated output directory with `wrangler pages deploy . --project-name tungphat-media-archive --branch main`. Then `node scripts/verify-media-archive.mjs`. No Functions should be included in that static project. Maintenance helper binds only loopback and is never deployed: use its disabled-by-default configuration, `plan` before `apply`, and `restore` with the exact manifest when required.

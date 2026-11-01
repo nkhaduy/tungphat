@@ -52,8 +52,8 @@ export function SiteFooter() {
             {navigationLinks.map(([label, href]) => <Link key={label} href={href} prefetch={href === "/catalogue" ? false : undefined} className="flex min-h-11 items-center text-sm text-slate-700 hover:text-wood-600">{label}</Link>)}
           </nav>
           <nav aria-label="Chính sách" className="mt-4 grid gap-1 text-xs text-slate-600">
-            <Link href="/chinh-sach-bao-mat" className="flex min-h-10 items-center hover:text-wood-600"><LocalizedText vi="Chính sách bảo mật" en="Privacy Policy" /></Link>
-            <Link href="/dieu-khoan-su-dung" className="flex min-h-10 items-center hover:text-wood-600"><LocalizedText vi="Điều khoản sử dụng" en="Terms of Use" /></Link>
+            <Link href="/chinh-sach-bao-mat" className="flex min-h-11 items-center hover:text-wood-600"><LocalizedText vi="Chính sách bảo mật" en="Privacy Policy" /></Link>
+            <Link href="/dieu-khoan-su-dung" className="flex min-h-11 items-center hover:text-wood-600"><LocalizedText vi="Điều khoản sử dụng" en="Terms of Use" /></Link>
           </nav>
         </div>
 

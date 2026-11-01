@@ -1,0 +1,711 @@
+{
+  "checkedAt": "2026-11-01",
+  "productionCMSVersion": "7c72815f-65ae-43dd-87e1-cd8e0358e54b",
+  "productionGatewayDeployment": "cb234e0b-1cb9-4c9c-b57c-57792056e21b",
+  "archiveDeployment": "1eb0a303",
+  "browser": {
+    "passed": 74,
+    "failed": 0
+  },
+  "unitTests": {
+    "frontend": 708,
+    "supplier": 313,
+    "cms": 38
+  },
+  "security": {
+    "info": 0,
+    "low": 2,
+    "moderate": 10,
+    "high": 0,
+    "critical": 0,
+    "total": 12
+  },
+  "profiles": {
+    "cpu-production-secure": {
+      "origin": "https://tungphat-payload-cms.nkhaduy.workers.dev",
+      "checkedAt": "2026-11-01T07:46:02.133Z",
+      "tailFailed": false,
+      "summary": [
+        {
+          "name": "health",
+          "samples": 3,
+          "measured": 2,
+          "cpuMs": [
+            0,
+            0,
+            null
+          ],
+          "durableCpuMs": [
+            593,
+            6,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            null
+          ]
+        },
+        {
+          "name": "login",
+          "samples": 3,
+          "measured": 2,
+          "cpuMs": [
+            0,
+            0,
+            null
+          ],
+          "durableCpuMs": [
+            547,
+            35,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            null
+          ]
+        },
+        {
+          "name": "products",
+          "samples": 3,
+          "measured": 2,
+          "cpuMs": [
+            0,
+            0,
+            null
+          ],
+          "durableCpuMs": [
+            24,
+            18,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            null
+          ]
+        },
+        {
+          "name": "global",
+          "samples": 3,
+          "measured": 1,
+          "cpuMs": [
+            0,
+            null,
+            null
+          ],
+          "durableCpuMs": [
+            9,
+            null,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            null,
+            null
+          ]
+        },
+        {
+          "name": "media",
+          "samples": 3,
+          "measured": 1,
+          "cpuMs": [
+            0,
+            null,
+            null
+          ],
+          "durableCpuMs": [
+            8,
+            null,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            null,
+            null
+          ]
+        },
+        {
+          "name": "preflight",
+          "samples": 3,
+          "measured": 1,
+          "cpuMs": [
+            0,
+            null,
+            null
+          ],
+          "durableCpuMs": [
+            6,
+            null,
+            null
+          ],
+          "statuses": [
+            204,
+            204,
+            204
+          ],
+          "outcomes": [
+            "ok",
+            null,
+            null
+          ]
+        },
+        {
+          "name": "invalid-contact",
+          "samples": 3,
+          "measured": 1,
+          "cpuMs": [
+            0,
+            null,
+            null
+          ],
+          "durableCpuMs": [
+            11,
+            null,
+            null
+          ],
+          "statuses": [
+            400,
+            400,
+            400
+          ],
+          "outcomes": [
+            "ok",
+            null,
+            null
+          ]
+        },
+        {
+          "name": "unauthenticated-leads",
+          "samples": 3,
+          "measured": 1,
+          "cpuMs": [
+            0,
+            null,
+            null
+          ],
+          "durableCpuMs": [
+            9,
+            null,
+            null
+          ],
+          "statuses": [
+            403,
+            403,
+            403
+          ],
+          "outcomes": [
+            "ok",
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    "cpu-final-editor": {
+      "origin": "https://tungphat-payload-cms-staging.nkhaduy.workers.dev",
+      "checkedAt": "2026-11-01T07:39:08.142Z",
+      "tailFailed": false,
+      "summary": [
+        {
+          "name": "bootstrap-staging-admin",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            3915
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "valid-login",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            1491
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "invalid-login",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            1450
+          ],
+          "statuses": [
+            401
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "authenticated-me",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            13
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "authorized-leads",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            13
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "unauthenticated-leads",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            403
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "media-upload",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            25
+          ],
+          "statuses": [
+            201
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "media-exact-bytes",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "editor-create",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            1
+          ],
+          "durableCpuMs": [
+            1418
+          ],
+          "statuses": [
+            201
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "editor-login",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            1351
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "editor-save-draft",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            19
+          ],
+          "statuses": [
+            201
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "public-draft-hidden",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            404
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "editor-publish-denied",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            403
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "admin-publish",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "public-published-visible",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "media-metadata-edit",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "editor-user-create-denied",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            403
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "cleanup-articles",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            25
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "cleanup-media",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "cleanup-users",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            16
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "logout",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "login-after-logout",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            1427
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "fixture-cleanup-after-logout",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            null
+          ]
+        }
+      ]
+    },
+    "cpu-gateway-uuid": {
+      "origin": "https://75b81e2f.tungphat-light-cms-production.pages.dev",
+      "checkedAt": "2026-11-01T07:27:56.830Z",
+      "tailFailed": false,
+      "summary": [
+        {
+          "name": "media",
+          "samples": 3,
+          "measured": 3,
+          "cpuMs": [
+            1,
+            1,
+            0
+          ],
+          "durableCpuMs": [
+            null,
+            null,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            "ok"
+          ]
+        },
+        {
+          "name": "preflight",
+          "samples": 3,
+          "measured": 3,
+          "cpuMs": [
+            0,
+            0,
+            0
+          ],
+          "durableCpuMs": [
+            null,
+            null,
+            null
+          ],
+          "statuses": [
+            204,
+            204,
+            204
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            "ok"
+          ]
+        }
+      ]
+    }
+  },
+  "archive-http-verification": {
+    "checkedAt": "2026-10-31T16:40:58.269Z",
+    "origin": "https://tungphat-media-archive.pages.dev",
+    "objects": null,
+    "bytes": null,
+    "passed": 100,
+    "failed": 0
+  },
+  "archive-gateway-preview-verification": {
+    "checkedAt": "2026-11-01T07:39:06.310Z",
+    "origin": "https://12318038.tungphat-light-cms-production.pages.dev",
+    "objects": null,
+    "bytes": null,
+    "passed": 100,
+    "failed": 0
+  },
+  "r2-archive-apply": {
+    "checkedAt": "2026-11-01T07:49:56.029Z",
+    "origin": null,
+    "objects": 100,
+    "bytes": 1784294755,
+    "passed": null,
+    "failed": null
+  }
+}

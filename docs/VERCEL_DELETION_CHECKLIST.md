@@ -1,5 +1,8 @@
 # Vercel deletion checklist
 
+> Current status - 2026-11-01: **NOT READY TO DELETE VERCEL**. CMS CPU, media storage and browser blockers below have been resolved and deployed; the remaining cutover blocker is registrar authority. The owner confirmed that another account controls nameservers and they cannot access it. Active apex/www DNS still points to Vercel. Earlier dated sections are historical baseline evidence, not the current blocker list. See [current implementation checkpoint](CLOUDFLARE_BLOCKERS_PROGRESS.md) and [current measured results](evidence/cloudflare-blocker-measurements.json).
+
+
 **NOT READY TO DELETE VERCEL**
 
 The owner must not delete project `lmskis/tungphat` yet. This checklist is the deletion gate, not authorization to delete automatically. Do not remove the entire team/account or anything belonging to KIS.
@@ -18,12 +21,13 @@ The owner must not delete project `lmskis/tungphat` yet. This checklist is the d
 
 ## Required before deletion
 
-- [ ] Resolve whole-system Free blockers: CMS exceeds the Free CPU budget on sampled requests and has intermittent HTTP 500/503; R2 payload is above 10 GB.
+- [x] Resolve CMS CPU and R2 storage blockers: production thin Worker0-1ms plus Free DO runtime, main media8.591GB; all100 moved originals match canonical CDN bytes.
 - [x] Finish and verify complete R2 backup (11,224 files including restored swatch; no failures).
 - [ ] Keep an additional independently controlled backup copy and escrow CMS secret values securely.
 - [x] Obtain authenticated Tenten DNS access and back up the FULL displayed zone: 6/6 records, no configured email records.
 - [ ] Obtain registrar nameserver editing access; the DNS-only session has no delegation control.
-- [ ] Add the domain to Cloudflare Free in the intended account, reproduce every record, then change nameservers through Tenten. Preserve mail and existing CMS/CDN/baogia records. Handle any DNSSEC delegation deliberately.
+- [x] Create pending Cloudflare Free zone and mirror all6 original records DNS-onlyTTL600.
+- [ ] Registrar holder changes nameservers after coordinated cutover preparation; owner confirms they do not control that account. Preserve mail/CMS/CDN/baogia. Handle any DNSSEC delegation deliberately.
 - [ ] Attach apex/www to the chosen Pages project; verify active TLS, apex 200, www permanent redirect preserving path/query and HTTP→HTTPS.
 - [ ] Verify Cloudflare staging and GitHub clean build; compare all 2,652 valid sitemap routes, metadata, structured data, text and media to baseline.
 - [ ] Cut over only after critical tests pass; then repeat full production crawl/browser/API tests and cross-check DNS, project domains, deployment revision and bindings.
@@ -46,3 +50,19 @@ The owner must not delete project `lmskis/tungphat` yet. This checklist is the d
 | Vercel environment disappears? | **PASS for candidate**: Cloudflare built and deployed without Vercel credentials or artifacts. |
 | Registrar independent? | **PASS**: registry RDAP reports GMO/Onamae IANA 49. |
 | Recover without Vercel? | D1 local restore and complete media backup verified; secret escrow, a verified Cloudflare production release/rollback and DNS cutover remain required. |
+
+
+Continuation checkpoint (2026-10-31): see [blocker progress](CLOUDFLARE_BLOCKERS_PROGRESS.md) and [measured evidence](evidence/cloudflare-blocker-measurements.json). Security patches and gateway fast paths are under staging validation. Production DNS and media originals remain unchanged. Readiness remains **NOT READY TO DELETE VERCEL**; the new staging candidate has not passed the complete acceptance gate.
+
+
+## Current owner-only delegation action
+
+Cloudflare zone4cc9a59d98651da1950571a2bf07252e is Free/pending. Six original records are mirrored; active Tenten DNS is untouched. The holder of the registrar account must eventually replace ns-a1/ns-a2/ns-a3.tenten.vn with **lia.ns.cloudflare.com** and **nero.ns.cloudflare.com**, coordinated with Pages hostname attachment and final CNAME changes. No registrar transfer or password disclosure is needed. The DNS-only account cannot perform this action. Until it is done and production cutover passes, Vercel remains required for apex/www.
+
+- [x] Full browser74/74 and current engineering gate708+313+38 pass.
+- [x] Real staged CMS browser/auth/editor/media workflows pass.
+- [x] Production CMS/gateway deployed and D1 counts preserved.
+- [x] Independent exact-byte media archive and guarded restore procedure tested for reads.
+- [ ] Current revision GitHub build/preview evidence and final frontend release recorded.
+- [ ] Live apex/www on Cloudflare, full2652-route post-cutover crawl and Vercel-blocking proof.
+- [ ] Only after these checks: detach obsolete Vercel Git integration/config and owner deletes old project.

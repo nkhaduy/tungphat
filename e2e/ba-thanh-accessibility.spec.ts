@@ -13,6 +13,7 @@ for (const [name, route] of auditedRoutes) {
     await page.setViewportSize({ width: 412, height: 915 });
     await page.goto(route);
 
+    await expect(page.locator(".page-transition")).toHaveCSS("opacity", "1");
     const results = await new AxeBuilder({ page }).analyze();
     expect(
       results.violations.filter(
@@ -33,7 +34,7 @@ test("homepage hero content stays readable before hydration", async ({
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: "Kho ván gỗ công nghiệp, gỗ ghép & gia công CNC tại Thủ Đức",
+        name: "Ván gỗ công nghiệp & gia công CNC tại Thủ Đức",
       }),
     ).toBeVisible();
   } finally {

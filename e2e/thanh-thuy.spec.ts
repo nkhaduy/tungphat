@@ -22,6 +22,7 @@ test("brand catalogue supports code search without creating hotlinks", async ({
   ).toHaveAttribute("content", "noindex, follow");
   await expect(page.getByRole("link", { name: /142 Roman Oak/ })).toBeVisible();
   await expect(page.locator('img[src*="gothanhthuy.com"]')).toHaveCount(0);
+  await expect(page.locator(".page-transition")).toHaveCSS("opacity", "1");
   const axe = await new AxeBuilder({ page }).analyze();
   expect(
     axe.violations.filter(
@@ -51,7 +52,7 @@ test("sparse code page is useful but noindex", async ({ page }) => {
   await expect(
     page.getByRole("heading", { level: 1, name: /142 Roman Oak/ }),
   ).toBeVisible();
-  await expect(page.getByText("Liên hệ kiểm tra tồn kho")).toBeVisible();
+  await expect(page.getByText(/Tồn kho và khả năng làm theo quy cách/)).toBeVisible();
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
     "content",
     /noindex/,
@@ -103,13 +104,14 @@ test("mobile catalogue has labels, focus and no horizontal overflow", async ({
     .getByRole("combobox", { name: "Lọc theo nhóm vật liệu" })
     .selectOption("acrylic");
   await expect(page).toHaveURL(/group=acrylic/);
-  await expect(page.getByText(/mã phù hợp/)).toBeVisible();
+  await expect(page.getByText(/mục phù hợp/).first()).toBeVisible();
   const overflow = await page.evaluate(
     () =>
       document.documentElement.scrollWidth -
       document.documentElement.clientWidth,
   );
   expect(overflow).toBeLessThanOrEqual(1);
+  await expect(page.locator(".page-transition")).toHaveCSS("opacity", "1");
   const axe = await new AxeBuilder({ page }).analyze();
   expect(
     axe.violations.filter(

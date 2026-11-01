@@ -55,6 +55,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm ci --prefix payload-cms
       - uses: actions/download-artifact@v4
         with:
           name: static-export
