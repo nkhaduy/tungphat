@@ -1192,5 +1192,26 @@
     "cdn.mdftungphat.com CNAME": [
       "tungphat-light-cms-production.pages.dev."
     ]
+  },
+  "mediaCorrection": {
+    "commit": "ccc91780652df1f929f35540c6e4bba55498cb00",
+    "githubCiRun": 41307217555,
+    "githubCiStatus": "success",
+    "browserPassed": 81,
+    "frontendTests": 716,
+    "supplierTests": 313,
+    "cmsTests": 38,
+    "publicArtifact": {
+      "files": 7308,
+      "bytes": 601300772,
+      "jsBytes": 1247830,
+      "cssBytes": 87949
+    },
+    "cloudflareInitialBuild": {
+      "deployment": "1f2c7b36-8677-4420-b1ed-2569028ce868",
+      "status": "failure",
+      "cause": "Single fully mocked cache/rate-limit unit case exceeded default 5s wall timer;715/716passed. Precise scheduling-vs-tempFS cause not observable.",
+      "correction": "Only that test gets15s wall timeout; initial/resume/refresh request assertions strengthened to1/0/1; all previous status/cache assertions remain. Full verify passed after correction. Runtime code unchanged."
+    }
   }
 }

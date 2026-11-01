@@ -1,12 +1,12 @@
 {
-  "status": "PLANNED_NOT_APPLIED",
+  "status": "FREE_ZONE_PREPARED_NOT_DELEGATED",
   "zone": "mdftungphat.com",
   "account_id": "b9ae472cee29c5729ee90ccbb3533f33",
   "plan": "free",
-  "zone_id": null,
+  "zone_id": "4cc9a59d98651da1950571a2bf07252e",
   "prerequisites": [
-    "Resolve all Free and regression gates",
-    "Create/activate the Cloudflare zone with a verified full record copy",
+    "Final correction is in GitHub CI/Cloudflare validation; prior full74-case staging and2652-route comparison passed",
+    "Pending Free zone exists with all6 original DNS-only records mirrored; final target records and redirect remain unapplied",
     "Obtain registrar delegation control; current DNS-only session cannot change nameservers",
     "Attach apex/www to Pages, including moving deactivated historical hostname registrations deliberately"
   ],
@@ -78,5 +78,10 @@
         }
       }
     ]
-  }
+  },
+  "nameservers": [
+    "lia.ns.cloudflare.com",
+    "nero.ns.cloudflare.com"
+  ],
+  "preparedCurrentRecords": "cloudflare-zone-records-prepared.json"
 }
