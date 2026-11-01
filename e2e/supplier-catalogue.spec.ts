@@ -393,6 +393,17 @@ test.describe("Mã màu customer journeys", () => {
     await expect(page.locator('img[src=""]')).toHaveCount(0);
   });
 
+  for (const code of ["SC009MW", "SC010MW", "SC011MW", "SC012MW", "SC013MW", "SC014MW", "SC015MW"]) {
+    test(`missing legacy Ba Thanh ${code} preserves its code and source without a broken image`, async ({ page }) => {
+      await page.goto(`/catalogue/ba-thanh/melamine/${code.toLowerCase()}/`);
+      await expect(page.getByRole("heading", { level: 1 })).toContainText(new RegExp(code.replace("SC", "SC\\s*")));
+      await expect(page.getByText("Ảnh đang cập nhật", { exact: true })).toBeVisible();
+      await expect(page.locator("main img")).toHaveCount(0);
+      await expect(page.getByRole("link", { name: "Mở nguồn", exact: true })).toHaveAttribute("href", `https://bathanh.com.vn/${code.toLowerCase()}`);
+      await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+    });
+  }
+
   test("catalogue remains useful without JavaScript", async ({ browser }) => {
     const context = await browser.newContext({ javaScriptEnabled: false });
     const page = await context.newPage();

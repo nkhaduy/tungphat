@@ -1,4 +1,4 @@
-# Cloudflare migration report — 2026-10-31
+# Cloudflare migration report — current 2026-11-01
 
 > Current status - 2026-11-01: **NOT READY TO DELETE VERCEL**. CMS CPU, media storage and browser blockers below have been resolved and deployed; the remaining cutover blocker is registrar authority. The owner confirmed that another account controls nameservers and they cannot access it. Active apex/www DNS still points to Vercel. Earlier dated sections are historical baseline evidence, not the current blocker list. See [current implementation checkpoint](CLOUDFLARE_BLOCKERS_PROGRESS.md) and [current measured results](evidence/cloudflare-blocker-measurements.json).
 
@@ -7,9 +7,21 @@
 
 **NOT READY TO DELETE VERCEL**
 
-Production apex and www still route to Vercel. Authenticated Tenten DNS access and a complete six-record backup are now available. This session does not expose registrar nameserver editing; no supported apex delegation/cutover has occurred. The current CMS does not demonstrate reliable operation within Workers Free's CPU budget, and the existing R2 bucket exceeds the 10 GB included allowance. No billing upgrade, destructive data migration, DNS change or Vercel deletion has been performed.
+Production apex and www still route to Vercel. Authenticated Tenten DNS access and a complete six-record backup are now available. This session does not expose registrar nameserver editing; no supported apex delegation/cutover has occurred. The CMS and CDN now pass the Free runtime tests below; referenced originals are preserved in an exact-byte archive and the main R2 bucket is below the included storage capacity. No paid upgrade, authoritative DNS change or Vercel deletion has been performed. Production frontend validation and final retirement remain dependent on the registrar holder’s delegation action.
 
 This is an implementation checkpoint with working Cloudflare preparation, not a completed production migration. Remaining operations must use the acceptance checklist below; a preview that loads is not deletion readiness.
+
+## Latest independent verification — 2026-11-01
+
+Clean GitHub commit `682f853b582cde4b595733957a4289a7ef8d7541` built and deployed successfully through the existing Cloudflare Git integration: deployment `1a89886e-f122-4832-a7da-fbb7941e5565`, https://1a89886e.tungphat-i9i.pages.dev. Build 08:07:10–08:14:58 UTC; deployment completed 08:15:44 UTC. GitHub CI [41287589823](https://github.com/nkhaduy/tungphat/actions/runs/41287589823) passed, including all74 browser tests. Branch `codex/cloudflare-exit`, draft [PR35](https://github.com/nkhaduy/tungphat/pull/35); main has not been overwritten or force-pushed.
+
+A fresh live preview crawl at12:12UTC checked all2,652 frozen sitemap routes: all200, with zero changes in title, description, canonical, robots, structured-data count, visible text hash or length. The current complete browser run against that real Cloudflare artifact passed74/74. Its five form mutation tests deliberately target isolated real local Payload/D1 handlers; real Cloudflare staging auth/editor/media tests provide the separate live runtime proof. No real customer lead was inserted by these checks. An initial remote run returned73/74 because the test assumed analytics must run on preview: the production artifact correctly rejects `.pages.dev` even when a browser flag is set. Assertions now verify suppression on real previews, while the explicit CI test build still verifies positive events, consistent identities and opt-out. No test was removed or disabled.
+
+The Vercel-blocked browser repeated8 representative routes plus supplier-code search, phone/Zalo/map link checks and1440px/390px screenshots. All routes200 with one H1, no Vercel request attempted, no page errors and no horizontal overflow. This proves the preview’s independence; it does not claim the still-Vercel apex passed a deletion simulation.
+
+The final local engineering gate exited0:708 frontend,313 supplier and38 CMS tests;239,672 internal links;2,652 sitemap routes. The clean GitHub artifact checked239,659 links; both have zero failures and all2,652 live text/metadata hashes match. The exact cause of the13 aggregate-link difference is not established; both complete link validators passed, and the independent live sitemap comparison found no content/metadata differences. Full public artifact remains7,308 files/601,345,305bytes; JS1,247,830bytes/CSS87,949bytes, matching the earlier measured delivery result. Earlier Lighthouse observations below retain their original date/artifact; no new field score is inferred.
+
+A fresh production probe returned all24 expected CMS responses (health/login/public reads200, preflight204, invalid contact400, protected leads403), with no observed1102/500/503. Of sampled outer events CPU was0–1ms; missing tail events remain null. The fresh gateway’s6 media/preflight requests all passed, with0–1ms sampled CPU. CPU measurements, deployment metadata, route comparisons and recovery drill evidence are versioned in [measured evidence](evidence/cloudflare-blocker-measurements.json).
 
 ## Architecture and service status
 
@@ -29,12 +41,13 @@ Vercel project environment names were inspected without revealing values: `NEXT_
 | --- | --- | --- |
 | Pages static files | 7,308 files vs 20,000 Free limit | 63.5% file-count headroom; no public server runtime |
 | Pages asset size | Assets under 25 MiB | Gate passes; original media remains on CDN |
-| Pages Git builds | 500/month; 1 concurrent; 20-minute timeout | One deploy pipeline; path/branch filters reduce unnecessary builds; actual remote duration must be recorded |
+| Pages Git builds | 500/month; 1 concurrent; 20-minute timeout | One deploy pipeline; path/branch filters reduce unnecessary builds; latest clean Git build 7m48s; deploy 46s |
 | Workers requests | Account UI 2,799/100,000 on observed day | Snapshot only; shares quota with other applications, which were not modified |
-| Workers CPU / memory | Free 10 ms / 128 MiB | CMS sample: 21/28 requests >10 ms, max 980 ms; intermittent HTTP errors. **Blocking reliability issue** |
-| Worker bundle | CMS dry-run ~13,978 KiB uncompressed / 2,987 KiB gzip | Current official size limit is 64 MiB uncompressed; old 3 MiB compressed advice is obsolete. CPU remains the constraint |
+| Workers CPU / memory | Thin Worker 0–1 ms sampled; 128 MiB | Payload runs in the Free SQLite DO workspace (30 s CPU); sampled secure bootstrap 3,915 ms. Gateway handles preflight/media directly. |
+| Durable Object duration | 13,000 GB-s/day Free, account-wide | One continuously active 128 MB workspace: 11,059.2 GB-s/day; staging/other objects share the remaining 1,940.8. |
+| Worker bundle | CMS dry-run ~13,978 KiB uncompressed / 2,987 KiB gzip | Current official size limit is 64 MiB uncompressed; old 3 MiB compressed advice is obsolete. Cold Payload CPU is handled inside the DO budget |
 | D1 | 21.6 MB; Free 500 MB/database, 5 GB/account, 5m reads/day, 100k writes/day | Size fits; workload projections still require sustained usage data |
-| R2 Standard | 10,374,930,514 bytes / 11,223 objects before restoration | Above 10 GB included allowance; **$0 target not met**. Restoring missing media adds only 7,894 bytes |
+| R2 Standard | Main bucket 8,590,643,653 bytes / 11,124 objects after offload | Estimated account total 8,739,713,561 bytes plus metadata; November projection 8.760 GB-month if stable. Historical October overage cannot be undone. |
 | Images | Build-generated variants/direct CDN; no paid transformation | No Vercel optimizer or Cloudflare Images subscription introduced |
 
 R2 free allowances are account-wide: 10 GB-month, 1m Class A and 10m Class B operations. The full media download backup consumes approximately 11.2k read operations, not additional R2 storage. Request projections are not guarantees; no historical monthly product-level billing export was available through the OAuth subscription endpoint (403). Cloudflare's UI confirmed Workers Free and $0 Workers billable usage at inspection; this does not establish R2's bill.
@@ -78,7 +91,7 @@ npm ci --prefix payload-cms
 npm run verify
 ```
 
-Build output `out`, Node 22, `SKIP_DEPENDENCY_INSTALL=1`. Approved production branch `main`; previews restricted to `codex/cloudflare-*`. Documentation/quote-app/agent-file changes are excluded from Cloudflare build watches. `_routes.json` prevents static traffic consuming Worker requests. Preview builds add noindex headers; production canonical metadata always uses `https://mdftungphat.com`.
+Build output `out`, Node 22.23.4 or compatible newer supported release, `SKIP_DEPENDENCY_INSTALL=1`. Approved production branch `main`; previews restricted to `codex/cloudflare-*`. Documentation/quote-app/agent-file changes are excluded from Cloudflare build watches. `_routes.json` prevents static traffic consuming Worker requests. Preview builds add noindex headers; production canonical metadata always uses `https://mdftungphat.com`.
 
 Manual recovery/deployment (OAuth login or scoped Cloudflare API token required, never Vercel):
 
@@ -104,7 +117,7 @@ Media backup: `backups/cloudflare-exit-20261031/media/` and `media-manifest.json
 
 Public DNS snapshot: `reports/cloudflare-exit/dns-public-before.json`; registry snapshot: `rdap-before.json`. The full authenticated six-record Tenten table is saved at `docs/evidence/tenten-zone-before.json` and in the controlled backup. This UI does not offer a native zone-export action or registrar nameserver controls. Never replace a zone using only public DNS guesses. Before cutover, store the complete zone export in the controlled backup alongside the eventual Cloudflare zone ID, nameservers, records and redirect rule export.
 
-Required public build variable names (values belong in Cloudflare configuration): `PAYLOAD_PUBLIC_URL`, `NEXT_PUBLIC_FORMS_API_BASE`, `NEXT_PUBLIC_ANALYTICS_API_BASE`, `NEXT_PUBLIC_MEDIA_BASE_URL`, `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, optional `NEXT_PUBLIC_GA_MEASUREMENT_ID`, `NEXT_PUBLIC_PROCESS_VIDEO_URL`, `INDEXNOW_KEY`. Cloudflare build controls: `NODE_VERSION=22`, `SKIP_DEPENDENCY_INSTALL=1`.
+Required public build variable names (values belong in Cloudflare configuration): `PAYLOAD_PUBLIC_URL`, `NEXT_PUBLIC_FORMS_API_BASE`, `NEXT_PUBLIC_ANALYTICS_API_BASE`, `NEXT_PUBLIC_MEDIA_BASE_URL`, `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, optional `NEXT_PUBLIC_GA_MEASUREMENT_ID`, `NEXT_PUBLIC_PROCESS_VIDEO_URL`, `INDEXNOW_KEY`. Cloudflare build controls: `NODE_VERSION=22` (resolved version must satisfy CMS engines), `SKIP_DEPENDENCY_INSTALL=1`.
 
 Required CMS secret names: `PAYLOAD_SECRET`, `PREVIEW_SECRET`, `IP_HASH_SALT`, `TURNSTILE_SECRET_KEY`. Existing values are not readable from the API inventory and have not been exported. Keep an independently controlled secure escrow; do not rotate PAYLOAD_SECRET casually. The Worker configuration also defines its public URL/site/media vars, D1 ID and R2 bucket.
 
@@ -120,9 +133,9 @@ Recovery sequence:
 
 ## Remaining acceptance gates
 
-See [VERCEL_DELETION_CHECKLIST.md](VERCEL_DELETION_CHECKLIST.md). Blocking work includes registrar delegation control and supported apex cutover; exact Free budget/reliability remediation without losing media or CMS functionality; staging/production regression closure; Cloudflare-only release/rollback evidence and secure secret escrow. No Vercel disconnection/deletion is appropriate yet.
+See [VERCEL_DELETION_CHECKLIST.md](VERCEL_DELETION_CHECKLIST.md). Remaining work is registrar delegation control and supported apex cutover, the mandatory post-cutover production regression/rollback proof, and independent secret escrow/additional backup custody. CMS CPU, R2 sizing, clean GitHub deployment and the original 29 browser failures have been resolved with evidence below. No Vercel disconnection/deletion is appropriate yet.
 
-## Verified checkpoint results
+## Historical verification — 2026-10-31 (superseded by current results below)
 
 - Source checkpoint: `d7eee5e` on `codex/cloudflare-exit`, pushed to GitHub. Configuration correction: `2385493`, also pushed. `main` remains `5b1b324`; no production promotion occurred.
 - Independent Cloudflare Git build attempt `cfe58000-c138-44c2-aa89-67235d8d8ac8` cloned GitHub successfully but failed before dependencies: the Pages build validator rejects `account_id` in Wrangler. The correction removes it from Wrangler; the explicit account stays in `config/cloudflare-pages-project.json`. Retry `d496182d-e562-4a24-a43d-3aadc33b6f6a` succeeded after its clean build and verify gate.
@@ -136,7 +149,7 @@ See [VERCEL_DELETION_CHECKLIST.md](VERCEL_DELETION_CHECKLIST.md). Blocking work 
 
 The catalogue index still contains **2,910 verified codes**: Thanh Thuỳ 342, Ba Thanh 373, An Cường 2,195. Live CMS API counts observed during audit: 6 product documents, 3 articles, 0 project documents. Product families, colour records and searchable codes are distinct counts; do not equate them. Migration source changes do not modify supplier/catalogue records.
 
-## Remote Cloudflare release verification
+## Historical remote Cloudflare release — 2026-10-31
 
 Cloudflare Git preview **d496182d-e562-4a24-a43d-3aadc33b6f6a**, commit **2385493387ab21b187bddd8762b82b79670a184a**, deployed successfully at **2026-10-31 14:47:48 UTC** (21:47 ICT). URL: **https://d496182d.tungphat-i9i.pages.dev/**. This was a clean GitHub checkout and Cloudflare build running the mandatory verify gate, independent of local `.next`, Vercel credentials, deployment history and artifacts.
 
@@ -201,3 +214,10 @@ Final status remains **NOT READY TO DELETE VERCEL** until apex/www traffic and f
 
 
 Remaining advisory exposure: esbuild development-server advisory is not active in the deployed Worker; glob/minimatch cancellation/amplification advisories concern trusted build filesystem patterns, not an exposed runtime glob service. Deepmerge4.3.1 is a Payload runtime dependency with a low returned-object prototype-poisoning advisory and no published patched release (`npm view`/audit verified); untrusted values must remain within validated schema fields and must never supply authorization objects. Staged editor/user escalation was denied. This residual low risk is recorded rather than claiming a zero-finding audit. See evidence/cms-remaining-advisories.json.
+
+
+## Final media correction checkpoint — 2026-11-01 12:35UTC
+
+The expanded10,699URL check found7 pre-existing missing legacy swatches on non-indexed Ba Thanh colour-code pages outside the sitemap. All2,558 unique assets extracted from the indexed-page HTML passed. Source records/checksums remain unchanged; the precise availability overlay now renders the existing missing-image state for SC009MW–SC015MW. No colour code, manufacturer source, original media or CMS asset was removed. The browser search artifact retains376 entries with only these7 thumbnail fields changed; verified public colour-code totals remain2,910/373BaThanh. Actual BaThanh preview availability is318, missing55 (previously325/48 included seven nonexistent swatches).
+
+Regression:7new unit cases failed before the correction;18focused cases passed after it. Seven new browser cases failed on the previous real Cloudflare preview and then passed locally with the fix. Final engineering gate passed716frontend+313supplier+38CMS tests, all2,652sitemap URLs and239,672internal links. The new full81-case remote/CI validation and clean Git deployment must be recorded before treating this last correction as released. The preceding74-case real-preview results remain valid for their recorded revision.

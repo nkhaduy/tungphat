@@ -1,0 +1,34 @@
+{
+  "verifiedAt": "2026-11-01T12:24:07Z",
+  "reason": "HTTP 404 before cutover; absent from original bucket backup. Retain source metadata and code, render existing missing-media state until exact verified media is recovered.",
+  "entries": [
+    {
+      "objectKey": "catalog/ba-thanh/melamine/sc009mw-swatch.webp",
+      "sha256": "217a6148878db911469a7a6622b96a654582236dd406f974d5b9bb785aa0d3ca"
+    },
+    {
+      "objectKey": "catalog/ba-thanh/melamine/sc010mw-swatch.webp",
+      "sha256": "cff52c37279584bf2583aafc3a3dfa1f8b4a802e43da4fde7bdfd7c41da4db78"
+    },
+    {
+      "objectKey": "catalog/ba-thanh/melamine/sc011mw-swatch.webp",
+      "sha256": "a0b89e6a593687b85b27b4d4b68e1492f2f24cbd8a6511f16c1ebd0983040788"
+    },
+    {
+      "objectKey": "catalog/ba-thanh/melamine/sc012mw-swatch.webp",
+      "sha256": "037dac26f62a290aeb44fd45d6ec447b418a66cfd51c32bdbe61225a4770929b"
+    },
+    {
+      "objectKey": "catalog/ba-thanh/melamine/sc013mw-swatch.webp",
+      "sha256": "9e57de27c946f4df59c3ba41c176632280460e2d6e0012742b7ad7b9b1f719c5"
+    },
+    {
+      "objectKey": "catalog/ba-thanh/melamine/sc014mw-swatch.webp",
+      "sha256": "042cba6f86daaa9aabab2e158a57ac1e84dd54a10fb73e1ab57d381f12621e09"
+    },
+    {
+      "objectKey": "catalog/ba-thanh/melamine/sc015mw-swatch.webp",
+      "sha256": "4dd9e37a9530dd4573cd8518cf1d8789eae2a621b0add6a04631f181922b8d91"
+    }
+  ]
+}

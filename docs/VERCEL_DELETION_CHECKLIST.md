@@ -29,7 +29,7 @@ The owner must not delete project `lmskis/tungphat` yet. This checklist is the d
 - [x] Create pending Cloudflare Free zone and mirror all6 original records DNS-onlyTTL600.
 - [ ] Registrar holder changes nameservers after coordinated cutover preparation; owner confirms they do not control that account. Preserve mail/CMS/CDN/baogia. Handle any DNSSEC delegation deliberately.
 - [ ] Attach apex/www to the chosen Pages project; verify active TLS, apex 200, www permanent redirect preserving path/query and HTTP→HTTPS.
-- [ ] Verify Cloudflare staging and GitHub clean build; compare all 2,652 valid sitemap routes, metadata, structured data, text and media to baseline.
+- [x] Verify current GitHub clean build/CI and real preview browser74/74; all2,652 routes200 with identical baseline metadata/text/schema counts. Media checks are recorded in the current report.
 - [ ] Cut over only after critical tests pass; then repeat full production crawl/browser/API tests and cross-check DNS, project domains, deployment revision and bindings.
 - [ ] Verify Cloudflare-only rollback/redeploy, independent backups and required environment names/secret access.
 - [ ] Remove `vercel.json`, `.vercelignore` and remaining tests coupled to those files only after their replacements have passed production verification.
@@ -43,7 +43,7 @@ The owner must not delete project `lmskis/tungphat` yet. This checklist is the d
 | Question | Current answer |
 | --- | --- |
 | Hosting disappears? | **FAIL**: current apex/www DNS still use Vercel. |
-| Build history disappears? | **PASS for candidate**: clean GitHub clone, verify and deploy succeeded on Cloudflare preview, commit 2385493. |
+| Build history disappears? | **PASS for candidate**: clean GitHub clone, verify and deploy succeeded on Cloudflare preview, commit682f853, deployment1a89886e. |
 | Image optimizer disappears? | Public images are unoptimized/direct. Catalogue proxy no longer fabricates images. |
 | Vercel storage disappears? | No connected project stores; catalogue lives in Cloudflare D1/R2. |
 | Vercel DNS disappears? | Authoritative DNS is Tenten, but apex/www records still target Vercel. |
@@ -63,6 +63,6 @@ Cloudflare zone4cc9a59d98651da1950571a2bf07252e is Free/pending. Six original re
 - [x] Real staged CMS browser/auth/editor/media workflows pass.
 - [x] Production CMS/gateway deployed and D1 counts preserved.
 - [x] Independent exact-byte media archive and guarded restore procedure tested for reads.
-- [ ] Current revision GitHub build/preview evidence and final frontend release recorded.
+- [x] Current runtime revision682f853 clean GitHub build1a89886e and CI41287589823 verified; final custom-domain frontend release remains pending.
 - [ ] Live apex/www on Cloudflare, full2652-route post-cutover crawl and Vercel-blocking proof.
 - [ ] Only after these checks: detach obsolete Vercel Git integration/config and owner deletes old project.

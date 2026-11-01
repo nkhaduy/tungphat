@@ -3,7 +3,7 @@
 > Current status - 2026-11-01: **NOT READY TO DELETE VERCEL**. CMS CPU, media storage and browser blockers below have been resolved and deployed; the remaining cutover blocker is registrar authority. The owner confirmed that another account controls nameservers and they cannot access it. Active apex/www DNS still points to Vercel. Earlier dated sections are historical baseline evidence, not the current blocker list. See [current implementation checkpoint](CLOUDFLARE_BLOCKERS_PROGRESS.md) and [current measured results](evidence/cloudflare-blocker-measurements.json).
 
 
-No catalogue record, supplier relationship, wood code, article or remote media object was deleted. Full per-file classification and SHA-256 evidence are in [cloudflare-asset-classification.json](evidence/cloudflare-asset-classification.json).
+No catalogue record, supplier relationship, wood code, article or unique media content was deleted. The later controlled offload removed 100 redundant R2 copies only after identical independent archive/backup verification; canonical URLs are unchanged. Full per-file classification and SHA-256 evidence are in [cloudflare-asset-classification.json](evidence/cloudflare-asset-classification.json).
 
 ## Inventory and decisions
 
@@ -56,3 +56,10 @@ R2 reduction:1,784,294,755bytes. These100 supplier originals are content-address
 Other account buckets observed before offload total149,069,908bytes; no other project was modified. Combined expected current payload8,739,713,561bytes gives~1.26GB headroom, excluding small metadata overhead. Free storage is account-wideGB-month. A conservative November projection retaining the initial10.524GB for8hours and8.740GB for the remaining712hours is8.760GB-month if other storage stays constant. Historical October usage cannot be undone; future quote/media growth must be monitored. This is an explicit projection, not a billing guarantee.
 
 Recovery: `node scripts/prepare-media-archive.mjs /absolute/media-backup /absolute/archive-output`; deploy from that isolated output directory with `wrangler pages deploy . --project-name tungphat-media-archive --branch main`. Then `node scripts/verify-media-archive.mjs`. No Functions should be included in that static project. Maintenance helper binds only loopback and is never deployed: use its disabled-by-default configuration, `plan` before `apply`, and `restore` with the exact manifest when required.
+
+
+## Expanded availability check — 2026-11-01
+
+The complete export-reference check examined10,699 unique URLs:10,692 returned200 and7 returned404. All2,558 unique assets extracted from the2,652 sitemap-page HTML responses returned200. The seven additional missing URLs are legacy Ba Thanh SC009MW–SC015MW swatches. They were absent from the pre-migration R2 backup, have no matching SHA256 in that backup, and were never in the100-object offload. The public catalogue still exposes these code pages as searchable/noindex; a separate older import marks them unpublished/MEDIA_MISSING. These are different projections and must not be conflated.
+
+All seven are REVIEW for original-image recovery. Source records, expected checksums, manufacturer URLs, searchability and colour codes remain intact. A small versioned availability overlay excludes only the exact missing path/checksum from public galleries/search thumbnails so the existing honest missing-image state can render. A replacement with a new checksum is not suppressed. No substitute colour, source deletion, new upload or CMS edit was performed. Regression and final deployment evidence are recorded in the current migration report; raw404s are retained in [availability evidence](evidence/cloudflare-final-media-validation.json).
