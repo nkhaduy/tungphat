@@ -1,4 +1,6 @@
 import nodeCrypto from 'node:crypto'
+import { pbkdf2 } from '@noble/hashes/pbkdf2.js'
+import { sha256 } from '@noble/hashes/sha2.js'
 
 const installMarker = Symbol.for('tungphat.payload.webcrypto-pbkdf2')
 const originalPbkdf2 = nodeCrypto.pbkdf2.bind(nodeCrypto)
@@ -12,6 +14,10 @@ export async function derivePbkdf2WithWebCrypto(password: nodeCrypto.BinaryLike,
   if (hash !== 'sha256') throw new Error(`Unsupported PBKDF2 digest: ${digest}`)
   const passwordBytes = binaryBytes(password)
   const saltBytes = binaryBytes(salt)
+  // Workers rejects native PBKDF2 above 100000 iterations. Preserve Payload's
+  // 600000-iteration format exactly; execute the audited JS implementation in
+  // the CMS Durable Object rather than weakening or changing stored hashes.
+  if (iterations > 100_000) return Buffer.from(pbkdf2(sha256, passwordBytes, saltBytes, { c: iterations, dkLen: keyLength }))
   const key = await subtle.importKey('raw', passwordBytes, 'PBKDF2', false, ['deriveBits'])
   const bits = await subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: saltBytes, iterations }, key, keyLength * 8)
   return Buffer.from(bits)

@@ -42,7 +42,7 @@ describe("hosting parity comparison", () => {
       expect(redirects).toContain(`${source} ${rule.destination} ${status}`);
     }
 
-    expect(redirects).toContain("/catalog/* https://cms.mdftungphat.com/media/catalog/:splat 200");
+    expect(redirects).not.toContain("https://cms.mdftungphat.com/media/catalog/:splat 200");
     expect(headers).toContain("/cms-preview/*");
     expect(headers).toContain("X-Robots-Tag: noindex, nofollow, noarchive");
   });

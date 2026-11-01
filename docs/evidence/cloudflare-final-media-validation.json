@@ -1,0 +1,179 @@
+{
+  "checkedAt": "2026-11-01T12:24:07.000Z",
+  "origin": "https://1a89886e.tungphat-i9i.pages.dev",
+  "source": "Export HTML/CSS/JS/JSON/XML media references plus all 2652 live preview HTML asset references",
+  "count": 10699,
+  "statuses": {
+    "200": 10692,
+    "404": 7
+  },
+  "failures": [
+    {
+      "url": "https://cdn.mdftungphat.com/catalog/ba-thanh/melamine/sc009mw-swatch.webp",
+      "status": 404,
+      "bytes": 0,
+      "type": "text/plain;charset=UTF-8",
+      "location": null,
+      "attempts": 1
+    },
+    {
+      "url": "https://cdn.mdftungphat.com/catalog/ba-thanh/melamine/sc010mw-swatch.webp",
+      "status": 404,
+      "bytes": 0,
+      "type": "text/plain;charset=UTF-8",
+      "location": null,
+      "attempts": 1
+    },
+    {
+      "url": "https://cdn.mdftungphat.com/catalog/ba-thanh/melamine/sc011mw-swatch.webp",
+      "status": 404,
+      "bytes": 0,
+      "type": "text/plain;charset=UTF-8",
+      "location": null,
+      "attempts": 1
+    },
+    {
+      "url": "https://cdn.mdftungphat.com/catalog/ba-thanh/melamine/sc012mw-swatch.webp",
+      "status": 404,
+      "bytes": 0,
+      "type": "text/plain;charset=UTF-8",
+      "location": null,
+      "attempts": 1
+    },
+    {
+      "url": "https://cdn.mdftungphat.com/catalog/ba-thanh/melamine/sc013mw-swatch.webp",
+      "status": 404,
+      "bytes": 0,
+      "type": "text/plain;charset=UTF-8",
+      "location": null,
+      "attempts": 1
+    },
+    {
+      "url": "https://cdn.mdftungphat.com/catalog/ba-thanh/melamine/sc014mw-swatch.webp",
+      "status": 404,
+      "bytes": 0,
+      "type": "text/plain;charset=UTF-8",
+      "location": null,
+      "attempts": 1
+    },
+    {
+      "url": "https://cdn.mdftungphat.com/catalog/ba-thanh/melamine/sc015mw-swatch.webp",
+      "status": 404,
+      "bytes": 0,
+      "type": "text/plain;charset=UTF-8",
+      "location": null,
+      "attempts": 1
+    }
+  ],
+  "legacyReview": [
+    {
+      "key": "catalog/ba-thanh/melamine/sc009mw-swatch.webp",
+      "code": "SC009MW",
+      "inRenderedHTML": false,
+      "inPreMigrationBucketBackup": false,
+      "inOffloadManifest": false,
+      "classification": "REVIEW provenance retained; known missing image omitted from public projection, code/search/source remain. Non-indexed public detail pages previously requested this missing swatch.",
+      "legacyImportPublished": false,
+      "legacyImportSeoStatus": "MEDIA_MISSING",
+      "publicCatalogueSearchable": true,
+      "publicCatalogueSeoStatus": "NEEDS_ENRICHMENT",
+      "publicRoute": "/catalogue/ba-thanh/melamine/sc009mw/"
+    },
+    {
+      "key": "catalog/ba-thanh/melamine/sc010mw-swatch.webp",
+      "code": "SC010MW",
+      "inRenderedHTML": false,
+      "inPreMigrationBucketBackup": false,
+      "inOffloadManifest": false,
+      "classification": "REVIEW provenance retained; known missing image omitted from public projection, code/search/source remain. Non-indexed public detail pages previously requested this missing swatch.",
+      "legacyImportPublished": false,
+      "legacyImportSeoStatus": "MEDIA_MISSING",
+      "publicCatalogueSearchable": true,
+      "publicCatalogueSeoStatus": "NEEDS_ENRICHMENT",
+      "publicRoute": "/catalogue/ba-thanh/melamine/sc010mw/"
+    },
+    {
+      "key": "catalog/ba-thanh/melamine/sc011mw-swatch.webp",
+      "code": "SC011MW",
+      "inRenderedHTML": false,
+      "inPreMigrationBucketBackup": false,
+      "inOffloadManifest": false,
+      "classification": "REVIEW provenance retained; known missing image omitted from public projection, code/search/source remain. Non-indexed public detail pages previously requested this missing swatch.",
+      "legacyImportPublished": false,
+      "legacyImportSeoStatus": "MEDIA_MISSING",
+      "publicCatalogueSearchable": true,
+      "publicCatalogueSeoStatus": "NEEDS_ENRICHMENT",
+      "publicRoute": "/catalogue/ba-thanh/melamine/sc011mw/"
+    },
+    {
+      "key": "catalog/ba-thanh/melamine/sc012mw-swatch.webp",
+      "code": "SC012MW",
+      "inRenderedHTML": false,
+      "inPreMigrationBucketBackup": false,
+      "inOffloadManifest": false,
+      "classification": "REVIEW provenance retained; known missing image omitted from public projection, code/search/source remain. Non-indexed public detail pages previously requested this missing swatch.",
+      "legacyImportPublished": false,
+      "legacyImportSeoStatus": "MEDIA_MISSING",
+      "publicCatalogueSearchable": true,
+      "publicCatalogueSeoStatus": "NEEDS_ENRICHMENT",
+      "publicRoute": "/catalogue/ba-thanh/melamine/sc012mw/"
+    },
+    {
+      "key": "catalog/ba-thanh/melamine/sc013mw-swatch.webp",
+      "code": "SC013MW",
+      "inRenderedHTML": false,
+      "inPreMigrationBucketBackup": false,
+      "inOffloadManifest": false,
+      "classification": "REVIEW provenance retained; known missing image omitted from public projection, code/search/source remain. Non-indexed public detail pages previously requested this missing swatch.",
+      "legacyImportPublished": false,
+      "legacyImportSeoStatus": "MEDIA_MISSING",
+      "publicCatalogueSearchable": true,
+      "publicCatalogueSeoStatus": "NEEDS_ENRICHMENT",
+      "publicRoute": "/catalogue/ba-thanh/melamine/sc013mw/"
+    },
+    {
+      "key": "catalog/ba-thanh/melamine/sc014mw-swatch.webp",
+      "code": "SC014MW",
+      "inRenderedHTML": false,
+      "inPreMigrationBucketBackup": false,
+      "inOffloadManifest": false,
+      "classification": "REVIEW provenance retained; known missing image omitted from public projection, code/search/source remain. Non-indexed public detail pages previously requested this missing swatch.",
+      "legacyImportPublished": false,
+      "legacyImportSeoStatus": "MEDIA_MISSING",
+      "publicCatalogueSearchable": true,
+      "publicCatalogueSeoStatus": "NEEDS_ENRICHMENT",
+      "publicRoute": "/catalogue/ba-thanh/melamine/sc014mw/"
+    },
+    {
+      "key": "catalog/ba-thanh/melamine/sc015mw-swatch.webp",
+      "code": "SC015MW",
+      "inRenderedHTML": false,
+      "inPreMigrationBucketBackup": false,
+      "inOffloadManifest": false,
+      "classification": "REVIEW provenance retained; known missing image omitted from public projection, code/search/source remain. Non-indexed public detail pages previously requested this missing swatch.",
+      "legacyImportPublished": false,
+      "legacyImportSeoStatus": "MEDIA_MISSING",
+      "publicCatalogueSearchable": true,
+      "publicCatalogueSeoStatus": "NEEDS_ENRICHMENT",
+      "publicRoute": "/catalogue/ba-thanh/melamine/sc015mw/"
+    }
+  ],
+  "sitemapRenderedAssets": {
+    "count": 2558,
+    "failures": []
+  },
+  "correction": {
+    "source": "data/catalogs/unavailable-color-media.json",
+    "originalRecordsEdited": false,
+    "removedCodes": 0,
+    "changedRemoteObjects": 0,
+    "redUnitCases": 7,
+    "initialFocusedGreenCases": 18,
+    "finalBuildAndBrowserValidation": "Cloudflare clean Git62373703 /95f52aa and CI41308042213 pass;81/81 real-preview browsers. All3578public HTML routes200,33expectedredirects correct;3260renderedassets200;2652indexedroute metadata/text/schema comparison zero differences.",
+    "unitTests": 716,
+    "unitStatus": "passed",
+    "engineeringGate": "npm run verify exit0; 716 frontend +313 supplier +38 CMS",
+    "oldPreviewBrowserRedCases": 7,
+    "localBrowserGreenCases": 7
+  }
+}

@@ -1,0 +1,68 @@
+# Asset cleanup — 2026-10-31
+
+> Current status - 2026-11-01: **NOT READY TO DELETE VERCEL**. CMS CPU, media storage and browser blockers below have been resolved and deployed; the remaining cutover blocker is registrar authority. The owner confirmed that another account controls nameservers and they cannot access it. Active apex/www DNS still points to Vercel. Earlier dated sections are historical baseline evidence, not the current blocker list. See [current implementation checkpoint](CLOUDFLARE_BLOCKERS_PROGRESS.md) and [current measured results](evidence/cloudflare-blocker-measurements.json).
+
+
+No catalogue record, supplier relationship, wood code, article or unique media content was deleted. The later controlled offload removed 100 redundant R2 copies only after identical independent archive/backup verification; canonical URLs are unchanged. Full per-file classification and SHA-256 evidence are in [cloudflare-asset-classification.json](evidence/cloudflare-asset-classification.json).
+
+## Inventory and decisions
+
+The original public directory contained **107 files / 44,301,122 bytes**. Every source asset is classified: 65 KEEP, 23 OPTIMIZE, 5 DELETE, 16 REVIEW (109 entries including two added responsive variants and five deleted entries). Dynamic JSON references, filename-based references, supplier manifests, source media paths and export artifacts were inspected. Lack of a React import was never used as deletion evidence.
+
+KEEP covers catalogue search indexes, icons/fonts, business images, metadata/OG assets and referenced media. OPTIMIZE retains source images with modern siblings; existing export cleanup omits an original only when generated HTML/JS/CSS/JSON no longer references it. REVIEW assets remain in Git: historical hero variants/public consumers cannot be disproved safely.
+
+## Executed cleanup
+
+Five avatar binaries were byte-identical and were removed. The review snapshot now references the retained copy; its refresh script preserves cached local avatar URLs. Permanent Pages redirects preserve the five old public URLs.
+
+| Deleted avatar | Retained avatar | Bytes removed |
+| --- | --- | ---: |
+| 264028631.png | 264028607.png | 14,880 |
+| 264028632.png | 264028608.png | 27,438 |
+| 264028636.png | 264028613.png | 33,633 |
+| 264028637.png | 264028614.png | 23,516 |
+| 264028639.png | 264028612.png | 7,430 |
+
+Total duplicate binary savings: **106,897 bytes**. Git tag `migration/pre-cloudflare-exit-20261031` recovers every removed source file.
+
+The mobile hero previously requested a **1,385,310-byte PNG**. Same composition/resolution now has a **195,980-byte WebP** and a **768px / 86,294-byte** variant. The original PNG remains in Git; its old URL permanently redirects to the full WebP. The PNG is omitted from the deploy artifact after references are updated. The mobile browser regression verifies selected format, natural width and a <200k byte payload.
+
+At 768px the image payload drops **1,299,016 bytes (93.8%)**. At full size it drops **1,189,330 bytes (85.9%)**. This is an exact resource-byte comparison, not a claim about field LCP. Full-resolution decoded 8-bit channel mean absolute error is 0.885/255; RMSE 1.410/255; mean channel shifts are -0.003, +0.064, -0.057. No catalogue swatch was recompressed.
+
+After adding the two variants and removing duplicates, source public assets are **104 files / 44,476,921 bytes**: source storage grows **175,799 bytes**, because original design sources are intentionally preserved. The deploy artifact is the relevant delivery saving; complete before/after artifact measurements are recorded in the migration report. JS/CSS changes from patching Next must be reported separately rather than credited to image cleanup.
+
+## Remote media and broken-reference repair
+
+Read-only R2 inventory found **11,223 objects / 10,374,930,514 bytes**. The largest original is **30,337,989 bytes**. Many supplier originals are referenced by provenance records, even when optimized derivatives serve the page. They are KEEP/REVIEW, not deletion candidates. At this storage level R2 is above its 10 GB included allowance; no paid service was enabled and no remote object was deleted.
+
+The full baseline crawl found one missing optimized Ba Thanh image at `/catalog/ba-thanh/laminate/p-2052-g-swatch.webp`. The versioned catalogue manifest proves SHA-256 `9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e`, 7,894 bytes, is identical to the existing `f-0022-x-swatch.webp` object. That object was downloaded, hash-verified and restored at the missing key. Live CDN GET now verifies the expected hash. No substitute colour or newly inferred supplier association was introduced.
+
+A full R2 download backup verified all 11,223 inventory objects against size and ETag, with zero failures; the restored swatch was added separately, making 11,224 backup files. Backup results and locations are recorded in the migration report; raw backup data remains ignored by Git. No deletion or mass synchronization command was used as a test.
+
+
+Continuation checkpoint (2026-10-31): see [blocker progress](CLOUDFLARE_BLOCKERS_PROGRESS.md) and [measured evidence](evidence/cloudflare-blocker-measurements.json). Security patches and gateway fast paths are under staging validation. Production DNS and media originals remain unchanged. Readiness remains **NOT READY TO DELETE VERCEL**; the new staging candidate has not passed the complete acceptance gate.
+
+
+## Verified media offload - 2026-11-01
+
+| Metric | Before | After |
+|---|---:|---:|
+| R2 media objects |11,224|11,124|
+| R2 media bytes |10,374,938,408|8,590,643,653|
+| Exact-byte originals on static Pages archive |0|100|
+
+R2 reduction:1,784,294,755bytes. These100 supplier originals are content-addressed, each filename equals its SHA256, all under24MiB. They remain available at their existing CDN URLs through the verified gateway fallback. No re-encoding, swatch changes, catalogue-code deletions, D1 reference edits or CMS-upload removals occurred. Each removal required matching current ETag/size and a verified independent original; each canonical production URL was downloaded and hash-checked immediately after removal. On a failure, the maintenance client restores that object immediately and stops. Backups include original HTTP/custom metadata. Direct archive100/100, preview fallback100/100, production after-remove100/100 passed. See [actual final R2 inventory](evidence/r2-after-offload.json).
+
+Other account buckets observed before offload total149,069,908bytes; no other project was modified. Combined expected current payload8,739,713,561bytes gives~1.26GB headroom, excluding small metadata overhead. Free storage is account-wideGB-month. A conservative November projection retaining the initial10.524GB for8hours and8.740GB for the remaining712hours is8.760GB-month if other storage stays constant. Historical October usage cannot be undone; future quote/media growth must be monitored. This is an explicit projection, not a billing guarantee.
+
+Recovery: `node scripts/prepare-media-archive.mjs /absolute/media-backup /absolute/archive-output`; deploy from that isolated output directory with `wrangler pages deploy . --project-name tungphat-media-archive --branch main`. Then `node scripts/verify-media-archive.mjs`. No Functions should be included in that static project. Maintenance helper binds only loopback and is never deployed: use its disabled-by-default configuration, `plan` before `apply`, and `restore` with the exact manifest when required.
+
+
+## Expanded availability check — 2026-11-01
+
+The complete export-reference check examined10,699 unique URLs:10,692 returned200 and7 returned404. All2,558 unique assets extracted from the2,652 sitemap-page HTML responses returned200. The seven additional missing URLs are legacy Ba Thanh SC009MW–SC015MW swatches. They were absent from the pre-migration R2 backup, have no matching SHA256 in that backup, and were never in the100-object offload. The public catalogue still exposes these code pages as searchable/noindex; a separate older import marks them unpublished/MEDIA_MISSING. These are different projections and must not be conflated.
+
+All seven are REVIEW for original-image recovery. Source records, expected checksums, manufacturer URLs, searchability and colour codes remain intact. A small versioned availability overlay excludes only the exact missing path/checksum from public galleries/search thumbnails so the existing honest missing-image state can render. A replacement with a new checksum is not suppressed. No substitute colour, source deletion, new upload or CMS edit was performed. Regression and final deployment evidence are recorded in the current migration report; raw404s are retained in [availability evidence](evidence/cloudflare-final-media-validation.json).
+
+
+Final95f52aa verification: all3,578public exported pages200, all33expected redirects correct, and all3,260rendered asset references200. All2,652indexed-page metadata/text signals still match baseline. Full81browsercases pass on the real Cloudflare preview and GitHubCI. The final public artifact is601,300,772bytes (44,533bytes below the previous candidate); JS/CSS unchanged. These results are separate from the seven retained historical raw-source404s. See [versioned final snapshot](evidence/cloudflare-final-preview.json.gz).

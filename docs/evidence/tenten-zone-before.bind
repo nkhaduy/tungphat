@@ -1,0 +1,8 @@
+$ORIGIN mdftungphat.com.
+$TTL 600
+@ 600 IN TXT "google-site-verification=CgMEKzR6kbygb0DFUxi0B16VXk40tCVfiPXqxkh2_v8"
+@ 600 IN A 216.198.79.1
+www 600 IN CNAME d69b5815ccf0cf8d.vercel-dns-017.com.
+cms 600 IN CNAME tungphat-light-cms-production.pages.dev.
+baogia 600 IN CNAME tungphat-quotes.pages.dev.
+cdn 600 IN CNAME tungphat-light-cms-production.pages.dev.

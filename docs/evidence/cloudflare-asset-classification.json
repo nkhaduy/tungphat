@@ -1,0 +1,766 @@
+{
+  "before": {
+    "files": 107,
+    "bytes": 44301122
+  },
+  "after": {
+    "files": 104,
+    "bytes": 44476921
+  },
+  "deletedBytes": 106897,
+  "assets": [
+    {
+      "path": "public/llms.txt",
+      "classification": "KEEP",
+      "bytes": 1381,
+      "sha256": "7a0d001641d05254f2cc75409810b80d74ab5f41ad984d57b08999b5abec55f4",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/material-comparison-matrix.csv",
+      "classification": "KEEP",
+      "bytes": 3192,
+      "sha256": "615f4f77cd390dca09e671f36c59e377086726298990f0e75f7c31e0b4cee151",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/logo-horizontal.png",
+      "classification": "OPTIMIZE",
+      "bytes": 63529,
+      "sha256": "95c830296f44b4ea7fd796e902a27b5a51dd35b73ed4b72ff4daf9fe749eb116",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/android-chrome-192x192.png",
+      "classification": "KEEP",
+      "bytes": 25235,
+      "sha256": "453d689a9dfde325fac0dcd1224991946262e8dd7fab23e53f1350d8b45b06b6",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/indexnow-key.txt",
+      "classification": "KEEP",
+      "bytes": 65,
+      "sha256": "6ef978af52070b6b8285e49cd944928da316c5dd9c2d541c722a6ced9209e4b0",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/logo-horizontal.webp",
+      "classification": "KEEP",
+      "bytes": 12790,
+      "sha256": "d92e514e7a486aaf6e3c2a2ed7cbda7dddb71a629591a25ce9845aa2e34b091a",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/material-comparison-matrix.json",
+      "classification": "KEEP",
+      "bytes": 8875,
+      "sha256": "02c1d3e6cba4647f344d190d590b586295842cf2dc3b1fef2f52bed31f666fc0",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/og-tungphat.jpg",
+      "classification": "KEEP",
+      "bytes": 129810,
+      "sha256": "e6e3695beaa95743df417d88c619cbd283baf9a5688049edac0a419a9d40aeba",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/logo-horizontal-white.png",
+      "classification": "KEEP",
+      "bytes": 34884,
+      "sha256": "1f7950e1fa90b00d60a0ecba95f92bc00a008622f2a2d18aa93e6fa152253b96",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/_redirects",
+      "classification": "KEEP",
+      "bytes": 1764,
+      "sha256": "c2b8f5863ab46144181b9e1ed9abbf06061339867dfc59de1651783edfa07706",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/_headers",
+      "classification": "KEEP",
+      "bytes": 2028,
+      "sha256": "e6db4c4b74a97a921206d2dcbdf6aa4cc6740ce6385d0d09fe02c8244534f09d",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/cnc-preflight-checklist.csv",
+      "classification": "KEEP",
+      "bytes": 3583,
+      "sha256": "29caa7a7bcb49cd48470337a63f7ebb8780314750edf9cee67af3f6204dc28c0",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/material-reference.csv",
+      "classification": "KEEP",
+      "bytes": 4738,
+      "sha256": "1b942c8509503186a6b40cf4e7468ec76b664e189d86f9f17cf874336c29c683",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/android-chrome-512x512.png",
+      "classification": "KEEP",
+      "bytes": 160329,
+      "sha256": "cab45e1679d887bcde2f6ca75061ec5ea6cffdfc285c39df69df6c45ad72715b",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/og-logo.png",
+      "classification": "KEEP",
+      "bytes": 69706,
+      "sha256": "ded4df4721fc98edb35ab4e4f18c186998f8d0b2162ef2878c82e4694cacc33c",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/logo-vertical.png",
+      "classification": "REVIEW",
+      "bytes": 75192,
+      "sha256": "eee9d98a36653b3ec4da7aeebe004712e86e96b569e7a1a74f73b1a9802bce38",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/BingSiteAuth.xml",
+      "classification": "KEEP",
+      "bytes": 86,
+      "sha256": "3628115d4725df5a3f26f5ba55258982d93c08665772333af45ee2594958ca4b",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/wood/vanchongam.png",
+      "classification": "OPTIMIZE",
+      "bytes": 2025429,
+      "sha256": "216c48a5e98a5666fab176f3f60953b37ae0aef4068b488c6dc231b2e8cd8832",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/wood/melamine.webp",
+      "classification": "KEEP",
+      "bytes": 74816,
+      "sha256": "af0f22e064fa3d8b027756d19ef1d832b4efc8b4691772c6f41d6181cb8df677",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/wood/tamtrangtri.png",
+      "classification": "OPTIMIZE",
+      "bytes": 1996805,
+      "sha256": "1c634b6084712874014a3ac4b99461ddf0d908c7b2c49e14c905824514d1e887",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/wood/veneer.png",
+      "classification": "OPTIMIZE",
+      "bytes": 2110244,
+      "sha256": "b9515943b4e0984060530eb9b28a90292997afe6a67690fd27627c14bdf6bf41",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/wood/plywood.webp",
+      "classification": "KEEP",
+      "bytes": 107870,
+      "sha256": "2b87bb8cd0b813d9c5eb2c212f52bd09606d4a622d77e53e2e712fa2c3ac9d05",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/wood/laminate.png",
+      "classification": "OPTIMIZE",
+      "bytes": 1950419,
+      "sha256": "45b14d03a2ba5640cf0f6c58597f654292fe7377b676ae4fec41fe7d3a942903",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/wood/laminate.webp",
+      "classification": "KEEP",
+      "bytes": 77918,
+      "sha256": "8ed0d21361eb247169fb25c11605881a968c2697b93bb3ee0fead0395713aaea",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/wood/tamtrangtri.webp",
+      "classification": "KEEP",
+      "bytes": 96928,
+      "sha256": "e2aa3868b0f78b39aa03cf1be3d0e75c3909a8211d4c7b227c86a2b29c655b61",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/wood/arcrylic.png",
+      "classification": "OPTIMIZE",
+      "bytes": 1565532,
+      "sha256": "4a620a8fed79a7254875ea458fdce38c1eddec2ec440d7a63c518afe888dc64b",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/wood/mdfmfc.webp",
+      "classification": "KEEP",
+      "bytes": 102068,
+      "sha256": "6591c520fdc000c86eda1428c2166c29fc941e8a9cfa80c22be461a4b005e4d0",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/wood/arcrylic.webp",
+      "classification": "KEEP",
+      "bytes": 44146,
+      "sha256": "49bbc9e40ae324f00d2b3d7e3a281055a1cf8a49c1d930016d4c3a496e486619",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/wood/melamine.png",
+      "classification": "OPTIMIZE",
+      "bytes": 1859785,
+      "sha256": "6b65bcff234a6be5f3cde0806d6ac0b6da2fc5075c64f640d283866d657b1b8f",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/wood/vanchongam.webp",
+      "classification": "KEEP",
+      "bytes": 100402,
+      "sha256": "11da3f5183f649dd218c3b70e8505a8253a9b5a2ede9b0771a9b108f35dd23a4",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/wood/veneer.webp",
+      "classification": "KEEP",
+      "bytes": 123790,
+      "sha256": "cdb36848b639f0c15944dc5e3010855e22609f9d57f7b97979ff8f5f2fa217b6",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/wood/mdfmfc.png",
+      "classification": "OPTIMIZE",
+      "bytes": 2077479,
+      "sha256": "0dc151c955601e0732a5d0f055f21ceaeaee5d8ac9d720568b194b5e5bc1684f",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/wood/plywood.png",
+      "classification": "OPTIMIZE",
+      "bytes": 1904910,
+      "sha256": "630fc20f671efb422538b6d3b3ac4cd43111a160ed5da6e09e5ed2062db42c1b",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/images/404-mobile.webp",
+      "classification": "KEEP",
+      "bytes": 26368,
+      "sha256": "5e55ac407920c5409ef8e2cd7e3d39a8fbcd731b8f76c82d0d08f9fb6c54ec63",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/hero-workshop4-mobile.webp",
+      "classification": "REVIEW",
+      "bytes": 19336,
+      "sha256": "e0c6c4741a77dfa6558f020f9bdb1bde89ddc97b667bf1a0ef89aa6bcf294af7",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/images/hero-workshop1-mobile.webp",
+      "classification": "REVIEW",
+      "bytes": 14838,
+      "sha256": "9766573a727672a2a037083f2506adb64be32fe04119d7806f2a96415ea8ea4e",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/images/material-panels-hero-1440.webp",
+      "classification": "KEEP",
+      "bytes": 128022,
+      "sha256": "f190f9693bfe28cf744d1016be1acb750373244bf3952fa6c9a6efa620fc3ed5",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/material-panels-hero-mobile-768.webp",
+      "classification": "OPTIMIZE",
+      "bytes": 86294,
+      "sha256": "0b2ec8c3989bf38e23b9f149f74ecbbf8c5c6a98702f0e8c6234549e23d3ba1c",
+      "reason": "Responsive WebP delivery; original PNG retained in Git and old URL redirected"
+    },
+    {
+      "path": "public/images/hero-workshop1.webp",
+      "classification": "KEEP",
+      "bytes": 80516,
+      "sha256": "1cc0b3b4cfe814f4f3da70dfe17dc76cc41cbf08e129809f1de3716a9961047c",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/material-panels-hero-mobile.webp",
+      "classification": "OPTIMIZE",
+      "bytes": 195980,
+      "sha256": "b35869b3eed58c2eff958c50e1bed38f7510f4e61b548285ce032a820e2ad09c",
+      "reason": "Responsive WebP delivery; original PNG retained in Git and old URL redirected"
+    },
+    {
+      "path": "public/images/hero-workshop6.webp",
+      "classification": "KEEP",
+      "bytes": 159118,
+      "sha256": "70a9a6b91801421da8ec478df03c5d1796fa3027cd13fc21a923de684c040857",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/hero-workshop5.png",
+      "classification": "OPTIMIZE",
+      "bytes": 2048268,
+      "sha256": "51274315d39eba28b5ba2865612ddb95268acbe88b84813169644ef2cf899a76",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/images/hero-workshop4.png",
+      "classification": "OPTIMIZE",
+      "bytes": 2267726,
+      "sha256": "da3e0146a1c68364d2b7f28086d51454ba25eb5ddae3cb742ac23722ed6f780c",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/images/hero-workshop6.png",
+      "classification": "OPTIMIZE",
+      "bytes": 2212074,
+      "sha256": "e3d2373ac115e276be6e7e7349adcaabbdf31f498332be41e256379dba1fb82d",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/images/hero-workshop2-mobile.webp",
+      "classification": "REVIEW",
+      "bytes": 45940,
+      "sha256": "7fb4c76af32b9cc01eb977b9c9681f3bace039712ef8926cc9530c2d1e63103e",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/images/material-panels-hero-960.avif",
+      "classification": "KEEP",
+      "bytes": 34751,
+      "sha256": "4bc3857b35bdf186d3694b53edb0b20143069744ccf4d6cf8953f06d38ca40a1",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/zalo-contact.png",
+      "classification": "KEEP",
+      "bytes": 8800,
+      "sha256": "b65a6eabbd5a692b2c84760aa93e5c65328facb9cc8741b3ee883e8e2bdcd842",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/material-panels-hero.avif",
+      "classification": "KEEP",
+      "bytes": 120394,
+      "sha256": "43cb176aa45fdeccdfed619a056fe2ad0337ecd81d3369ce48adb531f4826daa",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/hero-workshop.png",
+      "classification": "OPTIMIZE",
+      "bytes": 1931812,
+      "sha256": "d2b580d304e3c03cf0bec67a1b00274cd516a6c95488c145ee6553b2bbfbbab0",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/images/hero-workshop2.png",
+      "classification": "OPTIMIZE",
+      "bytes": 1941597,
+      "sha256": "56da547e5b4555b0b7636dc88c0352245050730b6951d62e0183606838919590",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/images/404-desktop.webp",
+      "classification": "KEEP",
+      "bytes": 31814,
+      "sha256": "67abad40cd5900fa7bc03245c1bcebc07ad6709975843b76a400fe055075b8fe",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/hero-workshop1.png",
+      "classification": "OPTIMIZE",
+      "bytes": 1747876,
+      "sha256": "1754444855b3a9a711be0d649b87406add5615cd215d079b2c411afb3c532a04",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/images/material-panels-hero-mobile.png",
+      "classification": "OPTIMIZE",
+      "bytes": 1385310,
+      "sha256": "8f28457537b8691b20ed2ea4559b29966155f32bbc351b787e765f1ea1376ac8",
+      "reason": "Responsive WebP delivery; original PNG retained in Git and old URL redirected"
+    },
+    {
+      "path": "public/images/hero-workshop4.webp",
+      "classification": "KEEP",
+      "bytes": 164510,
+      "sha256": "708390c4625ef2bc3a755c82c12f64d15554ff01a42c29b88f1ae9dae6319cde",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/cnc-service-home.webp",
+      "classification": "REVIEW",
+      "bytes": 42954,
+      "sha256": "83fd443078ecd15ccec48b799ab3726f3b884177c88931c68766e81b106b66e6",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/images/hero-workshop.webp",
+      "classification": "REVIEW",
+      "bytes": 120614,
+      "sha256": "909745532fa9b95d50a2006732309972887950711dbe0fcacbc838df21c11df3",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/images/wood-panels.webp",
+      "classification": "KEEP",
+      "bytes": 128502,
+      "sha256": "2fc3b45affd9ecde6665d7cbbb376e6d82d2a86313618c1b57f5ad0c9737e4bc",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/material-panels-hero.webp",
+      "classification": "KEEP",
+      "bytes": 206928,
+      "sha256": "f2bdeae5aaed07efbc9feaea6e9ed3f76acfe69c706333da2b3721e0d7378a99",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/wood-panels.png",
+      "classification": "OPTIMIZE",
+      "bytes": 2031580,
+      "sha256": "a1183ecc33d20140ffd6c6f1e058a558f3752b82437aa9572717bf57d4f9636d",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/images/hero-workshop5-mobile.webp",
+      "classification": "REVIEW",
+      "bytes": 51378,
+      "sha256": "691ec0e3418443f2455db8c45d49cdf3c8b63de9b8d965e75929c0f65e744063",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/images/material-panels-hero-960.webp",
+      "classification": "KEEP",
+      "bytes": 59628,
+      "sha256": "2e12b0f48f88c7dc1245da5282452a127ec25101373612f7324ac2feb7069afd",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/hero-workshop5.webp",
+      "classification": "KEEP",
+      "bytes": 116464,
+      "sha256": "d2bc03efb4cec0fd9e42feff1149ff77ca781af91f1c5daae627fceb3aa0da86",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/hero-workshop-mobile.webp",
+      "classification": "REVIEW",
+      "bytes": 16340,
+      "sha256": "e98568545fbad3ea42e2a4ca6c081f35a66cdf9fd4119178000e01f75a060182",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/images/material-color-hero.webp",
+      "classification": "KEEP",
+      "bytes": 607864,
+      "sha256": "1569eaadc165a1ca79c2a34010a21c29552aa1f358ca037cb47b34fcd1815619",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/project-showroom.png",
+      "classification": "REVIEW",
+      "bytes": 2108160,
+      "sha256": "d9b2d87339b7508e0cec58f7291ca177ca00df6003d26edd995752f6ea51786c",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/images/cnc-service.png",
+      "classification": "OPTIMIZE",
+      "bytes": 1913665,
+      "sha256": "91ad19b8d4078a470db531f3a8cf8b043ec0c11d848d8b7bd4a890cd3ac83350",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/images/hero-workshop6-mobile.webp",
+      "classification": "REVIEW",
+      "bytes": 24518,
+      "sha256": "0d4fec11870e07b43bf7e4e0fba8a0d6e9fac7357bc14f8d8cc06ae93a73835e",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/images/cnc-service.webp",
+      "classification": "KEEP",
+      "bytes": 133314,
+      "sha256": "369a5bea2769efe083e7d50957cfd72c65f971e24d053a3bab3251e9f4c412c6",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/hero-workshop2.webp",
+      "classification": "REVIEW",
+      "bytes": 100906,
+      "sha256": "d7be747947612d6bb007277fab605be83f4b195e137c87c6a821f90bc04cfaf6",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/images/material-panels-hero-1440.avif",
+      "classification": "KEEP",
+      "bytes": 74476,
+      "sha256": "e5d70c9c106901a8cf0cd8b9b7fd9ffddfe67c5097a469acccdb3e832eccd839",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/logo-zalo.webp",
+      "classification": "KEEP",
+      "bytes": 6408,
+      "sha256": "218580f6b7d4d13d5d8c72dc008e3e25b2ace79d5ecbaf1ea75a20a33cbee1db",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/contact/chi-nhanh-2.webp",
+      "classification": "KEEP",
+      "bytes": 142596,
+      "sha256": "eb67be210ee851a11b76855725bd890239f42e8cb31eef7ac113e2ff7b572af3",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/contact/chi-nhanh-1.webp",
+      "classification": "KEEP",
+      "bytes": 86820,
+      "sha256": "45250a15fd44bdd41b4c884249050fe204eae5833602bd71ef4b4978992b3218",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/images/materials/mdf-orange.jpg",
+      "classification": "REVIEW",
+      "bytes": 191194,
+      "sha256": "311251205707c9071df2e64fd83e38e5b94b8393ba829c472301d68c90a8bf78",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/images/materials/mdf-sample.jpg",
+      "classification": "REVIEW",
+      "bytes": 316529,
+      "sha256": "92ab32fbf2d4698a0d51780c0a3420eda6bd7cc0d3573ced0662afb6b42591b2",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/images/materials/README.md",
+      "classification": "REVIEW",
+      "bytes": 810,
+      "sha256": "bd07998092283d3665c5070ed9cb03bf74b144a1dbb8f6694681c4a1d63689d2",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/images/materials/particle-board.jpg",
+      "classification": "REVIEW",
+      "bytes": 1038206,
+      "sha256": "c7176b157437fb053638ee3b63ecd657067415609264ee3a26b029b3271c992d",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/images/materials/edge-glued-panel.jpg",
+      "classification": "REVIEW",
+      "bytes": 479783,
+      "sha256": "b15dfe676f58e13414fae664114dca0e0fa18bc86de177626a8292fd0bd7bad5",
+      "reason": "No direct reference proved; dynamic/public consumers may exist, retained"
+    },
+    {
+      "path": "public/images/materials/plywood.jpg",
+      "classification": "KEEP",
+      "bytes": 403246,
+      "sha256": "3c56aa14e88821819ef75e57e4eaaf46e9da5eeb8f938b8412cef1c51779cb8f",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/brand/google-g.png",
+      "classification": "KEEP",
+      "bytes": 1521,
+      "sha256": "3c2ea168edddecaf16eb646ce9ec085f1a2ef75724eb8496ab8fb3453d252d23",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/partners/an-cuong-logo.png",
+      "classification": "OPTIMIZE",
+      "bytes": 67417,
+      "sha256": "fb411b360c8fd6fc6809f2ff7fb5d4afb806bffe0a2f80a70e94350fb523a4bc",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/partners/thanh-thuy-logo.webp",
+      "classification": "KEEP",
+      "bytes": 11894,
+      "sha256": "e068cba8a08c706944611c4e56d8fdd14c276bf95af0c80c1c77a950f934f645",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/partners/an-cuong-logo.webp",
+      "classification": "KEEP",
+      "bytes": 18752,
+      "sha256": "85850619f4f3b730e50319b36c5c599ddf35f88120444999f40748d9a537bb66",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/partners/thanh-thuy-logo.png",
+      "classification": "OPTIMIZE",
+      "bytes": 21994,
+      "sha256": "89214faacec257730454a1f75c3f0824f539287ef3e3735c3c33502ed29445f9",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/partners/ba-thanh-logo.png",
+      "classification": "OPTIMIZE",
+      "bytes": 413695,
+      "sha256": "57a8b4d5518a03c70cd5ada38e3e745b57118c3dec7e74faa5c54720a5578428",
+      "reason": "Modern sibling exists; retain source, existing artifact pruning removes only unreferenced originals"
+    },
+    {
+      "path": "public/partners/ba-thanh-logo.webp",
+      "classification": "KEEP",
+      "bytes": 25854,
+      "sha256": "32967fb700a03517a9e3c6c6cb0e0dce35881a7f0c37d97cd330cb675b404fd5",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/data/catalogue-search-thanh-thuy.json",
+      "classification": "KEEP",
+      "bytes": 197059,
+      "sha256": "5080f958f7adb271e4552aa7677846913c34f1ced1a09664387daf7b4af129b5",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/data/catalogue-search-an-cuong.json",
+      "classification": "KEEP",
+      "bytes": 1359317,
+      "sha256": "c03775dd1ddc860504da39b1b3b81f724c3218db8b021d038fc3a6be2be2bc5e",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/data/catalogue-search-ba-thanh.json",
+      "classification": "KEEP",
+      "bytes": 223086,
+      "sha256": "7423ed005d78c26c540ea2c5b515eecdcaf1f30366a480987a99d9a29cea2110",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028630.png",
+      "classification": "KEEP",
+      "bytes": 31642,
+      "sha256": "9554c0aa195674f766760355455d79a4b55769a319f9228b60d200776a6242da",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028633.png",
+      "classification": "KEEP",
+      "bytes": 3959,
+      "sha256": "f0f3f91836ca3d6221b7a42c938f3a8be64703cf698e98f966ec11e9298e63e0",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028609.png",
+      "classification": "KEEP",
+      "bytes": 3322,
+      "sha256": "5973e43c8eeb14f09fd897bb55d6a07825ff137221478f98af73d2f7c5e40d89",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028635.png",
+      "classification": "KEEP",
+      "bytes": 3368,
+      "sha256": "8da8e8e416f0f7d4657a6085511cf8500e84ad7c44fc4c1d7ca93789494a3360",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028634.png",
+      "classification": "KEEP",
+      "bytes": 3707,
+      "sha256": "3129fa49636160f5ffabbfa00a389541be0f4a377d38f5fa86afe9d6f543b303",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028608.png",
+      "classification": "KEEP",
+      "bytes": 27438,
+      "sha256": "c5518435fb2105093514b9d8a11200ecf2c466f549e9df1ffe1862249978fd4b",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028611.png",
+      "classification": "KEEP",
+      "bytes": 25268,
+      "sha256": "164e76bc9875e752583d40430b688dffbd23230225a8baeb71354c7726532944",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028638.png",
+      "classification": "KEEP",
+      "bytes": 3044,
+      "sha256": "8ef81d7f7326909ee2cefd709469d5c88b244e5083e6d7d03336b60dd7c33883",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028610.png",
+      "classification": "KEEP",
+      "bytes": 28231,
+      "sha256": "c86ef436338c19eae6aff4250b3443f5c1954dbc3c2a9bb8ba4698186f404452",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028612.png",
+      "classification": "KEEP",
+      "bytes": 7430,
+      "sha256": "fa7b5bae1ba23157774496bd581f8c0dd0fbfeaf0232f7ca1d606a6e5655a6f3",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028606.png",
+      "classification": "KEEP",
+      "bytes": 24833,
+      "sha256": "ae77ca2b20a3174d3592d7fa09ec327f6026af8ad8cb02bf80f675eea19a8be1",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028607.png",
+      "classification": "KEEP",
+      "bytes": 14880,
+      "sha256": "562d1a679e5efe9126543d92e1e04db0448c4a7f9c165edd7298ee153ba2d373",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028613.png",
+      "classification": "KEEP",
+      "bytes": 33633,
+      "sha256": "cf66490c4172cab2ada6398bb8b602e3a87242e9f0a0d2f1833993b425c29111",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028614.png",
+      "classification": "KEEP",
+      "bytes": 23516,
+      "sha256": "250f3618013a8b58b8ec61acdfdaa276d4fdd638a8403f241175a6df090693ae",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028615.png",
+      "classification": "KEEP",
+      "bytes": 32106,
+      "sha256": "a4cb8ba7df3633fe3b5fbe03532424da658d7af21439ae8c70ff18e307cb481e",
+      "reason": "Referenced by source/data, including filename-based paths"
+    },
+    {
+      "path": "public/reviews/avatars/264028631.png",
+      "classification": "DELETE",
+      "reason": "Byte-identical to 264028607.png; data updated, permanent redirect preserves URL"
+    },
+    {
+      "path": "public/reviews/avatars/264028632.png",
+      "classification": "DELETE",
+      "reason": "Byte-identical to 264028608.png; data updated, permanent redirect preserves URL"
+    },
+    {
+      "path": "public/reviews/avatars/264028636.png",
+      "classification": "DELETE",
+      "reason": "Byte-identical to 264028613.png; data updated, permanent redirect preserves URL"
+    },
+    {
+      "path": "public/reviews/avatars/264028637.png",
+      "classification": "DELETE",
+      "reason": "Byte-identical to 264028614.png; data updated, permanent redirect preserves URL"
+    },
+    {
+      "path": "public/reviews/avatars/264028639.png",
+      "classification": "DELETE",
+      "reason": "Byte-identical to 264028612.png; data updated, permanent redirect preserves URL"
+    }
+  ]
+}

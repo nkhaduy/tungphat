@@ -3,6 +3,7 @@
   "main": ".open-next/worker.js",
   "name": "tungphat-payload-cms",
   "workers_dev": true,
+  "minify": true,
   "preview_urls": false,
   "compatibility_date": "2026-08-17",
   "compatibility_flags": [
@@ -57,16 +58,19 @@
   "env": {
     "staging": {
       "name": "tungphat-payload-cms-staging",
+      "main": "worker-entry.mjs",
+      "durable_objects": { "bindings": [{ "name": "PAYLOAD_WORKSPACE", "class_name": "PayloadWorkspace" }] },
+      "migrations": [{ "tag": "payload-runtime-evaluation-v1", "new_sqlite_classes": ["PayloadWorkspace"] }],
       "vars": {
         "CMS_ENVIRONMENT": "staging",
         "PAYLOAD_PUBLIC_SERVER_URL": "https://tungphat-payload-cms-staging.nkhaduy.workers.dev",
         "NEXT_PUBLIC_SITE_URL": "https://tungphat-payload-staging.pages.dev",
-        "BUILD_VERSION": "payload-3.88-staging-20260817"
+        "BUILD_VERSION": "payload-3.92.1-staging-20261101"
       },
       "d1_databases": [
         {
           "binding": "D1",
-          "database_id": "8104fa3a-280c-4c2e-9088-2cd209ecf680",
+          "database_id": "672804ea-13bb-43e2-9fd7-e32b3e7eb5c8",
           "database_name": "tungphat-payload-cms-staging",
           "migrations_dir": "./src/migrations"
         }
@@ -81,12 +85,15 @@
     },
     "production": {
       "name": "tungphat-payload-cms",
+      "main": "worker-entry.mjs",
+      "durable_objects": { "bindings": [{ "name": "PAYLOAD_WORKSPACE", "class_name": "PayloadWorkspace" }] },
+      "migrations": [{ "tag": "payload-runtime-v1", "new_sqlite_classes": ["PayloadWorkspace"] }],
       "vars": {
         "CMS_ENVIRONMENT": "production",
         "PAYLOAD_PUBLIC_SERVER_URL": "https://cms.mdftungphat.com",
         "NEXT_PUBLIC_SITE_URL": "https://mdftungphat.com",
         "NEXT_PUBLIC_MEDIA_BASE_URL": "https://cdn.mdftungphat.com",
-        "BUILD_VERSION": "payload-3.88-production-20260817"
+        "BUILD_VERSION": "payload-3.92.1-production-20261101"
       },
       "d1_databases": [
         {

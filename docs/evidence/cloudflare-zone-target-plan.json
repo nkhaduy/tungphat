@@ -1,0 +1,87 @@
+{
+  "status": "FREE_ZONE_PREPARED_NOT_DELEGATED",
+  "zone": "mdftungphat.com",
+  "account_id": "b9ae472cee29c5729ee90ccbb3533f33",
+  "plan": "free",
+  "zone_id": "4cc9a59d98651da1950571a2bf07252e",
+  "prerequisites": [
+    "Current95f52aa clean Git deployment62373703,716+313+38tests,81real-preview browsers,3611route/3260asset checks passed; recheck current release/account quotas before future cutover",
+    "Pending Free zone exists with all6 original DNS-only records mirrored; final target records and redirect remain unapplied",
+    "Obtain registrar delegation control; current DNS-only session cannot change nameservers",
+    "Attach apex/www to Pages, including moving deactivated historical hostname registrations deliberately"
+  ],
+  "records_after_verified_cutover": [
+    {
+      "name": "@",
+      "type": "TXT",
+      "content": "google-site-verification=CgMEKzR6kbygb0DFUxi0B16VXk40tCVfiPXqxkh2_v8",
+      "proxied": false,
+      "ttl": 600
+    },
+    {
+      "name": "@",
+      "type": "CNAME",
+      "content": "tungphat-i9i.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "www",
+      "type": "CNAME",
+      "content": "tungphat-i9i.pages.dev",
+      "proxied": true,
+      "ttl": 1
+    },
+    {
+      "name": "cms",
+      "type": "CNAME",
+      "content": "tungphat-light-cms-production.pages.dev",
+      "proxied": false,
+      "ttl": 600
+    },
+    {
+      "name": "baogia",
+      "type": "CNAME",
+      "content": "tungphat-quotes.pages.dev",
+      "proxied": false,
+      "ttl": 600
+    },
+    {
+      "name": "cdn",
+      "type": "CNAME",
+      "content": "tungphat-light-cms-production.pages.dev",
+      "proxied": false,
+      "ttl": 600
+    }
+  ],
+  "https_settings": {
+    "ssl": "strict",
+    "always_use_https": "on"
+  },
+  "www_redirect_ruleset": {
+    "kind": "zone",
+    "phase": "http_request_dynamic_redirect",
+    "rules": [
+      {
+        "action": "redirect",
+        "expression": "http.host eq \"www.mdftungphat.com\"",
+        "description": "Canonical www to apex with path and query preserved",
+        "enabled": true,
+        "action_parameters": {
+          "from_value": {
+            "status_code": 308,
+            "target_url": {
+              "expression": "concat(\"https://mdftungphat.com\", http.request.uri.path)"
+            },
+            "preserve_query_string": true
+          }
+        }
+      }
+    ]
+  },
+  "nameservers": [
+    "lia.ns.cloudflare.com",
+    "nero.ns.cloudflare.com"
+  ],
+  "preparedCurrentRecords": "cloudflare-zone-records-prepared.json"
+}
