@@ -58,11 +58,11 @@ const localSeoCopy: Record<string, LocalSeoCopy> = {
   },
   "gia-cong-cnc": {
     title: "Gia Công CNC Thủ Đức | Cắt & Gia Công Ván Gỗ",
-    description: "Gia công CNC tại Thủ Đức: gửi vật liệu, độ dày, kích thước, số lượng và file hay bản phác thảo để trao đổi cắt, khoan, soi rãnh.",
+    description: "Tìm hiểu dịch vụ CNC gỗ tại Thủ Đức: cắt biên dạng, khoan, soi rãnh, gia công MDF, MFC và gỗ ghép. Tham khảo kiến thức và hỏi giá qua Zalo.",
     h1: "Gia công CNC tại Thủ Đức",
-    heroDescription: "Cắt, khoan, soi rãnh và gia công chi tiết ván gỗ theo kích thước, file kỹ thuật hoặc bản phác thảo tại Thủ Đức, TP.HCM.",
-    answerTitle: "Gia công CNC tại Thủ Đức cần gửi những gì?",
-    answerDescription: "Hãy gửi loại vật liệu, độ dày, kích thước, số lượng, đơn vị đo và file hoặc bản phác thảo. Nếu có lỗ, rãnh, mặt gia công hay cạnh để lộ, ghi ngay trên file hoặc ghi chú kèm theo.",
+    heroDescription: "Cắt biên dạng, khoan, soi rãnh và gia công chi tiết ván gỗ tại Thủ Đức. Tìm hiểu đặc điểm vật liệu và yêu cầu báo giá trực tiếp qua Zalo.",
+    answerTitle: "Gia công CNC gỗ tại Thủ Đức gồm những hạng mục nào?",
+    answerDescription: "Dịch vụ gồm cắt biên dạng, khoan, soi rãnh và gia công chi tiết trên vật liệu phù hợp. Chọn phương án dựa trên cốt ván, độ dày, bề mặt, hình dáng chi tiết và yêu cầu hoàn thiện.",
   },
   "cat-cnc-go": {
     title: "Cắt CNC Gỗ Thủ Đức | Gửi File & Báo Giá",
