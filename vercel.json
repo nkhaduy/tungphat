@@ -7,6 +7,28 @@
   ],
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "mdftungphat.com"
+        }
+      ],
+      "destination": "https://gotungphat.com/:path*",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.mdftungphat.com"
+        }
+      ],
+      "destination": "https://gotungphat.com/:path*",
+      "statusCode": 301
+    },
+    {
       "source": "/ma-mau",
       "destination": "/catalogue/",
       "permanent": true
