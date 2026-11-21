@@ -30,16 +30,13 @@ describe("full supplier compact search index", () => {
     ).toBe(false);
   });
 
-  it("sorts records without images after every record with an image", () => {
-    const results = searchSupplierCatalog(
-      getAllSupplierSearchEntriesForCatalogue(),
-      "",
-    );
-    const firstMissingImage = results.findIndex((record) => !record.thumbnail);
-
-    expect(firstMissingImage).toBeGreaterThan(-1);
-    expect(results.slice(0, firstMissingImage).every((record) => record.thumbnail)).toBe(true);
-    expect(results.slice(firstMissingImage).every((record) => !record.thumbnail)).toBe(true);
+  it("sorts records without images after images within each supplier", () => {
+    const results = searchSupplierCatalog(getAllSupplierSearchEntriesForCatalogue(), "");
+    for (const supplier of ["thanh-thuy", "an-cuong", "ba-thanh"]) {
+      const records = results.filter((record) => record.supplierId === supplier);
+      const firstMissing = records.findIndex((record) => !record.thumbnail);
+      if (firstMissing >= 0) expect(records.slice(firstMissing).every((record) => !record.thumbnail)).toBe(true);
+    }
   });
 
   it("indexes every verified public color code plus unique non-code families", () => {
@@ -52,21 +49,11 @@ describe("full supplier compact search index", () => {
     expect(records.filter((record) => record.recordType === "document")).toHaveLength(0);
   });
 
-  it("keeps supplier priority within image and no-image result buckets", () => {
+  it("groups all records by supplier priority", () => {
     const results = searchSupplierCatalog(getSupplierSearchIndex().allRecords, "");
-    const priority = { "thanh-thuy": 0, "ba-thanh": 1, "an-cuong": 2 } as const;
-    const firstMissingImage = results.findIndex((record) => !record.thumbnail);
-    const imageRanks = results
-      .slice(0, firstMissingImage)
-      .map((record) => priority[record.supplierId]);
-    const missingImageRanks = results
-      .slice(firstMissingImage)
-      .map((record) => priority[record.supplierId]);
-
-    expect(imageRanks).toEqual([...imageRanks].sort((left, right) => left - right));
-    expect(missingImageRanks).toEqual(
-      [...missingImageRanks].sort((left, right) => left - right),
-    );
+    const priority = { "thanh-thuy": 0, "an-cuong": 1, "ba-thanh": 2 } as const;
+    const ranks = results.map((record) => priority[record.supplierId]);
+    expect(ranks).toEqual([...ranks].sort((left, right) => left - right));
   });
 
   it("ranks an exact normalized code before names and partial matches", () => {

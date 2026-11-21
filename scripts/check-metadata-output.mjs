@@ -6,7 +6,7 @@ import {
   noindexMetadataRoutes,
 } from "./lib/metadata-route-policy.mjs";
 
-const siteUrl = "https://mdftungphat.com";
+const siteUrl = process.env.SEO_SITE_URL ?? "https://mdftungphat.com";
 const errors = [];
 
 function attributes(tag) {

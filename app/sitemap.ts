@@ -5,7 +5,7 @@ import {
   getPublishedProjects,
   getServicePages,
 } from "@/lib/content";
-import { getListingIndexability } from "@/lib/listing-indexability";
+import { getListingIndexability, hasSelfCanonical } from "@/lib/listing-indexability";
 import { absoluteUrl } from "@/lib/seo";
 import { isReservedRootSlug } from "@/lib/reserved-slugs";
 import staticPages from "@/content/settings/static-pages.json";
@@ -20,8 +20,10 @@ export const dynamic = "force-static";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const materialDataset = getMaterialDataset();
-  const articles = await getPublishedArticles();
-  const projects = await getPublishedProjects();
+  const articles = (await getPublishedArticles())
+    .filter((entry) => hasSelfCanonical(entry, `/bai-viet/${entry.slug}/`));
+  const projects = (await getPublishedProjects())
+    .filter((entry) => hasSelfCanonical(entry, `/du-an/${entry.slug}/`));
   const staticRouteRules = [
     { route: "/", include: true },
     { route: "/san-pham/", include: true },
@@ -57,7 +59,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
   const rootContent = (slug: string) => !isReservedRootSlug(slug);
   const products: MetadataRoute.Sitemap = (await getProducts())
-    .filter((entry) => rootContent(entry.slug))
+    .filter((entry) => rootContent(entry.slug) && hasSelfCanonical(entry, `/${entry.slug}/`))
     .map((entry) => ({
       url: absoluteUrl(`/${entry.slug}/`),
       lastModified: entry.updatedAt,
@@ -65,7 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     }));
   const services: MetadataRoute.Sitemap = (await getServicePages())
-    .filter((entry) => rootContent(entry.slug))
+    .filter((entry) => rootContent(entry.slug) && hasSelfCanonical(entry, `/${entry.slug}/`))
     .map((entry) => ({
       url: absoluteUrl(`/${entry.slug}/`),
       lastModified: entry.updatedAt,

@@ -9,8 +9,8 @@ describe("public SEO and UX hierarchy", () => {
   it("keeps local material and CNC intent with two working actions", () => {
     expect(page).toContain("Tùng Phát | Ván gỗ công nghiệp & Gia công CNC tại Thủ Đức");
     expect(hero).toContain("Ván gỗ công nghiệp");
-    expect(hero).toContain("&amp; gia công CNC tại Thủ Đức");
-    expect(hero).toContain('href="#ma-mau"');
+    expect(hero).toContain("&amp; gia công CNC</span>");
+    expect(hero).toContain('href={DEFAULT_CATALOGUE_URL}');
     expect(hero).toContain("ZALO_URL");
   });
 
@@ -19,8 +19,7 @@ describe("public SEO and UX hierarchy", () => {
       expect(home).toContain(anchor);
     }
     expect(home).not.toContain('id="thuong-hieu"');
-    expect(home).toContain("coreMaterialCards");
-    expect(home).toContain("surfaceCatalogueCards");
+    expect(home).toContain("homeProductCards");
     expect(home).toContain("FeaturedColorCodes");
   });
 
@@ -32,8 +31,8 @@ describe("public SEO and UX hierarchy", () => {
     const header = readFileSync("components/site/SiteHeader.tsx", "utf8");
     const mobile = readFileSync("components/site/MobileNavigation.tsx", "utf8");
     expect(header).toContain('label: lang === "vi" ? "Sản phẩm"');
-    expect(header).toContain("Mã màu / Catalogue");
-    expect(header).toContain('href: "/catalogue"');
+    expect(header).toContain('lang === "vi" ? "Mã màu" : "Color codes"');
+    expect(header).toContain('href: DEFAULT_CATALOGUE_URL');
     expect(header).toContain("prefetch: false");
     expect(mobile).toContain("item.children?.length");
   });

@@ -66,7 +66,7 @@ export default function QuotePage() {
               </div>
               <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm font-extrabold text-forest-950">
                 <Link href="/van-mdf" className="inline-flex min-h-11 items-center hover:text-wood-600">Xem ván MDF</Link>
-                <Link href="/catalogue" className="inline-flex min-h-11 items-center hover:text-wood-600">Xem mã màu Melamine</Link>
+                <Link href="/catalogue/?supplier=thanh-thuy" className="inline-flex min-h-11 items-center hover:text-wood-600">Xem mã màu Melamine</Link>
                 <Link href="/gia-cong-cnc" className="inline-flex min-h-11 items-center hover:text-wood-600">Xem dịch vụ gia công CNC</Link>
               </div>
             </div>

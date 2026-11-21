@@ -22,23 +22,34 @@ describe("buildProductLandingSchema", () => {
   it("uses CollectionPage for guide hubs with canonical page URLs", () => {
     expect(buildProductLandingSchema(product)).toMatchObject({
       "@type": "CollectionPage",
-      "@id": "https://mdftungphat.com/go-ghep/#webpage",
-      url: "https://mdftungphat.com/go-ghep/",
+      "@id": "https://gotungphat.com/go-ghep/#webpage",
+      url: "https://gotungphat.com/go-ghep/",
     });
   });
 
-  it("keeps factual product pages as Product schema", () => {
+  it.each(["van-mdf", "mdf-chong-am", "go-ghep-cao-su", "go-ghep-tram"])("describes the material family %s as a collection, not a single purchasable SKU", (slug) => {
+    const schema = buildProductLandingSchema({ ...product, slug, status: "available" });
+    expect(schema).toMatchObject({
+      "@type": "CollectionPage",
+      "@id": `https://gotungphat.com/${slug}/#webpage`,
+      url: `https://gotungphat.com/${slug}/`,
+    });
+    expect(schema).not.toHaveProperty("offers");
+    expect(schema).not.toHaveProperty("aggregateRating");
+  });
+
+  it("keeps individual product pages as Product schema", () => {
     expect(
       buildProductLandingSchema({
         ...product,
-        slug: "van-mdf",
+        slug: "mdf-specific-sku",
         status: "available",
         supplier: "Nhà cung cấp xác minh",
       }),
     ).toMatchObject({
       "@type": "Product",
-      "@id": "https://mdftungphat.com/van-mdf/#product",
-      url: "https://mdftungphat.com/van-mdf/",
+      "@id": "https://gotungphat.com/mdf-specific-sku/#product",
+      url: "https://gotungphat.com/mdf-specific-sku/",
       brand: { "@type": "Brand", name: "Nhà cung cấp xác minh" },
     });
   });
@@ -54,8 +65,8 @@ describe("buildServiceLandingSchema", () => {
       }),
     ).toMatchObject({
       "@type": "Service",
-      "@id": "https://mdftungphat.com/cat-cnc-go/#service",
-      url: "https://mdftungphat.com/cat-cnc-go/",
+      "@id": "https://gotungphat.com/cat-cnc-go/#service",
+      url: "https://gotungphat.com/cat-cnc-go/",
     });
   });
 });

@@ -144,11 +144,11 @@ describe("catalogue code SEO policy", () => {
 
     expect(metadata.title).toMatchObject({ absolute: "301 Artistic Stripe - Melamine Thanh Thuỳ | Tùng Phát" });
     expect(metadata.description).toContain("301 Artistic Stripe");
-    expect(metadata.alternates?.canonical).toBe("https://mdftungphat.com/catalogue/thanh-thuy/melamine/301/");
+    expect(metadata.alternates?.canonical).toBe("https://gotungphat.com/catalogue/thanh-thuy/melamine/301/");
     expect(metadata.robots).toMatchObject({ index: true, follow: true });
     expect(markup).toContain("<h1");
     expect(markup).toContain("301 Artistic Stripe - Melamine Thanh Thuỳ</h1>");
-    expect(markup).toContain('alt="Mã 301 Artistic Stripe - Melamine Thanh Thuỳ"');
+    expect(markup).toContain('alt="Mẫu bề mặt: Mã 301 Artistic Stripe - Melamine Thanh Thuỳ"');
     expect(markup).toContain("Gửi mã 301 qua Zalo");
     expect(markup).toContain("Nguồn catalogue");
     expect(markup).toContain('href="https://www.gothanhthuy.com/product/melamine/melamine-van-go/301-artistic-stripe/"');

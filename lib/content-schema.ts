@@ -41,9 +41,9 @@ const optionalCanonical = z
       .refine(
         (value) => {
           const url = new URL(value);
-          return url.origin === "https://mdftungphat.com" && !url.username && !url.password && !url.search && !url.hash;
+          return ["https://mdftungphat.com", "https://gotungphat.com"].includes(url.origin) && !url.username && !url.password && !url.search && !url.hash;
         },
-        "Canonical phải thuộc https://mdftungphat.com",
+        "Canonical phải thuộc domain Tùng Phát được phép",
       ),
   ])
   .default("");

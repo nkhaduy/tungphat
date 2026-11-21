@@ -3,7 +3,7 @@ import type { ContentEntry } from "@/lib/content";
 import type { ArticleFrontmatter, ProductFrontmatter, ProjectFrontmatter, ServicePageFrontmatter } from "@/lib/content-schema";
 import { resolveMediaUrl } from "@/lib/media";
 import { getLocalSeoCopy } from "@/lib/local-seo";
-import { absoluteUrl, createPageMetadata } from "@/lib/seo";
+import { absolutePageUrl, absoluteUrl, createPageMetadata } from "@/lib/seo";
 import { createSocialImage } from "@/lib/social-images";
 
 type SeoEntry = ContentEntry<ArticleFrontmatter | ProductFrontmatter | ProjectFrontmatter | ServicePageFrontmatter>;
@@ -36,11 +36,11 @@ export function resolveContentMetadataCopy(
 }
 
 export function createContentMetadata(entry: SeoEntry, path: string): Metadata {
-  const localCopy = getLocalSeoCopy(entry.slug);
-  const contentCopy = resolveContentMetadataCopy(entry, path);
-  const image = resolveMediaUrl(entry.ogImage || entry.featuredImage);
+  const localCopy = entry.wordpress ? undefined : getLocalSeoCopy(entry.slug);
+  const contentCopy = entry.wordpress ? { title: entry.seoTitle, description: entry.seoDescription } : resolveContentMetadataCopy(entry, path);
+  const image = resolveMediaUrl(entry.ogImage || entry.featuredImage || "/og-logo.png");
   const metadata = entry.ogImage ? entry.mediaMetadata?.ogImage : entry.mediaMetadata?.featuredImage;
-  const socialImage = createSocialImage({ url: image, alt: entry.featuredImageAlt, width: metadata?.width, height: metadata?.height, type: metadata?.type });
+  const socialImage = createSocialImage({ url: image, alt: entry.featuredImageAlt || "Logo Tùng Phát", width: metadata?.width, height: metadata?.height, type: metadata?.type });
   const base = createPageMetadata({
     title: localCopy?.title ?? contentCopy.title,
     description: localCopy?.description ?? contentCopy.description,
@@ -50,6 +50,6 @@ export function createContentMetadata(entry: SeoEntry, path: string): Metadata {
   });
   return {
     ...base,
-    alternates: { canonical: entry.canonical || absoluteUrl(path) },
+    alternates: { canonical: entry.canonical ? absolutePageUrl(entry.canonical) : absoluteUrl(path) },
   };
 }

@@ -20,15 +20,22 @@ describe("homepage performance contracts", () => {
     const footer = readFileSync("components/site/SiteFooter.tsx", "utf8");
 
     expect(header).toMatch(
-      /href:\s*"\/catalogue",\s*prefetch:\s*false,/,
+      /href:\s*DEFAULT_CATALOGUE_URL,\s*prefetch:\s*false,/,
     );
     expect(header).toContain("prefetch={item.prefetch}");
     expect(mobileNavigation).toContain("prefetch={item.prefetch}");
-    expect(hero).toContain('href="#ma-mau"');
+    expect(hero).toContain('href={DEFAULT_CATALOGUE_URL} prefetch={false}');
     expect(hero).toContain('fetchPriority="high"');
     expect(hero).not.toContain('href="/catalogue"');
     expect(featuredCodes).toContain('href={code.href} prefetch={false}');
-    expect(footer).toContain('["Mã màu / Catalogue", "/catalogue"]');
-    expect(footer).toContain('prefetch={href === "/catalogue" ? false : undefined}');
+    expect(footer).toContain('["Mã màu", DEFAULT_CATALOGUE_URL]');
+    expect(footer).toContain('prefetch={href === DEFAULT_CATALOGUE_URL ? false : undefined}');
+  });
+
+  it("keeps featured color cards horizontally swipeable on touch screens", () => {
+    const styles = readFileSync("app/globals.css", "utf8");
+    const marqueeRules = styles.match(/\.color-code-marquee\s*\{[^}]*\}/)?.[0] ?? "";
+    expect(marqueeRules).toContain("overflow-x: auto");
+    expect(marqueeRules).toContain("touch-action: pan-x");
   });
 });

@@ -1,0 +1,182 @@
+{
+  "van-mdf": {
+    "image": "/sanpham-media/van-mdf.webp",
+    "alt": "Các tấm MDF mộc xếp chồng, nhìn rõ bề mặt và cạnh ván",
+    "width": 890,
+    "height": 886,
+    "srcSet": "/sanpham-media/van-mdf-400.webp 400w, /sanpham-media/van-mdf-800.webp 800w, /sanpham-media/van-mdf.webp 890w",
+    "credit": null,
+    "gallery": []
+  },
+  "mdf-chong-am": {
+    "image": "/sanpham-media/mdf-chong-am.webp",
+    "alt": "MDF chống ẩm lõi xanh với bề mặt phủ trắng",
+    "width": 1200,
+    "height": 1200,
+    "srcSet": "/sanpham-media/mdf-chong-am-400.webp 400w, /sanpham-media/mdf-chong-am-800.webp 800w, /sanpham-media/mdf-chong-am.webp 1200w",
+    "credit": null,
+    "gallery": []
+  },
+  "van-okal": {
+    "image": "/sanpham-media/van-okal.webp",
+    "alt": "Cận cảnh phần dăm gỗ Okal lộ ở cạnh cắt của mẫu ván",
+    "width": 850,
+    "height": 350,
+    "srcSet": "/sanpham-media/van-okal-400.webp 400w, /sanpham-media/van-okal-800.webp 800w, /sanpham-media/van-okal.webp 850w",
+    "credit": null,
+    "gallery": [
+      {
+        "image": "/sanpham-media/van-mfc.webp",
+        "alt": "Mặt phủ trắng và cạnh phần ván dăm của mẫu MFC",
+        "width": 900,
+        "height": 420,
+        "srcSet": "/sanpham-media/van-mfc-400.webp 400w, /sanpham-media/van-mfc-800.webp 800w, /sanpham-media/van-mfc.webp 900w",
+        "credit": null
+      }
+    ]
+  },
+  "go-ghep-cao-su": {
+    "image": "/sanpham-media/go-ghep-cao-su.webp",
+    "alt": "Bề mặt tấm gỗ ghép cao su, thấy các thanh gỗ và mối ghép",
+    "width": 1200,
+    "height": 677,
+    "srcSet": "/sanpham-media/go-ghep-cao-su-400.webp 400w, /sanpham-media/go-ghep-cao-su-800.webp 800w, /sanpham-media/go-ghep-cao-su.webp 1200w",
+    "credit": null,
+    "gallery": []
+  },
+  "go-ghep-tram": {
+    "image": "",
+    "alt": "",
+    "width": 0,
+    "height": 0,
+    "srcSet": "",
+    "credit": null,
+    "gallery": []
+  },
+  "chi-nep-nhua": {
+    "image": "/sanpham-media/chi-dan-canh-user.webp",
+    "alt": "Các cuộn chỉ dán cạnh màu vân gỗ và màu trơn",
+    "width": 1000,
+    "height": 668,
+    "srcSet": "/sanpham-media/chi-dan-canh-user-400.webp 400w, /sanpham-media/chi-dan-canh-user-800.webp 800w, /sanpham-media/chi-dan-canh-user.webp 1000w",
+    "credit": null,
+    "gallery": []
+  },
+  "tam-veneer": {
+    "image": "/sanpham-media/tam-veneer.webp",
+    "alt": "Cận cảnh vân gỗ trên bề mặt Veneer của nhà cung cấp",
+    "width": 1200,
+    "height": 675,
+    "srcSet": "/sanpham-media/tam-veneer-400.webp 400w, /sanpham-media/tam-veneer-800.webp 800w, /sanpham-media/tam-veneer.webp 1200w",
+    "credit": null,
+    "gallery": [
+      {
+        "image": "/sanpham-media/tam-veneer-uon-cong.webp",
+        "alt": "Tấm Veneer gỗ mỏng được uốn để thấy độ dẻo của lớp mặt",
+        "width": 500,
+        "height": 498,
+        "srcSet": "/sanpham-media/tam-veneer-uon-cong-400.webp 400w, /sanpham-media/tam-veneer-uon-cong.webp 500w",
+        "credit": null
+      }
+    ]
+  },
+  "acrylic": {
+    "image": "/sanpham-media/acrylic.webp",
+    "alt": "Các mẫu ván phủ Acrylic bóng với màu sắc và cạnh tấm khác nhau",
+    "width": 1200,
+    "height": 605,
+    "srcSet": "/sanpham-media/acrylic-400.webp 400w, /sanpham-media/acrylic-800.webp 800w, /sanpham-media/acrylic.webp 1200w",
+    "credit": null,
+    "gallery": []
+  },
+  "pvc-film-pet": {
+    "image": "/sanpham-media/pvc-film-pet.webp",
+    "alt": "Bề mặt PVC Film vân đá trên chi tiết nội thất đã hoàn thiện",
+    "width": 800,
+    "height": 800,
+    "srcSet": "/sanpham-media/pvc-film-pet-400.webp 400w, /sanpham-media/pvc-film-pet.webp 800w",
+    "credit": null,
+    "gallery": []
+  },
+  "van-mfc": {
+    "image": "/sanpham-media/van-mfc.webp",
+    "alt": "Mặt phủ trắng và cạnh phần ván dăm của mẫu MFC",
+    "width": 900,
+    "height": 420,
+    "srcSet": "/sanpham-media/van-mfc-400.webp 400w, /sanpham-media/van-mfc-800.webp 800w, /sanpham-media/van-mfc.webp 900w",
+    "credit": null,
+    "gallery": []
+  },
+  "melamine": {
+    "image": "/sanpham-media/melamine-thanh-thuy.webp",
+    "alt": "Các tấm ván phủ Melamine vân gỗ xếp chồng, thấy mặt và cạnh ván",
+    "width": 1080,
+    "height": 738,
+    "srcSet": "/sanpham-media/melamine-thanh-thuy-400.webp 400w, /sanpham-media/melamine-thanh-thuy-800.webp 800w, /sanpham-media/melamine-thanh-thuy.webp 1080w",
+    "credit": null,
+    "gallery": [
+      {
+        "image": "/sanpham-media/melamine.webp",
+        "alt": "Các bề mặt Melamine trên những mẫu ván dăm phủ trang trí",
+        "width": 500,
+        "height": 333,
+        "srcSet": "/sanpham-media/melamine-400.webp 400w, /sanpham-media/melamine.webp 500w",
+        "credit": null
+      }
+    ]
+  },
+  "laminate": {
+    "image": "/sanpham-media/laminate.webp",
+    "alt": "Các tấm bề mặt Laminate mỏng, nhìn rõ mặt vân và cạnh uốn",
+    "width": 1200,
+    "height": 1200,
+    "srcSet": "/sanpham-media/laminate-400.webp 400w, /sanpham-media/laminate-800.webp 800w, /sanpham-media/laminate.webp 1200w",
+    "credit": null,
+    "gallery": []
+  },
+  "van-plywood": {
+    "image": "/sanpham-media/plywood-phu-melamine.webp",
+    "alt": "Cạnh ván ép nhiều lớp với bề mặt phủ Melamine",
+    "width": 1088,
+    "height": 912,
+    "srcSet": "/sanpham-media/plywood-phu-melamine-400.webp 400w, /sanpham-media/plywood-phu-melamine-800.webp 800w, /sanpham-media/plywood-phu-melamine.webp 1088w",
+    "credit": null,
+    "gallery": [
+      {
+        "image": "/sanpham-media/van-plywood.webp",
+        "alt": "Ảnh cận cảnh bề mặt gỗ của tấm Plywood từ nhà cung cấp",
+        "width": 1200,
+        "height": 675,
+        "srcSet": "/sanpham-media/van-plywood-400.webp 400w, /sanpham-media/van-plywood-800.webp 800w, /sanpham-media/van-plywood.webp 1200w",
+        "credit": null
+      }
+    ]
+  },
+  "van-hdf": {
+    "image": "/sanpham-media/van-hdf.webp",
+    "alt": "Các cạnh tấm HDF mộc với dấu nhận diện HDF của nhà cung cấp",
+    "width": 1200,
+    "height": 677,
+    "srcSet": "/sanpham-media/van-hdf-400.webp 400w, /sanpham-media/van-hdf-800.webp 800w, /sanpham-media/van-hdf.webp 1200w",
+    "credit": null,
+    "gallery": []
+  },
+  "plywood-phu-melamine": {
+    "image": "/sanpham-media/plywood-phu-melamine.webp",
+    "alt": "Cạnh Plywood phủ Melamine, nhìn rõ các lớp gỗ và mặt vân gỗ",
+    "width": 1088,
+    "height": 912,
+    "srcSet": "/sanpham-media/plywood-phu-melamine-400.webp 400w, /sanpham-media/plywood-phu-melamine-800.webp 800w, /sanpham-media/plywood-phu-melamine.webp 1088w",
+    "credit": null,
+    "gallery": []
+  },
+  "van-nhua-pvc": {
+    "image": "/sanpham-media/van-nhua-pvc.webp",
+    "alt": "Các mẫu ván nhựa PVC phủ màu, nhìn rõ phần cạnh trắng của tấm",
+    "width": 1200,
+    "height": 522,
+    "srcSet": "/sanpham-media/van-nhua-pvc-400.webp 400w, /sanpham-media/van-nhua-pvc-800.webp 800w, /sanpham-media/van-nhua-pvc.webp 1200w",
+    "credit": null,
+    "gallery": []
+  }
+}

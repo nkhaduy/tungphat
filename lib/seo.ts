@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { releaseOrigin, mapLegacySiteUrl } from "@/lib/release-origin";
 import business from "@/content/settings/business.json";
 import seo from "@/content/settings/seo.json";
 import {
@@ -8,7 +9,7 @@ import {
 } from "@/lib/social-images";
 import { OPEN_GRAPH_LOCALE, SCHEMA_LANGUAGE } from "@/lib/locale";
 
-export const SITE_URL = seo.siteUrl;
+export const SITE_URL = releaseOrigin(process.env.NEXT_PUBLIC_SITE_ORIGIN || seo.siteUrl);
 export const SITE_NAME = seo.siteName;
 export const BUSINESS_NAME = business.businessName;
 export const TAX_ID = business.taxId;
@@ -34,7 +35,7 @@ export const DEFAULT_SOCIAL_IMAGE = createSocialImage({
 });
 
 export function absoluteUrl(path = "/") {
-  const url = new URL(path, SITE_URL);
+  const url = new URL(mapLegacySiteUrl(path, SITE_URL), SITE_URL);
   const lastSegment = url.pathname.split("/").filter(Boolean).at(-1) || "";
   if (!url.pathname.endsWith("/") && !lastSegment.includes(".")) {
     url.pathname = `${url.pathname}/`;
@@ -49,7 +50,9 @@ export function absolutePageUrl(path = "/") {
   if (!value) throw new Error("Page URL must not be empty.");
 
   const canonicalOrigin = new URL(SITE_URL);
-  const url = new URL(value, canonicalOrigin);
+  const originalUrl = new URL(value, canonicalOrigin);
+  if (["mdftungphat.com", "www.mdftungphat.com", "gotungphat.com", "www.gotungphat.com"].includes(originalUrl.hostname) && (originalUrl.username || originalUrl.password)) throw new Error("Page URL must not contain credentials");
+  const url = new URL(mapLegacySiteUrl(value, SITE_URL), canonicalOrigin);
   const isInternalHost =
     url.hostname === canonicalOrigin.hostname ||
     url.hostname === `www.${canonicalOrigin.hostname}`;

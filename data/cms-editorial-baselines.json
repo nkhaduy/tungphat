@@ -1,0 +1,11 @@
+{
+  "articles": {
+    "mdf-thuong-va-chong-am": "4e954db755c20b2cf06e5af28ece5f1a9a40544d13a62f1db7a29ebf9e3d146d"
+  },
+  "products": {
+    "van-mdf": "c9b2cf64461fe24b3fa4b09e9fc88aa4859906f63873fffcd1f8f7e5a5456367",
+    "mdf-chong-am": "8077b627a10d8baf58925ccd2802cc79a4008d461b48bffa223556dab48d6944",
+    "go-ghep-cao-su": "024c17cc73ace996273acd6be07cfd7b00feb6acce5c98550fa0e0043c753ac9",
+    "go-ghep-tram": "351ebf2fa65acd73d4c1f9ee2a70f21cee3c06a75faa327022ca247f7e4318b8"
+  }
+}

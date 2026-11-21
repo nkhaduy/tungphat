@@ -19,11 +19,12 @@ declare global {
     gtag?: (...args: unknown[]) => void;
     __TP_ANALYTICS_TEST_MODE__?: boolean;
     __TP_PREVIEW__?: boolean;
+    __TP_GA4_PENDING__?: ["event", string, Record<string, unknown>][];
   }
 }
 
 const API_BASE = (
-  process.env.NEXT_PUBLIC_ANALYTICS_API_BASE || "https://cms.mdftungphat.com"
+  process.env.NEXT_PUBLIC_ANALYTICS_API_BASE || (process.env.NEXT_PUBLIC_SITE_ORIGIN === "https://gotungphat.com" ? "" : "https://cms.mdftungphat.com")
 ).replace(/\/+$/, "");
 const TEST_BUILD = process.env.NEXT_PUBLIC_ANALYTICS_TEST_MODE === "1";
 
@@ -80,6 +81,7 @@ function buildPayload(
 }
 
 function sendFirstParty(payload: AnalyticsPayload, preferBeacon = false) {
+  if (analyticsOptedOut()) return;
   const body = JSON.stringify(payload);
   if (preferBeacon && navigator.sendBeacon) {
     const blob = new Blob([body], { type: "text/plain;charset=UTF-8" });
@@ -95,11 +97,15 @@ function sendFirstParty(payload: AnalyticsPayload, preferBeacon = false) {
 }
 
 export function sendGa4Event(eventName: string, properties: Record<string, unknown>) {
+  if (analyticsOptedOut()) {
+    window.__TP_GA4_PENDING__ = [];
+    return;
+  }
   const args: ["event", string, Record<string, unknown>] = ["event", eventName, properties];
   if (typeof window.gtag === "function") window.gtag(...args);
   else {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push(args);
+    const pending = window.__TP_GA4_PENDING__ || (window.__TP_GA4_PENDING__ = []);
+    if (pending.length < 100) pending.push(args);
   }
 }
 
@@ -108,6 +114,10 @@ export function sendAnalyticsEvent(
   properties: AnalyticsProperties = {},
   options: { beacon?: boolean; ga4?: boolean } = {},
 ) {
+  if (analyticsOptedOut()) {
+    window.__TP_GA4_PENDING__ = [];
+    return;
+  }
   const payload = buildPayload(eventName, properties);
   if (!payload) return;
   const dispatch = () => sendFirstParty(payload, options.beacon);

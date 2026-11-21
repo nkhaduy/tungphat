@@ -21,9 +21,8 @@ export function TrackedLink({ eventName, eventProperties, onClick, children, ...
       data-track-location={location}
       onClick={(event) => {
         const href = typeof props.href === "string" ? props.href : "";
-        const enhanced = eventName === "request_quote" && /zalo\.(me|com)/i.test(href)
-          ? { ...eventProperties, channel: "zalo" }
-          : eventProperties;
+        const channel = /zalo\.(me|com)/i.test(href) ? "zalo" : /^tel:/i.test(href) ? "phone" : undefined;
+        const enhanced = eventName === "request_quote" && channel ? { ...eventProperties, channel } : eventProperties;
         trackEvent(eventName, enhanced);
         onClick?.(event);
       }}

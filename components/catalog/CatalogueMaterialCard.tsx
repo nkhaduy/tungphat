@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { CatalogueDeferredImage } from "@/components/catalog/CatalogueDeferredImage";
 import Link from "next/link";
 import type { SupplierId } from "@/lib/catalog/core/types";
 import { supplierRegistry } from "@/lib/catalog/core/registry";
@@ -13,7 +14,12 @@ type CatalogueMaterialCardProps = {
   taxonomy: string;
   thumbnail?: string;
   thumbnailAlt?: string;
+  deferImages?: boolean;
 };
+
+function CardImage({ defer, ...props }: { defer: boolean; src: string; alt: string; sizes: string; className: string }) {
+  return defer ? <CatalogueDeferredImage {...props} /> : <Image {...props} alt={props.alt} fill />;
+}
 
 export function CatalogueMaterialCard({
   href,
@@ -24,6 +30,7 @@ export function CatalogueMaterialCard({
   taxonomy,
   thumbnail,
   thumbnailAlt = "",
+  deferImages = false,
 }: CatalogueMaterialCardProps) {
   const supplier = supplierRegistry.get(supplierId);
 
@@ -37,10 +44,10 @@ export function CatalogueMaterialCard({
       >
         <div className="relative aspect-[4/3] overflow-hidden bg-[#e9ede8]">
           {thumbnail ? (
-            <Image
+            <CardImage
+              defer={deferImages}
               src={resolveMediaUrl(thumbnail)}
               alt={thumbnailAlt}
-              fill
               sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw"
               className="object-cover transition-transform duration-300 motion-reduce:transition-none"
             />
@@ -59,10 +66,10 @@ export function CatalogueMaterialCard({
           </h3>
           {supplier?.logoSrc ? (
             <span className="relative mt-0.5 block h-8 w-16 shrink-0 sm:h-9 sm:w-24" aria-hidden="true">
-              <Image
+              <CardImage
+                defer={deferImages}
                 src={supplier.logoSrc}
                 alt=""
-                fill
                 sizes="96px"
                 className="object-contain object-right"
               />

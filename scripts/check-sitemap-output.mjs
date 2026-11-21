@@ -4,7 +4,7 @@ import { noindexMetadataRoutes } from "./lib/metadata-route-policy.mjs";
 
 const outputDirectory = path.resolve("out");
 const sitemapPath = path.join(outputDirectory, "sitemap.xml");
-const canonicalOrigin = "https://mdftungphat.com";
+const canonicalOrigin = process.env.SEO_SITE_URL ?? "https://mdftungphat.com";
 const httpOrigin = process.env.SITEMAP_CHECK_ORIGIN;
 const placeholderRoutes = new Set(noindexMetadataRoutes);
 const utilityOrNotFoundRoutes = new Set([

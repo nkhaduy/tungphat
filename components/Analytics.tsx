@@ -2,6 +2,7 @@
 
 import Script from "next/script";
 import { usePathname } from "next/navigation";
+import { ga4BootstrapScript } from "@/lib/analytics/ga4-bootstrap";
 
 export function Analytics() {
   const pathname = usePathname();
@@ -15,7 +16,7 @@ export function Analytics() {
         strategy="lazyOnload"
       />
       <Script id="ga4-config" strategy="lazyOnload">
-        {`if(!document.cookie.split(';').some(function(v){return v.trim()==='tp_analytics_opt_out=1'})){window.dataLayer=window.dataLayer||[];function gtag(){window.dataLayer.push(arguments)}window.gtag=gtag;gtag('js',new Date());gtag('config','${measurementId}',{anonymize_ip:true,send_page_view:false})}`}
+        {ga4BootstrapScript(measurementId)}
       </Script>
     </>
   );

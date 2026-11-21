@@ -43,7 +43,7 @@ export function normalizeCtaLocation(value: unknown): CtaLocation {
 export function shouldTrackLocation(hostname: string, pathname: string) {
   const host = hostname.toLowerCase();
   if (!host || host === "localhost" || host === "127.0.0.1" || host.endsWith(".local")) return false;
-  if (host.endsWith(".vercel.app") || host.endsWith(".pages.dev")) return false;
+  if (host.endsWith(".vercel.app") || host.endsWith(".pages.dev") || host.endsWith(".workers.dev")) return false;
   const path = sanitizePath(pathname);
   return !path.startsWith("/admin") && !path.startsWith("/analytics") && !path.includes("/preview");
 }

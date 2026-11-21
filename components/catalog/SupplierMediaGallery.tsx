@@ -48,7 +48,7 @@ export function SupplierMediaGallery({ images }: { images: GalleryImage[] }) {
   return (
     <>
       <button type="button" onClick={() => setOpen(true)} aria-label={`Mở thư viện ${images.length} ảnh`} className="group relative block aspect-[1.55/1] w-full overflow-hidden border border-forest-900/12 bg-[#eef1ed] focus-visible:ring-2 focus-visible:ring-wood-500">
-        <Image src={resolveMediaUrl(images[0].thumbnailSrc || images[0].src)} alt={images[0].alt} fill priority sizes="(max-width: 1024px) 100vw, 48vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.015] motion-reduce:transition-none" />
+        <Image src={resolveMediaUrl(images[0].thumbnailSrc || images[0].src)} alt={images[0].alt} fill priority fetchPriority="high" sizes="(max-width: 1024px) 100vw, 48vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.015] motion-reduce:transition-none" />
         <span className="absolute bottom-3 right-3 bg-forest-950/90 px-3 py-2 text-xs font-extrabold text-white">Mở thư viện {images.length} ảnh</span>
       </button>
       {open && current ? createPortal(

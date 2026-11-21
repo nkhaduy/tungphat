@@ -87,7 +87,7 @@ export function SupplierColorCodeSearch({
 
       <div className="mt-5 border-l-2 border-wood-500 bg-[#fffdf8] px-5 py-4">
         <h2 className="text-lg font-extrabold text-forest-950">{scopedEntries.length} mã màu · {results.length} mã phù hợp</h2>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-700">Giữ nguyên mã bề mặt và ảnh nguồn đã xác minh. Mã chưa có ảnh nguồn được ghi rõ, không render khung ảnh trống.</p>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-700">Tra mã theo dữ liệu catalogue; với mã chưa có ảnh, hãy kiểm tra thêm mẫu và nguồn trước khi đặt.</p>
       </div>
 
       {visibleResults.length ? (

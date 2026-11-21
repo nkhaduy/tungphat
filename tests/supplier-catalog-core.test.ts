@@ -70,8 +70,8 @@ describe("supplier catalogue registry", () => {
       supplierDefinitions.map((supplier) => [supplier.id, supplier.brandName]),
     ).toEqual([
       ["thanh-thuy", "Thanh Thuỳ"],
-      ["ba-thanh", "Ba Thanh"],
       ["an-cuong", "An Cường"],
+      ["ba-thanh", "Ba Thanh"],
     ]);
   });
 });
@@ -145,10 +145,10 @@ describe("supplier catalogue search", () => {
       supplierId: "thanh-thuy",
       code: "BT 111 Plus",
     });
-    expect(ordered[1]?.supplierId).toBe("ba-thanh");
-    expect(ordered[2]?.supplierId).toBe("an-cuong");
-    expect(catalogMerchandisingScore(ordered[1])).toBeGreaterThan(
-      catalogMerchandisingScore(ordered[2]),
+    expect(ordered[1]?.supplierId).toBe("an-cuong");
+    expect(ordered[2]?.supplierId).toBe("ba-thanh");
+    expect(catalogMerchandisingScore(ordered[2])).toBeGreaterThan(
+      catalogMerchandisingScore(ordered[1]),
     );
   });
 
@@ -182,7 +182,7 @@ describe("supplier catalogue search", () => {
       }).map(
         (entry) => entry.code,
       ),
-    ).toEqual(["BT 111 Plus", "BT 111", "MFC - MS 01012 T"]);
+    ).toEqual(["BT 111 Plus", "MFC - MS 01012 T", "BT 111"]);
   });
 
   it("maps material and canonical pattern selections independently", () => {

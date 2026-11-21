@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { CatalogueDeferredImage } from "@/components/catalog/CatalogueDeferredImage";
 import { ArrowRight, MessageCircle, Phone } from "lucide-react";
 import { SupplierCatalogSearch } from "@/components/catalog/shared/SupplierCatalogSearch";
 import { SiteShell } from "@/components/site/SiteShell";
@@ -33,15 +33,6 @@ function supplierCards() {
     action: "Mở mã màu Thanh Thuỳ",
   },
   {
-    name: "Ba Thanh",
-    logo: "/partners/ba-thanh-logo.png",
-    count: `${totals["ba-thanh"].colorCodes} mã màu`,
-    description:
-      "Tra cứu Melamine và Laminate Ba Thanh theo mã màu/bề mặt thực tế.",
-    href: "/catalogue/ba-thanh/",
-    action: "Mở mã màu Ba Thanh",
-  },
-  {
     name: "An Cường",
     logo: "/partners/an-cuong-logo.png",
     count: `${totals["an-cuong"].colorCodes} mã màu`,
@@ -49,6 +40,15 @@ function supplierCards() {
       "Tra cứu Melamine, Laminate, Acrylic, Veneer, PPET/PVC, Mặt Top và mã cạnh An Cường.",
     href: "/catalogue/an-cuong/",
     action: "Mở mã màu An Cường",
+  },
+  {
+    name: "Ba Thanh",
+    logo: "/partners/ba-thanh-logo.png",
+    count: `${totals["ba-thanh"].colorCodes} mã màu`,
+    description:
+      "Tra cứu Melamine và Laminate Ba Thanh theo mã màu/bề mặt thực tế.",
+    href: "/catalogue/ba-thanh/",
+    action: "Mở mã màu Ba Thanh",
   }] as const;
 }
 
@@ -74,7 +74,7 @@ export default function SupplierCataloguePage() {
           <SectionHeader
             eyebrow="Theo nhà cung cấp"
             title="Mở bảng mã riêng theo nhà cung cấp"
-            description="Tìm mã ở đầu trang trước. Mỗi nhà cung cấp giữ đúng mã, bề mặt và ảnh nguồn đã xác minh."
+            description="Tìm mã ở đầu trang hoặc chọn bảng riêng theo nhà cung cấp. Kiểm tra nguồn, màu và mẫu thực tế trước khi đặt."
           />
           <div className="mt-9 grid gap-4 lg:grid-cols-3">
             {suppliers.map((supplier) => (
@@ -83,7 +83,7 @@ export default function SupplierCataloguePage() {
                 href={supplier.href}
                 className="pressable group flex min-h-[220px] flex-col border border-slate-200 bg-white p-6 hover:border-slate-500 focus-visible:ring-2 focus-visible:ring-slate-950"
               >
-                <span className="relative mb-4 block h-11 w-36"><Image src={supplier.logo} alt={`Logo ${supplier.name}`} fill sizes="144px" className="object-contain object-left" /></span>
+                <span className="relative mb-4 block h-11 w-36"><CatalogueDeferredImage src={supplier.logo} alt={`Logo ${supplier.name}`} sizes="144px" className="object-contain object-left" /></span>
                 <p className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">
                   Nhà cung cấp
                 </p>

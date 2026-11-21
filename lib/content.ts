@@ -1,3 +1,5 @@
+import { createHash } from "node:crypto";
+import editorialBaselines from "@/data/cms-editorial-baselines.json";
 import {
   articleSchema,
   productSchema,
@@ -11,16 +13,46 @@ import {
 import { filterPublishedContent } from "@/lib/listing-indexability";
 import { hasMinimumProductEvidence } from "@/lib/content-evidence";
 import { resolveMediaUrl } from "@/lib/media";
+import { mergeProductEditorial } from "@/lib/product-editorial";
+import { articleAdditionalSections, articleBodyOverrides } from "@/lib/content-overhaul";
+import { cmsManagedMaterialSlugs } from "@/lib/product-ownership";
 
 type MediaMetadata = { width?: number; height?: number; type?: string };
-export type ContentEntry<T> = T & { body: string; sourcePath: string; mediaMetadata?: { featuredImage?: MediaMetadata; ogImage?: MediaMetadata } };
+export type ContentEntry<T> = T & { body: string; sourcePath: string; mediaMetadata?: { featuredImage?: MediaMetadata; ogImage?: MediaMetadata }; wordpress?: { html: string; mediaOrigin: string; allowInsecureLoopback: boolean } };
 
 const cmsOrigin = (process.env.PAYLOAD_CMS_URL || "https://cms.mdftungphat.com").replace(/\/$/u, "");
 const collectionCache = new Map<string, Promise<Record<string, unknown>[]>>();
 
+/** Guard only fields whose CMS values would otherwise be hidden by repository copy. */
+export function cmsEditorialFingerprint(collection: "articles" | "products", doc: Record<string, unknown>) {
+  const keys = collection === "articles" ? ["body"] : ["title", "category", "materialType", "supplier", "dimensions", "thicknesses", "surfaces", "standards", "applications", "advantages", "limitations", "orderingSteps", "excerpt", "featuredImage", "featuredImageAlt", "gallery", "video", "catalogue", "quoteCta", "faq", "body"];
+  const values = keys.map((key) => doc[key] ?? null);
+  if (collection === "products") {
+    const seo = object(doc.seo);
+    values.push(seo.title ?? null, seo.description ?? null, seo.ogImage ?? null);
+  }
+  return createHash("sha256").update(JSON.stringify(values)).digest("hex");
+}
+
+export function assertCmsEditorialUnchanged(collection: "articles" | "products", doc: Record<string, unknown>, baselines: Record<string, string>) {
+  const slug = text(doc.slug);
+  const expected = baselines[slug];
+  if (doc._status !== "published") return;
+  const requiresBaseline = collection === "articles"
+    ? Object.hasOwn(articleBodyOverrides, slug)
+    : (cmsManagedMaterialSlugs as readonly string[]).includes(slug);
+  if (!expected && requiresBaseline) throw new Error(`Missing CMS editorial baseline: ${collection}/${slug}`);
+  if (!expected) return;
+  if (cmsEditorialFingerprint(collection, doc) !== expected) {
+    throw new Error(`CMS editorial conflict: ${collection}/${slug}; review the CMS change against repository-owned fields before updating its baseline.`);
+  }
+}
+
+
 async function readCollection<T>(folder: string, schema: { parse: (value: unknown) => T }): Promise<ContentEntry<T>[]> {
   const docs = await payloadCollection(folder);
   return docs.map((doc) => {
+    if (folder === "articles" || folder === "products") assertCmsEditorialUnchanged(folder, doc, editorialBaselines[folder]);
     const frontmatter = schema.parse(mapPayloadDocument(doc));
     const seo = object(doc.seo);
     return {
@@ -47,16 +79,49 @@ async function payloadCollection(collection: string) {
   return request;
 }
 
+export function applyArticleEditorial<T extends { slug: string; body: string; updatedAt: string }>(entry: T): T {
+  if (typeof entry.body !== "string" || !entry.body.trim()) throw new Error(`CMS article ${entry.slug} has no body`);
+  const override = articleBodyOverrides[entry.slug];
+  const addition = articleAdditionalSections[entry.slug];
+  const updatedAt = entry.updatedAt > "2026-11-13" ? entry.updatedAt : "2026-11-13";
+  if (override) return { ...entry, body: override, updatedAt };
+  if (!addition) return entry;
+  const heading = addition.text.split("\n")[0];
+  const existingCount = entry.body.split(heading).length - 1;
+  if (existingCount > 1) throw new Error(`Duplicate editorial heading in CMS article ${entry.slug}`);
+  if (existingCount === 1) return entry;
+  if (addition.before === "__END_OF_ARTICLE__") return { ...entry, body: `${entry.body}\n\n${addition.text}`, updatedAt };
+  const parts = entry.body.split(addition.before);
+  if (parts.length !== 2) throw new Error(`CMS article ${entry.slug} has missing or ambiguous editorial heading; review placement`);
+  return { ...entry, body: `${parts[0]}${addition.text}\n\n${addition.before}${parts[1]}`, updatedAt };
+}
+
 export async function getArticles(options: { includeDrafts?: boolean } = {}) {
+  const source = process.env.BLOG_CONTENT_PROVIDER || "payload";
+  if (source === "wordpress") {
+    const baseUrl = process.env.WORDPRESS_BASE_URL;
+    if (!baseUrl) throw new Error("WORDPRESS_BASE_URL is required when BLOG_CONTENT_PROVIDER=wordpress");
+    const { getWordPressArticles } = await import("@/lib/wordpress/provider");
+    const entries = await getWordPressArticles({ baseUrl, allowInsecureLoopback: process.env.WORDPRESS_ALLOW_LOCAL_HTTP === "1" });
+    return (options.includeDrafts ? entries : filterPublishedContent(entries)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+  }
+  if (source !== "payload") throw new Error(`Unknown BLOG_CONTENT_PROVIDER: ${source}`);
   const entries = await readCollection<ArticleFrontmatter>("articles", articleSchema);
-  return (options.includeDrafts ? entries : filterPublishedContent(entries)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+  return (options.includeDrafts ? entries : filterPublishedContent(entries))
+    .map(applyArticleEditorial)
+    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 }
 
 export async function getPublishedArticles() { return getArticles(); }
-export async function getArticle(slug: string, options: { includeDrafts?: boolean } = {}) { return (await getArticles(options)).find((entry) => entry.slug === slug); }
+export async function getArticle(slug: string, options: { includeDrafts?: boolean } = {}) {
+  // The WordPress adapter only returns published posts. Keep a published noindex
+  // article reachable directly while excluding it from listings and indexes.
+  const includeDrafts = options.includeDrafts || process.env.BLOG_CONTENT_PROVIDER === "wordpress";
+  return (await getArticles({ includeDrafts })).find((entry) => entry.slug === slug);
+}
 
 export async function getProducts(options: { includeDrafts?: boolean } = {}) {
-  return (await readCollection<ProductFrontmatter>("products", productSchema))
+  return mergeProductEditorial(await readCollection<ProductFrontmatter>("products", productSchema))
     .filter((entry) => options.includeDrafts || (!entry.draft && !entry.noindex && hasMinimumProductEvidence(entry)))
     .sort((a, b) => a.title.localeCompare(b.title, "vi"));
 }

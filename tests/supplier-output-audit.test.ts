@@ -12,7 +12,7 @@ function page(input: {
   breadcrumbSchema?: boolean;
   completeDetail?: boolean;
 }) {
-  const canonical = `https://mdftungphat.com${input.route}`;
+  const canonical = `https://gotungphat.com${input.route}`;
   const schemas = [
     input.productSchema === false ? null : {
       "@context": "https://schema.org",
@@ -103,8 +103,8 @@ describe("supplier static output audit", () => {
       description: "Mô tả trùng cho hai trang indexable.",
     });
     second.html = second.html.replace(
-      "https://mdftungphat.com/ma-mau-melamine/ba-thanh/",
-      "https://mdftungphat.com/thuong-hieu/thanh-thuy/",
+      "https://gotungphat.com/ma-mau-melamine/ba-thanh/",
+      "https://gotungphat.com/thuong-hieu/thanh-thuy/",
     );
 
     const result = auditSupplierPages(

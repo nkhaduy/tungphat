@@ -1,11 +1,11 @@
-const leadEvents = new Set(["click_phone", "click_zalo", "click_email", "click_quote", "form_submit"]);
+const contactIntentEvents = new Set(["click_phone", "click_zalo", "click_email", "click_quote", "form_submit"]);
 
-export function countLeadSessions(events: Array<{ event_name: string; session_id: string }>) {
-  return new Set(events.filter((event) => leadEvents.has(event.event_name)).map((event) => event.session_id)).size;
+export function countContactIntentSessions(events: Array<{ event_name: string; session_id: string }>) {
+  return new Set(events.filter((event) => contactIntentEvents.has(event.event_name)).map((event) => event.session_id)).size;
 }
 
-export function conversionRate(leadSessions: number, totalSessions: number) {
-  return totalSessions > 0 ? leadSessions / totalSessions : 0;
+export function conversionRate(contactIntentSessions: number, totalSessions: number) {
+  return totalSessions > 0 ? contactIntentSessions / totalSessions : 0;
 }
 
 export function isAssistedConversion(contentViewedAt: number, contactAt: number) {

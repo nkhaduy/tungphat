@@ -126,9 +126,9 @@ async function auditProfile(browser, profile) {
   const initialCutoff = Date.now();
 
   const initialDom = await page.evaluate(() => {
-    // Keep the guard compatible with both the annotated hero markup and the
-    // current Next/Image output, which does not wrap the image in <picture>.
+    // Measure the current board hero as well as older annotated hero markup.
     const heroImage =
+      document.querySelector("#trang-chu .home-hero-image-layer picture img") ||
       document.querySelector("[data-homepage-hero] picture img") ||
       document.querySelector('img[src*="/images/cnc-service-home"]');
     const hero =

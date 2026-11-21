@@ -7,7 +7,7 @@ import { CopyColorCodeButton } from "@/components/catalog/CopyColorCodeButton";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
 import { getPublicColorCode, getPublicColorCodeRelatedCodes, getPublicColorCodes } from "@/lib/catalog/color-codes/public";
-import { buildCatalogueCodeSeo } from "@/lib/catalog/code-seo";
+import { buildCatalogueCodeSeo, catalogueImageAlt } from "@/lib/catalog/code-seo";
 import { supplierDefinitions } from "@/lib/catalog/core/registry";
 import { breadcrumbSchema, createPageMetadata, ZALO_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
@@ -43,7 +43,7 @@ export default async function SupplierColorCodeRoute({ params }: RouteProps) {
     src: image.localPath!,
     thumbnailSrc: image.thumbnailSrc,
     originalUrl: image.originalUrl,
-    alt: seo.imageAlt,
+    alt: catalogueImageAlt(image.role, seo.imageAlt),
   }));
   const path = record.canonicalRoute;
   return <SiteShell>

@@ -4,6 +4,8 @@ import { ArrowRight } from "lucide-react";
 import { TrackedLink } from "@/components/TrackedLink";
 import { ZALO_URL } from "@/lib/seo";
 
+import { COMPANY_DESCRIPTION, DEFAULT_CATALOGUE_URL } from "@/lib/site-content";
+
 export function HomeHero() {
   return (
     <section
@@ -47,13 +49,13 @@ export function HomeHero() {
           <p className="eyebrow">Công ty TNHH TMDV Gỗ Tùng Phát</p>
           <h1 className="text-balance mt-4 max-w-[42rem] font-display text-[clamp(2.35rem,6.5vw,4.25rem)] font-extrabold leading-[1.12] tracking-[-.04em] text-forest-950">
             Ván gỗ công nghiệp
-            <span className="block text-wood-600">&amp; gia công CNC tại Thủ Đức</span>
+            <span className="block text-wood-600">&amp; gia công CNC</span>
           </h1>
           <p className="text-pretty mt-5 max-w-[39rem] text-[15px] leading-7 text-slate-700 sm:text-[1.0625rem] sm:leading-8">
-            Tùng Phát cung cấp cốt ván, bề mặt trang trí và vật tư hoàn thiện từ Thanh Thùy, Ba Thanh; đồng thời nhận cắt và gia công CNC theo yêu cầu.
+            {COMPANY_DESCRIPTION}
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Link href="#ma-mau" className="pressable inline-flex min-h-12 items-center justify-center gap-2 bg-wood-600 px-5 text-sm font-extrabold text-white hover:bg-wood-700">
+            <Link href={DEFAULT_CATALOGUE_URL} prefetch={false} className="pressable inline-flex min-h-12 items-center justify-center gap-2 bg-wood-600 px-5 text-sm font-extrabold text-white hover:bg-wood-700">
               Xem mã màu <ArrowRight size={17} aria-hidden="true" />
             </Link>
             <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "home_hero", channel: "zalo" }} className="pressable inline-flex min-h-12 items-center justify-center gap-2 bg-forest-900 px-5 text-sm font-extrabold text-white hover:bg-forest-800">

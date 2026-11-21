@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { homeProductCards } from "../lib/product-taxonomy";
 import { readFileSync } from "node:fs";
 
 const publicRoutes = [
@@ -193,7 +194,7 @@ test("homepage có hero ván gỗ, hai CTA và một ảnh LCP ưu tiên", async
   await expect(
     hero.getByRole("heading", {
       level: 1,
-      name: "Ván gỗ công nghiệp & gia công CNC tại Thủ Đức",
+      name: "Ván gỗ công nghiệp & gia công CNC",
     }),
   ).toBeVisible();
   await expect(hero.getByRole("link")).toHaveCount(2);
@@ -285,39 +286,34 @@ test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", asyn
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
   for (const heading of [
-    "Khám phá vật liệu tại Tùng Phát",
+    "Danh mục sản phẩm",
     "Mã màu",
-    "Gửi kích thước, xưởng kiểm tra cách làm",
+    "Lên bản vẽ, cắt CNC và dán chỉ",
     "Địa chỉ",
-    "Kiến thức chọn vật liệu",
+    "Bài viết nổi bật",
   ]) {
     await expect(
       page.getByRole("heading", { level: 2, name: heading, exact: true }),
     ).toBeVisible();
   }
   const maps = page.locator('iframe[src*="google.com/maps"]');
-  // Two branch maps and the shared footer map are part of the current design.
-  await expect(maps).toHaveCount(3);
+  // Two branch maps appear both in the homepage section and the shared footer.
+  await expect(maps).toHaveCount(4);
   for (const map of await maps.all()) await expect(map).toHaveAttribute("loading", "lazy");
 });
 
 test("homepage product taxonomy exposes core materials and catalogue surfaces", async ({ page }) => {
   await page.goto("/");
   const groups = page.locator("#vat-lieu");
-  for (const [name, href] of [
-    ["Ván MDF", "/van-mdf/"], ["MDF chống ẩm", "/mdf-chong-am/"],
-    ["MFC", "/van-go-cong-nghiep/"], ["Plywood", "/van-go-cong-nghiep/"], ["Gỗ ghép", "/go-ghep/"],
-    ["Melamine", "/catalogue/thanh-thuy/melamine/"], ["Laminate", "/catalogue/thanh-thuy/laminate/"],
-    ["Acrylic", "/catalogue/thanh-thuy/acrylic/"], ["Veneer", "/catalogue/thanh-thuy/veneer/"],
-  ]) {
-    await expect(groups.getByRole("heading", { name, exact: true }).getByRole("link")).toHaveAttribute("href", href);
+  for (const card of homeProductCards) {
+    await expect(groups.getByRole("heading", { name: card.title, exact: true }).getByRole("link")).toHaveAttribute("href", card.href);
   }
-  expect(await groups.getByRole("article").count()).toBeGreaterThanOrEqual(8);
+  expect(await groups.getByRole("article").count()).toBe(homeProductCards.length);
 });
 
 test("featured catalogue links and the exact 301 landing route remain valid", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator('#ma-mau a[href^="/catalogue/thanh-thuy/"]').first()).toBeVisible();
+  await expect(page.locator('#ma-mau a[href="/catalogue/?supplier=thanh-thuy"]').first()).toBeVisible();
   const response = await page.goto("/catalogue/thanh-thuy/melamine/301/");
   expect(response?.status()).toBe(200);
   await expect(page.getByRole("heading", { level: 1 })).toContainText("301");
@@ -380,7 +376,7 @@ test("mobile navigation contract supports focus, Escape, and a solid surface", a
   });
   await expect(mobileNavigation).toBeVisible();
   await expect(
-    mobileNavigation.getByRole("link", { name: "Sản phẩm", exact: true }),
+    mobileNavigation.getByRole("button", { name: "Sản phẩm", exact: true }),
   ).toBeFocused();
   const navigationStyles = await mobileNavigation.evaluate((element) => {
     const style = getComputedStyle(element);
@@ -635,7 +631,7 @@ test("404 dùng ảnh responsive và có hai đường thoát rõ ràng", async 
   ).toHaveAttribute("href", "/");
   await expect(
     page.getByRole("link", { name: "Xem catalogue" }),
-  ).toHaveAttribute("href", "/catalogue/");
+  ).toHaveAttribute("href", "/catalogue/?supplier=thanh-thuy");
   await expect(page.locator("main picture source")).toHaveAttribute(
     "srcset",
     "/images/404-mobile.webp",
@@ -1005,15 +1001,12 @@ test("Trustindex review slider renders current source data and remains usable on
   await expect(section).toBeVisible();
   await expect(page.getByRole("heading", { name: "Đánh giá từ Trustindex" })).toHaveCount(0);
   await expect(section.getByText("Phản hồi khách hàng được Trustindex công khai từ Google cho Tùng Phát.", { exact: true })).toHaveCount(0);
-  await expect(section).toContainText("4.8");
-  await expect(section).toContainText("26 đánh giá");
   await expect(section).toContainText("Thuy Pham");
   await expect(section).toContainText("Đa dạng sản phẩm, sản xuất nhanh");
-  // Current curation excludes one-star records; the source aggregate is retained.
+  // Current curation excludes one-star records; source links remain available.
   await expect(section.getByText("Lưu Phúc Điền", { exact: true })).toHaveCount(0);
   await expect(section.locator("[data-trustindex-card]").first()).not.toContainText("svgsvg");
   await expect(section.getByRole("link", { name: /Google/i }).first()).toHaveAttribute("href", /google\.com\/maps/);
-  await expect(section.getByText("Nguồn đánh giá Google")).toBeVisible();
   const sourceLinks = section.locator('a:has-text("Google")');
   const sourceHrefs = await sourceLinks.evaluateAll((links) => links.map((link) => (link as HTMLAnchorElement).href));
   expect(sourceHrefs.length).toBeGreaterThanOrEqual(3);
