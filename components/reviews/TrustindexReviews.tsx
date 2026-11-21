@@ -1,6 +1,6 @@
 "use client";
 
-import { BadgeCheck, ChevronLeft, ChevronRight, ExternalLink, Star, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Star, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -53,8 +53,8 @@ function initials(name: string) {
   return name.trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join("").toLocaleUpperCase("vi-VN") || "TP";
 }
 
-function StarRating({ rating }: { rating: number }) {
-  return <span role="img" className="flex gap-0.5 text-[#f6b400]" aria-label={`${rating} trên 5 sao`}>{Array.from({ length: 5 }, (_, index) => <Star key={index} size={15} fill={index < rating ? "currentColor" : "none"} className={index < rating ? "" : "text-slate-200"} aria-hidden="true" />)}</span>;
+function StarRating({ rating, label }: { rating: number; label?: string }) {
+  return <span role="img" className="flex gap-1 text-[#f6b400]" aria-label={label ?? `${rating} trên 5 sao`}>{Array.from({ length: 5 }, (_, index) => <Star key={index} size={label ? 22 : 15} fill={index < rating ? "currentColor" : "none"} className={index < rating ? "" : "text-slate-200"} aria-hidden="true" />)}</span>;
 }
 
 function ReviewAvatar({ review }: { review: TrustindexReview }) {
@@ -152,15 +152,11 @@ export function TrustindexReviews({ data }: { data: TrustindexReviewData }) {
   return <section ref={sectionRef} id="google-reviews" data-trustindex-reviews aria-label="Đánh giá khách hàng" className="border-y border-slate-200 bg-white py-16 lg:py-24">
     <div className="container-shell">
       <div className="grid gap-7 lg:grid-cols-[13.75rem_minmax(0,1fr)] lg:items-stretch">
-        <aside className="flex min-h-[21rem] flex-col border border-slate-200 bg-white p-7 text-slate-950">
-          <p className="text-xs font-extrabold tracking-[0.16em] text-slate-500">XUẤT SẮC</p>
-          <div className="mt-4"><StarRating rating={5} /></div>
-          <p className="mt-4 text-4xl font-extrabold tracking-[-0.04em]">{data.rating.toFixed(1)}</p>
-          <p className="mt-1 text-sm text-slate-600">Dựa trên {data.reviewCount} đánh giá</p>
-          <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2">
+        <aside className="flex min-h-44 flex-col justify-center border border-slate-200 bg-white p-6 text-slate-950 lg:min-h-[21rem] lg:p-7">
+          <StarRating rating={5} label="Biểu tượng ngôi sao" />
+          <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
           {googleUrls.map((url, index) => <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={`Google - Chi nhánh ${index + 1}`} className="inline-flex items-center gap-2 text-sm font-extrabold text-slate-900 hover:text-slate-600"><Image src="/brand/google-g.png" alt={index === 0 ? "Google" : ""} width={20} height={20} className="h-5 w-5" aria-hidden={index > 0 ? "true" : undefined} />{`Tùng Phát ${index + 1}`} <ExternalLink size={13} aria-hidden="true" /></a>)}
           </div>
-          {data.verified && googleUrl ? <a href={googleUrl} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-1.5 pt-7 text-xs font-bold text-slate-600 hover:text-slate-950"><BadgeCheck size={15} aria-hidden="true" />Nguồn đánh giá Google</a> : null}
         </aside>
         <div className="min-w-0">
           <div ref={viewportRef} data-trustindex-viewport className="trustindex-review-viewport" aria-label="Đánh giá khách hàng" aria-live="polite" onPointerDown={() => setAutoplay(false)}>

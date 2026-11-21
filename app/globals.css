@@ -20,9 +20,15 @@
 }
 
 .color-code-marquee {
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   padding-block: 0.15rem;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  touch-action: pan-x;
 }
+
+.color-code-marquee::-webkit-scrollbar { display: none; }
 
 .color-code-marquee-track {
   display: flex;
@@ -32,17 +38,28 @@
 }
 
 .color-code-marquee:hover .color-code-marquee-track,
+.color-code-marquee:active .color-code-marquee-track,
 .color-code-marquee:focus-within .color-code-marquee-track {
   animation-play-state: paused;
 }
 
 .color-code-marquee-card {
   display: block;
-  width: 12.5rem;
-  flex: 0 0 12.5rem;
+  width: min(78vw, 18rem);
+  flex: 0 0 min(78vw, 18rem);
   border: 1px solid rgba(7, 59, 40, 0.1);
   background: #fbfcfa;
   padding: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .color-code-marquee { overflow: hidden; touch-action: pan-y; }
+  .color-code-marquee-track { gap: 1rem; }
+  .color-code-marquee-card {
+    width: 17.5rem;
+    flex-basis: 17.5rem;
+    padding: 1rem;
+  }
 }
 
 @keyframes color-code-marquee {
@@ -770,4 +787,12 @@ select:focus {
     font-size: 2.65rem;
     line-height: 1.28;
   }
+}
+
+/* Center an incomplete last row while preserving the established card order. */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .material-grid > article:nth-last-child(1):nth-child(3n + 1) { grid-column-start: 2; }
+}
+@media (min-width: 1280px) {
+  .material-grid > article:nth-last-child(2):nth-child(4n + 1) { grid-column-start: 2; }
 }

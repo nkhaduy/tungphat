@@ -1,0 +1,6 @@
+{
+  "name": "tungphat-wordpress-playground-local",
+  "private": true,
+  "description": "Isolated local WordPress Playground tooling; install outside the website repository.",
+  "dependencies": { "@wp-playground/cli": "3.1.64" }
+}

@@ -1,4 +1,10 @@
 import { expect, test } from "@playwright/test";
+import { getAllSupplierSearchEntriesForCatalogue } from "../lib/catalog/suppliers/search";
+import { searchSupplierCatalog } from "../lib/catalog/core/search";
+
+const catalogueEntries = getAllSupplierSearchEntriesForCatalogue();
+const thanhThuyEntryCount = searchSupplierCatalog(catalogueEntries, "", { supplierId: "thanh-thuy" }).length;
+const thanhThuyLaminateCount = searchSupplierCatalog(catalogueEntries, "", { supplierId: "thanh-thuy", material: "laminate" }).length;
 
 const catalogueSearchName = "Nhập mã màu, tên màu hoặc thương hiệu...";
 const supplierSearchName = "Tìm mã màu, tên màu hoặc thương hiệu";
@@ -9,18 +15,12 @@ test.describe("Mã màu customer journeys", () => {
   }) => {
     await page.goto("/");
 
-    await expect(
-      page
-        .getByRole("navigation", { name: "Điều hướng chính" })
-        .getByRole("button", { name: "Mã màu / Catalogue", exact: true }),
-    ).toHaveAttribute("aria-expanded", "false");
     const nav = page.getByRole("navigation", { name: "Điều hướng chính" });
-    await nav.getByRole("button", { name: "Mã màu / Catalogue", exact: true }).click();
-    await expect(nav.getByRole("link", { name: "Tìm mã màu", exact: true })).toHaveAttribute("href", "/catalogue/");
+    await expect(nav.getByRole("link", { name: "Mã màu", exact: true })).toHaveAttribute("href", "/catalogue/");
     await expect(
       page
         .getByRole("contentinfo")
-        .getByRole("link", { name: "Mã màu / Catalogue", exact: true }),
+        .getByRole("link", { name: "Mã màu", exact: true }),
     ).toHaveAttribute("href", "/catalogue/");
   });
 
@@ -30,6 +30,7 @@ test.describe("Mã màu customer journeys", () => {
     await page.goto("/catalogue/");
     const search = page.getByRole("searchbox", { name: catalogueSearchName });
 
+    await page.getByRole("combobox", { name: "Theo thương hiệu" }).selectOption("an-cuong");
     await search.fill("MS465SC04");
     await expect(page).toHaveURL(/query=MS465SC04/);
     await expect(
@@ -57,16 +58,19 @@ test.describe("Mã màu customer journeys", () => {
   }) => {
     const cases = [
       {
+        supplier: "ba-thanh",
         query: "BT99",
         name: /Ba Thanh, mã BT99, xem chi tiết/i,
         route: "/catalogue/ba-thanh/melamine/bt99/",
       },
       {
+        supplier: "ba-thanh",
         query: "SC 016M",
         name: /Ba Thanh, mã SC016M, xem chi tiết/i,
         route: "/catalogue/ba-thanh/melamine/sc016m/",
       },
       {
+        supplier: "thanh-thuy",
         query: "0029",
         name: /Thanh Thuỳ, mã 0029, xem chi tiết/i,
         route: "/catalogue/thanh-thuy/melamine/0029/",
@@ -77,6 +81,7 @@ test.describe("Mã màu customer journeys", () => {
     const search = page.getByRole("searchbox", { name: catalogueSearchName });
 
     for (const item of cases) {
+      await page.getByRole("combobox", { name: "Theo thương hiệu" }).selectOption(item.supplier);
       await search.fill(item.query);
       await expect(
         page.getByRole("link", { name: item.name }).first(),
@@ -147,13 +152,13 @@ test.describe("Mã màu customer journeys", () => {
     await expect(baThanhRegion.getByRole("article")).toHaveCount(96);
   });
 
-  test("hub Tất cả auto-loads beyond the featured first page", async ({ page }) => {
+  test("default Thanh Thuỳ catalogue auto-loads beyond the first page", async ({ page }) => {
     await page.goto("/catalogue/");
     await expect(
       page.getByText("Kết quả phù hợp", { exact: true }),
     ).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: "724 mục tra cứu", exact: true }),
+      page.getByRole("heading", { name: `${thanhThuyEntryCount} mục tra cứu`, exact: true }),
     ).toBeVisible();
     const region = page.getByRole("region", { name: "Kết quả mã màu" });
     await expect(region.getByRole("article")).toHaveCount(48);
@@ -229,7 +234,7 @@ test.describe("Mã màu customer journeys", () => {
     await laminate.click();
     await expect(laminate).toHaveAttribute("aria-pressed", "true");
     await expect(
-      page.getByRole("heading", { name: "182 mục tra cứu", exact: true }),
+      page.getByRole("heading", { name: `${thanhThuyLaminateCount} mục tra cứu`, exact: true }),
     ).toBeVisible();
 
     const supplier = page.getByRole("combobox", {
@@ -237,6 +242,9 @@ test.describe("Mã màu customer journeys", () => {
     });
     await supplier.selectOption("ba-thanh");
     await expect(supplier).toHaveValue("ba-thanh");
+    // Supplier changes intentionally reset the material selection.
+    await expect(page.getByRole("button", { name: "Tất cả", exact: true })).toHaveAttribute("aria-pressed", "true");
+    await laminate.click();
     await expect(
       page.getByRole("heading", { name: "113 mục tra cứu", exact: true }),
     ).toBeVisible();
@@ -264,6 +272,7 @@ test.describe("Mã màu customer journeys", () => {
       .filter({ hasText: "301 Artistic Stripe" });
     await expect(thanhThuyCard).toHaveCount(1);
     await expect(thanhThuyCard.getByText("Thanh Thuỳ", { exact: true })).toHaveCount(0);
+    await thanhThuyCard.scrollIntoViewIfNeeded();
     await expect(thanhThuyCard.locator('img[src*="thanh-thuy-logo"]')).toBeVisible();
     await expect(thanhThuyCard.getByText("Mã màu", { exact: true })).toHaveCount(0);
     await expect(thanhThuyCard.getByText("301", { exact: true })).toHaveCount(0);
@@ -433,7 +442,7 @@ test.describe("Mã màu mobile navigation", () => {
         .getByRole("dialog", {
           name: "Điều hướng di động",
         })
-        .getByRole("link", { name: "Mã màu / Catalogue", exact: true }),
+        .getByRole("link", { name: "Mã màu", exact: true }),
     ).toHaveAttribute("href", "/catalogue/");
     await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
 
@@ -449,6 +458,7 @@ test.describe("Mã màu mobile navigation", () => {
     const search = page.getByRole("searchbox", { name: catalogueSearchName });
 
     expect((await search.boundingBox())?.height).toBeGreaterThanOrEqual(44);
+    await page.getByRole("combobox", { name: "Theo thương hiệu" }).selectOption("ba-thanh");
     await search.fill("BT99");
     await expect(
       page.getByRole("link", { name: /Ba Thanh, mã BT99, xem chi tiết/i }),

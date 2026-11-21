@@ -1,6 +1,14 @@
-import type { PublicSupplierColorCode } from "./color-codes/types";
+import type { PublicSupplierColorCode, SupplierColorImageRole } from "./color-codes/types";
 
 export type CatalogueCodeTier = "A" | "B" | "C";
+
+/** The catalogue role describes the image, not a guarantee about its rights or stock. */
+export function catalogueImageAlt(role: SupplierColorImageRole, identity: string): string {
+  if (role === "swatch") return `Mẫu bề mặt: ${identity}`;
+  if (role === "fullsheet") return `Ảnh toàn tấm: ${identity}`;
+  if (role === "application") return `Ảnh ứng dụng tham khảo: ${identity}`;
+  return `Ảnh vật liệu: ${identity}`;
+}
 
 type CatalogueCodeSeoOptions = {
   supplierName: string;

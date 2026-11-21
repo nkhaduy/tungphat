@@ -1,5 +1,6 @@
 import { sendAnalyticsEvent } from "@/lib/analytics/client";
 import { normalizeCtaLocation } from "@/lib/analytics/sanitize";
+import { analyticsOptedOut } from "@/lib/analytics/session";
 import type {
   AnalyticsProperties,
   FirstPartyAnalyticsEvent,
@@ -43,7 +44,7 @@ function propertiesFor(event: FirstPartyAnalyticsEvent, properties: LegacyEventP
 }
 
 export function trackEvent(event: AnalyticsEvent, properties: LegacyEventProperties = {}) {
-  if (typeof window === "undefined" || window.__TP_PREVIEW__ === true || window.location.pathname.startsWith("/cms-preview")) return;
+  if (typeof window === "undefined" || window.__TP_PREVIEW__ === true || window.location.pathname.startsWith("/cms-preview") || analyticsOptedOut()) return;
   if (directEvents.has(event as FirstPartyAnalyticsEvent)) {
     const direct = event as FirstPartyAnalyticsEvent;
     sendAnalyticsEvent(direct, propertiesFor(direct, properties));
@@ -53,6 +54,7 @@ export function trackEvent(event: AnalyticsEvent, properties: LegacyEventPropert
     const quote = propertiesFor("click_quote", properties);
     sendAnalyticsEvent("click_quote", quote);
     if (properties.channel === "zalo") sendAnalyticsEvent("click_zalo", { ...quote, target_type: "zalo" });
+    if (properties.channel === "phone") sendAnalyticsEvent("click_phone", { ...quote, target_type: "phone" });
     return;
   }
   if (event === "submit_quote_form" || event === "submit_contact_form") {

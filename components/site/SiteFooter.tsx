@@ -7,19 +7,15 @@ import business from "@/content/settings/business.json";
 import { branchPathForLocationId } from "@/lib/branch-pages";
 import { PHONE_HREF, ZALO_URL } from "@/lib/seo";
 
-const materialLinks = [
-  ["Ván MDF", "/van-mdf"],
-  ["MDF chống ẩm", "/mdf-chong-am"],
-  ["MFC & Plywood", "/van-go-cong-nghiep"],
-  ["Gỗ ghép", "/go-ghep"],
-  ["Tất cả vật liệu", "/san-pham"],
-] as const;
+import { COMPANY_DESCRIPTION, DEFAULT_CATALOGUE_URL } from "@/lib/site-content";
+import { homeProductCards } from "@/lib/product-taxonomy";
+
+const materialLinks = [...homeProductCards.map((card) => [card.title, card.href] as const), ["Tất cả vật liệu", "/san-pham/"] as const];
 
 const navigationLinks = [
-  ["Mã màu / Catalogue", "/catalogue"],
-  ["Cắt & CNC", "/gia-cong-cnc"],
-  ["Xưởng & chi nhánh", "/du-an"],
-  ["Kiến thức", "/bai-viet"],
+  ["Mã màu", DEFAULT_CATALOGUE_URL],
+  ["Cắt CNC", "/gia-cong-cnc"],
+  ["Bài viết", "/bai-viet"],
   ["Liên hệ", "/lien-he"],
 ] as const;
 
@@ -30,7 +26,7 @@ export function SiteFooter() {
         <div>
           <Image src="/logo-horizontal.webp" alt="Tùng Phát" width={800} height={240} sizes="210px" className="h-auto w-[200px]" />
           <p className="mt-5 max-w-sm text-sm leading-6 text-slate-700">
-            <LocalizedText vi={business.footerDescription} en="Wood materials and CNC machining solutions for workshops, carpenters, architects, and business clients." />
+            <LocalizedText vi={COMPANY_DESCRIPTION} en="Wood materials and CNC machining solutions for workshops, carpenters, architects, and business clients." />
           </p>
           <div className="mt-5 grid gap-2 text-sm text-slate-700">
             <a href={PHONE_HREF} className="inline-flex min-h-11 items-center gap-3 font-extrabold text-forest-950 hover:text-wood-600"><Phone size={17} className="text-wood-600" aria-hidden="true" />{business.phoneDisplay}</a>
@@ -49,7 +45,7 @@ export function SiteFooter() {
         <div>
           <h2 className="text-xs font-extrabold uppercase tracking-[.15em] text-forest-900"><LocalizedText vi="Đi đến nhanh" en="Explore" /></h2>
           <nav aria-label="Điều hướng nhanh tại footer" className="mt-4 grid gap-1.5">
-            {navigationLinks.map(([label, href]) => <Link key={label} href={href} prefetch={href === "/catalogue" ? false : undefined} className="flex min-h-11 items-center text-sm text-slate-700 hover:text-wood-600">{label}</Link>)}
+            {navigationLinks.map(([label, href]) => <Link key={label} href={href} prefetch={href === DEFAULT_CATALOGUE_URL ? false : undefined} className="flex min-h-11 items-center text-sm text-slate-700 hover:text-wood-600">{label}</Link>)}
           </nav>
           <nav aria-label="Chính sách" className="mt-4 grid gap-1 text-xs text-slate-600">
             <Link href="/chinh-sach-bao-mat" className="flex min-h-11 items-center hover:text-wood-600"><LocalizedText vi="Chính sách bảo mật" en="Privacy Policy" /></Link>
@@ -61,25 +57,21 @@ export function SiteFooter() {
           <h2 className="text-xs font-extrabold uppercase tracking-[.15em] text-forest-900"><LocalizedText vi="Chi nhánh và liên hệ" en="Branches and contact" /></h2>
           <div className="mt-4 grid gap-3">
             {business.locations.map((location) => (
-              <div key={location.id} className="flex items-start gap-3 border border-forest-900/10 bg-white p-4 shadow-sm">
-                <MapPin size={18} className="mt-0.5 shrink-0 text-wood-600" aria-hidden="true" />
-                <span className="text-sm leading-6 text-slate-700">
-                  <strong className="block text-forest-950">{location.name}</strong>
-                  {location.address}
-                  <span className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs font-extrabold">
-                    <Link href={branchPathForLocationId(location.id)} className="text-forest-900 hover:text-wood-600">Xem chi tiết</Link>
-                    <a href={location.directionsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-slate-600 hover:text-wood-600">Mở Maps <ExternalLink size={13} aria-hidden="true" /></a>
-                  </span>
-                </span>
-              </div>
+              <section key={location.id} className="overflow-hidden border border-forest-900/10 bg-white">
+                <div className="flex items-start justify-between gap-3 p-4">
+                  <div className="flex min-w-0 items-start gap-3">
+                    <MapPin size={18} className="mt-0.5 shrink-0 text-wood-600" aria-hidden="true" />
+                    <div className="min-w-0 text-sm leading-6 text-slate-700">
+                      <strong className="block text-forest-950">{location.name}</strong>
+                      <p className="mt-1">{location.address}</p>
+                      <Link href={branchPathForLocationId(location.id)} className="mt-1 inline-flex min-h-9 items-center text-xs font-extrabold text-forest-900 hover:text-wood-600">Xem chi tiết</Link>
+                    </div>
+                  </div>
+                  <a href={location.directionsUrl} target="_blank" rel="noopener noreferrer" aria-label={`Mở Maps ${location.name}`} className="inline-flex min-h-11 shrink-0 items-center gap-1 text-xs font-extrabold text-wood-600 hover:text-wood-700">Mở Maps <ExternalLink size={13} aria-hidden="true" /></a>
+                </div>
+                <iframe title={`Google Maps - ${location.name}`} aria-label={`Bản đồ ${location.name}`} src={location.embedSrc} loading="lazy" className="aspect-[2.4/1] w-full border-0 bg-[#f7f8f5]" referrerPolicy="no-referrer-when-downgrade" />
+              </section>
             ))}
-          </div>
-          <div className="mt-4 overflow-hidden border border-forest-900/10 bg-white">
-            <div className="flex items-center justify-between gap-3 px-4 py-3">
-              <span className="text-xs font-extrabold uppercase tracking-[.12em] text-forest-900">Google Maps</span>
-              {business.locations[0] ? <a href={business.locations[0].directionsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center gap-1 text-xs font-extrabold text-wood-600 hover:text-wood-700">Mở Maps <ExternalLink size={13} aria-hidden="true" /></a> : null}
-            </div>
-            {business.locations[0] ? <iframe title="Google Maps - Tùng Phát" src={business.locations[0].embedSrc} loading="lazy" className="h-36 w-full border-0" referrerPolicy="no-referrer-when-downgrade" /> : null}
           </div>
           <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="click_zalo" eventProperties={{ location: "site_footer" }} className="pressable mt-4 inline-flex min-h-12 items-center justify-center gap-2 bg-wood-500 px-5 text-sm font-extrabold text-white hover:bg-wood-600">
             <MessageCircle size={17} aria-hidden="true" />Liên hệ báo giá

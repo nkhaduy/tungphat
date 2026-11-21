@@ -92,8 +92,8 @@ describe("canonical supplier color-code index", () => {
     expect(new Set(bt163.map((record) => record.id)).size).toBe(3);
   });
 
-  it("stores mixed-supplier records in Thanh Thuy, Ba Thanh, An Cuong order", () => {
-    const priority = { "thanh-thuy": 0, "ba-thanh": 1, "an-cuong": 2 } as const;
+  it("stores mixed-supplier records in Thanh Thuy, An Cuong, Ba Thanh order", () => {
+    const priority = { "thanh-thuy": 0, "ba-thanh": 2, "an-cuong": 1 } as const;
     const supplierRanks = artifact.records.map((record) => priority[record.supplier]);
 
     expect(supplierRanks).toEqual([...supplierRanks].sort((left, right) => left - right));

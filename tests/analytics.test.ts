@@ -3,8 +3,9 @@ import { attributionFromUrl, attributionParameters } from "@/lib/analytics/attri
 import { normalizeCtaLocation, sanitizePath, sanitizeText, shouldTrackLocation } from "@/lib/analytics/sanitize";
 import { generateAnonymousId, SESSION_TIMEOUT_MS } from "@/lib/analytics/session";
 import { analyticsEventNames } from "@/lib/analytics/types";
-import { conversionRate, countLeadSessions, isAssistedConversion, recordMilestone, vietnamDayBounds } from "@/lib/analytics/metrics";
+import { conversionRate, countContactIntentSessions, isAssistedConversion, recordMilestone, vietnamDayBounds } from "@/lib/analytics/metrics";
 import { sendGa4Event } from "@/lib/analytics/client";
+import { trackEvent } from "@/lib/analytics";
 
 afterEach(() => vi.unstubAllGlobals());
 
@@ -30,7 +31,15 @@ describe("anonymous analytics primitives", () => {
   it("queues GA4 events until the lazy analytics loader defines gtag", () => {
     vi.stubGlobal("window", { dataLayer: [] });
     sendGa4Event("page_view", { page_path: "/" });
-    expect(window.dataLayer).toEqual([["event", "page_view", { page_path: "/" }]]);
+    expect(window.__TP_GA4_PENDING__).toEqual([["event", "page_view", { page_path: "/" }]]);
+  });
+
+  it("does not send legacy GA4 events after a visitor opts out", () => {
+    const gtag = vi.fn();
+    vi.stubGlobal("window", { location: { pathname: "/lien-he/" }, gtag });
+    vi.stubGlobal("document", { cookie: "tp_analytics_opt_out=1" });
+    trackEvent("view_contact_page", { content_type: "contact" });
+    expect(gtag).not.toHaveBeenCalled();
   });
 });
 
@@ -84,14 +93,14 @@ describe("sanitization and exclusions", () => {
 });
 
 describe("business metric definitions", () => {
-  it("deduplicates lead sessions and avoids division by zero", () => {
+  it("deduplicates contact intent sessions and avoids division by zero", () => {
     const events = [
       { event_name: "click_zalo", session_id: "a" },
       { event_name: "click_phone", session_id: "a" },
       { event_name: "page_view", session_id: "b" },
       { event_name: "form_submit", session_id: "c" },
     ];
-    expect(countLeadSessions(events)).toBe(2);
+    expect(countContactIntentSessions(events)).toBe(2);
     expect(conversionRate(2, 4)).toBe(0.5);
     expect(conversionRate(0, 0)).toBe(0);
   });
@@ -114,4 +123,21 @@ describe("business metric definitions", () => {
     expect(new Date((bounds?.start || 0) * 1000).toISOString()).toBe("2026-07-19T17:00:00.000Z");
     expect(bounds?.timezone).toBe("Asia/Ho_Chi_Minh");
   });
+});
+
+it("does not dispatch an idle analytics request after opt-out in the same session", async () => {
+  const { sendAnalyticsEvent } = await import("@/lib/analytics/client");
+  let pending: (() => void) | undefined;
+  const fakeFetch = vi.fn().mockResolvedValue({ ok: true });
+  vi.stubGlobal("window", { requestIdleCallback: (fn: () => void) => { pending = fn; }, gtag: vi.fn(), location: { href: "https://mdftungphat.com/" } });
+  vi.stubGlobal("document", { cookie: "", title: "Test", referrer: "" });
+  vi.stubGlobal("location", { protocol: "https:", hostname: "mdftungphat.com", pathname: "/", href: "https://mdftungphat.com/" });
+  vi.stubGlobal("navigator", { webdriver: false });
+  vi.stubGlobal("sessionStorage", { getItem: () => null, setItem: () => {}, removeItem: () => {} });
+  vi.stubGlobal("fetch", fakeFetch);
+  sendAnalyticsEvent("click_phone");
+  expect(pending).toBeTypeOf("function");
+  document.cookie = "tp_analytics_opt_out=1";
+  pending?.();
+  expect(fakeFetch).not.toHaveBeenCalled();
 });

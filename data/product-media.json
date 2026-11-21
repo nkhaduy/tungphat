@@ -1,0 +1,797 @@
+{
+  "van-mdf": {
+    "status": "approved",
+    "image": "/sanpham-media/van-mdf.webp",
+    "alt": "Các tấm MDF mộc xếp chồng, nhìn rõ bề mặt và cạnh ván",
+    "width": 890,
+    "height": 886,
+    "variants": [
+      {
+        "src": "/sanpham-media/van-mdf-400.webp",
+        "width": 400,
+        "height": 398
+      },
+      {
+        "src": "/sanpham-media/van-mdf-800.webp",
+        "width": 800,
+        "height": 796
+      },
+      {
+        "src": "/sanpham-media/van-mdf.webp",
+        "width": 890,
+        "height": 886
+      }
+    ],
+    "sourceUrl": null,
+    "sourceFile": "sanpham-media/vanmdf.webp",
+    "author": "Tùng Phát / original supplied by user",
+    "license": "Commercial reuse permission confirmed by user",
+    "licenseUrl": null,
+    "attribution": "Ảnh: Tùng Phát / original supplied by user",
+    "changes": "EXIF orientation applied; metadata stripped; converted to WebP; resized down only; no upsampling or generative editing.",
+    "permissionBasis": "User confirmed commercial reuse rights for existing Tùng Phát assets and supplier catalogue imagery in this chat: “Có quyền rồi”. This records user authorization, not a Creative Commons license.",
+    "verifiedMaterial": "MDF; explicitly selected by user",
+    "notes": "User-selected original retained unchanged at sanpham-media/vanmdf.webp. Native width 890; no invented 1200px variant.",
+    "originalWidth": 890,
+    "originalHeight": 886,
+    "sha256": "7fa08d1207b784defcd645999cdddbf3d7f6b1171350ff571fb5e2d022d45f13",
+    "sourceImageUrl": null
+  },
+  "mdf-chong-am": {
+    "status": "approved",
+    "image": "/sanpham-media/mdf-chong-am.webp",
+    "alt": "MDF chống ẩm lõi xanh với bề mặt phủ trắng",
+    "width": 1200,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/sanpham-media/mdf-chong-am-400.webp",
+        "width": 400,
+        "height": 400
+      },
+      {
+        "src": "/sanpham-media/mdf-chong-am-800.webp",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "src": "/sanpham-media/mdf-chong-am.webp",
+        "width": 1200,
+        "height": 1200
+      }
+    ],
+    "sourceUrl": null,
+    "sourceFile": "sanpham-media/mdfchongam.jpg",
+    "author": "Tùng Phát / original supplied by user",
+    "license": "Commercial reuse permission confirmed by user",
+    "licenseUrl": null,
+    "attribution": "Ảnh: Tùng Phát / original supplied by user",
+    "changes": "EXIF orientation applied; metadata stripped; converted to WebP; resized down only; no upsampling or generative editing.",
+    "permissionBasis": "User confirmed commercial reuse rights for existing Tùng Phát assets and supplier catalogue imagery in this chat: “Có quyền rồi”. This records user authorization, not a Creative Commons license.",
+    "verifiedMaterial": "Moisture-resistant MDF; explicitly selected by user",
+    "notes": "User-selected original retained unchanged at sanpham-media/mdfchongam.jpg.",
+    "originalWidth": 3375,
+    "originalHeight": 3375,
+    "sha256": "b0e8b3f2e9179a55d554e41fffbeaa046a85b3d9dd56eb4ce59fa3b3b9eaae0e",
+    "sourceImageUrl": null
+  },
+  "van-okal": {
+    "status": "approved",
+    "image": "/sanpham-media/van-okal.webp",
+    "alt": "Cận cảnh phần dăm gỗ Okal lộ ở cạnh cắt của mẫu ván",
+    "width": 850,
+    "height": 350,
+    "variants": [
+      {
+        "src": "/sanpham-media/van-okal-400.webp",
+        "width": 400,
+        "height": 165
+      },
+      {
+        "src": "/sanpham-media/van-okal-800.webp",
+        "width": 800,
+        "height": 329
+      },
+      {
+        "src": "/sanpham-media/van-okal.webp",
+        "width": 850,
+        "height": 350
+      }
+    ],
+    "sourceUrl": "https://www.bathanhtaybac.com/san-pham/okal-mfc",
+    "sourceImageUrl": "https://www.bathanhtaybac.com/assets/products/okal-mfc/okal-mfc.webp",
+    "sourceFile": "sanpham-media/sources/van-okal.webp",
+    "author": "Ba Thanh Tây Bắc (supplier source; photographer not named)",
+    "license": "Commercial reuse permission confirmed by user",
+    "licenseUrl": null,
+    "attribution": "Ảnh: Ba Thanh Tây Bắc",
+    "changes": "Source image from an explicitly approved supplier; metadata stripped; WebP quality87; resized down only; no upsampling or generative editing. Product-focused crop recorded in cropBox.",
+    "permissionBasis": "User explicitly directed all sourced product imagery to gothanhthuy.com and bathanhtaybac.com in this chat on2026-11-03, after confirming commercial reuse permission. Two original user-supplied MDF photos remain mandatory exceptions.",
+    "verifiedMaterial": "Crop focuses exposed uncoated particleboard core edges, not decorated faces. Source scene contains MFC offcuts; the visible untreated cut edges show raw Okal core. Caption as cận cảnh cốt dăm gỗ/Okal, not full uncoated stock sheet. Distinct photo-area crop from MFC entry; no recolouring.",
+    "notes": "Crop focuses exposed uncoated particleboard core edges, not decorated faces. Source scene contains MFC offcuts; the visible untreated cut edges show raw Okal core. Caption as cận cảnh cốt dăm gỗ/Okal, not full uncoated stock sheet. Distinct photo-area crop from MFC entry; no recolouring.",
+    "originalWidth": 1920,
+    "originalHeight": 1080,
+    "sha256": "4244a1321fa88de439f5ac809ab5455cadc4f8f97599374969239aa3537b6442",
+    "cropBox": [
+      880,
+      300,
+      1730,
+      650
+    ],
+    "supplementary": [
+      {
+        "status": "approved",
+        "image": "/sanpham-media/van-mfc.webp",
+        "alt": "Mặt phủ trắng và cạnh phần ván dăm của mẫu MFC",
+        "width": 900,
+        "height": 420,
+        "variants": [
+          {
+            "src": "/sanpham-media/van-mfc-400.webp",
+            "width": 400,
+            "height": 187
+          },
+          {
+            "src": "/sanpham-media/van-mfc-800.webp",
+            "width": 800,
+            "height": 373
+          },
+          {
+            "src": "/sanpham-media/van-mfc.webp",
+            "width": 900,
+            "height": 420
+          }
+        ],
+        "sourceUrl": "https://www.bathanhtaybac.com/san-pham/okal-mfc",
+        "sourceImageUrl": "https://www.bathanhtaybac.com/assets/products/okal-mfc/okal-mfc.webp",
+        "sourceFile": "sanpham-media/sources/van-mfc.webp",
+        "author": "Ba Thanh Tây Bắc (supplier source; photographer not named)",
+        "license": "Commercial reuse permission confirmed by user",
+        "licenseUrl": null,
+        "attribution": "Ảnh: Ba Thanh Tây Bắc",
+        "changes": "Source image from an explicitly approved supplier; metadata stripped; WebP quality87; resized down only; no upsampling or generative editing. Product-focused crop recorded in cropBox.",
+        "permissionBasis": "User explicitly directed all sourced product imagery to gothanhthuy.com and bathanhtaybac.com in this chat on2026-11-03, after confirming commercial reuse permission. Two original user-supplied MDF photos remain mandatory exceptions.",
+        "verifiedMaterial": "Different crop focuses large coated board face and visible particleboard edge. Different physical board region from Okal entry; no recolouring or synthesis.",
+        "notes": "Different crop focuses large coated board face and visible particleboard edge. Different physical board region from Okal entry; no recolouring or synthesis.",
+        "originalWidth": 1920,
+        "originalHeight": 1080,
+        "sha256": "66e10a14eccd23b36553e0005c44bbdc284f45b4a743d989bd5f768a2bc37af6",
+        "cropBox": [
+          200,
+          0,
+          1100,
+          420
+        ]
+      }
+    ]
+  },
+  "go-ghep-cao-su": {
+    "status": "approved",
+    "image": "/sanpham-media/go-ghep-cao-su.webp",
+    "alt": "Bề mặt tấm gỗ ghép cao su, thấy các thanh gỗ và mối ghép",
+    "width": 1200,
+    "height": 677,
+    "variants": [
+      {
+        "src": "/sanpham-media/go-ghep-cao-su-400.webp",
+        "width": 400,
+        "height": 226
+      },
+      {
+        "src": "/sanpham-media/go-ghep-cao-su-800.webp",
+        "width": 800,
+        "height": 451
+      },
+      {
+        "src": "/sanpham-media/go-ghep-cao-su.webp",
+        "width": 1200,
+        "height": 677
+      }
+    ],
+    "sourceUrl": "https://www.bathanhtaybac.com/san-pham/go-ghep",
+    "sourceImageUrl": "https://www.bathanhtaybac.com/assets/products/go-ghep/go-ghep.webp",
+    "sourceFile": "sanpham-media/sources/go-ghep-cao-su.webp",
+    "author": "Ba Thanh Tây Bắc (supplier source; photographer not named)",
+    "license": "Commercial reuse permission confirmed by user",
+    "licenseUrl": null,
+    "attribution": "Ảnh: Ba Thanh Tây Bắc",
+    "changes": "Source image from an explicitly approved supplier; metadata stripped; WebP quality87; resized down only; no upsampling or generative editing.",
+    "permissionBasis": "User explicitly directed all sourced product imagery to gothanhthuy.com and bathanhtaybac.com in this chat on2026-11-03, after confirming commercial reuse permission. Two original user-supplied MDF photos remain mandatory exceptions.",
+    "verifiedMaterial": "The supplier page explicitly identifies rubberwood. Do not reuse for tràm.",
+    "notes": "The supplier page explicitly identifies rubberwood. Do not reuse for tràm.",
+    "originalWidth": 1926,
+    "originalHeight": 1086,
+    "sha256": "d90828ff6d39bb3e264a64476c815ec9ae2611a61da91bd6b5eee87cf4bed866"
+  },
+  "go-ghep-tram": {
+    "status": "blocked",
+    "image": "",
+    "alt": "",
+    "width": 0,
+    "height": 0,
+    "variants": [],
+    "sourceUrl": null,
+    "sourceImageUrl": null,
+    "sourceFile": "",
+    "author": "",
+    "license": "",
+    "licenseUrl": null,
+    "attribution": "",
+    "changes": "Previous outside-domain photo withdrawn after the user limited image sources to gothanhthuy.com and bathanhtaybac.com.",
+    "permissionBasis": "All new sourced product images must come only from the two supplier domains explicitly specified by the user on2026-11-03.",
+    "verifiedMaterial": "No identified tràm finger-jointed panel image found on the two permitted sources.",
+    "notes": "Material source blocker: the current Ba Thanh Tây Bắc gỗ ghép page explicitly identifies cao su. No tràm-specific product photo identified in Thanh Thuỳ public product/article search. Do not substitute rubberwood or restore an outside-domain image."
+  },
+  "chi-nep-nhua": {
+    "status": "approved",
+    "image": "/sanpham-media/chi-dan-canh-user.webp",
+    "alt": "Các cuộn chỉ dán cạnh màu vân gỗ và màu trơn",
+    "width": 1000,
+    "height": 668,
+    "variants": [
+      {
+        "src": "/sanpham-media/chi-dan-canh-user-400.webp",
+        "width": 400,
+        "height": 267
+      },
+      {
+        "src": "/sanpham-media/chi-dan-canh-user-800.webp",
+        "width": 800,
+        "height": 534
+      },
+      {
+        "src": "/sanpham-media/chi-dan-canh-user.webp",
+        "width": 1000,
+        "height": 668
+      }
+    ],
+    "sourceUrl": null,
+    "sourceImageUrl": null,
+    "sourceFile": "sanpham-media/sources/chi-dan-canh-user.png",
+    "author": "Ảnh do người dùng cung cấp",
+    "license": "Ảnh do người dùng trực tiếp cung cấp để sử dụng",
+    "licenseUrl": null,
+    "attribution": "Ảnh: Ba Thanh Tây Bắc",
+    "changes": "Chuyển WebP, tạo các phiên bản responsive không phóng lớn.",
+    "permissionBasis": "Người dùng trực tiếp yêu cầu sử dụng ảnh đính kèm cho Chỉ dán cạnh trong cuộc trao đổi.",
+    "verifiedMaterial": "Hình chỉ dán cạnh do người dùng chọn.",
+    "notes": "Ảnh do người dùng cung cấp; sử dụng theo chỉ dẫn trực tiếp.",
+    "originalWidth": 1000,
+    "originalHeight": 668,
+    "sha256": "8d1ebf93ffd9d21982b323d89229fa630abbb84648bb92b759d107eef4f09f8d",
+    "cropBox": [
+      100,
+      680,
+      900,
+      1200
+    ],
+    "supplementary": []
+  },
+  "tam-veneer": {
+    "status": "approved",
+    "image": "/sanpham-media/tam-veneer.webp",
+    "alt": "Cận cảnh vân gỗ trên bề mặt Veneer của nhà cung cấp",
+    "width": 1200,
+    "height": 675,
+    "variants": [
+      {
+        "src": "/sanpham-media/tam-veneer-400.webp",
+        "width": 400,
+        "height": 225
+      },
+      {
+        "src": "/sanpham-media/tam-veneer-800.webp",
+        "width": 800,
+        "height": 450
+      },
+      {
+        "src": "/sanpham-media/tam-veneer.webp",
+        "width": 1200,
+        "height": 675
+      }
+    ],
+    "sourceUrl": "https://www.bathanhtaybac.com/san-pham/veneer",
+    "sourceImageUrl": "https://www.bathanhtaybac.com/assets/products/veneer/veneer.webp",
+    "sourceFile": "sanpham-media/sources/tam-veneer.webp",
+    "author": "Ba Thanh Tây Bắc (supplier source; photographer not named)",
+    "license": "Commercial reuse permission confirmed by user",
+    "licenseUrl": null,
+    "attribution": "Ảnh: Ba Thanh Tây Bắc",
+    "changes": "Source image from an explicitly approved supplier; metadata stripped; WebP quality87; resized down only; no upsampling or generative editing.",
+    "permissionBasis": "User explicitly directed all sourced product imagery to gothanhthuy.com and bathanhtaybac.com in this chat on2026-11-03, after confirming commercial reuse permission. Two original user-supplied MDF photos remain mandatory exceptions.",
+    "verifiedMaterial": "High-resolution material-face reference from the supplier's Veneer page. Curled-sheet photo from Thanh Thuỳ is retained as a second view to explain sheet form.",
+    "notes": "High-resolution material-face reference from the supplier's Veneer page. Curled-sheet photo from Thanh Thuỳ is retained as a second view to explain sheet form.",
+    "originalWidth": 1920,
+    "originalHeight": 1080,
+    "sha256": "e7db234b41e3ee80a159259815cf0f3c655c92f098e00e85954ee04cd94e8ef9",
+    "supplementary": [
+      {
+        "status": "approved",
+        "image": "/sanpham-media/tam-veneer-uon-cong.webp",
+        "alt": "Tấm Veneer gỗ mỏng được uốn để thấy độ dẻo của lớp mặt",
+        "width": 500,
+        "height": 498,
+        "variants": [
+          {
+            "src": "/sanpham-media/tam-veneer-uon-cong-400.webp",
+            "width": 400,
+            "height": 398
+          },
+          {
+            "src": "/sanpham-media/tam-veneer-uon-cong.webp",
+            "width": 500,
+            "height": 498
+          }
+        ],
+        "sourceUrl": "https://www.gothanhthuy.com/product/veneer/veneer-cheery/",
+        "sourceFile": "sanpham-media/sources/tam-veneer-uon-cong.webp",
+        "author": "Gỗ Thanh Thuỳ (supplier source; photographer not named)",
+        "license": "Commercial reuse permission confirmed by user",
+        "licenseUrl": null,
+        "attribution": "Ảnh: Gỗ Thanh Thuỳ",
+        "changes": "EXIF orientation applied; metadata stripped; converted to WebP; resized down only; no upsampling or generative editing.",
+        "permissionBasis": "User confirmed commercial reuse rights for existing Tùng Phát assets and supplier catalogue imagery in this chat: “Có quyền rồi”. This records user authorization, not a Creative Commons license.",
+        "verifiedMaterial": "Veneer sheet; verified in supplier catalogue product VENEER CHEERY",
+        "notes": "Supplier photograph of a curled veneer sheet. Native500×498. Source is one of the two explicitly permitted supplier domains. Higher-resolution primary-photo requirement remains unresolved; no upsampling.",
+        "originalWidth": 500,
+        "originalHeight": 498,
+        "sha256": "61c78f2ac3632b3decdbbd8743a74aadde7157253fc746ed9730ee167302ab7b",
+        "sourceImageUrl": "https://www.gothanhthuy.com/assets/2025/11/veneer_cherry.webp"
+      }
+    ]
+  },
+  "acrylic": {
+    "status": "approved",
+    "image": "/sanpham-media/acrylic.webp",
+    "alt": "Các mẫu ván phủ Acrylic bóng với màu sắc và cạnh tấm khác nhau",
+    "width": 1200,
+    "height": 605,
+    "variants": [
+      {
+        "src": "/sanpham-media/acrylic-400.webp",
+        "width": 400,
+        "height": 201
+      },
+      {
+        "src": "/sanpham-media/acrylic-800.webp",
+        "width": 800,
+        "height": 403
+      },
+      {
+        "src": "/sanpham-media/acrylic.webp",
+        "width": 1200,
+        "height": 605
+      }
+    ],
+    "sourceUrl": "https://www.gothanhthuy.com/acrylic-la-gi/",
+    "sourceImageUrl": "https://www.gothanhthuy.com/assets/2026/06/Acrylic-la-gi_2.jpg",
+    "sourceFile": "sanpham-media/sources/acrylic.jpg",
+    "author": "Thanh Thuỳ (supplier source; photographer not named)",
+    "license": "Commercial reuse permission confirmed by user",
+    "licenseUrl": null,
+    "attribution": "Ảnh: Thanh Thuỳ",
+    "changes": "Source image from an explicitly approved supplier; metadata stripped; WebP quality87; resized down only; no upsampling or generative editing. Product-focused crop recorded in cropBox.",
+    "permissionBasis": "User explicitly directed all sourced product imagery to gothanhthuy.com and bathanhtaybac.com in this chat on2026-11-03, after confirming commercial reuse permission. Two original user-supplied MDF photos remain mandatory exceptions.",
+    "verifiedMaterial": "Glossy finished board samples with real-like reflected windows and varied edge profiles. Caption source identifies Acrylic. Crop excludes header and logo outside product area. No claim of verified camera capture; parent inspect for strict photo criterion. New category Acrylic-1.webp staged still-life does not improve capture confidence. Actual dimensions1448x1086.",
+    "notes": "Glossy finished board samples with real-like reflected windows and varied edge profiles. Caption source identifies Acrylic. Crop excludes header and logo outside product area. No claim of verified camera capture; parent inspect for strict photo criterion. New category Acrylic-1.webp staged still-life does not improve capture confidence. Actual dimensions1448x1086.",
+    "originalWidth": 1448,
+    "originalHeight": 1086,
+    "sha256": "db92fddbe9b691029b13197cad438b66bd6585723fdc410886d2ded4e2caff76",
+    "cropBox": [
+      100,
+      380,
+      1400,
+      1035
+    ]
+  },
+  "pvc-film-pet": {
+    "status": "approved",
+    "image": "/sanpham-media/pvc-film-pet.webp",
+    "alt": "Bề mặt PVC Film vân đá trên chi tiết nội thất đã hoàn thiện",
+    "width": 800,
+    "height": 800,
+    "variants": [
+      {
+        "src": "/sanpham-media/pvc-film-pet-400.webp",
+        "width": 400,
+        "height": 400
+      },
+      {
+        "src": "/sanpham-media/pvc-film-pet.webp",
+        "width": 800,
+        "height": 800
+      }
+    ],
+    "sourceUrl": "https://www.gothanhthuy.com/tam-pvc-film-trong-noi-that-go-cong-nghiep/",
+    "sourceFile": "sanpham-media/sources/pvc-film-pet.jpg",
+    "author": "Gỗ Thanh Thuỳ (supplier source; photographer not named)",
+    "license": "Commercial reuse permission confirmed by user",
+    "licenseUrl": null,
+    "attribution": "Ảnh: Gỗ Thanh Thuỳ",
+    "changes": "EXIF orientation applied; metadata stripped; converted to WebP; resized down only; no upsampling or generative editing.",
+    "permissionBasis": "User confirmed commercial reuse rights for existing Tùng Phát assets and supplier catalogue imagery in this chat: “Có quyền rồi”. This records user authorization, not a Creative Commons license.",
+    "verifiedMaterial": "PVC Film application detail; source article featured image identifies PVC Film",
+    "notes": "PVC Film example only, not a PET sample. Shows finished application rather than loose film roll. Native 800px; no upsampling.",
+    "originalWidth": 800,
+    "originalHeight": 800,
+    "sha256": "da2eac46e8f97d8d0957e2466cabe6c7954cb41f19e2042dd4411932db64bbdf",
+    "sourceImageUrl": "https://www.gothanhthuy.com/assets/2026/05/Tam-PVC-Film-trong-noi-that-go-cong-nghiep.jpg"
+  },
+  "van-mfc": {
+    "status": "approved",
+    "image": "/sanpham-media/van-mfc.webp",
+    "alt": "Mặt phủ trắng và cạnh phần ván dăm của mẫu MFC",
+    "width": 900,
+    "height": 420,
+    "variants": [
+      {
+        "src": "/sanpham-media/van-mfc-400.webp",
+        "width": 400,
+        "height": 187
+      },
+      {
+        "src": "/sanpham-media/van-mfc-800.webp",
+        "width": 800,
+        "height": 373
+      },
+      {
+        "src": "/sanpham-media/van-mfc.webp",
+        "width": 900,
+        "height": 420
+      }
+    ],
+    "sourceUrl": "https://www.bathanhtaybac.com/san-pham/okal-mfc",
+    "sourceImageUrl": "https://www.bathanhtaybac.com/assets/products/okal-mfc/okal-mfc.webp",
+    "sourceFile": "sanpham-media/sources/van-mfc.webp",
+    "author": "Ba Thanh Tây Bắc (supplier source; photographer not named)",
+    "license": "Commercial reuse permission confirmed by user",
+    "licenseUrl": null,
+    "attribution": "Ảnh: Ba Thanh Tây Bắc",
+    "changes": "Source image from an explicitly approved supplier; metadata stripped; WebP quality87; resized down only; no upsampling or generative editing. Product-focused crop recorded in cropBox.",
+    "permissionBasis": "User explicitly directed all sourced product imagery to gothanhthuy.com and bathanhtaybac.com in this chat on2026-11-03, after confirming commercial reuse permission. Two original user-supplied MDF photos remain mandatory exceptions.",
+    "verifiedMaterial": "Different crop focuses large coated board face and visible particleboard edge. Different physical board region from Okal entry; no recolouring or synthesis.",
+    "notes": "Different crop focuses large coated board face and visible particleboard edge. Different physical board region from Okal entry; no recolouring or synthesis.",
+    "originalWidth": 1920,
+    "originalHeight": 1080,
+    "sha256": "66e10a14eccd23b36553e0005c44bbdc284f45b4a743d989bd5f768a2bc37af6",
+    "cropBox": [
+      200,
+      0,
+      1100,
+      420
+    ]
+  },
+  "melamine": {
+    "status": "approved",
+    "image": "/sanpham-media/melamine-thanh-thuy.webp",
+    "alt": "Các tấm ván phủ Melamine vân gỗ xếp chồng, thấy mặt và cạnh ván",
+    "width": 1080,
+    "height": 738,
+    "variants": [
+      {
+        "src": "/sanpham-media/melamine-thanh-thuy-400.webp",
+        "width": 400,
+        "height": 273
+      },
+      {
+        "src": "/sanpham-media/melamine-thanh-thuy-800.webp",
+        "width": 800,
+        "height": 547
+      },
+      {
+        "src": "/sanpham-media/melamine-thanh-thuy.webp",
+        "width": 1080,
+        "height": 738
+      }
+    ],
+    "sourceUrl": "https://www.gothanhthuy.com/van-melamine-la-gi/",
+    "sourceImageUrl": "https://www.gothanhthuy.com/assets/2026/05/go-thanh-thuy_4.jpg",
+    "sourceFile": "sanpham-media/sources/melamine-thanh-thuy.jpg",
+    "author": "Thanh Thuỳ (supplier source; photographer not named)",
+    "license": "Commercial reuse permission confirmed by user",
+    "licenseUrl": null,
+    "attribution": "Ảnh: Thanh Thuỳ",
+    "changes": "Converted original to responsive WebP, without enlargement; metadata removed.",
+    "permissionBasis": "User explicitly directed all sourced product imagery to gothanhthuy.com and bathanhtaybac.com in this chat on2026-11-03, after confirming commercial reuse permission. Two original user-supplied MDF photos remain mandatory exceptions.",
+    "verifiedMaterial": "Ảnh đại diện bài viết ván Melamine của Thanh Thùy, tấm phủ vân gỗ trên cốt ván.",
+    "notes": "Nguồn 1080×738; không phóng lớn. Xem thêm mẫu MFC ở ảnh phụ.",
+    "originalWidth": 1080,
+    "originalHeight": 738,
+    "sha256": "91afcff799152c39d4fe1914e4189d734fbfaa8a746066a3168ca99ba7732b78",
+    "cropBox": [
+      0,
+      60,
+      500,
+      393
+    ],
+    "supplementary": [
+      {
+        "status": "approved",
+        "image": "/sanpham-media/melamine.webp",
+        "alt": "Các bề mặt Melamine trên những mẫu ván dăm phủ trang trí",
+        "width": 500,
+        "height": 333,
+        "variants": [
+          {
+            "src": "/sanpham-media/melamine-400.webp",
+            "width": 400,
+            "height": 266
+          },
+          {
+            "src": "/sanpham-media/melamine.webp",
+            "width": 500,
+            "height": 333
+          }
+        ],
+        "sourceUrl": "https://www.gothanhthuy.com/go-mfc-la-gi-phan-loai-uu-nhuoc-diem/",
+        "sourceImageUrl": "https://www.gothanhthuy.com/assets/2026/05/MFC.jpg",
+        "sourceFile": "sanpham-media/sources/melamine.jpg",
+        "author": "Thanh Thuỳ (supplier source; photographer not named)",
+        "license": "Commercial reuse permission confirmed by user",
+        "licenseUrl": null,
+        "attribution": "Ảnh: Thanh Thuỳ",
+        "changes": "Source image from an explicitly approved supplier; metadata stripped; WebP quality87; resized down only; no upsampling or generative editing. Product-focused crop recorded in cropBox.",
+        "permissionBasis": "User explicitly directed all sourced product imagery to gothanhthuy.com and bathanhtaybac.com in this chat on2026-11-03, after confirming commercial reuse permission. Two original user-supplied MDF photos remain mandatory exceptions.",
+        "verifiedMaterial": "Physical MFC sample stack; Melamine surface identity supported by source MFC definition. Crop selects product area, excludes logo in white margin and MFC text lower right. Native crop520x333. Shows Melamine-faced PB as a surface example, not a claim about all possible cores; quality remains limited.",
+        "notes": "Physical MFC sample stack; Melamine surface identity supported by source MFC definition. Crop selects product area, excludes logo in white margin and MFC text lower right. Native crop520x333. Shows Melamine-faced PB as a surface example, not a claim about all possible cores; quality remains limited.",
+        "originalWidth": 661,
+        "originalHeight": 393,
+        "sha256": "4808e85c98ae970b70196488cd8f72fb8b31f970fddaad97eac3f1a5be7ed30a",
+        "cropBox": [
+          0,
+          60,
+          500,
+          393
+        ]
+      }
+    ]
+  },
+  "laminate": {
+    "status": "approved",
+    "image": "/sanpham-media/laminate.webp",
+    "alt": "Các tấm bề mặt Laminate mỏng, nhìn rõ mặt vân và cạnh uốn",
+    "width": 1200,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/sanpham-media/laminate-400.webp",
+        "width": 400,
+        "height": 400
+      },
+      {
+        "src": "/sanpham-media/laminate-800.webp",
+        "width": 800,
+        "height": 800
+      },
+      {
+        "src": "/sanpham-media/laminate.webp",
+        "width": 1200,
+        "height": 1200
+      }
+    ],
+    "sourceUrl": "https://www.bathanhtaybac.com/kien-thuc/laminate-hpl-la-gi",
+    "sourceImageUrl": "https://www.bathanhtaybac.com/assets/company/laminate-be-mat.webp",
+    "sourceFile": "sanpham-media/sources/laminate.webp",
+    "author": "Ba Thanh Tây Bắc (supplier source; photographer not named)",
+    "license": "Commercial reuse permission confirmed by user",
+    "licenseUrl": null,
+    "attribution": "Ảnh: Ba Thanh Tây Bắc",
+    "changes": "Source image from an explicitly approved supplier; metadata stripped; WebP quality87; resized down only; no upsampling or generative editing.",
+    "permissionBasis": "User explicitly directed all sourced product imagery to gothanhthuy.com and bathanhtaybac.com in this chat on2026-11-03, after confirming commercial reuse permission. Two original user-supplied MDF photos remain mandatory exceptions.",
+    "verifiedMaterial": "Close-up curled textured sheets on dedicated HPL article; no text/logo. Physical-like texture and thin sheets, but no EXIF/source capture evidence. Polished lighting alone does not establish CGI. Parent visual decision needed for strict real-photo requirement. Alternative exact Laminate Way sample poster at /assets/products/laminate/poster-laminate-way.webp900x900 contains physical product sample labels and marketing logo outside sample area; saved bt-laminate-poster.webp. TT laminate article is an exploded-layer illustration and excluded.",
+    "notes": "Close-up curled textured sheets on dedicated HPL article; no text/logo. Physical-like texture and thin sheets, but no EXIF/source capture evidence. Polished lighting alone does not establish CGI. Parent visual decision needed for strict real-photo requirement. Alternative exact Laminate Way sample poster at /assets/products/laminate/poster-laminate-way.webp900x900 contains physical product sample labels and marketing logo outside sample area; saved bt-laminate-poster.webp. TT laminate article is an exploded-layer illustration and excluded.",
+    "originalWidth": 1600,
+    "originalHeight": 1600,
+    "sha256": "21b0937d9d679d60a02de6c66f4d1c85ae05c701dace3051947edfa473392fb1"
+  },
+  "van-plywood": {
+    "status": "approved",
+    "image": "/sanpham-media/plywood-phu-melamine.webp",
+    "alt": "Cạnh ván ép nhiều lớp với bề mặt phủ Melamine",
+    "width": 1088,
+    "height": 912,
+    "variants": [
+      {
+        "src": "/sanpham-media/plywood-phu-melamine-400.webp",
+        "width": 400,
+        "height": 335
+      },
+      {
+        "src": "/sanpham-media/plywood-phu-melamine-800.webp",
+        "width": 800,
+        "height": 671
+      },
+      {
+        "src": "/sanpham-media/plywood-phu-melamine.webp",
+        "width": 1088,
+        "height": 912
+      }
+    ],
+    "sourceUrl": "https://www.bathanhtaybac.com/san-pham/plywood-phu-melamine",
+    "sourceImageUrl": "https://www.bathanhtaybac.com/assets/products/plywood-phu-melamine/plywood-phu-melamine.webp",
+    "sourceFile": "sanpham-media/sources/plywood-phu-melamine.webp",
+    "author": "Ba Thanh Tây Bắc (supplier source; photographer not named)",
+    "license": "Commercial reuse permission confirmed by user",
+    "licenseUrl": null,
+    "attribution": "Ảnh: Ba Thanh Tây Bắc",
+    "changes": "Crop rectangle [512, 288, 1600, 1200]. Metadata stripped; WebP encoded at quality87; resized down only; no upsampling, synthesis or in-photo watermark removal.",
+    "crop": [
+      512,
+      288,
+      1600,
+      1200
+    ],
+    "permissionBasis": "User confirmed commercial reuse rights for existing Tùng Phát assets and supplier catalogue imagery in this chat: “Có quyền rồi”. This records user authorization, not a Creative Commons license.",
+    "verifiedMaterial": "Melamine-faced plywood; dedicated supplier category photograph, visible layered veneer core and melamine face",
+    "notes": "Crop selects physical product face and layered edge, outside the area of the printed supplier labels. No logo or QR code remains. Replaces limited580px legacy photo with1088px crop. Ảnh đại diện nhóm plywood: ví dụ cốt nhiều lớp phủ Melamine, không hàm ý mọi plywood đều phủ mặt.",
+    "originalWidth": 1600,
+    "originalHeight": 1200,
+    "sha256": "2363bc25e92387ea65f6581ec772d21e9c00e039cae801c286280019e425e4fc",
+    "supplementary": [
+      {
+        "status": "approved",
+        "image": "/sanpham-media/van-plywood.webp",
+        "alt": "Ảnh cận cảnh bề mặt gỗ của tấm Plywood từ nhà cung cấp",
+        "width": 1200,
+        "height": 675,
+        "variants": [
+          {
+            "src": "/sanpham-media/van-plywood-400.webp",
+            "width": 400,
+            "height": 225
+          },
+          {
+            "src": "/sanpham-media/van-plywood-800.webp",
+            "width": 800,
+            "height": 450
+          },
+          {
+            "src": "/sanpham-media/van-plywood.webp",
+            "width": 1200,
+            "height": 675
+          }
+        ],
+        "sourceUrl": "https://www.bathanhtaybac.com/san-pham/van-ep-plywood",
+        "sourceImageUrl": "https://www.bathanhtaybac.com/assets/products/van-ep-plywood/van-ep-plywood.webp",
+        "sourceFile": "sanpham-media/sources/van-plywood.webp",
+        "author": "Ba Thanh Tây Bắc (supplier source; photographer not named)",
+        "license": "Commercial reuse permission confirmed by user",
+        "licenseUrl": null,
+        "attribution": "Ảnh: Ba Thanh Tây Bắc",
+        "changes": "Source image from an explicitly approved supplier; metadata stripped; WebP quality87; resized down only; no upsampling or generative editing.",
+        "permissionBasis": "User explicitly directed all sourced product imagery to gothanhthuy.com and bathanhtaybac.com in this chat on2026-11-03, after confirming commercial reuse permission. Two original user-supplied MDF photos remain mandatory exceptions.",
+        "verifiedMaterial": "Physical board-face photograph. Source explicitly classifies plywood; face alone does not establish core quality or glue performance.",
+        "notes": "Physical board-face photograph. Source explicitly classifies plywood; face alone does not establish core quality or glue performance.",
+        "originalWidth": 1920,
+        "originalHeight": 1080,
+        "sha256": "e0b16a3800f5e93af2308935d5acc9940ce655e020e5641abf0b82b846b0f568"
+      }
+    ]
+  },
+  "van-hdf": {
+    "status": "approved",
+    "image": "/sanpham-media/van-hdf.webp",
+    "alt": "Các cạnh tấm HDF mộc với dấu nhận diện HDF của nhà cung cấp",
+    "width": 1200,
+    "height": 677,
+    "variants": [
+      {
+        "src": "/sanpham-media/van-hdf-400.webp",
+        "width": 400,
+        "height": 226
+      },
+      {
+        "src": "/sanpham-media/van-hdf-800.webp",
+        "width": 800,
+        "height": 451
+      },
+      {
+        "src": "/sanpham-media/van-hdf.webp",
+        "width": 1200,
+        "height": 677
+      }
+    ],
+    "sourceUrl": "https://www.bathanhtaybac.com/san-pham/mdf-hdf",
+    "sourceImageUrl": "https://www.bathanhtaybac.com/assets/products/mdf-hdf/mdf-hdf.webp",
+    "sourceFile": "sanpham-media/sources/van-hdf.webp",
+    "author": "Ba Thanh Tây Bắc (supplier source; photographer not named)",
+    "license": "Commercial reuse permission confirmed by user",
+    "licenseUrl": null,
+    "attribution": "Ảnh: Ba Thanh Tây Bắc",
+    "changes": "Source image from an explicitly approved supplier; metadata stripped; WebP quality87; resized down only; no upsampling or generative editing.",
+    "permissionBasis": "User explicitly directed all sourced product imagery to gothanhthuy.com and bathanhtaybac.com in this chat on2026-11-03, after confirming commercial reuse permission. Two original user-supplied MDF photos remain mandatory exceptions.",
+    "verifiedMaterial": "Physical factory marking on the actual boards, not an overlaid watermark. Source explicitly identifies HDF; no stock or technical specification inferred from stamp.",
+    "notes": "Physical factory marking on the actual boards, not an overlaid watermark. Source explicitly identifies HDF; no stock or technical specification inferred from stamp.",
+    "originalWidth": 1926,
+    "originalHeight": 1086,
+    "sha256": "e74b81805627124a3c3b2a59091986dd97d73d0a43848395981b8a0830e799db"
+  },
+  "plywood-phu-melamine": {
+    "status": "approved",
+    "image": "/sanpham-media/plywood-phu-melamine.webp",
+    "alt": "Cạnh Plywood phủ Melamine, nhìn rõ các lớp gỗ và mặt vân gỗ",
+    "width": 1088,
+    "height": 912,
+    "variants": [
+      {
+        "src": "/sanpham-media/plywood-phu-melamine-400.webp",
+        "width": 400,
+        "height": 335
+      },
+      {
+        "src": "/sanpham-media/plywood-phu-melamine-800.webp",
+        "width": 800,
+        "height": 671
+      },
+      {
+        "src": "/sanpham-media/plywood-phu-melamine.webp",
+        "width": 1088,
+        "height": 912
+      }
+    ],
+    "sourceUrl": "https://www.bathanhtaybac.com/san-pham/plywood-phu-melamine",
+    "sourceImageUrl": "https://www.bathanhtaybac.com/assets/products/plywood-phu-melamine/plywood-phu-melamine.webp",
+    "sourceFile": "sanpham-media/sources/plywood-phu-melamine.webp",
+    "author": "Ba Thanh Tây Bắc (supplier source; photographer not named)",
+    "license": "Commercial reuse permission confirmed by user",
+    "licenseUrl": null,
+    "attribution": "Ảnh: Ba Thanh Tây Bắc",
+    "changes": "Crop rectangle [512, 288, 1600, 1200]. Metadata stripped; WebP encoded at quality87; resized down only; no upsampling, synthesis or in-photo watermark removal.",
+    "crop": [
+      512,
+      288,
+      1600,
+      1200
+    ],
+    "permissionBasis": "User confirmed commercial reuse rights for existing Tùng Phát assets and supplier catalogue imagery in this chat: “Có quyền rồi”. This records user authorization, not a Creative Commons license.",
+    "verifiedMaterial": "Melamine-faced plywood; dedicated supplier category photograph, visible layered veneer core and melamine face",
+    "notes": "Crop selects physical product face and layered edge, outside the area of the printed supplier labels. No logo or QR code remains. Replaces limited580px legacy photo with1088px crop.",
+    "originalWidth": 1600,
+    "originalHeight": 1200,
+    "sha256": "2363bc25e92387ea65f6581ec772d21e9c00e039cae801c286280019e425e4fc"
+  },
+  "van-nhua-pvc": {
+    "status": "approved",
+    "image": "/sanpham-media/van-nhua-pvc.webp",
+    "alt": "Các mẫu ván nhựa PVC phủ màu, nhìn rõ phần cạnh trắng của tấm",
+    "width": 1200,
+    "height": 522,
+    "variants": [
+      {
+        "src": "/sanpham-media/van-nhua-pvc-400.webp",
+        "width": 400,
+        "height": 174
+      },
+      {
+        "src": "/sanpham-media/van-nhua-pvc-800.webp",
+        "width": 800,
+        "height": 348
+      },
+      {
+        "src": "/sanpham-media/van-nhua-pvc.webp",
+        "width": 1200,
+        "height": 522
+      }
+    ],
+    "sourceUrl": "https://www.bathanhtaybac.com/san-pham/van-nhua",
+    "sourceImageUrl": "https://www.bathanhtaybac.com/assets/products/van-nhua/van-nhua-mau.webp",
+    "sourceFile": "sanpham-media/sources/van-nhua-pvc.webp",
+    "author": "Ba Thanh Tây Bắc (supplier source; photographer not named)",
+    "license": "Commercial reuse permission confirmed by user",
+    "licenseUrl": null,
+    "attribution": "Ảnh: Ba Thanh Tây Bắc",
+    "changes": "Crop rectangle [0, 304, 1600, 1000]. Metadata stripped; WebP encoded at quality87; resized down only; no upsampling, synthesis or in-photo watermark removal.",
+    "crop": [
+      0,
+      304,
+      1600,
+      1000
+    ],
+    "permissionBasis": "User confirmed commercial reuse rights for existing Tùng Phát assets and supplier catalogue imagery in this chat: “Có quyền rồi”. This records user authorization, not a Creative Commons license.",
+    "verifiedMaterial": "PVC foam boards with decorative faces; dedicated supplier PVC board category photograph",
+    "notes": "Crop selects material samples below printed colour-code labels and above marketing icons. No watermark or logo erased. Replaces limited580px stock photo; native crop1600px.",
+    "originalWidth": 1600,
+    "originalHeight": 1200,
+    "sha256": "3e0800581a1c65342bd96a8ce74b1c4fa325a328cb26a70cb6919efddccfe2eb"
+  }
+}

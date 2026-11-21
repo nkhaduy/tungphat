@@ -7,20 +7,9 @@ describe("public product taxonomy", () => {
     expect(new Set(coreMaterialCards.map((card) => card.id)).size).toBe(coreMaterialCards.length);
     expect(new Set(surfaceCatalogueCards.map((card) => card.id)).size).toBe(surfaceCatalogueCards.length);
     expect(coreMaterialCards.map((card) => card.title)).toEqual([
-      "Ván MDF",
-      "MDF chống ẩm",
-      "MFC",
-      "Plywood",
-      "Gỗ ghép",
-      "Gỗ ghép cao su",
+      "Ván MDF – HDF", "MDF chống ẩm (LMR – MMR – HMR)", "Ván Okal – MFC (Ván dăm)", "Ván ép – Plywood", "Gỗ ghép cao su", "Ván nhựa",
     ]);
-    expect(surfaceCatalogueCards.map((card) => card.title)).toEqual([
-      "Melamine",
-      "Laminate",
-      "Acrylic",
-      "Veneer",
-      "PVC Film / PET",
-    ]);
+    expect(surfaceCatalogueCards.map((card) => card.title)).toEqual(["Melamine", "Laminate", "Ván phủ Veneer"]);
   });
 
   it("only points cards to existing public destinations and local approved assets", () => {
@@ -32,10 +21,6 @@ describe("public product taxonomy", () => {
       expect(card.description.length).toBeGreaterThan(20);
     }
 
-    expect(coreMaterialCards.find((card) => card.id === "joined-wood")?.children).toEqual([
-      ["Gỗ ghép cao su", "/go-ghep-cao-su/"],
-      ["Gỗ ghép tràm", "/go-ghep-tram/"],
-    ]);
-    expect(surfaceCatalogueCards.every((card) => card.href.startsWith("/catalogue/thanh-thuy/"))).toBe(true);
+    expect(surfaceCatalogueCards.every((card) => /^\/[^/]+\/$/.test(card.href))).toBe(true);
   });
 });

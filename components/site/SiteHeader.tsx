@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Menu, MessageCircle } from "lucide-react";
+import { ChevronDown, Menu, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -16,7 +16,10 @@ import {
   getSiteHeaderClasses,
   type SiteHeaderTone,
 } from "@/lib/site-header";
-import { ZALO_URL } from "@/lib/seo";
+import { PHONE_HREF } from "@/lib/seo";
+
+import { homeProductCards } from "@/lib/product-taxonomy";
+import { DEFAULT_CATALOGUE_URL } from "@/lib/site-content";
 
 export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
   const { lang, setLang } = useLang();
@@ -30,23 +33,9 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
     lang === "vi"
       ? "Chuyển ngôn ngữ VI | EN"
       : "Switch language VI | EN";
-  const materialChildren: NavigationChild[] = [
-    { label: lang === "vi" ? "MDF" : "MDF", href: "/van-mdf", active: pathname === "/van-mdf" },
-    { label: lang === "vi" ? "MDF chống ẩm" : "Moisture-resistant MDF", href: "/mdf-chong-am", active: pathname === "/mdf-chong-am" },
-    { label: lang === "vi" ? "MFC & Plywood" : "MFC & Plywood", href: "/van-go-cong-nghiep", active: pathname === "/van-go-cong-nghiep" },
-    { label: lang === "vi" ? "Gỗ ghép" : "Joined wood", href: "/go-ghep", active: pathname === "/go-ghep" || pathname === "/go-ghep-cao-su" || pathname === "/go-ghep-tram" },
-    { label: "Melamine Thanh Thùy", href: "/catalogue/thanh-thuy/melamine", active: pathname === "/catalogue/thanh-thuy/melamine", prefetch: false },
-    { label: "Laminate Thanh Thùy", href: "/catalogue/thanh-thuy/laminate", active: pathname === "/catalogue/thanh-thuy/laminate", prefetch: false },
-    { label: "Acrylic Thanh Thùy", href: "/catalogue/thanh-thuy/acrylic", active: pathname === "/catalogue/thanh-thuy/acrylic", prefetch: false },
-    { label: "PVC Film / PET", href: "/catalogue/thanh-thuy/pvc", active: pathname === "/catalogue/thanh-thuy/pvc", prefetch: false },
-    { label: "Chỉ nẹp & vật tư", href: "/thuong-hieu/thanh-thuy", active: pathname === "/thuong-hieu/thanh-thuy" },
-  ];
-  const catalogueChildren: NavigationChild[] = [
-    { label: lang === "vi" ? "Tìm mã màu" : "Find a surface code", href: "/catalogue", active: pathname === "/catalogue", prefetch: false },
-    { label: "Thanh Thuỳ", href: "/catalogue/thanh-thuy", active: pathname.startsWith("/catalogue/thanh-thuy"), prefetch: false },
-    { label: "Ba Thanh", href: "/catalogue/ba-thanh", active: pathname.startsWith("/catalogue/ba-thanh"), prefetch: false },
-    { label: "An Cường", href: "/catalogue/an-cuong", active: pathname.startsWith("/catalogue/an-cuong"), prefetch: false },
-  ];
+  const materialChildren: NavigationChild[] = homeProductCards.map((card) => ({
+    label: card.title, href: card.href, active: pathname === card.href.replace(/\/$/, ""), prefetch: false,
+  }));
   const items: NavigationItem[] = [
     {
       label: lang === "vi" ? "Sản phẩm" : "Materials",
@@ -55,24 +44,18 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
       children: materialChildren,
     },
     {
-      label: lang === "vi" ? "Mã màu / Catalogue" : "Surface codes / Catalogue",
-      href: "/catalogue",
+      label: lang === "vi" ? "Mã màu" : "Color codes",
+      href: DEFAULT_CATALOGUE_URL,
       prefetch: false,
       active: pathname === "/catalogue" || pathname.startsWith("/catalogue/") || pathname.startsWith("/ma-mau-melamine/"),
-      children: catalogueChildren,
     },
     {
-      label: lang === "vi" ? "Cắt & CNC" : "Cutting & CNC",
+      label: lang === "vi" ? "Cắt CNC" : "Cutting & CNC",
       href: "/gia-cong-cnc",
       active: pathname === "/gia-cong-cnc" || pathname === "/cat-cnc-go" || pathname === "/gia-cong-cnc-mdf",
     },
     {
-      label: lang === "vi" ? "Xưởng & chi nhánh" : "Workshop & branches",
-      href: "/du-an",
-      active: pathname.startsWith("/du-an") || pathname.startsWith("/chi-nhanh"),
-    },
-    {
-      label: lang === "vi" ? "Kiến thức" : "Insights",
+      label: lang === "vi" ? "Bài viết" : "Articles",
       href: "/bai-viet",
       active: pathname.startsWith("/bai-viet"),
     },
@@ -91,7 +74,7 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
   const handleDropdownKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.key === "Escape") {
       setOpenDropdown(null);
-      (event.currentTarget as HTMLElement).focus();
+      navigationRef.current?.querySelector<HTMLButtonElement>("button")?.focus();
     }
   };
 
@@ -154,18 +137,19 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
                 const dropdownId = `site-navigation-menu-${item.href.replaceAll("/", "-").replaceAll("-", "")}`;
                 const isOpen = openDropdown === item.href;
                 return (
-                  <div key={`${item.label}-${item.href}`} className="relative">
+                  <div key={`${item.label}-${item.href}`} className="relative py-[18px]" onMouseEnter={() => setOpenDropdown(item.href)} onMouseLeave={() => setOpenDropdown(null)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) setOpenDropdown(null); }}>
                     <button
                       type="button"
                       aria-expanded={openDropdown === item.href}
                       aria-controls={dropdownId}
                       onClick={() => setOpenDropdown(item.href)}
+                      onKeyDown={(event) => { if (event.key === "ArrowDown") { event.preventDefault(); setOpenDropdown(item.href); requestAnimationFrame(() => document.getElementById(dropdownId)?.querySelector<HTMLAnchorElement>("a")?.focus()); } }}
                       className={`site-header-nav-link inline-flex min-h-11 items-center gap-1 text-[13px] font-extrabold transition-colors ${item.active ? "site-header-nav-link--active" : "hover:text-wood-600"}`}
                     >
                       {item.label}<ChevronDown size={15} aria-hidden="true" className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
                     </button>
                     {isOpen ? (
-                      <div id={dropdownId} className={`absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 border border-slate-200 bg-white p-2 shadow-[0_12px_28px_rgba(7,59,40,.12)] ${item.href === "/san-pham" ? "grid w-[min(75vw,520px)] grid-cols-2" : "w-56"}`}>
+                      <div id={dropdownId} className={`fixed left-1/2 top-[80px] z-20 -translate-x-1/2 rounded-xl border border-slate-200 bg-white p-4 shadow-[0_12px_28px_rgba(7,59,40,.12)] ${item.href === "/san-pham" ? "grid w-[min(75vw,780px)] grid-cols-2 gap-x-4 2xl:grid-cols-3" : "w-56"}`}>
                         {item.children.map((child) => (
                           <Link key={`${child.label}-${child.href}`} href={child.href} prefetch={child.prefetch} aria-current={child.active ? "page" : undefined} onClick={() => setOpenDropdown(null)} className={`flex min-h-11 items-center px-3 text-[15px] font-bold transition-colors ${child.active ? "bg-[#edf4ef] text-wood-600" : "text-slate-700 hover:bg-[#f7f9f6] hover:text-wood-600"}`}>
                             {child.label}
@@ -200,15 +184,13 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
             <span className={lang === "en" ? "text-wood-500" : ""}>EN</span>
           </button>
           <TrackedLink
-            href={ZALO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            eventName="request_quote"
-            eventProperties={{ location: "site_header", channel: "zalo" }}
-            aria-label="Liên hệ Zalo qua số 0909 259 160"
+            href={PHONE_HREF}
+                        eventName="request_quote"
+            eventProperties={{ location: "site_header", channel: "phone" }}
+            aria-label="Gọi số 0909 259 160"
             className="pressable hidden min-h-[52px] items-center justify-center gap-2 bg-wood-500 px-5 text-sm font-extrabold tabular-nums text-white shadow-[0_8px_20px_rgba(184,77,0,.2)] hover:bg-wood-600 xl:inline-flex"
           >
-            <MessageCircle size={16} aria-hidden="true" />
+            <Phone size={16} aria-hidden="true" />
             0909 259 160
           </TrackedLink>
           <button

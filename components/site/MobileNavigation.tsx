@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MessageCircle, X } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TrackedLink } from "@/components/TrackedLink";
 import { ZALO_URL } from "@/lib/seo";
 
@@ -32,14 +32,16 @@ type MobileNavigationProps = {
 };
 
 export function MobileNavigation({ open, items, lang, languageLabel, onClose, onToggleLanguage }: MobileNavigationProps) {
+  const [productsOpen, setProductsOpen] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
+  const firstProductRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     if (!open) return;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    requestAnimationFrame(() => firstLinkRef.current?.focus());
+    requestAnimationFrame(() => (firstProductRef.current ?? firstLinkRef.current)?.focus());
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -91,8 +93,8 @@ export function MobileNavigation({ open, items, lang, languageLabel, onClose, on
       <nav aria-label="Điều hướng trên thiết bị di động" className="container-shell py-4">
         {items.map((item, index) => (
           <div key={`${item.label}-${item.href}`} className="border-b border-forest-900/10 py-1">
-            <Link
-              ref={index === 0 ? firstLinkRef : undefined}
+            {item.children?.length ? <button ref={firstProductRef} type="button" aria-expanded={productsOpen} aria-controls="mobile-product-links" onClick={() => setProductsOpen(!productsOpen)} className="flex min-h-14 w-full items-center justify-between text-base font-bold text-forest-950">{item.label}<span aria-hidden="true">{productsOpen ? "−" : "+"}</span></button> : <Link
+              ref={index === 1 ? firstLinkRef : undefined}
               href={item.href}
               prefetch={item.prefetch}
               aria-current={item.active ? "page" : undefined}
@@ -101,9 +103,9 @@ export function MobileNavigation({ open, items, lang, languageLabel, onClose, on
             >
               {item.label}
               {item.active ? <span className="text-xs font-extrabold uppercase tracking-[.14em] text-wood-600">Đang xem</span> : null}
-            </Link>
-            {item.children?.length ? (
-              <div className="mb-2 grid gap-1 border-l-2 border-wood-500/40 pl-4">
+            </Link>}
+            {item.children?.length && productsOpen ? (
+              <div id="mobile-product-links" className="mb-2 grid gap-1 border-l-2 border-wood-500/40 pl-4">
                 {item.children.map((child) => (
                   <Link
                     key={`${child.label}-${child.href}`}

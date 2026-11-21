@@ -1,0 +1,7 @@
+# Migration ba bài — parity chưa đạt
+
+Đã import thực từ body fixture hợp nhất bằng Gutenberg `rawHandler`/serialize, vào WordPress Playground: `mdf-thuong-va-chong-am` ID 10 (15 blocks), `chuan-bi-file-cnc` ID 11 (17 blocks), `go-ghep-la-gi` ID 12 (23 blocks). Đã đối chiếu `getArticles()` hiện hành: body, title và SEO source trùng fixture ở 3/3 bài. Title, slug, body Markdown được chuyển thành block, excerpt, ngày đăng theo ngày gốc, category, tags và published status được ghi. Script có dry-run, backup bản ghi trước thay đổi, mapping slug/source ID, và lần lặp mới báo `unchanged` cho cả ba (không tạo duplicate hoặc sửa lại thời gian). Không backup media/database toàn site.
+
+Các thiếu khác biệt quan trọng: chưa import featured image, figure/caption/attribution bổ sung bởi frontend (hai ảnh MDF, hình gỗ ghép, sơ đồ CNC), SEO editorial fields, related links/FAQ và tác giả gốc. Logo là featured fallback; author đang là `admin`; modified date theo bản import. Chưa chứng minh parity body từng block hoặc owner duyệt hình. H2/table/link trong body có trong output WordPress, nhưng không lấy số figure/table giữa toàn `<article>` và REST body để kết luận parity vì template cũng thêm section. Canonical và Article schema đã được browser test; canonical public giữ `/bai-viet/{slug}/`.
+
+Không xóa Payload override. Kiểm tra source/quyền từng ảnh, import media và metadata có kiểm soát, so sánh HTML/SEO/screenshot trước khi đề nghị cutover. Các ảnh chụp mobile WP mode nằm trong `evidence/wp-*-mobile.png` và cho thấy fallback logo rõ ràng.

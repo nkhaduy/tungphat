@@ -16,15 +16,15 @@ describe("supplier catalogue navigation", () => {
       supplierNavigation.catalogue.map((link) => [link.supplierId, link.href]),
     ).toEqual([
       ["thanh-thuy", "/catalogue/thanh-thuy/"],
-      ["ba-thanh", "/catalogue/ba-thanh/"],
       ["an-cuong", "/catalogue/an-cuong/"],
+      ["ba-thanh", "/catalogue/ba-thanh/"],
     ]);
     expect(
       supplierNavigation.brands.map((link) => [link.supplierId, link.href]),
     ).toEqual([
       ["thanh-thuy", "/thuong-hieu/thanh-thuy/"],
-      ["ba-thanh", "/thuong-hieu/ba-thanh/"],
       ["an-cuong", "/san-pham/an-cuong/"],
+      ["ba-thanh", "/thuong-hieu/ba-thanh/"],
     ]);
   });
 

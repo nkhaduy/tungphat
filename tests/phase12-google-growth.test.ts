@@ -1,7 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { getProduct } from "@/lib/content";
-import { coreMaterialCards } from "@/lib/product-taxonomy";
 
 const vercelConfig = JSON.parse(readFileSync("vercel.json", "utf8")) as {
   redirects?: Array<{ source: string; destination: string; permanent: boolean }>;
@@ -48,7 +47,7 @@ describe("Phase 12 Google evidence fixes", () => {
     expect((await getProduct("go-ghep"))?.relatedArticles).toContain("go-ghep-la-gi");
   });
 
-  it("links the homepage's generic wood-panel intent to the canonical go-ghep hub", () => {
-    expect(coreMaterialCards.find((card) => card.title === "Gỗ ghép")?.href).toBe("/go-ghep/");
+  it("retains the canonical general wood-panel guide from the material listing", () => {
+    expect(readFileSync("app/san-pham/page.tsx", "utf8")).toContain('href="/go-ghep/"');
   });
 });

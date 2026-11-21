@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Prepared for review only: no routes, custom domain or workers.dev trigger.
+  "name": "tungphat-static-assets",
+  "main": "workers/static-production.mjs",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./.wrangler/workers-production-assets",
+    "binding": "ASSETS",
+    "run_worker_first": ["/catalog/*"],
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

@@ -1,7 +1,14 @@
+import { absolutePageUrl } from "@/lib/seo";
+
 export type PublicationState = {
   draft: boolean;
   noindex: boolean;
 };
+
+/** A CMS canonical override can designate another page as the preferred URL. */
+export function hasSelfCanonical(entry: { canonical?: string }, path: string): boolean {
+  return !entry.canonical || absolutePageUrl(entry.canonical) === absolutePageUrl(path);
+}
 
 export function filterPublishedContent<T extends PublicationState>(
   entries: readonly T[],
