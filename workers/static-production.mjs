@@ -2,6 +2,10 @@
 export default {
   async fetch(request, env) {
     const incoming = new URL(request.url);
+    if (incoming.hostname === "www.gotungphat.com") {
+      incoming.hostname = "gotungphat.com";
+      return Response.redirect(incoming.toString(), 301);
+    }
     if (incoming.pathname === "/api/analytics/track") {
       if (request.method !== "POST") return new Response(null, { status: 405, headers: { Allow: "POST" } });
       const contentType = request.headers.get("content-type") || "text/plain;charset=UTF-8";
