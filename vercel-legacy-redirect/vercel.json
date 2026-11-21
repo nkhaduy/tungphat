@@ -1,0 +1,130 @@
+{
+  "outputDirectory": "public",
+  "redirects": [
+    {
+      "source": "/ma-mau",
+      "destination": "https://gotungphat.com/catalogue/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ma-mau/",
+      "destination": "https://gotungphat.com/catalogue/",
+      "statusCode": 301
+    },
+    {
+      "source": "/gia-cong-cnc-go",
+      "destination": "https://gotungphat.com/cat-cnc-go/",
+      "statusCode": 301
+    },
+    {
+      "source": "/gia-cong-cnc-go/",
+      "destination": "https://gotungphat.com/cat-cnc-go/",
+      "statusCode": 301
+    },
+    {
+      "source": "/cnc-mdf",
+      "destination": "https://gotungphat.com/gia-cong-cnc-mdf/",
+      "statusCode": 301
+    },
+    {
+      "source": "/cnc-mdf/",
+      "destination": "https://gotungphat.com/gia-cong-cnc-mdf/",
+      "statusCode": 301
+    },
+    {
+      "source": "/danh-muc-san-pham/van-cong-nghiep",
+      "destination": "https://gotungphat.com/van-go-cong-nghiep/",
+      "statusCode": 301
+    },
+    {
+      "source": "/danh-muc-san-pham/van-cong-nghiep/",
+      "destination": "https://gotungphat.com/van-go-cong-nghiep/",
+      "statusCode": 301
+    },
+    {
+      "source": "/danh-muc-san-pham/go-ghep",
+      "destination": "https://gotungphat.com/go-ghep/",
+      "statusCode": 301
+    },
+    {
+      "source": "/danh-muc-san-pham/go-ghep/",
+      "destination": "https://gotungphat.com/go-ghep/",
+      "statusCode": 301
+    },
+    {
+      "source": "/danh-muc-san-pham/van-mdf",
+      "destination": "https://gotungphat.com/van-mdf/",
+      "statusCode": 301
+    },
+    {
+      "source": "/danh-muc-san-pham/van-mdf/",
+      "destination": "https://gotungphat.com/van-mdf/",
+      "statusCode": 301
+    },
+    {
+      "source": "/danh-muc-san-pham/van-ep",
+      "destination": "https://gotungphat.com/van-go-cong-nghiep/",
+      "statusCode": 301
+    },
+    {
+      "source": "/danh-muc-san-pham/van-ep/",
+      "destination": "https://gotungphat.com/van-go-cong-nghiep/",
+      "statusCode": 301
+    },
+    {
+      "source": "/san-pham/van-mdf-tron",
+      "destination": "https://gotungphat.com/van-mdf/",
+      "statusCode": 301
+    },
+    {
+      "source": "/san-pham/van-mdf-tron/",
+      "destination": "https://gotungphat.com/van-mdf/",
+      "statusCode": 301
+    },
+    {
+      "source": "/danh-muc-san-pham/tung-phat",
+      "destination": "https://gotungphat.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/danh-muc-san-pham/tung-phat/",
+      "destination": "https://gotungphat.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/danh-muc-san-pham/go-ghep-thanh",
+      "destination": "https://gotungphat.com/go-ghep/",
+      "statusCode": 301
+    },
+    {
+      "source": "/danh-muc-san-pham/go-ghep-thanh/",
+      "destination": "https://gotungphat.com/go-ghep/",
+      "statusCode": 301
+    },
+    {
+      "source": "/san-pham/go-ghep-thanh",
+      "destination": "https://gotungphat.com/go-ghep/",
+      "statusCode": 301
+    },
+    {
+      "source": "/san-pham/go-ghep-thanh/",
+      "destination": "https://gotungphat.com/go-ghep/",
+      "statusCode": 301
+    },
+    {
+      "source": "/go-ghep-go-ghep-thanh-la-gi-dac-diem-ung-dung-quy-trinh-san-xuat",
+      "destination": "https://gotungphat.com/bai-viet/go-ghep-la-gi/",
+      "statusCode": 301
+    },
+    {
+      "source": "/go-ghep-go-ghep-thanh-la-gi-dac-diem-ung-dung-quy-trinh-san-xuat/",
+      "destination": "https://gotungphat.com/bai-viet/go-ghep-la-gi/",
+      "statusCode": 301
+    },
+    {
+      "source": "/(.*)",
+      "destination": "https://gotungphat.com/$1",
+      "statusCode": 301
+    }
+  ]
+}
