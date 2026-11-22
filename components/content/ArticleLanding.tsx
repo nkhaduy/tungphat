@@ -1,36 +1,22 @@
-import Link from "next/link";
-import { ArrowRight, CalendarDays, UserRound } from "lucide-react";
+import Image from "next/image";
 import { JsonLd } from "@/components/JsonLd";
 import { ContentEngagementTracker } from "@/components/analytics/ContentEngagementTracker";
 import { FaqList } from "@/components/content/FaqList";
 import { MarkdownContent } from "@/components/content/MarkdownContent";
+import { ArticleHeader } from "@/components/editorial/ArticleHeader";
+import { ArticleRelatedContent } from "@/components/editorial/ArticleRelatedContent";
+import type { EditorialRelatedItem } from "@/lib/editorial/related-content";
+import { ArticleTableOfContents } from "@/components/editorial/ArticleTableOfContents";
 import { SiteShell } from "@/components/site/SiteShell";
 import { ContactCTA } from "@/components/ui/ContactCTA";
-import { PageHero } from "@/components/ui/PageHero";
+import { MaterialImage } from "@/components/products/MaterialImage";
+import { splitCncArticle } from "@/lib/cnc-article-diagram";
+import { extractMarkdownHeadings } from "@/lib/editorial/headings";
+import { resolveEditorialMedia } from "@/lib/editorial/media";
 import type { ContentEntry } from "@/lib/content";
 import type { ArticleFrontmatter } from "@/lib/content-schema";
-import { absoluteMediaUrl, resolveMediaUrl } from "@/lib/media";
+import { absoluteMediaUrl } from "@/lib/media";
 import { SITE_URL, absolutePageUrl, breadcrumbSchema, schemaPageId, webPageSchema } from "@/lib/seo";
-
-const relatedLabels: Record<string, string> = {
-  "cat-cnc-go": "Cắt CNC gỗ",
-  "chuan-bi-file-cnc": "Chuẩn bị file CNC",
-  "gia-cong-cnc": "Gia công CNC",
-  "gia-cong-cnc-mdf": "Gia công CNC MDF",
-  "go-ghep": "Gỗ ghép",
-  "go-ghep-cao-su": "Gỗ ghép cao su",
-  "go-ghep-la-gi": "Gỗ ghép là gì?",
-  "go-ghep-tram": "Gỗ ghép tràm",
-  "mdf-chong-am": "MDF chống ẩm",
-  "mdf-thuong-va-chong-am": "MDF thường và chống ẩm",
-  "van-mdf": "Ván MDF",
-};
-
-function readableSlug(slug: string) {
-  if (relatedLabels[slug]) return relatedLabels[slug];
-  const label = slug.replace(/-/g, " ");
-  return label.charAt(0).toLocaleUpperCase("vi") + label.slice(1);
-}
 
 const articleCtas: Record<string, { eyebrow: string; title: string; description: string; zaloLabel: string }> = {
   "chuan-bi-file-cnc": {
@@ -53,8 +39,11 @@ const articleCtas: Record<string, { eyebrow: string; title: string; description:
   },
 };
 
-export function ArticleLanding({ article }: { article: ContentEntry<ArticleFrontmatter> }) {
+export function ArticleLanding({ article, relatedItems = [] }: { article: ContentEntry<ArticleFrontmatter>; relatedItems?: EditorialRelatedItem[] }) {
   const articlePath = `/bai-viet/${article.slug}`;
+  const cncParts = splitCncArticle(article.slug, article.body);
+  const articleHeadings = extractMarkdownHeadings(article.body);
+  const firstPartHeadingCount = cncParts ? extractMarkdownHeadings(cncParts[0]).length : articleHeadings.length;
   const articleUrl = absolutePageUrl(articlePath);
   const articleId = schemaPageId(articlePath, "article");
   const articleSchema = {
@@ -63,7 +52,7 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
     "@id": articleId,
     headline: article.title,
     description: article.excerpt,
-    image: absoluteMediaUrl(article.featuredImage, SITE_URL),
+    ...(article.featuredImage ? { image: absoluteMediaUrl(article.featuredImage, SITE_URL) } : {}),
     datePublished: article.publishedAt,
     dateModified: article.updatedAt,
     author: { "@type": "Organization", name: article.author, url: absolutePageUrl("/") },
@@ -71,16 +60,14 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
     mainEntityOfPage: articleUrl,
   };
   const pageSchema = webPageSchema({ path: articlePath, name: article.title, description: article.excerpt, primaryEntityId: articleId, datePublished: article.publishedAt, dateModified: article.updatedAt });
-  const relatedLinks = [
-    ...article.relatedProducts.map((slug) => ({ href: `/${slug}`, label: readableSlug(slug), type: "Vật liệu" })),
-    ...article.relatedArticles.map((slug) => ({ href: `/bai-viet/${slug}`, label: readableSlug(slug), type: "Bài viết" })),
-  ];
+  const hasSidebar = articleHeadings.length > 0 || relatedItems.length > 0;
   const cta = articleCtas[article.slug] ?? {
     eyebrow: "Trao đổi về vật liệu",
     title: "Cần hỏi thêm về vật liệu hoặc gia công?",
     description: "Gửi loại vật liệu, quy cách, số lượng và hình ảnh hoặc file liên quan để trao đổi rõ việc cần làm.",
     zaloLabel: "Gửi yêu cầu qua Zalo",
   };
+  const markdown = (body: string, headings = articleHeadings) => <MarkdownContent headings={headings}>{body}</MarkdownContent>;
 
   return (
     <>
@@ -88,43 +75,44 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
       <SiteShell>
         <ContentEngagementTracker contentType="article" contentId={article.slug} contentTitle={article.title} contentCategory={article.category} />
         <article data-analytics-content>
-          <PageHero
-            breadcrumbs={[{ label: "Trang chủ", href: "/" }, { label: "Bài viết", href: "/bai-viet" }, { label: article.title }]}
-            eyebrow={article.category}
-            title={article.title}
-            description={article.excerpt}
-            image={{ src: resolveMediaUrl(article.featuredImage), alt: article.featuredImageAlt, priority: true }}
-          />
-
-          <section className="section-space bg-white">
-            <div className="container-shell grid min-w-0 gap-10 lg:grid-cols-[minmax(0,72ch)_260px] lg:justify-center lg:gap-14">
-              <div className="min-w-0">
-                <div className="mb-9 flex flex-wrap gap-x-6 gap-y-3 border-b border-forest-900/10 pb-6 text-sm text-slate-600">
-                  <span className="inline-flex items-center gap-2"><CalendarDays size={17} className="text-wood-600" aria-hidden="true" />Cập nhật {article.updatedAt}</span>
-                  <span className="inline-flex items-center gap-2"><UserRound size={17} className="text-wood-600" aria-hidden="true" />{article.author}</span>
-                </div>
+          <ArticleHeader article={article} />
+          <section className="editorial-reading-section">
+            <div className={`container-shell editorial-layout${hasSidebar ? " editorial-layout--with-sidebar" : " editorial-layout--without-sidebar"}`}>
+              {hasSidebar ? <aside className="editorial-sidebar" aria-label="Điều hướng bài viết">
+                <ArticleTableOfContents headings={articleHeadings} />
+                <ArticleRelatedContent items={relatedItems} />
+              </aside> : null}
+              <div id="article-content" className="editorial-content">
+                {article.featuredImage ? <figure className="editorial-featured-media">
+                  <Image src={resolveEditorialMedia(article.featuredImage, "featured")} alt={article.featuredImageAlt} fill priority sizes="(max-width: 1023px) 100vw, 48rem" className="object-cover" />
+                </figure> : null}
                 <div data-answer-block>
-                  <MarkdownContent className="text-[1rem] leading-7 sm:text-[1.0625rem] sm:leading-8 prose-p:my-0 prose-p:mb-6 prose-headings:font-extrabold prose-h2:mb-4 prose-h2:mt-10 prose-h2:text-2xl prose-h2:leading-tight sm:prose-h2:text-[1.75rem] prose-h3:mb-3 prose-h3:mt-8 prose-h3:text-xl prose-h3:leading-snug prose-li:my-2">{article.body}</MarkdownContent>
+                  {article.slug === "go-ghep-la-gi" ? <figure className="editorial-authored-media">
+                    <div className="relative aspect-[1200/677] overflow-hidden rounded-md bg-[#f7f8f5]">
+                      <MaterialImage src="/sanpham-media/go-ghep-cao-su.webp" alt="Mặt tấm gỗ ghép cao su, nhìn thấy các thanh gỗ và mối ghép" sizes="(max-width: 1023px) 100vw, 48rem" />
+                    </div>
+                    <figcaption className="mt-3 text-sm leading-6 text-slate-600">Ví dụ mặt ván ghép cao su: có thể quan sát hướng thanh, màu và các mối nối. Ảnh: <a href="https://www.bathanhtaybac.com/san-pham/go-ghep" className="underline underline-offset-4">Ba Thanh Tây Bắc</a>.</figcaption>
+                  </figure> : null}
+                  {article.slug === "mdf-thuong-va-chong-am" ? <figure className="editorial-authored-media">
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="relative aspect-square overflow-hidden rounded-md bg-[#f7f8f5]"><MaterialImage src="/sanpham-media/van-mdf.webp" alt="Các tấm MDF mộc xếp chồng, nhìn thấy mặt và cạnh ván" sizes="(max-width: 640px) 45vw, 330px" /></div>
+                      <div className="relative aspect-square overflow-hidden rounded-md bg-[#f7f8f5]"><MaterialImage src="/sanpham-media/mdf-chong-am.webp" alt="Mẫu MDF chống ẩm lõi xanh có bề mặt phủ trắng" sizes="(max-width: 640px) 45vw, 330px" /></div>
+                    </div>
+                    <figcaption className="mt-3 text-sm leading-6 text-slate-600">Bên trái: MDF mộc; bên phải: một mẫu MDF chống ẩm có mặt phủ. Màu lõi và lớp phủ không thay thế nhãn hoặc tài liệu kỹ thuật của tấm ván.</figcaption>
+                  </figure> : null}
+                  {cncParts ? <>
+                    {markdown(cncParts[0], articleHeadings.slice(0, firstPartHeadingCount))}
+                    <figure className="editorial-authored-media">
+                      <div className="overflow-x-auto rounded-md" tabIndex={0} role="region" aria-label="Sơ đồ bản vẽ CNC, có thể cuộn ngang">
+                        {/* eslint-disable-next-line @next/next/no-img-element -- authored vector with fixed dimensions */}
+                        <img src="/images/editorial/ban-ve-cnc-minh-hoa.svg" width="1200" height="820" loading="lazy" alt="Sơ đồ minh họa một chi tiết ván: đường bao, lỗ, rãnh, cạnh chuẩn và hướng ghi kích thước" className="h-auto w-full min-w-[720px]" />
+                      </div>
+                      <figcaption className="mt-3 text-sm leading-6 text-slate-600">Ví dụ ghi thông tin trên một mặt gia công; hình không theo tỉ lệ. Có thể cuộn ngang để xem toàn bộ sơ đồ. Ghi kích thước thực, đơn vị, độ sâu và mặt gia công trên bản vẽ của bạn.</figcaption>
+                    </figure>
+                    {markdown(cncParts[1], articleHeadings.slice(firstPartHeadingCount))}
+                  </> : markdown(article.body)}
                 </div>
               </div>
-
-              <aside className="h-fit border border-forest-900/10 bg-[#f7f8f5] p-6 lg:sticky lg:top-32">
-                <p className="eyebrow">Đọc tiếp</p>
-                <h2 className="mt-3 text-lg font-extrabold text-forest-950">Thông tin liên quan</h2>
-                {relatedLinks.length ? (
-                  <nav aria-label="Nội dung liên quan" className="mt-4 grid gap-2">
-                    {relatedLinks.map((item) => (
-                      <Link key={`${item.type}-${item.href}`} href={item.href} className="group flex min-h-12 items-center justify-between gap-3 border-t border-forest-900/10 py-3 text-sm font-bold text-forest-950 hover:text-wood-600">
-                        <span><span className="block text-[11px] uppercase tracking-wider text-slate-500">{item.type}</span>{item.label}</span>
-                        <ArrowRight size={16} className="shrink-0" aria-hidden="true" />
-                      </Link>
-                    ))}
-                  </nav>
-                ) : (
-                  <p className="mt-4 text-sm leading-7 text-slate-700">Xem danh mục vật liệu hoặc thư viện kiến thức để tham khảo thêm trước khi gửi yêu cầu.</p>
-                )}
-                <Link href="/san-pham" className="pressable mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 bg-forest-900 px-5 text-sm font-extrabold text-white hover:bg-forest-800">Xem danh mục vật liệu <ArrowRight size={16} aria-hidden="true" /></Link>
-              </aside>
             </div>
           </section>
         </article>

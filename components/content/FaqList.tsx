@@ -1,22 +1,10 @@
-import { JsonLd } from "@/components/JsonLd";
 
 type Faq = { question: string; answer: string };
 
 export function FaqList({ items }: { items: Faq[] }) {
   if (items.length === 0) return null;
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: items.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: { "@type": "Answer", text: item.answer }
-    }))
-  };
-
   return (
     <section className="section-space bg-[#f7f8f5]">
-      <JsonLd data={schema} />
       <div className="container-shell">
         <p className="eyebrow">Câu hỏi thường gặp</p>
         <h2 className="mt-4 text-3xl font-extrabold text-forest-950 sm:text-4xl">Thông tin cần biết trước khi đặt hàng</h2>
