@@ -13,7 +13,8 @@ export function isoNow(): string {
 export function isAllowedOrigin(request: Request, env: QuoteAppEnv): boolean {
   const origin = request.headers.get("Origin");
   if (!origin) return false;
-  if (origin === env.APP_ORIGIN) return true;
+  const allowedOrigins = env.APP_ORIGIN.split(",").map((value) => value.trim()).filter(Boolean);
+  if (allowedOrigins.includes(origin)) return true;
   try {
     const requestUrl = new URL(request.url);
     const originUrl = new URL(origin);
