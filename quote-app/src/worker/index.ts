@@ -46,13 +46,8 @@ import { CMS_SSO_CALLBACK, cmsSsoForm, signCmsAssertion } from "./sso";
 
 export const app = new Hono<AppBindings>();
 
-app.use("/api/*", bodyLimit({
-  maxSize: 3 * 1024 * 1024,
-  onError: (c) => c.json({ ok: false, message: "Dữ liệu gửi lên vượt quá giới hạn cho phép." }, 413),
-}));
-
 app.use("/api/*", async (c, next) => {
-  const requestId = c.req.header("CF-Ray") ?? crypto.randomUUID();
+  const requestId = crypto.randomUUID();
   c.set("requestId", requestId);
   c.header("X-Request-Id", requestId);
   c.header("X-Content-Type-Options", "nosniff");
@@ -60,7 +55,15 @@ app.use("/api/*", async (c, next) => {
   c.header("Referrer-Policy", "no-referrer");
   c.header("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
   await next();
+  if (c.req.path === "/api/quotes" && c.req.method === "POST" || /^\/api\/quotes\/[^/]+$/u.test(c.req.path) && c.req.method === "PUT") {
+    console.info(JSON.stringify({ event: "quote_save", requestId, method: c.req.method, status: c.res.status, timestamp: new Date().toISOString() }));
+  }
 });
+
+app.use("/api/*", bodyLimit({
+  maxSize: 3 * 1024 * 1024,
+  onError: (c) => c.json({ ok: false, code: "PAYLOAD_TOO_LARGE", requestId: String(c.get("requestId")), message: "Dữ liệu gửi lên vượt quá giới hạn cho phép." }, 413),
+}));
 
 app.get("/api/health", (c) => c.json({ ok: true, service: "tung-phat-quotes" }));
 app.get("/api/auth/csrf", issueLoginCsrf);
@@ -126,14 +129,13 @@ app.delete("/api/admin/quotes/:id", requireMutation, deleteQuoteHandler);
 
 app.notFound((c) => c.json({ ok: false, message: "Không tìm thấy tài nguyên." }, 404));
 app.onError((error, c) => {
-  if (error instanceof HttpError) return c.json({ ok: false, message: error.message }, error.status);
-  console.error(JSON.stringify({
-    message: "unhandled_error",
-    error: error instanceof Error ? error.message : String(error),
-    path: c.req.path,
-    requestId: c.get("requestId"),
-  }));
-  return c.json({ ok: false, message: "Hệ thống gặp lỗi. Vui lòng thử lại." }, 500);
+  const requestId = c.get("requestId");
+  if (error instanceof HttpError) {
+    const codes: Record<number, string> = { 400: "BAD_REQUEST", 401: "AUTH_REQUIRED", 403: "FORBIDDEN", 404: "NOT_FOUND", 409: "CONFLICT", 422: "VALIDATION_ERROR", 429: "RATE_LIMITED", 500: "SERVER_ERROR", 502: "UPSTREAM_ERROR", 503: "SERVICE_UNAVAILABLE" };
+    return c.json({ ok: false, code: error.code ?? codes[error.status], requestId, message: error.message }, error.status);
+  }
+  console.error(JSON.stringify({ event: "unhandled_error", code: "SERVER_ERROR", endpoint: c.req.path.startsWith("/api/quotes") ? "/api/quotes" : "/api/other", requestId, timestamp: new Date().toISOString() }));
+  return c.json({ ok: false, code: "SERVER_ERROR", requestId, message: "Hệ thống gặp lỗi. Vui lòng thử lại." }, 500);
 });
 
 export default {

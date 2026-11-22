@@ -1,6 +1,6 @@
 import { StrictMode, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider } from "react-router-dom";
 import { AuthProvider, useAuth } from "./auth";
 import { AppShell } from "./components/AppShell";
 import { AdminAuditPage } from "./pages/AdminAuditPage";
@@ -32,11 +32,8 @@ function HomeRedirect() {
   return <Navigate to={user.role === "ADMIN" ? "/admin" : "/bao-gia"} replace />;
 }
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <Routes>
+const router = createBrowserRouter(createRoutesFromElements(
+        <>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/doi-mat-khau" element={<Protected allowPasswordChange><ChangePasswordPage /></Protected>} />
           <Route path="/" element={<HomeRedirect />} />
@@ -57,8 +54,9 @@ createRoot(document.getElementById("root")!).render(
             <Route path="/admin/lich-su" element={<AdminAuditPage />} />
           </Route>
           <Route path="*" element={<HomeRedirect />} />
-        </Routes>
-      </AuthProvider>
-    </BrowserRouter>
-  </StrictMode>,
+        </>,
+));
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode><AuthProvider><RouterProvider router={router} /></AuthProvider></StrictMode>,
 );

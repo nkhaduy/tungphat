@@ -1,10 +1,12 @@
 import { Check, Eye, FileDown, Printer, Save, Wifi } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useBlocker, useNavigate, useParams } from "react-router-dom";
 import { calculateLineTotal, calculateTotals, formatVnd, formatVndInput, parseVndInput } from "../../shared/calculations";
 import { buildQuotePdfFilename, formatEmployeeContact } from "../../shared/display";
 import type { AppSettings, CustomerRecord, PaymentStatus, QuoteRecord } from "../../shared/types";
-import { api, downloadProtected } from "../api";
+import { ApiError, api, apiWithTimeout, downloadProtected, refreshSessionForUser } from "../api";
+import { clearCreationKey, clearSavedDraft, draftKey as makeDraftKey, editDraftPrefix, listEditDrafts, readDraft, writeDraft } from "../quote-draft";
+import { numericInputError } from "../numeric-input";
 import { useAuth } from "../auth";
 import { PageHeader } from "../components/PageHeader";
 import { PaymentActions } from "../components/PaymentActions";
@@ -75,7 +77,7 @@ function quoteToForm(quote: QuoteRecord): QuoteForm {
   };
 }
 
-function payload(form: QuoteForm, version?: number) {
+export function payload(form: QuoteForm, version?: number) {
   return {
     version,
     branchId: form.branchId,
@@ -93,7 +95,7 @@ function payload(form: QuoteForm, version?: number) {
     vatRate: null,
     depositAmount: form.depositAmount,
     paymentStatus: form.paymentStatus,
-    items: form.rows.map((item) => ({
+    items: form.rows.filter((item) => item.productName || item.specification || item.quantity || item.unit || item.unitPrice || item.note).map((item) => ({
       productName: item.productName,
       specification: item.specification,
       quantity: item.quantity,
@@ -124,11 +126,18 @@ type MoneyInputProps = {
 };
 
 export function MoneyInput({ name, label, value, onChange }: MoneyInputProps) {
+  const [inputError, setInputError] = useState("");
   return (
     <label className="money-input">
       <span>{label}</span>
-      <input name={name} inputMode="numeric" value={value ? formatVndInput(value) : ""} onChange={(event) => onChange(parseVndInput(event.target.value))} />
+      <input name={name} inputMode="numeric" value={value ? formatVndInput(value) : ""} onChange={(event) => {
+        const invalid = numericInputError("money", event.target.value);
+        if (invalid) { setInputError(invalid); return; }
+        setInputError("");
+        onChange(parseVndInput(event.target.value));
+      }} />
       <small>đ</small>
+      {inputError && <span role="alert">{inputError}</span>}
     </label>
   );
 }
@@ -138,14 +147,19 @@ export function QuoteEditorPage() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const draftKey = `tp-new-quote-draft:${user?.id ?? "unknown"}`;
+  const tabDraftKey = makeDraftKey(user?.id ?? "unknown", id);
   const [form, setForm] = useState<QuoteForm | null>(null);
   const [quote, setQuote] = useState<QuoteRecord | null>(null);
   const [meta, setMeta] = useState<Meta | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [dirty, setDirty] = useState(false);
+  const [recoveredPending, setRecoveredPending] = useState(false);
+  const [recoverableDrafts, setRecoverableDrafts] = useState<ReturnType<typeof listEditDrafts>>([]);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [errorRequestId, setErrorRequestId] = useState("");
+  const [sessionProblem, setSessionProblem] = useState(false);
   const [customerSearch, setCustomerSearch] = useState("");
   const [customerSuggestions, setCustomerSuggestions] = useState<CustomerRecord[]>([]);
   const [customerSuggestionsOpen, setCustomerSuggestionsOpen] = useState(false);
@@ -154,8 +168,18 @@ export function QuoteEditorPage() {
   const dirtyRef = useRef(false);
   const editRevisionRef = useRef(0);
   const savePromiseRef = useRef<Promise<QuoteRecord | null> | null>(null);
+  const creationKeyRef = useRef("");
+  const legacySnapshotRef = useRef<string | null>(null);
+  const editDraftKeyRef = useRef("");
   formRef.current = form;
   quoteRef.current = quote;
+
+  const currentEditDraftKey = useCallback(() => {
+    if (!user) return "";
+    const prefix = editDraftPrefix(user.id, id ?? "new");
+    if (!editDraftKeyRef.current.startsWith(prefix)) editDraftKeyRef.current = `${prefix}${crypto.randomUUID()}`;
+    return editDraftKeyRef.current;
+  }, [id, user]);
 
   useEffect(() => {
     void (async () => {
@@ -164,11 +188,53 @@ export function QuoteEditorPage() {
         setMeta(nextMeta);
         if (id) {
           const result = await api<{ quote: QuoteRecord }>(`/api/quotes/${id}`);
-          setQuote(result.quote);
-          setForm(quoteToForm(result.quote));
+          try { if (user) setRecoverableDrafts(listEditDrafts(localStorage, user.id, id)); }
+          catch { setError("Không thể đọc bản nháp trên thiết bị. Hãy giữ trang mở khi chỉnh sửa."); }
+          const recovered = readDraft(sessionStorage, tabDraftKey);
+          if (recovered && recovered.version !== null) {
+            setQuote({ ...result.quote, version: recovered.version });
+            setForm(cachedForm(JSON.stringify(recovered.form), nextMeta));
+            dirtyRef.current = true;
+            setDirty(true);
+            setRecoveredPending(true);
+            setMessage("Đã khôi phục bản nháp trên tab này; hãy kiểm tra và bấm Lưu nháp.");
+            try { writeDraft(localStorage, currentEditDraftKey(), { ...recovered, updatedAt: Date.now() }); }
+            catch { setError("Không thể lưu bản nháp trên thiết bị. Hãy giữ trang mở khi chỉnh sửa."); }
+          } else {
+            setQuote(result.quote);
+            setForm(quoteToForm(result.quote));
+          }
         } else {
-          localStorage.removeItem("tp-new-quote-draft");
-          setForm(cachedForm(localStorage.getItem(draftKey), nextMeta));
+          const recovered = readDraft(sessionStorage, tabDraftKey);
+          const candidates = user ? listEditDrafts(localStorage, user.id, "new") : [];
+          const legacy = localStorage.getItem(draftKey);
+          if (legacy && candidates.length) {
+            try {
+              const form: unknown = JSON.parse(legacy);
+              if (form && typeof form === "object") candidates.push({ key: draftKey, raw: legacy, draft: { version: null, form, creationKey: localStorage.getItem(`${makeDraftKey(user?.id ?? "unknown")}:create-key`) ?? undefined } });
+            } catch { /* Preserve unreadable legacy data without attempting recovery. */ }
+          }
+          setRecoverableDrafts(candidates);
+          const raw = recovered ? JSON.stringify(recovered.form) : candidates.length ? null : legacy;
+          if (raw && legacy === raw) legacySnapshotRef.current = legacy;
+          if (raw) {
+            const legacyKeyName = `${makeDraftKey(user?.id ?? "unknown")}:create-key`;
+            const legacySessionKey = recovered && recovered.updatedAt === undefined ? sessionStorage.getItem(legacyKeyName) : null;
+            const legacyLocalKey = legacy === raw ? localStorage.getItem(legacyKeyName) : null;
+            creationKeyRef.current = recovered?.creationKey ?? legacySessionKey ?? legacyLocalKey ?? "";
+            if (recovered?.quoteId && recovered.version !== null) {
+              const result = await api<{ quote: QuoteRecord }>(`/api/quotes/${recovered.quoteId}`);
+              setQuote({ ...result.quote, version: recovered.version });
+            }
+            try { writeDraft(localStorage, currentEditDraftKey(), { version: recovered?.version ?? null, quoteId: recovered?.quoteId, form: JSON.parse(raw) as unknown, creationKey: creationKeyRef.current || undefined, updatedAt: Date.now() }); }
+            catch { setError("Không thể lưu bản nháp trên thiết bị. Hãy giữ trang mở khi chỉnh sửa."); }
+          }
+          setForm(cachedForm(raw, nextMeta));
+          if (raw) {
+            dirtyRef.current = true;
+            setDirty(true);
+            setMessage("Đã khôi phục bản nháp trên thiết bị; chưa lưu lên hệ thống.");
+          }
         }
       } catch (caught) {
         setError(caught instanceof Error ? caught.message : "Không thể mở báo giá.");
@@ -176,7 +242,7 @@ export function QuoteEditorPage() {
         setLoading(false);
       }
     })();
-  }, [draftKey, id]);
+  }, [draftKey, id, tabDraftKey, currentEditDraftKey, user]);
 
   useEffect(() => {
     const query = customerSearch.trim();
@@ -207,40 +273,82 @@ export function QuoteEditorPage() {
     dirtyRef.current = true;
     editRevisionRef.current += 1;
     setMessage("");
-    if (!id) {
-      try { localStorage.setItem(draftKey, JSON.stringify(next)); }
-      catch { setError("Trình duyệt không thể lưu bản nháp cục bộ. Hãy bấm Lưu nháp."); }
-    }
-  }, [draftKey, id]);
+    const draft = { version: quoteRef.current?.version ?? null, quoteId: id ? undefined : quoteRef.current?.id, form: next, creationKey: id ? undefined : creationKeyRef.current || undefined, updatedAt: Date.now() };
+    try { writeDraft(sessionStorage, tabDraftKey, draft); }
+    catch { setError("Trình duyệt không thể lưu bản nháp trên tab này. Hãy giữ trang mở và lưu báo giá."); }
+    try { writeDraft(localStorage, currentEditDraftKey(), draft); }
+    catch { setError("Trình duyệt không thể lưu bản nháp trên thiết bị. Hãy giữ trang mở và lưu báo giá."); }
+  }, [draftKey, id, tabDraftKey, currentEditDraftKey]);
 
   const save = useCallback((silent = false): Promise<QuoteRecord | null> => {
     if (savePromiseRef.current) return savePromiseRef.current;
     const task = (async () => {
     setSaving(true);
-      if (!silent) setError("");
+      if (!silent) { setError(""); setErrorRequestId(""); }
       for (;;) {
         const current = formRef.current;
         if (!current) return quoteRef.current;
         const revision = editRevisionRef.current;
         const existing = quoteRef.current;
+        let tabSnapshot: string | null = null;
+        let editSnapshot: string | null = null;
         try {
-          const result = await api<{ quote: QuoteRecord }>(existing ? `/api/quotes/${existing.id}` : "/api/quotes", {
+          if (!existing && !creationKeyRef.current) {
+            const key = crypto.randomUUID();
+            const pendingDraft = { version: null, form: current, creationKey: key, updatedAt: Date.now() };
+            writeDraft(localStorage, currentEditDraftKey(), pendingDraft);
+            writeDraft(sessionStorage, tabDraftKey, pendingDraft);
+            creationKeyRef.current = key;
+          }
+          try {
+            tabSnapshot = sessionStorage.getItem(tabDraftKey);
+            editSnapshot = localStorage.getItem(currentEditDraftKey());
+          } catch { /* The form remains in memory if storage is unavailable. */ }
+          const result = await apiWithTimeout<{ quote: QuoteRecord }>(existing ? `/api/quotes/${existing.id}` : "/api/quotes", {
             method: existing ? "PUT" : "POST",
+            headers: existing ? undefined : { "Idempotency-Key": creationKeyRef.current },
             body: JSON.stringify(payload(current, existing?.version)),
           });
           quoteRef.current = result.quote;
           setQuote(result.quote);
-          localStorage.removeItem(draftKey);
-          if (!existing) void navigate(`/bao-gia/${result.quote.id}/chinh-sua`, { replace: true });
+          if (!id && editRevisionRef.current !== revision && formRef.current) {
+            const pendingDraft = { version: result.quote.version, quoteId: result.quote.id, form: formRef.current, creationKey: creationKeyRef.current || undefined, updatedAt: Date.now() };
+            try {
+              writeDraft(localStorage, currentEditDraftKey(), pendingDraft);
+              writeDraft(sessionStorage, tabDraftKey, pendingDraft);
+            } catch { setError("Không thể lưu bản nháp trên thiết bị. Hãy giữ trang mở khi chỉnh sửa."); }
+          }
           if (editRevisionRef.current === revision) {
+            try {
+              clearSavedDraft(sessionStorage, tabDraftKey, tabSnapshot);
+              clearSavedDraft(localStorage, currentEditDraftKey(), editSnapshot);
+              if (!id && legacySnapshotRef.current && localStorage.getItem(draftKey) === legacySnapshotRef.current) {
+                clearSavedDraft(localStorage, draftKey, legacySnapshotRef.current);
+                clearCreationKey(sessionStorage, user?.id ?? "unknown", creationKeyRef.current, localStorage);
+              }
+              creationKeyRef.current = "";
+            } catch { /* A confirmed server save must not be reported as failed. */ }
             setForm(quoteToForm(result.quote));
             dirtyRef.current = false;
             setDirty(false);
+            setRecoveredPending(false);
+            setError("");
+            setErrorRequestId("");
+            setSessionProblem(false);
             setMessage(silent ? "Đã tự động lưu" : "Đã lưu báo giá");
+            if (!id) void navigate(`/bao-gia/${result.quote.id}/chinh-sua`, { replace: true });
             return result.quote;
           }
         } catch (caught) {
-          setError(caught instanceof Error ? caught.message : silent ? "Tự động lưu thất bại." : "Không thể lưu báo giá.");
+          setErrorRequestId(caught instanceof ApiError ? caught.requestId ?? "" : "");
+          if (caught instanceof ApiError && (caught.status === 401 || (caught.status === 403 && (caught.code === "CSRF_INVALID" || caught.message.includes("CSRF"))))) {
+            setSessionProblem(true);
+            setError("Phiên đăng nhập đã hết hạn hoặc thay đổi. Dữ liệu đang nhập vẫn được giữ trên trang; hãy đăng nhập lại và cập nhật phiên.");
+          } else if (!(caught instanceof ApiError) || caught.status >= 500) {
+            setError("Chưa xác nhận được kết quả lưu. Dữ liệu vẫn trên trang; hãy kiểm tra danh sách báo giá trước khi thử lại để tránh tạo trùng.");
+          } else {
+            setError(caught.message);
+          }
           return null;
         }
       }
@@ -251,13 +359,13 @@ export function QuoteEditorPage() {
     });
     savePromiseRef.current = pending;
     return pending;
-  }, [draftKey, navigate]);
+  }, [draftKey, id, navigate, tabDraftKey, user?.id, currentEditDraftKey]);
 
   useEffect(() => {
-    if (!id || !dirty) return;
+    if (!id || !dirty || recoveredPending) return;
     const timer = window.setTimeout(() => { void save(true); }, 1800);
     return () => window.clearTimeout(timer);
-  }, [dirty, id, save, form]);
+  }, [dirty, id, save, form, recoveredPending]);
 
   useEffect(() => {
     const warn = (event: BeforeUnloadEvent) => {
@@ -267,6 +375,14 @@ export function QuoteEditorPage() {
     window.addEventListener("beforeunload", warn);
     return () => window.removeEventListener("beforeunload", warn);
   }, []);
+
+  const blocker = useBlocker(({ currentLocation, nextLocation }) => dirtyRef.current &&
+    (currentLocation.pathname !== nextLocation.pathname || currentLocation.search !== nextLocation.search));
+  useEffect(() => {
+    if (blocker.state !== "blocked") return;
+    if (window.confirm("Báo giá có thay đổi chưa lưu. Bạn có muốn rời trang?")) blocker.proceed();
+    else blocker.reset();
+  }, [blocker]);
 
   const calculation = useMemo(() => {
     if (!form) return { totals: null, error: "" };
@@ -323,11 +439,69 @@ export function QuoteEditorPage() {
     setCustomerSuggestionsOpen(false);
     setCustomerSearch("");
   };
+  const restoreEditDraft = async (entry: ReturnType<typeof listEditDrafts>[number]) => {
+    if (id && (!quoteRef.current || entry.draft.version === null)) return;
+    if (dirtyRef.current && !window.confirm("Báo giá đang có thay đổi chưa lưu. Bạn muốn mở bản nháp khác?")) return;
+    try {
+      const revision = editRevisionRef.current;
+      if (localStorage.getItem(entry.key) !== entry.raw) throw new Error("Bản nháp đã thay đổi. Hãy mở lại trang để xem phiên bản mới.");
+      const next = cachedForm(JSON.stringify(entry.draft.form), meta);
+      let previousQuote = id ? quoteRef.current : null;
+      if (!id && entry.draft.version !== null) {
+        if (!entry.draft.quoteId) throw new Error("Không xác định được báo giá đã tạo. Hãy kiểm tra danh sách báo giá.");
+        previousQuote = (await api<{ quote: QuoteRecord }>(`/api/quotes/${entry.draft.quoteId}`)).quote;
+      }
+      if (revision !== editRevisionRef.current || localStorage.getItem(entry.key) !== entry.raw) throw new Error("Dữ liệu đã thay đổi. Hãy kiểm tra lại trước khi khôi phục.");
+      if (previousQuote && entry.draft.version !== null) previousQuote = { ...previousQuote, version: entry.draft.version };
+      const recovered = { version: entry.draft.version, quoteId: entry.draft.quoteId, creationKey: entry.draft.creationKey, form: next, updatedAt: Date.now() };
+      writeDraft(localStorage, currentEditDraftKey(), recovered);
+      writeDraft(sessionStorage, tabDraftKey, recovered);
+      formRef.current = next;
+      quoteRef.current = previousQuote;
+      creationKeyRef.current = entry.draft.creationKey ?? "";
+      legacySnapshotRef.current = entry.key === draftKey ? entry.raw : null;
+      setForm(next);
+      setQuote(previousQuote);
+      editRevisionRef.current += 1;
+      dirtyRef.current = true;
+      setDirty(true);
+      setRecoveredPending(true);
+      setError("");
+      setMessage("Đã khôi phục bản nháp trên thiết bị; hãy kiểm tra và bấm Lưu nháp.");
+    } catch (caught) { setError(caught instanceof Error ? caught.message : "Không thể khôi phục bản nháp."); }
+  };
+  const discardEditDraft = (entry: ReturnType<typeof listEditDrafts>[number]) => {
+    if (!user || !window.confirm("Xóa bản nháp trên thiết bị? Hãy kiểm tra nội dung trước khi xóa.")) return;
+    try {
+      if (localStorage.getItem(entry.key) !== entry.raw) throw new Error("Bản nháp đã thay đổi. Hãy mở lại trang trước khi xóa.");
+      clearSavedDraft(localStorage, entry.key, entry.raw);
+      setRecoverableDrafts((drafts) => drafts.filter((draft) => draft.key !== entry.key));
+    } catch (caught) { setError(caught instanceof Error ? caught.message : "Không thể xóa bản nháp."); }
+  };
 
   return (
     <div>
-      <PageHeader title={quote ? `Chỉnh sửa ${quote.quoteNumber}` : "Tạo báo giá mới"} description="Nhập trực tiếp, dùng Tab/Enter/phím mũi tên hoặc dán nhiều ô từ Excel." actions={<div className="save-state"><Wifi size={15} />{saving ? "Đang lưu…" : message || (dirty ? "Có thay đổi chưa lưu" : "Đã lưu")}</div>} />
+      <PageHeader title={quote ? `Chỉnh sửa ${quote.quoteNumber}` : "Tạo báo giá mới"} description="Nhập trực tiếp, dùng Tab/Enter/phím mũi tên hoặc dán nhiều ô từ Excel." actions={<div className="save-state"><Wifi size={15} />{saving ? "Đang lưu…" : message || (dirty ? "Có thay đổi chưa lưu" : quote ? "Đã lưu" : "Chưa lưu lên hệ thống")}</div>} />
       {(error || calculation.error) && <div className="form-error">{error || calculation.error}</div>}
+      {error && errorRequestId && <p>Mã yêu cầu: {errorRequestId}</p>}
+      {sessionProblem && <div className="form-section"><a href="/login" target="_blank" rel="noopener noreferrer">Đăng nhập lại trong tab mới</a>{" "}<button className="button secondary" type="button" onClick={() => void (async () => {
+        try {
+          if (!user) throw new Error("Không xác định được tài khoản ban đầu.");
+          await refreshSessionForUser(user.id);
+          setSessionProblem(false);
+          setError("");
+          setMessage("Đã cập nhật phiên. Hãy kiểm tra dữ liệu và lưu lại.");
+        } catch (caught) { setError(caught instanceof Error ? caught.message : "Không thể cập nhật phiên."); }
+      })()}>Cập nhật phiên đăng nhập</button></div>}
+      {recoverableDrafts.length > 0 && <section className="form-section" aria-label="Bản nháp trên thiết bị">
+        <strong>Bản nháp trên thiết bị</strong>
+        <p>Những bản nháp này chưa được xác nhận lưu lên hệ thống và có thể được người khác dùng chung máy truy cập.</p>
+        {recoverableDrafts.map((entry) => <div key={entry.key}>
+          <span>{entry.draft.updatedAt ? new Date(entry.draft.updatedAt).toLocaleString("vi-VN") : "Không rõ thời gian"} · {entry.draft.version === null ? "báo giá mới" : `phiên bản ${entry.draft.version}`}{entry.draft.updatedAt && Date.now() - entry.draft.updatedAt > 30 * 24 * 60 * 60 * 1000 ? " · quá 30 ngày" : ""}</span>{" "}
+          <button className="button secondary" type="button" onClick={() => void restoreEditDraft(entry)}>Khôi phục bản nháp</button>{" "}
+          <button className="button ghost" type="button" onClick={() => discardEditDraft(entry)}>Xóa bản nháp</button>
+        </div>)}
+      </section>}
       <div className="editor-layout">
         <div className="editor-main">
           <section className="form-section quote-meta-grid">

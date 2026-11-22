@@ -13,6 +13,7 @@ import type { PaymentStatus, QuoteItemInput, QuoteRecord, QuoteStatus, QuoteTota
 import { auditStatement, writeAudit } from "./audit";
 import type { AppBindings } from "./auth";
 import { customerUpsertStatement } from "./customers";
+import { sha256 } from "./crypto";
 import { HttpError, isoNow, requiredParam } from "./http";
 import { paymentUpdateSchema, quoteInputSchema } from "./schemas";
 
@@ -147,6 +148,10 @@ export function canAccessQuote(user: SessionUser, createdBy: string): boolean {
   return user.role === "ADMIN" || user.id === createdBy;
 }
 
+export function quoteAuditSummary(value: { status: QuoteStatus; paymentStatus: PaymentStatus; version: number; itemCount: number }) {
+  return { status: value.status, paymentStatus: value.paymentStatus, version: value.version, itemCount: value.itemCount };
+}
+
 export function canArchiveQuote(user: SessionUser, createdBy: string): boolean {
   return user.role === "EMPLOYEE" && user.id === createdBy;
 }
@@ -174,10 +179,21 @@ async function branchForCreate(env: QuoteAppEnv, user: SessionUser, requestedBra
   return branch;
 }
 
-async function createQuote(env: QuoteAppEnv, user: SessionUser, rawInput: unknown, requestId: string): Promise<QuoteRecord> {
+async function createQuote(env: QuoteAppEnv, user: SessionUser, rawInput: unknown, requestId: string, requestKey?: string): Promise<QuoteRecord> {
   const parsed = quoteInputSchema.safeParse(rawInput);
   if (!parsed.success) throw new HttpError(422, parsed.error.issues[0]?.message ?? "Dữ liệu báo giá không hợp lệ.");
   const input = parsed.data;
+  const requestHash = requestKey ? await sha256(JSON.stringify(input)) : "";
+  const findPrevious = async (): Promise<QuoteRecord | null> => {
+    if (!requestKey) return null;
+    const row = await env.DB.prepare("SELECT request_hash,quote_id FROM quote_create_requests WHERE user_id=?1 AND request_key=?2")
+      .bind(user.id, requestKey).first<{ request_hash: string; quote_id: string }>();
+    if (!row) return null;
+    if (row.request_hash !== requestHash) throw new HttpError(409, "Lần lưu trước có dữ liệu khác. Hãy kiểm tra danh sách báo giá trước khi tiếp tục.");
+    return loadQuote(env, row.quote_id, user);
+  };
+  const previous = await findPrevious();
+  if (previous) return previous;
   const branch = await branchForCreate(env, user, input.branchId);
   const items = meaningfulItems(input.items);
   const totals = calculateTotals(items, input);
@@ -230,12 +246,25 @@ async function createQuote(env: QuoteAppEnv, user: SessionUser, rawInput: unknow
     newData: { quoteNumber, branchId: branch.id, totals, paymentStatus },
     requestId,
   }));
-  await env.DB.batch(statements);
+  if (requestKey) statements.push(env.DB.prepare(
+    "INSERT INTO quote_create_requests(user_id,request_key,request_hash,quote_id,created_at) VALUES(?1,?2,?3,?4,?5)",
+  ).bind(user.id, requestKey, requestHash, id, now));
+  try {
+    await env.DB.batch(statements);
+  } catch (error) {
+    const existing = await findPrevious();
+    if (existing) return existing;
+    throw error;
+  }
   return loadQuote(env, id, user);
 }
 
 export async function createQuoteHandler(c: Context<AppBindings>): Promise<Response> {
-  const quote = await createQuote(c.env, c.get("user"), await c.req.json(), c.get("requestId"));
+  const requestKey = c.req.header("Idempotency-Key");
+  if (requestKey && !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu.test(requestKey)) {
+    throw new HttpError(422, "Mã lần lưu không hợp lệ.");
+  }
+  const quote = await createQuote(c.env, c.get("user"), await c.req.json(), c.get("requestId"), requestKey);
   return c.json({ quote }, 201);
 }
 
@@ -296,7 +325,9 @@ export async function updateQuoteHandler(c: Context<AppBindings>): Promise<Respo
     SELECT ?1,?2,'QUOTE_UPDATED','QUOTE',?3,?4,?5,?6,?7
     WHERE EXISTS(SELECT 1 FROM quotes WHERE id=?3 AND revision_token=?8)
   `).bind(
-    crypto.randomUUID(), c.get("user").id, quote.id, JSON.stringify(quote), JSON.stringify({ ...input, totals, status, paymentStatus }),
+    crypto.randomUUID(), c.get("user").id, quote.id,
+    JSON.stringify(quoteAuditSummary({ status: quote.status, paymentStatus: quote.paymentStatus, version: quote.version, itemCount: quote.items.length })),
+    JSON.stringify(quoteAuditSummary({ status, paymentStatus, version: quote.version + 1, itemCount: items.length })),
     c.get("requestId"), now, revisionToken,
   ));
   const results = await c.env.DB.batch(statements);

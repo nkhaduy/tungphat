@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowUp, Copy, Plus, Trash2 } from "lucide-react";
-import { useEffect, type ClipboardEvent, type KeyboardEvent } from "react";
+import { useEffect, useState, type ClipboardEvent, type KeyboardEvent } from "react";
 import { calculateLineTotal, formatVndInput, formatVndNumber, parseVndInput } from "../../shared/calculations";
+import { numericInputError } from "../numeric-input";
 
 export type EditorRow = {
   clientId: string;
@@ -63,11 +64,23 @@ function hasContent(row: EditorRow): boolean {
 }
 
 export function QuoteGrid({ rows, onChange, readOnly = false }: { rows: EditorRow[]; onChange: (rows: EditorRow[]) => void; readOnly?: boolean }) {
+  const [inputError, setInputError] = useState("");
+  const [quantityDrafts, setQuantityDrafts] = useState<Record<string, string>>({});
   useEffect(() => {
     if (!readOnly && rows.length && hasContent(rows[rows.length - 1])) onChange([...rows, emptyRow()]);
   }, [rows, onChange, readOnly]);
 
   const update = (rowIndex: number, column: EditableColumn, value: string) => {
+    const invalid = column === "quantity" || column === "unitPrice" ? numericInputError(column === "quantity" ? "quantity" : "money", value) : "";
+    if (invalid) {
+      setInputError(invalid);
+      return;
+    }
+    setInputError("");
+    if (column === "quantity" && rows[rowIndex]) {
+      const rowId = rows[rowIndex].clientId;
+      setQuantityDrafts((drafts) => ({ ...drafts, [rowId]: value }));
+    }
     const next = rows.map((row, index) => index === rowIndex ? {
       ...row,
       [column]: column === "quantity" ? parseQuantityInput(value) : column === "unitPrice" ? parseVndInput(value) : value,
@@ -115,6 +128,16 @@ export function QuoteGrid({ rows, onChange, readOnly = false }: { rows: EditorRo
     const text = event.clipboardData.getData("text/plain");
     if (!text.includes("\t") && !text.includes("\n")) return;
     event.preventDefault();
+    let invalid = "";
+    for (const line of text.replace(/\r/g, "").split("\n")) {
+      line.split("\t").forEach((value, offset) => {
+        const column = editableColumns[startColumn + offset];
+        if (!invalid && (column === "quantity" || column === "unitPrice")) invalid = numericInputError(column === "quantity" ? "quantity" : "money", value);
+      });
+      if (invalid) break;
+    }
+    if (invalid) { setInputError(invalid); return; }
+    setInputError("");
     onChange(pasteGridText(rows, text, startRow, startColumn));
   };
 
@@ -128,6 +151,7 @@ export function QuoteGrid({ rows, onChange, readOnly = false }: { rows: EditorRo
 
   return (
     <div className="quote-grid-wrap">
+      {inputError && <div className="form-error" role="alert">{inputError}</div>}
       <table className="quote-grid">
         <thead><tr><th>STT</th><th>Tên sản phẩm</th><th>Quy cách</th><th>Số lượng</th><th>Đơn vị</th><th>Đơn giá</th><th>Thành tiền</th><th>Ghi chú</th>{!readOnly && <th aria-label="Thao tác" />}</tr></thead>
         <tbody>
@@ -140,10 +164,15 @@ export function QuoteGrid({ rows, onChange, readOnly = false }: { rows: EditorRo
                     data-grid-row={rowIndex}
                     data-grid-col={columnIndex}
                     aria-label={`${columnLabels[column]} dòng ${rowIndex + 1}`}
-                    value={column === "unitPrice" ? (row.unitPrice ? formatVndInput(row.unitPrice) : "") : column === "quantity" ? (row.quantity || "") : row[column]}
+                    value={column === "unitPrice" ? (row.unitPrice ? formatVndInput(row.unitPrice) : "") : column === "quantity" ? (quantityDrafts[row.clientId] !== undefined && parseQuantityInput(quantityDrafts[row.clientId]) === row.quantity ? quantityDrafts[row.clientId] : (row.quantity || "")) : row[column]}
                     inputMode={column === "quantity" ? "decimal" : column === "unitPrice" ? "numeric" : "text"}
                     readOnly={readOnly}
                     onChange={(event) => update(rowIndex, column, event.target.value)}
+                    onBlur={column === "quantity" ? () => setQuantityDrafts((drafts) => {
+                      const next = { ...drafts };
+                      delete next[row.clientId];
+                      return next;
+                    }) : undefined}
                     onKeyDown={(event) => keyboard(event, rowIndex, columnIndex)}
                     onPaste={(event) => paste(event, rowIndex, columnIndex)}
                   />

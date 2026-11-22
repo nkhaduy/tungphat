@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { quantityToMilli } from "../shared/calculations";
+import { calculateTotals, normalizePayment, quantityToMilli } from "../shared/calculations";
 import { officialBranch } from "../shared/branches";
 
 const vnd = z.number().int().min(0).max(Number.MAX_SAFE_INTEGER);
@@ -43,6 +43,12 @@ export const quoteInputSchema = z.object({
 }).superRefine((value, context) => {
   if (value.items.every((item) => !item.productName && item.quantity === 0 && item.unitPrice === 0)) {
     context.addIssue({ code: "custom", path: ["items"], message: "Báo giá cần ít nhất một dòng sản phẩm." });
+  }
+  try {
+    const totals = calculateTotals(value.items, value);
+    if (value.paymentStatus) normalizePayment(value.paymentStatus, totals.depositAmount, totals.grandTotal);
+  } catch (error) {
+    context.addIssue({ code: "custom", message: error instanceof Error ? error.message : "Số tiền không hợp lệ." });
   }
 });
 

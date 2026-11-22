@@ -229,7 +229,7 @@ export async function requirePasswordChanged(c: Context<AppBindings>, next: Next
 export async function requireMutation(c: Context<AppBindings>, next: Next): Promise<void> {
   if (!isAllowedOrigin(c.req.raw, c.env)) throw new HttpError(403, "Nguồn yêu cầu không hợp lệ.");
   const provided = c.req.header("X-CSRF-Token") ?? "";
-  if (!(await constantTimeEqual(provided, c.get("csrf")))) throw new HttpError(403, "CSRF token không hợp lệ.");
+  if (!(await constantTimeEqual(provided, c.get("csrf")))) throw new HttpError(403, "CSRF token không hợp lệ.", "CSRF_INVALID");
   await next();
 }
 
