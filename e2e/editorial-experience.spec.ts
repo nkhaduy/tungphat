@@ -4,7 +4,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
 const screenshotDirectory = join(process.cwd(), "output", "playwright");
-const viewportWidths = [320, 390, 768, 1280, 1440];
+const viewportWidths = [320, 390, 768, 1280, 1440, 1536];
 
 async function expectNoHorizontalOverflow(page: Page, width: number) {
   await page.setViewportSize({ width, height: 900 });

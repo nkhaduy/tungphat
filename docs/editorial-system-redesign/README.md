@@ -19,18 +19,26 @@
 
 ## Visual evidence
 
-Before and after PNGs are in the local worktree's ignored `output/playwright/` directory. They were captured from the baseline and the final built static site at 1440px desktop and 390px mobile. The after screenshots show the compact header, real breadcrumb, source dates, full-width reading column, contextual TOC/related links, and category-based article rows. Existing Tùng Phát navigation, logo, fonts, and brand colors are retained.
+Before and after PNGs are in the local worktree's ignored `output/playwright/` directory. They were captured from the baseline and final built static site at desktop and mobile widths. The after screenshots show the compact header, real breadcrumb, source dates, full-width reading column, contextual TOC/related links, and category-based article rows. Existing Tùng Phát navigation, logo, fonts, and brand colors are retained.
 
 The screenshots are local review artifacts and are not part of the Git commit:
 
 - Before: `output/playwright/baseline-article-desktop.png`, `baseline-article-mobile.png`, `baseline-listing-desktop.png`, `baseline-listing-mobile.png`.
 - After: `output/playwright/editorial-redesign-article-desktop.png`, `editorial-redesign-article-mobile.png`, `editorial-redesign-listing-desktop.png`, `editorial-redesign-listing-mobile.png`.
 - Live baseline screenshots: `output/playwright/production-cnc-article-desktop.png`, `production-cnc-article-mobile.png`, `production-listing-desktop.png`, `production-listing-mobile.png`.
+- Layout refinement: `editorial-refinement-before-{320,390,768,1280,1440,1536}.png`, `editorial-refinement-after-{320,390,768,1280,1440,1536}.png`, and full-page `editorial-refinement-after-{390,1440}-full.png`.
+
+### Shared desktop grid refinement
+
+- Before at 1440px, the H1 began at x=100px while the image/body began at x=172px (72px misalignment); the reading column was 768px wide and metadata stretched across 1240px.
+- The article header and body now use the same 1200px outer grid. At 1280/1440/1536px, the reading column is 820px, the TOC sidebar is 280px, and the column gap is 38–40px. H1, excerpt, metadata, image, and body share one left edge at each tested width.
+- Paragraphs and lists stay within a 72ch measure. The metadata-to-feature-image gap fell from 77px to 53px at 1440px; featured media and article content are unchanged.
+- At 768/390/320px the layout remains one column with the native TOC disclosure. All six widths have no page-level horizontal overflow. The TOC remains sticky at 96px below the site header on desktop and stops within the article section.
 
 ## Verification
 
 - `npm run verify` passed after the final implementation change: lint, frontend and edge type checks, 851 root tests, 313 supplier tests, 38 Payload CMS integration tests, CMS build plus Wrangler production dry run, 3,602-page static frontend export, SEO/schema/sitemap audits, media checks, and internal link validation.
-- Built-site Playwright suite passed for all three sitemap article routes, `/bai-viet/`, and `/cms-preview/`. It checks unique H1s and metadata/schema, sitemap/canonical/indexability, TOC targets and keyboard use, reduced motion, sticky sidebar containment, mobile table scrolling, preview noindex, console/hydration errors, and horizontal overflow at 320, 390, 768, 1280, and 1440 CSS pixels.
+- Built-site Playwright suite passed for all three sitemap article routes, `/bai-viet/`, and `/cms-preview/`. It checks unique H1s and metadata/schema, sitemap/canonical/indexability, TOC targets and keyboard use, reduced motion, sticky sidebar containment, mobile table scrolling, preview noindex, console/hydration errors, and horizontal overflow at 320, 390, 768, 1280, 1440, and 1536 CSS pixels. The layout-refinement test checks shared header/body alignment at all six sizes and desktop column dimensions at 1280/1440/1536px.
 - Full-page axe WCAG 2.2 A/AA scans returned zero violations on the CNC article and listing pages.
 - Chromium lab run against the final static build: 390px mobile LCP 1.156s (paragraph), CLS 0, 58ms total long tasks; 1440px desktop LCP 2.256s (featured image), CLS 0.00053, 60ms total long tasks. Both ran with 4× CPU throttling, 150ms latency, 1.6Mbps down / 750kbps up. Local TTFB was 1–2ms and the desktop LCP image transferred 119,152 bytes. These are single local lab samples, not field/Core Web Vitals data or a before/after performance claim.
 - The article route adds a 1.6 kB route chunk in the build report; total first-load JavaScript remains 128 kB for article routes (103 kB shared). The project JavaScript budget passed.

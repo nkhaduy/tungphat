@@ -8,7 +8,7 @@ function displayDate(value: string) {
   return `${day}/${month}/${year}`;
 }
 
-export function ArticleHeader({ article }: { article: Pick<ArticleFrontmatter, "title" | "excerpt" | "category" | "author" | "publishedAt" | "updatedAt"> }) {
+export function ArticleHeader({ article, hasSidebar }: { article: Pick<ArticleFrontmatter, "title" | "excerpt" | "category" | "author" | "publishedAt" | "updatedAt">; hasSidebar: boolean }) {
   const published = displayDate(article.publishedAt);
   const updated = article.updatedAt !== article.publishedAt ? displayDate(article.updatedAt) : null;
   const category = article.category.trim();
@@ -16,7 +16,7 @@ export function ArticleHeader({ article }: { article: Pick<ArticleFrontmatter, "
 
   return (
     <header className="editorial-header border-b border-forest-900/10 bg-white">
-      <div className="container-shell editorial-header__inner">
+      <div className={`container-shell editorial-header__inner${hasSidebar ? "" : " editorial-header__inner--single"}`}>
         <Breadcrumbs items={[
           { label: "Trang chủ", href: "/" },
           { label: "Bài viết", href: "/bai-viet/" },

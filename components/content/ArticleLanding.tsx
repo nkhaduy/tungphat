@@ -75,7 +75,7 @@ export function ArticleLanding({ article, relatedItems = [] }: { article: Conten
       <SiteShell>
         <ContentEngagementTracker contentType="article" contentId={article.slug} contentTitle={article.title} contentCategory={article.category} />
         <article data-analytics-content>
-          <ArticleHeader article={article} />
+          <ArticleHeader article={article} hasSidebar={hasSidebar} />
           <section className="editorial-reading-section">
             <div className={`container-shell editorial-layout${hasSidebar ? " editorial-layout--with-sidebar" : " editorial-layout--without-sidebar"}`}>
               {hasSidebar ? <aside className="editorial-sidebar" aria-label="Điều hướng bài viết">
