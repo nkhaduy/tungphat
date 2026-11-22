@@ -32,7 +32,7 @@ export const canCreateUser: Access = async ({ req }) => {
   if (req.user) return false
   const existing = await req.payload.find({ collection: 'users', limit: 1, depth: 0, overrideAccess: true })
   if (existing.totalDocs !== 0) return false
-  if (process.env.CMS_ENVIRONMENT !== 'production') return true
+  if (process.env.CMS_ENVIRONMENT === 'local') return true
   const expected = process.env.BOOTSTRAP_SECRET ?? ''
   const supplied = req.headers.get('x-bootstrap-secret') ?? ''
   if (!expected || !supplied) return false
