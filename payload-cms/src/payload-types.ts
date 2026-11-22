@@ -455,6 +455,24 @@ export interface Article {
   id: number;
   title: string;
   excerpt: string;
+  /**
+   * Soạn theo từng khối. Dùng + để chèn ảnh, bảng, thư viện ảnh, FAQ, nút, mã hoặc video YouTube.
+   */
+  editorContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   category: string;
   tags?:
     | {
@@ -483,7 +501,11 @@ export interface Article {
       }[]
     | null;
   /**
-   * Markdown được giữ nguyên để tương thích dữ liệu và renderer hiện tại.
+   * Bật khi nội dung block đã thay thế hoàn toàn phần Markdown cũ bên dưới.
+   */
+  legacyBodyHidden?: boolean | null;
+  /**
+   * Dữ liệu bài cũ được giữ nguyên. Bài mới dùng trình soạn thảo khối ở phía trên.
    */
   body: string;
   video?: (number | null) | Media;
@@ -1128,6 +1150,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface ArticlesSelect<T extends boolean = true> {
   title?: T;
   excerpt?: T;
+  editorContent?: T;
   category?: T;
   tags?:
     | T
@@ -1155,6 +1178,7 @@ export interface ArticlesSelect<T extends boolean = true> {
         answer?: T;
         id?: T;
       };
+  legacyBodyHidden?: T;
   body?: T;
   video?: T;
   catalogue?: T;

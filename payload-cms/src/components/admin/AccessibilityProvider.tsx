@@ -12,6 +12,32 @@ export default function AccessibilityProvider({ children }: Props) {
     let previousFocus: HTMLElement | null = null
 
     const labelDocumentMenus = () => {
+      const lexicalToolbarLabels: Record<string, string> = {
+        bold: 'In đậm',
+        italic: 'In nghiêng',
+        underline: 'Gạch chân',
+        strikethrough: 'Gạch ngang',
+        inlineCode: 'Mã nội tuyến',
+        link: 'Chèn liên kết',
+        unorderedList: 'Danh sách dấu đầu dòng',
+        orderedList: 'Danh sách đánh số',
+        heading: 'Định dạng tiêu đề',
+        blockquote: 'Trích dẫn',
+        horizontalRule: 'Đường phân cách',
+        upload: 'Chèn ảnh',
+      }
+
+      document.querySelectorAll<HTMLButtonElement>('.toolbar-popup__button[data-button-key]').forEach((button) => {
+        if (button.getAttribute('aria-label')?.trim()) return
+        const label = lexicalToolbarLabels[button.dataset.buttonKey || ''] || 'Định dạng văn bản'
+        button.setAttribute('aria-label', label)
+        button.setAttribute('title', label)
+      })
+
+      document.querySelectorAll<HTMLElement>('.ContentEditable__root[contenteditable="true"]').forEach((editor) => {
+        if (!editor.getAttribute('aria-label')?.trim()) editor.setAttribute('aria-label', 'Nội dung bài viết')
+      })
+
       document.querySelectorAll<HTMLButtonElement>('.doc-controls__popup > .popup__trigger-wrap > button:not([aria-label])').forEach((button) => {
         button.setAttribute('aria-label', 'Tùy chọn tài liệu')
         button.setAttribute('title', 'Tùy chọn tài liệu')
@@ -52,6 +78,12 @@ export default function AccessibilityProvider({ children }: Props) {
       document.querySelectorAll<HTMLButtonElement>('.date-time-picker__clear-button:not([aria-label])').forEach((button) => {
         button.setAttribute('aria-label', 'Xóa ngày')
         button.setAttribute('title', 'Xóa ngày')
+      })
+
+      document.querySelectorAll<HTMLButtonElement>('.clickable-arrow:not([aria-label])').forEach((button) => {
+        const label = button.classList.contains('clickable-arrow--left') ? 'Trang trước' : 'Trang tiếp theo'
+        button.setAttribute('aria-label', label)
+        button.setAttribute('title', label)
       })
 
       document.querySelectorAll<HTMLElement>('.doc-tabs__tabs').forEach((tabList) => {

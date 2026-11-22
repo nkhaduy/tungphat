@@ -14,7 +14,7 @@ export const publicationFields = (rootSlug = false): Field[] => [
   ...seoFields,
 ]
 
-export function contentCollection(config: CollectionConfig): CollectionConfig {
+export function contentCollection(config: CollectionConfig, options: { autosave?: false | { interval?: number; showSaveDraftButton?: boolean } } = {}): CollectionConfig {
   return {
     ...config,
     access: {
@@ -29,7 +29,7 @@ export function contentCollection(config: CollectionConfig): CollectionConfig {
       beforeChange: [preventEditorPublish(), ...(config.hooks?.beforeChange ?? [])],
     },
     versions: {
-      drafts: { autosave: false, schedulePublish: false },
+      drafts: { autosave: options.autosave ?? false, schedulePublish: false },
       maxPerDoc: 30,
     },
     timestamps: true,

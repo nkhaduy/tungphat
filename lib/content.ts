@@ -18,10 +18,28 @@ import { articleAdditionalSections, articleBodyOverrides } from "@/lib/content-o
 import { cmsManagedMaterialSlugs } from "@/lib/product-ownership";
 
 type MediaMetadata = { width?: number; height?: number; type?: string };
-export type ContentEntry<T> = T & { body: string; sourcePath: string; mediaMetadata?: { featuredImage?: MediaMetadata; ogImage?: MediaMetadata }; wordpress?: { html: string; mediaOrigin: string; allowInsecureLoopback: boolean } };
+export type ContentEntry<T> = T & { body: string; sourcePath: string; editorContent?: unknown; legacyBodyHidden?: boolean; mediaMetadata?: { featuredImage?: MediaMetadata; ogImage?: MediaMetadata }; wordpress?: { html: string; mediaOrigin: string; allowInsecureLoopback: boolean } };
 
 const cmsOrigin = (process.env.PAYLOAD_CMS_URL || "https://cms.mdftungphat.com").replace(/\/$/u, "");
 const collectionCache = new Map<string, Promise<Record<string, unknown>[]>>();
+
+export function payloadCollectionOrigin(
+  collection: string,
+  defaultCmsOrigin: string,
+  articlesOrigin = process.env.PAYLOAD_ARTICLES_URL,
+  buildTarget = process.env.STATIC_BUILD_TARGET,
+) {
+  if (collection !== "articles" || buildTarget !== "preview") return defaultCmsOrigin.replace(/\/+$/u, "");
+  if (!articlesOrigin?.trim()) throw new Error("Preview builds require PAYLOAD_ARTICLES_URL to point to the isolated staging CMS.");
+
+  let stagingUrl: URL;
+  try { stagingUrl = new URL(articlesOrigin); }
+  catch { throw new Error("Preview builds require a valid isolated staging CMS URL."); }
+  if (stagingUrl.protocol !== "https:" || stagingUrl.hostname !== "tungphat-payload-cms-staging.nkhaduy.workers.dev" || stagingUrl.username || stagingUrl.password) {
+    throw new Error("Preview article builds may only read from the isolated staging CMS over HTTPS.");
+  }
+  return stagingUrl.origin;
+}
 
 /** Guard only fields whose CMS values would otherwise be hidden by repository copy. */
 export function cmsEditorialFingerprint(collection: "articles" | "products", doc: Record<string, unknown>) {
@@ -58,6 +76,8 @@ async function readCollection<T>(folder: string, schema: { parse: (value: unknow
     return {
       ...frontmatter,
       body: text(doc.body),
+      editorContent: doc.editorContent,
+      legacyBodyHidden: folder === "articles" && doc.legacyBodyHidden === true,
       sourcePath: `payload://${folder}/${text(doc.slug)}`,
       mediaMetadata: { featuredImage: mediaMetadata(doc.featuredImage), ogImage: mediaMetadata(seo.ogImage) },
     };
@@ -67,7 +87,8 @@ async function readCollection<T>(folder: string, schema: { parse: (value: unknow
 async function payloadCollection(collection: string) {
   let request = collectionCache.get(collection);
   if (!request) {
-    request = fetch(`${cmsOrigin}/api/${collection}?limit=100&depth=1&sort=slug`, { cache: "force-cache" })
+    const origin = payloadCollectionOrigin(collection, cmsOrigin);
+    request = fetch(`${origin}/api/${collection}?limit=100&depth=1&sort=slug`, { cache: "force-cache" })
       .then(async (response) => {
         if (!response.ok) throw new Error(`Payload ${collection} fetch failed: HTTP ${response.status}`);
         const value = await response.json() as { docs?: Record<string, unknown>[]; hasNextPage?: boolean };

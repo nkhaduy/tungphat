@@ -1,14 +1,13 @@
 import config from '@payload-config'
 import { getPayload } from 'payload'
 import { headers } from 'next/headers'
-import Image from 'next/image'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { validPreviewToken } from '@/security/previewToken'
+import AuthenticatedPreview from '@/components/admin/AuthenticatedPreview'
 
 export const dynamic = 'force-dynamic'
-export const metadata: Metadata = { title: 'Xem trước nội dung · Tùng Phát CMS' }
+export const metadata: Metadata = { title: 'Xem trước nội dung · Tùng Phát CMS', robots: { index: false, follow: false, noarchive: true } }
 
 const previewCollections = ['products', 'articles', 'projects', 'pages'] as const
 type PreviewCollection = (typeof previewCollections)[number]
@@ -27,19 +26,47 @@ export default async function PreviewPage({ params, searchParams }: { params: Pr
   const result = await payload.find({ collection, where: { slug: { equals: slug } }, draft: true, limit: 1, depth: 1, overrideAccess: false, user: auth.user })
   const doc = result.docs[0] as unknown as Record<string, unknown> | undefined
   if (!doc) notFound()
-  const media = doc.featuredImage && typeof doc.featuredImage === 'object' ? doc.featuredImage as Record<string, unknown> : undefined
-  const imageURL = typeof media?.url === 'string' ? media.url : undefined
+  const previewData = projectPreviewData(collection, doc)
+  const previewURL = `${(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://gotungphat.com').replace(/\/$/u, '')}/cms-preview`
+  return <main className="min-h-screen bg-white"><AuthenticatedPreview collection={collection} data={previewData} previewURL={previewURL} /></main>
+}
 
-  return <main style={{ minHeight: '100vh', background: '#F5F8F6', color: '#17211D', padding: 'clamp(24px, 5vw, 72px)' }}>
-    <article style={{ maxWidth: 960, margin: '0 auto', background: '#fff', border: '1px solid #DCE6E1', borderRadius: 16, overflow: 'hidden', boxShadow: '0 18px 60px rgba(3, 63, 45, 0.08)' }}>
-      {imageURL ? <Image src={imageURL} alt={String(doc.featuredImageAlt ?? '')} width={Number(media?.width ?? 1200)} height={Number(media?.height ?? 800)} unoptimized style={{ display: 'block', width: '100%', height: 'auto', maxHeight: 480, objectFit: 'cover' }} /> : null}
-      <div style={{ padding: 'clamp(24px, 5vw, 64px)' }}>
-        <Link href="/admin" style={{ display: 'inline-flex', marginBottom: 24, color: '#064B36', fontWeight: 700 }}>← Quay lại CMS</Link>
-        <p style={{ color: '#A94300', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Preview đã xác thực · {String(doc._status ?? 'draft')}</p>
-        <h1 style={{ color: '#064B36', fontSize: 'clamp(2rem, 5vw, 4rem)', lineHeight: 1.08, margin: '12px 0 20px' }}>{String(doc.title ?? 'Chưa có tiêu đề')}</h1>
-        <p style={{ color: '#5F6E67', fontSize: 18, lineHeight: 1.7 }}>{String(doc.excerpt ?? '')}</p>
-        <div style={{ marginTop: 32, paddingTop: 32, borderTop: '1px solid #DCE6E1', whiteSpace: 'pre-wrap', fontSize: 17, lineHeight: 1.8 }}>{String(doc.body ?? '')}</div>
-      </div>
-    </article>
-  </main>
+const fieldsByCollection: Record<PreviewCollection, string[]> = {
+  articles: ['title', 'slug', 'excerpt', 'body', 'editorContent', 'legacyBodyHidden', 'featuredImage', 'featuredImageAlt', 'category', 'tags', 'author', 'publishedAt', 'updatedAt', 'faq', 'relatedProducts', 'relatedArticles'],
+  products: ['title', 'slug', 'category', 'excerpt', 'body', 'featuredImage', 'featuredImageAlt', 'materialType', 'supplier', 'dimensions', 'thicknesses', 'surfaces', 'standards', 'applications', 'advantages', 'limitations', 'orderingSteps', 'status', 'quoteCta', 'publishedAt', 'updatedAt', 'faq', 'relatedArticles'],
+  projects: ['title', 'slug', 'body', 'featuredImage', 'featuredImageAlt', 'materialType', 'processingType', 'thickness', 'area', 'workItems', 'customerRequirement', 'process', 'result', 'completedAt', 'publishedAt', 'updatedAt', 'quoteCta'],
+  pages: ['title', 'slug', 'eyebrow', 'excerpt', 'body', 'featuredImage', 'featuredImageAlt', 'materialTypes', 'workItems', 'process', 'fileGuidance', 'quoteCta', 'publishedAt', 'updatedAt', 'faq'],
+}
+
+const safeLexicalKeys = new Set(['root', 'type', 'version', 'children', 'text', 'format', 'detail', 'mode', 'style', 'direction', 'indent', 'tag', 'listType', 'start', 'checked', 'value', 'fields', 'blockType', 'relationTo', 'url', 'alt', 'caption', 'id', 'width', 'height', 'columns', 'rows', 'cells', 'items', 'label', 'title', 'description', 'href', 'code', 'language', 'question', 'answer', 'image', 'images'])
+
+function projectLexical(value: unknown, depth = 0): unknown {
+  if (depth > 32) return undefined
+  if (typeof value === 'string') return value.slice(0, 20_000)
+  if (typeof value === 'number' || typeof value === 'boolean' || value === null) return value
+  if (Array.isArray(value)) return value.slice(0, 2_000).map((item) => projectLexical(item, depth + 1)).filter((item) => item !== undefined)
+  if (!value || typeof value !== 'object') return undefined
+  const projected: Record<string, unknown> = {}
+  for (const [key, item] of Object.entries(value as Record<string, unknown>).slice(0, 100)) {
+    if (!safeLexicalKeys.has(key)) continue
+    const safe = projectLexical(item, depth + 1)
+    if (safe !== undefined) projected[key] = safe
+  }
+  return projected
+}
+
+function projectMedia(value: unknown) {
+  if (!value || typeof value !== 'object') return value
+  const media = value as Record<string, unknown>
+  return { id: media.id, url: media.url, alt: media.alt, width: media.width, height: media.height }
+}
+
+function projectPreviewData(collection: PreviewCollection, doc: Record<string, unknown>) {
+  const data: Record<string, unknown> = {}
+  for (const field of fieldsByCollection[collection]) {
+    if (!(field in doc)) continue
+    data[field] = field === 'editorContent' ? projectLexical(doc[field]) : field === 'featuredImage' ? projectMedia(doc[field]) : doc[field]
+  }
+  data.draft = true
+  return data
 }

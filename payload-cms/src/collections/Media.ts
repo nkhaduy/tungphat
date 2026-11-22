@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { canDeleteContent, canManageContent } from '@/access/roles'
-import { MAX_MEDIA_BYTES } from '@/security/mediaUpload'
+import { MAX_MEDIA_BYTES, mediaFileChecksum } from '@/security/mediaUpload'
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -19,10 +19,27 @@ export const Media: CollectionConfig = {
     delete: canDeleteContent,
   },
   hooks: {
-    beforeValidate: [({ req }) => {
+    beforeValidate: [async ({ data, req, operation }) => {
       const fileSize = req.file?.size
       if (typeof fileSize === 'number' && fileSize > MAX_MEDIA_BYTES) {
         throw new Error('Tệp tải lên không được vượt quá 15 MB.')
+      }
+
+      if (operation === 'create' && req.file) {
+        const checksum = await mediaFileChecksum(req.file)
+        if (data) data.checksum = checksum
+        const duplicates = await req.payload.find({
+          collection: 'media',
+          where: { checksum: { equals: checksum } },
+          limit: 1,
+          depth: 0,
+          overrideAccess: false,
+          req,
+        })
+        if (duplicates.docs.length) {
+          const existing = duplicates.docs[0] as { filename?: string }
+          throw new Error(`Tệp này đã có trong thư viện${existing.filename ? ` (${existing.filename})` : ''}. Hãy chọn bản đã tải lên.`)
+        }
       }
     }],
     beforeChange: [({ data, req, operation }) => {

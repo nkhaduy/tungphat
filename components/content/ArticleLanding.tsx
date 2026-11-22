@@ -4,12 +4,14 @@ import { JsonLd } from "@/components/JsonLd";
 import { ContentEngagementTracker } from "@/components/analytics/ContentEngagementTracker";
 import { FaqList } from "@/components/content/FaqList";
 import { MarkdownContent } from "@/components/content/MarkdownContent";
+import { hasLexicalContent, LexicalContent } from "@/components/content/LexicalContent";
 import { WordPressArticleBody } from "@/components/content/WordPressArticleBody";
 import { SiteShell } from "@/components/site/SiteShell";
 import { ContactCTA } from "@/components/ui/ContactCTA";
 import { ContentHero } from "@/components/content/ContentHero";
 import { MaterialImage } from "@/components/products/MaterialImage";
 import { splitCncArticle } from "@/lib/cnc-article-diagram";
+import { articleContentPlan } from "@/lib/article-content-plan";
 import type { ContentEntry } from "@/lib/content";
 import type { ArticleFrontmatter } from "@/lib/content-schema";
 import { absoluteMediaUrl, resolveMediaUrl } from "@/lib/media";
@@ -85,6 +87,7 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
     description: "Gửi loại vật liệu, quy cách, số lượng và hình ảnh hoặc file liên quan để trao đổi rõ việc cần làm.",
     zaloLabel: "Gửi yêu cầu qua Zalo",
   };
+  const contentPlan = articleContentPlan(hasLexicalContent(article.editorContent), article.legacyBodyHidden === true);
 
   return (
     <>
@@ -109,6 +112,7 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
                 <div data-answer-block>
                   <p className="mb-8 max-w-[72ch] text-lg leading-8 text-slate-700">{article.excerpt}</p>
                   {article.wordpress ? <WordPressArticleBody html={article.wordpress.html} mediaOrigins={[article.wordpress.mediaOrigin]} allowInsecureLoopback={article.wordpress.allowInsecureLoopback} /> : <>
+                  {contentPlan.legacy ? <>
                   {article.slug === "go-ghep-la-gi" ? <figure className="mb-10">
                     <div className="relative aspect-[1200/677] overflow-hidden rounded-lg bg-[#f7f8f5]">
                       <MaterialImage src="/sanpham-media/go-ghep-cao-su.webp" alt="Mặt tấm gỗ ghép cao su, nhìn thấy các thanh gỗ và mối ghép" sizes="(max-width: 1023px) 100vw, 42rem" />
@@ -133,6 +137,8 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
                     </figure>
                     <MarkdownContent className="text-[1rem] leading-7 sm:text-[1.0625rem] sm:leading-8 prose-p:my-0 prose-p:mb-6 prose-headings:font-extrabold prose-h2:mb-4 prose-h2:mt-10 prose-h2:text-2xl prose-h2:leading-tight sm:prose-h2:text-[1.75rem] prose-h3:mb-3 prose-h3:mt-8 prose-h3:text-xl prose-h3:leading-snug prose-li:my-2">{cncParts[1]}</MarkdownContent>
                   </> : null}
+                  </> : null}
+                  {contentPlan.lexical ? <LexicalContent value={article.editorContent} className="text-[1rem] leading-7 sm:text-[1.0625rem] sm:leading-8 prose-p:my-0 prose-p:mb-6 prose-headings:font-extrabold prose-h2:mb-4 prose-h2:mt-10 prose-h2:text-2xl prose-h2:leading-tight sm:prose-h2:text-[1.75rem] prose-h3:mb-3 prose-h3:mt-8 prose-h3:text-xl prose-h3:leading-snug prose-li:my-2" /> : null}
                   </>}
                 </div>
               </div>

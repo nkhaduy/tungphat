@@ -51,3 +51,22 @@ export async function cleanupTestUser(): Promise<void> {
     },
   })
 }
+
+export async function cleanupTestEditorialArtifacts(): Promise<void> {
+  const payload = await getPayload({ config })
+  await payload.delete({
+    collection: 'articles',
+    overrideAccess: true,
+    where: { slug: { like: 'e2e-editor-%' } },
+  })
+  await payload.delete({
+    collection: 'media',
+    overrideAccess: true,
+    where: { filename: { like: 'e2e-editor-%' } },
+  })
+  await payload.delete({
+    collection: 'media',
+    overrideAccess: true,
+    where: { alt: { equals: 'Ảnh kiểm thử editor local' } },
+  })
+}

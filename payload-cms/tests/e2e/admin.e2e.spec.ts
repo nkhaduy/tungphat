@@ -1,8 +1,8 @@
 import path from 'node:path'
 import AxeBuilder from '@axe-core/playwright'
-import { test, expect, Page } from '@playwright/test'
+import { test, expect, Page, request } from '@playwright/test'
 import { login } from '../helpers/login'
-import { seedTestUser, cleanupTestUser, testUser } from '../helpers/seedUser'
+import { seedTestUser, cleanupTestUser, cleanupTestEditorialArtifacts, testUser } from '../helpers/seedUser'
 
 async function expectNoSeriousAxeIssues(page: Page) {
   await page.waitForTimeout(250)
@@ -15,11 +15,28 @@ async function expectNoPageOverflow(page: Page) {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true)
 }
 
+async function requestFromPage(page: Page, url: string, method = 'GET', data?: unknown) {
+  return page.evaluate(async ({ url, method, data }) => {
+    const response = await fetch(url, {
+      method,
+      credentials: 'include',
+      ...(data === undefined ? {} : { headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }),
+    })
+    return { status: response.status, body: await response.json().catch(() => null) as unknown }
+  }, { url, method, data })
+}
+
+function responseDoc(value: unknown): Record<string, unknown> {
+  if (!value || typeof value !== 'object') return {}
+  const record = value as Record<string, unknown>
+  return record.doc && typeof record.doc === 'object' ? record.doc as Record<string, unknown> : record
+}
+
 test.describe('Admin Panel', () => {
   let page: Page
   let testUserId: string | number
-
   test.beforeAll(async ({ browser }) => {
+    await cleanupTestEditorialArtifacts()
     testUserId = await seedTestUser()
 
     const context = await browser.newContext()
@@ -29,6 +46,7 @@ test.describe('Admin Panel', () => {
   })
 
   test.afterAll(async () => {
+    await cleanupTestEditorialArtifacts()
     await page.context().close()
     await cleanupTestUser()
   })
@@ -127,11 +145,83 @@ test.describe('Admin Panel', () => {
     await expect(listViewArtifact).toBeVisible()
   })
 
-  test('can navigate to edit view', async () => {
+  test('draft autosaves, stays private, previews Lexical content, publishes and unpublishes', async () => {
     await page.goto('/admin/collections/articles/create')
-    await expect(page).toHaveURL(/\/admin\/collections\/articles\/create/)
-    const editViewArtifact = page.locator('input[name="title"]')
-    await expect(editViewArtifact).toBeVisible()
+    await expect(page).toHaveURL(/\/admin\/collections\/articles\/\d+$/, { timeout: 30_000 })
+    const articleID = page.url().match(/\/articles\/(\d+)$/)?.[1]
+    expect(articleID).toBeTruthy()
+
+    const title = 'Bản nháp kiểm thử editor Lexical'
+    const slug = `e2e-editor-${Date.now()}`
+    const content = 'Nội dung kiểm thử bản nháp và xem trước.'
+    const editor = page.locator('.ContentEditable__root[contenteditable="true"]').first()
+    await expect(page.locator('input[name="title"]')).toBeVisible()
+    await expect(editor).toBeVisible()
+    await page.locator('input[name="title"]').fill(title)
+    await page.locator('input[name="slug"]').fill(slug)
+    await page.getByRole('textbox', { name: 'Chọn excerpt' }).fill('Bản nháp này kiểm tra lưu tự động, nội dung Lexical và bản xem trước có xác thực trong môi trường thử nghiệm.')
+    await editor.fill(content)
+    await expect.poll(async () => {
+      const response = await requestFromPage(page, `/api/articles/${articleID}?draft=true`)
+      if (response.status !== 200 || !response.body || typeof response.body !== 'object') return false
+      const doc = response.body as Record<string, unknown>
+      return doc.title === title && JSON.stringify(doc.editorContent).includes(content)
+    }, { timeout: 30_000, intervals: [500, 1_000, 1_500] }).toBe(true)
+
+    const draftResponse = await requestFromPage(page, `/api/articles/${articleID}?draft=true`)
+    expect(draftResponse.status).toBe(200)
+    const draft = draftResponse.body as Record<string, unknown>
+    expect(draft.title).toBe(title)
+    expect(draft._status).toBe('draft')
+    expect(draft.editorContent).toBeTruthy()
+
+    const publicRequest = await request.newContext({ baseURL: 'http://127.0.0.1:3000' })
+    const hiddenDraft = await publicRequest.get(`/api/articles/${articleID}`)
+    expect(hiddenDraft.status()).toBe(404)
+
+    await page.goto(`/preview/articles/${slug}`)
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/i)
+    const preview = page.frameLocator('iframe[title="Bản xem trước nội dung Tùng Phát"]')
+    await expect(preview.getByRole('heading', { name: title })).toBeVisible()
+    await expect(preview.getByText('Nội dung kiểm thử bản nháp và xem trước.')).toHaveCount(1)
+
+    await page.goto('/admin/collections/media/create')
+    await page.locator('input[type="file"]').setInputFiles(path.resolve('public/brand/workshop-login.webp'))
+    await page.locator('input[name="alt"]').fill('Ảnh kiểm thử editor local')
+    await page.locator('#action-save').click()
+    await expect(page).toHaveURL(/\/admin\/collections\/media\/(\d+)/, { timeout: 30_000 })
+    const mediaID = page.url().match(/\/media\/(\d+)/)?.[1]
+    expect(mediaID).toBeTruthy()
+    const mediaCheck = await requestFromPage(page, `/api/media/${mediaID}`)
+    expect(mediaCheck.status).toBe(200)
+    expect((mediaCheck.body as { id?: number }).id).toBe(Number(mediaID))
+    await page.goto(`/admin/collections/articles/${articleID}`)
+
+    const today = new Date().toISOString().slice(0, 10)
+    const published = await requestFromPage(page, `/api/articles/${articleID}`, 'PATCH', {
+        _status: 'published',
+        featuredImage: Number(mediaID),
+        featuredImageAlt: 'Logo Tùng Phát dùng cho kiểm thử editor',
+        category: 'Kiểm thử',
+        author: 'Ban biên tập Tùng Phát',
+        publishedAt: today,
+        legacyUpdatedAt: today,
+        seo: {
+          title: 'Bản nháp kiểm thử xuất bản website',
+          description: 'Metadata này chỉ dùng trong bài kiểm thử cô lập để xác nhận quy trình xuất bản và gỡ đăng trên CMS Payload.',
+          canonical: `https://gotungphat.com/bai-viet/${slug}`,
+          noindex: true,
+        },
+    })
+    expect(published.status, JSON.stringify(published.body)).toBe(200)
+    expect(responseDoc(published.body)._status).toBe('published')
+    expect((await publicRequest.get(`/api/articles/${articleID}`)).status()).toBe(200)
+
+    const unpublished = await requestFromPage(page, `/api/articles/${articleID}`, 'PATCH', { _status: 'draft' })
+    expect(unpublished.status, JSON.stringify(unpublished.body)).toBe(200)
+    expect(responseDoc(unpublished.body)._status).toBe('draft')
+    expect((await publicRequest.get(`/api/articles/${articleID}`)).status()).toBe(404)
+    await publicRequest.dispose()
   })
 
   test('upload media qua local R2 và đọc lại file thật', async () => {
@@ -139,7 +229,7 @@ test.describe('Admin Panel', () => {
     await page.locator('input[type="file"]').setInputFiles(path.resolve('public/brand/logo-horizontal.png'))
     await page.locator('input[name="alt"]').fill('Logo Tùng Phát dùng để kiểm thử upload R2 local')
     await page.locator('#action-save').click()
-    await page.waitForURL(/\/admin\/collections\/media\/\d+/)
+    await expect(page).toHaveURL(/\/admin\/collections\/media\/\d+/, { timeout: 30_000 })
 
     const id = page.url().match(/\/media\/(\d+)/)?.[1]
     expect(id).toBeTruthy()

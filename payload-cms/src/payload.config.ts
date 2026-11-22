@@ -30,7 +30,6 @@ import { SeoDefaults } from '@/globals/SeoDefaults'
 import { StaticPages } from '@/globals/StaticPages'
 import { migrations } from '@/migrations'
 import { stagingEmailAdapter } from '@/email/stagingEmailAdapter'
-import { createPreviewToken } from '@/security/previewToken'
 import { installWebCryptoPbkdf2 } from '@/security/webCryptoPbkdf2'
 import { runtimeEndpoints } from '@/endpoints/runtime'
 
@@ -48,7 +47,7 @@ const cloudflare = isCLI || !isProduction || isNextBuild
   ? await getCloudflareContextFromWrangler(isNextBuild ? { persist: false } : undefined)
   : await getCloudflareContext({ async: true })
 const serverURL = process.env.PAYLOAD_PUBLIC_SERVER_URL ?? 'http://127.0.0.1:3000'
-const siteURL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://mdftungphat.com'
+const siteURL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://gotungphat.com'
 
 export default buildConfig({
   admin: {
@@ -62,8 +61,8 @@ export default buildConfig({
       titleSuffix: ' · Tùng Phát CMS',
       description: 'Quản trị nội dung Tùng Phát',
       icons: [
-        { rel: 'icon', url: 'https://mdftungphat.com/favicon.ico' },
-        { rel: 'apple-touch-icon', url: 'https://mdftungphat.com/apple-icon.png' },
+        { rel: 'icon', url: 'https://gotungphat.com/favicon.ico' },
+        { rel: 'apple-touch-icon', url: 'https://gotungphat.com/apple-icon.png' },
       ],
     },
     components: {
@@ -78,13 +77,10 @@ export default buildConfig({
     },
     livePreview: {
       collections: ['products', 'articles', 'projects', 'pages'],
-      url: ({ data, collectionConfig }) => {
+      url: ({ data }) => {
         const slug = typeof data.slug === 'string' ? data.slug : ''
         if (!slug) return null
-        const collection = String(collectionConfig?.slug)
-        if (!['products', 'articles', 'projects', 'pages'].includes(collection)) return null
-        const token = createPreviewToken(collection, slug)
-        return `${serverURL}/preview/${collection}/${slug}${token ? `?previewToken=${encodeURIComponent(token)}` : ''}`
+        return `${siteURL}/cms-preview`
       },
       breakpoints: [
         { name: 'mobile', label: 'Mobile', width: 390, height: 844 },

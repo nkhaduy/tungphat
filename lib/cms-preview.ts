@@ -12,7 +12,7 @@ export type CmsPreviewDraft = {
 };
 
 const allowedFields: Record<CmsPreviewCollection, Set<string>> = {
-  articles: new Set(["title", "slug", "excerpt", "body", "featuredImage", "featuredImageAlt", "category", "tags", "author", "publishedAt", "updatedAt", "draft", "faq", "relatedProducts", "relatedArticles"]),
+  articles: new Set(["title", "slug", "excerpt", "body", "editorContent", "legacyBodyHidden", "featuredImage", "featuredImageAlt", "category", "tags", "author", "publishedAt", "updatedAt", "draft", "faq", "relatedProducts", "relatedArticles"]),
   products: new Set(["title", "slug", "category", "excerpt", "body", "featuredImage", "featuredImageAlt", "materialType", "supplier", "dimensions", "thicknesses", "surfaces", "standards", "applications", "advantages", "limitations", "orderingSteps", "status", "quoteCta", "publishedAt", "updatedAt", "draft", "faq", "relatedArticles"]),
   projects: new Set(["title", "slug", "body", "featuredImage", "featuredImageAlt", "materialType", "processingType", "thickness", "area", "workItems", "customerRequirement", "process", "result", "completedAt", "publishedAt", "updatedAt", "quoteCta", "draft"]),
   pages: new Set(["title", "slug", "eyebrow", "excerpt", "body", "featuredImage", "featuredImageAlt", "materialTypes", "workItems", "process", "fileGuidance", "quoteCta", "publishedAt", "updatedAt", "draft", "faq"]),
@@ -52,9 +52,29 @@ function cleanMedia(value: unknown) {
   if (/^\/[A-Za-z0-9_./-]+$/.test(media)) return media;
   try {
     const url = new URL(media);
-    if (url.protocol === "https:" && ["mdftungphat.com", "cms.mdftungphat.com"].includes(url.hostname)) return url.toString();
+    if (url.protocol === "https:" && ["gotungphat.com", "mdftungphat.com", "cms.mdftungphat.com", "cdn.mdftungphat.com", "media.mdftungphat.com"].includes(url.hostname)) return url.toString();
   } catch { /* use fallback */ }
   return "/logo-horizontal.webp";
+}
+
+const lexicalKeys = new Set([
+  "root", "type", "version", "children", "text", "format", "detail", "mode", "style", "direction", "indent", "tag", "listType", "start", "checked", "value", "fields", "blockType", "relationTo", "url", "src", "alt", "caption", "id", "width", "height", "columns", "rows", "cells", "items", "label", "title", "description", "href", "code", "language", "question", "answer", "image", "images",
+]);
+
+function cleanLexical(value: unknown, state = { nodes: 0 }, depth = 0): unknown {
+  state.nodes += 1;
+  if (state.nodes > 20_000 || depth > 32) return undefined;
+  if (typeof value === "string") return cleanString(value, 20_000);
+  if (typeof value === "number" || typeof value === "boolean" || value === null) return value;
+  if (Array.isArray(value)) return value.slice(0, 2_000).map((item) => cleanLexical(item, state, depth + 1)).filter((item) => item !== undefined);
+  if (!value || typeof value !== "object") return undefined;
+  const output: Record<string, unknown> = {};
+  for (const [key, item] of Object.entries(value as Record<string, unknown>).slice(0, 100)) {
+    if (!lexicalKeys.has(key)) continue;
+    const cleaned = cleanLexical(item, state, depth + 1);
+    if (cleaned !== undefined) output[key] = cleaned;
+  }
+  return output;
 }
 
 export function sanitizeCmsPreviewDraft(value: unknown): CmsPreviewDraft | null {
@@ -70,6 +90,8 @@ export function sanitizeCmsPreviewDraft(value: unknown): CmsPreviewDraft | null 
   for (const field of allowedFields[collection]) {
     if (!(field in source)) continue;
     if (field === "body") data[field] = cleanMarkdown(source[field]);
+    else if (field === "editorContent") data[field] = cleanLexical(source[field]);
+    else if (field === "legacyBodyHidden") data[field] = source[field] === true;
     else if (field === "faq") data[field] = cleanFaq(source[field]);
     else if (["tags", "relatedProducts", "relatedArticles", "dimensions", "thicknesses", "surfaces", "standards", "applications", "advantages", "limitations", "orderingSteps", "workItems", "process", "materialTypes", "fileGuidance"].includes(field)) data[field] = cleanList(source[field]);
     else if (field === "featuredImage") data[field] = cleanMedia(source[field]);
@@ -77,6 +99,13 @@ export function sanitizeCmsPreviewDraft(value: unknown): CmsPreviewDraft | null 
     else data[field] = cleanString(source[field]);
   }
   return { collection, data, updatedAt: typeof input.updatedAt === "number" ? input.updatedAt : Date.now() };
+}
+
+export function sanitizePayloadLivePreviewMessage(value: unknown): CmsPreviewDraft | null {
+  if (!value || typeof value !== "object") return null;
+  const message = value as { type?: unknown; collectionSlug?: unknown; data?: unknown };
+  if (message.type !== "payload-live-preview" || typeof message.collectionSlug !== "string") return null;
+  return sanitizeCmsPreviewDraft({ collection: message.collectionSlug, data: message.data });
 }
 
 const today = new Date().toISOString().slice(0, 10);

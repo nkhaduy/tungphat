@@ -6,7 +6,7 @@ import { ArticleLanding } from "@/components/content/ArticleLanding";
 import { ProductLanding } from "@/components/content/ProductLanding";
 import { ProjectLanding } from "@/components/content/ProjectLanding";
 import { ServiceLanding } from "@/components/content/ServiceLanding";
-import { previewEntry, sanitizeCmsPreviewDraft, type CmsPreviewDraft } from "@/lib/cms-preview";
+import { previewEntry, sanitizePayloadLivePreviewMessage, type CmsPreviewDraft } from "@/lib/cms-preview";
 
 declare global { interface Window { __TP_PREVIEW__?: boolean } }
 
@@ -15,6 +15,9 @@ function trustedParent(origin: string) {
     "https://cms.mdftungphat.com",
     "https://tungphat-cms.pages.dev",
     "https://preview.tungphat-cms.pages.dev",
+    "https://tungphat-payload-cms-staging.nkhaduy.workers.dev",
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
     "http://127.0.0.1:4174",
     "http://localhost:4174",
   ]).has(origin);
@@ -41,8 +44,8 @@ export default function CmsPreviewPage() {
         window.parent.postMessage({ type: "tp-preview-ready" }, event.origin);
         return;
       }
-      if (event.data?.type !== "tp-preview-draft") return;
-      const next = sanitizeCmsPreviewDraft(event.data.payload);
+      if (event.data?.type !== "payload-live-preview") return;
+      const next = sanitizePayloadLivePreviewMessage(event.data);
       if (next) setDraft(next);
     };
     window.addEventListener("message", onMessage);

@@ -34,10 +34,19 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     },
   ],
-  webServer: {
-    command: 'PAYLOAD_SECRET=local-development-only-change-me CMS_ENVIRONMENT=local npm run dev',
-    reuseExistingServer: true,
-    url: 'http://127.0.0.1:3000',
-    timeout: 120_000,
-  },
+  webServer: [
+    {
+      command: 'PAYLOAD_SECRET=local-development-only-change-me CMS_ENVIRONMENT=local NEXT_PUBLIC_SITE_URL=http://127.0.0.1:4175 npm run dev',
+      reuseExistingServer: true,
+      url: 'http://127.0.0.1:3000',
+      timeout: 120_000,
+    },
+    {
+      command: 'npm run dev -- -p 4175',
+      cwd: '..',
+      reuseExistingServer: true,
+      url: 'http://127.0.0.1:4175/cms-preview',
+      timeout: 120_000,
+    },
+  ],
 })

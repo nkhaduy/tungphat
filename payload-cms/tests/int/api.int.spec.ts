@@ -1,6 +1,7 @@
 import { sql } from '@payloadcms/db-d1-sqlite'
 import { getPayload, type Payload } from 'payload'
 import config from '@/payload.config'
+import type { Article } from '@/payload-types'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 let payload: Payload
@@ -84,6 +85,39 @@ describe('Payload CMS thật với D1/R2 local', () => {
     expect(publicResult.docs.map((doc) => doc.slug)).toEqual([publishedSlug])
   })
 
+  it('giữ Markdown cũ khi bài hiện hữu nhận block đầu tiên và ẩn placeholder của bài mới', async () => {
+    const legacySlug = `integration-legacy-${suffix}`
+    const legacyBody = '## Nội dung cũ\n\nĐoạn Markdown cần tiếp tục xuất hiện trên website.'
+    const legacy = await payload.create({
+      collection: 'articles', draft: true, overrideAccess: false, user: admin,
+      data: { ...articleData(legacySlug, 'draft'), body: legacyBody },
+    })
+    const editorContent = {
+      root: {
+        type: 'root', format: '', indent: 0, version: 1, direction: 'ltr',
+        children: [{
+          type: 'paragraph', format: '', indent: 0, version: 1, direction: 'ltr', textFormat: 0, textStyle: '',
+          children: [{ type: 'text', detail: 0, format: 0, mode: 'normal', style: '', text: 'Nội dung block bổ sung', version: 1 }],
+        }],
+      },
+    } satisfies NonNullable<Article['editorContent']>
+    await payload.update({
+      collection: 'articles', id: legacy.id, draft: true, overrideAccess: false, user: admin,
+      data: { editorContent },
+    })
+    const updatedLegacy = await payload.findByID({ collection: 'articles', id: legacy.id, draft: true, overrideAccess: true })
+    expect(updatedLegacy.body).toBe(legacyBody)
+    expect(updatedLegacy.legacyBodyHidden).toBe(false)
+
+    const newSlug = `integration-blocks-${suffix}`
+    const created = await payload.create({
+      collection: 'articles', draft: true, overrideAccess: false, user: admin,
+      data: { ...articleData(newSlug, 'draft'), body: '', editorContent },
+    })
+    expect(created.body).toContain('Nội dung block bổ sung')
+    expect(created.legacyBodyHidden).toBe(true)
+  })
+
   it('preview URL dùng route staging cùng origin và yêu cầu session', async () => {
     const resolved = await config
     const preview = resolved.collections.find((collection) => collection.slug === 'articles')?.admin.preview
@@ -99,7 +133,7 @@ function articleData(slug: string, status: 'draft' | 'published') {
     title: 'Bài viết kiểm thử Payload Tùng Phát', slug, excerpt: 'Mô tả kiểm thử đủ dài để xác minh quyền lưu nháp và xuất bản trong Payload CMS local.',
     category: 'Kiểm thử', author: 'Ban kiểm thử Tùng Phát', body: '## Nội dung\n\nNội dung kiểm thử integration với Payload thật và database D1 local.',
     featuredImage: mediaID, featuredImageAlt: 'Logo Tùng Phát dùng trong bài viết kiểm thử Payload', publishedAt: '2026-07-29', legacyUpdatedAt: '2026-07-29',
-    seo: { title: 'Bài kiểm thử Payload CMS cho Tùng Phát', description: 'Nội dung kiểm thử Payload CMS với quyền truy cập, bản nháp và xuất bản trên database D1 local độc lập của Tùng Phát.', canonical: `https://mdftungphat.com/bai-viet/${slug}`, noindex: false },
+    seo: { title: 'Bài kiểm thử Payload CMS cho Tùng Phát', description: 'Nội dung kiểm thử Payload CMS với quyền truy cập, bản nháp và xuất bản trên database D1 local độc lập của Tùng Phát.', canonical: `https://gotungphat.com/bai-viet/${slug}`, noindex: false },
     _status: status,
   } as const
 }

@@ -22,7 +22,7 @@
     {
       "binding": "D1",
       // Local sentinel only. Replace with a dedicated staging D1 ID before staging.
-      "database_id": "00000000-0000-0000-0000-000000000001",
+      "database_id": "00000000-0000-0000-0000-000000000002",
       "database_name": "tungphat-payload-cms",
       "migrations_dir": "./src/migrations",
     },
@@ -48,7 +48,7 @@
   "vars": {
     "CMS_ENVIRONMENT": "local",
     "PAYLOAD_PUBLIC_SERVER_URL": "http://127.0.0.1:3000",
-    "NEXT_PUBLIC_SITE_URL": "https://mdftungphat.com"
+    "NEXT_PUBLIC_SITE_URL": "http://127.0.0.1:4173"
   },
   "observability": {
     "enabled": true,
@@ -64,8 +64,8 @@
       "vars": {
         "CMS_ENVIRONMENT": "staging",
         "PAYLOAD_PUBLIC_SERVER_URL": "https://tungphat-payload-cms-staging.nkhaduy.workers.dev",
-        "NEXT_PUBLIC_SITE_URL": "https://tungphat-payload-staging.pages.dev",
-        "BUILD_VERSION": "payload-3.92.1-staging-20261101"
+        "NEXT_PUBLIC_SITE_URL": "https://tungphat-static-assets-preview.nkhaduy.workers.dev",
+        "BUILD_VERSION": "payload-3.94.1-staging-20261122"
       },
       "d1_databases": [
         {
@@ -91,9 +91,9 @@
       "vars": {
         "CMS_ENVIRONMENT": "production",
         "PAYLOAD_PUBLIC_SERVER_URL": "https://cms.mdftungphat.com",
-        "NEXT_PUBLIC_SITE_URL": "https://mdftungphat.com",
+        "NEXT_PUBLIC_SITE_URL": "https://gotungphat.com",
         "NEXT_PUBLIC_MEDIA_BASE_URL": "https://cdn.mdftungphat.com",
-        "BUILD_VERSION": "payload-3.92.1-production-20261101"
+        "BUILD_VERSION": "payload-3.94.1-production-20261122"
       },
       "d1_databases": [
         {

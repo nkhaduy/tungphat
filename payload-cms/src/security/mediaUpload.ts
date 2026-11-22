@@ -9,3 +9,8 @@ export function oversizedMediaRequest(contentLength: string | null): boolean {
   const bytes = Number(contentLength)
   return Number.isFinite(bytes) && bytes > MAX_MEDIA_REQUEST_BYTES
 }
+
+export async function mediaFileChecksum(file: { data: Uint8Array }): Promise<string> {
+  const digest = await crypto.subtle.digest('SHA-256', file.data)
+  return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('')
+}
