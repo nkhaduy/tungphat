@@ -1,0 +1,1619 @@
+{
+  "checkedAt": "2026-11-01",
+  "productionCMSVersion": "7c72815f-65ae-43dd-87e1-cd8e0358e54b",
+  "productionGatewayDeployment": "cb234e0b-1cb9-4c9c-b57c-57792056e21b",
+  "archiveDeployment": "1eb0a303",
+  "browser": {
+    "passed": 81,
+    "failed": 0,
+    "origin": "https://62373703.tungphat-i9i.pages.dev",
+    "note": "Full real-preview suite; form mutation cases use isolated local Payload/D1; separate real staging CMS workflow evidence retained."
+  },
+  "unitTests": {
+    "frontend": 716,
+    "supplier": 313,
+    "cms": 38
+  },
+  "security": {
+    "info": 0,
+    "low": 2,
+    "moderate": 10,
+    "high": 0,
+    "critical": 0,
+    "total": 12
+  },
+  "profiles": {
+    "cpu-production-secure": {
+      "origin": "https://tungphat-payload-cms.nkhaduy.workers.dev",
+      "checkedAt": "2026-11-01T07:46:02.133Z",
+      "tailFailed": false,
+      "summary": [
+        {
+          "name": "health",
+          "samples": 3,
+          "measured": 2,
+          "cpuMs": [
+            0,
+            0,
+            null
+          ],
+          "durableCpuMs": [
+            593,
+            6,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            null
+          ]
+        },
+        {
+          "name": "login",
+          "samples": 3,
+          "measured": 2,
+          "cpuMs": [
+            0,
+            0,
+            null
+          ],
+          "durableCpuMs": [
+            547,
+            35,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            null
+          ]
+        },
+        {
+          "name": "products",
+          "samples": 3,
+          "measured": 2,
+          "cpuMs": [
+            0,
+            0,
+            null
+          ],
+          "durableCpuMs": [
+            24,
+            18,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            null
+          ]
+        },
+        {
+          "name": "global",
+          "samples": 3,
+          "measured": 1,
+          "cpuMs": [
+            0,
+            null,
+            null
+          ],
+          "durableCpuMs": [
+            9,
+            null,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            null,
+            null
+          ]
+        },
+        {
+          "name": "media",
+          "samples": 3,
+          "measured": 1,
+          "cpuMs": [
+            0,
+            null,
+            null
+          ],
+          "durableCpuMs": [
+            8,
+            null,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            null,
+            null
+          ]
+        },
+        {
+          "name": "preflight",
+          "samples": 3,
+          "measured": 1,
+          "cpuMs": [
+            0,
+            null,
+            null
+          ],
+          "durableCpuMs": [
+            6,
+            null,
+            null
+          ],
+          "statuses": [
+            204,
+            204,
+            204
+          ],
+          "outcomes": [
+            "ok",
+            null,
+            null
+          ]
+        },
+        {
+          "name": "invalid-contact",
+          "samples": 3,
+          "measured": 1,
+          "cpuMs": [
+            0,
+            null,
+            null
+          ],
+          "durableCpuMs": [
+            11,
+            null,
+            null
+          ],
+          "statuses": [
+            400,
+            400,
+            400
+          ],
+          "outcomes": [
+            "ok",
+            null,
+            null
+          ]
+        },
+        {
+          "name": "unauthenticated-leads",
+          "samples": 3,
+          "measured": 1,
+          "cpuMs": [
+            0,
+            null,
+            null
+          ],
+          "durableCpuMs": [
+            9,
+            null,
+            null
+          ],
+          "statuses": [
+            403,
+            403,
+            403
+          ],
+          "outcomes": [
+            "ok",
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    "cpu-final-editor": {
+      "origin": "https://tungphat-payload-cms-staging.nkhaduy.workers.dev",
+      "checkedAt": "2026-11-01T07:39:08.142Z",
+      "tailFailed": false,
+      "summary": [
+        {
+          "name": "bootstrap-staging-admin",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            3915
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "valid-login",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            1491
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "invalid-login",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            1450
+          ],
+          "statuses": [
+            401
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "authenticated-me",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            13
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "authorized-leads",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            13
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "unauthenticated-leads",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            403
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "media-upload",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            25
+          ],
+          "statuses": [
+            201
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "media-exact-bytes",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "editor-create",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            1
+          ],
+          "durableCpuMs": [
+            1418
+          ],
+          "statuses": [
+            201
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "editor-login",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            1351
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "editor-save-draft",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            19
+          ],
+          "statuses": [
+            201
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "public-draft-hidden",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            404
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "editor-publish-denied",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            403
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "admin-publish",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "public-published-visible",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "media-metadata-edit",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "editor-user-create-denied",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            403
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "cleanup-articles",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            25
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "cleanup-media",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "cleanup-users",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            16
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "logout",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            null
+          ]
+        },
+        {
+          "name": "login-after-logout",
+          "samples": 1,
+          "measured": 1,
+          "cpuMs": [
+            0
+          ],
+          "durableCpuMs": [
+            1427
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            "ok"
+          ]
+        },
+        {
+          "name": "fixture-cleanup-after-logout",
+          "samples": 1,
+          "measured": 0,
+          "cpuMs": [
+            null
+          ],
+          "durableCpuMs": [
+            null
+          ],
+          "statuses": [
+            200
+          ],
+          "outcomes": [
+            null
+          ]
+        }
+      ]
+    },
+    "cpu-gateway-uuid": {
+      "origin": "https://75b81e2f.tungphat-light-cms-production.pages.dev",
+      "checkedAt": "2026-11-01T07:27:56.830Z",
+      "tailFailed": false,
+      "summary": [
+        {
+          "name": "media",
+          "samples": 3,
+          "measured": 3,
+          "cpuMs": [
+            1,
+            1,
+            0
+          ],
+          "durableCpuMs": [
+            null,
+            null,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            "ok"
+          ]
+        },
+        {
+          "name": "preflight",
+          "samples": 3,
+          "measured": 3,
+          "cpuMs": [
+            0,
+            0,
+            0
+          ],
+          "durableCpuMs": [
+            null,
+            null,
+            null
+          ],
+          "statuses": [
+            204,
+            204,
+            204
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            "ok"
+          ]
+        }
+      ]
+    },
+    "cpu-production-final": {
+      "origin": "https://tungphat-payload-cms.nkhaduy.workers.dev",
+      "checkedAt": "2026-11-01T12:16:04.493Z",
+      "tailFailed": false,
+      "summary": [
+        {
+          "name": "health",
+          "samples": 3,
+          "measured": 2,
+          "cpuMs": [
+            0,
+            0,
+            null
+          ],
+          "durableCpuMs": [
+            691,
+            6,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            null
+          ]
+        },
+        {
+          "name": "login",
+          "samples": 3,
+          "measured": 2,
+          "cpuMs": [
+            0,
+            1,
+            null
+          ],
+          "durableCpuMs": [
+            505,
+            49,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            null
+          ]
+        },
+        {
+          "name": "products",
+          "samples": 3,
+          "measured": 2,
+          "cpuMs": [
+            1,
+            0,
+            null
+          ],
+          "durableCpuMs": [
+            26,
+            13,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            null
+          ]
+        },
+        {
+          "name": "global",
+          "samples": 3,
+          "measured": 3,
+          "cpuMs": [
+            0,
+            1,
+            0
+          ],
+          "durableCpuMs": [
+            9,
+            null,
+            8
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            "ok"
+          ]
+        },
+        {
+          "name": "media",
+          "samples": 3,
+          "measured": 2,
+          "cpuMs": [
+            0,
+            0,
+            null
+          ],
+          "durableCpuMs": [
+            10,
+            null,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            null
+          ]
+        },
+        {
+          "name": "preflight",
+          "samples": 3,
+          "measured": 3,
+          "cpuMs": [
+            1,
+            0,
+            1
+          ],
+          "durableCpuMs": [
+            6,
+            null,
+            null
+          ],
+          "statuses": [
+            204,
+            204,
+            204
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            "ok"
+          ]
+        },
+        {
+          "name": "invalid-contact",
+          "samples": 3,
+          "measured": 1,
+          "cpuMs": [
+            1,
+            null,
+            null
+          ],
+          "durableCpuMs": [
+            9,
+            null,
+            null
+          ],
+          "statuses": [
+            400,
+            400,
+            400
+          ],
+          "outcomes": [
+            "ok",
+            null,
+            null
+          ]
+        },
+        {
+          "name": "unauthenticated-leads",
+          "samples": 3,
+          "measured": 3,
+          "cpuMs": [
+            0,
+            0,
+            0
+          ],
+          "durableCpuMs": [
+            9,
+            null,
+            null
+          ],
+          "statuses": [
+            403,
+            403,
+            403
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            "ok"
+          ]
+        }
+      ]
+    },
+    "cpu-gateway-final": {
+      "origin": "https://cms.mdftungphat.com",
+      "checkedAt": "2026-11-01T12:15:58.913Z",
+      "tailFailed": false,
+      "summary": [
+        {
+          "name": "media",
+          "samples": 3,
+          "measured": 3,
+          "cpuMs": [
+            0,
+            0,
+            1
+          ],
+          "durableCpuMs": [
+            null,
+            null,
+            null
+          ],
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            "ok"
+          ]
+        },
+        {
+          "name": "preflight",
+          "samples": 3,
+          "measured": 3,
+          "cpuMs": [
+            0,
+            0,
+            0
+          ],
+          "durableCpuMs": [
+            null,
+            null,
+            null
+          ],
+          "statuses": [
+            204,
+            204,
+            204
+          ],
+          "outcomes": [
+            "ok",
+            "ok",
+            "ok"
+          ]
+        }
+      ]
+    }
+  },
+  "archive-http-verification": {
+    "checkedAt": "2026-10-31T16:40:58.269Z",
+    "origin": "https://tungphat-media-archive.pages.dev",
+    "objects": null,
+    "bytes": null,
+    "passed": 100,
+    "failed": 0
+  },
+  "archive-gateway-preview-verification": {
+    "checkedAt": "2026-11-01T07:39:06.310Z",
+    "origin": "https://12318038.tungphat-light-cms-production.pages.dev",
+    "objects": null,
+    "bytes": null,
+    "passed": 100,
+    "failed": 0
+  },
+  "r2-archive-apply": {
+    "checkedAt": "2026-11-01T07:49:56.029Z",
+    "origin": null,
+    "objects": 100,
+    "bytes": 1784294755,
+    "passed": null,
+    "failed": null
+  },
+  "githubRelease": {
+    "commit": "682f853b582cde4b595733957a4289a7ef8d7541",
+    "deployment": "1a89886e-f122-4832-a7da-fbb7941e5565",
+    "url": "https://1a89886e.tungphat-i9i.pages.dev",
+    "latestStage": {
+      "name": "deploy",
+      "started_on": "2026-11-01T08:14:58.743725Z",
+      "ended_on": "2026-11-01T08:15:44.611019Z",
+      "status": "success"
+    },
+    "stages": [
+      {
+        "name": "queued",
+        "started_on": "2026-11-01T08:07:04.779541Z",
+        "ended_on": "2026-11-01T08:07:04.782067Z",
+        "status": "success"
+      },
+      {
+        "name": "initialize",
+        "started_on": "2026-11-01T08:07:04.782067Z",
+        "ended_on": "2026-11-01T08:07:06.476914Z",
+        "status": "success"
+      },
+      {
+        "name": "clone_repo",
+        "started_on": "2026-11-01T08:07:06.476914Z",
+        "ended_on": "2026-11-01T08:07:10.942037Z",
+        "status": "success"
+      },
+      {
+        "name": "build",
+        "started_on": "2026-11-01T08:07:10.942037Z",
+        "ended_on": "2026-11-01T08:14:58.743725Z",
+        "status": "success"
+      },
+      {
+        "name": "deploy",
+        "started_on": "2026-11-01T08:14:58.743725Z",
+        "ended_on": "2026-11-01T08:15:44.611019Z",
+        "status": "success"
+      }
+    ],
+    "trigger": {
+      "type": "github:push",
+      "metadata": {
+        "branch": "codex/cloudflare-exit",
+        "commit_hash": "682f853b582cde4b595733957a4289a7ef8d7541",
+        "commit_message": "Resolve Cloudflare Free CMS CPU, media storage and browser blockers",
+        "commit_dirty": false
+      }
+    },
+    "githubCiRun": 41287589823,
+    "githubCiStatus": "success",
+    "githubCiBrowserPassed": 74,
+    "crawl": {
+      "routes": 2652,
+      "statuses": {
+        "200": 2652
+      },
+      "baselineComparison": {
+        "status": {
+          "count": 0,
+          "examples": []
+        },
+        "title": {
+          "count": 0,
+          "examples": []
+        },
+        "description": {
+          "count": 0,
+          "examples": []
+        },
+        "canonical": {
+          "count": 0,
+          "examples": []
+        },
+        "robots": {
+          "count": 0,
+          "examples": []
+        },
+        "schemaCount": {
+          "count": 0,
+          "examples": []
+        },
+        "textHash": {
+          "count": 0,
+          "examples": []
+        },
+        "textLength": {
+          "count": 0,
+          "examples": []
+        }
+      }
+    },
+    "vercelBlockedBrowser": {
+      "checkedAt": "2026-11-01T12:16:09.191Z",
+      "origin": "https://1a89886e.tungphat-i9i.pages.dev",
+      "results": [
+        {
+          "path": "/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/van-mdf/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/bt99/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/thanh-thuy/melamine/301/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/gia-cong-cnc/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/lien-he/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/bai-viet/",
+          "status": 200,
+          "h1": 1
+        }
+      ],
+      "contact": {
+        "phone": 5,
+        "zalo": 4,
+        "map": 5
+      },
+      "searchResult": "https://1a89886e.tungphat-i9i.pages.dev/catalogue/an-cuong/melamine/mfc-ms-465-sc04/",
+      "screens": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "file": "output/playwright/secure-runtime-1440.png",
+          "overflow": false
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "file": "output/playwright/secure-runtime-390.png",
+          "overflow": false
+        }
+      ],
+      "blocked": [],
+      "errors": []
+    },
+    "browserPreview": {
+      "passed": 74,
+      "failed": 0,
+      "origin": "https://1a89886e.tungphat-i9i.pages.dev",
+      "apiScope": "Five form cases use isolated real local Payload/D1 handlers; live staging auth/editor/media validated separately",
+      "analytics": "Production Pages preview correctly suppresses analytics even when the browser test flag is set; positive delivery is still checked in the explicit CI test build."
+    }
+  },
+  "engineeringGate": {
+    "exitCode": 0,
+    "frontendTests": 716,
+    "supplierTests": 313,
+    "cmsTests": 38,
+    "internalLinks": 239672,
+    "sitemapRoutes": 2652,
+    "localArtifact": {
+      "files": 7308,
+      "bytes": 601300772,
+      "jsBytes": 1247830,
+      "cssBytes": 87949
+    }
+  },
+  "archiveRestoreDrill": {
+    "checkedAt": "2026-11-01T12:21:51.786Z",
+    "environment": "Isolated local Miniflare R2; remote:false; no production writes",
+    "key": "supplier/an-cuong/mfcms281smm/board/b65768feb54ef950a87a8d4b12004c363ae03efb65c59ef5660a226375555d26.jpg",
+    "bytes": 15703925,
+    "sha256": "b65768feb54ef950a87a8d4b12004c363ae03efb65c59ef5660a226375555d26",
+    "restoreStatus": 201,
+    "restoredSize": 15703925,
+    "etagMatches": true,
+    "httpMetadataMatches": true,
+    "customMetadataMatches": true,
+    "overwriteStatus": 412,
+    "disabledDeleteStatus": 403
+  },
+  "preCutoverDNS": {
+    "mdftungphat.com NS": [
+      "ns-a2.tenten.vn.",
+      "ns-a1.tenten.vn.",
+      "ns-a3.tenten.vn."
+    ],
+    "mdftungphat.com A": [
+      "216.198.79.1"
+    ],
+    "www.mdftungphat.com CNAME": [
+      "d69b5815ccf0cf8d.vercel-dns-017.com."
+    ],
+    "cms.mdftungphat.com CNAME": [
+      "tungphat-light-cms-production.pages.dev."
+    ],
+    "cdn.mdftungphat.com CNAME": [
+      "tungphat-light-cms-production.pages.dev."
+    ]
+  },
+  "mediaCorrection": {
+    "commit": "ccc91780652df1f929f35540c6e4bba55498cb00",
+    "githubCiRun": 41307217555,
+    "githubCiStatus": "success",
+    "browserPassed": 81,
+    "frontendTests": 716,
+    "supplierTests": 313,
+    "cmsTests": 38,
+    "publicArtifact": {
+      "files": 7308,
+      "bytes": 601300772,
+      "jsBytes": 1247830,
+      "cssBytes": 87949
+    },
+    "cloudflareInitialBuild": {
+      "deployment": "1f2c7b36-8677-4420-b1ed-2569028ce868",
+      "status": "failure",
+      "cause": "Single fully mocked cache/rate-limit unit case exceeded default 5s wall timer;715/716passed. Precise scheduling-vs-tempFS cause not observable.",
+      "correction": "Only that test gets15s wall timeout; initial/resume/refresh request assertions strengthened to1/0/1; all previous status/cache assertions remain. Full verify passed after correction. Runtime code unchanged."
+    }
+  },
+  "finalRelease": {
+    "id": "62373703-64a6-49ea-b5f5-1068a809b623",
+    "url": "https://62373703.tungphat-i9i.pages.dev",
+    "latest_stage": {
+      "name": "deploy",
+      "started_on": "2026-11-01T12:54:19.504176Z",
+      "ended_on": "2026-11-01T12:55:25.338662Z",
+      "status": "success"
+    },
+    "stages": [
+      {
+        "name": "queued",
+        "started_on": "2026-11-01T12:46:00.498545Z",
+        "ended_on": "2026-11-01T12:46:00.503525Z",
+        "status": "success"
+      },
+      {
+        "name": "initialize",
+        "started_on": "2026-11-01T12:46:00.503525Z",
+        "ended_on": "2026-11-01T12:46:05.772632Z",
+        "status": "success"
+      },
+      {
+        "name": "clone_repo",
+        "started_on": "2026-11-01T12:46:05.772632Z",
+        "ended_on": "2026-11-01T12:46:14.978346Z",
+        "status": "success"
+      },
+      {
+        "name": "build",
+        "started_on": "2026-11-01T12:46:14.978346Z",
+        "ended_on": "2026-11-01T12:54:19.504176Z",
+        "status": "success"
+      },
+      {
+        "name": "deploy",
+        "started_on": "2026-11-01T12:54:19.504176Z",
+        "ended_on": "2026-11-01T12:55:25.338662Z",
+        "status": "success"
+      }
+    ],
+    "deployment_trigger": {
+      "type": "github:push",
+      "metadata": {
+        "branch": "codex/cloudflare-exit",
+        "commit_hash": "95f52aa1f85eae3b65a9506ca1e147f8423b1df5",
+        "commit_message": "test: bound cache regression for shared build runners",
+        "commit_dirty": false
+      }
+    },
+    "githubCiRun": 41308042213,
+    "githubCiStatus": "success",
+    "githubCiBrowserPassed": 81,
+    "vercelBlockedBrowser": {
+      "checkedAt": "2026-11-01T12:57:25.709Z",
+      "origin": "https://62373703.tungphat-i9i.pages.dev",
+      "results": [
+        {
+          "path": "/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/van-mdf/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/bt99/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/thanh-thuy/melamine/301/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/gia-cong-cnc/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/lien-he/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/bai-viet/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/sc009mw/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/sc010mw/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/sc011mw/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/sc012mw/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/sc013mw/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/sc014mw/",
+          "status": 200,
+          "h1": 1
+        },
+        {
+          "path": "/catalogue/ba-thanh/melamine/sc015mw/",
+          "status": 200,
+          "h1": 1
+        }
+      ],
+      "contact": {
+        "phone": 5,
+        "zalo": 4,
+        "map": 5
+      },
+      "searchResult": "https://62373703.tungphat-i9i.pages.dev/catalogue/an-cuong/melamine/mfc-ms-465-sc04/",
+      "screens": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "file": "output/playwright/final-runtime-1440.png",
+          "overflow": false
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "file": "output/playwright/final-runtime-390.png",
+          "overflow": false
+        }
+      ],
+      "blocked": [],
+      "errors": []
+    },
+    "fullCrawlStatus": "passed",
+    "crawl": {
+      "routeErrors": [],
+      "expectedRedirects": 33,
+      "origin": "https://62373703.tungphat-i9i.pages.dev",
+      "checkedAt": "2026-11-01T13:01:48.392Z",
+      "pages": 3611,
+      "sitemapRoutes": 2652,
+      "statuses": {
+        "200": 3578,
+        "307": 1,
+        "308": 32
+      },
+      "assets": 3260,
+      "assetErrors": [],
+      "htmlBytes": 378236987
+    },
+    "comparison": {
+      "indexedRoutes": 2652,
+      "allRoutes": 3611,
+      "baselineComparison": {
+        "status": {
+          "count": 0,
+          "examples": []
+        },
+        "title": {
+          "count": 0,
+          "examples": []
+        },
+        "description": {
+          "count": 0,
+          "examples": []
+        },
+        "canonical": {
+          "count": 0,
+          "examples": []
+        },
+        "robots": {
+          "count": 0,
+          "examples": []
+        },
+        "schemaCount": {
+          "count": 0,
+          "examples": []
+        },
+        "textHash": {
+          "count": 0,
+          "examples": []
+        },
+        "textLength": {
+          "count": 0,
+          "examples": []
+        }
+      },
+      "assetStatuses": {
+        "200": 3260
+      },
+      "assetRedirects": [],
+      "vendorEndpointPages": 0,
+      "previewNoindexHeaderPages": 3578
+    },
+    "publicSnapshot": {
+      "file": "docs/evidence/cloudflare-final-preview.json.gz",
+      "bytes": 410056,
+      "sha256": "23844b6b216f80c46ee0741943c5ef45527ae6beeb8728e514c92501e2289783"
+    },
+    "productionPreCutover": {
+      "checkedAt": "2026-11-01T13:00:06.432457+00:00",
+      "tls": {
+        "mdftungphat.com": {
+          "verified": true,
+          "protocol": "TLSv1.2",
+          "notAfter": "Dec 16 01:21:14 2026 GMT"
+        },
+        "www.mdftungphat.com": {
+          "verified": true,
+          "protocol": "TLSv1.2",
+          "notAfter": "Dec 15 04:53:00 2026 GMT"
+        },
+        "cms.mdftungphat.com": {
+          "verified": true,
+          "protocol": "TLSv1.2",
+          "notAfter": "Jan 10 00:28:10 2027 GMT"
+        },
+        "cdn.mdftungphat.com": {
+          "verified": true,
+          "protocol": "TLSv1.2",
+          "notAfter": "Jan 27 07:45:08 2027 GMT"
+        },
+        "62373703.tungphat-i9i.pages.dev": {
+          "verified": true,
+          "protocol": "TLSv1.2",
+          "notAfter": "Dec 12 17:58:43 2026 GMT"
+        }
+      },
+      "http": {
+        "https://mdftungphat.com/": {
+          "status": 200,
+          "location": null,
+          "server": "Vercel",
+          "vercelHeaderPresent": true
+        },
+        "https://www.mdftungphat.com/van-mdf/?audit=1": {
+          "status": 308,
+          "location": "https://mdftungphat.com/van-mdf/?audit=1",
+          "server": "Vercel",
+          "vercelHeaderPresent": true
+        },
+        "https://cms.mdftungphat.com/api/health": {
+          "status": 403,
+          "location": null,
+          "server": "cloudflare",
+          "vercelHeaderPresent": false
+        },
+        "https://cdn.mdftungphat.com/": {
+          "status": 403,
+          "location": null,
+          "server": "cloudflare",
+          "vercelHeaderPresent": false
+        },
+        "https://cdn.mdftungphat.com/catalog/ba-thanh/laminate/p-2052-g-swatch.webp": {
+          "status": 403,
+          "location": null,
+          "server": "cloudflare",
+          "vercelHeaderPresent": false
+        }
+      }
+    },
+    "productionUserAgentProbe": [
+      {
+        "url": "https://cms.mdftungphat.com/api/health",
+        "ua": "node-default",
+        "status": 200,
+        "type": "application/json",
+        "mitigated": null,
+        "bytes": 158
+      },
+      {
+        "url": "https://cms.mdftungphat.com/api/health",
+        "ua": "Python-urllib/3.9",
+        "status": 403,
+        "type": "text/html; charset=UTF-8",
+        "mitigated": null,
+        "bytes": 7159
+      },
+      {
+        "url": "https://cms.mdftungphat.com/api/health",
+        "ua": "TungPhatMigrationVerification/1.0",
+        "status": 200,
+        "type": "application/json",
+        "mitigated": null,
+        "bytes": 157
+      },
+      {
+        "url": "https://cdn.mdftungphat.com/catalog/ba-thanh/laminate/p-2052-g-swatch.webp",
+        "ua": "node-default",
+        "status": 200,
+        "type": "image/webp",
+        "mitigated": null,
+        "bytes": 7894
+      },
+      {
+        "url": "https://cdn.mdftungphat.com/catalog/ba-thanh/laminate/p-2052-g-swatch.webp",
+        "ua": "Python-urllib/3.9",
+        "status": 403,
+        "type": "text/html; charset=UTF-8",
+        "mitigated": null,
+        "bytes": 7159
+      },
+      {
+        "url": "https://cdn.mdftungphat.com/catalog/ba-thanh/laminate/p-2052-g-swatch.webp",
+        "ua": "TungPhatMigrationVerification/1.0",
+        "status": 200,
+        "type": "image/webp",
+        "mitigated": null,
+        "bytes": 7894
+      }
+    ],
+    "productionProbeClassification": "Python-urllib/3.9 gets an edge access-denied page; swapping only UA in the same Node transport reproduces403, while Node default and named verification UA return200. Preserve existing access policy; not a Payload500/503/1102.",
+    "liveProductionNodeCheck": {
+      "checkedAt": "2026-11-01T13:05:57.109Z",
+      "requests": [
+        {
+          "name": "health",
+          "status": 200,
+          "bytes": 158,
+          "allowOrigin": null
+        },
+        {
+          "name": "allowed-preflight",
+          "status": 204,
+          "bytes": 0,
+          "allowOrigin": "https://mdftungphat.com"
+        },
+        {
+          "name": "denied-preflight",
+          "status": 403,
+          "bytes": 0,
+          "allowOrigin": null
+        },
+        {
+          "name": "invalid-contact",
+          "status": 400,
+          "bytes": 39,
+          "allowOrigin": "https://mdftungphat.com"
+        },
+        {
+          "name": "cdn-root",
+          "status": 404,
+          "bytes": 9,
+          "allowOrigin": null
+        },
+        {
+          "name": "cdn-restored-swatch",
+          "status": 200,
+          "bytes": 7894,
+          "allowOrigin": null,
+          "sha256": "9b4c4a34211a9cde65d9c89cfba770872612fc209b6e7abee9b79a17513b148e"
+        },
+        {
+          "name": "baogia",
+          "status": 200,
+          "bytes": 522,
+          "allowOrigin": null
+        }
+      ]
+    }
+  },
+  "readiness": {
+    "status": "NOT READY TO DELETE VERCEL",
+    "blockingDependency": "Active apex/www still route to Vercel; registrar delegation is controlled by an inaccessible other account.",
+    "pendingGates": [
+      "Coordinated registrar delegation and approved production release/custom-domain/TLS cutover",
+      "Full post-cutover production crawl/browser/API/Vercel-blocked validation",
+      "Cloudflare custom-domain production rollback drill",
+      "Owner verification of additional backup custody and secure CMS secret escrow"
+    ],
+    "vercelProjectDeleted": false,
+    "activeDnsChanged": false
+  }
+}

@@ -7,10 +7,10 @@ const pageTypes = new Map([
   ["/cat-cnc-go/", "Service"],
   ["/gia-cong-cnc-mdf/", "Service"],
   ["/gia-cong-cnc/", "Service"],
-  ["/go-ghep-cao-su/", "Product"],
-  ["/go-ghep-tram/", "Product"],
-  ["/mdf-chong-am/", "Product"],
-  ["/van-mdf/", "Product"],
+  ["/go-ghep-cao-su/", "CollectionPage"],
+  ["/go-ghep-tram/", "CollectionPage"],
+  ["/mdf-chong-am/", "CollectionPage"],
+  ["/van-mdf/", "CollectionPage"],
   ["/go-ghep/", "CollectionPage"],
   ["/van-go-cong-nghiep/", "CollectionPage"],
 ]);
@@ -63,6 +63,7 @@ for (const file of walk(outputDirectory)) {
   const canonical = html.match(/<link\b[^>]*rel="canonical"[^>]*href="([^"]+)"/iu)?.[1] ?? "";
   if (!canonical && !route.startsWith("/cms-preview")) errors.push(`${route}: missing canonical`);
   if (pageTypes.has(route) && !types.includes(pageTypes.get(route))) errors.push(`${route}: missing ${pageTypes.get(route)} schema`);
+  if (pageTypes.get(route) === "CollectionPage" && types.includes("Product")) errors.push(`${route}: material collection must not claim to be a single Product`);
   if (route !== "/404/" && route !== "/404.html" && !html.match(/<meta\b[^>]*name="robots"[^>]*content="[^"]*noindex/iu) && blocks.length === 0) errors.push(`${route}: indexable page has no structured data`);
 }
 

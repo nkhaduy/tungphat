@@ -307,9 +307,13 @@ describe("supplier full-media provenance", () => {
     const directory = fs.mkdtempSync(path.join(os.tmpdir(), "supplier-media-retry-"));
     const cacheFile = path.join(directory, "inventory.json");
     const input = [{ supplier: "an-cuong" as const, sourceUrl: "https://ancuong.com/a.jpg" }];
+    let initialRequests = 0;
     await inventoryMediaOriginsWithCache(input, {
       cacheFile,
-      fetchImpl: async () => new Response(null, { status: 429 }),
+      fetchImpl: async () => {
+        initialRequests += 1;
+        return new Response(null, { status: 429 });
+      },
       concurrency: 1,
       retries: 0,
     });
@@ -324,19 +328,24 @@ describe("supplier full-media provenance", () => {
       concurrency: 1,
       retries: 0,
     });
+    let refreshRequests = 0;
     const refreshed = await inventoryMediaOriginsWithCache(input, {
       cacheFile,
-      fetchImpl: async () =>
-        new Response(null, {
+      fetchImpl: async () => {
+        refreshRequests += 1;
+        return new Response(null, {
           status: 200,
           headers: { "content-type": "image/jpeg", "content-length": "99" },
-        }),
+        });
+      },
       concurrency: 1,
       retries: 0,
       refreshRateLimited: true,
     });
 
+    expect(initialRequests).toBe(1);
     expect(resumeRequests).toBe(0);
+    expect(refreshRequests).toBe(1);
     expect(resumed.get("an-cuong|https://ancuong.com/a.jpg")).toMatchObject({
       httpStatus: 429,
       rateLimited: true,
@@ -346,7 +355,9 @@ describe("supplier full-media provenance", () => {
       contentLength: 99,
     });
     fs.rmSync(directory, { recursive: true, force: true });
-  });
+    // All HTTP is mocked. Shared build scheduling/IO can exceed the default
+    // 5 s wall timer; request counts still prove no unintended retry.
+  }, 15_000);
 
   it("caps global inventory concurrency at three and spaces requests per host", async () => {
     const directory = fs.mkdtempSync(path.join(os.tmpdir(), "supplier-media-pace-"));

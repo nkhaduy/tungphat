@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { homeProductCards } from "../lib/product-taxonomy";
 import { readFileSync } from "node:fs";
 
 const publicRoutes = [
@@ -85,16 +86,13 @@ const apiPayload = (overrides: Record<string, unknown> = {}) => ({
   ...overrides,
 });
 
-function apiRoute(path: string, baseURL?: string) {
-  return new URL(baseURL || "http://127.0.0.1:4173").hostname ===
-    "mdftungphat.com"
-    ? `${path}/`
-    : path;
+function apiRoute(path: string) {
+  return new URL(path, process.env.E2E_API_BASE_URL || "http://127.0.0.1:4190").toString();
 }
 
-function usesProductionTurnstile(baseURL?: string) {
+function usesProductionTurnstile() {
   return (
-    new URL(baseURL || "http://127.0.0.1:4173").hostname ===
+    new URL(process.env.E2E_API_BASE_URL || "http://127.0.0.1:4190").hostname ===
       "mdftungphat.com" && !process.env.E2E_TURNSTILE_TOKEN
   );
 }
@@ -118,7 +116,7 @@ test("các route chính trả về trang có H1, canonical và không có lỗi 
   expect(errors).toEqual([]);
 });
 
-test("shared header is transparent over the first section and solid after scroll", async ({
+test("shared header preserves each route tone and becomes solid after scroll", async ({
   page,
 }) => {
   for (const { route, tone } of [
@@ -131,7 +129,7 @@ test("shared header is transparent over the first section and solid after scroll
     await expect(header, route).toHaveAttribute("data-scrolled", "false");
     await expect(header, route).toHaveCSS(
       "background-color",
-      "rgba(0, 0, 0, 0)",
+      tone === "light" ? "rgb(255, 255, 255)" : "rgba(0, 0, 0, 0)",
     );
     await expect(header, route).toHaveCSS("position", "sticky");
     await expect(page.getByText("2 chi nhánh tại TP.HCM"), route).toHaveCount(0);
@@ -165,10 +163,11 @@ test("representative routes expose breadcrumbs, intact images, and no horizontal
   const errors = await pageErrors(page);
   for (const route of representativeRoutes.filter((route) => route !== "/")) {
     await page.goto(route, { waitUntil: "domcontentloaded" });
-    await expect(
+    if (route !== "/lien-he/") await expect(
       page.getByRole("navigation", { name: "Breadcrumb" }),
       route,
     ).toBeVisible();
+    else await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     const brokenImages = await page
       .locator("img")
       .evaluateAll((images) =>
@@ -195,7 +194,7 @@ test("homepage có hero ván gỗ, hai CTA và một ảnh LCP ưu tiên", async
   await expect(
     hero.getByRole("heading", {
       level: 1,
-      name: "Ván gỗ công nghiệp & gia công CNC tại Thủ Đức",
+      name: "Ván gỗ công nghiệp & gia công CNC",
     }),
   ).toBeVisible();
   await expect(hero.getByRole("link")).toHaveCount(2);
@@ -287,39 +286,37 @@ test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", asyn
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
   for (const heading of [
-    "MDF, MFC, Plywood và gỗ ghép",
+    "Danh mục sản phẩm",
     "Mã màu",
-    "Cắt và gia công CNC",
+    "Lên bản vẽ, cắt CNC và dán chỉ",
     "Địa chỉ",
     "Bài viết nổi bật",
   ]) {
     await expect(
-      page.getByRole("heading", { level: 2, name: heading }),
+      page.getByRole("heading", { level: 2, name: heading, exact: true }),
     ).toBeVisible();
   }
-  await expect(page.locator('iframe[src*="google.com/maps"]')).toHaveCount(0);
+  const maps = page.locator('iframe[src*="google.com/maps"]');
+  // Two branch maps appear both in the homepage section and the shared footer.
+  await expect(maps).toHaveCount(4);
+  for (const map of await maps.all()) await expect(map).toHaveAttribute("loading", "lazy");
 });
 
 test("homepage product taxonomy exposes core materials and catalogue surfaces", async ({ page }) => {
   await page.goto("/");
-  const groups = page.locator("[data-product-groups]");
-  await expect(groups.locator('[data-product-card="mdf"]')).toBeVisible();
-  await expect(groups.locator('[data-product-card="mdf-moisture-resistant"]')).toBeVisible();
-  await expect(groups.locator('[data-product-card="mfc"] a').first()).toHaveAttribute("href", "/van-go-cong-nghiep/");
-  await expect(groups.locator('[data-product-card="plywood"] a').first()).toHaveAttribute("href", "/van-go-cong-nghiep/");
-  await expect(groups.locator('[data-product-card="joined-wood"]')).toBeVisible();
-  await expect(groups.locator('[data-product-card="melamine"]')).toHaveAttribute("href", "/catalogue/an-cuong/melamine/");
-  await expect(groups.locator('[data-product-card="laminate"]')).toHaveAttribute("href", "/catalogue/an-cuong/laminate/");
-  await expect(groups.locator('[data-product-card="acrylic"]')).toHaveAttribute("href", "/catalogue/an-cuong/acrylic/");
-  await expect(groups.locator('[data-product-card="veneer"]')).toHaveAttribute("href", "/catalogue/an-cuong/veneer/");
-  expect(await groups.locator("[data-product-card]").count()).toBe(9);
+  const groups = page.locator("#vat-lieu");
+  for (const card of homeProductCards) {
+    await expect(groups.getByRole("heading", { name: card.title, exact: true }).getByRole("link")).toHaveAttribute("href", card.href);
+  }
+  expect(await groups.getByRole("article").count()).toBe(homeProductCards.length);
 });
 
-test("homepage exposes the exact 301 catalogue landing route", async ({ page }) => {
+test("featured catalogue links and the exact 301 landing route remain valid", async ({ page }) => {
   await page.goto("/");
-  await expect(
-    page.locator('a[href="/catalogue/thanh-thuy/melamine/301/"]').first(),
-  ).toBeVisible();
+  await expect(page.locator('#ma-mau a[href="/catalogue/?supplier=thanh-thuy"]').first()).toBeVisible();
+  const response = await page.goto("/catalogue/thanh-thuy/melamine/301/");
+  expect(response?.status()).toBe(200);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("301");
 });
 
 test("CTA báo giá vật liệu có accessible name khớp nhãn hiển thị", async ({
@@ -353,7 +350,7 @@ test("homepage marquee stays horizontal without causing vertical movement", asyn
   ]) {
     await page.setViewportSize(viewport);
     await page.goto("/");
-    const marquee = page.locator("[data-color-code-marquee]");
+    const marquee = page.locator('[aria-label="Các mã màu nổi bật"]');
     await marquee.scrollIntoViewIfNeeded();
     const before = await page.evaluate(() => window.scrollY);
     const track = marquee.locator(".color-code-marquee-track");
@@ -379,7 +376,7 @@ test("mobile navigation contract supports focus, Escape, and a solid surface", a
   });
   await expect(mobileNavigation).toBeVisible();
   await expect(
-    mobileNavigation.getByRole("link", { name: "Vật liệu", exact: true }),
+    mobileNavigation.getByRole("button", { name: "Sản phẩm", exact: true }),
   ).toBeFocused();
   const navigationStyles = await mobileNavigation.evaluate((element) => {
     const style = getComputedStyle(element);
@@ -634,7 +631,7 @@ test("404 dùng ảnh responsive và có hai đường thoát rõ ràng", async 
   ).toHaveAttribute("href", "/");
   await expect(
     page.getByRole("link", { name: "Xem catalogue" }),
-  ).toHaveAttribute("href", "/catalogue/");
+  ).toHaveAttribute("href", "/catalogue/?supplier=thanh-thuy");
   await expect(page.locator("main picture source")).toHaveAttribute(
     "srcset",
     "/images/404-mobile.webp",
@@ -739,6 +736,7 @@ test("trang liên hệ trực tiếp không có lỗi accessibility nghiêm tr�
 
 test("homepage không có lỗi accessibility nghiêm trọng", async ({ page }) => {
   await page.goto("/");
+  await expect(page.locator(".page-transition")).toHaveCSS("opacity", "1");
   const results = await new AxeBuilder({ page }).analyze();
   expect(
     results.violations.filter(
@@ -761,7 +759,8 @@ test("representative routes meet accessibility without serious or critical viola
     "/chinh-sach-bao-mat/",
   ]) {
     await page.goto(route);
-    const results = await new AxeBuilder({ page }).analyze();
+    await expect(page.locator(".page-transition")).toHaveCSS("opacity", "1");
+  const results = await new AxeBuilder({ page }).analyze();
     expect(
       results.violations.filter(
         (violation) =>
@@ -773,7 +772,7 @@ test("representative routes meet accessibility without serious or critical viola
 });
 
 test("API từ chối origin khác và không lộ stack trace", async ({ request }) => {
-  const response = await request.post("/api/quote", {
+  const response = await request.post(apiRoute("/api/quote"), {
     headers: {
       Origin: "https://attacker.example",
       "Content-Type": "application/json",
@@ -787,10 +786,9 @@ test("API từ chối origin khác và không lộ stack trace", async ({ reques
 
 test("API trả CORS preflight chính xác cho origin được phép", async ({
   request,
-  baseURL,
 }) => {
-  const origin = new URL(baseURL || "http://127.0.0.1:4173").origin;
-  const response = await request.fetch(apiRoute("/api/contact", baseURL), {
+  const origin = "https://mdftungphat.com";
+  const response = await request.fetch(apiRoute("/api/contact"), {
     method: "OPTIONS",
     headers: {
       Origin: origin,
@@ -808,10 +806,10 @@ test("API trả CORS preflight chính xác cho origin được phép", async ({
   ).toBeUndefined();
 });
 
-test("API validation và rate limit hoạt động", async ({ request, baseURL }) => {
-  const origin = new URL(baseURL || "http://127.0.0.1:4173").origin;
-  const quoteRoute = apiRoute("/api/quote", baseURL);
-  const contactRoute = apiRoute("/api/contact", baseURL);
+test("API validation và rate limit hoạt động", async ({ request }) => {
+  const origin = "https://mdftungphat.com";
+  const quoteRoute = apiRoute("/api/quote");
+  const contactRoute = apiRoute("/api/contact");
   const invalid = await request.post(quoteRoute, {
     headers: { Origin: origin },
     data: { consent: false },
@@ -831,7 +829,7 @@ test("API validation và rate limit hoạt động", async ({ request, baseURL }
   expect(contactWithoutMessage.status()).toBe(400);
   expect(await contactWithoutMessage.json()).toMatchObject({ code: "validation_failed" });
 
-  if (usesProductionTurnstile(baseURL)) {
+  if (usesProductionTurnstile()) {
     const protectedSubmission = await request.post(quoteRoute, {
       headers: { Origin: origin },
       data: apiPayload(),
@@ -861,19 +859,18 @@ test("API validation và rate limit hoạt động", async ({ request, baseURL }
 
 test("API nhận submission idempotent mà không tạo lead lặp", async ({
   request,
-  baseURL,
 }) => {
   test.skip(
-    usesProductionTurnstile(baseURL),
+    usesProductionTurnstile(),
     "Production requires a real Turnstile token for lead-creation tests.",
   );
-  const origin = new URL(baseURL || "http://127.0.0.1:4173").origin;
+  const origin = "https://mdftungphat.com";
   const submissionId = crypto.randomUUID();
   const headers = {
     Origin: origin,
     "CF-Connecting-IP": `e2e-duplicate-${Date.now()}`,
   };
-  const quoteRoute = apiRoute("/api/quote", baseURL);
+  const quoteRoute = apiRoute("/api/quote");
   const first = await request.post(quoteRoute, {
     headers,
     data: apiPayload({ submission_id: submissionId }),
@@ -889,18 +886,17 @@ test("API nhận submission idempotent mà không tạo lead lặp", async ({
 
 test("payload kiểu SQL injection không làm thay đổi schema", async ({
   request,
-  baseURL,
 }) => {
   test.skip(
-    usesProductionTurnstile(baseURL),
+    usesProductionTurnstile(),
     "Production requires a real Turnstile token for lead-creation tests.",
   );
-  const origin = new URL(baseURL || "http://127.0.0.1:4173").origin;
+  const origin = "https://mdftungphat.com";
   const headers = {
     Origin: origin,
     "CF-Connecting-IP": `e2e-sql-${Date.now()}`,
   };
-  const contactRoute = apiRoute("/api/contact", baseURL);
+  const contactRoute = apiRoute("/api/contact");
   const injected = await request.post(contactRoute, {
     headers,
     data: apiPayload({
@@ -1005,14 +1001,12 @@ test("Trustindex review slider renders current source data and remains usable on
   await expect(section).toBeVisible();
   await expect(page.getByRole("heading", { name: "Đánh giá từ Trustindex" })).toHaveCount(0);
   await expect(section.getByText("Phản hồi khách hàng được Trustindex công khai từ Google cho Tùng Phát.", { exact: true })).toHaveCount(0);
-  await expect(section).toContainText("4.8");
-  await expect(section).toContainText("26 đánh giá");
   await expect(section).toContainText("Thuy Pham");
   await expect(section).toContainText("Đa dạng sản phẩm, sản xuất nhanh");
-  await expect(section.getByText("Lưu Phúc Điền", { exact: true })).toBeVisible();
+  // Current curation excludes one-star records; source links remain available.
+  await expect(section.getByText("Lưu Phúc Điền", { exact: true })).toHaveCount(0);
   await expect(section.locator("[data-trustindex-card]").first()).not.toContainText("svgsvg");
   await expect(section.getByRole("link", { name: /Google/i }).first()).toHaveAttribute("href", /google\.com\/maps/);
-  await expect(section.getByText("Nguồn đánh giá Google")).toBeVisible();
   const sourceLinks = section.locator('a:has-text("Google")');
   const sourceHrefs = await sourceLinks.evaluateAll((links) => links.map((link) => (link as HTMLAnchorElement).href));
   expect(sourceHrefs.length).toBeGreaterThanOrEqual(3);

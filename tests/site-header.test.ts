@@ -21,9 +21,9 @@ describe("site header presentation", () => {
     expect(getSiteHeaderClasses(true, tone)).toContain("site-header--tone-dark");
   });
 
-  it("uses the shorter Zalo contact action and keeps the supplied asset", () => {
+  it("uses the phone contact action and keeps the supplied asset", () => {
     const header = readFileSync("components/site/SiteHeader.tsx", "utf8");
-    expect(header).toContain("Liên hệ Zalo");
+    expect(header).toContain("Gọi số");
     expect(header).not.toContain("Gửi quy cách nhận báo giá");
     expect(existsSync("public/images/logo-zalo.webp")).toBe(true);
   });
@@ -31,5 +31,16 @@ describe("site header presentation", () => {
   it("gives the shared header a little more vertical presence", () => {
     const header = readFileSync("components/site/SiteHeader.tsx", "utf8");
     expect(header).toContain("h-[80px]");
+  });
+
+  it("uses refined navigation labels and removes the workshop link from navigation", () => {
+    const header = readFileSync("components/site/SiteHeader.tsx", "utf8");
+    const footer = readFileSync("components/site/SiteFooter.tsx", "utf8");
+    expect(header).toContain('lang === "vi" ? "Mã màu" : "Color codes"');
+    expect(header).toContain('lang === "vi" ? "Cắt CNC" : "Cutting & CNC"');
+    expect(header).toContain('lang === "vi" ? "Bài viết" : "Articles"');
+    expect(header).not.toContain('"Xưởng & chi nhánh"');
+    expect(footer).toContain('["Bài viết", "/bai-viet"]');
+    expect(footer).not.toContain('"Xưởng & chi nhánh"');
   });
 });

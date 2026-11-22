@@ -1,0 +1,9 @@
+{
+  "name": "tungphat-archive-local-maintenance",
+  "main": "r2-archive-local-worker.mjs",
+  "account_id": "b9ae472cee29c5729ee90ccbb3533f33",
+  "compatibility_date": "2026-10-01",
+  "r2_buckets": [{ "binding": "R2", "bucket_name": "tung-phat-media", "remote": true }],
+  "dev": { "ip": "127.0.0.1", "port": 8793 },
+  "vars": { "ALLOW_ARCHIVE_OFFLOAD": "disabled" }
+}

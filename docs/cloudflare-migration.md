@@ -1,3 +1,5 @@
+> Historical 2026-09-27 attempt. Current target is the existing Git-connected Pages project `tungphat`; use [the 2026-10-31 migration report](CLOUDFLARE_MIGRATION_REPORT.md). The Vercel rollback below is historical and is not an acceptable permanent recovery plan.
+
 # Cloudflare Pages Migration
 
 - **Date:** 2026-09-27

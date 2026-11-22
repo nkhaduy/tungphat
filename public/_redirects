@@ -1,4 +1,4 @@
-/catalog/* https://cms.mdftungphat.com/media/catalog/:splat 200
+# Legacy catalogue media is streamed by functions/catalog/[[path]].ts.
 /ma-mau /catalogue/ 308
 /ma-mau/ /catalogue/ 308
 /gia-cong-cnc-go /cat-cnc-go/ 308
@@ -27,3 +27,9 @@
 /admin https://cms.mdftungphat.com 308
 /admin/* https://cms.mdftungphat.com 308
 /san-pham/thanh-thuy/ /thuong-hieu/thanh-thuy/ 308
+/reviews/avatars/264028631.png /reviews/avatars/264028607.png 308
+/reviews/avatars/264028632.png /reviews/avatars/264028608.png 308
+/reviews/avatars/264028636.png /reviews/avatars/264028613.png 308
+/reviews/avatars/264028637.png /reviews/avatars/264028614.png 308
+/reviews/avatars/264028639.png /reviews/avatars/264028612.png 308
+/images/material-panels-hero-mobile.png /images/material-panels-hero-mobile.webp 308

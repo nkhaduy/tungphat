@@ -4,9 +4,12 @@ import { JsonLd } from "@/components/JsonLd";
 import { ContentEngagementTracker } from "@/components/analytics/ContentEngagementTracker";
 import { FaqList } from "@/components/content/FaqList";
 import { MarkdownContent } from "@/components/content/MarkdownContent";
+import { WordPressArticleBody } from "@/components/content/WordPressArticleBody";
 import { SiteShell } from "@/components/site/SiteShell";
 import { ContactCTA } from "@/components/ui/ContactCTA";
-import { PageHero } from "@/components/ui/PageHero";
+import { ContentHero } from "@/components/content/ContentHero";
+import { MaterialImage } from "@/components/products/MaterialImage";
+import { splitCncArticle } from "@/lib/cnc-article-diagram";
 import type { ContentEntry } from "@/lib/content";
 import type { ArticleFrontmatter } from "@/lib/content-schema";
 import { absoluteMediaUrl, resolveMediaUrl } from "@/lib/media";
@@ -55,6 +58,7 @@ const articleCtas: Record<string, { eyebrow: string; title: string; description:
 
 export function ArticleLanding({ article }: { article: ContentEntry<ArticleFrontmatter> }) {
   const articlePath = `/bai-viet/${article.slug}`;
+  const cncParts = article.wordpress ? null : splitCncArticle(article.slug, article.body);
   const articleUrl = absolutePageUrl(articlePath);
   const articleId = schemaPageId(articlePath, "article");
   const articleSchema = {
@@ -63,7 +67,7 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
     "@id": articleId,
     headline: article.title,
     description: article.excerpt,
-    image: absoluteMediaUrl(article.featuredImage, SITE_URL),
+    ...(article.featuredImage ? { image: absoluteMediaUrl(article.featuredImage, SITE_URL) } : {}),
     datePublished: article.publishedAt,
     dateModified: article.updatedAt,
     author: { "@type": "Organization", name: article.author, url: absolutePageUrl("/") },
@@ -88,12 +92,11 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
       <SiteShell>
         <ContentEngagementTracker contentType="article" contentId={article.slug} contentTitle={article.title} contentCategory={article.category} />
         <article data-analytics-content>
-          <PageHero
-            breadcrumbs={[{ label: "Trang chủ", href: "/" }, { label: "Bài viết", href: "/bai-viet" }, { label: article.title }]}
-            eyebrow={article.category}
+          <ContentHero
+            breadcrumbs={[{ label: "Trang chủ", href: "/" }, { label: "Bài viết", href: "/bai-viet/" }, { label: article.title }]}
             title={article.title}
-            description={article.excerpt}
-            image={{ src: resolveMediaUrl(article.featuredImage), alt: article.featuredImageAlt, priority: true }}
+            image={article.featuredImage ? { src: resolveMediaUrl(article.featuredImage), alt: article.featuredImageAlt } : undefined}
+            publishedAt={article.publishedAt}
           />
 
           <section className="section-space bg-white">
@@ -104,7 +107,33 @@ export function ArticleLanding({ article }: { article: ContentEntry<ArticleFront
                   <span className="inline-flex items-center gap-2"><UserRound size={17} className="text-wood-600" aria-hidden="true" />{article.author}</span>
                 </div>
                 <div data-answer-block>
-                  <MarkdownContent className="text-[1rem] leading-7 sm:text-[1.0625rem] sm:leading-8 prose-p:my-0 prose-p:mb-6 prose-headings:font-extrabold prose-h2:mb-4 prose-h2:mt-10 prose-h2:text-2xl prose-h2:leading-tight sm:prose-h2:text-[1.75rem] prose-h3:mb-3 prose-h3:mt-8 prose-h3:text-xl prose-h3:leading-snug prose-li:my-2">{article.body}</MarkdownContent>
+                  <p className="mb-8 max-w-[72ch] text-lg leading-8 text-slate-700">{article.excerpt}</p>
+                  {article.wordpress ? <WordPressArticleBody html={article.wordpress.html} mediaOrigins={[article.wordpress.mediaOrigin]} allowInsecureLoopback={article.wordpress.allowInsecureLoopback} /> : <>
+                  {article.slug === "go-ghep-la-gi" ? <figure className="mb-10">
+                    <div className="relative aspect-[1200/677] overflow-hidden rounded-lg bg-[#f7f8f5]">
+                      <MaterialImage src="/sanpham-media/go-ghep-cao-su.webp" alt="Mặt tấm gỗ ghép cao su, nhìn thấy các thanh gỗ và mối ghép" sizes="(max-width: 1023px) 100vw, 42rem" />
+                    </div>
+                    <figcaption className="mt-3 text-sm leading-6 text-slate-600">Ví dụ mặt ván ghép cao su: có thể quan sát hướng thanh, màu và các mối nối. Ảnh: <a href="https://www.bathanhtaybac.com/san-pham/go-ghep" className="underline underline-offset-4">Ba Thanh Tây Bắc</a>.</figcaption>
+                  </figure> : null}
+                  {article.slug === "mdf-thuong-va-chong-am" ? <figure className="mb-10">
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="relative aspect-square overflow-hidden rounded-lg bg-[#f7f8f5]"><MaterialImage src="/sanpham-media/van-mdf.webp" alt="Các tấm MDF mộc xếp chồng, nhìn thấy mặt và cạnh ván" sizes="(max-width: 640px) 45vw, 330px" /></div>
+                      <div className="relative aspect-square overflow-hidden rounded-lg bg-[#f7f8f5]"><MaterialImage src="/sanpham-media/mdf-chong-am.webp" alt="Mẫu MDF chống ẩm lõi xanh có bề mặt phủ trắng" sizes="(max-width: 640px) 45vw, 330px" /></div>
+                    </div>
+                    <figcaption className="mt-3 text-sm leading-6 text-slate-600">Bên trái: MDF mộc; bên phải: một mẫu MDF chống ẩm có mặt phủ. Màu lõi và lớp phủ không thay thế nhãn hoặc tài liệu kỹ thuật của tấm ván.</figcaption>
+                  </figure> : null}
+                  <MarkdownContent className="text-[1rem] leading-7 sm:text-[1.0625rem] sm:leading-8 prose-p:my-0 prose-p:mb-6 prose-headings:font-extrabold prose-h2:mb-4 prose-h2:mt-10 prose-h2:text-2xl prose-h2:leading-tight sm:prose-h2:text-[1.75rem] prose-h3:mb-3 prose-h3:mt-8 prose-h3:text-xl prose-h3:leading-snug prose-li:my-2">{cncParts ? cncParts[0] : article.body}</MarkdownContent>
+                  {cncParts ? <>
+                    <figure className="my-10">
+                      <div className="overflow-x-auto rounded-lg" tabIndex={0} role="region" aria-label="Sơ đồ bản vẽ CNC, có thể cuộn ngang">
+                        {/* eslint-disable-next-line @next/next/no-img-element -- authored vector with fixed dimensions */}
+                        <img src="/images/editorial/ban-ve-cnc-minh-hoa.svg" width={1200} height={820} loading="lazy" alt="Sơ đồ minh họa một chi tiết ván: đường bao, lỗ, rãnh, cạnh chuẩn và hướng ghi kích thước" className="h-auto w-full min-w-[720px]" />
+                      </div>
+                      <figcaption className="mt-3 text-sm leading-6 text-slate-600">Ví dụ ghi thông tin trên một mặt gia công; hình không theo tỉ lệ. Có thể cuộn ngang để xem toàn bộ sơ đồ. Ghi kích thước thực, đơn vị, độ sâu và mặt gia công trên bản vẽ của bạn.</figcaption>
+                    </figure>
+                    <MarkdownContent className="text-[1rem] leading-7 sm:text-[1.0625rem] sm:leading-8 prose-p:my-0 prose-p:mb-6 prose-headings:font-extrabold prose-h2:mb-4 prose-h2:mt-10 prose-h2:text-2xl prose-h2:leading-tight sm:prose-h2:text-[1.75rem] prose-h3:mb-3 prose-h3:mt-8 prose-h3:text-xl prose-h3:leading-snug prose-li:my-2">{cncParts[1]}</MarkdownContent>
+                  </> : null}
+                  </>}
                 </div>
               </div>
 

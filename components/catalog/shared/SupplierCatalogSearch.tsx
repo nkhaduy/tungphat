@@ -60,39 +60,27 @@ export function SupplierCatalogSearch({
   const [loadedSuppliers, setLoadedSuppliers] = useState<SupplierId[]>([]);
   const [loadError, setLoadError] = useState(false);
   const [query, setQuery] = useState("");
-  const [supplierId, setSupplierId] = useState<SupplierId | "">("");
+  const [supplierId, setSupplierId] = useState<SupplierId | "">("thanh-thuy");
+  const [hasUrlFilters, setHasUrlFilters] = useState(false);
   const [type, setType] = useState<CatalogSearchIntent>("all");
   const [group, setGroup] = useState("");
   const [pattern, setPattern] = useState<CanonicalCatalogGroup | "">("");
   const [visibleLimit, setVisibleLimit] = useState(PAGE_SIZE);
   const deferredQuery = useDeferredValue(query);
-  const loadingPrimary = !initialEntries.length && !loadedSuppliers.includes("thanh-thuy") && !loadError;
-  const loadingAdditional = !initialEntries.length && (Boolean(deferredQuery.trim()) || supplierId === "an-cuong") && !loadedSuppliers.includes("an-cuong") && !loadError;
+  const loadingPrimary = !initialEntries.length && loadedSuppliers.length < supplierDefinitions.length && !loadError;
   useEffect(() => {
     if (initialEntries.length) return;
     const controller = new AbortController();
-    Promise.all((["thanh-thuy", "ba-thanh"] as SupplierId[]).map(async (supplier) => {
-      const response = await fetch(`/data/catalogue-search-${supplier}.json`, { signal: controller.signal });
+    Promise.all(supplierDefinitions.map(async ({ id }) => {
+      const response = await fetch(`/data/catalogue-search-${id}.json`, { signal: controller.signal });
       if (!response.ok) throw new Error(`Search index: ${response.status}`);
       return response.json() as Promise<CatalogSearchEntry[]>;
-    })).then(([thanhThuy, baThanh]) => {
-      setEntries((current) => [...thanhThuy, ...baThanh, ...current.filter((entry) => entry.supplierId === "an-cuong")]);
-      setLoadedSuppliers((current) => [...current, "thanh-thuy", "ba-thanh"]);
+    })).then((indexes) => {
+      setEntries(indexes.flat());
+      setLoadedSuppliers(supplierDefinitions.map(({ id }) => id));
     }).catch((error) => { if (error.name !== "AbortError") setLoadError(true); });
     return () => controller.abort();
   }, [initialEntries]);
-
-  useEffect(() => {
-    if (initialEntries.length || loadedSuppliers.includes("an-cuong") || (!deferredQuery.trim() && supplierId !== "an-cuong")) return;
-    const controller = new AbortController();
-    fetch("/data/catalogue-search-an-cuong.json", { signal: controller.signal })
-      .then((response) => { if (!response.ok) throw new Error(`Search index: ${response.status}`); return response.json() as Promise<CatalogSearchEntry[]>; })
-      .then((anCuong) => {
-        setEntries((current) => [...current.filter((entry) => entry.supplierId !== "an-cuong"), ...anCuong]);
-        setLoadedSuppliers((current) => [...current, "an-cuong"]);
-      }).catch((error) => { if (error.name !== "AbortError") setLoadError(true); });
-    return () => controller.abort();
-  }, [deferredQuery, initialEntries, loadedSuppliers, supplierId]);
   const primarySelections: PrimarySelection[] = useMemo(
     () =>
       materialTaxonomyOptionsForSupplier(entries, supplierId).map(
@@ -139,7 +127,10 @@ export function SupplierCatalogSearch({
         new URLSearchParams(window.location.search),
       );
       setQuery(restored.query);
-      setSupplierId(restored.supplierId);
+      setSupplierId(restored.supplierId || "thanh-thuy");
+      // A default selection is a UI preference, not a filtered URL. Keep the
+      // canonical hub crawlable instead of redirecting it to a noindex variant.
+      setHasUrlFilters(isCatalogFilterStateActive(restored));
       setType(restored.type);
       setGroup(restored.group);
       setPattern(restored.pattern);
@@ -153,7 +144,7 @@ export function SupplierCatalogSearch({
     setVisibleLimit(PAGE_SIZE);
   }, [group, pattern, query, supplierId, type]);
 
-  useCatalogFilterRobots(hasSearchIntent || showSupplierDirectory);
+  useCatalogFilterRobots(hasUrlFilters);
 
   function updateUrl(
     next: {
@@ -172,6 +163,7 @@ export function SupplierCatalogSearch({
       group: next.group ?? group,
       pattern: next.pattern ?? pattern,
     };
+    setHasUrlFilters(isCatalogFilterStateActive(values));
     const parameters = buildCatalogSearchParams(
       new URLSearchParams(window.location.search),
       values,
@@ -277,9 +269,7 @@ export function SupplierCatalogSearch({
       </div>
 
       <div className="catalogue-search-panel relative z-20 py-5 sm:py-6 lg:py-7">
-        <p role="status" className="mb-3 text-center text-xs text-slate-600">
-          {loadError ? "Không tải được chỉ mục tra cứu. Vui lòng tải lại trang hoặc mở catalogue theo thương hiệu bên dưới." : loadingPrimary || loadingAdditional ? "Đang tải mã màu để tra cứu..." : !initialEntries.length && !deferredQuery.trim() && !supplierId ? "Đang hiển thị Thanh Thùy và Ba Thanh. Chọn hoặc tìm An Cường để tải thêm." : ""}
-        </p>
+        {loadError || loadingPrimary ? <p role="status" className="mb-3 text-center text-xs text-slate-600">{loadError ? "Không tải được chỉ mục tra cứu. Vui lòng tải lại trang hoặc mở catalogue theo thương hiệu bên dưới." : "Đang tải mã màu để tra cứu..."}</p> : null}
         <label className="catalogue-hero-search mx-auto block max-w-4xl">
           <span className="sr-only">Tra cứu mã màu</span>
           <span className="relative block rounded-md border border-forest-900/25 bg-white p-1 shadow-[0_8px_24px_rgba(6,43,29,.07)]">
@@ -348,11 +338,13 @@ export function SupplierCatalogSearch({
                   const value = event.target.value as SupplierId | "";
                   setSupplierId(value);
                   setPattern("");
-                  updateUrl({ supplierId: value, pattern: "" }, "push");
+                  setGroup("");
+                  setType("all");
+                  updateUrl({ supplierId: value, group: "", type: "all", pattern: "" }, "push");
                 }}
                 className="min-h-12 w-full appearance-none rounded-[4px] border border-forest-900/25 bg-white px-4 pr-11 text-base font-bold text-forest-950 outline-none focus:border-wood-500 focus:ring-2 focus:ring-wood-500/20"
               >
-                <option value="">Tất cả thương hiệu</option>
+
                 {supplierOptions.map((supplier) => (
                   <option key={supplier.value} value={supplier.value}>
                     {supplier.label}
@@ -402,7 +394,7 @@ export function SupplierCatalogSearch({
 
       {exactSupplier ? (
         <Link
-          href={exactSupplier.cataloguePath}
+          href={`/catalogue/?supplier=${exactSupplier.id}`}
           aria-label={`Khớp chính xác, nhà cung cấp ${exactSupplier.displayName}, mở catalogue`}
           className="pressable mt-6 flex min-h-32 flex-col justify-between border border-wood-500/40 bg-[#fff8ee] p-5 hover:border-wood-600 focus-visible:ring-2 focus-visible:ring-wood-600 sm:flex-row sm:items-center sm:gap-8 sm:p-6"
         >
@@ -427,7 +419,7 @@ export function SupplierCatalogSearch({
           {supplierDefinitions.map((supplier) => (
             <Link
               key={supplier.id}
-              href={supplier.cataloguePath}
+              href={`/catalogue/?supplier=${supplier.id}`}
               className="pressable border border-forest-900/10 bg-white p-5 hover:border-wood-500/50 hover:shadow-card focus-visible:ring-2 focus-visible:ring-wood-600"
             >
               <p className="text-xs font-extrabold uppercase tracking-[.14em] text-wood-600">
@@ -476,6 +468,7 @@ export function SupplierCatalogSearch({
             >
               {visibleResults.map((entry) => (
                 <CatalogueMaterialCard
+                  deferImages
                   key={
                     entry.id ??
                     `${entry.supplierId}:${entry.code}:${entry.canonicalRoute}`

@@ -1,0 +1,10 @@
+{
+  "project": "tungphat-light-cms-production",
+  "deploymentId": "cb234e0b-1cb9-4c9c-b57c-57792056e21b",
+  "r2_buckets": {
+    "R2": {
+      "name": "tung-phat-media"
+    }
+  },
+  "vars": {}
+}

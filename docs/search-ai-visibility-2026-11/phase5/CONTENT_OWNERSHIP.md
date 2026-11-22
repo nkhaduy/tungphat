@@ -1,0 +1,19 @@
+# Ownership nội dung và quy trình biên tập
+
+CMS Payload được đọc tại build; static export không cập nhật theo chỉnh sửa CMS cho đến lần build tiếp theo. Không có migration production trong Phase 5.
+
+| Content type | Field | Source of truth | Override rule | Conflict behavior | Test |
+|---|---|---|---|---|---|
+| Article | xuất bản/draft, noindex, slug, title, excerpt, author, category, tags, ảnh, metadata, canonical, quan hệ, FAQ | CMS | Không thay | Draft/noindex bị lọc; schema lỗi với dữ liệu bắt buộc thiếu/null; metadata và title CMS được giữ | `content-render-phase5`, `wave3-content` |
+| Article MDF so sánh | body | Repository `articleBodyOverrides`; CMS quyết định publication | Thay body CMS bằng bản đã biên tập | SHA-256 body CMS được snapshot trong `data/cms-editorial-baselines.json`; khác hoặc null làm build lỗi, yêu cầu đối chiếu trước khi cập nhật hash | `content-conflicts-phase5` |
+| Article CNC | body | CMS + một section repository | Section chỉ chèn trước một heading khớp duy nhất; nếu CMS đã có heading của section thì CMS thắng, không chèn lại | Không tìm thấy/đụng nhiều anchor hoặc section trùng làm build lỗi; không âm thầm nối sai | `content-conflicts-phase5`, `content-render-phase5` |
+| Article gỗ ghép | body | CMS + một section repository | Nối tại slot cuối bài được khai báo rõ, tránh phụ thuộc heading CMS; nếu CMS đã có heading section thì CMS thắng | Heading section trùng tạo lỗi; CMS thay heading khác không làm mất section | `content-conflicts-phase5` |
+| Article đã biên tập | updatedAt | Lớn hơn giữa ngày CMS và ngày bản biên tập 13/11/2026 | Không lùi ngày khi CMS cập nhật | Ngày repository cần cập nhật khi nội dung biên tập thay đổi | `content-conflicts-phase5`, `content-render-phase5` |
+| 4 material CMS-managed | slug, publication/draft/noindex, canonical, status, featured, publishedAt, relatedArticles | CMS | Không tái tạo nếu vắng khỏi API public; các cờ được giữ | CMS ẩn/draft không bị frontend tự xuất bản | `product-editorial`, publication tests |
+| Material guides | title, category, materialType, body, excerpt, ứng dụng, thông số hiển thị, ảnh/gallery, CTA, SEO title/description/OG, FAQ | Repository `product-editorial`, taxonomy, media manifest | Ghi đè các trường cùng tên từ CMS; không suy thông số hàng thực | Với 4 slug CMS-managed, fingerprint các trường CMS bị che được so với baseline; thay đổi hoặc null làm build lỗi và yêu cầu review. 12 guide khác do repository quản lý | `content-conflicts-phase5`, `product-editorial` |
+| Material guides | updatedAt | Ngày CMS nếu mới hơn ngày biên tập repository 13/11/2026; nếu không dùng ngày repository | Không để ngày CMS mới bị hạ | Ngày repository phải được editor cập nhật theo lần sửa | `product-editorial` |
+| Minh họa CNC/Acrylic | vị trí figure | Repository | Heading chính xác duy nhất đặt ảnh đúng vị trí cũ | Nếu thiếu/trùng heading, giữ toàn bộ body, cảnh báo và đặt ảnh sau body thay vì mất ảnh; không thay nội dung CMS | `cnc-diagram`, Playwright |
+
+Hash là cơ chế phát hiện xung đột, không chứng minh sự chấp thuận nội dung. Khi CMS sửa trường bị che: dừng release, so sánh bản CMS với nội dung repository, quyết định hợp nhất/chủ sở hữu, cập nhật baseline sau khi review và chạy test/build. Không cập nhật hash chỉ để vượt kiểm tra. API không trả bản ghi unpublished sẽ giữ record đó ẩn. Nếu CMS sửa một đoạn tương đương nhưng dùng heading khác, không có thuật toán nào chứng minh hết trùng nghĩa; editor cần xem preview hai bài có section bổ sung.
+
+Chuyển sang CMS dài hạn: sao lưu và export các document cùng media, tạo bản hợp nhất có version và owner duyệt; dry-run migration trên bản sao, so sánh HTML, metadata, ảnh và publication; sau đó mới cho CMS sở hữu từng slug và bỏ override tương ứng. Rollback dùng bản export/backup đã xác minh và bản frontend trước đó. Không chạy import hay migration production trong Phase 5.

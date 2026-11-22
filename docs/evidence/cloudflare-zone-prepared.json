@@ -1,0 +1,26 @@
+{
+  "id": "4cc9a59d98651da1950571a2bf07252e",
+  "name": "mdftungphat.com",
+  "status": "pending",
+  "name_servers": [
+    "lia.ns.cloudflare.com",
+    "nero.ns.cloudflare.com"
+  ],
+  "original_name_servers": [
+    "ns-a1.tenten.vn",
+    "ns-a2.tenten.vn",
+    "ns-a3.tenten.vn"
+  ],
+  "plan": {
+    "id": "0feeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "name": "Free Website",
+    "price": 0,
+    "currency": "USD",
+    "frequency": "",
+    "is_subscribed": false,
+    "can_subscribe": false,
+    "legacy_id": "free",
+    "legacy_discount": false,
+    "externally_managed": false
+  }
+}

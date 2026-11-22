@@ -68,7 +68,7 @@ describe("catalogue hub customer journey", () => {
     expect(markup).toContain(">Phân loại</p>");
     expect(markup).toContain(">Theo thương hiệu</span>");
     expect(markup.match(/>Theo thương hiệu<\/span>/g)).toHaveLength(1);
-    expect(markup).toContain(">Tất cả thương hiệu</option>");
+    expect(markup).not.toContain(">Tất cả thương hiệu</option>");
     expect(markup).not.toContain("Chọn nhóm vật liệu");
     expect(markup).not.toContain("Lọc theo nhà cung cấp");
     expect(markup).not.toContain("Mặc định ưu tiên ý định tra mã Melamine");
@@ -125,8 +125,8 @@ describe("catalogue hub customer journey", () => {
     expect(markup).toContain("%2Fpartners%2Fthanh-thuy-logo.png");
     expect(supplierDefinitions.map((supplier) => supplier.logoSrc)).toEqual([
       "/partners/thanh-thuy-logo.png",
-      "/partners/ba-thanh-logo.png",
       "/partners/an-cuong-logo.png",
+      "/partners/ba-thanh-logo.png",
     ]);
     expect(markup).toContain("Mở mã màu Thanh Thuỳ");
     expect(markup).not.toContain('data-testid="catalogue-card-link"');

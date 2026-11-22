@@ -1,0 +1,182 @@
+{
+  "classified": 29,
+  "confirmedCloudflareRegressionsAmongOriginalFailures": 0,
+  "note": "Source and prior full sitemap/content baseline unchanged. Preview HTTP206 bug discovered separately, fixed before production; no test deleted or disabled.",
+  "resultsAtCheckpoint": "Full browser suite74/74 passed; no original test deleted or disabled. Real CMS auth/browser/media/editor workflows also pass.",
+  "failures": [
+    {
+      "id": 1,
+      "test": "e2e/analytics.spec.ts:5:5 › tracks App Router pages, content and CTA once, then honors opt-out",
+      "category": "Test environment/configuration issue",
+      "evidenceAndCorrection": "Production artifact lacked the explicit analytics test build flag."
+    },
+    {
+      "id": 2,
+      "test": "e2e/ba-thanh-accessibility.spec.ts:12:7 › homepage has no serious accessibility violations",
+      "category": "Test environment/configuration issue",
+      "evidenceAndCorrection": "Axe sampled the 280ms page-enter fade; final computed colors pass after opacity reaches1."
+    },
+    {
+      "id": 3,
+      "test": "e2e/ba-thanh-accessibility.spec.ts:12:7 › Ba Thanh category has no serious accessibility violations",
+      "category": "Test environment/configuration issue",
+      "evidenceAndCorrection": "Axe sampled the same shared page-enter fade; stable final state passes."
+    },
+    {
+      "id": 4,
+      "test": "e2e/ba-thanh-accessibility.spec.ts:26:5 › homepage hero content stays readable before hydration",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Old hero copy; current source H1 is Ván gỗ công nghiệp & gia công CNC tại Thủ Đức."
+    },
+    {
+      "id": 5,
+      "test": "e2e/site.spec.ts:121:5 › shared header is transparent over the first section and solid after scroll",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Current light header is white, dark header transparent; each becomes solid after scroll."
+    },
+    {
+      "id": 6,
+      "test": "e2e/site.spec.ts:162:5 › representative routes expose breadcrumbs, intact images, and no horizontal overflow",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Existing contact page is a flat contact layout with H1; other representative breadcrumbs retained."
+    },
+    {
+      "id": 7,
+      "test": "e2e/site.spec.ts:284:5 › homepage có đủ cấu trúc nội dung chính và chỉ một H1 ────",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Current source headings and lazy branch/footer maps replaced older content."
+    },
+    {
+      "id": 8,
+      "test": "e2e/site.spec.ts:303:5 › homepage product taxonomy exposes core materials and catalogue surfaces",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Current material cards use semantic article/headings and Thanh Thuy catalogue links."
+    },
+    {
+      "id": 9,
+      "test": "e2e/site.spec.ts:318:5 › homepage exposes the exact 301 catalogue landing route ──",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Homepage curated code selection changed; exact301 route independently remains200."
+    },
+    {
+      "id": 10,
+      "test": "e2e/site.spec.ts:347:5 › homepage marquee stays horizontal without causing vertical movement",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Marquee exists with aria-label; old data attribute was removed."
+    },
+    {
+      "id": 11,
+      "test": "e2e/site.spec.ts:368:5 › mobile navigation contract supports focus, Escape, and a solid surface",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "First mobile link now Sản phẩm; dialog focus/Escape contract retained."
+    },
+    {
+      "id": 12,
+      "test": "e2e/site.spec.ts:449:5 › shared navigation links meet the 44px target contract ──",
+      "category": "Pre-existing production issue",
+      "evidenceAndCorrection": "Footer legal links were40px; corrected to44px without redesign."
+    },
+    {
+      "id": 13,
+      "test": "e2e/site.spec.ts:740:5 › homepage không có lỗi accessibility nghiêm trọng ───────",
+      "category": "Test environment/configuration issue",
+      "evidenceAndCorrection": "As with the other homepage Axe test, wait for the finite entry animation to finish."
+    },
+    {
+      "id": 14,
+      "test": "e2e/site.spec.ts:775:5 › API từ chối origin khác và không lộ stack trace ────────",
+      "category": "Test environment/configuration issue",
+      "evidenceAndCorrection": "Static frontend has no Forms API; target real isolated CMS handlers instead."
+    },
+    {
+      "id": 15,
+      "test": "e2e/site.spec.ts:788:5 › API trả CORS preflight chính xác cho origin được phép ──",
+      "category": "Test environment/configuration issue",
+      "evidenceAndCorrection": "CMS accepts apex/www origins; local frontend origin was the wrong API contract."
+    },
+    {
+      "id": 16,
+      "test": "e2e/site.spec.ts:811:5 › API validation và rate limit hoạt động ─────────────────",
+      "category": "Test environment/configuration issue",
+      "evidenceAndCorrection": "Real CMS+D1 local fixture verifies validation,5-submission rate limit and429."
+    },
+    {
+      "id": 17,
+      "test": "e2e/site.spec.ts:862:5 › API nhận submission idempotent mà không tạo lead lặp ───",
+      "category": "Test environment/configuration issue",
+      "evidenceAndCorrection": "Real CMS+D1 fixture verifies first201 then duplicate200."
+    },
+    {
+      "id": 18,
+      "test": "e2e/site.spec.ts:890:5 › payload kiểu SQL injection không làm thay đổi schema ───",
+      "category": "Test environment/configuration issue",
+      "evidenceAndCorrection": "Real CMS+D1 fixture verifies bound insertion and a second successful insertion."
+    },
+    {
+      "id": 19,
+      "test": "e2e/site.spec.ts:1002:5 › Trustindex review slider renders current source data and remains usable on mobile",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Current existing curation excludes one-star reviews; aggregate rating/count retained."
+    },
+    {
+      "id": 20,
+      "test": "e2e/supplier-catalogue.spec.ts:7:7 › Mã màu customer journeys › site navigation exposes the public Mã màu experience",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Desktop catalogue navigation is a menu button; verify its Find code link."
+    },
+    {
+      "id": 21,
+      "test": "e2e/supplier-catalogue.spec.ts:147:7 › Mã màu customer journeys › hub Tất cả auto-loads beyond the featured first page",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Hub initially loads TT/BT724 entries and loads An Cuong on intent; old2992 assertion stale."
+    },
+    {
+      "id": 22,
+      "test": "e2e/supplier-catalogue.spec.ts:162:7 › Mã màu customer journeys › Thanh Thuỳ exposes edge families and merged Melamine subgroups",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Counts now labelled mục tra cứu; edge5 and woodgrain40 preserved."
+    },
+    {
+      "id": 23,
+      "test": "e2e/supplier-catalogue.spec.ts:219:7 › Mã màu customer journeys › catalogue filters expose clear selected states and supplier filtering",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Laminate initially182 TT/BT entries, Ba Thanh113; An Cuong loads on demand."
+    },
+    {
+      "id": 24,
+      "test": "e2e/supplier-catalogue.spec.ts:344:7 › Mã màu customer journeys › detail pages prioritize the code, breadcrumb and local source media",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "H1 includes code plus color name; gallery alt uses current SEO identity, not swatch suffix."
+    },
+    {
+      "id": 25,
+      "test": "e2e/supplier-catalogue.spec.ts:363:7 › Mã màu customer journeys › Thanh Thuỳ Veneer collection exposes the official surface identifier and swatch",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Veneer H1/alt follows current code SEO identity; exact CDN swatch retained."
+    },
+    {
+      "id": 26,
+      "test": "e2e/supplier-catalogue.spec.ts:381:7 › Mã màu customer journeys › Ba Thanh invalid source media renders an explicit source-missing state",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Missing-media state intact; H1 now uses human-readable color identity."
+    },
+    {
+      "id": 27,
+      "test": "e2e/supplier-catalogue.spec.ts:412:7 › Mã màu mobile navigation › mobile menu uses Mã màu and restores background scrolling",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Mobile navigation uses a named dialog and Mã màu / Catalogue."
+    },
+    {
+      "id": 28,
+      "test": "e2e/thanh-thuy.spec.ts:49:5 › sparse code page is useful but noindex ────────────",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Current stock caveat replaces older CTA copy; noindex and Zalo inquiry unchanged."
+    },
+    {
+      "id": 29,
+      "test": "e2e/thanh-thuy.spec.ts:91:5 › mobile catalogue has labels, focus and no horizontal overflow",
+      "category": "Obsolete test assumption",
+      "evidenceAndCorrection": "Explorer status says mục phù hợp; focus/filter/overflow coverage retained."
+    }
+  ]
+}

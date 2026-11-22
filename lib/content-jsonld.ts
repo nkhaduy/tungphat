@@ -1,4 +1,5 @@
 import { absoluteMediaUrl } from "@/lib/media";
+import { allMaterialCards } from "@/lib/product-taxonomy";
 import { SITE_URL, absolutePageUrl, schemaPageId } from "@/lib/seo";
 
 type ProductLandingSchemaInput = {
@@ -21,6 +22,14 @@ type ServiceLandingSchemaInput = {
   excerpt: string;
 };
 
+// These routes describe material families with multiple possible specifications.
+// CMS availability is not evidence of a single SKU or a priced offer.
+const materialFamilySlugs = new Set(allMaterialCards.map((card) => card.href.replace(/^\//u, "").replace(/\/$/u, "")));
+
+export function isMaterialCollection(product: Pick<ProductLandingSchemaInput, "slug" | "status">) {
+  return product.status === "guide" || materialFamilySlugs.has(product.slug);
+}
+
 export function buildProductLandingSchema(product: ProductLandingSchemaInput) {
   const path = `/${product.slug}`;
   const common = {
@@ -31,7 +40,7 @@ export function buildProductLandingSchema(product: ProductLandingSchemaInput) {
     url: absolutePageUrl(path),
   };
 
-  if (product.status === "guide") {
+  if (isMaterialCollection(product)) {
     return {
       ...common,
       "@type": "CollectionPage",

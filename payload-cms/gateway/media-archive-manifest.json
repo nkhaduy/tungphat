@@ -1,0 +1,607 @@
+{
+  "version": 1,
+  "origin": "https://tungphat-media-archive.pages.dev",
+  "purpose": "Immutable supplier originals; exact-byte fallback. No R2 removal before remote hash verification.",
+  "objects": [
+    {
+      "key": "supplier/an-cuong/lk4608a/board/a1b4c4e7c80eb3e4eb883471786bcde7e3b61ac071ad29695d14ebce1026553c.jpg",
+      "bytes": 24181722,
+      "sha256": "a1b4c4e7c80eb3e4eb883471786bcde7e3b61ac071ad29695d14ebce1026553c",
+      "etag": "e3beb182d0474ade3fac5045513cdc3a"
+    },
+    {
+      "key": "supplier/an-cuong/lk5300d/board/c358aa6ca79a70d8e71c5458f044bf88c6fab854aac4757b720a993158e44527.jpg",
+      "bytes": 24181230,
+      "sha256": "c358aa6ca79a70d8e71c5458f044bf88c6fab854aac4757b720a993158e44527",
+      "etag": "b25de8815c9f358e67f091b68937fffd"
+    },
+    {
+      "key": "supplier/an-cuong/lk5302d/board/6cca700fe563f26e29759a3302dbc3aeb5c7c489a53efb3d53388f505470f1cd.jpg",
+      "bytes": 23198779,
+      "sha256": "6cca700fe563f26e29759a3302dbc3aeb5c7c489a53efb3d53388f505470f1cd",
+      "etag": "f17606b83d6a83d8c6b82419cc085430"
+    },
+    {
+      "key": "supplier/an-cuong/lk4422a/board/39a72adde3987ae59431b56c4241899f4fa99776f26913095c9fbb1ca14b80db.jpg",
+      "bytes": 23066188,
+      "sha256": "39a72adde3987ae59431b56c4241899f4fa99776f26913095c9fbb1ca14b80db",
+      "etag": "17d1e95a2c6a5499fda093dd685e3b27"
+    },
+    {
+      "key": "supplier/an-cuong/lk4601a/board/87a599cfb8a8a304b84552df74a38243f5041276f40a084df6186d63fda1558c.jpg",
+      "bytes": 22625487,
+      "sha256": "87a599cfb8a8a304b84552df74a38243f5041276f40a084df6186d63fda1558c",
+      "etag": "87fc2fa536949cf6698c29289e0123e2"
+    },
+    {
+      "key": "supplier/an-cuong/lk4606a/board/ff7cced28d984c10eca3ee9ad79b55726c4859b00b0cff1bf88a8357a4a49876.jpg",
+      "bytes": 22472204,
+      "sha256": "ff7cced28d984c10eca3ee9ad79b55726c4859b00b0cff1bf88a8357a4a49876",
+      "etag": "c9afa45f5a24346a8bae3761e7dfb142"
+    },
+    {
+      "key": "supplier/an-cuong/lk4423a/board/d2f9630e39c71811126e0ed3c4a728b54fa5ee78b1d432199388874a5985d341.jpg",
+      "bytes": 21455913,
+      "sha256": "d2f9630e39c71811126e0ed3c4a728b54fa5ee78b1d432199388874a5985d341",
+      "etag": "c14791b81e141a276a5944ccd33526a7"
+    },
+    {
+      "key": "supplier/an-cuong/lkpf8128h/board/8ef1c4d15093bf1b07ab8239c43fb9fbe1d6507b4b7760bfdf97c69e3ee8e693.jpg",
+      "bytes": 21443529,
+      "sha256": "8ef1c4d15093bf1b07ab8239c43fb9fbe1d6507b4b7760bfdf97c69e3ee8e693",
+      "etag": "456403ec645b5cfffedee46c4002fc0b"
+    },
+    {
+      "key": "supplier/an-cuong/lk4607a/board/b4f2b54f0bc822f38ff0dad866fc27972d7c483b3f092a000b31b833822149dd.jpg",
+      "bytes": 20697594,
+      "sha256": "b4f2b54f0bc822f38ff0dad866fc27972d7c483b3f092a000b31b833822149dd",
+      "etag": "c91bb63fb17566c38058cd247a7ceb30"
+    },
+    {
+      "key": "supplier/an-cuong/lk1207t/board/32d05e897e00ef72b80afded46c74faaa81cc91c96394d79062084891f37d301.jpg",
+      "bytes": 20559263,
+      "sha256": "32d05e897e00ef72b80afded46c74faaa81cc91c96394d79062084891f37d301",
+      "etag": "5a5200e484ed192fcec21b4f4882ba08"
+    },
+    {
+      "key": "supplier/an-cuong/lk4600a/board/8ee9f36b13d37fd617ce27e3e2e7a904a353a742b27a1daec59aa0179d835582.jpg",
+      "bytes": 20337069,
+      "sha256": "8ee9f36b13d37fd617ce27e3e2e7a904a353a742b27a1daec59aa0179d835582",
+      "etag": "867ccafc0cc7f8fe4712c3e8b73e727d"
+    },
+    {
+      "key": "supplier/an-cuong/mfcms525nwm/board/42047990b4e26fc88925cde7812f0f84fb1b349f41ce61183ac0fb77a1902235.jpg",
+      "bytes": 19901944,
+      "sha256": "42047990b4e26fc88925cde7812f0f84fb1b349f41ce61183ac0fb77a1902235",
+      "etag": "e710dd2cd364210934ede226435d868d"
+    },
+    {
+      "key": "supplier/an-cuong/lk2003e/board/10a4f947a7b3235b981c3867d9233669eef060035c0a7eae51887dff73f0ad48.jpg",
+      "bytes": 19866895,
+      "sha256": "10a4f947a7b3235b981c3867d9233669eef060035c0a7eae51887dff73f0ad48",
+      "etag": "590f8b49fd23b5f52a3a97ef2730fe12"
+    },
+    {
+      "key": "supplier/an-cuong/lk1206t/board/b2ce9b0c52daa363d9ce8a0fd8e81fa82087d6e8301901f80067fdf9aee18851.jpg",
+      "bytes": 19425398,
+      "sha256": "b2ce9b0c52daa363d9ce8a0fd8e81fa82087d6e8301901f80067fdf9aee18851",
+      "etag": "de92873ec6180f453415451130c4b4ba"
+    },
+    {
+      "key": "supplier/an-cuong/lk3121e/board/50ec32beda62fa1becf26754c987e485ad43ad311b6271e2871aae0afc9bdef8.jpg",
+      "bytes": 19382926,
+      "sha256": "50ec32beda62fa1becf26754c987e485ad43ad311b6271e2871aae0afc9bdef8",
+      "etag": "fd1e28c439763a28b0dfd052f8edd3ce"
+    },
+    {
+      "key": "supplier/an-cuong/lk2205a/board/83fd0f6f900754834199983f0886ce50665a94e2dd1ce3497ce163ae2be14e1c.jpg",
+      "bytes": 19338046,
+      "sha256": "83fd0f6f900754834199983f0886ce50665a94e2dd1ce3497ce163ae2be14e1c",
+      "etag": "fca2d2b98541f32d38c4ba3fdfa4dd8c"
+    },
+    {
+      "key": "supplier/an-cuong/lk4630tlux/board/4c36aa0f703bb7252aadebcc5b3c7ad3ab06834e248afc22962fe7fc307b8a76.jpg",
+      "bytes": 19298223,
+      "sha256": "4c36aa0f703bb7252aadebcc5b3c7ad3ab06834e248afc22962fe7fc307b8a76",
+      "etag": "e238e071f9631ba568f2acea604ef084"
+    },
+    {
+      "key": "supplier/an-cuong/lk2600t/board/3f0f77a1eb05d373ab76179f2a9c55d1d0265dd600c3a194c97bb426022b89ba.jpg",
+      "bytes": 19244434,
+      "sha256": "3f0f77a1eb05d373ab76179f2a9c55d1d0265dd600c3a194c97bb426022b89ba",
+      "etag": "ae45748745ed7e56fe6702208c5366d9"
+    },
+    {
+      "key": "supplier/an-cuong/lk3208t/board/6425a0087bb0732bc34f099eb6127b619effe07b48b19ffdd740590dfe84f7bd.jpg",
+      "bytes": 19234235,
+      "sha256": "6425a0087bb0732bc34f099eb6127b619effe07b48b19ffdd740590dfe84f7bd",
+      "etag": "02f29559c99321f7de61e0b404005cce"
+    },
+    {
+      "key": "supplier/an-cuong/lk1204t/board/14923b1037ddfd4c2d4a00ee3ce449d97aff2d928862920b8c45f487dff717e7.jpg",
+      "bytes": 19220061,
+      "sha256": "14923b1037ddfd4c2d4a00ee3ce449d97aff2d928862920b8c45f487dff717e7",
+      "etag": "addce4b95592b44c47bc5e0460e2ad2d"
+    },
+    {
+      "key": "supplier/an-cuong/lk4494p/board/1b340af4e0f1df7870fc7e1325daf41ac8e37c172641bea137bb2890b5fe1e4e.jpg",
+      "bytes": 19145644,
+      "sha256": "1b340af4e0f1df7870fc7e1325daf41ac8e37c172641bea137bb2890b5fe1e4e",
+      "etag": "9ba347773494a59f206a4285cc98e3c3"
+    },
+    {
+      "key": "supplier/an-cuong/veneerm05vht39/board/102d15dc40572c23807427b1f24f43ea977fffbecdc64018df40edefe64f36f6.jpg",
+      "bytes": 19143252,
+      "sha256": "102d15dc40572c23807427b1f24f43ea977fffbecdc64018df40edefe64f36f6",
+      "etag": "bb5ff893a3265f1278f57c97e21532d2"
+    },
+    {
+      "key": "supplier/an-cuong/p525/board/5ce8c3a479b5ac239600339e3c17a115e720e01ab9ba233c49465a84fd4b617a.jpg",
+      "bytes": 19120563,
+      "sha256": "5ce8c3a479b5ac239600339e3c17a115e720e01ab9ba233c49465a84fd4b617a",
+      "etag": "7af8d9b1d4fc75bce344498844b3af1a"
+    },
+    {
+      "key": "supplier/an-cuong/lk3209t/board/a0d797406bf3710e0fae3514c5b8b5398d2c2580354720ce08f8b7532e2a9b35.jpg",
+      "bytes": 18852597,
+      "sha256": "a0d797406bf3710e0fae3514c5b8b5398d2c2580354720ce08f8b7532e2a9b35",
+      "etag": "fa71df7335be5b515fae2efd12615173"
+    },
+    {
+      "key": "supplier/an-cuong/lkpf8136g/board/b2a0595e09f9844864b340de851413643771bf1400d0157d14621570d2fb0d25.jpg",
+      "bytes": 18809108,
+      "sha256": "b2a0595e09f9844864b340de851413643771bf1400d0157d14621570d2fb0d25",
+      "etag": "7af5d8291421cdf3f6244a2f53f5df3b"
+    },
+    {
+      "key": "supplier/an-cuong/veneervct32/board/7b025b1ff5388cd53df4025999fcf16bbbc3390e6a189a62570ef8d889b6a9ca.jpg",
+      "bytes": 18781334,
+      "sha256": "7b025b1ff5388cd53df4025999fcf16bbbc3390e6a189a62570ef8d889b6a9ca",
+      "etag": "1aefcfc23ace14369ecd59bfd08f86bb"
+    },
+    {
+      "key": "supplier/an-cuong/lk1205t/board/a5799b212094f9d907162dc246dd04a420470cf1bb3fdb49620bd661d1646a71.jpg",
+      "bytes": 18768228,
+      "sha256": "a5799b212094f9d907162dc246dd04a420470cf1bb3fdb49620bd661d1646a71",
+      "etag": "2f65f963fcc3999ff25de07a5a129f2f"
+    },
+    {
+      "key": "supplier/an-cuong/lk3204t/board/3783b4f3f1d6221b7be91c0ca3513a8abef045365c55876ac3969a04e21bfeee.jpg",
+      "bytes": 18609334,
+      "sha256": "3783b4f3f1d6221b7be91c0ca3513a8abef045365c55876ac3969a04e21bfeee",
+      "etag": "70f783fa9fa1bfbabd4b4227bcf99a0d"
+    },
+    {
+      "key": "supplier/ba-thanh/lw75t/swatch/379299ede50f9b02a9ae29b644c864d82adae4054a3c11bb6b765fd40e4de9cc.jpg",
+      "bytes": 18532951,
+      "sha256": "379299ede50f9b02a9ae29b644c864d82adae4054a3c11bb6b765fd40e4de9cc",
+      "etag": "d34e1efbc23e7dca651c8cd0a8748d7b"
+    },
+    {
+      "key": "supplier/an-cuong/lk2277k/board/adafb4fdfb9d30ae6bd6646f05a1e83308a6eb4e6112b509c68e7bdd12f3959b.jpg",
+      "bytes": 18528207,
+      "sha256": "adafb4fdfb9d30ae6bd6646f05a1e83308a6eb4e6112b509c68e7bdd12f3959b",
+      "etag": "07ae6e343a9c57b8bfab58e216fbedd6"
+    },
+    {
+      "key": "supplier/an-cuong/lk3213t/board/963441bb642ff81039fc3b6285579652de778d2812edb1ea113b104030aa3948.jpg",
+      "bytes": 18492849,
+      "sha256": "963441bb642ff81039fc3b6285579652de778d2812edb1ea113b104030aa3948",
+      "etag": "be8d0849baf86b57c1cef86d5bd8497f"
+    },
+    {
+      "key": "supplier/an-cuong/f488/board/c577eb0748e07778be6bb3fcda61efad4cc22fe51b87bfc7bb9adfb1bf8fc650.jpg",
+      "bytes": 18480816,
+      "sha256": "c577eb0748e07778be6bb3fcda61efad4cc22fe51b87bfc7bb9adfb1bf8fc650",
+      "etag": "2e42b5dd6d11a1ebc9ee063e726565ea"
+    },
+    {
+      "key": "supplier/an-cuong/veneervct20/board/74c021eedf4575f6ff0a90c496d5a089f56a578c21c21c05a07d283806812cc9.jpg",
+      "bytes": 18426062,
+      "sha256": "74c021eedf4575f6ff0a90c496d5a089f56a578c21c21c05a07d283806812cc9",
+      "etag": "5a3dafec7238312802d2ea7554d93d8f"
+    },
+    {
+      "key": "supplier/an-cuong/lk2005e/board/5456a4defc572f894a72d8c33c7931d9c8144564733b10bccf266b1ace42e6e6.jpg",
+      "bytes": 18371897,
+      "sha256": "5456a4defc572f894a72d8c33c7931d9c8144564733b10bccf266b1ace42e6e6",
+      "etag": "3a9519aa6f3df778b83c02e0d30ef2ee"
+    },
+    {
+      "key": "supplier/an-cuong/lk2276k/board/a8a009d399a71cd9e2e8251039e94ecb46f8083c65fd67c21882eb874ecb70f0.jpg",
+      "bytes": 18190969,
+      "sha256": "a8a009d399a71cd9e2e8251039e94ecb46f8083c65fd67c21882eb874ecb70f0",
+      "etag": "c80604fd89634ed20357ff46c8772dff"
+    },
+    {
+      "key": "supplier/an-cuong/mfcms483shg/board/6de84543935c81251693f4e0e3f96bf5dcfc1705cdc57bd159b1d9550720f25e.jpg",
+      "bytes": 18139176,
+      "sha256": "6de84543935c81251693f4e0e3f96bf5dcfc1705cdc57bd159b1d9550720f25e",
+      "etag": "5270d70ea392200d6e1bc3726ad96f7c"
+    },
+    {
+      "key": "supplier/an-cuong/lk2280k/board/f428efb131f9c417873129f511436a128a874e5055b17b44333d2a0961d72593.jpg",
+      "bytes": 18014991,
+      "sha256": "f428efb131f9c417873129f511436a128a874e5055b17b44333d2a0961d72593",
+      "etag": "4aa36acfb0df6b4f1b416392992c4c99"
+    },
+    {
+      "key": "supplier/an-cuong/lk2006e/board/f9d5b5f98329482f37f1fcb42e64dbc7923325ebfe21714c3e1262387a2127f6.jpg",
+      "bytes": 17974637,
+      "sha256": "f9d5b5f98329482f37f1fcb42e64dbc7923325ebfe21714c3e1262387a2127f6",
+      "etag": "8c5213845a574ee45c7ad5898f5d7b96"
+    },
+    {
+      "key": "supplier/an-cuong/f421/board/8ca5fef854d650291e0f55a909a025c4bd7f6a8638cde520eb62a9e445f7e4da.jpg",
+      "bytes": 17920387,
+      "sha256": "8ca5fef854d650291e0f55a909a025c4bd7f6a8638cde520eb62a9e445f7e4da",
+      "etag": "af008148e8941da1750d68826fdd1821"
+    },
+    {
+      "key": "supplier/an-cuong/lk2601t/board/cc922ca60057ee5651085291530a182b13a18e8d7ad83ea0e9040d2410d4aedd.jpg",
+      "bytes": 17912057,
+      "sha256": "cc922ca60057ee5651085291530a182b13a18e8d7ad83ea0e9040d2410d4aedd",
+      "etag": "03982ecd34af86083c305387c55c1943"
+    },
+    {
+      "key": "supplier/an-cuong/lk4628tlux/board/9c81e171e86d6bf99d6d8480ec949ee50e40c4a949e9d36d8aeee8cb4fe7aec2.jpg",
+      "bytes": 17835030,
+      "sha256": "9c81e171e86d6bf99d6d8480ec949ee50e40c4a949e9d36d8aeee8cb4fe7aec2",
+      "etag": "eb10ff7480ec1fde8018f796946b5b44"
+    },
+    {
+      "key": "supplier/ba-thanh/bt118/application/6008f1cc0866ae2e0da0764c2d6aa9f4eb344c94444d714b0cddfe245b9b2057.jpg",
+      "bytes": 17813919,
+      "sha256": "6008f1cc0866ae2e0da0764c2d6aa9f4eb344c94444d714b0cddfe245b9b2057",
+      "etag": "3513fc89eeb1eadb9eff0a88aa1733ce"
+    },
+    {
+      "key": "supplier/an-cuong/lk4598a/board/d387720c848eb0a89c30ab1e7138754a37cc13e3800cac77b70cb1edb5887e2c.jpg",
+      "bytes": 17711375,
+      "sha256": "d387720c848eb0a89c30ab1e7138754a37cc13e3800cac77b70cb1edb5887e2c",
+      "etag": "41024e6297a5f1ea2feafc3aad89aae7"
+    },
+    {
+      "key": "supplier/an-cuong/lkpf8137g/board/e9ab4fd19f1e05a6ae6b92420efd3e62561d57215006bea061495d157a027632.jpg",
+      "bytes": 17684443,
+      "sha256": "e9ab4fd19f1e05a6ae6b92420efd3e62561d57215006bea061495d157a027632",
+      "etag": "0568cbfebe388eb41502472f6ef1ec78"
+    },
+    {
+      "key": "supplier/ba-thanh/bt178/swatch/86fa8e8adafe64203998b8177ddd8251bbc1d4589be71e764aa028e8b2c0ae25.jpg",
+      "bytes": 17664071,
+      "sha256": "86fa8e8adafe64203998b8177ddd8251bbc1d4589be71e764aa028e8b2c0ae25",
+      "etag": "d751cde29686cfc3fb01edcbd0e72905"
+    },
+    {
+      "key": "supplier/an-cuong/lk2008e/board/f22d361a3b7dfea6d5e4a859072719d1d111062864d72714e933cc2af122d5ee.jpg",
+      "bytes": 17570930,
+      "sha256": "f22d361a3b7dfea6d5e4a859072719d1d111062864d72714e933cc2af122d5ee",
+      "etag": "6acdeabff805f73b8229d4558a0b741c"
+    },
+    {
+      "key": "supplier/an-cuong/f996/board/c0a8ab67e2b49cedda8e2f25a3ca3cb8afb6f50430867ba26d8ac9e3f72205b6.jpg",
+      "bytes": 17517758,
+      "sha256": "c0a8ab67e2b49cedda8e2f25a3ca3cb8afb6f50430867ba26d8ac9e3f72205b6",
+      "etag": "e56c37d36933c1114f9be5f81a947afc"
+    },
+    {
+      "key": "supplier/an-cuong/lk3211t/board/fc0f073068d6f3b2013b9e37375a6df6b908ef2ab776a076765dea47e1a3e07c.jpg",
+      "bytes": 17509392,
+      "sha256": "fc0f073068d6f3b2013b9e37375a6df6b908ef2ab776a076765dea47e1a3e07c",
+      "etag": "e110082a8a69ce4a25c8172be2cbb8f5"
+    },
+    {
+      "key": "supplier/an-cuong/lk2009e/board/5c95960d95539cf859f03d471dc785a86eaede486e0db458901e6c4b45038f83.jpg",
+      "bytes": 17479636,
+      "sha256": "5c95960d95539cf859f03d471dc785a86eaede486e0db458901e6c4b45038f83",
+      "etag": "4577f7c2d90f67c2d6a71fd601fa8183"
+    },
+    {
+      "key": "supplier/an-cuong/lk3122e/board/f0a7ff943e775a9902a51550b6fbb7b55afea4d199e531d57203d4f30aeb48bd.jpg",
+      "bytes": 17371902,
+      "sha256": "f0a7ff943e775a9902a51550b6fbb7b55afea4d199e531d57203d4f30aeb48bd",
+      "etag": "66a1d8704a74c451782ef906bf3b7828"
+    },
+    {
+      "key": "supplier/an-cuong/lk4405a/board/df8ebc3e85e7879cb2f71007540cf22b3eced89f2b2769dc3ba261f86faeac4e.jpg",
+      "bytes": 17304821,
+      "sha256": "df8ebc3e85e7879cb2f71007540cf22b3eced89f2b2769dc3ba261f86faeac4e",
+      "etag": "9f73ba1d25a232ea474efddeaad98eb3"
+    },
+    {
+      "key": "supplier/an-cuong/veneervct24/board/fdcefe04ca4410294b9468e383b6bf43a739860c88060a79fc711a15cf600714.jpg",
+      "bytes": 17281629,
+      "sha256": "fdcefe04ca4410294b9468e383b6bf43a739860c88060a79fc711a15cf600714",
+      "etag": "c4596034d1c6804db1f74e80f8425ad7"
+    },
+    {
+      "key": "supplier/an-cuong/f426/board/9370b702410c121d1a65ff0be2dc484aa68c770bbc6919a782dba391373afff9.jpg",
+      "bytes": 17263193,
+      "sha256": "9370b702410c121d1a65ff0be2dc484aa68c770bbc6919a782dba391373afff9",
+      "etag": "956131a892369345950cc9b2e2cbadae"
+    },
+    {
+      "key": "supplier/an-cuong/lk4672tlux/board/aa6758ff06fcf9003cd0348df75e889bfc92253b98917d938cb0c88b170fb426.jpg",
+      "bytes": 17222674,
+      "sha256": "aa6758ff06fcf9003cd0348df75e889bfc92253b98917d938cb0c88b170fb426",
+      "etag": "17e73172f9266ecfdefcc204f0638e10"
+    },
+    {
+      "key": "supplier/an-cuong/mfcmslux5006slt/board/4821889a58ce0aa54f6c80220c8f56f7c262dd10067623bbec66436421223af6.jpg",
+      "bytes": 17214632,
+      "sha256": "4821889a58ce0aa54f6c80220c8f56f7c262dd10067623bbec66436421223af6",
+      "etag": "01864d6a23af34fec93781f4d0af35da"
+    },
+    {
+      "key": "supplier/an-cuong/lk5301d/board/d6664478b30ec689bb8709893066e6f80b6d78d71e981da93183d715ee7002d6.jpg",
+      "bytes": 17049476,
+      "sha256": "d6664478b30ec689bb8709893066e6f80b6d78d71e981da93183d715ee7002d6",
+      "etag": "a9eae8ed9d5d5c74a0805132f1aac76a"
+    },
+    {
+      "key": "supplier/an-cuong/lk3210t/board/e061cc429f1949af23abbcccc9264716b381bee375bae368a3c6e654f2ee8fe5.jpg",
+      "bytes": 16959856,
+      "sha256": "e061cc429f1949af23abbcccc9264716b381bee375bae368a3c6e654f2ee8fe5",
+      "etag": "fed603129842d3c5bfde4a8a2c103955"
+    },
+    {
+      "key": "supplier/an-cuong/lk4661tlux/board/96afceaf9d38c736982fa889b9d833cc3fa235d601001ecf4a9a7320d44f325f.jpg",
+      "bytes": 16841524,
+      "sha256": "96afceaf9d38c736982fa889b9d833cc3fa235d601001ecf4a9a7320d44f325f",
+      "etag": "86e257792b53a454caf5e56b2c47c6b4"
+    },
+    {
+      "key": "supplier/an-cuong/lf6406ng/board/27c0811bb8e6a3e690e55e5e33b332673599bb9b3d43dc9b680c38ee0b759291.jpg",
+      "bytes": 16813047,
+      "sha256": "27c0811bb8e6a3e690e55e5e33b332673599bb9b3d43dc9b680c38ee0b759291",
+      "etag": "beae43edecded209be25a7ce8f75c062"
+    },
+    {
+      "key": "supplier/an-cuong/f336/board/58d74414303fbff4a34f85776215c71e6b87293c85fa222f0b693aa671ecf217.jpg",
+      "bytes": 16799866,
+      "sha256": "58d74414303fbff4a34f85776215c71e6b87293c85fa222f0b693aa671ecf217",
+      "etag": "a072dbb223d5db2a3a4e8e6afc66918b"
+    },
+    {
+      "key": "supplier/an-cuong/lk2016t/board/39e8ddd0ebd49918c11ad3a8061167dbae53d1de977e45f91565d21274012f4d.jpg",
+      "bytes": 16698748,
+      "sha256": "39e8ddd0ebd49918c11ad3a8061167dbae53d1de977e45f91565d21274012f4d",
+      "etag": "5d2152af847dafb21ef59848e4022ba6"
+    },
+    {
+      "key": "supplier/an-cuong/lk4406a/board/db630d48791361359b4026589dfa6b9e761b9df4d5a55c4e1129051e0ee45147.jpg",
+      "bytes": 16620823,
+      "sha256": "db630d48791361359b4026589dfa6b9e761b9df4d5a55c4e1129051e0ee45147",
+      "etag": "1118fb9177582d8136076bfce8832183"
+    },
+    {
+      "key": "supplier/an-cuong/lkpf8134k/board/f20451f06b57fb2e11c22b3851269689ab0da4d0dd4625b737a880089c3bf54a.jpg",
+      "bytes": 16584956,
+      "sha256": "f20451f06b57fb2e11c22b3851269689ab0da4d0dd4625b737a880089c3bf54a",
+      "etag": "bd5aaff341c2b7fd292a10b11c9f19d7"
+    },
+    {
+      "key": "supplier/an-cuong/veneervct27/board/3fc6c947780cc36b937b11a03377c48bfaf8817926401a50e6d1b46d49bf4e4d.jpg",
+      "bytes": 16527071,
+      "sha256": "3fc6c947780cc36b937b11a03377c48bfaf8817926401a50e6d1b46d49bf4e4d",
+      "etag": "5b7ca439f9f94173480321c3d928aeb2"
+    },
+    {
+      "key": "supplier/an-cuong/mfcmslux5003slt/board/18caf218d9978243597fb1124e2e532231335c5678077790000f352c33c0ebd6.jpg",
+      "bytes": 16497796,
+      "sha256": "18caf218d9978243597fb1124e2e532231335c5678077790000f352c33c0ebd6",
+      "etag": "cfccec8822357403d886358c23733e7b"
+    },
+    {
+      "key": "supplier/an-cuong/lk3123e/board/784f5aee242829ef10502971da0270dfb4ec12a30217607e768fac326d448037.jpg",
+      "bytes": 16488244,
+      "sha256": "784f5aee242829ef10502971da0270dfb4ec12a30217607e768fac326d448037",
+      "etag": "a895b03b59644e8c25858ddf62004155"
+    },
+    {
+      "key": "supplier/an-cuong/veneerm05vht38/board/4260943ca85927ffff229ad8c963127f456e4d265761c9fd4d9b5626be2e20f2.jpg",
+      "bytes": 16484551,
+      "sha256": "4260943ca85927ffff229ad8c963127f456e4d265761c9fd4d9b5626be2e20f2",
+      "etag": "f10ff3c8a6776fa9571a6c00180e1336"
+    },
+    {
+      "key": "supplier/an-cuong/mfcms5013smm/board/78c73d6c522e645805963078f5ebea616a5bd01c4d38f7c9226f358c5c582b40.jpg",
+      "bytes": 16477420,
+      "sha256": "78c73d6c522e645805963078f5ebea616a5bd01c4d38f7c9226f358c5c582b40",
+      "etag": "23c252beb61fcc6ea03d061fa9f20c23"
+    },
+    {
+      "key": "supplier/an-cuong/lk5111/board/53632565ef5ce09df9fbe77501c68c1c622b60413f5a6593d82dded0e2e4175d.jpg",
+      "bytes": 16456576,
+      "sha256": "53632565ef5ce09df9fbe77501c68c1c622b60413f5a6593d82dded0e2e4175d",
+      "etag": "d53950bab851340c8b0a0b44ce3c9acd"
+    },
+    {
+      "key": "supplier/an-cuong/veneervct21/board/3de437917e73b421d81491b4d50f12c136fcf5c0107db50cc47548c795bbc632.jpg",
+      "bytes": 16411183,
+      "sha256": "3de437917e73b421d81491b4d50f12c136fcf5c0107db50cc47548c795bbc632",
+      "etag": "32ed05aa3683af9d5d8d2af31ada876e"
+    },
+    {
+      "key": "supplier/an-cuong/mfcms280smm/board/dfdcedfc49123e556726d0ce055e8e79e1162230cba4e65b927e350da6a1e0e6.jpg",
+      "bytes": 16389336,
+      "sha256": "dfdcedfc49123e556726d0ce055e8e79e1162230cba4e65b927e350da6a1e0e6",
+      "etag": "cbff79a8b28c489b5bedb238f50f259c"
+    },
+    {
+      "key": "supplier/an-cuong/lk4413tlux/board/4830bab5d70b95ce1738a0f90101a5b572f67debefc462b5eb7044a450f0b96d.jpg",
+      "bytes": 16380371,
+      "sha256": "4830bab5d70b95ce1738a0f90101a5b572f67debefc462b5eb7044a450f0b96d",
+      "etag": "257324969c581c040bd222e94e760a15"
+    },
+    {
+      "key": "supplier/an-cuong/lf9452nt/board/f259fc559b75c8eacb7e4d14555a029d626a966932b9de7528785da2ce0ec345.jpg",
+      "bytes": 16368065,
+      "sha256": "f259fc559b75c8eacb7e4d14555a029d626a966932b9de7528785da2ce0ec345",
+      "etag": "ed7d8e0c8af2a0f9203c60f4af8a9e06"
+    },
+    {
+      "key": "supplier/an-cuong/mfcms521nwm/board/dd265c5f4f672df4daf33bd52f92d0c2c2ab8aad383258557e3a10aa1b54c2ac.jpg",
+      "bytes": 16367850,
+      "sha256": "dd265c5f4f672df4daf33bd52f92d0c2c2ab8aad383258557e3a10aa1b54c2ac",
+      "etag": "a079413f5d93bf0b46233ec36bd547c9"
+    },
+    {
+      "key": "supplier/an-cuong/f404/board/f247e44e93097b6a6f2ad745cac0b819e7eaee88ee95e6a6d0eab48b28f89cd0.jpg",
+      "bytes": 16330515,
+      "sha256": "f247e44e93097b6a6f2ad745cac0b819e7eaee88ee95e6a6d0eab48b28f89cd0",
+      "etag": "448ac5370db54b9aea4239afabec8c48"
+    },
+    {
+      "key": "supplier/an-cuong/mfcms527nwm/board/b61b302a957e2a7f54351edc58af7e316c10755a0ae3be602e75e3467314225f.jpg",
+      "bytes": 16314829,
+      "sha256": "b61b302a957e2a7f54351edc58af7e316c10755a0ae3be602e75e3467314225f",
+      "etag": "cb347ba71bf691c00461568b2cd8db61"
+    },
+    {
+      "key": "supplier/an-cuong/f998/board/143209acb910bf448c7bec1ce16b52b1fac4a80b175eed9a9c45e3ff8dc12aca.jpg",
+      "bytes": 16303442,
+      "sha256": "143209acb910bf448c7bec1ce16b52b1fac4a80b175eed9a9c45e3ff8dc12aca",
+      "etag": "027205465e4ae4623fb4e9fd42593132"
+    },
+    {
+      "key": "supplier/an-cuong/mfcms476shg/board/d8937c16771bf3137fd915b4f505f1aa3acabc83e4dc076e54f547bddd5c5a48.jpg",
+      "bytes": 16298126,
+      "sha256": "d8937c16771bf3137fd915b4f505f1aa3acabc83e4dc076e54f547bddd5c5a48",
+      "etag": "3b3b775cf9abae61c2095fa727ea7f54"
+    },
+    {
+      "key": "supplier/an-cuong/veneervct17/board/648f681cf57f4857dd952ef1f99ff0ec4623af38b6af721b83375a42bac0b66c.jpg",
+      "bytes": 16292634,
+      "sha256": "648f681cf57f4857dd952ef1f99ff0ec4623af38b6af721b83375a42bac0b66c",
+      "etag": "98bcec5fdefeea813002eae72951dbd2"
+    },
+    {
+      "key": "supplier/an-cuong/f491/board/bcb2316fab15c878f1618e76b8711caff657f673efab4514db3daf1c02e19754.jpg",
+      "bytes": 16251320,
+      "sha256": "bcb2316fab15c878f1618e76b8711caff657f673efab4514db3daf1c02e19754",
+      "etag": "ddef09d6c076631382e51ce9a374d128"
+    },
+    {
+      "key": "supplier/an-cuong/lk4802tlux/board/e4cf6a8b9e4afd6452ec822d1870a89df64aa0e79aaa344ea2772ea700ae153e.jpg",
+      "bytes": 16244571,
+      "sha256": "e4cf6a8b9e4afd6452ec822d1870a89df64aa0e79aaa344ea2772ea700ae153e",
+      "etag": "de564422f57c8089f10948c1945d9b04"
+    },
+    {
+      "key": "supplier/an-cuong/veneervht83/board/8f2abe1559a3aa23c4d53a11be2487013888369480a969b88485beb7c3d93cb9.jpg",
+      "bytes": 16233309,
+      "sha256": "8f2abe1559a3aa23c4d53a11be2487013888369480a969b88485beb7c3d93cb9",
+      "etag": "12e31129c4a4e71e01a84d0a300a1e3b"
+    },
+    {
+      "key": "supplier/an-cuong/lk4804tlux/board/d0d86e2b5e61ae7c124e0fbf79ef0bfef946b31b11b7dd5dffc005a08e7b529f.jpg",
+      "bytes": 16132879,
+      "sha256": "d0d86e2b5e61ae7c124e0fbf79ef0bfef946b31b11b7dd5dffc005a08e7b529f",
+      "etag": "a59c6cc826c792694a3d3005805e67ed"
+    },
+    {
+      "key": "supplier/an-cuong/lk2001e/board/e46ea26ae032bba2f3d581c8f4082c900dce38ef0be7371054fdf1520a86db43.jpg",
+      "bytes": 16123071,
+      "sha256": "e46ea26ae032bba2f3d581c8f4082c900dce38ef0be7371054fdf1520a86db43",
+      "etag": "879810d8ecc503ececc37e446381dd62"
+    },
+    {
+      "key": "supplier/an-cuong/mfcms488sc05/board/5c766da78729e5cba6fd82f86e93f6888963561bd92b6e3cf97c7d69ed1c3b64.jpg",
+      "bytes": 16114769,
+      "sha256": "5c766da78729e5cba6fd82f86e93f6888963561bd92b6e3cf97c7d69ed1c3b64",
+      "etag": "a85e86d38611616a2a4a78f7dea5443f"
+    },
+    {
+      "key": "supplier/an-cuong/veneervct23/board/7c9e3ff7738fa38bf39b7ac2b3bae66dcafefa0f95f7b3bebdb50349934f14c2.jpg",
+      "bytes": 16114623,
+      "sha256": "7c9e3ff7738fa38bf39b7ac2b3bae66dcafefa0f95f7b3bebdb50349934f14c2",
+      "etag": "7ba5ce4f3c2d00e2daac6b49237acf5f"
+    },
+    {
+      "key": "supplier/an-cuong/lk2013e/board/7154bb537627e3747dce553fe1df7198ecd9976477dd80b565b2e78809e3e979.jpg",
+      "bytes": 16113622,
+      "sha256": "7154bb537627e3747dce553fe1df7198ecd9976477dd80b565b2e78809e3e979",
+      "etag": "d02d6229b5e69215428101e2be907c27"
+    },
+    {
+      "key": "supplier/an-cuong/veneervht76/board/47c47343d38386d773c2cd0e5e82d0cba15f1570af677af51b9bda89e8bb8bf7.jpg",
+      "bytes": 16110468,
+      "sha256": "47c47343d38386d773c2cd0e5e82d0cba15f1570af677af51b9bda89e8bb8bf7",
+      "etag": "ecf86aedeebb80656ac07b661853ee28"
+    },
+    {
+      "key": "supplier/an-cuong/mfcms5014smm/board/c2fe834e6de54de4fdada0d75018235e90baf581a2153b3f82593a4cce31f93b.jpg",
+      "bytes": 16027094,
+      "sha256": "c2fe834e6de54de4fdada0d75018235e90baf581a2153b3f82593a4cce31f93b",
+      "etag": "de4714b251b8fdfa928bcb17c4cc1fd5"
+    },
+    {
+      "key": "supplier/an-cuong/mfcms526nwm/board/17298bc18c607a5a55f108026c95db6a7ea0a7c63fc412d50f527c96685908ce.jpg",
+      "bytes": 15996710,
+      "sha256": "17298bc18c607a5a55f108026c95db6a7ea0a7c63fc412d50f527c96685908ce",
+      "etag": "996bdcd9e4530fe9282e7054dece2ee1"
+    },
+    {
+      "key": "supplier/an-cuong/lk2010e/board/5169adc22e5c1539ac3f8a1ca21087aacf116cb3da3a53834f47d0fc1f30e518.jpg",
+      "bytes": 15987234,
+      "sha256": "5169adc22e5c1539ac3f8a1ca21087aacf116cb3da3a53834f47d0fc1f30e518",
+      "etag": "c6a68b051e20f859f915b0776626f3d8"
+    },
+    {
+      "key": "supplier/an-cuong/acrylicarc2612/board/5effb780c4298636b00e95a0a0c46b89bdbed52a6de971ccf962572dd621643a.jpg",
+      "bytes": 15908982,
+      "sha256": "5effb780c4298636b00e95a0a0c46b89bdbed52a6de971ccf962572dd621643a",
+      "etag": "ac61034bfa38910e62d26e80fc3e6405"
+    },
+    {
+      "key": "supplier/an-cuong/mfcms485rl/board/077aff55adc9730a3f102e480e9d1c8976634a49ef4fec8f0d67c5f34d8ab14f.jpg",
+      "bytes": 15862105,
+      "sha256": "077aff55adc9730a3f102e480e9d1c8976634a49ef4fec8f0d67c5f34d8ab14f",
+      "etag": "16104a40dd5f710f90b5bd0a1c37e410"
+    },
+    {
+      "key": "supplier/an-cuong/mfcms4029nwm/board/a72f456caa3ae9dd835d76f95fa2cc12ee394777b2b4d872d26b4d9a50c3233d.jpg",
+      "bytes": 15855381,
+      "sha256": "a72f456caa3ae9dd835d76f95fa2cc12ee394777b2b4d872d26b4d9a50c3233d",
+      "etag": "bf10ec7e3883ab5f2796f3f549f2f1aa"
+    },
+    {
+      "key": "supplier/an-cuong/lk2004e/board/988dd2bd0575794c8151ba59c8e601b4e7eeb338bd3e80221a7ea17bcd3e3c38.jpg",
+      "bytes": 15842264,
+      "sha256": "988dd2bd0575794c8151ba59c8e601b4e7eeb338bd3e80221a7ea17bcd3e3c38",
+      "etag": "99c0f3a12b2ecd6df8c6a43509fb6d6f"
+    },
+    {
+      "key": "supplier/an-cuong/lk2007e/board/5545da66c0f68c771e465fdb7f47c98e70101cdb2a4417fcadad1387de771612.jpg",
+      "bytes": 15831655,
+      "sha256": "5545da66c0f68c771e465fdb7f47c98e70101cdb2a4417fcadad1387de771612",
+      "etag": "aab31954c240968edb91e0029db9162a"
+    },
+    {
+      "key": "supplier/an-cuong/mfcms523nwm/board/e089aa0c5fe0c7ef5dc6ecede9d7f49d7be0fcd64df09986be710f521f28917c.jpg",
+      "bytes": 15809958,
+      "sha256": "e089aa0c5fe0c7ef5dc6ecede9d7f49d7be0fcd64df09986be710f521f28917c",
+      "etag": "feac2afb061cd0a71285b0fd93d47bc6"
+    },
+    {
+      "key": "supplier/an-cuong/mfcmslux532mtq/board/83173a9e530eadf8aa4aa0f63c3df448eb7f0a856969887528000a85b6ead7bc.jpg",
+      "bytes": 15760259,
+      "sha256": "83173a9e530eadf8aa4aa0f63c3df448eb7f0a856969887528000a85b6ead7bc",
+      "etag": "def63bf887e27ea97e2e3ff5c3277041"
+    },
+    {
+      "key": "supplier/an-cuong/acrylicarc2388/board/8cdee0830a9d335441514509f8417fe49c2d139e1c0edb566b6ebdb16813c1fa.jpg",
+      "bytes": 15722647,
+      "sha256": "8cdee0830a9d335441514509f8417fe49c2d139e1c0edb566b6ebdb16813c1fa",
+      "etag": "983af4beb7c7155c831c114f6fe179e2"
+    },
+    {
+      "key": "supplier/an-cuong/mfcms281smm/board/b65768feb54ef950a87a8d4b12004c363ae03efb65c59ef5660a226375555d26.jpg",
+      "bytes": 15703925,
+      "sha256": "b65768feb54ef950a87a8d4b12004c363ae03efb65c59ef5660a226375555d26",
+      "etag": "3d4592e13c9de2de5650f8967bd5cd7f"
+    }
+  ]
+}

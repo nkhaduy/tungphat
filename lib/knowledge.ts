@@ -3,6 +3,8 @@ import seo from "@/content/settings/seo.json";
 import { getArticles, getProducts, getProjects, getServicePages } from "@/lib/content";
 import { absolutePageUrl, absoluteUrl } from "@/lib/seo";
 import { resolveMediaUrl } from "@/lib/media";
+import { isMaterialCollection } from "@/lib/content-jsonld";
+import { hasSelfCanonical } from "@/lib/listing-indexability";
 import materialDataset from "@/data/materials/materials.json";
 import cncPreflight from "@/data/cnc-preflight-checklist.json";
 
@@ -29,9 +31,11 @@ export async function buildKnowledgeIndex() {
     getArticles(),
     getProjects(),
   ]);
-  const products: KnowledgePage[] = productEntries.map((entry) => ({
+  const products: KnowledgePage[] = productEntries
+    .filter((entry) => hasSelfCanonical(entry, `/${entry.slug}/`))
+    .map((entry) => ({
     url: absolutePageUrl(`/${entry.slug}`),
-    type: entry.status === "guide" ? "CollectionPage" : "Product",
+    type: isMaterialCollection(entry) ? "CollectionPage" : "Product",
     name: entry.title,
     description: entry.excerpt,
     updatedAt: entry.updatedAt,
@@ -44,7 +48,9 @@ export async function buildKnowledgeIndex() {
     thicknesses: entry.thicknesses,
     surfaces: entry.surfaces,
   }));
-  const services: KnowledgePage[] = serviceEntries.map((entry) => ({
+  const services: KnowledgePage[] = serviceEntries
+    .filter((entry) => hasSelfCanonical(entry, `/${entry.slug}/`))
+    .map((entry) => ({
     url: absolutePageUrl(`/${entry.slug}`),
     type: "Service",
     name: entry.title,
@@ -52,7 +58,9 @@ export async function buildKnowledgeIndex() {
     updatedAt: entry.updatedAt,
     applications: entry.workItems,
   }));
-  const articles: KnowledgePage[] = articleEntries.map((entry) => ({
+  const articles: KnowledgePage[] = articleEntries
+    .filter((entry) => hasSelfCanonical(entry, `/bai-viet/${entry.slug}/`))
+    .map((entry) => ({
     url: absolutePageUrl(`/bai-viet/${entry.slug}`),
     type: "Article",
     name: entry.title,
@@ -60,7 +68,9 @@ export async function buildKnowledgeIndex() {
     updatedAt: entry.updatedAt,
     category: entry.category,
   }));
-  const projects: KnowledgePage[] = projectEntries.map((entry) => ({
+  const projects: KnowledgePage[] = projectEntries
+    .filter((entry) => hasSelfCanonical(entry, `/du-an/${entry.slug}/`))
+    .map((entry) => ({
     url: absolutePageUrl(`/du-an/${entry.slug}`),
     type: "CreativeWork",
     name: entry.title,

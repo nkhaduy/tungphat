@@ -1,0 +1,12 @@
+.carousel { min-width: 0; overflow: clip; border-radius: 16px; outline-offset: -3px; }
+.stage { position: relative; height: clamp(260px, 29vw, 400px); perspective: 1000px; touch-action: pan-y; overflow: clip; }
+.slide { position: absolute; left: 50%; top: 8%; width: 74%; height: 84%; overflow: hidden; border-radius: 16px; background: #f1f4ef; box-shadow: 0 12px 26px rgb(7 59 40 / 12%); transition: transform 450ms ease, opacity 450ms ease, filter 450ms ease; }
+.image { object-fit: contain; user-select: none; }
+.controls { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 0; }
+.arrow { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgb(7 59 40 / 18%); border-radius: 50%; color: #073b28; }
+.arrow:hover { background: #edf4ef; }
+.dots { display: flex; }
+.dot { display: grid; place-items: center; width: 30px; height: 44px; }
+.dot span { width: 7px; height: 7px; border-radius: 50%; background: #cbd5ce; }
+.dot[aria-pressed="true"] span { background: #073b28; transform: scale(1.4); }
+@media (prefers-reduced-motion: reduce) { .slide { transition: none; } }

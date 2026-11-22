@@ -41,6 +41,22 @@ describe('Payload CMS thật với D1/R2 local', () => {
     expect(availability && 'options' in availability ? availability.options?.map((option) => typeof option === 'string' ? option : option.value) : []).toContain('guide')
   })
 
+  it('reads existing media metadata through the patched storage adapter', async () => {
+    const media = await payload.findByID({ collection: 'media', id: mediaID, depth: 0 })
+    expect(media.id).toBe(mediaID)
+    expect(media.filename).toBe(`integration-${suffix}.png`)
+  })
+
+  it('uploads and edits media using the real R2 adapter schema', async () => {
+    const bytes = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=', 'base64')
+    const uploaded = await payload.create({ collection: 'media', overrideAccess: false, user: admin, data: { alt: 'Local adapter upload test', mediaKind: 'brand' }, file: { data: bytes, mimetype: 'image/png', name: `adapter-${suffix}.png`, size: bytes.length } })
+    try {
+      const updated = await payload.update({ collection: 'media', id: uploaded.id, overrideAccess: false, user: editor, data: { alt: 'Updated local adapter test' } })
+      expect(updated.alt).toBe('Updated local adapter test')
+      expect(updated.url).toContain('adapter-')
+    } finally { await payload.delete({ collection: 'media', id: uploaded.id, overrideAccess: false, user: admin }) }
+  })
+
   it('authentication đăng nhập được và trả lỗi chung khi sai mật khẩu', async () => {
     const result = await payload.login({ collection: 'users', data: { email: admin.email, password: 'Local-test-password-123!' } })
     expect(result.user?.email).toBe(admin.email)

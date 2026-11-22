@@ -1,0 +1,48 @@
+{
+  "source": "Authenticated Cloudflare DNS table; six values and TTL600 checked through DOM; zone remains pending",
+  "zoneId": "4cc9a59d98651da1950571a2bf07252e",
+  "records": [
+    {
+      "type": "TXT",
+      "name": "mdftungphat.com",
+      "content": "google-site-verification=CgMEKzR6kbygb0DFUxi0B16VXk40tCVfiPXqxkh2_v8",
+      "ttl": 600,
+      "proxied": false
+    },
+    {
+      "type": "A",
+      "name": "mdftungphat.com",
+      "content": "216.198.79.1",
+      "ttl": 600,
+      "proxied": false
+    },
+    {
+      "type": "CNAME",
+      "name": "www.mdftungphat.com",
+      "content": "d69b5815ccf0cf8d.vercel-dns-017.com",
+      "ttl": 600,
+      "proxied": false
+    },
+    {
+      "type": "CNAME",
+      "name": "cms.mdftungphat.com",
+      "content": "tungphat-light-cms-production.pages.dev",
+      "ttl": 600,
+      "proxied": false
+    },
+    {
+      "type": "CNAME",
+      "name": "baogia.mdftungphat.com",
+      "content": "tungphat-quotes.pages.dev",
+      "ttl": 600,
+      "proxied": false
+    },
+    {
+      "type": "CNAME",
+      "name": "cdn.mdftungphat.com",
+      "content": "tungphat-light-cms-production.pages.dev",
+      "ttl": 600,
+      "proxied": false
+    }
+  ]
+}

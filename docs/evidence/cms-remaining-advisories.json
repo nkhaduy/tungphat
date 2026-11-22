@@ -1,0 +1,40 @@
+{
+  "deepmerge": {
+    "severity": "low",
+    "nodes": [
+      "node_modules/deepmerge"
+    ],
+    "advisories": [
+      "https://github.com/advisories/GHSA-gcqx-w48m-w2h4"
+    ]
+  },
+  "esbuild": {
+    "severity": "moderate",
+    "nodes": [
+      "node_modules/@esbuild-kit/core-utils/node_modules/esbuild"
+    ],
+    "advisories": [
+      "https://github.com/advisories/GHSA-67mh-4wv8-2f99"
+    ]
+  },
+  "glob": {
+    "severity": "moderate",
+    "nodes": [
+      "node_modules/@opennextjs/aws/node_modules/glob",
+      "node_modules/@opennextjs/cloudflare/node_modules/glob"
+    ],
+    "advisories": [
+      "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4"
+    ]
+  },
+  "minimatch": {
+    "severity": "moderate",
+    "nodes": [
+      "node_modules/@opennextjs/aws/node_modules/minimatch",
+      "node_modules/@opennextjs/cloudflare/node_modules/minimatch"
+    ],
+    "advisories": [
+      "https://github.com/advisories/GHSA-g3hv-75wg-m249"
+    ]
+  }
+}

@@ -47,7 +47,7 @@ export default function NotFound() {
               Về trang chủ
             </ButtonLink>
             <ButtonLink
-              href="/catalogue/"
+              href="/catalogue/?supplier=thanh-thuy"
               variant="dark"
               className="min-h-14 w-full border border-white/60 bg-forest-950/75 px-7 text-white shadow-[0_12px_30px_rgba(0,0,0,.18)] hover:bg-forest-900 sm:w-auto"
             >

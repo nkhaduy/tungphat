@@ -1,0 +1,51 @@
+{
+  "zone": "mdftungphat.com",
+  "capturedAt": "2026-10-31T14:50:55.750780Z",
+  "source": "Authenticated Tenten DNS management; unfiltered table showed all 6/6 configured records; authoritative TTL cross-check",
+  "configuredRecordCount": 6,
+  "records": [
+    {
+      "name": "@",
+      "type": "TXT",
+      "content": "google-site-verification=CgMEKzR6kbygb0DFUxi0B16VXk40tCVfiPXqxkh2_v8",
+      "authoritativeAnswer": "mdftungphat.com.\t600\tIN\tTXT\t\"google-site-verification=CgMEKzR6kbygb0DFUxi0B16VXk40tCVfiPXqxkh2_v8\""
+    },
+    {
+      "name": "@",
+      "type": "A",
+      "content": "216.198.79.1",
+      "authoritativeAnswer": "mdftungphat.com.\t600\tIN\tA\t216.198.79.1"
+    },
+    {
+      "name": "www",
+      "type": "CNAME",
+      "content": "d69b5815ccf0cf8d.vercel-dns-017.com",
+      "authoritativeAnswer": "www.mdftungphat.com.\t600\tIN\tCNAME\td69b5815ccf0cf8d.vercel-dns-017.com."
+    },
+    {
+      "name": "cms",
+      "type": "CNAME",
+      "content": "tungphat-light-cms-production.pages.dev",
+      "authoritativeAnswer": "cms.mdftungphat.com.\t600\tIN\tCNAME\ttungphat-light-cms-production.pages.dev."
+    },
+    {
+      "name": "baogia",
+      "type": "CNAME",
+      "content": "tungphat-quotes.pages.dev",
+      "authoritativeAnswer": "baogia.mdftungphat.com.\t600\tIN\tCNAME\ttungphat-quotes.pages.dev."
+    },
+    {
+      "name": "cdn",
+      "type": "CNAME",
+      "content": "tungphat-light-cms-production.pages.dev",
+      "authoritativeAnswer": "cdn.mdftungphat.com.\t600\tIN\tCNAME\ttungphat-light-cms-production.pages.dev."
+    }
+  ],
+  "nameservers": [
+    "ns-a1.tenten.vn",
+    "ns-a2.tenten.vn",
+    "ns-a3.tenten.vn"
+  ],
+  "configuredMailRecords": [],
+  "registrarNameserverEditingAvailableInThisSession": false
+}

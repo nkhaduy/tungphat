@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { MaterialLanding } from "@/components/products/MaterialLanding";
+import { getMaterialEditorial } from "@/lib/product-editorial";
 import { ArrowRight, Check, MessageCircle, Phone } from "lucide-react";
 import { ContentEngagementTracker } from "@/components/analytics/ContentEngagementTracker";
 import { FaqList } from "@/components/content/FaqList";
@@ -12,6 +14,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { LocalIntentLinks } from "@/components/content/LocalIntentLinks";
 import type { ContentEntry } from "@/lib/content";
 import type { ProductFrontmatter } from "@/lib/content-schema";
+import { isMaterialCollection } from "@/lib/content-jsonld";
 import { getLocalSeoCopy } from "@/lib/local-seo";
 import { absoluteMediaUrl, resolveMediaUrl } from "@/lib/media";
 import { getProductContent } from "@/lib/product-content-overrides";
@@ -20,12 +23,14 @@ import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, absolutePageUrl, breadcr
 const waveOneProductSlugs = new Set(["go-ghep", "go-ghep-cao-su", "go-ghep-tram", "van-mdf", "mdf-chong-am", "van-go-cong-nghiep"]);
 
 export function ProductLanding({ product }: { product: ContentEntry<ProductFrontmatter> }) {
+  const editorial = getMaterialEditorial(product.slug);
+  if (editorial) return <MaterialLanding product={product} editorial={editorial} />;
   const productPath = `/${product.slug}`;
   const productUrl = absolutePageUrl(productPath);
   const localCopy = getLocalSeoCopy(product.slug);
   const displayTitle = localCopy?.h1 ?? product.title;
   const pageDescription = localCopy?.heroDescription ?? product.excerpt;
-  const isGuide = product.status === "guide";
+  const isGuide = isMaterialCollection(product);
   const content = getProductContent(product.slug, { orderingSteps: product.orderingSteps, faq: product.faq });
   const entityId = isGuide ? undefined : schemaPageId(productPath, "product");
   const productSchema = isGuide

@@ -11,15 +11,6 @@ export const supplierDefinitions: SupplierDefinition[] = [
     cataloguePath: "/catalogue/thanh-thuy/",
   },
   {
-    id: "ba-thanh",
-    displayName: "Ba Thanh",
-    brandName: "Ba Thanh",
-    logoSrc: "/partners/ba-thanh-logo.png",
-    recordKind: "color-code",
-    brandPath: "/thuong-hieu/ba-thanh/",
-    cataloguePath: "/catalogue/ba-thanh/",
-  },
-  {
     id: "an-cuong",
     displayName: "An Cường",
     brandName: "An Cường",
@@ -27,6 +18,15 @@ export const supplierDefinitions: SupplierDefinition[] = [
     recordKind: "color-code",
     brandPath: "/san-pham/an-cuong/",
     cataloguePath: "/catalogue/an-cuong/",
+  },
+  {
+    id: "ba-thanh",
+    displayName: "Ba Thanh",
+    brandName: "Ba Thanh",
+    logoSrc: "/partners/ba-thanh-logo.png",
+    recordKind: "color-code",
+    brandPath: "/thuong-hieu/ba-thanh/",
+    cataloguePath: "/catalogue/ba-thanh/",
   },
 ];
 

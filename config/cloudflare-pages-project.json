@@ -1,0 +1,23 @@
+{
+  "account_id": "b9ae472cee29c5729ee90ccbb3533f33",
+  "project_name": "tungphat",
+  "subdomain": "tungphat-i9i.pages.dev",
+  "repository": "nkhaduy/tungphat",
+  "production_branch": "main",
+  "build_config": {
+    "build_command": "npm ci && npm ci --prefix payload-cms && npm run verify",
+    "destination_dir": "out",
+    "root_dir": ""
+  },
+  "source": {
+    "type": "github",
+    "config": {
+      "production_deployments_enabled": true,
+      "preview_deployment_setting": "custom",
+      "preview_branch_includes": ["codex/cloudflare-*"],
+      "preview_branch_excludes": [],
+      "path_includes": ["*"],
+      "path_excludes": ["docs/*", "*.md", "quote-app/*", ".agents/*", ".claude/*"]
+    }
+  }
+}

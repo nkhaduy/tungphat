@@ -12,17 +12,19 @@ describe("Trustindex reviews SSR", () => {
       rating: 4.8,
       reviewCount: 26,
       verified: true,
-      googleLinks: ["https://www.google.com/maps/search/?api=1&query=Google&query_place_id=ChIJ6dw2A6YndTERr5eaiym-l-M"],
+      googleLinks: ["https://www.google.com/maps/search/?api=1&query=Google&query_place_id=ChIJ6dw2A6YndTERr5eaiym-l-M", "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=branch-two"],
       refreshedAt: "2026-08-30T00:00:00.000Z",
       reviews: [{ id: "r1", reviewerName: "Thuy Pham", avatarUrl: null, rating: 5, text: "Đa dạng sản phẩm, sản xuất nhanh", date: "2025.11.25" }],
     };
     const html = renderToStaticMarkup(createElement(TrustindexReviews, { data }));
     expect(html).toContain("Đa dạng sản phẩm, sản xuất nhanh");
-    expect(html).toContain("4.8");
-    expect(html).toContain("26 đánh giá");
-    expect(html).toContain("Nguồn đánh giá Google");
+    expect(html).not.toContain("4.8");
+    expect(html).not.toContain("26 đánh giá");
+    expect(html).not.toContain("Nguồn đánh giá Google");
     expect(html).not.toContain('href="https://public.trustindex.io');
     expect(html).toContain("google.com/maps");
+    expect(html).toContain("Tùng Phát 1");
+    expect(html).toContain("Tùng Phát 2");
     expect(html).toContain("/_next/image?url=%2Fbrand%2Fgoogle-g.png");
     expect(html).not.toContain("cdn.trustindex.io/assets/platform/Google/icon.svg");
     expect(html).not.toContain("svgsvg");
@@ -97,8 +99,8 @@ describe("Trustindex reviews SSR", () => {
     const html = renderToStaticMarkup(createElement(TrustindexReviews, { data }));
     expect(html).toContain("Năm sao");
     expect(html).not.toContain("Một sao");
-    expect(html).toContain("4.8");
-    expect(html).toContain("26 đánh giá");
+    expect(html).not.toContain("4.8");
+    expect(html).not.toContain("26 đánh giá");
     expect(html).not.toContain("Đánh giá từ Trustindex");
     expect(html).not.toContain("Phản hồi khách hàng được Trustindex");
     expect(getFeaturedReviews(data.reviews)).toEqual([data.reviews[2]]);
