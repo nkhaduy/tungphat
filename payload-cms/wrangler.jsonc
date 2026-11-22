@@ -72,7 +72,8 @@
           "binding": "D1",
           "database_id": "672804ea-13bb-43e2-9fd7-e32b3e7eb5c8",
           "database_name": "tungphat-payload-cms-staging",
-          "migrations_dir": "./src/migrations"
+          "migrations_dir": "./src/migrations",
+          "remote": true
         }
       ],
       "r2_buckets": [

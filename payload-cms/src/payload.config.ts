@@ -31,6 +31,7 @@ import { StaticPages } from '@/globals/StaticPages'
 import { migrations } from '@/migrations'
 import { stagingEmailAdapter } from '@/email/stagingEmailAdapter'
 import { installWebCryptoPbkdf2 } from '@/security/webCryptoPbkdf2'
+import { resolveMigrationProxyOptions } from '@/security/migrationProxy'
 import { runtimeEndpoints } from '@/endpoints/runtime'
 
 const filename = fileURLToPath(import.meta.url)
@@ -110,7 +111,8 @@ export default buildConfig({
 })
 
 function getCloudflareContextFromWrangler(options?: GetPlatformProxyOptions): Promise<CloudflareContext> {
+  const proxyOptions = resolveMigrationProxyOptions(process.env.CLOUDFLARE_ENV, process.env.PAYLOAD_REMOTE_D1_TARGET)
   return import(/* webpackIgnore: true */ `${'__wrangler'.replaceAll('_', '')}`).then(({ getPlatformProxy }) =>
-    getPlatformProxy({ environment: process.env.CLOUDFLARE_ENV, remoteBindings: false, ...options } satisfies GetPlatformProxyOptions),
+    getPlatformProxy({ ...proxyOptions, ...options } satisfies GetPlatformProxyOptions),
   )
 }
