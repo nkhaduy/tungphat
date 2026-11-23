@@ -24,25 +24,43 @@ const cmsOrigin = (process.env.PAYLOAD_CMS_URL || "https://cms.mdftungphat.com")
 const collectionCache = new Map<string, Promise<Record<string, unknown>[]>>();
 
 export function payloadCollectionOrigin(
-  collection: string,
+  _collection: string,
   defaultCmsOrigin: string,
-  articlesOrigin = process.env.PAYLOAD_ARTICLES_URL,
+  previewCmsOrigin = process.env.PAYLOAD_ARTICLES_URL,
   buildTarget = process.env.STATIC_BUILD_TARGET,
 ) {
-  if (collection !== "articles" || buildTarget !== "preview") return defaultCmsOrigin.replace(/\/+$/u, "");
-  if (!articlesOrigin?.trim()) throw new Error("Preview builds require PAYLOAD_ARTICLES_URL to point to the isolated staging CMS.");
+  if (buildTarget !== "preview") return defaultCmsOrigin.replace(/\/+$/u, "");
+  if (!previewCmsOrigin?.trim()) throw new Error("Preview builds require PAYLOAD_ARTICLES_URL to point to the isolated staging CMS.");
 
   let stagingUrl: URL;
-  try { stagingUrl = new URL(articlesOrigin); }
+  try { stagingUrl = new URL(previewCmsOrigin); }
   catch { throw new Error("Preview builds require a valid isolated staging CMS URL."); }
   if (stagingUrl.protocol !== "https:" || stagingUrl.hostname !== "tungphat-payload-cms-staging.nkhaduy.workers.dev" || stagingUrl.username || stagingUrl.password) {
-    throw new Error("Preview article builds may only read from the isolated staging CMS over HTTPS.");
+    throw new Error("Preview builds may only read from the isolated staging CMS over HTTPS.");
   }
   return stagingUrl.origin;
 }
 
-export function payloadBuildFetchCache(buildTarget = process.env.STATIC_BUILD_TARGET): RequestCache {
-  return buildTarget === "preview" ? "no-store" : "force-cache";
+export function payloadBuildFetchCache(): RequestCache {
+  // Preview is a static export too. Its request URL includes the CMS publish
+  // request ID, so each publish gets a fresh Next.js cache key.
+  return "force-cache";
+}
+
+export function payloadCollectionRequestUrl(
+  collection: string,
+  origin: string,
+  buildTarget = process.env.STATIC_BUILD_TARGET,
+  previewRequestId = process.env.PAYLOAD_PREVIEW_CACHE_KEY,
+) {
+  const url = new URL(`/api/${encodeURIComponent(collection)}?limit=100&depth=1&sort=slug`, `${origin.replace(/\/+$/u, "")}/`);
+  if (buildTarget === "preview") {
+    if (!previewRequestId || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu.test(previewRequestId)) {
+      throw new Error("Preview Payload requests require a valid CMS build request ID.");
+    }
+    url.searchParams.set("previewBuildRequestId", previewRequestId);
+  }
+  return url.toString();
 }
 
 /** Guard only fields whose CMS values would otherwise be hidden by repository copy. */
@@ -92,7 +110,7 @@ async function payloadCollection(collection: string) {
   let request = collectionCache.get(collection);
   if (!request) {
     const origin = payloadCollectionOrigin(collection, cmsOrigin);
-    request = fetch(`${origin}/api/${collection}?limit=100&depth=1&sort=slug`, { cache: payloadBuildFetchCache() })
+    request = fetch(payloadCollectionRequestUrl(collection, origin), { cache: payloadBuildFetchCache() })
       .then(async (response) => {
         if (!response.ok) throw new Error(`Payload ${collection} fetch failed: HTTP ${response.status}`);
         const value = await response.json() as { docs?: Record<string, unknown>[]; hasNextPage?: boolean };

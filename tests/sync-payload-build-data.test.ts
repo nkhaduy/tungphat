@@ -128,13 +128,36 @@ describe("Payload build snapshot consistency", () => {
     }) as typeof fetch;
   }
 
-  it("does not read production Payload snapshots for a preview build", async () => {
+  it("syncs only the product visibility snapshot from the isolated staging CMS for preview", async () => {
+    await inTemporaryRoot(async (root) => {
+      const requests: string[] = [];
+      const fetchImpl = (async (input: RequestInfo | URL) => {
+        requests.push(String(input));
+        return Response.json({ docs: [{ slug: "van-mdf", _status: "published" }], hasNextPage: false });
+      }) as typeof fetch;
+
+      await expect(syncPayloadBuildData({
+        root,
+        baseUrl: "https://tungphat-payload-cms-staging.nkhaduy.workers.dev/",
+        buildTarget: "preview",
+        fetchImpl,
+      } as Parameters<typeof syncPayloadBuildData>[0] & { buildTarget: string })).resolves.toEqual({ skipped: false, target: "preview" });
+
+      expect(requests).toEqual(["https://tungphat-payload-cms-staging.nkhaduy.workers.dev/api/products?limit=100&depth=0"]);
+      expect(JSON.parse(await readFile(path.join(root, "content/categories/product-publication.json"), "utf8")))
+        .toEqual({ hiddenSlugs: ["go-ghep-cao-su", "go-ghep-tram", "mdf-chong-am"] });
+      expect(await readFile(path.join(root, globalPath), "utf8")).toBe(currentSnapshot);
+    });
+  });
+
+  it("refuses to read product visibility from production during a preview build", async () => {
     let requests = 0;
     await expect(syncPayloadBuildData({
       root: tmpdir(),
+      baseUrl: "https://cms.mdftungphat.com",
       buildTarget: "preview",
-      fetchImpl: async () => { requests += 1; throw new Error("preview must not request production CMS data"); },
-    } as Parameters<typeof syncPayloadBuildData>[0] & { buildTarget: string })).resolves.toEqual({ skipped: true });
+      fetchImpl: async () => { requests += 1; throw new Error("production CMS must not be requested"); },
+    } as Parameters<typeof syncPayloadBuildData>[0] & { buildTarget: string })).rejects.toThrow(/isolated staging CMS/i);
     expect(requests).toBe(0);
   });
 

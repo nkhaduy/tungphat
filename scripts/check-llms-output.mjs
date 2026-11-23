@@ -2,10 +2,11 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { TextDecoder } from "node:util";
 import { decodeHTML } from "entities";
+import { releaseSiteOrigin } from "./lib/site-origin.mjs";
 
 const output = path.resolve("out");
 const reports = path.resolve("reports");
-const origin = "https://mdftungphat.com";
+const origin = releaseSiteOrigin();
 const maxBytes = 18_000;
 const errors = [];
 

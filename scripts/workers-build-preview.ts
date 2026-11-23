@@ -171,7 +171,7 @@ async function createStablePreviewArtifact(root: string, env: Record<string, str
     if (trigger.branch !== context.branch) throw new BuildFailure("unknown", "CMS build record is for a different branch.");
     const before = await fetchPublishedArticles(context.cmsOrigin);
     const beforeDigest = publicArticleDigest(before);
-    await run("npm", ["run", "build"], root, previewBuildEnvironment(env, context));
+    await run("npm", ["run", "build"], root, previewBuildEnvironment(env, context, trigger));
     const after = await fetchPublishedArticles(context.cmsOrigin);
     const afterDigest = publicArticleDigest(after);
     const latestContext = await fetchBuildContext(context);
@@ -285,11 +285,14 @@ function childEnvironment(env: Record<string, string | undefined>, context: Buil
   } as NodeJS.ProcessEnv;
 }
 
-function previewBuildEnvironment(env: Record<string, string | undefined>, context: BuildEnvironment) {
+export function previewBuildEnvironment(env: Record<string, string | undefined>, context: BuildEnvironment, trigger: Pick<BuildContext, "requestId">) {
+  if (!isUUID(trigger.requestId)) throw new Error("Preview build requires a valid CMS publish request ID.");
   return {
     ...childEnvironment(env, context),
-    NEXT_PUBLIC_SITE_URL: "https://gotungphat.com",
+    NEXT_PUBLIC_SITE_ORIGIN: "https://gotungphat.com",
+    SEO_SITE_URL: "https://gotungphat.com",
     BLOG_CONTENT_PROVIDER: "payload",
+    PAYLOAD_PREVIEW_CACHE_KEY: trigger.requestId,
   };
 }
 

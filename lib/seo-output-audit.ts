@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-type AuditOptions = { rootDir: string; siteUrl: string; expectedDirectAnswerRoutes?: string[] };
+type AuditOptions = { rootDir: string; siteUrl: string; expectedDirectAnswerRoutes?: string[]; allowedMissingRoutes?: string[] };
 
 function walkHtmlFiles(directory: string): string[] {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -55,7 +55,7 @@ function aiCrawlerBlockerCount(rootDir: string) {
   return Number(blocksAll) + Number(!hasSitemap);
 }
 
-export function auditStaticOutput({ rootDir, siteUrl, expectedDirectAnswerRoutes = [] }: AuditOptions) {
+export function auditStaticOutput({ rootDir, siteUrl, expectedDirectAnswerRoutes = [], allowedMissingRoutes = [] }: AuditOptions) {
   const files = walkHtmlFiles(rootDir).filter((file) => !["/404/", "/404.html"].includes(routeForFile(rootDir, file)));
   const pages = files.map((file) => {
     const html = fs.readFileSync(file, "utf8");
@@ -93,9 +93,14 @@ export function auditStaticOutput({ rootDir, siteUrl, expectedDirectAnswerRoutes
     + invalidSitemapUrls
     + duplicateSitemapUrls
     + (sitemapXml ? 0 : 1);
-  const brokenLinks = pages.flatMap((page) => page.internalLinks.map((href) => ({ page, route: normalizeRoute(href) }))).filter(({ route }) => !routeSet.has(route)).length;
+  const allowedMissingRouteSet = new Set(allowedMissingRoutes.map(normalizeRoute));
+  const brokenLinks = pages.flatMap((page) => page.internalLinks.map((href) => ({ page, route: normalizeRoute(href) }))).filter(({ route }) => !routeSet.has(route) && !allowedMissingRouteSet.has(route)).length;
   const invalidCanonicals = indexablePages.filter((page) => page.canonicalCount !== 1 || !canonicalMatchesRoute(page.canonical, siteUrl, page.route)).length;
-  const missingDirectAnswerRoutes = expectedDirectAnswerRoutes.map(normalizeRoute).filter((route) => !pages.find((page) => page.route === route && page.indexable && page.directAnswer));
+  const missingDirectAnswerRoutes = expectedDirectAnswerRoutes.map(normalizeRoute).filter((route) => {
+    const page = pages.find((candidate) => candidate.route === route);
+    if (!page && allowedMissingRouteSet.has(route)) return false;
+    return !page || !page.indexable || !page.directAnswer;
+  });
   return {
     totalHtmlPages: pages.length,
     indexableUrls: indexablePages.length,

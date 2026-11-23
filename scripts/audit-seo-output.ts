@@ -2,10 +2,17 @@ import fs from "node:fs";
 import { auditStaticOutput } from "@/lib/seo-output-audit";
 
 const rootDir = process.env.SEO_OUTPUT_DIR ?? "out";
-const siteUrl = process.env.SEO_SITE_URL ?? "https://mdftungphat.com";
+const previewBuild = process.env.STATIC_BUILD_TARGET === "preview";
+const siteUrl = process.env.SEO_SITE_URL ?? process.env.NEXT_PUBLIC_SITE_ORIGIN ?? "https://mdftungphat.com";
+const previewOnlyMissingRoutes = [
+  "/van-mdf/", "/mdf-chong-am/", "/van-go-cong-nghiep/", "/go-ghep/",
+  "/go-ghep-cao-su/", "/go-ghep-tram/", "/cat-cnc-go/", "/gia-cong-cnc-mdf/",
+  "/bai-viet/chuan-bi-file-cnc/",
+];
 const result = auditStaticOutput({
   rootDir,
   siteUrl,
+  allowedMissingRoutes: previewBuild ? previewOnlyMissingRoutes : [],
   // The homepage uses a focused hero and conversion path; direct-answer blocks
   // remain required on the dedicated informational and service routes.
   expectedDirectAnswerRoutes: ["/san-pham/", "/tham-chieu-vat-lieu/", "/gia-cong-cnc/", "/van-mdf/", "/mdf-chong-am/", "/van-go-cong-nghiep/", "/go-ghep/", "/go-ghep-cao-su/", "/go-ghep-tram/", "/cat-cnc-go/", "/gia-cong-cnc-mdf/"],

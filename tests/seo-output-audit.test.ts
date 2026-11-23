@@ -30,4 +30,16 @@ describe("static SEO output audit", () => {
     expect(result.aiCrawlerBlockers).toBe(1);
     expect(result.sitemapErrors).toBeGreaterThan(0);
   });
+
+  it("ignores only explicitly isolated CMS routes missing from a preview export", () => {
+    const rootDir = mkdtempSync(path.join(tmpdir(), "tungphat-seo-preview-audit-"));
+    const html = '<!doctype html><html><head><title>Preview</title><meta name="description" content="Preview page"><link rel="canonical" href="https://example.com/"></head><body><a href="/staging-known/">Known staging route</a><a href="/unexpected-missing/">Unexpected route</a></body></html>';
+    writeFileSync(path.join(rootDir, "index.html"), html);
+    writeFileSync(path.join(rootDir, "sitemap.xml"), "<urlset><url><loc>https://example.com/</loc></url></urlset>");
+    writeFileSync(path.join(rootDir, "robots.txt"), "User-agent: *\nAllow: /\nSitemap: https://example.com/sitemap.xml\n");
+
+    const result = auditStaticOutput({ rootDir, siteUrl: "https://example.com", allowedMissingRoutes: ["/staging-known/"] });
+
+    expect(result.brokenLinks).toBe(1);
+  });
 });

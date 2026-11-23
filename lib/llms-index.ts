@@ -173,8 +173,8 @@ export function generateLlmsIndex(source: LlmsSource) {
   sections.push(`## Báo giá và liên hệ\n\n${quoteLines.join("\n")}`);
 
   const referenceLines = [
-    "- [Sitemap](https://mdftungphat.com/sitemap.xml): Danh sách URL công khai đầy đủ, gồm trang chi tiết mã màu.",
-    "- [Knowledge JSON](https://mdftungphat.com/knowledge.json): Thông tin có cấu trúc cho những trang nội dung đã xuất bản.",
+    `- [Sitemap](${SITE_URL}/sitemap.xml): Danh sách URL công khai đầy đủ, gồm trang chi tiết mã màu.`,
+    `- [Knowledge JSON](${SITE_URL}/knowledge.json): Thông tin có cấu trúc cho những trang nội dung đã xuất bản.`,
   ];
   sections.push(`## Optional\n\n${referenceLines.join("\n")}`);
 

@@ -5,8 +5,9 @@ import {
   indexableMetadataRoutes,
   noindexMetadataRoutes,
 } from "./lib/metadata-route-policy.mjs";
+import { releaseSiteOrigin } from "./lib/site-origin.mjs";
 
-const siteUrl = "https://mdftungphat.com";
+const siteUrl = releaseSiteOrigin();
 const errors = [];
 
 function attributes(tag) {

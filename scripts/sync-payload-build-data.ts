@@ -5,6 +5,7 @@ import { resolveMediaUrl } from "../lib/media";
 import { cmsManagedMaterialSlugs } from "../lib/product-ownership";
 
 const DEFAULT_PAYLOAD_URL = "https://cms.mdftungphat.com";
+const STAGING_PAYLOAD_URL = "https://tungphat-payload-cms-staging.nkhaduy.workers.dev";
 const OUTPUTS = {
   "business-settings": "content/settings/business.json",
   "seo-defaults": "content/settings/seo.json",
@@ -104,7 +105,7 @@ export async function fetchPayloadGlobal(
 }
 
 export async function syncPayloadBuildData({
-  baseUrl = process.env.PAYLOAD_PUBLIC_URL || DEFAULT_PAYLOAD_URL,
+  baseUrl,
   root = process.cwd(),
   fetchImpl = fetch,
   renameImpl = rename,
@@ -116,16 +117,31 @@ export async function syncPayloadBuildData({
   renameImpl?: typeof rename;
   buildTarget?: string;
 } = {}) {
-  if (buildTarget === "preview") return { skipped: true as const };
-  const pendingFiles: { relativePath: string; contents: string }[] = [];
-  for (const [slug, relativeOutput] of Object.entries(OUTPUTS)) {
-    const value = await fetchPayloadGlobal(slug, baseUrl, fetchImpl) as Record<string, unknown>;
-    pendingFiles.push({
-      relativePath: relativeOutput,
-      contents: `${JSON.stringify(normalizePayloadGlobal(slug, value), null, 2)}\n`,
-    });
+  const previewBuild = buildTarget === "preview";
+  const configuredBaseUrl = baseUrl || (previewBuild
+    ? process.env.PAYLOAD_ARTICLES_URL
+    : process.env.PAYLOAD_PUBLIC_URL || DEFAULT_PAYLOAD_URL);
+  if (previewBuild && !configuredBaseUrl) throw new Error("Preview build data requires PAYLOAD_ARTICLES_URL for the isolated staging CMS.");
+  if (previewBuild) {
+    let stagingUrl: URL;
+    try { stagingUrl = new URL(configuredBaseUrl!); }
+    catch { throw new Error("Preview build data must use the isolated staging CMS origin."); }
+    if (stagingUrl.origin !== STAGING_PAYLOAD_URL || stagingUrl.protocol !== "https:" || stagingUrl.username || stagingUrl.password || stagingUrl.pathname !== "/" || stagingUrl.search || stagingUrl.hash) {
+      throw new Error("Preview build data may only read from the isolated staging CMS origin.");
+    }
   }
-  const productsResponse = await fetchImpl(`${baseUrl}/api/products?limit=100&depth=0`);
+  const payloadBaseUrl = previewBuild ? STAGING_PAYLOAD_URL : configuredBaseUrl || DEFAULT_PAYLOAD_URL;
+  const pendingFiles: { relativePath: string; contents: string }[] = [];
+  if (!previewBuild) {
+    for (const [slug, relativeOutput] of Object.entries(OUTPUTS)) {
+      const value = await fetchPayloadGlobal(slug, payloadBaseUrl, fetchImpl) as Record<string, unknown>;
+      pendingFiles.push({
+        relativePath: relativeOutput,
+        contents: `${JSON.stringify(normalizePayloadGlobal(slug, value), null, 2)}\n`,
+      });
+    }
+  }
+  const productsResponse = await fetchImpl(`${payloadBaseUrl}/api/products?limit=100&depth=0`);
   if (!productsResponse.ok) throw new Error(`Payload products visibility fetch failed: HTTP ${productsResponse.status}`);
   const products = await productsResponse.json() as { docs: Record<string, unknown>[]; hasNextPage?: boolean };
   if (!Array.isArray(products.docs) || products.hasNextPage) throw new Error("Incomplete Payload products visibility response");
@@ -182,8 +198,9 @@ export async function syncPayloadBuildData({
   } finally {
     await rm(stagingRoot, { recursive: true, force: true });
   }
-  console.log(`Synced ${Object.keys(OUTPUTS).length} Payload globals for frontend build.`);
-  return { skipped: false as const };
+  if (previewBuild) console.log("Synced staging product visibility for isolated preview build.");
+  else console.log(`Synced ${Object.keys(OUTPUTS).length} Payload globals for frontend build.`);
+  return previewBuild ? { skipped: false as const, target: "preview" as const } : { skipped: false as const };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

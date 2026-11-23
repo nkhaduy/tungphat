@@ -3,7 +3,7 @@ import type { ContentEntry } from "@/lib/content";
 import type { ArticleFrontmatter, ProductFrontmatter, ProjectFrontmatter, ServicePageFrontmatter } from "@/lib/content-schema";
 import { resolveMediaUrl } from "@/lib/media";
 import { getLocalSeoCopy } from "@/lib/local-seo";
-import { absoluteUrl, createPageMetadata } from "@/lib/seo";
+import { absolutePageUrl, absoluteUrl, createPageMetadata } from "@/lib/seo";
 import { createSocialImage } from "@/lib/social-images";
 
 type SeoEntry = ContentEntry<ArticleFrontmatter | ProductFrontmatter | ProjectFrontmatter | ServicePageFrontmatter>;
@@ -50,6 +50,6 @@ export function createContentMetadata(entry: SeoEntry, path: string): Metadata {
   });
   return {
     ...base,
-    alternates: { canonical: entry.canonical || absoluteUrl(path) },
+    alternates: { canonical: entry.canonical ? absolutePageUrl(entry.canonical) : absoluteUrl(path) },
   };
 }
