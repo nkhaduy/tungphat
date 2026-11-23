@@ -9,8 +9,6 @@ import type { EditorialRelatedItem } from "@/lib/editorial/related-content";
 import { ArticleTableOfContents } from "@/components/editorial/ArticleTableOfContents";
 import { SiteShell } from "@/components/site/SiteShell";
 import { ContactCTA } from "@/components/ui/ContactCTA";
-import { MaterialImage } from "@/components/products/MaterialImage";
-import { splitCncArticle } from "@/lib/cnc-article-diagram";
 import { extractMarkdownHeadings } from "@/lib/editorial/headings";
 import { resolveEditorialMedia } from "@/lib/editorial/media";
 import type { ContentEntry } from "@/lib/content";
@@ -41,9 +39,7 @@ const articleCtas: Record<string, { eyebrow: string; title: string; description:
 
 export function ArticleLanding({ article, relatedItems = [] }: { article: ContentEntry<ArticleFrontmatter>; relatedItems?: EditorialRelatedItem[] }) {
   const articlePath = `/bai-viet/${article.slug}`;
-  const cncParts = splitCncArticle(article.slug, article.body);
   const articleHeadings = extractMarkdownHeadings(article.body);
-  const firstPartHeadingCount = cncParts ? extractMarkdownHeadings(cncParts[0]).length : articleHeadings.length;
   const articleUrl = absolutePageUrl(articlePath);
   const articleId = schemaPageId(articlePath, "article");
   const articleSchema = {
@@ -87,30 +83,7 @@ export function ArticleLanding({ article, relatedItems = [] }: { article: Conten
                   <Image src={resolveEditorialMedia(article.featuredImage, "featured")} alt={article.featuredImageAlt} fill priority sizes="(max-width: 1023px) 100vw, 48rem" className="object-cover" />
                 </figure> : null}
                 <div data-answer-block>
-                  {article.slug === "go-ghep-la-gi" ? <figure className="editorial-authored-media">
-                    <div className="relative aspect-[1200/677] overflow-hidden rounded-md bg-[#f7f8f5]">
-                      <MaterialImage src="/sanpham-media/go-ghep-cao-su.webp" alt="Mặt tấm gỗ ghép cao su, nhìn thấy các thanh gỗ và mối ghép" sizes="(max-width: 1023px) 100vw, 48rem" />
-                    </div>
-                    <figcaption className="mt-3 text-sm leading-6 text-slate-600">Ví dụ mặt ván ghép cao su: có thể quan sát hướng thanh, màu và các mối nối. Ảnh: <a href="https://www.bathanhtaybac.com/san-pham/go-ghep" className="underline underline-offset-4">Ba Thanh Tây Bắc</a>.</figcaption>
-                  </figure> : null}
-                  {article.slug === "mdf-thuong-va-chong-am" ? <figure className="editorial-authored-media">
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="relative aspect-square overflow-hidden rounded-md bg-[#f7f8f5]"><MaterialImage src="/sanpham-media/van-mdf.webp" alt="Các tấm MDF mộc xếp chồng, nhìn thấy mặt và cạnh ván" sizes="(max-width: 640px) 45vw, 330px" /></div>
-                      <div className="relative aspect-square overflow-hidden rounded-md bg-[#f7f8f5]"><MaterialImage src="/sanpham-media/mdf-chong-am.webp" alt="Mẫu MDF chống ẩm lõi xanh có bề mặt phủ trắng" sizes="(max-width: 640px) 45vw, 330px" /></div>
-                    </div>
-                    <figcaption className="mt-3 text-sm leading-6 text-slate-600">Bên trái: MDF mộc; bên phải: một mẫu MDF chống ẩm có mặt phủ. Màu lõi và lớp phủ không thay thế nhãn hoặc tài liệu kỹ thuật của tấm ván.</figcaption>
-                  </figure> : null}
-                  {cncParts ? <>
-                    {markdown(cncParts[0], articleHeadings.slice(0, firstPartHeadingCount))}
-                    <figure className="editorial-authored-media">
-                      <div className="overflow-x-auto rounded-md" tabIndex={0} role="region" aria-label="Sơ đồ bản vẽ CNC, có thể cuộn ngang">
-                        {/* eslint-disable-next-line @next/next/no-img-element -- authored vector with fixed dimensions */}
-                        <img src="/images/editorial/ban-ve-cnc-minh-hoa.svg" width="1200" height="820" loading="lazy" alt="Sơ đồ minh họa một chi tiết ván: đường bao, lỗ, rãnh, cạnh chuẩn và hướng ghi kích thước" className="h-auto w-full min-w-[720px]" />
-                      </div>
-                      <figcaption className="mt-3 text-sm leading-6 text-slate-600">Ví dụ ghi thông tin trên một mặt gia công; hình không theo tỉ lệ. Có thể cuộn ngang để xem toàn bộ sơ đồ. Ghi kích thước thực, đơn vị, độ sâu và mặt gia công trên bản vẽ của bạn.</figcaption>
-                    </figure>
-                    {markdown(cncParts[1], articleHeadings.slice(firstPartHeadingCount))}
-                  </> : markdown(article.body)}
+                  {markdown(article.body)}
                 </div>
               </div>
             </div>

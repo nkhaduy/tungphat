@@ -1,4 +1,4 @@
-import { decodeHTML } from "entities";
+import { decodeString } from "micromark-util-decode-string";
 
 export type EditorialHeading = { id: string; text: string; level: 2 | 3 };
 
@@ -13,7 +13,7 @@ export function slugifyEditorialText(value: string) {
 }
 
 function plainMarkdownHeading(value: string) {
-  return decodeHTML(value
+  return decodeString(value
     .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1")
     .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
     .replace(/\[([^\]]+)\]\[[^\]]*\]/g, "$1")
@@ -70,7 +70,7 @@ export function addHtmlHeadingAnchors(html: string): { html: string; headings: E
   const collector = createHeadingCollector();
   const anchoredHtml = html.replace(/<h([23])\b[^>]*>([\s\S]*?)<\/h\1\s*>/giu, (_match, rawLevel: string, inner: string) => {
     const level = Number(rawLevel) as 2 | 3;
-    const text = decodeHTML(inner.replace(/<br\s*\/?\s*>/giu, " ").replace(/<[^>]*>/gu, " ")).replace(/\s+/g, " ").trim();
+    const text = decodeString(inner.replace(/<br\s*\/?\s*>/giu, " ").replace(/<[^>]*>/gu, " ")).replace(/\s+/g, " ").trim();
     if (!text) return `<h${level}>${inner}</h${level}>`;
     const before = collector.headings.length;
     collector.add(level, text);

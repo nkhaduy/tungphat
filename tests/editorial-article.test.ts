@@ -30,7 +30,7 @@ const article: ContentEntry<ArticleFrontmatter> = {
     relatedArticles: [],
     faq: [{ question: "MDF thường phù hợp với môi trường nào?", answer: "Cần căn cứ vào môi trường sử dụng và yêu cầu của từng hạng mục cụ thể." }],
   }),
-  body: "## Vật liệu MDF\n\nNội dung bài viết được giữ nguyên.\n\n## Vật liệu MDF\n\n### Kiểm tra quy cách\n\n| Hạng mục | Thông tin |\n| --- | --- |\n| Độ dày | Theo yêu cầu |\n",
+  body: "## Vật liệu MDF\n\nNội dung bài viết được giữ nguyên.\n\n![Bề mặt ván trong nội dung](https://cdn.mdftungphat.com/uploads/editorial-inline.webp)\n\n## Vật liệu MDF\n\n### Kiểm tra quy cách\n\n| Hạng mục | Thông tin |\n| --- | --- |\n| Độ dày | Theo yêu cầu |\n",
   sourcePath: "payload://articles/mdf-editorial-fixture",
 };
 
@@ -60,6 +60,9 @@ describe("editorial article system", () => {
     expect(html).toContain('id="vat-lieu-mdf-2"');
     expect(html).toContain('id="kiem-tra-quy-cach"');
     expect(html).toContain("Nội dung bài viết được giữ nguyên.");
+    expect(html).toContain('src="https://cdn.mdftungphat.com/uploads/editorial-inline.webp"');
+    expect(html).toContain('alt="Bề mặt ván trong nội dung"');
+    expect(html).toContain('loading="lazy"');
     expect(html).toContain("Hạng mục");
     expect(html).toContain("Các tấm MDF mộc xếp chồng, nhìn thấy mặt và cạnh ván");
     expect(html).toContain("MDF thường phù hợp với môi trường nào?");
@@ -87,7 +90,7 @@ it("renders an approved CMS preview draft through the same editorial layout", ()
       category: "Kiến thức MDF",
       author: "Ban biên tập Tùng Phát",
       excerpt: "Thông tin xem trước về MDF để lựa chọn vật liệu đúng với từng hạng mục nội thất.",
-      body: "## Chọn theo vị trí sử dụng\n\nNội dung đang chờ biên tập.\n",
+      body: "## Chọn theo vị trí sử dụng\n\nNội dung đang chờ biên tập.\n\n![Ảnh trong bản nháp](https://cdn.mdftungphat.com/uploads/editorial-preview.webp)\n",
       featuredImage: "/sanpham-media/van-mdf.webp",
       featuredImageAlt: "Các tấm MDF mộc xếp chồng, nhìn thấy mặt và cạnh ván",
       publishedAt: "2026-07-16",
@@ -103,6 +106,8 @@ it("renders an approved CMS preview draft through the same editorial layout", ()
   const html = renderToStaticMarkup(createElement(ArticleLanding, { article: preview.entry }));
   expect(html).toContain("Bản xem trước bài viết về MDF");
   expect(html).toContain('href="#chon-theo-vi-tri-su-dung"');
+  expect(html).toContain('src="https://cdn.mdftungphat.com/uploads/editorial-preview.webp"');
+  expect(html).toContain('alt="Ảnh trong bản nháp"');
   expect(html).toContain("MDF phù hợp với môi trường nào?");
   expect(html).not.toContain("FAQPage");
 });
