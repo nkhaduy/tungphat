@@ -162,7 +162,13 @@ export function createPageMetadata({
     title: { absolute: formattedTitle },
     description,
     alternates: { canonical: canonicalUrl },
-    robots: noIndex || isPreviewBuild
+    robots: isPreviewBuild
+      ? {
+          index: false,
+          follow: false,
+          googleBot: { index: false, follow: false },
+        }
+      : noIndex
       ? {
           index: false,
           follow: followWhenNoIndex,
