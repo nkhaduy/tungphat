@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-type AuditOptions = { rootDir: string; siteUrl: string; expectedDirectAnswerRoutes?: string[]; allowedMissingRoutes?: string[] };
+type AuditOptions = { rootDir: string; siteUrl: string; expectedDirectAnswerRoutes?: string[]; allowedMissingRoutes?: string[]; previewBuild?: boolean };
 
 function walkHtmlFiles(directory: string): string[] {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -55,7 +55,7 @@ function aiCrawlerBlockerCount(rootDir: string) {
   return Number(blocksAll) + Number(!hasSitemap);
 }
 
-export function auditStaticOutput({ rootDir, siteUrl, expectedDirectAnswerRoutes = [], allowedMissingRoutes = [] }: AuditOptions) {
+export function auditStaticOutput({ rootDir, siteUrl, expectedDirectAnswerRoutes = [], allowedMissingRoutes = [], previewBuild = false }: AuditOptions) {
   const files = walkHtmlFiles(rootDir).filter((file) => !["/404/", "/404.html"].includes(routeForFile(rootDir, file)));
   const pages = files.map((file) => {
     const html = fs.readFileSync(file, "utf8");
@@ -88,18 +88,20 @@ export function auditStaticOutput({ rootDir, siteUrl, expectedDirectAnswerRoutes
   const inbound = new Map<string, number>([...routeSet].map((route) => [route, 0]));
   pages.forEach((page) => page.internalLinks.forEach((href) => { const route = normalizeRoute(href); if (inbound.has(route)) inbound.set(route, (inbound.get(route) ?? 0) + 1); }));
   const indexablePages = pages.filter((page) => page.indexable);
-  const sitemapErrors = sitemapRoutes.filter((route) => !routeSet.has(route) || pages.find((page) => page.route === route)?.indexable === false).length
-    + indexablePages.filter((page) => !sitemapRouteSet.has(page.route)).length
-    + invalidSitemapUrls
-    + duplicateSitemapUrls
-    + (sitemapXml ? 0 : 1);
+  const sitemapErrors = previewBuild
+    ? invalidSitemapUrls + duplicateSitemapUrls + (sitemapXml ? 0 : 1)
+    : sitemapRoutes.filter((route) => !routeSet.has(route) || pages.find((page) => page.route === route)?.indexable === false).length
+      + indexablePages.filter((page) => !sitemapRouteSet.has(page.route)).length
+      + invalidSitemapUrls
+      + duplicateSitemapUrls
+      + (sitemapXml ? 0 : 1);
   const allowedMissingRouteSet = new Set(allowedMissingRoutes.map(normalizeRoute));
   const brokenLinks = pages.flatMap((page) => page.internalLinks.map((href) => ({ page, route: normalizeRoute(href) }))).filter(({ route }) => !routeSet.has(route) && !allowedMissingRouteSet.has(route)).length;
-  const invalidCanonicals = indexablePages.filter((page) => page.canonicalCount !== 1 || !canonicalMatchesRoute(page.canonical, siteUrl, page.route)).length;
+  const invalidCanonicals = (previewBuild ? pages : indexablePages).filter((page) => page.canonicalCount !== 1 || !canonicalMatchesRoute(page.canonical, siteUrl, page.route)).length;
   const missingDirectAnswerRoutes = expectedDirectAnswerRoutes.map(normalizeRoute).filter((route) => {
     const page = pages.find((candidate) => candidate.route === route);
     if (!page && allowedMissingRouteSet.has(route)) return false;
-    return !page || !page.indexable || !page.directAnswer;
+    return !page || (!previewBuild && !page.indexable) || !page.directAnswer;
   });
   return {
     totalHtmlPages: pages.length,

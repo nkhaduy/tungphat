@@ -12,6 +12,7 @@ const previewOnlyMissingRoutes = [
 const result = auditStaticOutput({
   rootDir,
   siteUrl,
+  previewBuild,
   allowedMissingRoutes: previewBuild ? previewOnlyMissingRoutes : [],
   // The homepage uses a focused hero and conversion path; direct-answer blocks
   // remain required on the dedicated informational and service routes.

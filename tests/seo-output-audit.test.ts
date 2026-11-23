@@ -42,4 +42,38 @@ describe("static SEO output audit", () => {
 
     expect(result.brokenLinks).toBe(1);
   });
+
+  it("validates preview canonicals and content while ignoring the private sitemap's production indexability", () => {
+    const rootDir = mkdtempSync(path.join(tmpdir(), "tungphat-seo-preview-indexing-"));
+    const html = '<!doctype html><html><head><title>Trang preview</title><meta name="description" content="Nội dung kiểm thử preview"><meta name="robots" content="noindex, nofollow"><link rel="canonical" href="https://example.com/san-pham/"></head><body><h1>Sản phẩm</h1><section data-answer-block><p>Thông tin sản phẩm dùng để kiểm tra nội dung.</p></section></body></html>';
+    mkdirSync(path.join(rootDir, "san-pham"), { recursive: true });
+    writeFileSync(path.join(rootDir, "san-pham", "index.html"), html);
+    writeFileSync(path.join(rootDir, "sitemap.xml"), "<urlset><url><loc>https://example.com/san-pham/</loc></url></urlset>");
+    writeFileSync(path.join(rootDir, "robots.txt"), "User-agent: *\nAllow: /\nSitemap: https://example.com/sitemap.xml\n");
+
+    const result = auditStaticOutput({
+      rootDir,
+      siteUrl: "https://example.com",
+      previewBuild: true,
+      expectedDirectAnswerRoutes: ["/san-pham/"],
+    });
+
+    expect(result.indexableUrls).toBe(0);
+    expect(result.invalidCanonicals).toBe(0);
+    expect(result.sitemapErrors).toBe(0);
+    expect(result.missingDirectAnswerRoutes).toEqual([]);
+  });
+
+  it("still catches invalid canonicals on noindex preview pages", () => {
+    const rootDir = mkdtempSync(path.join(tmpdir(), "tungphat-seo-preview-canonical-"));
+    const html = '<!doctype html><html><head><title>Preview</title><meta name="robots" content="noindex, nofollow"><link rel="canonical" href="https://example.com/wrong/"></head><body><h1>Preview page</h1></body></html>';
+    mkdirSync(rootDir, { recursive: true });
+    writeFileSync(path.join(rootDir, "index.html"), html);
+    writeFileSync(path.join(rootDir, "sitemap.xml"), "<urlset></urlset>");
+    writeFileSync(path.join(rootDir, "robots.txt"), "User-agent: *\nAllow: /\nSitemap: https://example.com/sitemap.xml\n");
+
+    const result = auditStaticOutput({ rootDir, siteUrl: "https://example.com", previewBuild: true });
+
+    expect(result.invalidCanonicals).toBe(1);
+  });
 });
