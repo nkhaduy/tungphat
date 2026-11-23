@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import editorialBaselines from "@/data/cms-editorial-baselines.json";
 import {
   articleSchema,
+  previewArticleSchema,
   productSchema,
   projectSchema,
   servicePageSchema,
@@ -149,7 +150,8 @@ export async function getArticles(options: { includeDrafts?: boolean } = {}) {
     return (options.includeDrafts ? entries : filterPublishedContent(entries)).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
   }
   if (source !== "payload") throw new Error(`Unknown BLOG_CONTENT_PROVIDER: ${source}`);
-  const entries = await readCollection<ArticleFrontmatter>("articles", articleSchema);
+  const articleContentSchema = process.env.STATIC_BUILD_TARGET === "preview" ? previewArticleSchema : articleSchema;
+  const entries = await readCollection<ArticleFrontmatter>("articles", articleContentSchema);
   return (options.includeDrafts ? entries : filterPublishedContent(entries))
     .map(applyArticleEditorial)
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { productSchema } from "@/lib/content-schema";
+import { articleSchema, previewArticleSchema, productSchema } from "@/lib/content-schema";
 
 const product = {
   title: "Ván MDF kiểm thử",
@@ -57,5 +57,45 @@ describe("productSchema", () => {
     expect(productSchema.safeParse({ ...product, seoDescription: "quá ngắn" }).success).toBe(false);
     expect(productSchema.safeParse({ ...product, featuredImage: "/files/catalog.pdf" }).success).toBe(false);
     expect(productSchema.safeParse({ ...product, canonical: "https://attacker:secret@mdftungphat.com/van-mdf-kiem-thu" }).success).toBe(false);
+  });
+});
+
+const previewArticle = {
+  title: "Bài kiểm thử xuất bản trên môi trường preview",
+  slug: "qa-editorial-cms-staging",
+  excerpt: "Bài kiểm thử xác nhận ảnh R2 của staging chỉ được dùng trong static preview riêng biệt.",
+  publishedAt: "2026-11-23",
+  updatedAt: "2026-11-23",
+  author: "Tùng Phát",
+  category: "Kiểm thử",
+  tags: [],
+  featuredImage: "https://tungphat-static-assets-preview.nkhaduy.workers.dev/uploads/mdfmfc.webp",
+  featuredImageAlt: "Ảnh R2 dùng để kiểm thử editor staging",
+  gallery: ["https://tungphat-static-assets-preview.nkhaduy.workers.dev/uploads/mdfmfc.webp"],
+  video: "",
+  catalogue: "",
+  ogImage: "https://tungphat-static-assets-preview.nkhaduy.workers.dev/uploads/mdfmfc.webp",
+  draft: false,
+  featured: false,
+  seoTitle: "Bài kiểm thử editor Payload trên staging",
+  seoDescription: "Bài kiểm thử staging xác nhận metadata và media R2 chỉ được phục vụ trong preview riêng, không đổi nội dung production.",
+  canonical: "https://gotungphat.com/bai-viet/qa-editorial-cms-staging",
+  noindex: false,
+  relatedProducts: [],
+  relatedArticles: [],
+  faq: [],
+};
+
+describe("previewArticleSchema", () => {
+  it("chấp nhận ảnh upload R2 qua đúng host preview Workers", () => {
+    expect(previewArticleSchema.safeParse(previewArticle).success).toBe(true);
+  });
+
+  it("không cho phép host giả hoặc đưa ảnh preview vào schema production", () => {
+    expect(articleSchema.safeParse(previewArticle).success).toBe(false);
+    expect(previewArticleSchema.safeParse({
+      ...previewArticle,
+      featuredImage: "https://attacker.example/uploads/mdfmfc.webp",
+    }).success).toBe(false);
   });
 });

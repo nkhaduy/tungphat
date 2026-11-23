@@ -80,30 +80,41 @@ function chronological<T extends z.ZodRawShape>(schema: z.ZodObject<T>) {
   });
 }
 
-export const articleSchema = chronological(
-  z.object({
-    title: z.string().min(10).max(120),
-    slug,
-    excerpt: z.string().min(40).max(240),
-    publishedAt: date,
-    updatedAt: date,
-    author: z.string().min(2).max(80),
-    category: z.string().min(2).max(80),
-    tags: z.array(z.string().min(2).max(50)).default([]),
-    featuredImage: imagePathSchema,
-    featuredImageAlt: z.string().min(10).max(180),
-    gallery: z.array(imagePathSchema).default([]),
-    video: optionalVideo,
-    catalogue: optionalPdf,
-    ogImage: optionalImage,
-    draft: z.boolean().default(true),
-    featured: z.boolean().default(false),
-    ...seoFields,
-    relatedProducts: z.array(slug).default([]),
-    relatedArticles: z.array(slug).default([]),
-    faq: z.array(faqItem).default([]),
-  }),
+const previewUploadImagePathSchema = z.string().regex(
+  /^https:\/\/tungphat-static-assets-preview\.nkhaduy\.workers\.dev\/(?:uploads|uploads-thumbnails)\/[^\s]+\.(?:avif|webp|png|jpe?g)$/i,
+  "Ảnh staging chỉ được dùng qua host preview Tùng Phát",
 );
+
+function createArticleSchema(articleImagePath: z.ZodType<string>) {
+  const articleOptionalImage = z.union([z.literal(""), articleImagePath]).default("");
+  return chronological(
+    z.object({
+      title: z.string().min(10).max(120),
+      slug,
+      excerpt: z.string().min(40).max(240),
+      publishedAt: date,
+      updatedAt: date,
+      author: z.string().min(2).max(80),
+      category: z.string().min(2).max(80),
+      tags: z.array(z.string().min(2).max(50)).default([]),
+      featuredImage: articleImagePath,
+      featuredImageAlt: z.string().min(10).max(180),
+      gallery: z.array(articleImagePath).default([]),
+      video: optionalVideo,
+      catalogue: optionalPdf,
+      ogImage: articleOptionalImage,
+      draft: z.boolean().default(true),
+      featured: z.boolean().default(false),
+      ...seoFields,
+      relatedProducts: z.array(slug).default([]),
+      relatedArticles: z.array(slug).default([]),
+      faq: z.array(faqItem).default([]),
+    }),
+  );
+}
+
+export const articleSchema = createArticleSchema(imagePathSchema);
+export const previewArticleSchema = createArticleSchema(z.union([imagePathSchema, previewUploadImagePathSchema]));
 
 export const productSchema = chronological(
   z.object({
