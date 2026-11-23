@@ -294,7 +294,7 @@ function previewBuildEnvironment(env: Record<string, string | undefined>, contex
 }
 
 async function postBuildEvent(context: BuildEnvironment, status: "building" | "deploying" | "live" | "failed", errorCode?: string, requestId?: string): Promise<boolean> {
-  const url = `${context.cmsOrigin}/api/site-builds/events`;
+  const url = `${context.cmsOrigin}/api/site-build/events`;
   const body = JSON.stringify({ buildId: context.buildId, branch: context.branch, commitSha: context.commitSha, status, ...(requestId ? { requestId } : {}), ...(errorCode ? { errorCode } : {}) });
   let lastError: unknown;
   for (let attempt = 0; attempt < 5; attempt += 1) {
@@ -322,7 +322,7 @@ async function waitForBuildContext(context: BuildEnvironment): Promise<BuildCont
 async function fetchBuildContext(context: BuildEnvironment): Promise<BuildContext | undefined> {
   let response: Response;
   try {
-    response = await fetch(`${context.cmsOrigin}/api/site-builds/context?buildId=${encodeURIComponent(context.buildId)}`, {
+    response = await fetch(`${context.cmsOrigin}/api/site-build/context?buildId=${encodeURIComponent(context.buildId)}`, {
       headers: { Authorization: `Bearer ${context.callbackSecret}` }, cache: "no-store", signal: AbortSignal.timeout(10_000),
     });
   } catch (error) {

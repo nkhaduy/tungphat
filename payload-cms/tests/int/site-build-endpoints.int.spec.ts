@@ -24,9 +24,20 @@ describe('Workers Builds status endpoint authorization', () => {
     vi.unstubAllGlobals()
   })
 
+  it('keeps global build endpoints outside the site-builds collection route', () => {
+    expect(siteBuildEndpoints.length).toBeGreaterThan(0)
+    expect(siteBuildEndpoints.every(({ path }) => !path.startsWith('/site-builds/'))).toBe(true)
+    expect(siteBuildEndpoints.map(({ path }) => path)).toEqual([
+      '/site-build/status',
+      '/site-build/context',
+      '/site-build/events',
+      '/site-build/retry',
+    ])
+  })
+
   it('does not reveal build status to anonymous callers', async () => {
     const find = vi.fn()
-    const response = await handler('/site-builds/status', 'get')(request('/site-builds/status', 'GET', undefined, undefined, undefined, { find }))
+    const response = await handler('/site-build/status', 'get')(request('/site-build/status', 'GET', undefined, undefined, undefined, { find }))
     expect(response.status).toBe(401)
     expect(find).not.toHaveBeenCalled()
   })
@@ -35,14 +46,14 @@ describe('Workers Builds status endpoint authorization', () => {
     vi.stubEnv('SITE_BUILD_CALLBACK_SECRET', 'S'.repeat(64))
     const create = vi.fn().mockResolvedValue({ id: 1, status: 'building' })
     const payload = { find: vi.fn().mockResolvedValue({ docs: [] }), create }
-    const denied = await handler('/site-builds/events', 'post')(request('/site-builds/events', 'POST', undefined, { buildId, branch: 'codex/editorial-cms', commitSha: 'a'.repeat(40), status: 'building' }, undefined, payload))
+    const denied = await handler('/site-build/events', 'post')(request('/site-build/events', 'POST', undefined, { buildId, branch: 'codex/editorial-cms', commitSha: 'a'.repeat(40), status: 'building' }, undefined, payload))
     expect(denied.status).toBe(401)
 
-    const wrongBranch = await handler('/site-builds/events', 'post')(request('/site-builds/events', 'POST', { Authorization: `Bearer ${'S'.repeat(64)}` }, { buildId, branch: 'main', commitSha: 'a'.repeat(40), status: 'building' }, undefined, payload))
+    const wrongBranch = await handler('/site-build/events', 'post')(request('/site-build/events', 'POST', { Authorization: `Bearer ${'S'.repeat(64)}` }, { buildId, branch: 'main', commitSha: 'a'.repeat(40), status: 'building' }, undefined, payload))
     expect(wrongBranch.status).toBe(400)
     expect(create).not.toHaveBeenCalled()
 
-    const accepted = await handler('/site-builds/events', 'post')(request('/site-builds/events', 'POST', { Authorization: `Bearer ${'S'.repeat(64)}` }, { buildId, branch: 'codex/editorial-cms', commitSha: 'a'.repeat(40), status: 'building' }, undefined, payload))
+    const accepted = await handler('/site-build/events', 'post')(request('/site-build/events', 'POST', { Authorization: `Bearer ${'S'.repeat(64)}` }, { buildId, branch: 'codex/editorial-cms', commitSha: 'a'.repeat(40), status: 'building' }, undefined, payload))
     expect(accepted.status).toBe(202)
     expect(create).toHaveBeenCalledWith(expect.objectContaining({ collection: 'site-builds', overrideAccess: true }))
   })
@@ -51,9 +62,9 @@ describe('Workers Builds status endpoint authorization', () => {
     vi.stubEnv('PAYLOAD_PUBLIC_SERVER_URL', 'https://tungphat-payload-cms-staging.nkhaduy.workers.dev')
     const find = vi.fn()
     const payload = { find }
-    const editor = await handler('/site-builds/retry', 'post')(request('/site-builds/retry', 'POST', { Origin: 'https://tungphat-payload-cms-staging.nkhaduy.workers.dev' }, {}, { id: 2, role: 'editor' }, payload))
+    const editor = await handler('/site-build/retry', 'post')(request('/site-build/retry', 'POST', { Origin: 'https://tungphat-payload-cms-staging.nkhaduy.workers.dev' }, {}, { id: 2, role: 'editor' }, payload))
     expect(editor.status).toBe(403)
-    const crossSite = await handler('/site-builds/retry', 'post')(request('/site-builds/retry', 'POST', { Origin: 'https://attacker.example' }, {}, { id: 1, role: 'super-admin' }, payload))
+    const crossSite = await handler('/site-build/retry', 'post')(request('/site-build/retry', 'POST', { Origin: 'https://attacker.example' }, {}, { id: 1, role: 'super-admin' }, payload))
     expect(crossSite.status).toBe(403)
     expect(find).not.toHaveBeenCalled()
   })
@@ -70,7 +81,7 @@ describe('Workers Builds status endpoint authorization', () => {
     const create = vi.fn().mockImplementation(({ data }) => Promise.resolve({ id: 4, ...data }))
     const update = vi.fn().mockImplementation(({ id, data }) => Promise.resolve({ id, status: 'queued', branch: 'codex/editorial-cms', ...data }))
     const payload = { find, create, update }
-    const response = await handler('/site-builds/retry', 'post')(request('/site-builds/retry', 'POST', {
+    const response = await handler('/site-build/retry', 'post')(request('/site-build/retry', 'POST', {
       Origin: 'https://tungphat-payload-cms-staging.nkhaduy.workers.dev',
     }, {}, { id: 1, role: 'super-admin' }, payload))
 
@@ -180,7 +191,7 @@ describe('Workers Builds status endpoint authorization', () => {
     const find = vi.fn().mockResolvedValue({ docs: [existing] })
     const update = vi.fn()
     const payload = { find, update }
-    const response = await handler('/site-builds/events', 'post')(request('/site-builds/events', 'POST', {
+    const response = await handler('/site-build/events', 'post')(request('/site-build/events', 'POST', {
       Authorization: `Bearer ${'S'.repeat(64)}`,
     }, {
       buildId,

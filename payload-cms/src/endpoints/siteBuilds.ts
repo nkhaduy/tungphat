@@ -5,9 +5,11 @@ import { matchesSecret, parseSiteBuildEvent, triggerStaticSiteRebuild } from '@/
 export type SiteBuildStatus = 'queued' | 'building' | 'deploying' | 'live' | 'failed'
 const BUILD_STALE_AFTER_MS = 25 * 60 * 1000
 
+// Keep these global API paths singular: Payload treats /site-builds/... as
+// collection-scoped routes because `site-builds` is also a collection slug.
 export const siteBuildEndpoints: Endpoint[] = [
   {
-    path: '/site-builds/status',
+    path: '/site-build/status',
     method: 'get',
     handler: async (req) => {
       if (!roleOf(req)) return json({ error: 'unauthorized' }, 401)
@@ -22,7 +24,7 @@ export const siteBuildEndpoints: Endpoint[] = [
     },
   },
   {
-    path: '/site-builds/context',
+    path: '/site-build/context',
     method: 'get',
     handler: async (req) => {
       const request = req as unknown as Request
@@ -37,7 +39,7 @@ export const siteBuildEndpoints: Endpoint[] = [
     },
   },
   {
-    path: '/site-builds/events',
+    path: '/site-build/events',
     method: 'post',
     handler: async (req) => {
       const request = req as unknown as Request
@@ -59,7 +61,7 @@ export const siteBuildEndpoints: Endpoint[] = [
     },
   },
   {
-    path: '/site-builds/retry',
+    path: '/site-build/retry',
     method: 'post',
     handler: async (req) => {
       if (!canPublishContent({ req } as never)) return json({ error: 'forbidden' }, req.user ? 403 : 401)

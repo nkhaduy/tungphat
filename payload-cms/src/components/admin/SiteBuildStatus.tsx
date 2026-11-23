@@ -24,7 +24,7 @@ export default function SiteBuildStatus() {
 
   const refresh = useCallback(async () => {
     try {
-      const response = await fetch('/api/site-builds/status', { credentials: 'same-origin', cache: 'no-store' })
+      const response = await fetch('/api/site-build/status', { credentials: 'same-origin', cache: 'no-store' })
       if (!response.ok) throw new Error('Không đọc được trạng thái bản dựng.')
       setData(await response.json() as StatusResponse)
       setMessage('')
@@ -45,7 +45,7 @@ export default function SiteBuildStatus() {
     setRetrying(true)
     setMessage('')
     try {
-      const response = await fetch('/api/site-builds/retry', {
+      const response = await fetch('/api/site-build/retry', {
         method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: '{}',
       })
       if (!response.ok) throw new Error(response.status === 409 ? 'Không có bản dựng lỗi để thử lại.' : 'Gửi yêu cầu thử lại không thành công.')
