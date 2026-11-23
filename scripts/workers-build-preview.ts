@@ -29,6 +29,7 @@ type PreviewBuildState = {
   commitSha: string;
   articleDigest: string;
   articles: Array<{ slug: string; title: string }>;
+  mediaPaths: string[];
   trigger: BuildContext;
 };
 const MAX_CONTENT_CONVERGENCE_ATTEMPTS = 3;
@@ -84,6 +85,11 @@ export function collectPreviewUploadPaths(value: unknown) {
   };
   visit(value);
   return [...paths].sort();
+}
+
+export function previewArticleMediaPaths(articles: Article[], articleSlug: string | null) {
+  const article = articleSlug ? articles.find((candidate) => candidate.slug === articleSlug) : undefined;
+  return article ? collectPreviewUploadPaths([article]) : [];
 }
 
 export function routeToArtifactPath(root: string, slug: string) {
@@ -210,6 +216,7 @@ async function createStablePreviewArtifact(root: string, env: Record<string, str
       commitSha: context.commitSha,
       articleDigest: afterDigest,
       articles: after.map(({ slug, title }) => ({ slug, title })),
+      mediaPaths: previewArticleMediaPaths(after, latestContext.articleSlug),
       trigger: latestContext,
     };
     await writeFile(path.join(root, "out", MEDIA_ALLOWLIST), JSON.stringify(collectPreviewUploadPaths(after)), { mode: 0o644 });
@@ -236,7 +243,7 @@ async function validateStaticPreviewOutput(root: string, articles: Article[], tr
   }
 }
 
-async function verifyPreview(context: BuildEnvironment, state: { articles: Array<{ slug: string; title: string }>; trigger: BuildContext }, env: Record<string, string | undefined>) {
+async function verifyPreview(context: BuildEnvironment, state: { articles: Array<{ slug: string; title: string }>; mediaPaths: string[]; trigger: BuildContext }, env: Record<string, string | undefined>) {
   const previewOrigin = context.previewOrigin;
   const robots = await fetch(`${previewOrigin}/robots.txt?build-check=${context.buildId}`, { cache: "no-store" });
   if (!robots.ok || !(await robots.text()).includes("Disallow: /")) throw new BuildFailure("preview_probe_failed", "Preview robots.txt does not block crawlers.");
@@ -251,6 +258,10 @@ async function verifyPreview(context: BuildEnvironment, state: { articles: Array
       throw new BuildFailure("preview_probe_failed", `Preview content, canonical metadata, or noindex header failed for ${article.slug}.`);
     }
     if (html.includes("googletagmanager.com/gtag/js")) throw new BuildFailure("preview_probe_failed", "Google Analytics script appeared in the preview artifact.");
+  }
+  for (const mediaPath of state.mediaPaths) {
+    const response = await fetch(`${previewOrigin}${mediaPath}?build-check=${context.buildId}`, { method: "HEAD", cache: "no-store" });
+    if (!response.ok) throw new BuildFailure("preview_probe_failed", `Preview does not serve referenced staging media ${mediaPath}.`);
   }
   if (state.trigger.triggerReason === "unpublish" && state.trigger.articleSlug) {
     const response = await fetch(`${previewOrigin}/bai-viet/${encodeURIComponent(state.trigger.articleSlug)}/?build-check=${context.buildId}`, { cache: "no-store" });

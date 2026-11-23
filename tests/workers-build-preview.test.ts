@@ -1,11 +1,30 @@
 import { describe, expect, it } from "vitest";
-import { previewArtifactIsCurrent, previewBuildEnvironment, previewDeploymentArguments, resolvePreviewCommitSha } from "@/scripts/workers-build-preview";
+import { previewArtifactIsCurrent, previewArticleMediaPaths, previewBuildEnvironment, previewDeploymentArguments, resolvePreviewCommitSha } from "@/scripts/workers-build-preview";
 
 describe("Workers preview artifact freshness", () => {
   it("requires both the content snapshot and CMS publish request to match", () => {
     expect(previewArtifactIsCurrent({ artifactDigest: "same", latestDigest: "same", artifactRequestId: "request-a", latestRequestId: "request-a" })).toBe(true);
     expect(previewArtifactIsCurrent({ artifactDigest: "old", latestDigest: "new", artifactRequestId: "request-a", latestRequestId: "request-a" })).toBe(false);
     expect(previewArtifactIsCurrent({ artifactDigest: "same", latestDigest: "same", artifactRequestId: "request-a", latestRequestId: "request-b" })).toBe(false);
+  });
+
+  it("probes only staged uploads referenced by the article being published", () => {
+    const articles = [
+      {
+        slug: "qa-editorial-cms-staging",
+        title: "Staging QA",
+        _status: "published" as const,
+        featuredImage: { url: "/media/uploads/cover.webp" },
+        editorContent: { root: { children: [{ type: "upload", value: { url: "/media/uploads/body-image.webp" } }] } },
+      },
+      { slug: "another-article", title: "Other", _status: "published" as const, featuredImage: { url: "/media/uploads/unrelated.webp" } },
+    ];
+
+    expect(previewArticleMediaPaths(articles, "qa-editorial-cms-staging")).toEqual([
+      "/uploads/body-image.webp",
+      "/uploads/cover.webp",
+    ]);
+    expect(previewArticleMediaPaths(articles, null)).toEqual([]);
   });
 });
 

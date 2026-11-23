@@ -18,13 +18,13 @@ export default {
       } else if (!(await isPublishedUpload(incoming.pathname, env))) {
         response = new Response(null, { status: 404, headers: { "Cache-Control": "no-store" } });
       } else {
-        response = await proxyMedia(request, incoming, STAGING_CMS_ORIGIN, env.SITE_PREVIEW_MEDIA_SECRET);
+        response = await proxyMedia(request, incoming, STAGING_CMS_ORIGIN, env);
       }
     } else if (incoming.pathname.startsWith("/catalog/")) {
       if (request.method !== "GET" && request.method !== "HEAD") {
         response = new Response(null, { status: 405, headers: { Allow: "GET, HEAD" } });
       } else {
-        response = await proxyMedia(request, incoming, "https://cms.mdftungphat.com");
+        response = await proxyMedia(request, incoming, "https://cms.mdftungphat.com", env);
       }
     } else {
       response = await env.ASSETS.fetch(request);
@@ -50,8 +50,9 @@ async function isPublishedUpload(pathname, env) {
   }
 }
 
-async function proxyMedia(request, incoming, origin, previewSecret) {
-  if (origin === STAGING_CMS_ORIGIN && !previewSecret) {
+async function proxyMedia(request, incoming, origin, env) {
+  const isStagingOrigin = origin === STAGING_CMS_ORIGIN;
+  if (isStagingOrigin && (!env.STAGING_CMS || !env.SITE_PREVIEW_MEDIA_SECRET)) {
     return new Response("Preview media is not configured", { status: 503, headers: { "Cache-Control": "no-store" } });
   }
   const upstream = new URL(origin);
@@ -62,11 +63,12 @@ async function proxyMedia(request, incoming, origin, previewSecret) {
     const value = request.headers.get(name);
     if (value) headers.set(name, value);
   }
-  if (origin === STAGING_CMS_ORIGIN) headers.set("Authorization", `Bearer ${previewSecret}`);
+  if (isStagingOrigin) headers.set("Authorization", `Bearer ${env.SITE_PREVIEW_MEDIA_SECRET}`);
   try {
-    return await fetch(new Request(upstream, {
+    const proxyRequest = new Request(upstream, {
       method: request.method, headers, redirect: "manual", signal: AbortSignal.timeout(15000),
-    }));
+    });
+    return isStagingOrigin ? await env.STAGING_CMS.fetch(proxyRequest) : await fetch(proxyRequest);
   } catch {
     return new Response("Media origin unavailable", {
       status: 502, headers: { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" },
