@@ -160,6 +160,7 @@ function canonicalPath(value: string): string {
 export function auditSupplierPages(
   pages: SupplierPage[],
   sitemapPaths: string[],
+  { previewBuild = false }: { previewBuild?: boolean } = {},
 ) {
   const errors: string[] = [];
   const sitemap = new Set(sitemapPaths.map(canonicalPath));
@@ -199,7 +200,7 @@ export function auditSupplierPages(
       }
     }
     const isNoindex = /(?:^|[,\s])noindex(?:[,\s]|$)/i.test(metadata.robots);
-    if (page.indexable && isNoindex)
+    if (!previewBuild && page.indexable && isNoindex)
       errors.push(`${route}: indexable route is noindex`);
     if (!page.indexable && !isNoindex)
       errors.push(`${route}: noindex route is indexable`);
@@ -309,6 +310,7 @@ function outputPathFor(route: string): string {
 }
 
 async function main() {
+  const previewBuild = process.env.STATIC_BUILD_TARGET === "preview";
   const adapters = [thanhThuyAdapter, baThanhAdapter, anCuongAdapter];
   const claims = adapters.flatMap((adapter) => adapter.getRouteClaims());
   const uniqueClaims = [
@@ -333,7 +335,7 @@ async function main() {
         (claim) => canonicalPath(claim.path) === canonicalPath(pathname),
       ),
     );
-  const result = auditSupplierPages(pages, sitemapPaths);
+  const result = auditSupplierPages(pages, sitemapPaths, { previewBuild });
   fs.mkdirSync(path.join("data", "imports", "suppliers"), { recursive: true });
   fs.writeFileSync(
     path.join("data", "imports", "suppliers", "output-audit.json"),

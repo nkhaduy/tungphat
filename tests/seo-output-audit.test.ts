@@ -48,6 +48,8 @@ describe("static SEO output audit", () => {
     const html = '<!doctype html><html><head><title>Trang preview</title><meta name="description" content="Nội dung kiểm thử preview"><meta name="robots" content="noindex, nofollow"><link rel="canonical" href="https://example.com/san-pham/"></head><body><h1>Sản phẩm</h1><section data-answer-block><p>Thông tin sản phẩm dùng để kiểm tra nội dung.</p></section></body></html>';
     mkdirSync(path.join(rootDir, "san-pham"), { recursive: true });
     writeFileSync(path.join(rootDir, "san-pham", "index.html"), html);
+    mkdirSync(path.join(rootDir, "alias"), { recursive: true });
+    writeFileSync(path.join(rootDir, "alias", "index.html"), html.replace("<title>Trang preview</title>", "<title>Alias preview</title>"));
     writeFileSync(path.join(rootDir, "sitemap.xml"), "<urlset><url><loc>https://example.com/san-pham/</loc></url></urlset>");
     writeFileSync(path.join(rootDir, "robots.txt"), "User-agent: *\nAllow: /\nSitemap: https://example.com/sitemap.xml\n");
 
@@ -69,7 +71,7 @@ describe("static SEO output audit", () => {
     const html = '<!doctype html><html><head><title>Preview</title><meta name="robots" content="noindex, nofollow"><link rel="canonical" href="https://example.com/wrong/"></head><body><h1>Preview page</h1></body></html>';
     mkdirSync(rootDir, { recursive: true });
     writeFileSync(path.join(rootDir, "index.html"), html);
-    writeFileSync(path.join(rootDir, "sitemap.xml"), "<urlset></urlset>");
+    writeFileSync(path.join(rootDir, "sitemap.xml"), "<urlset><url><loc>https://example.com/</loc></url></urlset>");
     writeFileSync(path.join(rootDir, "robots.txt"), "User-agent: *\nAllow: /\nSitemap: https://example.com/sitemap.xml\n");
 
     const result = auditStaticOutput({ rootDir, siteUrl: "https://example.com", previewBuild: true });

@@ -87,6 +87,22 @@ describe("supplier static output audit", () => {
     });
   });
 
+  it("accepts production-indexable supplier pages tagged noindex in a private preview", () => {
+    const supplier = page({
+      route: "/catalogue/an-cuong/",
+      supplierId: "an-cuong",
+      brand: "An Cường",
+      title: "Mã màu An Cường | Tùng Phát",
+      description: "Tra cứu mã màu An Cường tại Tùng Phát.",
+    });
+    supplier.html = supplier.html.replace("index, follow", "noindex, nofollow");
+
+    const result = auditSupplierPages([supplier], [supplier.route], { previewBuild: true });
+
+    expect(result.errors).toEqual([]);
+    expect(result.summary.indexable).toBe(1);
+  });
+
   it("detects duplicate metadata, canonical, sitemap and brand isolation failures", () => {
     const first = page({
       route: "/thuong-hieu/thanh-thuy/",

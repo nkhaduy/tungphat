@@ -97,7 +97,10 @@ export function auditStaticOutput({ rootDir, siteUrl, expectedDirectAnswerRoutes
       + (sitemapXml ? 0 : 1);
   const allowedMissingRouteSet = new Set(allowedMissingRoutes.map(normalizeRoute));
   const brokenLinks = pages.flatMap((page) => page.internalLinks.map((href) => ({ page, route: normalizeRoute(href) }))).filter(({ route }) => !routeSet.has(route) && !allowedMissingRouteSet.has(route)).length;
-  const invalidCanonicals = (previewBuild ? pages : indexablePages).filter((page) => page.canonicalCount !== 1 || !canonicalMatchesRoute(page.canonical, siteUrl, page.route)).length;
+  // The preview marks every URL noindex, while the generated sitemap still
+  // identifies routes that are indexable in the production content graph.
+  const canonicalPages = previewBuild ? pages.filter((page) => sitemapRouteSet.has(page.route)) : indexablePages;
+  const invalidCanonicals = canonicalPages.filter((page) => page.canonicalCount !== 1 || !canonicalMatchesRoute(page.canonical, siteUrl, page.route)).length;
   const missingDirectAnswerRoutes = expectedDirectAnswerRoutes.map(normalizeRoute).filter((route) => {
     const page = pages.find((candidate) => candidate.route === route);
     if (!page && allowedMissingRouteSet.has(route)) return false;
