@@ -24,7 +24,9 @@ async function mediaResponse(request: Request, context: RouteContext, head: bool
   const object = await cloudflare.env.R2.get(key)
   if (!object) return new Response('Not found', { status: 404 })
   const headers = new Headers({
-    'Cache-Control': object.httpMetadata?.cacheControl || 'public, max-age=31536000, immutable',
+    'Cache-Control': process.env.CMS_ENVIRONMENT === 'staging'
+      ? 'private, no-store'
+      : object.httpMetadata?.cacheControl || 'public, max-age=31536000, immutable',
     ETag: object.httpEtag,
     'X-Content-Type-Options': 'nosniff',
   })
