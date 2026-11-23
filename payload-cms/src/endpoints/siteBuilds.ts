@@ -65,7 +65,8 @@ export const siteBuildEndpoints: Endpoint[] = [
       const latest = await req.payload.find({ collection: 'site-builds', limit: 1, depth: 0, sort: '-createdAt', overrideAccess: true })
       const previous = latest.docs[0] as unknown as SiteBuildRecord | undefined
       if (!previous || previous.status !== 'failed') return json({ error: 'no_failed_build' }, 409)
-      const result = await requestBuild(req.payload, { articleSlug: previous.articleSlug, reason: 'retry' })
+      const reason = previous.triggerReason === 'unpublish' ? 'unpublish' : 'publish'
+      const result = await requestBuild(req.payload, { articleSlug: previous.articleSlug, reason })
       return json({ build: result, accepted: result.status === 'queued' }, result.status === 'queued' ? 202 : 503)
     },
   },

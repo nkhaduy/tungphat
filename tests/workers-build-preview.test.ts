@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { collectPreviewUploadPaths, routeToArtifactPath, validatePreviewBuildEnvironment } from "../scripts/workers-build-preview";
+import { collectPreviewUploadPaths, currentActiveDeploymentVersion, routeToArtifactPath, validatePreviewBuildEnvironment } from "../scripts/workers-build-preview";
 
 const validEnvironment = {
   STATIC_BUILD_TARGET: "preview",
@@ -28,5 +28,12 @@ describe("isolated Workers preview build", () => {
     })).toEqual(["/uploads/qa.webp"]);
     expect(routeToArtifactPath("/tmp/site", "qa-article")).toBe("/tmp/site/out/bai-viet/qa-article/index.html");
     expect(() => routeToArtifactPath("/tmp/site", "../private")).toThrow(/slug/i);
+  });
+
+  it("selects the newest active deployment for rollback", () => {
+    expect(currentActiveDeploymentVersion(JSON.stringify([
+      { id: "old-deployment", created_on: "2026-11-21T07:38:47Z", versions: [{ version_id: "old-version", percentage: 100 }] },
+      { id: "current-deployment", created_on: "2026-11-21T08:33:27Z", versions: [{ version_id: "current-version", percentage: 100 }] },
+    ]))).toBe("current-version");
   });
 });

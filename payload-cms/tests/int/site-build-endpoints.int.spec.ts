@@ -19,7 +19,10 @@ function request(path: string, method = 'GET', headers?: HeadersInit, body?: unk
 }
 
 describe('Workers Builds status endpoint authorization', () => {
-  afterEach(() => vi.unstubAllEnvs())
+  afterEach(() => {
+    vi.unstubAllEnvs()
+    vi.unstubAllGlobals()
+  })
 
   it('does not reveal build status to anonymous callers', async () => {
     const find = vi.fn()
@@ -53,5 +56,27 @@ describe('Workers Builds status endpoint authorization', () => {
     const crossSite = await handler('/site-builds/retry', 'post')(request('/site-builds/retry', 'POST', { Origin: 'https://attacker.example' }, {}, { id: 1, role: 'super-admin' }, payload))
     expect(crossSite.status).toBe(403)
     expect(find).not.toHaveBeenCalled()
+  })
+
+  it('preserves an unpublish action when retrying a failed build', async () => {
+    vi.stubEnv('PAYLOAD_PUBLIC_SERVER_URL', 'https://tungphat-payload-cms-staging.nkhaduy.workers.dev')
+    vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/accounts/account/builds/hooks/hook')
+    vi.stubGlobal('fetch', vi.fn<typeof fetch>().mockResolvedValue(new Response(JSON.stringify({
+      success: true,
+      result: { build_uuid: buildId },
+    }), { status: 202, headers: { 'content-type': 'application/json' } })))
+    const previous = { id: 3, status: 'failed', branch: 'codex/editorial-cms', articleSlug: 'qa-article', triggerReason: 'unpublish' }
+    const find = vi.fn().mockResolvedValueOnce({ docs: [previous] }).mockResolvedValueOnce({ docs: [] })
+    const create = vi.fn().mockImplementation(({ data }) => Promise.resolve({ id: 4, ...data }))
+    const payload = { find, create }
+    const response = await handler('/site-builds/retry', 'post')(request('/site-builds/retry', 'POST', {
+      Origin: 'https://tungphat-payload-cms-staging.nkhaduy.workers.dev',
+    }, {}, { id: 1, role: 'super-admin' }, payload))
+
+    expect(response.status).toBe(202)
+    expect(create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({
+      articleSlug: 'qa-article',
+      triggerReason: 'unpublish',
+    }) }))
   })
 })

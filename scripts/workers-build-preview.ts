@@ -64,9 +64,9 @@ export function publicArticleDigest(articles: Article[]) {
 async function buildPreview(root: string, env: Record<string, string | undefined>) {
   const context = buildEnvironment(env);
   const childEnv = previewBuildEnvironment(env, context);
-  await postBuildEvent(context, "building");
   let failureCode: string = "unknown";
   try {
+    await postBuildEvent(context, "building");
     const trigger = await waitForBuildContext(context);
     if (trigger.branch !== context.branch) throw new BuildFailure("unknown", "CMS build record is for a different branch.");
     const before = await fetchPublishedArticles(context.cmsOrigin);
@@ -120,21 +120,23 @@ async function deployPreview(root: string, env: Record<string, string | undefine
     throw new Error("Preview deployment metadata does not match the current Workers Build.");
   }
 
-  await postBuildEvent(context, "deploying");
   const wrangler = path.join(root, "node_modules", ".bin", process.platform === "win32" ? "wrangler.cmd" : "wrangler");
   const config = "wrangler.static-preview.jsonc";
   let previousVersion: string | undefined;
   try {
-    previousVersion = currentVersion(await capture(wrangler, ["versions", "list", "--config", config, "--json"], root, childEnvironment(env, context)));
+    previousVersion = currentActiveDeploymentVersion(await capture(wrangler, ["deployments", "list", "--config", config, "--json"], root, childEnvironment(env, context)));
   } catch (error) {
     console.warn("No prior preview version was found for rollback:", errorMessage(error));
   }
 
+  let deployStarted = false;
   try {
+    await postBuildEvent(context, "deploying");
+    deployStarted = true;
     await run(wrangler, ["deploy", "--config", config, "--message", `CMS publish ${context.buildId}`, "--yes"], root, childEnvironment(env, context));
     await verifyPreview(context, state, env);
   } catch (error) {
-    if (previousVersion) {
+    if (deployStarted && previousVersion) {
       try {
         await run(wrangler, ["rollback", previousVersion, "--config", config, "--message", "Automatic rollback after preview smoke check failure", "--yes"], root, childEnvironment(env, context));
       } catch (rollbackError) {
@@ -287,17 +289,32 @@ function exactHttpsOrigin(value: string | undefined, expected: string, label: st
   return url.origin;
 }
 
-function currentVersion(value: string) {
-  const start = value.indexOf("{");
+export function currentActiveDeploymentVersion(value: string) {
   const arrayStart = value.indexOf("[");
-  const offset = start < 0 ? arrayStart : arrayStart < 0 ? start : Math.min(start, arrayStart);
+  const objectStart = value.indexOf("{");
+  const offset = arrayStart < 0 ? objectStart : objectStart < 0 ? arrayStart : Math.min(arrayStart, objectStart);
   if (offset < 0) return undefined;
   let parsed: unknown;
   try { parsed = JSON.parse(value.slice(offset)); } catch { return undefined; }
-  const versions = Array.isArray(parsed) ? parsed : (parsed as { versions?: unknown[]; result?: unknown[] }).versions ?? (parsed as { result?: unknown[] }).result;
-  const first = Array.isArray(versions) ? versions[0] as Record<string, unknown> | undefined : undefined;
-  const id = first?.id ?? first?.version_id ?? first?.versionId;
+  const deployments = Array.isArray(parsed)
+    ? parsed
+    : (parsed as { deployments?: unknown[]; result?: unknown[] }).deployments ?? (parsed as { result?: unknown[] }).result;
+  if (!Array.isArray(deployments)) return undefined;
+  const active = deployments
+    .map((deployment) => deployment as { created_on?: unknown; createdOn?: unknown; versions?: unknown[] })
+    .filter((deployment) => Array.isArray(deployment.versions) && deployment.versions.length > 0)
+    .sort((left, right) => deploymentTimestamp(right) - deploymentTimestamp(left))[0];
+  const versions = active?.versions as Array<{ version_id?: unknown; versionId?: unknown; percentage?: unknown }> | undefined;
+  const version = versions?.find((candidate) => candidate.percentage === 100) ?? versions?.[0];
+  const id = version?.version_id ?? version?.versionId;
   return typeof id === "string" ? id : undefined;
+}
+
+function deploymentTimestamp(deployment: { created_on?: unknown; createdOn?: unknown }) {
+  const value = deployment.created_on ?? deployment.createdOn;
+  if (typeof value !== "string") return Number.NEGATIVE_INFINITY;
+  const timestamp = Date.parse(value);
+  return Number.isFinite(timestamp) ? timestamp : Number.NEGATIVE_INFINITY;
 }
 
 function hasNoIndex(value: string | null) { return Boolean(value && /noindex/iu.test(value) && /nofollow/iu.test(value)); }
