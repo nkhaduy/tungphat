@@ -37,6 +37,8 @@ export type CatalogSearchEntry = {
   sourceGroup?: string;
   canonicalGroup?: CanonicalCatalogGroup;
   material?: string;
+  sourceMaterialType?: string;
+  surfaceEffect?: string;
   seoStatus?: string;
   indexable?: boolean;
   formats?: string[];

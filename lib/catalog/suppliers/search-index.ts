@@ -89,6 +89,8 @@ function toSearchRecord(record: PublicSupplierColorCode): SearchIndexRecord {
     thumbnail: localThumbnail(record),
     canonicalRoute: record.canonicalRoute,
     category: record.materialType,
+    sourceMaterialType: record.materialType,
+    surfaceEffect: record.surfaceEffect,
     series: record.collection,
     group: record.patternType,
     sourceGroup: record.patternType,
