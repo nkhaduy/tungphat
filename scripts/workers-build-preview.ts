@@ -33,6 +33,7 @@ type PreviewBuildState = {
   trigger: BuildContext;
 };
 const MAX_CONTENT_CONVERGENCE_ATTEMPTS = 3;
+const MAX_UNPUBLISH_PROBE_ATTEMPTS = 14;
 
 export function previewArtifactIsCurrent(input: {
   artifactDigest: string;
@@ -41,6 +42,22 @@ export function previewArtifactIsCurrent(input: {
   latestRequestId: string;
 }) {
   return input.artifactDigest === input.latestDigest && input.artifactRequestId === input.latestRequestId;
+}
+
+export async function retryUntilPreviewRouteRemoved(
+  probe: (attempt: number) => Promise<number>,
+  options: { attempts?: number; wait?: (delayMs: number) => Promise<void> } = {},
+) {
+  const attempts = Math.max(1, Math.floor(options.attempts ?? MAX_UNPUBLISH_PROBE_ATTEMPTS));
+  const wait = options.wait ?? ((delayMs: number) => new Promise<void>((resolve) => setTimeout(resolve, delayMs)));
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    let status: number | undefined;
+    try { status = await probe(attempt); } catch { /* A transient edge/network error is retried within the same bound. */ }
+    if (status === 404 || status === 410) return true;
+    if (attempt < attempts) await wait(Math.min(attempt * 1500, 5000));
+  }
+  return false;
 }
 
 export function previewDeploymentArguments(buildId: string) {
@@ -267,8 +284,19 @@ async function verifyPreview(context: BuildEnvironment, state: { articles: Array
     if (!response.ok) throw new BuildFailure("preview_probe_failed", `Preview does not serve referenced staging media ${mediaPath}.`);
   }
   if (state.trigger.triggerReason === "unpublish" && state.trigger.articleSlug) {
-    const response = await fetch(`${previewOrigin}/bai-viet/${encodeURIComponent(state.trigger.articleSlug)}/?build-check=${context.buildId}`, { cache: "no-store" });
-    if (response.status !== 404 && response.status !== 410) throw new BuildFailure("preview_probe_failed", "Unpublished article is still available on preview.");
+    const route = `${previewOrigin}/bai-viet/${encodeURIComponent(state.trigger.articleSlug)}/`;
+    const removed = await retryUntilPreviewRouteRemoved(async (attempt) => {
+      const url = new URL(route);
+      url.searchParams.set("build-check", context.buildId);
+      url.searchParams.set("deploy-probe", `${attempt}-${Date.now()}`);
+      const response = await fetch(url, {
+        cache: "no-store",
+        headers: { "Cache-Control": "no-cache, no-store" },
+        signal: AbortSignal.timeout(10_000),
+      });
+      return response.status;
+    });
+    if (!removed) throw new BuildFailure("preview_probe_failed", "Unpublished article is still available on preview after waiting for deployment propagation.");
   }
   if (env.PAYLOAD_ARTICLES_URL !== STAGING_CMS_ORIGIN) throw new Error("Article source changed after build validation.");
 }

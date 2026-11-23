@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { previewArtifactIsCurrent, previewArticleMediaPaths, previewBuildEnvironment, previewDeploymentArguments, resolvePreviewCommitSha } from "@/scripts/workers-build-preview";
+import { previewArtifactIsCurrent, previewArticleMediaPaths, previewBuildEnvironment, previewDeploymentArguments, resolvePreviewCommitSha, retryUntilPreviewRouteRemoved } from "@/scripts/workers-build-preview";
 
 describe("Workers preview artifact freshness", () => {
   it("requires both the content snapshot and CMS publish request to match", () => {
@@ -50,6 +50,37 @@ describe("Workers preview deployment command", () => {
     const args = previewDeploymentArguments("842447d2-8b5b-44c4-94f2-2a44a2bc50cd");
     expect(args).toEqual(["deploy", "--config", "wrangler.static-preview.jsonc", "--message", "CMS publish 842447d2-8b5b-44c4-94f2-2a44a2bc50cd"]);
     expect(args).not.toContain("--yes");
+  });
+});
+
+describe("Workers preview unpublish propagation", () => {
+  it("retries stale edge responses until the unpublished route is gone", async () => {
+    const observedStatuses = [200, 200, 404];
+    const probeAttempts: number[] = [];
+    const waits: number[] = [];
+
+    const removed = await retryUntilPreviewRouteRemoved(async (attempt) => {
+      probeAttempts.push(attempt);
+      return observedStatuses[attempt - 1];
+    }, { attempts: 3, wait: async (delayMs) => { waits.push(delayMs); } });
+
+    expect(removed).toBe(true);
+    expect(probeAttempts).toEqual([1, 2, 3]);
+    expect(waits).toEqual([1500, 3000]);
+  });
+
+  it("retries transient probe failures but stops after the configured bound", async () => {
+    let probeCount = 0;
+    let waitCount = 0;
+
+    const removed = await retryUntilPreviewRouteRemoved(async () => {
+      probeCount += 1;
+      throw new Error("edge temporarily unavailable");
+    }, { attempts: 2, wait: async () => { waitCount += 1; } });
+
+    expect(removed).toBe(false);
+    expect(probeCount).toBe(2);
+    expect(waitCount).toBe(1);
   });
 });
 
