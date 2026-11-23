@@ -8,6 +8,7 @@ import {
 import { releaseSiteOrigin } from "./lib/site-origin.mjs";
 
 const siteUrl = releaseSiteOrigin();
+const previewBuild = process.env.STATIC_BUILD_TARGET === "preview";
 const errors = [];
 
 function attributes(tag) {
@@ -56,15 +57,16 @@ for (const route of [...indexableMetadataRoutes, ...noindexMetadataRoutes]) {
   }
 
   const robotsContent = robots[0]?.content.toLowerCase() ?? "";
-  const expectedDirective = noindexMetadataRoutes.includes(route)
+  const expectedDirective = previewBuild || noindexMetadataRoutes.includes(route)
     ? "noindex"
     : "index";
+  const expectedFollow = previewBuild ? "nofollow" : "follow";
   if (
     robots.length !== 1 ||
     !robotsContent.split(/\s*,\s*/).includes(expectedDirective) ||
-    !robotsContent.split(/\s*,\s*/).includes("follow")
+    !robotsContent.split(/\s*,\s*/).includes(expectedFollow)
   ) {
-    errors.push(`${route}: robots phải là ${expectedDirective}, follow`);
+    errors.push(`${route}: robots phải là ${expectedDirective}, ${expectedFollow}`);
   }
 }
 

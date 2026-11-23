@@ -7,6 +7,7 @@ const outputDirectory = path.resolve("out");
 const sitemapPath = path.join(outputDirectory, "sitemap.xml");
 const canonicalOrigin = releaseSiteOrigin();
 const httpOrigin = process.env.SITEMAP_CHECK_ORIGIN;
+const previewBuild = process.env.STATIC_BUILD_TARGET === "preview";
 const placeholderRoutes = new Set(noindexMetadataRoutes);
 const utilityOrNotFoundRoutes = new Set([
   "/cms-preview/",
@@ -112,12 +113,11 @@ for (const url of urls) {
         `${url}: canonical phải xuất hiện đúng một lần và khớp chính xác URL sitemap.`,
       );
     }
-    if (
-      robots.some((robot) =>
-        /(?:^|\s*,\s*)noindex(?:\s*,\s*|$)/i.test(robot.content ?? ""),
-      )
-    ) {
-      errors.push(`${url}: robots không được chứa noindex.`);
+    const hasNoIndex = robots.some((robot) =>
+      /(?:^|\s*,\s*)noindex(?:\s*,\s*|$)/i.test(robot.content ?? ""),
+    );
+    if (previewBuild ? !hasNoIndex : hasNoIndex) {
+      errors.push(`${url}: robots ${previewBuild ? "phải chứa noindex trong preview" : "không được chứa noindex"}.`);
     }
   }
 }
@@ -174,5 +174,5 @@ if (errors.length) {
   process.exit(1);
 }
 console.log(
-  `Sitemap output validation pass: ${urls.length} URL hợp lệ, canonical self-reference và robots indexable${httpOrigin ? "; HTTP direct pass" : ""}.`,
+  `Sitemap output validation pass: ${urls.length} URL hợp lệ, canonical self-reference và robots ${previewBuild ? "noindex preview" : "indexable"}${httpOrigin ? "; HTTP direct pass" : ""}.`,
 );
