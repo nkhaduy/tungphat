@@ -79,7 +79,7 @@ export function isCloudflareDeployHook(target: URL) {
     && !target.password
     && !target.search
     && !target.hash
-    && /^\/client\/v4\/accounts\/[A-Za-z0-9_-]+\/builds\/hooks\/[A-Za-z0-9_-]+\/?$/u.test(target.pathname)
+    && /^\/client\/v4\/workers\/builds\/deploy_hooks\/[A-Za-z0-9_-]+\/?$/u.test(target.pathname)
 }
 
 /** Constant-work comparison for a high-entropy callback bearer secret. */

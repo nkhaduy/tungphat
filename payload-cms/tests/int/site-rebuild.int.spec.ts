@@ -45,7 +45,7 @@ describe('static site rebuild triggers', () => {
     expect(await triggerStaticSiteRebuild({ hookUrl: 'https://api.cloudflare.com/client/v4/accounts/account/workers/scripts' })).toEqual({ status: 'invalid-hook' })
     const fetchImpl = vi.fn<typeof fetch>().mockResolvedValue(new Response(null, { status: 503 }))
     const result = await triggerStaticSiteRebuild({
-      hookUrl: 'https://api.cloudflare.com/client/v4/accounts/account/builds/hooks/hook',
+      hookUrl: 'https://api.cloudflare.com/client/v4/workers/builds/deploy_hooks/hook',
       fetchImpl,
     })
     expect(result).toEqual({ status: 'failed', httpStatus: 503 })

@@ -71,7 +71,7 @@ describe('Workers Builds status endpoint authorization', () => {
 
   it('preserves an unpublish action when retrying a failed build', async () => {
     vi.stubEnv('PAYLOAD_PUBLIC_SERVER_URL', 'https://tungphat-payload-cms-staging.nkhaduy.workers.dev')
-    vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/accounts/account/builds/hooks/hook')
+    vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/workers/builds/deploy_hooks/hook')
     vi.stubGlobal('fetch', vi.fn<typeof fetch>().mockResolvedValue(new Response(JSON.stringify({
       success: true,
       result: { build_uuid: buildId },
@@ -93,7 +93,7 @@ describe('Workers Builds status endpoint authorization', () => {
   })
 
   it('coalesces a publish change into the active build instead of sending another hook', async () => {
-    vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/accounts/account/builds/hooks/hook')
+    vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/workers/builds/deploy_hooks/hook')
     const active = { id: 9, requestId: 'old-request', buildId, status: 'building', branch: 'codex/editorial-cms', articleSlug: 'old-article', triggerReason: 'publish', createdAt: new Date().toISOString() }
     const find = vi.fn().mockResolvedValue({ docs: [active] })
     const update = vi.fn().mockImplementation(({ data }) => Promise.resolve({ ...active, ...data }))
@@ -107,7 +107,7 @@ describe('Workers Builds status endpoint authorization', () => {
   })
 
   it('does not coalesce into a build whose status callback has gone stale', async () => {
-    vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/accounts/account/builds/hooks/hook')
+    vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/workers/builds/deploy_hooks/hook')
     vi.stubGlobal('fetch', vi.fn<typeof fetch>().mockResolvedValue(new Response(JSON.stringify({
       success: true,
       result: { build_uuid: buildId },
@@ -135,7 +135,7 @@ describe('Workers Builds status endpoint authorization', () => {
   })
 
   it('keeps the latest publish context when a hook response races its callback', async () => {
-    vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/accounts/account/builds/hooks/hook')
+    vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/workers/builds/deploy_hooks/hook')
     vi.stubGlobal('fetch', vi.fn<typeof fetch>().mockResolvedValue(new Response(JSON.stringify({
       success: true,
       result: { build_uuid: buildId },
@@ -162,7 +162,7 @@ describe('Workers Builds status endpoint authorization', () => {
   })
 
   it('does not fail a build callback already accepted when the hook request times out', async () => {
-    vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/accounts/account/builds/hooks/hook')
+    vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/workers/builds/deploy_hooks/hook')
     let current: Record<string, unknown> | undefined
     const find = vi.fn().mockImplementation(({ where }) => Promise.resolve({ docs: where?.id ? current ? [current] : [] : [] }))
     const create = vi.fn().mockImplementation(({ data }) => {
