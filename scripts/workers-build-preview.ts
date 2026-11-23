@@ -51,12 +51,25 @@ export function validatePreviewBuildEnvironment(env: Record<string, string | und
   if (env.WORKERS_CI_BRANCH !== PREVIEW_BRANCH) throw new Error(`Preview build branch must be ${PREVIEW_BRANCH}.`);
   const buildId = env.WORKERS_CI_BUILD_UUID || "";
   if (!isUUID(buildId)) throw new Error("Workers Builds did not provide a valid build UUID.");
-  const commitSha = env.WORKERS_CI_COMMIT_SHA || "";
-  if (!/^[a-f0-9]{40}$/iu.test(commitSha)) throw new Error("Workers Builds did not provide a valid commit SHA.");
+  const commitSha = resolvePreviewCommitSha(env.WORKERS_CI_COMMIT_SHA, readCheckedOutCommitSha(process.cwd()));
   const cmsOrigin = exactHttpsOrigin(env.PAYLOAD_ARTICLES_URL, STAGING_CMS_ORIGIN, "staging Payload");
   const previewOrigin = exactHttpsOrigin(env.NEXT_PUBLIC_PREVIEW_MEDIA_BASE_URL, PREVIEW_ORIGIN, "preview media");
   if (env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim()) throw new Error("Preview builds must not receive a production analytics measurement ID.");
   return { branch: PREVIEW_BRANCH, buildId, commitSha, cmsOrigin, previewOrigin };
+}
+
+export function resolvePreviewCommitSha(workersBuildSha: string | undefined, checkedOutSha: string | undefined) {
+  const systemSha = workersBuildSha?.trim() || "";
+  const checkoutSha = checkedOutSha?.trim() || "";
+  const validSystemSha = /^[a-f0-9]{40}$/iu.test(systemSha);
+  const validCheckoutSha = /^[a-f0-9]{40}$/iu.test(checkoutSha);
+
+  if (validSystemSha && validCheckoutSha && systemSha.toLowerCase() !== checkoutSha.toLowerCase()) {
+    throw new Error("Workers Builds commit SHA does not match the checked-out revision.");
+  }
+  if (validSystemSha) return systemSha.toLowerCase();
+  if (validCheckoutSha) return checkoutSha.toLowerCase();
+  throw new Error("Workers Builds did not provide a valid commit SHA and the checked-out revision is unavailable.");
 }
 
 export function collectPreviewUploadPaths(value: unknown) {
@@ -399,6 +412,11 @@ function deploymentTimestamp(deployment: { created_on?: unknown; createdOn?: unk
   if (typeof value !== "string") return Number.NEGATIVE_INFINITY;
   const timestamp = Date.parse(value);
   return Number.isFinite(timestamp) ? timestamp : Number.NEGATIVE_INFINITY;
+}
+
+function readCheckedOutCommitSha(root: string) {
+  const result = spawnSync("git", ["rev-parse", "HEAD"], { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
+  return result.status === 0 ? result.stdout.trim() : undefined;
 }
 
 function hasNoIndex(value: string | null) { return Boolean(value && /noindex/iu.test(value) && /nofollow/iu.test(value)); }

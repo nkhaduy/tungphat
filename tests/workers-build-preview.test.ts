@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { previewArtifactIsCurrent, previewBuildEnvironment, previewDeploymentArguments } from "@/scripts/workers-build-preview";
+import { previewArtifactIsCurrent, previewBuildEnvironment, previewDeploymentArguments, resolvePreviewCommitSha } from "@/scripts/workers-build-preview";
 
 describe("Workers preview artifact freshness", () => {
   it("requires both the content snapshot and CMS publish request to match", () => {
@@ -31,5 +31,16 @@ describe("Workers preview deployment command", () => {
     const args = previewDeploymentArguments("842447d2-8b5b-44c4-94f2-2a44a2bc50cd");
     expect(args).toEqual(["deploy", "--config", "wrangler.static-preview.jsonc", "--message", "CMS publish 842447d2-8b5b-44c4-94f2-2a44a2bc50cd"]);
     expect(args).not.toContain("--yes");
+  });
+});
+
+describe("Workers preview commit identity", () => {
+  it("falls back to the checked-out commit when Workers Builds omits its commit SHA", () => {
+    const checkedOutSha = "b".repeat(40);
+    expect(resolvePreviewCommitSha(undefined, checkedOutSha)).toBe(checkedOutSha);
+  });
+
+  it("rejects a Workers Builds SHA that disagrees with the checked-out revision", () => {
+    expect(() => resolvePreviewCommitSha("a".repeat(40), "b".repeat(40))).toThrow(/does not match/u);
   });
 });
