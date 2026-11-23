@@ -1,6 +1,7 @@
 "use client";
 
 import { attributionParameters } from "./attribution";
+import { analyticsAllowedForBuild } from "./config";
 import {
   analyticsOptedOut,
   generateAnonymousId,
@@ -52,6 +53,7 @@ function buildPayload(
   const testMode = TEST_BUILD && window.__TP_ANALYTICS_TEST_MODE__ === true;
   if (
     window.__TP_PREVIEW__ === true ||
+    !analyticsAllowedForBuild() ||
     location.pathname.startsWith("/cms-preview") ||
     analyticsOptedOut() ||
     (!testMode &&

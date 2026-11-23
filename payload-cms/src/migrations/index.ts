@@ -7,6 +7,7 @@ import * as migration_20261031_161800_auth_reset_requested_at from './20261031_1
 import * as migration_20261101_072600_media_objectkey from './20261101_072600_media_objectkey';
 import * as migration_20261122_144025_article_lexical_editor from './20261122_144025_article_lexical_editor';
 import * as migration_20261122_181241_article_legacy_body_preservation from './20261122_181241_article_legacy_body_preservation';
+import * as migration_20261123_041349_site_builds_status from './20261123_041349_site_builds_status';
 
 export const migrations = [
   {
@@ -52,6 +53,11 @@ export const migrations = [
   {
     up: migration_20261122_181241_article_legacy_body_preservation.up,
     down: migration_20261122_181241_article_legacy_body_preservation.down,
-    name: '20261122_181241_article_legacy_body_preservation'
+    name: '20261122_181241_article_legacy_body_preservation',
+  },
+  {
+    up: migration_20261123_041349_site_builds_status.up,
+    down: migration_20261123_041349_site_builds_status.down,
+    name: '20261123_041349_site_builds_status'
   },
 ];

@@ -20,7 +20,7 @@
     "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint . --max-warnings=0",
     "sync:suppliers:production": "cross-env DEPLOY_ENV=production tsx scripts/sync-suppliers-production.ts",
     "migrate:local": "cross-env PAYLOAD_SECRET=local-development-only-change-me payload migrate",
-    "migrate:staging": "cross-env CLOUDFLARE_ENV=staging PAYLOAD_REMOTE_D1_TARGET=staging payload migrate",
+    "migrate:staging": "cross-env PAYLOAD_SECRET=local-development-only-change-me CLOUDFLARE_ENV=staging PAYLOAD_REMOTE_D1_TARGET=staging payload migrate",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview --env=$CLOUDFLARE_ENV",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",

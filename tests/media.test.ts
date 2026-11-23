@@ -1,7 +1,8 @@
-import { describe, expect, it } from "vitest";
-import { absoluteMediaUrl, resolveMediaUrl } from "../lib/media";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { absoluteMediaUrl, resolveMediaUrl, resolvePreviewUploadMediaUrl } from "../lib/media";
 
 describe("central media URL resolution", () => {
+  afterEach(() => vi.unstubAllEnvs());
   it("routes first-party catalogue and CMS media through the canonical CDN", () => {
     expect(resolveMediaUrl("/catalog/a.webp")).toBe("https://cdn.mdftungphat.com/catalog/a.webp");
     expect(resolveMediaUrl("catalog/a.webp")).toBe("https://cdn.mdftungphat.com/catalog/a.webp");
@@ -47,5 +48,15 @@ describe("central media URL resolution", () => {
       "https://media.example.com/catalog/a.webp",
     );
     expect(() => resolveMediaUrl("/catalog/a.webp", "http://media.example.com")).toThrow(/HTTPS/);
+  });
+
+  it("routes only staged upload objects through the isolated preview Worker", () => {
+    vi.stubEnv("STATIC_BUILD_TARGET", "preview");
+    const preview = "https://tungphat-static-assets-preview.nkhaduy.workers.dev";
+    expect(resolvePreviewUploadMediaUrl("/media/uploads/qa.webp", preview)).toBe(`${preview}/uploads/qa.webp`);
+    expect(resolvePreviewUploadMediaUrl("https://tungphat-payload-cms-staging.nkhaduy.workers.dev/media/uploads/qa.webp", preview)).toBe(`${preview}/uploads/qa.webp`);
+    expect(resolvePreviewUploadMediaUrl("/uploads-thumbnails/qa.webp", preview)).toBe(`${preview}/uploads-thumbnails/qa.webp`);
+    expect(resolvePreviewUploadMediaUrl("/catalog/product.webp", preview)).toBe("https://cdn.mdftungphat.com/catalog/product.webp");
+    expect(() => resolvePreviewUploadMediaUrl("/uploads/qa.webp")).toThrow(/preview/i);
   });
 });

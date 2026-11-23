@@ -12,7 +12,7 @@ import {
 } from "@/lib/content-schema";
 import { filterPublishedContent } from "@/lib/listing-indexability";
 import { hasMinimumProductEvidence } from "@/lib/content-evidence";
-import { resolveMediaUrl } from "@/lib/media";
+import { resolveMediaUrl, resolvePreviewUploadMediaUrl } from "@/lib/media";
 import { mergeProductEditorial } from "@/lib/product-editorial";
 import { articleAdditionalSections, articleBodyOverrides } from "@/lib/content-overhaul";
 import { cmsManagedMaterialSlugs } from "@/lib/product-ownership";
@@ -71,7 +71,7 @@ async function readCollection<T>(folder: string, schema: { parse: (value: unknow
   const docs = await payloadCollection(folder);
   return docs.map((doc) => {
     if (folder === "articles" || folder === "products") assertCmsEditorialUnchanged(folder, doc, editorialBaselines[folder]);
-    const frontmatter = schema.parse(mapPayloadDocument(doc));
+    const frontmatter = schema.parse(mapPayloadDocument(doc, folder));
     const seo = object(doc.seo);
     return {
       ...frontmatter,
@@ -165,16 +165,17 @@ export async function getServicePages(options: { includeDrafts?: boolean } = {})
 
 export async function getServicePage(slug: string, options: { includeDrafts?: boolean } = {}) { return (await getServicePages(options)).find((entry) => entry.slug === slug); }
 
-function mapPayloadDocument(doc: Record<string, unknown>) {
+function mapPayloadDocument(doc: Record<string, unknown>, collection: string) {
   const seo = object(doc.seo);
+  const previewArticleMedia = collection === "articles" && process.env.STATIC_BUILD_TARGET === "preview";
   return {
     ...doc,
     tags: values(doc.tags), relatedProducts: values(doc.relatedProducts), relatedArticles: values(doc.relatedArticles),
     dimensions: values(doc.dimensions), thicknesses: values(doc.thicknesses), surfaces: values(doc.surfaces), standards: values(doc.standards),
     applications: values(doc.applications), advantages: values(doc.advantages), limitations: values(doc.limitations), orderingSteps: values(doc.orderingSteps),
     materialTypes: values(doc.materialTypes), workItems: values(doc.workItems), process: values(doc.process), fileGuidance: values(doc.fileGuidance),
-    beforeImages: mediaList(doc.beforeImages), afterImages: mediaList(doc.afterImages), gallery: mediaList(doc.gallery),
-    featuredImage: mediaURL(doc.featuredImage), video: mediaURL(doc.video), catalogue: mediaURL(doc.catalogue), ogImage: mediaURL(seo.ogImage),
+    beforeImages: mediaList(doc.beforeImages), afterImages: mediaList(doc.afterImages), gallery: mediaList(doc.gallery, previewArticleMedia),
+    featuredImage: mediaURL(doc.featuredImage, previewArticleMedia), video: mediaURL(doc.video), catalogue: mediaURL(doc.catalogue), ogImage: mediaURL(seo.ogImage, previewArticleMedia),
     publishedAt: date(doc.publishedAt), completedAt: date(doc.completedAt), updatedAt: date(doc.updatedAt),
     draft: doc._status !== "published", status: doc.availability,
     seoTitle: seo.title, seoDescription: seo.description, canonical: seo.canonical || "", noindex: seo.noindex === true,
@@ -182,11 +183,13 @@ function mapPayloadDocument(doc: Record<string, unknown>) {
 }
 
 function values(value: unknown): string[] { return Array.isArray(value) ? value.map((item) => text(object(item).value || item)).filter(Boolean) : []; }
-function mediaList(value: unknown): string[] { return Array.isArray(value) ? value.map((item) => mediaURL(object(item).image || item)).filter(Boolean) : []; }
-function mediaURL(value: unknown): string {
+function mediaList(value: unknown, previewArticleMedia = false): string[] { return Array.isArray(value) ? value.map((item) => mediaURL(object(item).image || item, previewArticleMedia)).filter(Boolean) : []; }
+function mediaURL(value: unknown, previewArticleMedia = false): string {
   const raw = typeof value === "string" ? value : text(object(value).url);
   if (!raw) return "";
-  return resolveMediaUrl(raw);
+  return previewArticleMedia
+    ? resolvePreviewUploadMediaUrl(raw, process.env.NEXT_PUBLIC_PREVIEW_MEDIA_BASE_URL)
+    : resolveMediaUrl(raw);
 }
 function mediaMetadata(value: unknown): MediaMetadata | undefined {
   const media = object(value);

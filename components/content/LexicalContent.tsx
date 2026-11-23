@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { resolveMediaUrl } from "@/lib/media";
+import { resolveMediaUrl, resolvePreviewUploadMediaUrl } from "@/lib/media";
 
 type LexicalNode = Record<string, unknown>;
 
@@ -56,8 +56,12 @@ function safeMedia(value: unknown): string | undefined {
     const url = new URL(raw, "https://cdn.mdftungphat.com");
     const mediaPath = /^\/(?:uploads|uploads-thumbnails|gallery|media)(?:\/|$)/u.test(url.pathname);
     const cloudflareStorage = url.hostname.endsWith(".r2.dev") || url.hostname.endsWith(".r2.cloudflarestorage.com");
-    if (url.protocol !== "https:" || (!MEDIA_HOSTS.has(url.hostname) && !cloudflareStorage) || !mediaPath) return undefined;
-    return resolveMediaUrl(raw);
+    const stagingOrigin = process.env.STATIC_BUILD_TARGET === "preview" && url.hostname === "tungphat-payload-cms-staging.nkhaduy.workers.dev";
+    const previewMediaOrigin = process.env.STATIC_BUILD_TARGET === "preview" && url.hostname === "tungphat-static-assets-preview.nkhaduy.workers.dev";
+    if (url.protocol !== "https:" || (!MEDIA_HOSTS.has(url.hostname) && !cloudflareStorage && !stagingOrigin && !previewMediaOrigin) || !mediaPath) return undefined;
+    return process.env.STATIC_BUILD_TARGET === "preview"
+      ? resolvePreviewUploadMediaUrl(raw, process.env.NEXT_PUBLIC_PREVIEW_MEDIA_BASE_URL)
+      : resolveMediaUrl(raw);
   } catch {
     return undefined;
   }

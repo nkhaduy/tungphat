@@ -106,6 +106,19 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .nav__link.tp-nav-home-link:hover, .nav__link.tp-nav-home-link:focus-visible { background: var(--tp-soft); }
 .nav__link.tp-nav-editorial-link { min-height: 2.35rem; padding-inline: .75rem; border-radius: 6px; font-size: .84rem; }
 .nav__link.tp-nav-editorial-link:hover, .nav__link.tp-nav-editorial-link:focus-visible { background: var(--tp-soft); color: var(--tp-forest); }
+.tp-publish-build { display: grid; gap: .45rem; margin: 0 0 1rem; padding: .8rem; border: 1px solid var(--tp-border); border-radius: 8px; background: var(--tp-secondary); color: var(--tp-text); }
+.tp-publish-build__heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem; }
+.tp-publish-build__heading strong { font-size: .85rem; }
+.tp-publish-build__state { color: var(--tp-secondary-text); font-size: .75rem; font-weight: 700; }
+.tp-publish-build__state--live { color: var(--tp-forest); }
+.tp-publish-build__state--failed { color: #9a3d3d; }
+.tp-publish-build__state--building, .tp-publish-build__state--deploying, .tp-publish-build__state--queued { color: #8a5300; }
+.tp-publish-build p, .tp-publish-build small { margin: 0; color: var(--tp-secondary-text); font-size: .76rem; line-height: 1.4; }
+.tp-publish-build .tp-publish-build__error { color: #8f3030; }
+.tp-publish-build button { min-height: 2.4rem; border: 1px solid var(--tp-forest); border-radius: 6px; background: var(--tp-forest); color: #fff; font: inherit; font-size: .78rem; font-weight: 700; cursor: pointer; }
+.tp-publish-build button:hover { background: var(--tp-forest-deep); }
+.tp-publish-build button:disabled { cursor: wait; opacity: .7; }
+.tp-publish-build a { color: var(--tp-forest); font-size: .75rem; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 2px; }
 .nav-group__toggle { min-height: 2.75rem; align-items: center; font-size: .9rem; }
 .nav__link { min-height: 2.7rem; align-items: center; font-size: .9rem; }
 body[data-tp-admin-mode='simple'] .tp-advanced-field { display: none; }

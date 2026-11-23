@@ -108,12 +108,15 @@ export async function syncPayloadBuildData({
   root = process.cwd(),
   fetchImpl = fetch,
   renameImpl = rename,
+  buildTarget = process.env.STATIC_BUILD_TARGET,
 }: {
   baseUrl?: string;
   root?: string;
   fetchImpl?: typeof fetch;
   renameImpl?: typeof rename;
+  buildTarget?: string;
 } = {}) {
+  if (buildTarget === "preview") return { skipped: true as const };
   const pendingFiles: { relativePath: string; contents: string }[] = [];
   for (const [slug, relativeOutput] of Object.entries(OUTPUTS)) {
     const value = await fetchPayloadGlobal(slug, baseUrl, fetchImpl) as Record<string, unknown>;
@@ -180,6 +183,7 @@ export async function syncPayloadBuildData({
     await rm(stagingRoot, { recursive: true, force: true });
   }
   console.log(`Synced ${Object.keys(OUTPUTS).length} Payload globals for frontend build.`);
+  return { skipped: false as const };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

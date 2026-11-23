@@ -22,6 +22,7 @@ import { Projects } from '@/collections/Projects'
 import { Redirects } from '@/collections/Redirects'
 import { Reviews } from '@/collections/Reviews'
 import { Suppliers } from '@/collections/Suppliers'
+import { SiteBuilds } from '@/collections/SiteBuilds'
 import { Users } from '@/collections/Users'
 import { Brands } from '@/globals/Brands'
 import { BusinessSettings } from '@/globals/BusinessSettings'
@@ -33,6 +34,7 @@ import { stagingEmailAdapter } from '@/email/stagingEmailAdapter'
 import { installWebCryptoPbkdf2 } from '@/security/webCryptoPbkdf2'
 import { resolveMigrationProxyOptions } from '@/security/migrationProxy'
 import { runtimeEndpoints } from '@/endpoints/runtime'
+import { siteBuildEndpoints } from '@/endpoints/siteBuilds'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -90,9 +92,9 @@ export default buildConfig({
       ],
     },
   },
-  collections: [Leads, Reviews, Products, MaterialCodes, Suppliers, Categories, Media, Articles, Projects, Pages, AnalyticsEvents, Redirects, GbpConnections, Users],
+  collections: [Leads, Reviews, Products, MaterialCodes, Suppliers, Categories, Media, Articles, Projects, Pages, AnalyticsEvents, Redirects, GbpConnections, SiteBuilds, Users],
   globals: [StaticPages, BusinessSettings, MaterialCategories, Brands, SeoDefaults],
-  endpoints: runtimeEndpoints,
+  endpoints: [...runtimeEndpoints, ...siteBuildEndpoints],
   defaultDepth: 0,
   i18n: { supportedLanguages: { vi }, fallbackLanguage: 'vi' },
   secret: process.env.PAYLOAD_SECRET ?? '',

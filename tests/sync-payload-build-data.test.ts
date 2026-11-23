@@ -128,9 +128,19 @@ describe("Payload build snapshot consistency", () => {
     }) as typeof fetch;
   }
 
+  it("does not read production Payload snapshots for a preview build", async () => {
+    let requests = 0;
+    await expect(syncPayloadBuildData({
+      root: tmpdir(),
+      buildTarget: "preview",
+      fetchImpl: async () => { requests += 1; throw new Error("preview must not request production CMS data"); },
+    } as Parameters<typeof syncPayloadBuildData>[0] & { buildTarget: string })).resolves.toEqual({ skipped: true });
+    expect(requests).toBe(0);
+  });
+
   it("preserves all previous snapshots when a later CMS global fails", async () => {
     await inTemporaryRoot(async (root) => {
-      await expect(syncPayloadBuildData({ root, fetchImpl: fetchFixture("material-categories") })).rejects.toThrow("503");
+      await expect(syncPayloadBuildData({ root, fetchImpl: fetchFixture("material-categories"), buildTarget: "production" })).rejects.toThrow("503");
       expect(await readFile(path.join(root, globalPath), "utf8")).toBe(currentSnapshot);
       await expect(readFile(path.join(root, "content/settings/seo.json"))).rejects.toMatchObject({ code: "ENOENT" });
     });
@@ -138,7 +148,7 @@ describe("Payload build snapshot consistency", () => {
 
   it("preserves all previous snapshots when the publication response fails", async () => {
     await inTemporaryRoot(async (root) => {
-      await expect(syncPayloadBuildData({ root, fetchImpl: fetchFixture("/api/products") })).rejects.toThrow("503");
+      await expect(syncPayloadBuildData({ root, fetchImpl: fetchFixture("/api/products"), buildTarget: "production" })).rejects.toThrow("503");
       expect(await readFile(path.join(root, globalPath), "utf8")).toBe(currentSnapshot);
       await expect(readFile(path.join(root, "content/categories/product-publication.json")))
         .rejects.toMatchObject({ code: "ENOENT" });
@@ -147,7 +157,7 @@ describe("Payload build snapshot consistency", () => {
 
   it("promotes a fully fetched set and rolls back if a later destination cannot be replaced", async () => {
     await inTemporaryRoot(async (root) => {
-      await syncPayloadBuildData({ root, fetchImpl: fetchFixture() });
+      await syncPayloadBuildData({ root, fetchImpl: fetchFixture(), buildTarget: "production" });
       expect(JSON.parse(await readFile(path.join(root, globalPath), "utf8"))).toEqual({ businessName: "Tùng Phát" });
       expect(JSON.parse(await readFile(path.join(root, "content/categories/product-publication.json"), "utf8")))
         .toEqual({ hiddenSlugs: ["go-ghep-cao-su", "go-ghep-tram", "mdf-chong-am"] });
@@ -161,7 +171,7 @@ describe("Payload build snapshot consistency", () => {
         promotionCount += 1;
         return rename(from, to);
       };
-      await expect(syncPayloadBuildData({ root, fetchImpl: fetchFixture(), renameImpl }))
+      await expect(syncPayloadBuildData({ root, fetchImpl: fetchFixture(), renameImpl, buildTarget: "production" }))
         .rejects.toThrow("Injected last-step promotion failure");
       expect(promotionCount).toBeGreaterThan(0);
       expect(await readFile(path.join(root, globalPath), "utf8")).toBe(currentSnapshot);
@@ -171,7 +181,7 @@ describe("Payload build snapshot consistency", () => {
 
   it("reports promotion and rollback failures, restores remaining snapshots and cleans staging", async () => {
     await inTemporaryRoot(async (root) => {
-      await syncPayloadBuildData({ root, fetchImpl: fetchFixture() });
+      await syncPayloadBuildData({ root, fetchImpl: fetchFixture(), buildTarget: "production" });
       const businessPath = path.join(root, globalPath);
       const seoPath = path.join(root, "content/settings/seo.json");
       const brandsPath = path.join(root, "content/categories/brands.json");
@@ -193,7 +203,7 @@ describe("Payload build snapshot consistency", () => {
         return rename(from, to);
       };
 
-      const failure = await syncPayloadBuildData({ root, fetchImpl: fetchFixture(), renameImpl })
+      const failure = await syncPayloadBuildData({ root, fetchImpl: fetchFixture(), renameImpl, buildTarget: "production" })
         .then(() => null, (error: unknown) => error);
       expect(failure).toBeInstanceOf(AggregateError);
       expect((failure as AggregateError).errors).toContain(promotionError);

@@ -2,7 +2,8 @@ import type { CollectionConfig, Field } from 'payload'
 import { cmsPreviewURL, contentCollection, fileRelationships, publicationFields } from './shared'
 import { faqField, stringArray, vietnameseText } from '@/fields/common'
 import { articleLexicalEditor, articleEditorHasContent, articleEditorPlainText } from './articleRichText'
-import { shouldRebuildPublishedSite, triggerStaticSiteRebuild } from '@/security/siteRebuild'
+import { hasPublicArticleChanged, shouldRebuildPublishedSite } from '@/security/siteRebuild'
+import { requestBuild } from '@/endpoints/siteBuilds'
 
 const legacyBodyField = {
   name: 'body',
@@ -37,6 +38,7 @@ export const Articles: CollectionConfig = contentCollection({
     defaultColumns: ['title', 'category', '_status', 'publishedAt'],
     listSearchableFields: ['title', 'slug', 'category', 'author'],
     preview: (data) => cmsPreviewURL('articles', (data as { slug?: string } | undefined)?.slug),
+    components: { edit: { beforeDocumentControls: ['/components/admin/SiteBuildStatus'] } },
   },
   fields: [
     vietnameseText('title', 'Tiêu đề', { required: true, minLength: 10, maxLength: 120 }),
@@ -85,22 +87,32 @@ export const Articles: CollectionConfig = contentCollection({
         status: doc._status,
         previousStatus: previousDoc?._status,
         submittedStatus: data._status,
+        publicContentChanged: hasPublicArticleChanged(previousDoc as Record<string, unknown> | undefined, doc as Record<string, unknown>),
         autosave: isAutosave,
       })
       if (!shouldQueue) return doc
 
-      const result = await triggerStaticSiteRebuild()
-      const fields = { msg: 'Static site rebuild trigger', article: doc.slug, result: result.status }
-      if (result.status === 'queued') req.payload.logger.info({ ...fields, httpStatus: result.httpStatus, ...(result.buildId ? { buildId: result.buildId } : {}) })
-      else req.payload.logger.warn({ ...fields, ...(result.status === 'failed' ? { httpStatus: result.httpStatus } : {}) })
+      const reason = previousDoc?._status === 'published' && doc._status !== 'published' ? 'unpublish' : 'publish'
+      try {
+        const result = await requestBuild(req.payload, { articleSlug: doc.slug, reason })
+        const fields = { msg: 'Static site build trigger', article: doc.slug, status: result.status, buildId: result.buildId }
+        if (result.status === 'queued') req.payload.logger.info(fields)
+        else req.payload.logger.warn(fields)
+      } catch (error) {
+        req.payload.logger.error({ err: error, article: doc.slug, msg: 'Failed to record static site build trigger' })
+      }
       return doc
     }],
     afterDelete: [async ({ doc, req }) => {
       if (doc._status !== 'published') return doc
-      const result = await triggerStaticSiteRebuild()
-      const fields = { msg: 'Static site rebuild trigger after published article deletion', article: doc.slug, result: result.status }
-      if (result.status === 'queued') req.payload.logger.info({ ...fields, httpStatus: result.httpStatus, ...(result.buildId ? { buildId: result.buildId } : {}) })
-      else req.payload.logger.warn({ ...fields, ...(result.status === 'failed' ? { httpStatus: result.httpStatus } : {}) })
+      try {
+        const result = await requestBuild(req.payload, { articleSlug: doc.slug, reason: 'unpublish' })
+        const fields = { msg: 'Static site build trigger after published article deletion', article: doc.slug, status: result.status, buildId: result.buildId }
+        if (result.status === 'queued') req.payload.logger.info(fields)
+        else req.payload.logger.warn(fields)
+      } catch (error) {
+        req.payload.logger.error({ err: error, article: doc.slug, msg: 'Failed to record build after published article deletion' })
+      }
       return doc
     }],
   },

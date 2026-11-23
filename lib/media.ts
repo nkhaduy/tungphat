@@ -57,7 +57,8 @@ function canonicalMediaReference(reference: string): { pathname: string; search:
 
   const isR2Dev = url.hostname.endsWith(".r2.dev");
   const isR2Api = url.hostname.endsWith(".r2.cloudflarestorage.com");
-  if (!FIRST_PARTY_MEDIA_HOSTS.has(url.hostname) && !isR2Dev && !isR2Api) return undefined;
+  const isStagingCms = process.env.STATIC_BUILD_TARGET === "preview" && url.hostname === "tungphat-payload-cms-staging.nkhaduy.workers.dev";
+  if (!FIRST_PARTY_MEDIA_HOSTS.has(url.hostname) && !isR2Dev && !isR2Api && !isStagingCms) return undefined;
 
   let pathname = url.pathname;
   if (isR2Api) pathname = pathname.replace(/^\/tung-phat-media(?=\/|$)/iu, "");
@@ -81,6 +82,16 @@ export function resolveMediaUrl(reference: MediaReference, mediaBaseUrl?: string
 
   const base = configuredMediaBase(mediaBaseUrl);
   return `${base.origin}${media.pathname}${media.search}${media.hash}`;
+}
+
+/** Preview Workers may serve only staged uploads; production catalog media stays on the CDN. */
+export function resolvePreviewUploadMediaUrl(reference: MediaReference, previewMediaBaseUrl?: string) {
+  const media = canonicalMediaReference(reference.trim());
+  if (media && /^\/(?:uploads|uploads-thumbnails)\//iu.test(media.pathname)) {
+    if (!previewMediaBaseUrl?.trim()) throw new Error("Preview upload media requires NEXT_PUBLIC_PREVIEW_MEDIA_BASE_URL.");
+    return resolveMediaUrl(reference, previewMediaBaseUrl);
+  }
+  return resolveMediaUrl(reference);
 }
 
 export function resolveMediaSrcSet(srcSet: string | undefined): string | undefined {

@@ -33,6 +33,7 @@ export interface Config {
     'analytics-events': AnalyticsEvent;
     redirects: Redirect;
     'gbp-connections': GbpConnection;
+    'site-builds': SiteBuild;
     users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -54,6 +55,7 @@ export interface Config {
     'analytics-events': AnalyticsEventsSelect<false> | AnalyticsEventsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     'gbp-connections': GbpConnectionsSelect<false> | GbpConnectionsSelect<true>;
+    'site-builds': SiteBuildsSelect<false> | SiteBuildsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -758,6 +760,24 @@ export interface GbpConnection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-builds".
+ */
+export interface SiteBuild {
+  id: number;
+  requestId: string;
+  buildId?: string | null;
+  status: 'queued' | 'building' | 'deploying' | 'live' | 'failed';
+  branch: string;
+  commitSha?: string | null;
+  articleSlug?: string | null;
+  triggerReason?: ('publish' | 'unpublish' | 'retry') | null;
+  errorCode?: string | null;
+  createdAt: string;
+  completedAt?: string | null;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -831,6 +851,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'gbp-connections';
         value: number | GbpConnection;
+      } | null)
+    | ({
+        relationTo: 'site-builds';
+        value: number | SiteBuild;
       } | null)
     | ({
         relationTo: 'users';
@@ -1392,6 +1416,23 @@ export interface GbpConnectionsSelect<T extends boolean = true> {
   lastErrorSafe?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-builds_select".
+ */
+export interface SiteBuildsSelect<T extends boolean = true> {
+  requestId?: T;
+  buildId?: T;
+  status?: T;
+  branch?: T;
+  commitSha?: T;
+  articleSlug?: T;
+  triggerReason?: T;
+  errorCode?: T;
+  createdAt?: T;
+  completedAt?: T;
+  updatedAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

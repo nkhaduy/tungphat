@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "workers:preview:build": "tsx scripts/workers-build-preview.ts build",
+    "workers:preview:deploy": "tsx scripts/workers-build-preview.ts deploy",
     "sync:payload-build-data": "tsx scripts/sync-payload-build-data.ts",
-    "prebuild": "node scripts/product-media/build-index.mjs && npm run sync:payload-build-data && node scripts/sync-trustindex-reviews.mjs && node scripts/prepare-indexnow-key.mjs && node scripts/generate-material-reference.mjs && node scripts/generate-cnc-preflight.mjs && tsx scripts/catalog-suppliers/build-browser-index.ts",
+    "prebuild": "node scripts/prebuild.mjs",
     "build": "npm run validate:content && npm run images:check && node ./node_modules/next/dist/bin/next build",
     "postbuild": "node scripts/clean-empty-collection-routes.mjs && node scripts/clean-export-image-sources.mjs && node scripts/check-static-output.mjs && npm run check:media-cdn-output && node scripts/check-cloudflare-pages-capacity.mjs && JS_BUDGET_OUTPUT=reports/phase6-js-budgets.json tsx scripts/check-js-budgets.ts && node scripts/check-sitemap-output.mjs && node scripts/check-llms-output.mjs && node scripts/check-metadata-output.mjs && tsx scripts/audit-seo-output.ts && CATALOGUE_QUALITY_OUTPUT=reports/phase6-catalogue-quality.json tsx scripts/audit-catalogue-quality.ts && npm run audit:catalogue-seo && node scripts/validate-structured-data.mjs && node scripts/prepare-cloudflare-artifact.mjs",
     "start": "serve out -l 4173",
