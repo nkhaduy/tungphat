@@ -4,11 +4,13 @@ import previewWorker from "../workers/static-preview.mjs";
 describe("isolated static preview Worker", () => {
   afterEach(() => vi.unstubAllGlobals());
 
-  it("blocks indexing and hides its media allowlist", async () => {
+  it("lets crawlers read the noindex header and hides its media allowlist", async () => {
     const assets = { fetch: vi.fn(async () => new Response("[]", { status: 200 })) };
     const env = { ASSETS: assets } as never;
     const robots = await previewWorker.fetch(new Request("https://preview.example/robots.txt"), env);
-    expect(await robots.text()).toContain("Disallow: /");
+    const robotsText = await robots.text();
+    expect(robotsText).toContain("Allow: /");
+    expect(robotsText).not.toContain("Disallow: /");
     expect(robots.headers.get("X-Robots-Tag")).toContain("noindex");
     expect((await previewWorker.fetch(new Request("https://preview.example/sitemap.xml"), env)).status).toBe(404);
     expect((await previewWorker.fetch(new Request("https://preview.example/_preview-media-allowlist.json"), env)).status).toBe(404);

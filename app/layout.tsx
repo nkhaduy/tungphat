@@ -32,11 +32,9 @@ export const metadata: Metadata = {
   },
   description: DEFAULT_DESCRIPTION,
   alternates: { canonical: absoluteUrl("/") },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large" },
-  },
+  robots: process.env.STATIC_BUILD_TARGET === "preview"
+    ? { index: false, follow: false, googleBot: { index: false, follow: false } }
+    : { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
   manifest: "/manifest.webmanifest",
   icons: {
     icon: [

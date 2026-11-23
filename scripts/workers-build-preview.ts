@@ -230,7 +230,7 @@ async function createStablePreviewArtifact(root: string, env: Record<string, str
 async function validateStaticPreviewOutput(root: string, articles: Article[], trigger: BuildContext) {
   for (const article of articles) {
     const html = await readFile(routeToArtifactPath(root, article.slug), "utf8").catch(() => "");
-    if (!html || !html.includes(escapeHTML(article.title)) || !html.includes("rel=\"canonical\"")) {
+    if (!html || !html.includes(escapeHTML(article.title)) || !html.includes("rel=\"canonical\"") || !hasNoIndexRobotsMeta(html)) {
       throw new BuildFailure("artifact_validation", `Static output is missing published article ${article.slug} or its metadata.`);
     }
   }
@@ -246,7 +246,10 @@ async function validateStaticPreviewOutput(root: string, articles: Article[], tr
 async function verifyPreview(context: BuildEnvironment, state: { articles: Array<{ slug: string; title: string }>; mediaPaths: string[]; trigger: BuildContext }, env: Record<string, string | undefined>) {
   const previewOrigin = context.previewOrigin;
   const robots = await fetch(`${previewOrigin}/robots.txt?build-check=${context.buildId}`, { cache: "no-store" });
-  if (!robots.ok || !(await robots.text()).includes("Disallow: /")) throw new BuildFailure("preview_probe_failed", "Preview robots.txt does not block crawlers.");
+  const robotsText = await robots.text();
+  if (!robots.ok || !/^User-agent:\s*\*\s*\nAllow:\s*\/\s*$/imu.test(robotsText) || /^Disallow:\s*\/\s*$/imu.test(robotsText)) {
+    throw new BuildFailure("preview_probe_failed", "Preview robots.txt must allow crawlers to read noindex directives.");
+  }
   const sitemap = await fetch(`${previewOrigin}/sitemap.xml?build-check=${context.buildId}`, { cache: "no-store" });
   if (sitemap.status !== 404) throw new BuildFailure("preview_probe_failed", "Preview unexpectedly serves an indexable sitemap.");
 
@@ -254,7 +257,7 @@ async function verifyPreview(context: BuildEnvironment, state: { articles: Array
     const response = await fetch(`${previewOrigin}/bai-viet/${encodeURIComponent(article.slug)}/?build-check=${context.buildId}`, { cache: "no-store" });
     if (!response.ok) throw new BuildFailure("preview_probe_failed", `Preview does not serve published article ${article.slug}.`);
     const html = await response.text();
-    if (!html.includes(escapeHTML(article.title)) || !html.includes("rel=\"canonical\"") || !hasNoIndex(response.headers.get("x-robots-tag"))) {
+    if (!html.includes(escapeHTML(article.title)) || !html.includes("rel=\"canonical\"") || !hasNoIndexRobotsMeta(html) || !hasNoIndex(response.headers.get("x-robots-tag"))) {
       throw new BuildFailure("preview_probe_failed", `Preview content, canonical metadata, or noindex header failed for ${article.slug}.`);
     }
     if (html.includes("googletagmanager.com/gtag/js")) throw new BuildFailure("preview_probe_failed", "Google Analytics script appeared in the preview artifact.");
@@ -431,6 +434,16 @@ function readCheckedOutCommitSha(root: string) {
 }
 
 function hasNoIndex(value: string | null) { return Boolean(value && /noindex/iu.test(value) && /nofollow/iu.test(value)); }
+function hasNoIndexRobotsMeta(html: string) {
+  for (const match of html.matchAll(/<meta\b[^>]*>/giu)) {
+    const tag = match[0];
+    const name = tag.match(/\bname\s*=\s*["']([^"']+)["']/iu)?.[1]?.toLowerCase();
+    if (name !== "robots") continue;
+    const content = tag.match(/\bcontent\s*=\s*["']([^"']+)["']/iu)?.[1] ?? "";
+    return /\bnoindex\b/iu.test(content) && /\bnofollow\b/iu.test(content);
+  }
+  return false;
+}
 function escapeHTML(value: string) { return value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#x27;"); }
 function isUUID(value: string) { return /^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/iu.test(value); }
 function errorMessage(error: unknown) { return error instanceof Error ? error.message : String(error); }

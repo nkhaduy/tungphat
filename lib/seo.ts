@@ -157,11 +157,12 @@ export function createPageMetadata({
 }: PageMetadata): Metadata {
   const canonicalUrl = absoluteUrl(path);
   const formattedTitle = formatPageTitle(title);
+  const isPreviewBuild = process.env.STATIC_BUILD_TARGET === "preview";
   return {
     title: { absolute: formattedTitle },
     description,
     alternates: { canonical: canonicalUrl },
-    robots: noIndex
+    robots: noIndex || isPreviewBuild
       ? {
           index: false,
           follow: followWhenNoIndex,

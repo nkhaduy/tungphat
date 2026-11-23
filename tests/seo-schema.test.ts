@@ -1,5 +1,7 @@
-import { describe, expect, it } from "vitest";
-import { absolutePageUrl, webPageSchema } from "@/lib/seo";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { absolutePageUrl, createPageMetadata, webPageSchema } from "@/lib/seo";
+
+afterEach(() => vi.unstubAllEnvs());
 
 describe("canonical WebPage schema", () => {
   it("uses the trailing-slash canonical URL and links the primary entity", () => {
@@ -18,5 +20,17 @@ describe("canonical WebPage schema", () => {
       about: { "@id": "https://mdftungphat.com/#organization" },
       mainEntity: { "@id": "https://mdftungphat.com/van-mdf/#product" },
     });
+  });
+
+  it("marks every preview page noindex even when its content is publishable", () => {
+    vi.stubEnv("STATIC_BUILD_TARGET", "preview");
+
+    const metadata = createPageMetadata({
+      title: "Bài QA staging",
+      description: "Mô tả QA staging",
+      path: "/bai-viet/qa-editorial-cms-staging",
+    });
+
+    expect(metadata.robots).toMatchObject({ index: false, follow: false, googleBot: { index: false, follow: false } });
   });
 });

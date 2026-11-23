@@ -7,7 +7,7 @@ export default {
     const incoming = new URL(request.url);
     let response;
     if (incoming.pathname === "/robots.txt") {
-      response = new Response("User-agent: *\nDisallow: /\n", { status: 200, headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" } });
+      response = new Response("User-agent: *\nAllow: /\n", { status: 200, headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" } });
     } else if (/^\/sitemap(?:-\d+)?\.xml$/iu.test(incoming.pathname)) {
       response = new Response(null, { status: 404, headers: { "Cache-Control": "no-store" } });
     } else if (incoming.pathname === MEDIA_ALLOWLIST_PATH) {
