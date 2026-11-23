@@ -1,11 +1,15 @@
-export function analyticsAllowedForBuild(buildTarget = process.env.STATIC_BUILD_TARGET) {
+function currentBuildTarget() {
+  return process.env.NEXT_PUBLIC_STATIC_BUILD_TARGET || process.env.STATIC_BUILD_TARGET;
+}
+
+export function analyticsAllowedForBuild(buildTarget = currentBuildTarget()) {
   return buildTarget !== "preview";
 }
 
 export function shouldLoadGa4({
   pathname,
   measurementId,
-  buildTarget = process.env.STATIC_BUILD_TARGET,
+  buildTarget = currentBuildTarget(),
 }: {
   pathname?: string | null;
   measurementId?: string;

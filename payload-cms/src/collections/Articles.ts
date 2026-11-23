@@ -2,7 +2,7 @@ import type { CollectionConfig, Field } from 'payload'
 import { cmsPreviewURL, contentCollection, fileRelationships, publicationFields } from './shared'
 import { faqField, stringArray, vietnameseText } from '@/fields/common'
 import { articleLexicalEditor, articleEditorHasContent, articleEditorPlainText } from './articleRichText'
-import { hasPublicArticleChanged, shouldRebuildPublishedSite } from '@/security/siteRebuild'
+import { hasPublicArticleChanged, shouldRebuildPublishedSite, shouldTriggerSiteBuild } from '@/security/siteRebuild'
 import { requestBuild } from '@/endpoints/siteBuilds'
 
 const legacyBodyField = {
@@ -78,6 +78,7 @@ export const Articles: CollectionConfig = contentCollection({
       return nextData
     }],
     afterChange: [async ({ data, doc, operation, previousDoc, req, context }) => {
+      if (!shouldTriggerSiteBuild(process.env.CMS_ENVIRONMENT)) return doc
       let isAutosave = context.autosave === true
       if (!isAutosave && typeof req.url === 'string') {
         try { isAutosave = new URL(req.url).searchParams.get('autosave') === 'true' } catch { /* request URL may be relative */ }
@@ -104,6 +105,7 @@ export const Articles: CollectionConfig = contentCollection({
       return doc
     }],
     afterDelete: [async ({ doc, req }) => {
+      if (!shouldTriggerSiteBuild(process.env.CMS_ENVIRONMENT)) return doc
       if (doc._status !== 'published') return doc
       try {
         const result = await requestBuild(req.payload, { articleSlug: doc.slug, reason: 'unpublish' })

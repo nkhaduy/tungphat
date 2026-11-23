@@ -3,6 +3,7 @@ import { canPublishContent, roleOf } from '@/access/roles'
 import { matchesSecret, parseSiteBuildEvent, triggerStaticSiteRebuild } from '@/security/siteRebuild'
 
 export type SiteBuildStatus = 'queued' | 'building' | 'deploying' | 'live' | 'failed'
+const BUILD_STALE_AFTER_MS = 25 * 60 * 1000
 
 export const siteBuildEndpoints: Endpoint[] = [
   {
@@ -11,7 +12,8 @@ export const siteBuildEndpoints: Endpoint[] = [
     handler: async (req) => {
       if (!roleOf(req)) return json({ error: 'unauthorized' }, 401)
       const latest = await req.payload.find({ collection: 'site-builds', limit: 1, depth: 0, sort: '-createdAt', overrideAccess: true })
-      const doc = latest.docs[0] as unknown as SiteBuildRecord | undefined
+      let doc = latest.docs[0] as unknown as SiteBuildRecord | undefined
+      if (doc && isStaleBuild(doc)) doc = await markBuildStale(req.payload, doc)
       return json({
         build: doc ? publicBuildRecord(doc) : null,
         canRetry: canPublishContent({ req } as never) === true,
@@ -31,7 +33,7 @@ export const siteBuildEndpoints: Endpoint[] = [
       const build = await findBuild(req.payload, buildId)
       if (!build) return json({ error: 'not_found' }, 404)
       const ready = Boolean(build.triggerReason)
-      return json({ branch: build.branch, articleSlug: build.articleSlug || null, triggerReason: build.triggerReason || null, ready }, ready ? 200 : 202)
+      return json({ branch: build.branch, articleSlug: build.articleSlug || null, triggerReason: build.triggerReason || null, requestId: build.requestId, updatedAt: build.updatedAt, ready }, ready ? 200 : 202)
     },
   },
   {
@@ -47,7 +49,8 @@ export const siteBuildEndpoints: Endpoint[] = [
       if (!event) return json({ error: 'invalid_event' }, 400)
 
       try {
-        await applyBuildEvent(req.payload, event)
+        const accepted = await applyBuildEvent(req.payload, event)
+        if (!accepted) return json({ error: 'stale_context' }, 409)
       } catch (error) {
         req.payload.logger.error({ err: error, msg: 'Failed to persist Workers Builds event' })
         return json({ error: 'persistence_failed' }, 503)
@@ -63,7 +66,8 @@ export const siteBuildEndpoints: Endpoint[] = [
       if (!sameOrigin(req as unknown as Request)) return json({ error: 'origin_rejected' }, 403)
 
       const latest = await req.payload.find({ collection: 'site-builds', limit: 1, depth: 0, sort: '-createdAt', overrideAccess: true })
-      const previous = latest.docs[0] as unknown as SiteBuildRecord | undefined
+      let previous = latest.docs[0] as unknown as SiteBuildRecord | undefined
+      if (previous && isStaleBuild(previous)) previous = await markBuildStale(req.payload, previous)
       if (!previous || previous.status !== 'failed') return json({ error: 'no_failed_build' }, 409)
       const reason = previous.triggerReason === 'unpublish' ? 'unpublish' : 'publish'
       const result = await requestBuild(req.payload, { articleSlug: previous.articleSlug, reason })
@@ -73,44 +77,54 @@ export const siteBuildEndpoints: Endpoint[] = [
 ]
 
 export async function requestBuild(payload: Payload, input: { articleSlug?: string; reason: 'publish' | 'unpublish' | 'retry' }) {
-  const result = await triggerStaticSiteRebuild()
+  const branch = process.env.SITE_BUILD_BRANCH || 'codex/editorial-cms'
+  const active = await findActiveBuild(payload, branch)
+  if (active) {
+    const updated = await payload.update({ collection: 'site-builds', id: active.id, overrideAccess: true, data: {
+      requestId: crypto.randomUUID(),
+      articleSlug: input.articleSlug || active.articleSlug,
+      triggerReason: input.reason,
+    } as never })
+    return publicBuildRecord(updated as unknown as SiteBuildRecord)
+  }
+
   const now = new Date().toISOString()
-  const buildId = result.status === 'queued' ? result.buildId : undefined
-  const record: Record<string, unknown> = {
+  const pending = await payload.create({ collection: 'site-builds', overrideAccess: true, data: {
     requestId: crypto.randomUUID(),
-    ...(buildId ? { buildId } : {}),
-    status: result.status === 'queued' ? 'queued' : 'failed',
-    branch: process.env.SITE_BUILD_BRANCH || 'codex/editorial-cms',
+    status: 'queued',
+    branch,
     articleSlug: input.articleSlug || undefined,
     triggerReason: input.reason,
-    errorCode: result.status === 'disabled' ? 'hook_not_configured' : result.status === 'invalid-hook' ? 'hook_invalid' : result.status === 'failed' ? 'trigger_failed' : undefined,
     createdAt: now,
-    completedAt: result.status === 'queued' ? undefined : now,
-  }
+  } as never }) as unknown as SiteBuildRecord
 
-  if (buildId) {
-    const existing = await findBuild(payload, buildId)
-    if (existing) {
-      await payload.update({ collection: 'site-builds', id: existing.id, overrideAccess: true, data: {
-        articleSlug: input.articleSlug || existing.articleSlug,
-        triggerReason: input.reason,
-        ...(existing.status === 'queued' ? { status: 'queued' } : {}),
+  const result = await triggerStaticSiteRebuild()
+  if (result.status !== 'queued') {
+    const current = await findBuildRecordById(payload, pending.id) || pending
+    if (current.status === 'queued' && !current.buildId) {
+      const failed = await payload.update({ collection: 'site-builds', id: current.id, overrideAccess: true, data: {
+        status: 'failed',
+        errorCode: result.status === 'disabled' ? 'hook_not_configured' : result.status === 'invalid-hook' ? 'hook_invalid' : 'trigger_failed',
+        completedAt: new Date().toISOString(),
       } as never })
-      return publicBuildRecord({ ...existing, articleSlug: input.articleSlug || existing.articleSlug })
+      return publicBuildRecord(failed as unknown as SiteBuildRecord)
     }
+    return publicBuildRecord(current)
   }
 
-  const created = await payload.create({ collection: 'site-builds', overrideAccess: true, data: record as never })
-  return publicBuildRecord(created as unknown as SiteBuildRecord)
+  if (!result.buildId) return publicBuildRecord(pending)
+  return attachBuildId(payload, pending, result.buildId)
 }
 
 async function applyBuildEvent(payload: Payload, event: NonNullable<ReturnType<typeof parseSiteBuildEvent>>) {
-  const existing = await findBuild(payload, event.buildId)
+  const existing = await findBuild(payload, event.buildId) || await findUnassignedQueuedBuild(payload, event.branch)
+  if (event.status === 'live' && existing && event.requestId && event.requestId !== existing.requestId) return false
   const now = new Date().toISOString()
   const terminal = existing?.status === 'live' || existing?.status === 'failed'
   const acceptedStatus = terminal && existing.status !== event.status ? existing.status : event.status
   const data = {
     ...(existing ? {} : { requestId: crypto.randomUUID(), buildId: event.buildId, branch: event.branch, createdAt: now }),
+    ...(existing && !existing.buildId ? { buildId: event.buildId, branch: event.branch } : {}),
     status: acceptedStatus,
     commitSha: event.commitSha,
     errorCode: acceptedStatus === 'failed' ? event.errorCode || 'unknown' : undefined,
@@ -118,6 +132,7 @@ async function applyBuildEvent(payload: Payload, event: NonNullable<ReturnType<t
   }
   if (existing) await payload.update({ collection: 'site-builds', id: existing.id, overrideAccess: true, data: data as never })
   else await payload.create({ collection: 'site-builds', overrideAccess: true, data: data as never })
+  return true
 }
 
 async function findBuild(payload: Payload, buildId: string): Promise<SiteBuildRecord | undefined> {
@@ -146,6 +161,21 @@ function sameOrigin(request: Request) {
   try { return new URL(origin).origin === target.origin } catch { return false }
 }
 
+function isStaleBuild(record: SiteBuildRecord) {
+  if (!['queued', 'building', 'deploying'].includes(record.status)) return false
+  const lastActivity = Date.parse(record.updatedAt || record.createdAt)
+  return Number.isFinite(lastActivity) && Date.now() - lastActivity > BUILD_STALE_AFTER_MS
+}
+
+async function markBuildStale(payload: Payload, record: SiteBuildRecord): Promise<SiteBuildRecord> {
+  const updated = await payload.update({ collection: 'site-builds', id: record.id, overrideAccess: true, data: {
+    status: 'failed',
+    errorCode: 'callback_timeout',
+    completedAt: new Date().toISOString(),
+  } as never })
+  return updated as unknown as SiteBuildRecord
+}
+
 function json(body: unknown, status: number) {
   return Response.json(body, { status, headers: { 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' } })
 }
@@ -153,6 +183,7 @@ function json(body: unknown, status: number) {
 type SiteBuildRecord = {
   id: string | number
   status: SiteBuildStatus
+  requestId: string
   buildId?: string
   branch: string
   commitSha?: string
@@ -160,5 +191,73 @@ type SiteBuildRecord = {
   triggerReason?: string
   errorCode?: string
   createdAt: string
+  updatedAt?: string
   completedAt?: string
+}
+
+async function attachBuildId(payload: Payload, pending: SiteBuildRecord, buildId: string) {
+  let existing = await findBuild(payload, buildId)
+  if (existing) {
+    if (pending.id !== existing.id) {
+      const pendingActivity = Date.parse(pending.updatedAt || pending.createdAt)
+      const existingActivity = Date.parse(existing.updatedAt || existing.createdAt)
+      if (Number.isFinite(pendingActivity) && pendingActivity > existingActivity) {
+        existing = await payload.update({ collection: 'site-builds', id: existing.id, overrideAccess: true, data: {
+          requestId: pending.requestId,
+          articleSlug: pending.articleSlug,
+          triggerReason: pending.triggerReason,
+        } as never }) as unknown as SiteBuildRecord
+      }
+      await payload.delete({ collection: 'site-builds', id: pending.id, overrideAccess: true })
+    }
+    return publicBuildRecord(existing)
+  }
+
+  try {
+    const updated = await payload.update({ collection: 'site-builds', id: pending.id, overrideAccess: true, data: { buildId } as never })
+    return publicBuildRecord(updated as unknown as SiteBuildRecord)
+  } catch (error) {
+    existing = await findBuild(payload, buildId)
+    if (!existing) throw error
+    if (pending.id !== existing.id) {
+      const pendingActivity = Date.parse(pending.updatedAt || pending.createdAt)
+      const existingActivity = Date.parse(existing.updatedAt || existing.createdAt)
+      if (Number.isFinite(pendingActivity) && pendingActivity > existingActivity) {
+        existing = await payload.update({ collection: 'site-builds', id: existing.id, overrideAccess: true, data: {
+          requestId: pending.requestId,
+          articleSlug: pending.articleSlug,
+          triggerReason: pending.triggerReason,
+        } as never }) as unknown as SiteBuildRecord
+      }
+      await payload.delete({ collection: 'site-builds', id: pending.id, overrideAccess: true })
+    }
+    return publicBuildRecord(existing)
+  }
+}
+
+async function findActiveBuild(payload: Payload, branch: string): Promise<SiteBuildRecord | undefined> {
+  const found = await payload.find({ collection: 'site-builds', limit: 10, depth: 0, sort: '-createdAt', overrideAccess: true, where: {
+    and: [{ branch: { equals: branch } }, { status: { in: ['queued', 'building', 'deploying'] } }],
+  } })
+  for (const value of found.docs) {
+    const record = value as unknown as SiteBuildRecord
+    if (isStaleBuild(record)) {
+      await markBuildStale(payload, record)
+      continue
+    }
+    return record
+  }
+  return undefined
+}
+
+async function findUnassignedQueuedBuild(payload: Payload, branch: string): Promise<SiteBuildRecord | undefined> {
+  const found = await payload.find({ collection: 'site-builds', limit: 10, depth: 0, sort: '-createdAt', overrideAccess: true, where: {
+    and: [{ branch: { equals: branch } }, { status: { equals: 'queued' } }],
+  } })
+  return found.docs.find((doc) => !('buildId' in doc) || !doc.buildId) as unknown as SiteBuildRecord | undefined
+}
+
+async function findBuildRecordById(payload: Payload, id: SiteBuildRecord['id']): Promise<SiteBuildRecord | undefined> {
+  const found = await payload.find({ collection: 'site-builds', limit: 1, depth: 0, overrideAccess: true, where: { id: { equals: id } } })
+  return found.docs[0] as unknown as SiteBuildRecord | undefined
 }

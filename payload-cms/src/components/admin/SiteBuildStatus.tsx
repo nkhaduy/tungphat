@@ -90,6 +90,7 @@ function failureLabel(code: string | undefined, targetName: string) {
     hook_not_configured: 'Deploy Hook chưa được cấu hình cho môi trường preview.',
     hook_invalid: 'Deploy Hook cấu hình không hợp lệ.',
     trigger_failed: 'Cloudflare chưa nhận yêu cầu build.',
+    callback_timeout: 'Build quá thời gian phản hồi. Website trước vẫn hoạt động; có thể thử lại an toàn.',
   } as Record<string, string>)[code ?? ''] || 'Bản dựng lỗi. Mở nhật ký Workers Builds để xem chi tiết.'
 }
 

@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { siteBuildEndpoints } from '@/endpoints/siteBuilds'
+import { requestBuild, siteBuildEndpoints } from '@/endpoints/siteBuilds'
 
 const buildId = '8aa4ab24-74bd-4bb6-a082-443b1d4fb3d2'
 
@@ -66,9 +66,10 @@ describe('Workers Builds status endpoint authorization', () => {
       result: { build_uuid: buildId },
     }), { status: 202, headers: { 'content-type': 'application/json' } })))
     const previous = { id: 3, status: 'failed', branch: 'codex/editorial-cms', articleSlug: 'qa-article', triggerReason: 'unpublish' }
-    const find = vi.fn().mockResolvedValueOnce({ docs: [previous] }).mockResolvedValueOnce({ docs: [] })
+    const find = vi.fn().mockResolvedValue({ docs: [] }).mockResolvedValueOnce({ docs: [previous] })
     const create = vi.fn().mockImplementation(({ data }) => Promise.resolve({ id: 4, ...data }))
-    const payload = { find, create }
+    const update = vi.fn().mockImplementation(({ id, data }) => Promise.resolve({ id, status: 'queued', branch: 'codex/editorial-cms', ...data }))
+    const payload = { find, create, update }
     const response = await handler('/site-builds/retry', 'post')(request('/site-builds/retry', 'POST', {
       Origin: 'https://tungphat-payload-cms-staging.nkhaduy.workers.dev',
     }, {}, { id: 1, role: 'super-admin' }, payload))
@@ -78,5 +79,119 @@ describe('Workers Builds status endpoint authorization', () => {
       articleSlug: 'qa-article',
       triggerReason: 'unpublish',
     }) }))
+  })
+
+  it('coalesces a publish change into the active build instead of sending another hook', async () => {
+    vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/accounts/account/builds/hooks/hook')
+    const active = { id: 9, requestId: 'old-request', buildId, status: 'building', branch: 'codex/editorial-cms', articleSlug: 'old-article', triggerReason: 'publish', createdAt: new Date().toISOString() }
+    const find = vi.fn().mockResolvedValue({ docs: [active] })
+    const update = vi.fn().mockImplementation(({ data }) => Promise.resolve({ ...active, ...data }))
+    const fetch = vi.fn<typeof globalThis.fetch>()
+    vi.stubGlobal('fetch', fetch)
+    const result = await requestBuild({ find, update } as never, { articleSlug: 'next-article', reason: 'publish' })
+
+    expect(result).toMatchObject({ status: 'building', buildId, articleSlug: 'next-article' })
+    expect(update).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ articleSlug: 'next-article' }) }))
+    expect(fetch).not.toHaveBeenCalled()
+  })
+
+  it('does not coalesce into a build whose status callback has gone stale', async () => {
+    vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/accounts/account/builds/hooks/hook')
+    vi.stubGlobal('fetch', vi.fn<typeof fetch>().mockResolvedValue(new Response(JSON.stringify({
+      success: true,
+      result: { build_uuid: buildId },
+    }), { status: 202, headers: { 'content-type': 'application/json' } })))
+    const stale = {
+      id: 19,
+      requestId: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+      buildId,
+      status: 'building',
+      branch: 'codex/editorial-cms',
+      createdAt: new Date(Date.now() - 60 * 60 * 1000).toISOString(),
+      updatedAt: new Date(Date.now() - 60 * 60 * 1000).toISOString(),
+    }
+    const find = vi.fn().mockImplementation(({ where }) => Promise.resolve({ docs: where?.buildId ? [] : [stale] }))
+    const update = vi.fn().mockImplementation(({ id, data }) => Promise.resolve({ id, status: 'queued', branch: 'codex/editorial-cms', ...data }))
+    const create = vi.fn().mockImplementation(({ data }) => Promise.resolve({ id: 20, ...data }))
+    const result = await requestBuild({ find, update, create } as never, { articleSlug: 'new-article', reason: 'publish' })
+
+    expect(update).toHaveBeenCalledWith(expect.objectContaining({
+      id: stale.id,
+      data: expect.objectContaining({ status: 'failed', errorCode: 'callback_timeout' }),
+    }))
+    expect(create).toHaveBeenCalledWith(expect.objectContaining({ data: expect.objectContaining({ articleSlug: 'new-article' }) }))
+    expect(result).toMatchObject({ status: 'queued' })
+  })
+
+  it('keeps the latest publish context when a hook response races its callback', async () => {
+    vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/accounts/account/builds/hooks/hook')
+    vi.stubGlobal('fetch', vi.fn<typeof fetch>().mockResolvedValue(new Response(JSON.stringify({
+      success: true,
+      result: { build_uuid: buildId },
+    }), { status: 202, headers: { 'content-type': 'application/json' } })))
+    const latest = {
+      id: 21,
+      requestId: 'cccccccc-cccc-4ccc-8ccc-cccccccccccc',
+      buildId,
+      status: 'building',
+      branch: 'codex/editorial-cms',
+      articleSlug: 'newer-article',
+      triggerReason: 'unpublish',
+      createdAt: new Date().toISOString(),
+    }
+    const find = vi.fn().mockImplementation(({ where }) => Promise.resolve({ docs: where?.buildId ? [latest] : [] }))
+    const create = vi.fn().mockImplementation(({ data }) => Promise.resolve({ id: 22, ...data }))
+    const update = vi.fn()
+    const deleteRecord = vi.fn()
+    const result = await requestBuild({ find, create, update, delete: deleteRecord } as never, { articleSlug: 'older-article', reason: 'publish' })
+
+    expect(result).toMatchObject({ status: 'building', articleSlug: 'newer-article', triggerReason: 'unpublish' })
+    expect(update).not.toHaveBeenCalled()
+    expect(deleteRecord).toHaveBeenCalledWith(expect.objectContaining({ id: 22, collection: 'site-builds' }))
+  })
+
+  it('does not fail a build callback already accepted when the hook request times out', async () => {
+    vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/accounts/account/builds/hooks/hook')
+    let current: Record<string, unknown> | undefined
+    const find = vi.fn().mockImplementation(({ where }) => Promise.resolve({ docs: where?.id ? current ? [current] : [] : [] }))
+    const create = vi.fn().mockImplementation(({ data }) => {
+      current = { id: 23, ...data }
+      return Promise.resolve(current)
+    })
+    const update = vi.fn().mockImplementation(({ data }) => {
+      current = { ...current, requestId: 'dddddddd-dddd-4ddd-8ddd-dddddddddddd', articleSlug: 'newer-article', triggerReason: 'unpublish', ...data }
+      return Promise.resolve(current)
+    })
+    vi.stubGlobal('fetch', vi.fn<typeof fetch>().mockImplementation(async () => {
+      current = { ...current, requestId: 'dddddddd-dddd-4ddd-8ddd-dddddddddddd', articleSlug: 'newer-article', triggerReason: 'unpublish', buildId, status: 'building' }
+      return new Response(null, { status: 503 })
+    }))
+
+    const result = await requestBuild({ find, create, update } as never, { articleSlug: 'older-article', reason: 'publish' })
+
+    expect(result).toMatchObject({ status: 'building', articleSlug: 'newer-article', triggerReason: 'unpublish' })
+    expect(update).not.toHaveBeenCalled()
+    expect(current).toMatchObject({ articleSlug: 'newer-article', triggerReason: 'unpublish', status: 'building' })
+  })
+
+  it('rejects a live callback for an outdated publish request', async () => {
+    vi.stubEnv('SITE_BUILD_CALLBACK_SECRET', 'S'.repeat(64))
+    const existing = { id: 11, requestId: 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb', buildId, status: 'deploying', branch: 'codex/editorial-cms', createdAt: new Date().toISOString() }
+    const find = vi.fn().mockResolvedValue({ docs: [existing] })
+    const update = vi.fn()
+    const payload = { find, update }
+    const response = await handler('/site-builds/events', 'post')(request('/site-builds/events', 'POST', {
+      Authorization: `Bearer ${'S'.repeat(64)}`,
+    }, {
+      buildId,
+      branch: 'codex/editorial-cms',
+      commitSha: 'a'.repeat(40),
+      status: 'live',
+      requestId: 'cccccccc-cccc-4ccc-8ccc-cccccccccccc',
+    }, undefined, payload))
+
+    expect(response.status).toBe(409)
+    expect(await response.json()).toEqual({ error: 'stale_context' })
+    expect(update).not.toHaveBeenCalled()
   })
 })

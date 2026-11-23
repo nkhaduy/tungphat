@@ -1,7 +1,13 @@
 import { describe, expect, it, vi } from 'vitest'
-import { hasPublicArticleChanged, matchesSecret, parseSiteBuildEvent, shouldRebuildPublishedSite, triggerStaticSiteRebuild } from '@/security/siteRebuild'
+import { hasPublicArticleChanged, matchesSecret, parseSiteBuildEvent, shouldRebuildPublishedSite, shouldTriggerSiteBuild, triggerStaticSiteRebuild } from '@/security/siteRebuild'
 
 describe('static site rebuild triggers', () => {
+  it('keeps the preview hook isolated from the production CMS', () => {
+    expect(shouldTriggerSiteBuild('staging')).toBe(true)
+    expect(shouldTriggerSiteBuild('production')).toBe(false)
+    expect(shouldTriggerSiteBuild(undefined)).toBe(false)
+  })
+
   it('queues publish transitions and deletes, but only public-content changes for published updates', () => {
     expect(shouldRebuildPublishedSite({ operation: 'create', status: 'published' })).toBe(true)
     expect(shouldRebuildPublishedSite({ operation: 'update', status: 'published', previousStatus: 'published', publicContentChanged: true })).toBe(true)
@@ -34,23 +40,15 @@ describe('static site rebuild triggers', () => {
     expect(shouldRebuildPublishedSite({ operation: 'delete', previousStatus: 'draft' })).toBe(false)
   })
 
-  it('accepts only HTTPS Cloudflare Deploy Hooks and retries transient responses', async () => {
+  it('accepts only HTTPS Cloudflare Deploy Hooks and does not retry a side-effecting POST', async () => {
     expect(await triggerStaticSiteRebuild({ hookUrl: 'http://api.cloudflare.com/builds/hooks/test' })).toEqual({ status: 'invalid-hook' })
     expect(await triggerStaticSiteRebuild({ hookUrl: 'https://api.cloudflare.com/client/v4/accounts/account/workers/scripts' })).toEqual({ status: 'invalid-hook' })
-    const fetchImpl = vi.fn<typeof fetch>()
-      .mockResolvedValueOnce(new Response(null, { status: 503 }))
-      .mockResolvedValueOnce(new Response(JSON.stringify({ success: true, result: { build_uuid: 'build-123' } }), {
-        status: 202,
-        headers: { 'content-type': 'application/json' },
-      }))
-    const delay = vi.fn(async () => undefined)
+    const fetchImpl = vi.fn<typeof fetch>().mockResolvedValue(new Response(null, { status: 503 }))
     const result = await triggerStaticSiteRebuild({
       hookUrl: 'https://api.cloudflare.com/client/v4/accounts/account/builds/hooks/hook',
       fetchImpl,
-      delay,
     })
-    expect(result).toEqual({ status: 'queued', httpStatus: 202, buildId: 'build-123' })
-    expect(fetchImpl).toHaveBeenCalledTimes(2)
-    expect(delay).toHaveBeenCalledOnce()
+    expect(result).toEqual({ status: 'failed', httpStatus: 503 })
+    expect(fetchImpl).toHaveBeenCalledOnce()
   })
 })

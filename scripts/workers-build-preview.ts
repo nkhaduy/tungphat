@@ -22,7 +22,25 @@ type BuildEnvironment = {
 };
 
 type Article = Record<string, unknown> & { slug: string; title: string; _status: "published" };
-type BuildContext = { branch: string; articleSlug: string | null; triggerReason: string | null; ready?: boolean };
+type BuildContext = { branch: string; articleSlug: string | null; triggerReason: string | null; requestId: string; updatedAt?: string; ready?: boolean };
+type PreviewBuildState = {
+  buildId: string;
+  branch: string;
+  commitSha: string;
+  articleDigest: string;
+  articles: Array<{ slug: string; title: string }>;
+  trigger: BuildContext;
+};
+const MAX_CONTENT_CONVERGENCE_ATTEMPTS = 3;
+
+export function previewArtifactIsCurrent(input: {
+  artifactDigest: string;
+  latestDigest: string;
+  artifactRequestId: string;
+  latestRequestId: string;
+}) {
+  return input.artifactDigest === input.latestDigest && input.artifactRequestId === input.latestRequestId;
+}
 
 export function validatePreviewBuildEnvironment(env: Record<string, string | undefined>): Omit<BuildEnvironment, "callbackSecret"> {
   if (env.STATIC_BUILD_TARGET !== "preview" || env.WORKERS_CI !== "1") throw new Error("This command is restricted to a Workers Builds preview job.");
@@ -63,45 +81,11 @@ export function publicArticleDigest(articles: Article[]) {
 
 async function buildPreview(root: string, env: Record<string, string | undefined>) {
   const context = buildEnvironment(env);
-  const childEnv = previewBuildEnvironment(env, context);
   let failureCode: string = "unknown";
   try {
     await postBuildEvent(context, "building");
     const trigger = await waitForBuildContext(context);
-    if (trigger.branch !== context.branch) throw new BuildFailure("unknown", "CMS build record is for a different branch.");
-    const before = await fetchPublishedArticles(context.cmsOrigin);
-    const beforeDigest = publicArticleDigest(before);
-    await run("npm", ["run", "build"], root, childEnv);
-    const after = await fetchPublishedArticles(context.cmsOrigin);
-    if (publicArticleDigest(after) !== beforeDigest) throw new BuildFailure("artifact_validation", "Staging article content changed during this static build.");
-
-    for (const article of after) {
-      const html = await readFile(routeToArtifactPath(root, article.slug), "utf8").catch(() => "");
-      if (!html || !html.includes(escapeHTML(article.title)) || !html.includes("rel=\"canonical\"")) {
-        throw new BuildFailure("artifact_validation", `Static output is missing published article ${article.slug} or its metadata.`);
-      }
-    }
-    if (trigger.articleSlug) {
-      const isPublished = after.some((article) => article.slug === trigger.articleSlug);
-      if (trigger.triggerReason === "unpublish" && isPublished) throw new BuildFailure("artifact_validation", "Unpublished article is still returned by the public staging API.");
-      if (trigger.triggerReason !== "unpublish" && !isPublished) throw new BuildFailure("artifact_validation", "The published article is missing from the current staging API response.");
-      if (trigger.triggerReason === "unpublish") {
-        const unpublishFile = path.join(root, "out", "bai-viet", trigger.articleSlug, "index.html");
-        if (await fileExists(unpublishFile)) throw new BuildFailure("artifact_validation", "Unpublished article remains in the static export.");
-      }
-    }
-
-    const mediaPaths = collectPreviewUploadPaths(after);
-    await writeFile(path.join(root, "out", MEDIA_ALLOWLIST), JSON.stringify(mediaPaths), { mode: 0o644 });
-    await mkdir(path.join(root, STATE_DIR), { recursive: true });
-    await writeFile(path.join(root, STATE_DIR, STATE_FILE), JSON.stringify({
-      buildId: context.buildId,
-      branch: context.branch,
-      commitSha: context.commitSha,
-      articleDigest: beforeDigest,
-      articles: after.map(({ slug, title }) => ({ slug, title })),
-      trigger,
-    }), { mode: 0o600 });
+    await createStablePreviewArtifact(root, env, context, trigger);
   } catch (error) {
     failureCode = error instanceof BuildFailure ? error.code : errorMessage(error).includes("Payload") ? "payload_unavailable" : "unknown";
     await postBuildEvent(context, "failed", failureCode).catch((callbackError) => console.error("Could not report build failure to CMS:", errorMessage(callbackError)));
@@ -112,10 +96,7 @@ async function buildPreview(root: string, env: Record<string, string | undefined
 async function deployPreview(root: string, env: Record<string, string | undefined>) {
   const context = buildEnvironment(env);
   const statePath = path.join(root, STATE_DIR, STATE_FILE);
-  const state = JSON.parse(await readFile(statePath, "utf8")) as {
-    buildId: string; branch: string; commitSha: string; articles: Array<{ slug: string; title: string }>;
-    trigger: BuildContext;
-  };
+  let state = JSON.parse(await readFile(statePath, "utf8")) as PreviewBuildState;
   if (state.buildId !== context.buildId || state.branch !== context.branch || state.commitSha !== context.commitSha) {
     throw new Error("Preview deployment metadata does not match the current Workers Build.");
   }
@@ -131,10 +112,44 @@ async function deployPreview(root: string, env: Record<string, string | undefine
 
   let deployStarted = false;
   try {
-    await postBuildEvent(context, "deploying");
-    deployStarted = true;
-    await run(wrangler, ["deploy", "--config", config, "--message", `CMS publish ${context.buildId}`, "--yes"], root, childEnvironment(env, context));
-    await verifyPreview(context, state, env);
+    for (let attempt = 0; attempt < MAX_CONTENT_CONVERGENCE_ATTEMPTS; attempt += 1) {
+      const latestContext = await fetchBuildContext(context);
+      const latestArticles = await fetchPublishedArticles(context.cmsOrigin);
+      const latestDigest = publicArticleDigest(latestArticles);
+      if (!latestContext || !previewArtifactIsCurrent({
+        artifactDigest: state.articleDigest,
+        latestDigest,
+        artifactRequestId: state.trigger.requestId,
+        latestRequestId: latestContext.requestId,
+      })) {
+        state = await createStablePreviewArtifact(root, env, context, latestContext || state.trigger);
+      }
+
+      await postBuildEvent(context, "deploying", undefined, state.trigger.requestId);
+      deployStarted = true;
+      await run(wrangler, ["deploy", "--config", config, "--message", `CMS publish ${context.buildId}`, "--yes"], root, childEnvironment(env, context));
+      await verifyPreview(context, state, env);
+
+      const afterDeployContext = await fetchBuildContext(context);
+      const afterDeployDigest = publicArticleDigest(await fetchPublishedArticles(context.cmsOrigin));
+      if (!afterDeployContext || !previewArtifactIsCurrent({
+        artifactDigest: state.articleDigest,
+        latestDigest: afterDeployDigest,
+        artifactRequestId: state.trigger.requestId,
+        latestRequestId: afterDeployContext.requestId,
+      })) {
+        if (attempt + 1 === MAX_CONTENT_CONVERGENCE_ATTEMPTS) break;
+        state = await createStablePreviewArtifact(root, env, context, afterDeployContext || state.trigger);
+        continue;
+      }
+
+      const accepted = await postBuildEvent(context, "live", undefined, state.trigger.requestId);
+      if (accepted) return;
+      if (attempt + 1 === MAX_CONTENT_CONVERGENCE_ATTEMPTS) break;
+      const refreshed = await fetchBuildContext(context);
+      state = await createStablePreviewArtifact(root, env, context, refreshed || state.trigger);
+    }
+    throw new BuildFailure("artifact_validation", "Staging content changed repeatedly while the preview deployment was being verified.");
   } catch (error) {
     if (deployStarted && previousVersion) {
       try {
@@ -147,7 +162,61 @@ async function deployPreview(root: string, env: Record<string, string | undefine
     await postBuildEvent(context, "failed", code).catch((callbackError) => console.error("Could not report deploy failure to CMS:", errorMessage(callbackError)));
     throw error;
   }
-  await postBuildEvent(context, "live");
+}
+
+async function createStablePreviewArtifact(root: string, env: Record<string, string | undefined>, context: BuildEnvironment, initialContext: BuildContext): Promise<PreviewBuildState> {
+  let trigger = initialContext;
+  for (let attempt = 0; attempt < MAX_CONTENT_CONVERGENCE_ATTEMPTS; attempt += 1) {
+    trigger = await fetchBuildContext(context) || trigger;
+    if (trigger.branch !== context.branch) throw new BuildFailure("unknown", "CMS build record is for a different branch.");
+    const before = await fetchPublishedArticles(context.cmsOrigin);
+    const beforeDigest = publicArticleDigest(before);
+    await run("npm", ["run", "build"], root, previewBuildEnvironment(env, context));
+    const after = await fetchPublishedArticles(context.cmsOrigin);
+    const afterDigest = publicArticleDigest(after);
+    const latestContext = await fetchBuildContext(context);
+
+    if (!latestContext || !previewArtifactIsCurrent({
+      artifactDigest: beforeDigest,
+      latestDigest: afterDigest,
+      artifactRequestId: trigger.requestId,
+      latestRequestId: latestContext.requestId,
+    })) {
+      trigger = latestContext || trigger;
+      continue;
+    }
+
+    await validateStaticPreviewOutput(root, after, latestContext);
+    const state: PreviewBuildState = {
+      buildId: context.buildId,
+      branch: context.branch,
+      commitSha: context.commitSha,
+      articleDigest: afterDigest,
+      articles: after.map(({ slug, title }) => ({ slug, title })),
+      trigger: latestContext,
+    };
+    await writeFile(path.join(root, "out", MEDIA_ALLOWLIST), JSON.stringify(collectPreviewUploadPaths(after)), { mode: 0o644 });
+    await mkdir(path.join(root, STATE_DIR), { recursive: true });
+    await writeFile(path.join(root, STATE_DIR, STATE_FILE), JSON.stringify(state), { mode: 0o600 });
+    return state;
+  }
+  throw new BuildFailure("artifact_validation", "Staging content changed repeatedly while the static artifact was being built.");
+}
+
+async function validateStaticPreviewOutput(root: string, articles: Article[], trigger: BuildContext) {
+  for (const article of articles) {
+    const html = await readFile(routeToArtifactPath(root, article.slug), "utf8").catch(() => "");
+    if (!html || !html.includes(escapeHTML(article.title)) || !html.includes("rel=\"canonical\"")) {
+      throw new BuildFailure("artifact_validation", `Static output is missing published article ${article.slug} or its metadata.`);
+    }
+  }
+  if (!trigger.articleSlug) return;
+  const isPublished = articles.some((article) => article.slug === trigger.articleSlug);
+  if (trigger.triggerReason === "unpublish" && isPublished) throw new BuildFailure("artifact_validation", "Unpublished article is still returned by the public staging API.");
+  if (trigger.triggerReason !== "unpublish" && !isPublished) throw new BuildFailure("artifact_validation", "The published article is missing from the current staging API response.");
+  if (trigger.triggerReason === "unpublish" && await fileExists(path.join(root, "out", "bai-viet", trigger.articleSlug, "index.html"))) {
+    throw new BuildFailure("artifact_validation", "Unpublished article remains in the static export.");
+  }
 }
 
 async function verifyPreview(context: BuildEnvironment, state: { articles: Array<{ slug: string; title: string }>; trigger: BuildContext }, env: Record<string, string | undefined>) {
@@ -210,6 +279,7 @@ function childEnvironment(env: Record<string, string | undefined>, context: Buil
     WORKERS_CI_COMMIT_SHA: context.commitSha,
     PAYLOAD_ARTICLES_URL: context.cmsOrigin,
     NEXT_PUBLIC_PREVIEW_MEDIA_BASE_URL: context.previewOrigin,
+    NEXT_PUBLIC_STATIC_BUILD_TARGET: "preview",
     NEXT_PUBLIC_GA_MEASUREMENT_ID: "",
     SITE_BUILD_CALLBACK_SECRET: context.callbackSecret,
   } as NodeJS.ProcessEnv;
@@ -223,14 +293,15 @@ function previewBuildEnvironment(env: Record<string, string | undefined>, contex
   };
 }
 
-async function postBuildEvent(context: BuildEnvironment, status: "building" | "deploying" | "live" | "failed", errorCode?: string) {
+async function postBuildEvent(context: BuildEnvironment, status: "building" | "deploying" | "live" | "failed", errorCode?: string, requestId?: string): Promise<boolean> {
   const url = `${context.cmsOrigin}/api/site-builds/events`;
-  const body = JSON.stringify({ buildId: context.buildId, branch: context.branch, commitSha: context.commitSha, status, ...(errorCode ? { errorCode } : {}) });
+  const body = JSON.stringify({ buildId: context.buildId, branch: context.branch, commitSha: context.commitSha, status, ...(requestId ? { requestId } : {}), ...(errorCode ? { errorCode } : {}) });
   let lastError: unknown;
   for (let attempt = 0; attempt < 5; attempt += 1) {
     try {
       const response = await fetch(url, { method: "POST", headers: { Authorization: `Bearer ${context.callbackSecret}`, "Content-Type": "application/json" }, body, cache: "no-store", signal: AbortSignal.timeout(10_000) });
-      if (response.ok) return;
+      if (response.ok) return true;
+      if (status === "live" && response.status === 409) return false;
       if (response.status < 500 && response.status !== 429) throw new Error(`CMS rejected build status (${response.status}).`);
       lastError = new Error(`CMS rejected build status (${response.status}).`);
     } catch (error) { lastError = error; }
@@ -240,22 +311,28 @@ async function postBuildEvent(context: BuildEnvironment, status: "building" | "d
 }
 
 async function waitForBuildContext(context: BuildEnvironment): Promise<BuildContext> {
-  let lastBranch = context.branch;
   for (let attempt = 0; attempt < 20; attempt += 1) {
-    const response = await fetch(`${context.cmsOrigin}/api/site-builds/context?buildId=${encodeURIComponent(context.buildId)}`, {
-      headers: { Authorization: `Bearer ${context.callbackSecret}` }, cache: "no-store", signal: AbortSignal.timeout(10_000),
-    });
-    if (response.ok) {
-      const value = await response.json() as BuildContext;
-      if (value.branch !== context.branch) throw new BuildFailure("unknown", "Payload build record branch does not match the authorized preview branch.");
-      lastBranch = value.branch;
-      if (value.ready || value.triggerReason) return value;
-    }
-    else if (response.status !== 404 && response.status !== 202) throw new BuildFailure("payload_unavailable", `Payload build context returned HTTP ${response.status}.`);
+    const value = await fetchBuildContext(context);
+    if (value) return value;
     await new Promise((resolve) => setTimeout(resolve, 750));
   }
-  // Source-code pushes can start the same isolated preview build without an article event.
-  return { branch: lastBranch, articleSlug: null, triggerReason: null };
+  throw new BuildFailure("payload_unavailable", "Payload did not create a status record for the Workers Build.");
+}
+
+async function fetchBuildContext(context: BuildEnvironment): Promise<BuildContext | undefined> {
+  let response: Response;
+  try {
+    response = await fetch(`${context.cmsOrigin}/api/site-builds/context?buildId=${encodeURIComponent(context.buildId)}`, {
+      headers: { Authorization: `Bearer ${context.callbackSecret}` }, cache: "no-store", signal: AbortSignal.timeout(10_000),
+    });
+  } catch (error) {
+    throw new BuildFailure("payload_unavailable", `Payload build context is unavailable: ${errorMessage(error)}`);
+  }
+  if (response.status === 404) return undefined;
+  if (response.status !== 200 && response.status !== 202) throw new BuildFailure("payload_unavailable", `Payload build context returned HTTP ${response.status}.`);
+  const value = await response.json() as BuildContext;
+  if (value.branch !== context.branch || !isUUID(value.requestId)) throw new BuildFailure("unknown", "Payload build record does not match the authorized preview branch or request.");
+  return value;
 }
 
 function addUploadPath(value: string, paths: Set<string>) {

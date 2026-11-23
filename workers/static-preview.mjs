@@ -18,7 +18,7 @@ export default {
       } else if (!(await isPublishedUpload(incoming.pathname, env))) {
         response = new Response(null, { status: 404, headers: { "Cache-Control": "no-store" } });
       } else {
-        response = await proxyMedia(request, incoming, STAGING_CMS_ORIGIN);
+        response = await proxyMedia(request, incoming, STAGING_CMS_ORIGIN, env.SITE_PREVIEW_MEDIA_SECRET);
       }
     } else if (incoming.pathname.startsWith("/catalog/")) {
       if (request.method !== "GET" && request.method !== "HEAD") {
@@ -50,7 +50,10 @@ async function isPublishedUpload(pathname, env) {
   }
 }
 
-async function proxyMedia(request, incoming, origin) {
+async function proxyMedia(request, incoming, origin, previewSecret) {
+  if (origin === STAGING_CMS_ORIGIN && !previewSecret) {
+    return new Response("Preview media is not configured", { status: 503, headers: { "Cache-Control": "no-store" } });
+  }
   const upstream = new URL(origin);
   upstream.pathname = `/media${incoming.pathname}`;
   upstream.search = incoming.search;
@@ -59,6 +62,7 @@ async function proxyMedia(request, incoming, origin) {
     const value = request.headers.get(name);
     if (value) headers.set(name, value);
   }
+  if (origin === STAGING_CMS_ORIGIN) headers.set("Authorization", `Bearer ${previewSecret}`);
   try {
     return await fetch(new Request(upstream, {
       method: request.method, headers, redirect: "manual", signal: AbortSignal.timeout(15000),

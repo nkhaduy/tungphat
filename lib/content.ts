@@ -41,6 +41,10 @@ export function payloadCollectionOrigin(
   return stagingUrl.origin;
 }
 
+export function payloadBuildFetchCache(buildTarget = process.env.STATIC_BUILD_TARGET): RequestCache {
+  return buildTarget === "preview" ? "no-store" : "force-cache";
+}
+
 /** Guard only fields whose CMS values would otherwise be hidden by repository copy. */
 export function cmsEditorialFingerprint(collection: "articles" | "products", doc: Record<string, unknown>) {
   const keys = collection === "articles" ? ["body"] : ["title", "category", "materialType", "supplier", "dimensions", "thicknesses", "surfaces", "standards", "applications", "advantages", "limitations", "orderingSteps", "excerpt", "featuredImage", "featuredImageAlt", "gallery", "video", "catalogue", "quoteCta", "faq", "body"];
@@ -88,7 +92,7 @@ async function payloadCollection(collection: string) {
   let request = collectionCache.get(collection);
   if (!request) {
     const origin = payloadCollectionOrigin(collection, cmsOrigin);
-    request = fetch(`${origin}/api/${collection}?limit=100&depth=1&sort=slug`, { cache: "force-cache" })
+    request = fetch(`${origin}/api/${collection}?limit=100&depth=1&sort=slug`, { cache: payloadBuildFetchCache() })
       .then(async (response) => {
         if (!response.ok) throw new Error(`Payload ${collection} fetch failed: HTTP ${response.status}`);
         const value = await response.json() as { docs?: Record<string, unknown>[]; hasNextPage?: boolean };

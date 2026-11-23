@@ -1,5 +1,9 @@
 export type ArticleStatus = 'draft' | 'published' | undefined
 
+export function shouldTriggerSiteBuild(cmsEnvironment: string | undefined) {
+  return cmsEnvironment === 'staging'
+}
+
 export type ArticlePublicationEvent = {
   operation: 'create' | 'update' | 'delete'
   status?: ArticleStatus
@@ -41,11 +45,9 @@ export type SiteRebuildResult =
 export async function triggerStaticSiteRebuild({
   hookUrl = process.env.SITE_REBUILD_HOOK_URL,
   fetchImpl = fetch,
-  delay = (milliseconds: number) => new Promise((resolve) => setTimeout(resolve, milliseconds)),
 }: {
   hookUrl?: string
   fetchImpl?: typeof fetch
-  delay?: (milliseconds: number) => Promise<unknown>
 } = {}): Promise<SiteRebuildResult> {
   if (!hookUrl) return { status: 'disabled' }
 
@@ -57,22 +59,17 @@ export async function triggerStaticSiteRebuild({
   }
   if (!isCloudflareDeployHook(target)) return { status: 'invalid-hook' }
 
-  for (let attempt = 0; attempt < 3; attempt += 1) {
-    try {
-      const response = await fetchImpl(target, { method: 'POST', signal: AbortSignal.timeout(5_000) })
-      const responseBody = await response.json().catch(() => null) as { success?: unknown; result?: { build_uuid?: unknown } } | null
-      if (response.ok && responseBody?.success === true) {
-        const buildId = typeof responseBody.result?.build_uuid === 'string' ? responseBody.result.build_uuid : undefined
-        return { status: 'queued', httpStatus: response.status, ...(buildId ? { buildId } : {}) }
-      }
-      const retryable = response.status === 429 || response.status >= 500
-      if (!retryable || attempt === 2) return { status: 'failed', httpStatus: response.status }
-    } catch {
-      if (attempt === 2) return { status: 'failed' }
+  try {
+    const response = await fetchImpl(target, { method: 'POST', signal: AbortSignal.timeout(5_000) })
+    const responseBody = await response.json().catch(() => null) as { success?: unknown; result?: { build_uuid?: unknown } } | null
+    if (response.ok && responseBody?.success === true) {
+      const buildId = typeof responseBody.result?.build_uuid === 'string' ? responseBody.result.build_uuid : undefined
+      return { status: 'queued', httpStatus: response.status, ...(buildId ? { buildId } : {}) }
     }
-    await delay(250 * (attempt + 1))
+    return { status: 'failed', httpStatus: response.status }
+  } catch {
+    return { status: 'failed' }
   }
-  return { status: 'failed' }
 }
 
 export function isCloudflareDeployHook(target: URL) {
@@ -102,12 +99,14 @@ export function parseSiteBuildEvent(value: unknown, expectedBranch: string) {
   if (typeof event.buildId !== 'string' || !/^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/iu.test(event.buildId)) return undefined
   if (event.branch !== expectedBranch || typeof event.commitSha !== 'string' || !/^[a-f0-9]{40}$/iu.test(event.commitSha)) return undefined
   if (!['building', 'deploying', 'live', 'failed'].includes(String(event.status))) return undefined
+  if (event.requestId !== undefined && (typeof event.requestId !== 'string' || !/^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/iu.test(event.requestId))) return undefined
   if (event.errorCode !== undefined && !['artifact_validation', 'deploy_failed', 'preview_probe_failed', 'payload_unavailable', 'unknown'].includes(String(event.errorCode))) return undefined
   return {
     buildId: event.buildId,
     branch: event.branch,
     commitSha: event.commitSha,
     status: event.status as 'building' | 'deploying' | 'live' | 'failed',
+    ...(event.requestId ? { requestId: event.requestId } : {}),
     ...(event.errorCode ? { errorCode: event.errorCode as 'artifact_validation' | 'deploy_failed' | 'preview_probe_failed' | 'payload_unavailable' | 'unknown' } : {}),
   }
 }
