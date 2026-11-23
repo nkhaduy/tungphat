@@ -15,4 +15,11 @@ describe("Payload build fetch caching", () => {
     expect(first).not.toBe(next);
     expect(() => payloadCollectionRequestUrl("articles", origin, "preview", "")).toThrow(/request id/i);
   });
+
+  it("keys production CMS requests to the current publish request", () => {
+    const requestId = "bca4ab24-74bd-4bb6-a082-443b1d4fb3c2";
+    const url = payloadCollectionRequestUrl("articles", "https://cms.mdftungphat.com", "production", undefined, requestId);
+    expect(new URL(url).searchParams.get("productionBuildRequestId")).toBe(requestId);
+    expect(url).not.toContain("tungphat-payload-cms-staging");
+  });
 });

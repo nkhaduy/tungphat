@@ -10,8 +10,13 @@ describe('Payload migration proxy target', () => {
     expect(resolveMigrationProxyOptions('staging', 'staging')).toEqual({ environment: 'staging', remoteBindings: true })
   })
 
+  it('requires a separate opt-in before proxying production migrations', () => {
+    expect(() => resolveMigrationProxyOptions('production', 'production')).toThrow(/explicit production migration opt-in/i)
+    expect(resolveMigrationProxyOptions('production', 'production', true)).toEqual({ environment: 'production', remoteBindings: true })
+  })
+
   it('rejects remote production or mismatched environments', () => {
-    expect(() => resolveMigrationProxyOptions('production', 'staging')).toThrow(/only.*allowed.*staging/i)
-    expect(() => resolveMigrationProxyOptions('staging', 'production')).toThrow(/only.*allowed.*staging/i)
+    expect(() => resolveMigrationProxyOptions('production', 'staging')).toThrow(/target must match/i)
+    expect(() => resolveMigrationProxyOptions('staging', 'production')).toThrow(/target must match/i)
   })
 })

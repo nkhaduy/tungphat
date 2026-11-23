@@ -94,7 +94,8 @@
         "PAYLOAD_PUBLIC_SERVER_URL": "https://cms.mdftungphat.com",
         "NEXT_PUBLIC_SITE_URL": "https://gotungphat.com",
         "NEXT_PUBLIC_MEDIA_BASE_URL": "https://cdn.mdftungphat.com",
-        "BUILD_VERSION": "payload-3.94.1-production-20261122"
+        "BUILD_VERSION": "payload-3.94.1-production-20261122",
+        "SITE_BUILD_BRANCH": "codex/editorial-cms-release"
       },
       "d1_databases": [
         {

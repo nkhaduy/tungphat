@@ -45,3 +45,28 @@ it("rejects preview noindex headers when preparing production assets", async () 
   expect(() => assertProductionHeaders("https://example.org/*\n  X-Robots-Tag: noindex\n")).toThrow();
   expect(() => assertProductionHeaders("/*\n  X-Content-Type-Options: nosniff\n\n/cms-preview/*\n  X-Robots-Tag: noindex\n")).not.toThrow();
 });
+
+it("removes the staging CMS origin from production response policy only", async () => {
+  const { sanitizeProductionHeaders } = await import("../scripts/prepare-workers-production-artifact.mjs");
+  const input = "/*\n  Content-Security-Policy: img-src 'self'; frame-ancestors 'self' https://cms.mdftungphat.com https://tungphat-payload-cms-staging.nkhaduy.workers.dev;\n\n/cms-preview/*\n  X-Robots-Tag: noindex\n";
+  const output = sanitizeProductionHeaders(input);
+  expect(output).not.toContain("tungphat-payload-cms-staging");
+  expect(output).toContain("https://cms.mdftungphat.com");
+  expect(output).toContain("/cms-preview/*\n  X-Robots-Tag: noindex");
+});
+
+it("keeps production asset routing aligned with the currently deployed Worker", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const config = await readFile("wrangler.static-production.jsonc", "utf8");
+  expect(config).toMatch(/"name":\s*"tungphat-static-assets"/u);
+  expect(config).toMatch(/"run_worker_first":\s*\[\s*"\/catalog\/\*",\s*"\/api\/analytics\/track"\s*\]/u);
+  expect(config).toMatch(/"directory":\s*"\.\/\.wrangler\/workers-production-assets"/u);
+  expect(config).toMatch(/"workers_dev":\s*false/u);
+});
+
+it("provides distinct build and deploy commands for the production Workers Build", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const packageJson = JSON.parse(await readFile("package.json", "utf8")) as { scripts: Record<string, string> };
+  expect(packageJson.scripts["workers:production:build"]).toBe("tsx scripts/workers-build-production.ts build");
+  expect(packageJson.scripts["workers:production:deploy"]).toBe("tsx scripts/workers-build-production.ts deploy");
+});

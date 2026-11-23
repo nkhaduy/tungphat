@@ -113,7 +113,11 @@ export default buildConfig({
 })
 
 function getCloudflareContextFromWrangler(options?: GetPlatformProxyOptions): Promise<CloudflareContext> {
-  const proxyOptions = resolveMigrationProxyOptions(process.env.CLOUDFLARE_ENV, process.env.PAYLOAD_REMOTE_D1_TARGET)
+  const proxyOptions = resolveMigrationProxyOptions(
+    process.env.CLOUDFLARE_ENV,
+    process.env.PAYLOAD_REMOTE_D1_TARGET,
+    process.env.PAYLOAD_ALLOW_PRODUCTION_MIGRATION === '1',
+  )
   return import(/* webpackIgnore: true */ `${'__wrangler'.replaceAll('_', '')}`).then(({ getPlatformProxy }) =>
     getPlatformProxy({ ...proxyOptions, ...options } satisfies GetPlatformProxyOptions),
   )

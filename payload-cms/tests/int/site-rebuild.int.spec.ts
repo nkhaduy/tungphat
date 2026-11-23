@@ -2,9 +2,9 @@ import { describe, expect, it, vi } from 'vitest'
 import { hasPublicArticleChanged, matchesSecret, parseSiteBuildEvent, shouldRebuildPublishedSite, shouldTriggerSiteBuild, triggerStaticSiteRebuild } from '@/security/siteRebuild'
 
 describe('static site rebuild triggers', () => {
-  it('keeps the preview hook isolated from the production CMS', () => {
+  it('enables publishing builds only for staging and production CMS environments', () => {
     expect(shouldTriggerSiteBuild('staging')).toBe(true)
-    expect(shouldTriggerSiteBuild('production')).toBe(false)
+    expect(shouldTriggerSiteBuild('production')).toBe(true)
     expect(shouldTriggerSiteBuild(undefined)).toBe(false)
   })
 
@@ -32,6 +32,12 @@ describe('static site rebuild triggers', () => {
     expect(parseSiteBuildEvent(event, 'codex/editorial-cms')).toMatchObject({ status: 'live' })
     expect(parseSiteBuildEvent({ ...event, branch: 'main' }, 'codex/editorial-cms')).toBeUndefined()
     expect(parseSiteBuildEvent({ ...event, status: 'queued' }, 'codex/editorial-cms')).toBeUndefined()
+  })
+
+  it('accepts production build failure callbacks so the CMS can show failures immediately', () => {
+    const base = { buildId: '8aa4ab24-74bd-4bb6-a082-443b1d4fb3d2', branch: 'codex/editorial-cms-release', commitSha: 'a'.repeat(40), status: 'failed' }
+    expect(parseSiteBuildEvent({ ...base, errorCode: 'production_probe_failed' }, 'codex/editorial-cms-release')).toMatchObject({ errorCode: 'production_probe_failed' })
+    expect(parseSiteBuildEvent({ ...base, errorCode: 'production_build_failed' }, 'codex/editorial-cms-release')).toMatchObject({ errorCode: 'production_build_failed' })
   })
 
   it('does not rebuild for drafts or autosaves', () => {

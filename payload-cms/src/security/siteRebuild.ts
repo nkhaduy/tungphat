@@ -1,7 +1,7 @@
 export type ArticleStatus = 'draft' | 'published' | undefined
 
 export function shouldTriggerSiteBuild(cmsEnvironment: string | undefined) {
-  return cmsEnvironment === 'staging'
+  return cmsEnvironment === 'staging' || cmsEnvironment === 'production'
 }
 
 export type ArticlePublicationEvent = {
@@ -100,14 +100,14 @@ export function parseSiteBuildEvent(value: unknown, expectedBranch: string) {
   if (event.branch !== expectedBranch || typeof event.commitSha !== 'string' || !/^[a-f0-9]{40}$/iu.test(event.commitSha)) return undefined
   if (!['building', 'deploying', 'live', 'failed'].includes(String(event.status))) return undefined
   if (event.requestId !== undefined && (typeof event.requestId !== 'string' || !/^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/iu.test(event.requestId))) return undefined
-  if (event.errorCode !== undefined && !['artifact_validation', 'deploy_failed', 'preview_probe_failed', 'payload_unavailable', 'unknown'].includes(String(event.errorCode))) return undefined
+  if (event.errorCode !== undefined && !['artifact_validation', 'deploy_failed', 'preview_probe_failed', 'production_probe_failed', 'production_build_failed', 'payload_unavailable', 'unknown'].includes(String(event.errorCode))) return undefined
   return {
     buildId: event.buildId,
     branch: event.branch,
     commitSha: event.commitSha,
     status: event.status as 'building' | 'deploying' | 'live' | 'failed',
     ...(event.requestId ? { requestId: event.requestId } : {}),
-    ...(event.errorCode ? { errorCode: event.errorCode as 'artifact_validation' | 'deploy_failed' | 'preview_probe_failed' | 'payload_unavailable' | 'unknown' } : {}),
+    ...(event.errorCode ? { errorCode: event.errorCode as 'artifact_validation' | 'deploy_failed' | 'preview_probe_failed' | 'production_probe_failed' | 'production_build_failed' | 'payload_unavailable' | 'unknown' } : {}),
   }
 }
 

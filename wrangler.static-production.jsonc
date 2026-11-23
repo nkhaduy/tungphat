@@ -9,7 +9,7 @@
   "assets": {
     "directory": "./.wrangler/workers-production-assets",
     "binding": "ASSETS",
-    "run_worker_first": ["/catalog/*"],
+    "run_worker_first": ["/catalog/*", "/api/analytics/track"],
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   }

@@ -53,6 +53,7 @@ export function payloadCollectionRequestUrl(
   origin: string,
   buildTarget = process.env.STATIC_BUILD_TARGET,
   previewRequestId = process.env.PAYLOAD_PREVIEW_CACHE_KEY,
+  productionRequestId = process.env.PAYLOAD_BUILD_CACHE_KEY,
 ) {
   const url = new URL(`/api/${encodeURIComponent(collection)}?limit=100&depth=1&sort=slug`, `${origin.replace(/\/+$/u, "")}/`);
   if (buildTarget === "preview") {
@@ -60,6 +61,11 @@ export function payloadCollectionRequestUrl(
       throw new Error("Preview Payload requests require a valid CMS build request ID.");
     }
     url.searchParams.set("previewBuildRequestId", previewRequestId);
+  } else if (buildTarget === "production" && productionRequestId) {
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/iu.test(productionRequestId)) {
+      throw new Error("Production Payload requests require a valid CMS build request ID.");
+    }
+    url.searchParams.set("productionBuildRequestId", productionRequestId);
   }
   return url.toString();
 }

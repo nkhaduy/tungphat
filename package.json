@@ -6,6 +6,8 @@
     "dev": "next dev",
     "workers:preview:build": "tsx scripts/workers-build-preview.ts build",
     "workers:preview:deploy": "tsx scripts/workers-build-preview.ts deploy",
+    "workers:production:build": "tsx scripts/workers-build-production.ts build",
+    "workers:production:deploy": "tsx scripts/workers-build-production.ts deploy",
     "sync:payload-build-data": "tsx scripts/sync-payload-build-data.ts",
     "prebuild": "node scripts/prebuild.mjs",
     "build": "npm run validate:content && npm run images:check && node ./node_modules/next/dist/bin/next build",
