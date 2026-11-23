@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { previewArtifactIsCurrent, previewBuildEnvironment } from "@/scripts/workers-build-preview";
+import { previewArtifactIsCurrent, previewBuildEnvironment, previewDeploymentArguments } from "@/scripts/workers-build-preview";
 
 describe("Workers preview artifact freshness", () => {
   it("requires both the content snapshot and CMS publish request to match", () => {
@@ -23,5 +23,13 @@ describe("Workers preview build content cache key", () => {
 
     expect(environment.PAYLOAD_PREVIEW_CACHE_KEY).toBe(requestId);
     expect(environment.NEXT_PUBLIC_SITE_ORIGIN).toBe("https://gotungphat.com");
+  });
+});
+
+describe("Workers preview deployment command", () => {
+  it("uses Wrangler-supported deploy arguments without interactive flags", () => {
+    const args = previewDeploymentArguments("842447d2-8b5b-44c4-94f2-2a44a2bc50cd");
+    expect(args).toEqual(["deploy", "--config", "wrangler.static-preview.jsonc", "--message", "CMS publish 842447d2-8b5b-44c4-94f2-2a44a2bc50cd"]);
+    expect(args).not.toContain("--yes");
   });
 });

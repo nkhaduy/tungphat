@@ -42,6 +42,10 @@ export function previewArtifactIsCurrent(input: {
   return input.artifactDigest === input.latestDigest && input.artifactRequestId === input.latestRequestId;
 }
 
+export function previewDeploymentArguments(buildId: string) {
+  return ["deploy", "--config", "wrangler.static-preview.jsonc", "--message", `CMS publish ${buildId}`];
+}
+
 export function validatePreviewBuildEnvironment(env: Record<string, string | undefined>): Omit<BuildEnvironment, "callbackSecret"> {
   if (env.STATIC_BUILD_TARGET !== "preview" || env.WORKERS_CI !== "1") throw new Error("This command is restricted to a Workers Builds preview job.");
   if (env.WORKERS_CI_BRANCH !== PREVIEW_BRANCH) throw new Error(`Preview build branch must be ${PREVIEW_BRANCH}.`);
@@ -127,7 +131,7 @@ async function deployPreview(root: string, env: Record<string, string | undefine
 
       await postBuildEvent(context, "deploying", undefined, state.trigger.requestId);
       deployStarted = true;
-      await run(wrangler, ["deploy", "--config", config, "--message", `CMS publish ${context.buildId}`, "--yes"], root, childEnvironment(env, context));
+      await run(wrangler, previewDeploymentArguments(context.buildId), root, childEnvironment(env, context));
       await verifyPreview(context, state, env);
 
       const afterDeployContext = await fetchBuildContext(context);
