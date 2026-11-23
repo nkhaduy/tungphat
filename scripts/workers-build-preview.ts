@@ -34,6 +34,7 @@ type PreviewBuildState = {
 };
 const MAX_CONTENT_CONVERGENCE_ATTEMPTS = 3;
 const MAX_UNPUBLISH_PROBE_ATTEMPTS = 14;
+const MAX_MEDIA_PROPAGATION_ATTEMPTS = 14;
 
 export function previewArtifactIsCurrent(input: {
   artifactDigest: string;
@@ -68,6 +69,18 @@ export async function retryUntilPreviewRouteRemoved(
     const status = await probe(attempt);
     return status === 404 || status === 410;
   }, options);
+}
+
+export async function retryUntilPreviewMediaPaths(
+  mediaPaths: string[],
+  probe: (mediaPath: string, attempt: number) => Promise<boolean>,
+  options: { attempts?: number; wait?: (delayMs: number) => Promise<void> } = {},
+) {
+  for (const mediaPath of mediaPaths) {
+    const available = await retryUntilPreviewCondition((attempt) => probe(mediaPath, attempt), options);
+    if (!available) return mediaPath;
+  }
+  return undefined;
 }
 
 export function previewDeploymentArguments(buildId: string) {
@@ -299,10 +312,19 @@ async function verifyPreview(context: BuildEnvironment, state: { articles: Array
     });
     if (!current) throw new BuildFailure("preview_probe_failed", `Preview did not confirm the latest published content, metadata, and noindex policy for ${article.slug} after waiting for deployment propagation.`);
   }
-  for (const mediaPath of state.mediaPaths) {
-    const response = await fetch(`${previewOrigin}${mediaPath}?build-check=${context.buildId}`, { method: "HEAD", cache: "no-store" });
-    if (!response.ok) throw new BuildFailure("preview_probe_failed", `Preview does not serve referenced staging media ${mediaPath}.`);
-  }
+  const unavailableMediaPath = await retryUntilPreviewMediaPaths(state.mediaPaths, async (mediaPath, attempt) => {
+    const url = new URL(mediaPath, previewOrigin);
+    url.searchParams.set("build-check", context.buildId);
+    url.searchParams.set("deploy-probe", `${attempt}-${Date.now()}`);
+    const response = await fetch(url, {
+      method: "HEAD",
+      cache: "no-store",
+      headers: { "Cache-Control": "no-cache, no-store" },
+      signal: AbortSignal.timeout(10_000),
+    });
+    return response.ok;
+  }, { attempts: MAX_MEDIA_PROPAGATION_ATTEMPTS });
+  if (unavailableMediaPath) throw new BuildFailure("preview_probe_failed", `Preview does not serve referenced staging media ${unavailableMediaPath} after waiting for deployment propagation.`);
   if (state.trigger.triggerReason === "unpublish" && state.trigger.articleSlug) {
     const route = `${previewOrigin}/bai-viet/${encodeURIComponent(state.trigger.articleSlug)}/`;
     const removed = await retryUntilPreviewRouteRemoved(async (attempt) => {

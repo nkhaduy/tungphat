@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { previewArtifactIsCurrent, previewArticleMediaPaths, previewBuildEnvironment, previewDeploymentArguments, resolvePreviewCommitSha, retryUntilPreviewCondition, retryUntilPreviewRouteRemoved } from "@/scripts/workers-build-preview";
+import { previewArtifactIsCurrent, previewArticleMediaPaths, previewBuildEnvironment, previewDeploymentArguments, resolvePreviewCommitSha, retryUntilPreviewCondition, retryUntilPreviewMediaPaths, retryUntilPreviewRouteRemoved } from "@/scripts/workers-build-preview";
 
 describe("Workers preview artifact freshness", () => {
   it("requires both the content snapshot and CMS publish request to match", () => {
@@ -98,6 +98,33 @@ describe("Workers preview publish and update propagation", () => {
     expect(confirmed).toBe(true);
     expect(probeAttempts).toEqual([1, 2, 3]);
     expect(waits).toEqual([1500, 3000]);
+  });
+
+  it("waits for every referenced staging image to propagate to the preview edge", async () => {
+    const observed: Array<[string, number]> = [];
+    const waits: number[] = [];
+    const unavailable = await retryUntilPreviewMediaPaths(["/uploads/cover.webp", "/uploads/body.webp"], async (mediaPath, attempt) => {
+      observed.push([mediaPath, attempt]);
+      return mediaPath === "/uploads/cover.webp" || attempt === 3;
+    }, { attempts: 3, wait: async (delayMs) => { waits.push(delayMs); } });
+
+    expect(unavailable).toBeUndefined();
+    expect(observed).toEqual([
+      ["/uploads/cover.webp", 1],
+      ["/uploads/body.webp", 1],
+      ["/uploads/body.webp", 2],
+      ["/uploads/body.webp", 3],
+    ]);
+    expect(waits).toEqual([1500, 3000]);
+  });
+
+  it("returns the image path when preview propagation does not complete", async () => {
+    const unavailable = await retryUntilPreviewMediaPaths(["/uploads/missing.webp"], async () => false, {
+      attempts: 2,
+      wait: async () => undefined,
+    });
+
+    expect(unavailable).toBe("/uploads/missing.webp");
   });
 });
 

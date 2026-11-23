@@ -136,10 +136,6 @@ describe('Workers Builds status endpoint authorization', () => {
 
   it('keeps the latest publish context when a hook response races its callback', async () => {
     vi.stubEnv('SITE_REBUILD_HOOK_URL', 'https://api.cloudflare.com/client/v4/workers/builds/deploy_hooks/hook')
-    vi.stubGlobal('fetch', vi.fn<typeof fetch>().mockResolvedValue(new Response(JSON.stringify({
-      success: true,
-      result: { build_uuid: buildId },
-    }), { status: 202, headers: { 'content-type': 'application/json' } })))
     const latest = {
       id: 21,
       requestId: 'cccccccc-cccc-4ccc-8ccc-cccccccccccc',
@@ -148,10 +144,21 @@ describe('Workers Builds status endpoint authorization', () => {
       branch: 'codex/editorial-cms',
       articleSlug: 'newer-article',
       triggerReason: 'unpublish',
-      createdAt: new Date().toISOString(),
+      createdAt: '',
     }
+    let pendingCreatedAt = 0
     const find = vi.fn().mockImplementation(({ where }) => Promise.resolve({ docs: where?.buildId ? [latest] : [] }))
-    const create = vi.fn().mockImplementation(({ data }) => Promise.resolve({ id: 22, ...data }))
+    const create = vi.fn().mockImplementation(({ data }) => {
+      pendingCreatedAt = Date.parse(data.createdAt)
+      return Promise.resolve({ id: 22, ...data })
+    })
+    vi.stubGlobal('fetch', vi.fn<typeof fetch>().mockImplementation(async () => {
+      latest.createdAt = new Date(pendingCreatedAt + 1_000).toISOString()
+      return new Response(JSON.stringify({ success: true, result: { build_uuid: buildId } }), {
+        status: 202,
+        headers: { 'content-type': 'application/json' },
+      })
+    }))
     const update = vi.fn()
     const deleteRecord = vi.fn()
     const result = await requestBuild({ find, create, update, delete: deleteRecord } as never, { articleSlug: 'older-article', reason: 'publish' })
