@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { previewArtifactIsCurrent, previewArticleMediaPaths, previewBuildEnvironment, previewDeploymentArguments, resolvePreviewCommitSha, retryUntilPreviewRouteRemoved } from "@/scripts/workers-build-preview";
+import { previewArtifactIsCurrent, previewArticleMediaPaths, previewBuildEnvironment, previewDeploymentArguments, resolvePreviewCommitSha, retryUntilPreviewCondition, retryUntilPreviewRouteRemoved } from "@/scripts/workers-build-preview";
 
 describe("Workers preview artifact freshness", () => {
   it("requires both the content snapshot and CMS publish request to match", () => {
@@ -81,6 +81,23 @@ describe("Workers preview unpublish propagation", () => {
     expect(removed).toBe(false);
     expect(probeCount).toBe(2);
     expect(waitCount).toBe(1);
+  });
+});
+
+describe("Workers preview publish and update propagation", () => {
+  it("retries missing or stale article responses until the latest route matches", async () => {
+    const routeMatches = [false, false, true];
+    const probeAttempts: number[] = [];
+    const waits: number[] = [];
+
+    const confirmed = await retryUntilPreviewCondition(async (attempt) => {
+      probeAttempts.push(attempt);
+      return routeMatches[attempt - 1];
+    }, { attempts: 3, wait: async (delayMs) => { waits.push(delayMs); } });
+
+    expect(confirmed).toBe(true);
+    expect(probeAttempts).toEqual([1, 2, 3]);
+    expect(waits).toEqual([1500, 3000]);
   });
 });
 

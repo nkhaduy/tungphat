@@ -44,20 +44,30 @@ export function previewArtifactIsCurrent(input: {
   return input.artifactDigest === input.latestDigest && input.artifactRequestId === input.latestRequestId;
 }
 
-export async function retryUntilPreviewRouteRemoved(
-  probe: (attempt: number) => Promise<number>,
+export async function retryUntilPreviewCondition(
+  probe: (attempt: number) => Promise<boolean>,
   options: { attempts?: number; wait?: (delayMs: number) => Promise<void> } = {},
 ) {
   const attempts = Math.max(1, Math.floor(options.attempts ?? MAX_UNPUBLISH_PROBE_ATTEMPTS));
   const wait = options.wait ?? ((delayMs: number) => new Promise<void>((resolve) => setTimeout(resolve, delayMs)));
 
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
-    let status: number | undefined;
-    try { status = await probe(attempt); } catch { /* A transient edge/network error is retried within the same bound. */ }
-    if (status === 404 || status === 410) return true;
+    let matched = false;
+    try { matched = await probe(attempt); } catch { /* A transient edge/network error is retried within the same bound. */ }
+    if (matched) return true;
     if (attempt < attempts) await wait(Math.min(attempt * 1500, 5000));
   }
   return false;
+}
+
+export async function retryUntilPreviewRouteRemoved(
+  probe: (attempt: number) => Promise<number>,
+  options: { attempts?: number; wait?: (delayMs: number) => Promise<void> } = {},
+) {
+  return retryUntilPreviewCondition(async (attempt) => {
+    const status = await probe(attempt);
+    return status === 404 || status === 410;
+  }, options);
 }
 
 export function previewDeploymentArguments(buildId: string) {
@@ -271,13 +281,23 @@ async function verifyPreview(context: BuildEnvironment, state: { articles: Array
   if (sitemap.status !== 404) throw new BuildFailure("preview_probe_failed", "Preview unexpectedly serves an indexable sitemap.");
 
   for (const article of state.articles) {
-    const response = await fetch(`${previewOrigin}/bai-viet/${encodeURIComponent(article.slug)}/?build-check=${context.buildId}`, { cache: "no-store" });
-    if (!response.ok) throw new BuildFailure("preview_probe_failed", `Preview does not serve published article ${article.slug}.`);
-    const html = await response.text();
-    if (!html.includes(escapeHTML(article.title)) || !html.includes("rel=\"canonical\"") || !hasNoIndexRobotsMeta(html) || !hasNoIndex(response.headers.get("x-robots-tag"))) {
-      throw new BuildFailure("preview_probe_failed", `Preview content, canonical metadata, or noindex header failed for ${article.slug}.`);
-    }
-    if (html.includes("googletagmanager.com/gtag/js")) throw new BuildFailure("preview_probe_failed", "Google Analytics script appeared in the preview artifact.");
+    const route = `${previewOrigin}/bai-viet/${encodeURIComponent(article.slug)}/`;
+    const current = await retryUntilPreviewCondition(async (attempt) => {
+      const url = new URL(route);
+      url.searchParams.set("build-check", context.buildId);
+      url.searchParams.set("deploy-probe", `${attempt}-${Date.now()}`);
+      const response = await fetch(url, {
+        cache: "no-store",
+        headers: { "Cache-Control": "no-cache, no-store" },
+        signal: AbortSignal.timeout(10_000),
+      });
+      if (!response.ok) return false;
+      const html = await response.text();
+      return html.includes(escapeHTML(article.title)) && html.includes("rel=\"canonical\"")
+        && hasNoIndexRobotsMeta(html) && hasNoIndex(response.headers.get("x-robots-tag"))
+        && !html.includes("googletagmanager.com/gtag/js");
+    });
+    if (!current) throw new BuildFailure("preview_probe_failed", `Preview did not confirm the latest published content, metadata, and noindex policy for ${article.slug} after waiting for deployment propagation.`);
   }
   for (const mediaPath of state.mediaPaths) {
     const response = await fetch(`${previewOrigin}${mediaPath}?build-check=${context.buildId}`, { method: "HEAD", cache: "no-store" });
