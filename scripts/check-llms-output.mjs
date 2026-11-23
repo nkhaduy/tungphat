@@ -7,6 +7,7 @@ import { releaseSiteOrigin } from "./lib/site-origin.mjs";
 const output = path.resolve("out");
 const reports = path.resolve("reports");
 const origin = releaseSiteOrigin();
+const previewBuild = process.env.STATIC_BUILD_TARGET === "preview";
 const maxBytes = 18_000;
 const errors = [];
 
@@ -124,7 +125,7 @@ for (const { url, lastmod } of sitemapEntries) {
   }
   const info = pageInfo(utf8(readFileSync(file)), url);
   const included = selected.has(url);
-  if (included && (!info.indexable || !info.title || !info.h1 || !info.main)) {
+  if (included && ((!previewBuild && !info.indexable) || !info.title || !info.h1 || !info.main)) {
     errors.push(`Link llms.txt không có bằng chứng nội dung/indexability: ${url}`);
   }
   const topic = typeOf(url);

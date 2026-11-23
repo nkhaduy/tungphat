@@ -13,6 +13,8 @@ describe("isolated static preview Worker", () => {
     expect(robotsText).not.toContain("Disallow: /");
     expect(robots.headers.get("X-Robots-Tag")).toContain("noindex");
     expect((await previewWorker.fetch(new Request("https://preview.example/sitemap.xml"), env)).status).toBe(404);
+    expect((await previewWorker.fetch(new Request("https://preview.example/llms.txt"), env)).status).toBe(404);
+    expect((await previewWorker.fetch(new Request("https://preview.example/knowledge.json"), env)).status).toBe(404);
     expect((await previewWorker.fetch(new Request("https://preview.example/_preview-media-allowlist.json"), env)).status).toBe(404);
   });
 

@@ -11,7 +11,7 @@ import {
 } from "../scripts/lib/metadata-route-policy.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const validators = ["check-sitemap-output.mjs", "check-metadata-output.mjs"];
+const validators = ["check-sitemap-output.mjs", "check-metadata-output.mjs", "check-llms-output.mjs"];
 const temporaryDirectories: string[] = [];
 
 afterEach(async () => {
@@ -25,7 +25,7 @@ describe("preview indexing output validation", () => {
     await writePreviewArtifacts(directory);
 
     const previewResults = validators.map((validator) => runValidator(directory, validator, true));
-    expect(previewResults.map((result) => result.status), previewResults.map((result) => result.stderr).join("\n")).toEqual([0, 0]);
+    expect(previewResults.map((result) => result.status), previewResults.map((result) => `${result.stdout}\n${result.stderr}`).join("\n")).toEqual([0, 0, 0]);
 
     const productionSitemap = runValidator(directory, validators[0]!, false);
     const productionMetadata = runValidator(directory, validators[1]!, false);
@@ -35,19 +35,30 @@ describe("preview indexing output validation", () => {
 });
 
 async function writePreviewArtifacts(directory: string) {
-  const sitemapUrls = indexableMetadataRoutes.map((route) => `${siteOrigin}${route}`);
+  const sitemapRoutes = [...indexableMetadataRoutes, "/", "/san-pham/"];
+  const sitemapUrls = sitemapRoutes.map((route) => `${siteOrigin}${route}`);
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemapUrls.map((url) => `<url><loc>${url}</loc></url>`).join("")}</urlset>`;
   await mkdir(path.join(directory, "out"), { recursive: true });
   await writeFile(path.join(directory, "out", "sitemap.xml"), sitemap);
 
-  for (const route of [...indexableMetadataRoutes, ...noindexMetadataRoutes]) {
+  const allRoutes = [...new Set([...sitemapRoutes, ...noindexMetadataRoutes])];
+  for (const route of allRoutes) {
     const canonicalPath = canonicalMetadataRoutes[route] ?? route;
     const canonicalUrl = `${siteOrigin}${canonicalPath}`;
-    const html = `<html><head><link rel="canonical" href="${canonicalUrl}"/><meta name="robots" content="noindex, nofollow"/><meta property="og:url" content="${canonicalUrl}"/></head></html>`;
+    const html = `<html><head><title>QA preview ${route}</title><link rel="canonical" href="${canonicalUrl}"/><meta name="robots" content="noindex, nofollow"/><meta property="og:url" content="${canonicalUrl}"/></head><body><h1>Tiêu đề ${route}</h1><main><p>Nội dung kiểm tra môi trường preview.</p></main></body></html>`;
     const outputPath = path.join(directory, "out", route, "index.html");
     await mkdir(path.dirname(outputPath), { recursive: true });
     await writeFile(outputPath, html);
   }
+
+  const headings = ["Trang chính", "Sản phẩm", "Catalogue", "Dịch vụ", "Bài viết", "Liên hệ"];
+  const links = sitemapUrls.map((url, index) => `- [Trang ${index + 1}](${url}): Mô tả nội dung kiểm tra noindex của trang preview.`);
+  const sections = headings.map((heading, sectionIndex) => {
+    const sectionLinks = links.filter((_, index) => index % headings.length === sectionIndex);
+    return `## ${heading}\n\n${sectionLinks.join("\n")}`;
+  });
+  const markdown = [`# MDF Tùng Phát — Chỉ mục nội dung preview`, "", ...sections, "", "- [Nhắn Zalo](https://zalo.me/0909259160): Kênh liên hệ kiểm thử."].join("\n\n");
+  await writeFile(path.join(directory, "out", "llms.txt"), markdown);
 }
 
 function runValidator(directory: string, validator: string, preview: boolean) {
