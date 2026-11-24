@@ -14,6 +14,12 @@ export function HomeHero() {
         <picture>
           <source
             media="(max-width: 767px)"
+            type="image/avif"
+            srcSet="/images/material-panels-hero-mobile-780.avif 780w, /images/material-panels-hero-mobile-1170.avif 1170w"
+            sizes="100vw"
+          />
+          <source
+            media="(max-width: 767px)"
             type="image/png"
             srcSet="/images/material-panels-hero-mobile.png 1276w"
             sizes="100vw"
