@@ -33,10 +33,54 @@ test("homepage hero content stays readable before hydration", async ({
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: "Kho ván gỗ công nghiệp, gỗ ghép & gia công CNC tại Thủ Đức",
+        name: /Ván gỗ công nghiệp\s*& gia công CNC tại Thủ Đức/,
       }),
     ).toBeVisible();
   } finally {
     await page.close();
   }
+});
+
+test("page entrance motion keeps content fully opaque", async ({ page }) => {
+  await page.addInitScript(() => {
+    const samples: number[] = [];
+    Object.assign(window, { __pageTransitionOpacitySamples: samples });
+    document.addEventListener(
+      "animationstart",
+      (event) => {
+        if ((event as AnimationEvent).animationName !== "page-enter") return;
+        const element = event.target;
+        if (!(element instanceof HTMLElement)) return;
+        let frames = 0;
+        const sample = () => {
+          samples.push(Number.parseFloat(getComputedStyle(element).opacity));
+          frames += 1;
+          if (frames < 6) requestAnimationFrame(sample);
+        };
+        requestAnimationFrame(sample);
+      },
+      true,
+    );
+  });
+
+  await page.goto("/");
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          (
+            window as Window & {
+              __pageTransitionOpacitySamples?: number[];
+            }
+          ).__pageTransitionOpacitySamples?.length ?? 0,
+      ),
+    )
+    .toBeGreaterThan(0);
+  const samples = await page.evaluate(
+    () =>
+      (
+        window as Window & { __pageTransitionOpacitySamples: number[] }
+      ).__pageTransitionOpacitySamples,
+  );
+  expect(Math.min(...samples)).toBeGreaterThanOrEqual(0.99);
 });

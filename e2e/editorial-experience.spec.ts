@@ -99,6 +99,9 @@ test("every published article uses the shared editorial layout and remains respo
     if (headingIds.length) {
       await page.setViewportSize({ width: 390, height: 844 });
       await page.emulateMedia({ reducedMotion: "reduce" });
+      await page.evaluate(async () => {
+        await document.fonts.ready;
+      });
       const disclosure = page.locator(".editorial-toc__disclosure");
       const summary = disclosure.locator("summary");
       await summary.focus();
@@ -109,9 +112,12 @@ test("every published article uses the shared editorial layout and remains respo
       await firstLink.focus();
       await page.keyboard.press("Enter");
       await expect(page).toHaveURL(new RegExp(`#${targetId}$`));
-      const targetTop = await page.locator(`[id="${targetId}"]`).evaluate((element) => element.getBoundingClientRect().top);
       const headerBottom = await page.locator(".site-header").evaluate((element) => element.getBoundingClientRect().bottom);
-      expect(targetTop).toBeGreaterThanOrEqual(headerBottom - 2);
+      await expect
+        .poll(() =>
+          page.locator(`[id="${targetId}"]`).evaluate((element) => element.getBoundingClientRect().top),
+        )
+        .toBeGreaterThanOrEqual(headerBottom - 2);
 
       await page.setViewportSize({ width: 1280, height: 900 });
       await page.goto(path, { waitUntil: "networkidle" });
