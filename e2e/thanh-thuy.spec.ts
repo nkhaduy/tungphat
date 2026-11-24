@@ -10,7 +10,7 @@ test("brand catalogue supports code search without creating hotlinks", async ({
   ).toBeVisible();
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
-    "https://mdftungphat.com/thuong-hieu/thanh-thuy/",
+    "https://gotungphat.com/thuong-hieu/thanh-thuy/",
   );
   const search = page.getByRole("searchbox", {
     name: "Tìm tên hoặc mã Thanh Thuỳ",
@@ -51,10 +51,14 @@ test("sparse code page is useful but noindex", async ({ page }) => {
   await expect(
     page.getByRole("heading", { level: 1, name: /142 Roman Oak/ }),
   ).toBeVisible();
-  await expect(page.getByText("Liên hệ kiểm tra tồn kho")).toBeVisible();
+  await expect(page.getByText("Kiểm tra tồn kho", { exact: true })).toBeVisible();
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
     "content",
-    /noindex/,
+    "noindex, nofollow",
+  );
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    "href",
+    "https://gotungphat.com/san-pham/melamine/thanh-thuy-142-roman-oak/",
   );
   const zalo = page.getByRole("link", {
     name: "Gửi mã 142 của Thanh Thuỳ qua Zalo",
@@ -103,7 +107,7 @@ test("mobile catalogue has labels, focus and no horizontal overflow", async ({
     .getByRole("combobox", { name: "Lọc theo nhóm vật liệu" })
     .selectOption("acrylic");
   await expect(page).toHaveURL(/group=acrylic/);
-  await expect(page.getByText(/mã phù hợp/)).toBeVisible();
+  await expect(page.getByText(/mục phù hợp/)).toBeVisible();
   const overflow = await page.evaluate(
     () =>
       document.documentElement.scrollWidth -

@@ -1,7 +1,7 @@
 import { CatalogueDeferredImage } from "@/components/catalog/CatalogueDeferredImage";
+import { SupplierBrandLogo } from "@/components/catalog/SupplierBrandLogo";
 import Link from "next/link";
 import type { SupplierId } from "@/lib/catalog/core/types";
-import { supplierRegistry } from "@/lib/catalog/core/registry";
 import { resolveMediaUrl } from "@/lib/media";
 
 type CatalogueMaterialCardProps = {
@@ -37,8 +37,6 @@ export function CatalogueMaterialCard({
   showSupplierLogo = true,
   showSupplierName = false,
 }: CatalogueMaterialCardProps) {
-  const supplier = supplierRegistry.get(supplierId);
-
   return (
     <article className="catalogue-material-card group min-w-0 overflow-hidden rounded-lg border border-forest-900/10 bg-white shadow-[0_1px_2px_rgba(7,59,40,.04),0_7px_20px_rgba(7,59,40,.045)] transition-[transform,border-color,box-shadow] duration-200 motion-reduce:transition-none">
       <Link
@@ -81,17 +79,7 @@ export function CatalogueMaterialCard({
           >
             {title}
           </h3>
-          {showSupplierLogo && supplier?.logoSrc ? (
-            <span className="relative mt-0.5 block h-8 w-16 shrink-0 sm:h-9 sm:w-24" aria-hidden="true">
-              <CardImage
-                defer={deferImages}
-                src={supplier.logoSrc}
-                alt=""
-                sizes="96px"
-                className="object-contain object-right"
-              />
-            </span>
-          ) : null}
+          {showSupplierLogo ? <SupplierBrandLogo supplierId={supplierId} /> : null}
           <p className="col-span-2 line-clamp-2 text-xs leading-5 text-slate-600">
             {showSupplierName ? <><span className="font-medium text-slate-700">{supplierName}</span>{taxonomy ? " · " : ""}</> : null}{taxonomy}
           </p>

@@ -66,6 +66,8 @@ test("mobile filter drawer applies verified filters without horizontal overflow"
   await page.goto("/catalogue/");
 
   await expect.poll(() => page.locator(".catalogue-material-hero").evaluate((hero) => Math.round(hero.getBoundingClientRect().height))).toBe(270);
+  const heroImage = page.locator(".catalogue-material-hero img");
+  await expect.poll(() => heroImage.evaluate((image) => (image as HTMLImageElement).currentSrc)).toContain("material-color-hero-780.avif");
   const accessibilityAudit = await new AxeBuilder({ page }).analyze();
   expect(
     accessibilityAudit.violations.filter(
@@ -127,7 +129,7 @@ test("catalogue infinite scroll matches static crawlable pages without duplicate
   const pageTwoResponse = await request.get("/catalogue/page/2/");
   expect(pageTwoResponse.ok()).toBeTruthy();
   const pageTwoHtml = await pageTwoResponse.text();
-  expect(pageTwoHtml).toContain('rel="canonical" href="https://mdftungphat.com/catalogue/page/2/"');
+  expect(pageTwoHtml).toContain('rel="canonical" href="https://gotungphat.com/catalogue/page/2/"');
   expect(pageTwoHtml).toContain('href="/catalogue/page/3/"');
   expect(pageTwoHtml).toContain("Danh sách lấy từ catalogue của các nhà cung cấp");
   expect(pageTwoHtml).toContain("Hỏi về mã màu qua Zalo");

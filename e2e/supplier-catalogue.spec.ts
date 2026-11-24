@@ -222,7 +222,8 @@ test.describe("Mã màu customer journeys", () => {
     await expect(thanhThuyCard).toHaveCount(1);
     await expect(thanhThuyCard.getByText("Thanh Thuỳ", { exact: true })).toBeVisible();
     await thanhThuyCard.scrollIntoViewIfNeeded();
-    await expect(thanhThuyCard.locator('img[src*="thanh-thuy-logo"]')).toHaveCount(0);
+    await expect(thanhThuyCard.getByTestId("supplier-brand-logo")).toHaveAttribute("data-supplier-id", "thanh-thuy");
+    await expect(thanhThuyCard.getByTestId("supplier-brand-logo").locator("img")).toHaveAttribute("alt", "Logo Thanh Thuỳ");
     await expect(thanhThuyCard.getByText("Mã màu", { exact: true })).toHaveCount(0);
     await expect(thanhThuyCard.getByText("301", { exact: true })).toHaveCount(0);
     await expect(thanhThuyCard.getByText("301 Artistic Stripe", { exact: true })).toHaveCount(1);
@@ -349,7 +350,7 @@ test.describe("Mã màu customer journeys", () => {
       page.getByRole("heading", { name: /BT\s*171EV/ }),
     ).toBeVisible();
     await expect(page.getByText("Ảnh đang cập nhật", { exact: true })).toBeVisible();
-    await expect(page.locator("main img")).toHaveCount(0);
+    await expect(page.locator('main button[aria-label^="Mở thư viện"]')).toHaveCount(0);
     await expect(page.locator('img[src=""]')).toHaveCount(0);
   });
 
@@ -358,7 +359,7 @@ test.describe("Mã màu customer journeys", () => {
       await page.goto(`/catalogue/ba-thanh/melamine/${code.toLowerCase()}/`);
       await expect(page.getByRole("heading", { level: 1 })).toContainText(new RegExp(code.replace("SC", "SC\\s*")));
       await expect(page.getByText("Ảnh đang cập nhật", { exact: true })).toBeVisible();
-      await expect(page.locator("main img")).toHaveCount(0);
+      await expect(page.locator('main button[aria-label^="Mở thư viện"]')).toHaveCount(0);
       await expect(page.getByRole("link", { name: "Mở nguồn", exact: true })).toHaveAttribute("href", `https://bathanh.com.vn/${code.toLowerCase()}`);
       await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
     });
