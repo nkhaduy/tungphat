@@ -4,7 +4,7 @@ import { HomeHero } from "@/components/home/HomeHero";
 import { SiteShell } from "@/components/site/SiteShell";
 import { TrackedLink } from "@/components/TrackedLink";
 import { JsonLd } from "@/components/JsonLd";
-import { ZALO_URL, createPageMetadata, webPageSchema } from "@/lib/seo";
+import { SITE_URL, ZALO_URL, createPageMetadata, webPageSchema } from "@/lib/seo";
 import { TrustindexReviews, type TrustindexReviewData } from "@/components/reviews/TrustindexReviews";
 import { ContactCTA } from "@/components/ui/ContactCTA";
 import trustindexReviews from "@/data/trustindex-reviews.json";
@@ -23,7 +23,7 @@ export const metadata = {
 export default async function Home() {
   return (
     <>
-      <JsonLd data={webPageSchema({ path: "/", name: homepageTitle, description: "Tùng Phát cung cấp cốt ván, bề mặt trang trí và nhận cắt, gia công CNC tại Thủ Đức.", primaryEntityId: "https://mdftungphat.com/#organization" })} />
+      <JsonLd data={webPageSchema({ path: "/", name: homepageTitle, description: "Tùng Phát cung cấp cốt ván, bề mặt trang trí và nhận cắt, gia công CNC tại Thủ Đức.", primaryEntityId: `${SITE_URL}/#organization` })} />
       <SiteShell>
         <HomeHero />
         <HomeContent />

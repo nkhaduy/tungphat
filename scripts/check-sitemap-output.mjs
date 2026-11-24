@@ -4,7 +4,7 @@ import { noindexMetadataRoutes } from "./lib/metadata-route-policy.mjs";
 
 const outputDirectory = path.resolve("out");
 const sitemapPath = path.join(outputDirectory, "sitemap.xml");
-const canonicalOrigin = "https://mdftungphat.com";
+const canonicalOrigin = "https://gotungphat.com";
 const httpOrigin = process.env.SITEMAP_CHECK_ORIGIN;
 const placeholderRoutes = new Set(noindexMetadataRoutes);
 const utilityOrNotFoundRoutes = new Set([
@@ -83,7 +83,7 @@ for (const url of urls) {
   seenUrls.add(url);
   if (parsed.protocol !== "https:")
     errors.push(`Sitemap phải dùng HTTPS: ${url}`);
-  if (parsed.hostname === "www.mdftungphat.com")
+  if (parsed.hostname === "www.gotungphat.com")
     errors.push(`Sitemap không được dùng hostname www: ${url}`);
   if (parsed.origin !== canonicalOrigin) {
     errors.push(`Sitemap phải dùng canonical apex ${canonicalOrigin}: ${url}`);

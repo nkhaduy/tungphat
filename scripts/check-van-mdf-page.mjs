@@ -3,7 +3,7 @@ import path from "node:path";
 import process from "node:process";
 import { chromium } from "@playwright/test";
 
-const canonicalUrl = "https://mdftungphat.com/van-mdf/";
+const canonicalUrl = "https://gotungphat.com/van-mdf/";
 const routePath = "/van-mdf/";
 const baselineWords = 435;
 const requiredContentLinks = [

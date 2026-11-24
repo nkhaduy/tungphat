@@ -3,8 +3,9 @@ import http from "node:http";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
-export const PUBLIC_ORIGIN = "https://mdftungphat.com";
+export const PUBLIC_ORIGIN = "https://gotungphat.com";
 export const REDIRECT_STATUSES = new Set([301, 302, 307, 308]);
+const INTERNAL_HOSTS = new Set(["gotungphat.com", "www.gotungphat.com", "mdftungphat.com", "www.mdftungphat.com"]);
 
 const ASSET_PREFIXES = ["/images/", "/icons/", "/fonts/", "/_next/"];
 const EXCLUDED_ROUTE_PREFIXES = ["/api", "/cms-preview", "/admin"];
@@ -64,7 +65,7 @@ export function classifyNavigationalHref({ rawHref, sourcePath = "/", anchorTag 
   }
 
   if (!/^https?:$/.test(url.protocol)) return { kind: "skip", reason: "non-http" };
-  if (url.hostname.toLowerCase() !== new URL(PUBLIC_ORIGIN).hostname) return { kind: "skip", reason: "external" };
+  if (!INTERNAL_HOSTS.has(url.hostname.toLowerCase())) return { kind: "skip", reason: "external" };
   if (ASSET_PREFIXES.some((prefix) => url.pathname.startsWith(prefix))) return { kind: "skip", reason: "asset" };
   if (hasExcludedPrefix(url.pathname)) return { kind: "skip", reason: "api-or-admin" };
   if (FILE_EXTENSION.test(url.pathname)) return { kind: "skip", reason: "file" };
@@ -75,6 +76,7 @@ export function classifyNavigationalHref({ rawHref, sourcePath = "/", anchorTag 
     url,
     resolvedTarget: url.toString(),
     requestPath: `${url.pathname}${url.search}`,
+    legacyOrigin: url.hostname.toLowerCase() !== "gotungphat.com",
     invalidTrailingSlash: url.pathname !== "/" && !url.pathname.endsWith("/")
   };
 }
@@ -202,6 +204,7 @@ function uniqueRelationships(links) {
 
 function formatIssue(link) {
   const problems = [];
+  if (link.legacyOrigin) problems.push("legacy origin");
   if (REDIRECT_STATUSES.has(link.status)) problems.push("redirect");
   if (link.status >= 400 || link.status === 0) problems.push("HTTP error");
   if (link.invalidTrailingSlash) problems.push("missing trailing slash");
@@ -240,11 +243,13 @@ export async function validateInternalLinks({ outputDirectory = path.join(proces
       REDIRECT_STATUSES.has(link.status)
       || link.status >= 400
       || link.status === 0
+      || link.legacyOrigin
       || link.invalidTrailingSlash
     );
     const redirectRelationships = relationships.filter((link) => REDIRECT_STATUSES.has(link.status));
     const errorRelationships = relationships.filter((link) => link.status >= 400 || link.status === 0);
     const invalidTrailingSlashRelationships = relationships.filter((link) => link.invalidTrailingSlash);
+    const legacyOriginRelationships = relationships.filter((link) => link.legacyOrigin);
     const uniqueTargets = new Set(occurrences.map((link) => link.resolvedTarget));
     const uniqueRedirectTargets = new Set(redirectRelationships.map((link) => link.resolvedTarget));
 
@@ -256,13 +261,14 @@ export async function validateInternalLinks({ outputDirectory = path.join(proces
       redirectRelationships: redirectRelationships.length,
       uniqueRedirectTargets: uniqueRedirectTargets.size,
       errorRelationships: errorRelationships.length,
+      legacyOriginRelationships: legacyOriginRelationships.length,
       invalidTrailingSlashRelationships: invalidTrailingSlashRelationships.length,
       issues
     };
 
     if (issues.length > 0) {
       console.error(`Internal link validation thất bại (${issues.length} quan hệ):\n\n${issues.map(formatIssue).join("\n\n")}`);
-      console.error(`\nTổng: ${summary.htmlPages} HTML; ${summary.internalLinkOccurrences} internal links; ${summary.sourceTargetRelationships} quan hệ; ${summary.redirectRelationships} redirect; ${summary.errorRelationships} HTTP 4xx/5xx; ${summary.invalidTrailingSlashRelationships} thiếu trailing slash.`);
+      console.error(`\nTổng: ${summary.htmlPages} HTML; ${summary.internalLinkOccurrences} internal links; ${summary.sourceTargetRelationships} quan hệ; ${summary.redirectRelationships} redirect; ${summary.errorRelationships} HTTP 4xx/5xx; ${summary.legacyOriginRelationships} legacy origin; ${summary.invalidTrailingSlashRelationships} thiếu trailing slash.`);
       return { ok: false, ...summary };
     }
 

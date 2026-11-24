@@ -1,4 +1,6 @@
-export function extractSitemapUrls(xml: string, expectedOrigin = "https://mdftungphat.com") {
+import { SITE_URL } from "@/lib/seo";
+
+export function extractSitemapUrls(xml: string, expectedOrigin = SITE_URL) {
   const origin = new URL(expectedOrigin).origin;
   const urls = [...xml.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/giu)].map((match) => match[1].trim());
   const validated = urls.map((value) => {

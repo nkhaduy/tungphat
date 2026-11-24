@@ -37,7 +37,7 @@ export function attributionFromUrl(url: URL, referrerHost = ""): Attribution {
   if (host.includes("google.") && (host.includes("maps") || host === "maps.app.goo.gl")) {
     return { source: "google_maps", medium: "referral" };
   }
-  if (host === "mdftungphat.com" || host.endsWith(".mdftungphat.com")) {
+  if (host === "gotungphat.com" || host === "mdftungphat.com" || host.endsWith(".mdftungphat.com")) {
     return { source: "direct", medium: "none" };
   }
   return { source: host.slice(0, 120), medium: "referral" };

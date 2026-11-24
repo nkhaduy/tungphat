@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { ROOT_SLUG_PATTERN } from "@/lib/reserved-slugs";
+import { LEGACY_SITE_HOSTS, PUBLIC_SITE_URL } from "@/lib/site-domain";
 
 const slug = z
   .string()
@@ -32,6 +33,11 @@ const optionalPdf = z
     z.string().regex(/^(?:\/|https:\/\/(?:cdn|cms|media)\.mdftungphat\.com\/)[^\s]+\.pdf$/i, "PDF phải là public path hoặc Payload media URL hợp lệ"),
   ])
   .default("");
+const acceptedCanonicalOrigins = new Set([
+  PUBLIC_SITE_URL,
+  "https://www.gotungphat.com",
+  ...LEGACY_SITE_HOSTS.map((host) => `https://${host}`),
+]);
 const optionalCanonical = z
   .union([
     z.literal(""),
@@ -41,9 +47,9 @@ const optionalCanonical = z
       .refine(
         (value) => {
           const url = new URL(value);
-          return url.origin === "https://mdftungphat.com" && !url.username && !url.password && !url.search && !url.hash;
+          return acceptedCanonicalOrigins.has(url.origin) && !url.username && !url.password && !url.search && !url.hash;
         },
-        "Canonical phải thuộc https://mdftungphat.com",
+        `Canonical phải thuộc ${PUBLIC_SITE_URL} hoặc hostname legacy được hỗ trợ`,
       ),
   ])
   .default("");
@@ -196,7 +202,7 @@ export const businessSettingsSchema = z.object({
   businessName: z.string().min(3).max(160),
   displayName: z.string().min(2).max(100),
   taxId: z.string().min(8).max(30),
-  website: z.literal("https://mdftungphat.com"),
+  website: z.literal(PUBLIC_SITE_URL),
   phoneDisplay: z.string().min(8).max(30),
   phoneE164: z.string().regex(/^\+[1-9]\d{7,14}$/),
   zaloUrl: z.string().url(),
@@ -229,7 +235,7 @@ export const businessSettingsSchema = z.object({
 });
 
 export const seoSettingsSchema = z.object({
-  siteUrl: z.literal("https://mdftungphat.com"),
+  siteUrl: z.literal(PUBLIC_SITE_URL),
   siteName: z.string().min(2).max(80),
   defaultTitle: z.string().min(20).max(65),
   defaultDescription: z.string().min(80).max(170),

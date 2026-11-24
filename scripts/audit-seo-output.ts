@@ -2,7 +2,7 @@ import fs from "node:fs";
 import { auditStaticOutput } from "@/lib/seo-output-audit";
 
 const rootDir = process.env.SEO_OUTPUT_DIR ?? "out";
-const siteUrl = process.env.SEO_SITE_URL ?? "https://mdftungphat.com";
+const siteUrl = process.env.SEO_SITE_URL ?? "https://gotungphat.com";
 const result = auditStaticOutput({
   rootDir,
   siteUrl,

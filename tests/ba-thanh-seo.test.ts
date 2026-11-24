@@ -88,7 +88,7 @@ describe("Ba Thanh SEO policy", () => {
   it("points legacy code metadata at the canonical Mã màu route and noindexes it", () => {
     const ready = getBaThanhCode("bt-111")!;
     const thin = getBaThanhCode("bt-100")!;
-    expect(buildBaThanhCodeMetadata(ready).alternates?.canonical).toBe("https://mdftungphat.com/catalogue/ba-thanh/melamine/bt111/");
+    expect(buildBaThanhCodeMetadata(ready).alternates?.canonical).toBe("https://gotungphat.com/catalogue/ba-thanh/melamine/bt111/");
     expect(buildBaThanhCodeMetadata(ready).robots).toEqual({ index: false, follow: true });
     expect(buildBaThanhCodeMetadata(thin).robots).toEqual({
       index: false,

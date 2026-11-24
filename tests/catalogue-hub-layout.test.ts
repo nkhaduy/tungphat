@@ -30,7 +30,9 @@ describe("catalogue hub customer journey", () => {
   it("renders a full-bleed image hero before the separate search interface", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
 
-    expect(markup).toContain("%2Fimages%2Fmaterial-color-hero.webp");
+    expect(markup).toContain("/images/material-color-hero-780.avif 780w");
+    expect(markup).toContain("/images/material-color-hero-1170.avif 1170w");
+    expect(markup).toContain('src="/images/material-color-hero.webp"');
     expect(markup).toContain(
       'alt="Các tấm ván MDF phủ bề mặt với nhiều màu và vân gỗ"',
     );

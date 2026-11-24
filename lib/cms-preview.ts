@@ -52,7 +52,7 @@ function cleanMedia(value: unknown) {
   if (/^\/[A-Za-z0-9_./-]+$/.test(media)) return media;
   try {
     const url = new URL(media);
-    if (url.protocol === "https:" && ["mdftungphat.com", "cms.mdftungphat.com"].includes(url.hostname)) return url.toString();
+    if (url.protocol === "https:" && ["gotungphat.com", "mdftungphat.com", "cms.mdftungphat.com"].includes(url.hostname)) return url.toString();
   } catch { /* use fallback */ }
   return "/logo-horizontal.webp";
 }

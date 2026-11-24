@@ -1,3 +1,4 @@
+import { PUBLIC_SITE_URL } from "@/lib/site-domain";
 import type { CtaLocation } from "./types";
 
 const CTA_LOCATION_SET = new Set<CtaLocation>([
@@ -8,7 +9,7 @@ const CTA_LOCATION_SET = new Set<CtaLocation>([
 
 export function sanitizePath(raw: string) {
   try {
-    const url = new URL(raw, "https://mdftungphat.com");
+    const url = new URL(raw, PUBLIC_SITE_URL);
     const path = url.pathname.replace(/\/{2,}/g, "/");
     return (path.startsWith("/") ? path : `/${path}`).slice(0, 500);
   } catch {

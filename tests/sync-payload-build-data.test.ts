@@ -2,6 +2,21 @@ import { describe, expect, it } from "vitest";
 import { fetchPayloadGlobal, normalizePayloadGlobal } from "../scripts/sync-payload-build-data";
 
 describe("Payload build data normalization", () => {
+  it("uses gotungphat.com as the public SEO origin while reading legacy Payload settings", () => {
+    expect(normalizePayloadGlobal("seo-defaults", {
+      siteUrl: "https://mdftungphat.com",
+      siteName: "Tùng Phát",
+      defaultOgImage: { url: "https://cdn.mdftungphat.com/uploads/og.jpg", width: 1200, height: 630, mimeType: "image/jpeg" },
+    })).toMatchObject({ siteUrl: "https://gotungphat.com" });
+  });
+
+  it("normalizes the Payload business website to the public origin", () => {
+    expect(normalizePayloadGlobal("business-settings", {
+      website: "https://mdftungphat.com",
+      businessName: "Công ty TNHH TMDV Gỗ Tùng Phát",
+    })).toMatchObject({ website: "https://gotungphat.com" });
+  });
+
   it("converts Payload relationship and array shapes to frontend settings", () => {
     expect(normalizePayloadGlobal("business-settings", {
       id: 1,
@@ -16,6 +31,7 @@ describe("Payload build data normalization", () => {
         image: { url: "/media/uploads/location.webp" },
       }],
     })).toEqual({
+      website: "https://gotungphat.com",
       serviceAreas: ["TP. Hồ Chí Minh"],
       socialLinks: ["https://example.com"],
       locations: [{
@@ -68,6 +84,7 @@ describe("Payload build data normalization", () => {
         mimeType: "image/jpeg",
       },
     })).toEqual({
+      siteUrl: "https://gotungphat.com",
       defaultOgImage: "https://cdn.mdftungphat.com/uploads/og.jpg",
       defaultOgImageWidth: 1200,
       defaultOgImageHeight: 630,

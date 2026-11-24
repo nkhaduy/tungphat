@@ -7,8 +7,9 @@ import {
   type SocialImage,
 } from "@/lib/social-images";
 import { OPEN_GRAPH_LOCALE, SCHEMA_LANGUAGE } from "@/lib/locale";
+import { LEGACY_SITE_HOSTS, PUBLIC_SITE_URL } from "@/lib/site-domain";
 
-export const SITE_URL = seo.siteUrl;
+export const SITE_URL = PUBLIC_SITE_URL;
 export const SITE_NAME = seo.siteName;
 export const BUSINESS_NAME = business.businessName;
 export const TAX_ID = business.taxId;
@@ -52,7 +53,8 @@ export function absolutePageUrl(path = "/") {
   const url = new URL(value, canonicalOrigin);
   const isInternalHost =
     url.hostname === canonicalOrigin.hostname ||
-    url.hostname === `www.${canonicalOrigin.hostname}`;
+    url.hostname === `www.${canonicalOrigin.hostname}` ||
+    LEGACY_SITE_HOSTS.includes(url.hostname as (typeof LEGACY_SITE_HOSTS)[number]);
 
   if (!isInternalHost) return value;
   if (url.username || url.password) throw new Error(`Page URL must not contain credentials: ${value}`);

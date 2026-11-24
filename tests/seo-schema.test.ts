@@ -12,11 +12,11 @@ describe("canonical WebPage schema", () => {
 
     expect(schema).toMatchObject({
       "@type": "WebPage",
-      "@id": "https://mdftungphat.com/van-mdf/#webpage",
-      url: "https://mdftungphat.com/van-mdf/",
-      isPartOf: { "@id": "https://mdftungphat.com/#website" },
-      about: { "@id": "https://mdftungphat.com/#organization" },
-      mainEntity: { "@id": "https://mdftungphat.com/van-mdf/#product" },
+      "@id": "https://gotungphat.com/van-mdf/#webpage",
+      url: "https://gotungphat.com/van-mdf/",
+      isPartOf: { "@id": "https://gotungphat.com/#website" },
+      about: { "@id": "https://gotungphat.com/#organization" },
+      mainEntity: { "@id": "https://gotungphat.com/van-mdf/#product" },
     });
   });
 });

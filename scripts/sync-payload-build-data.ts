@@ -2,6 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolveMediaUrl } from "../lib/media";
+import { PUBLIC_SITE_URL } from "../lib/site-domain";
 
 const DEFAULT_PAYLOAD_URL = "https://cms.mdftungphat.com";
 const OUTPUTS = {
@@ -45,10 +46,14 @@ function normalizeValue(value: unknown): unknown {
 export function normalizePayloadGlobal(slug: string, value: Record<string, unknown>) {
   const normalized = normalizeValue(value) as Record<string, unknown>;
   const defaultOgImage = value.defaultOgImage as Record<string, unknown> | undefined;
-  if (slug === "seo-defaults" && defaultOgImage) {
-    normalized.defaultOgImageWidth = defaultOgImage.width;
-    normalized.defaultOgImageHeight = defaultOgImage.height;
-    normalized.defaultOgImageType = defaultOgImage.mimeType;
+  if (slug === "business-settings") normalized.website = PUBLIC_SITE_URL;
+  if (slug === "seo-defaults") {
+    normalized.siteUrl = PUBLIC_SITE_URL;
+    if (defaultOgImage) {
+      normalized.defaultOgImageWidth = defaultOgImage.width;
+      normalized.defaultOgImageHeight = defaultOgImage.height;
+      normalized.defaultOgImageType = defaultOgImage.mimeType;
+    }
   }
   if (slug === "static-pages" && typeof value.updatedAt === "string") {
     normalized.updatedAt = value.updatedAt.slice(0, 10);

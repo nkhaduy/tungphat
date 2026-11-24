@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const outputDirectory = path.resolve(process.env.SEO_OUTPUT_DIR ?? "out");
-const siteOrigin = new URL(process.env.SEO_SITE_URL ?? "https://mdftungphat.com").origin;
+const siteOrigin = new URL(process.env.SEO_SITE_URL ?? "https://gotungphat.com").origin;
 const pageTypes = new Map([
   ["/cat-cnc-go/", "Service"],
   ["/gia-cong-cnc-mdf/", "Service"],
