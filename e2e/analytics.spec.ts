@@ -4,9 +4,14 @@ type CapturedEvent = { event_name: string; path: string; visitor_id: string; ses
 
 test("tracks App Router pages, content and CTA once, then honors opt-out", async ({ page }) => {
   const events: CapturedEvent[] = [];
+  const endpointUrls: string[] = [];
+  await page.route("https://cms.mdftungphat.com/api/analytics/track", route => route.abort());
   await page.route("**/api/analytics/track", async (route) => {
     const request = route.request();
-    if (request.method() === "POST") events.push(request.postDataJSON() as CapturedEvent);
+    if (request.method() === "POST") {
+      endpointUrls.push(request.url());
+      events.push(request.postDataJSON() as CapturedEvent);
+    }
     await route.fulfill({ status: 204, body: "" });
   });
   await page.addInitScript(() => {
@@ -20,6 +25,7 @@ test("tracks App Router pages, content and CTA once, then honors opt-out", async
 
   await page.goto("/");
   await expect.poll(() => events.filter(event => event.event_name === "page_view" && event.path === "/").length).toBe(1);
+  expect(new URL(endpointUrls[0]).origin).toBe(new URL(page.url()).origin);
 
   await page.goto("/go-ghep/");
   await expect.poll(() => events.filter(event => event.event_name === "page_view" && event.path === "/go-ghep/").length).toBe(1);

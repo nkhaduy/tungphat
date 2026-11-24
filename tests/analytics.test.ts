@@ -4,11 +4,20 @@ import { normalizeCtaLocation, sanitizePath, sanitizeText, shouldTrackLocation }
 import { generateAnonymousId, SESSION_TIMEOUT_MS } from "@/lib/analytics/session";
 import { analyticsEventNames } from "@/lib/analytics/types";
 import { conversionRate, countLeadSessions, isAssistedConversion, recordMilestone, vietnamDayBounds } from "@/lib/analytics/metrics";
-import { sendGa4Event } from "@/lib/analytics/client";
+import { analyticsEndpoint, sendGa4Event } from "@/lib/analytics/client";
 
 afterEach(() => vi.unstubAllGlobals());
 
 describe("anonymous analytics primitives", () => {
+  it("defaults first-party analytics to the current site origin", () => {
+    expect(analyticsEndpoint(undefined)).toBe("/api/analytics/track");
+  });
+
+  it("keeps an explicitly configured analytics origin available", () => {
+    expect(analyticsEndpoint("https://analytics.example/"))
+      .toBe("https://analytics.example/api/analytics/track");
+  });
+
   it("generates random UUID v4 visitor and session identifiers", () => {
     const first = generateAnonymousId();
     const second = generateAnonymousId();

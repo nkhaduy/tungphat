@@ -22,9 +22,14 @@ declare global {
   }
 }
 
-const API_BASE = (
-  process.env.NEXT_PUBLIC_ANALYTICS_API_BASE || "https://cms.mdftungphat.com"
-).replace(/\/+$/, "");
+export function analyticsEndpoint(base: string | undefined) {
+  const apiBase = (base || "").replace(/\/+$/, "");
+  return `${apiBase}/api/analytics/track`;
+}
+
+const ANALYTICS_ENDPOINT = analyticsEndpoint(
+  process.env.NEXT_PUBLIC_ANALYTICS_API_BASE,
+);
 const TEST_BUILD = process.env.NEXT_PUBLIC_ANALYTICS_TEST_MODE === "1";
 
 function sessionAttribution() {
@@ -83,9 +88,9 @@ function sendFirstParty(payload: AnalyticsPayload, preferBeacon = false) {
   const body = JSON.stringify(payload);
   if (preferBeacon && navigator.sendBeacon) {
     const blob = new Blob([body], { type: "text/plain;charset=UTF-8" });
-    if (navigator.sendBeacon(`${API_BASE}/api/analytics/track`, blob)) return;
+    if (navigator.sendBeacon(ANALYTICS_ENDPOINT, blob)) return;
   }
-  void fetch(`${API_BASE}/api/analytics/track`, {
+  void fetch(ANALYTICS_ENDPOINT, {
     method: "POST",
     headers: { "Content-Type": "text/plain;charset=UTF-8", Accept: "application/json" },
     body,
