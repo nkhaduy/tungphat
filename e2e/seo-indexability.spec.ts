@@ -11,7 +11,7 @@ test("canonical catalogue stays indexable while filter URLs are crawlable and no
   await expect(page.getByRole("heading", { name: /\d[\d.]* mã màu/ })).toBeVisible();
   await expect(page).toHaveURL(/\/catalogue\/$/);
   await expect(page.locator('meta[name="robots"][content*="noindex"]')).toHaveCount(0);
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://mdftungphat.com/catalogue/");
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://gotungphat.com/catalogue/");
 
   await page.goto("/catalogue/?type=melamine&group=laminate");
   await expect(page.getByRole("heading", { name: "1.302 mã màu", exact: true })).toBeVisible();
