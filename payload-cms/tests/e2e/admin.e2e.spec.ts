@@ -145,7 +145,7 @@ test.describe('Admin Panel', () => {
     await expect(listViewArtifact).toBeVisible()
   })
 
-  test('draft autosaves, stays private, previews Lexical content, publishes and unpublishes', async () => {
+  test('draft autosaves, previews Lexical content, then publishes, updates and unpublishes through Admin UI', async () => {
     await page.goto('/admin/collections/articles/create')
     await expect(page).toHaveURL(/\/admin\/collections\/articles\/\d+$/, { timeout: 30_000 })
     const articleID = page.url().match(/\/articles\/(\d+)$/)?.[1]
@@ -198,8 +198,8 @@ test.describe('Admin Panel', () => {
     await page.goto(`/admin/collections/articles/${articleID}`)
 
     const today = new Date().toISOString().slice(0, 10)
-    const published = await requestFromPage(page, `/api/articles/${articleID}`, 'PATCH', {
-        _status: 'published',
+    const preparedDraft = await requestFromPage(page, `/api/articles/${articleID}`, 'PATCH', {
+        _status: 'draft',
         featuredImage: Number(mediaID),
         featuredImageAlt: 'Logo Tùng Phát dùng cho kiểm thử editor',
         category: 'Kiểm thử',
@@ -213,13 +213,43 @@ test.describe('Admin Panel', () => {
           noindex: true,
         },
     })
-    expect(published.status, JSON.stringify(published.body)).toBe(200)
-    expect(responseDoc(published.body)._status).toBe('published')
+    expect(preparedDraft.status, JSON.stringify(preparedDraft.body)).toBe(200)
+    expect(responseDoc(preparedDraft.body)._status).toBe('draft')
+    expect((await publicRequest.get(`/api/articles/${articleID}`)).status()).toBe(404)
+
+    await page.reload()
+    const publishButton = page.locator('#action-save')
+    await expect(publishButton).toBeEnabled()
+    await publishButton.click()
+    await expect.poll(async () => {
+      const response = await requestFromPage(page, `/api/articles/${articleID}?draft=true`)
+      return responseDoc(response.body)._status
+    }, { timeout: 30_000, intervals: [500, 1_000, 1_500] }).toBe('published')
     expect((await publicRequest.get(`/api/articles/${articleID}`)).status()).toBe(200)
 
-    const unpublished = await requestFromPage(page, `/api/articles/${articleID}`, 'PATCH', { _status: 'draft' })
-    expect(unpublished.status, JSON.stringify(unpublished.body)).toBe(200)
-    expect(responseDoc(unpublished.body)._status).toBe('draft')
+    const updatedTitle = `${title} — đã cập nhật qua Admin UI`
+    await page.locator('input[name="title"]').fill(updatedTitle)
+    await expect.poll(async () => {
+      const response = await requestFromPage(page, `/api/articles/${articleID}?draft=true`)
+      return responseDoc(response.body).title
+    }, { timeout: 30_000, intervals: [500, 1_000, 1_500] }).toBe(updatedTitle)
+    await expect(publishButton).toBeEnabled()
+    await publishButton.click()
+    await expect.poll(async () => {
+      const response = await publicRequest.get(`/api/articles/${articleID}`)
+      if (!response.ok()) return null
+      return (await response.json() as { title?: string }).title
+    }, { timeout: 30_000, intervals: [500, 1_000, 1_500] }).toBe(updatedTitle)
+
+    await page.getByRole('button', { name: 'Tùy chọn tài liệu' }).click()
+    await expect(page.locator('#action-unpublish')).toBeVisible()
+    await page.locator('#action-unpublish').click()
+    await expect(page.getByRole('heading', { name: 'Xác nhận, ngưng xuất bản' })).toBeVisible()
+    await page.locator('#confirm-action').click()
+    await expect.poll(async () => {
+      const response = await requestFromPage(page, `/api/articles/${articleID}?draft=true`)
+      return responseDoc(response.body)._status
+    }, { timeout: 30_000, intervals: [500, 1_000, 1_500] }).toBe('draft')
     expect((await publicRequest.get(`/api/articles/${articleID}`)).status()).toBe(404)
     await publicRequest.dispose()
   })
