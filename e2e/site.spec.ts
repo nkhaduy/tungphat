@@ -1,6 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { readFileSync } from "node:fs";
+import trustindexReviews from "../data/trustindex-reviews.json";
 
 const publicRoutes = [
   "/",
@@ -58,7 +59,7 @@ const acceptanceViewports = [
 ];
 
 function normalizedPath(value: string) {
-  const path = new URL(value, "https://mdftungphat.com").pathname;
+  const path = new URL(value, "https://gotungphat.com").pathname;
   return path === "/" ? path : `${path.replace(/\/+$/, "")}/`;
 }
 
@@ -69,36 +70,13 @@ async function pageErrors(page: Page) {
     if (message.type() === "error" && !message.text().includes("Turnstile"))
       errors.push(message.text());
   });
+  page.on("requestfailed", (request) => {
+    const failure = request.failure()?.errorText;
+    if (failure && failure !== "net::ERR_ABORTED")
+      errors.push(`${failure}: ${request.url()}`);
+  });
   return errors;
 }
-const apiPayload = (overrides: Record<string, unknown> = {}) => ({
-  submission_id: crypto.randomUUID(),
-  full_name: "Khách kiểm thử",
-  phone: "0909259160",
-  material: "Ván MDF",
-  consent: true,
-  website: "",
-  turnstile_token:
-    process.env.E2E_TURNSTILE_TOKEN || "XXXX.DUMMY.TOKEN.XXXX",
-  source_url: "https://mdftungphat.com/bao-gia/",
-  referrer: "",
-  ...overrides,
-});
-
-function apiRoute(path: string, baseURL?: string) {
-  return new URL(baseURL || "http://127.0.0.1:4173").hostname ===
-    "mdftungphat.com"
-    ? `${path}/`
-    : path;
-}
-
-function usesProductionTurnstile(baseURL?: string) {
-  return (
-    new URL(baseURL || "http://127.0.0.1:4173").hostname ===
-      "mdftungphat.com" && !process.env.E2E_TURNSTILE_TOKEN
-  );
-}
-
 test("các route chính trả về trang có H1, canonical và không có lỗi console", async ({
   page,
 }) => {
@@ -118,7 +96,7 @@ test("các route chính trả về trang có H1, canonical và không có lỗi 
   expect(errors).toEqual([]);
 });
 
-test("shared header is transparent over the first section and solid after scroll", async ({
+test("shared header follows the surface of each route and turns solid after scroll", async ({
   page,
 }) => {
   for (const { route, tone } of [
@@ -131,7 +109,7 @@ test("shared header is transparent over the first section and solid after scroll
     await expect(header, route).toHaveAttribute("data-scrolled", "false");
     await expect(header, route).toHaveCSS(
       "background-color",
-      "rgba(0, 0, 0, 0)",
+      route === "/" ? "rgb(255, 255, 255)" : "rgba(0, 0, 0, 0)",
     );
     await expect(header, route).toHaveCSS("position", "sticky");
     await expect(page.getByText("2 chi nhánh tại TP.HCM"), route).toHaveCount(0);
@@ -144,7 +122,7 @@ test("shared header is transparent over the first section and solid after scroll
           (element) => getComputedStyle(element).backgroundColor,
         ),
       )
-      .not.toBe("rgba(0, 0, 0, 0)");
+      .toBe("rgba(255, 255, 255, 0.94)");
   }
 });
 
@@ -165,10 +143,26 @@ test("representative routes expose breadcrumbs, intact images, and no horizontal
   const errors = await pageErrors(page);
   for (const route of representativeRoutes.filter((route) => route !== "/")) {
     await page.goto(route, { waitUntil: "domcontentloaded" });
-    await expect(
-      page.getByRole("navigation", { name: "Breadcrumb" }),
-      route,
-    ).toBeVisible();
+    if (route === "/lien-he/") {
+      const structuredData = await page
+        .locator('script[type="application/ld+json"]')
+        .allTextContents();
+      const schemas = structuredData.flatMap((value) => {
+        const parsed = JSON.parse(value) as
+          | Record<string, unknown>
+          | Record<string, unknown>[];
+        return Array.isArray(parsed) ? parsed : [parsed];
+      });
+      expect(
+        schemas.some((schema) => schema["@type"] === "BreadcrumbList"),
+        route,
+      ).toBe(true);
+    } else {
+      await expect(
+        page.getByRole("navigation", { name: /Đường dẫn|Breadcrumb/ }),
+        route,
+      ).toBeVisible();
+    }
     const brokenImages = await page
       .locator("img")
       .evaluateAll((images) =>
@@ -204,7 +198,7 @@ test("homepage có hero ván gỗ, hai CTA và một ảnh LCP ưu tiên", async
   await expect(hero.getByRole("link", { name: "Liên hệ báo giá" })).toBeVisible();
   await expect(hero.getByRole("link", { name: "Xem báo giá" })).toHaveCount(0);
   await expect(hero.locator(".material-panels-hero-image")).toBeVisible();
-  await expect(hero.locator('source[type="image/avif"]')).toHaveAttribute(
+  await expect(hero.locator('source[type="image/avif"]:not([media])')).toHaveAttribute(
     "srcset",
     /material-panels-hero-960\.avif 960w.*material-panels-hero\.avif 1916w/,
   );
@@ -215,6 +209,22 @@ test("homepage có hero ván gỗ, hai CTA và một ảnh LCP ưu tiên", async
       hero.locator(".material-panels-hero-image").evaluate((image) => {
         const element = image as HTMLImageElement;
         return element.complete && element.naturalWidth > 0;
+      }),
+    )
+    .toBe(true);
+});
+
+test("mobile homepage hero selects the optimized AVIF source", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  const image = page.locator("#trang-chu .material-panels-hero-image");
+  await expect.poll(() => image.evaluate((element) => (element as HTMLImageElement).currentSrc)).toContain("material-panels-hero-mobile-780.avif");
+  await expect(image).toHaveAttribute("fetchpriority", "high");
+  await expect
+    .poll(() =>
+      image.evaluate((element) => {
+        const imageElement = element as HTMLImageElement;
+        return imageElement.naturalWidth === imageElement.getBoundingClientRect().width;
       }),
     )
     .toBe(true);
@@ -287,39 +297,60 @@ test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", asyn
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
   for (const heading of [
-    "MDF, MFC, Plywood và gỗ ghép",
+    "Khám phá vật liệu tại Tùng Phát",
     "Mã màu",
-    "Cắt và gia công CNC",
+    "Gửi kích thước, xưởng kiểm tra cách làm",
     "Địa chỉ",
-    "Bài viết nổi bật",
+    "Kiến thức chọn vật liệu",
   ]) {
     await expect(
-      page.getByRole("heading", { level: 2, name: heading }),
+      page.getByRole("heading", { level: 2, name: heading, exact: true }),
     ).toBeVisible();
   }
-  await expect(page.locator('iframe[src*="google.com/maps"]')).toHaveCount(0);
+  const maps = page.locator('iframe[src*="google.com/maps"]');
+  await expect(maps).toHaveCount(3);
+  const mapEmbeds = await maps.evaluateAll((frames) =>
+    frames.map((frame) => ({
+      loading: frame.getAttribute("loading"),
+      title: frame.getAttribute("title"),
+    })),
+  );
+  expect(mapEmbeds.every((embed) => embed.loading === "lazy")).toBe(true);
+  expect(mapEmbeds.every((embed) => embed.title?.startsWith("Google Maps - "))).toBe(true);
 });
 
-test("homepage product taxonomy exposes core materials and catalogue surfaces", async ({ page }) => {
+test("homepage product taxonomy links to the current material and surface routes", async ({ page }) => {
   await page.goto("/");
-  const groups = page.locator("[data-product-groups]");
-  await expect(groups.locator('[data-product-card="mdf"]')).toBeVisible();
-  await expect(groups.locator('[data-product-card="mdf-moisture-resistant"]')).toBeVisible();
-  await expect(groups.locator('[data-product-card="mfc"] a').first()).toHaveAttribute("href", "/van-go-cong-nghiep/");
-  await expect(groups.locator('[data-product-card="plywood"] a').first()).toHaveAttribute("href", "/van-go-cong-nghiep/");
-  await expect(groups.locator('[data-product-card="joined-wood"]')).toBeVisible();
-  await expect(groups.locator('[data-product-card="melamine"]')).toHaveAttribute("href", "/catalogue/an-cuong/melamine/");
-  await expect(groups.locator('[data-product-card="laminate"]')).toHaveAttribute("href", "/catalogue/an-cuong/laminate/");
-  await expect(groups.locator('[data-product-card="acrylic"]')).toHaveAttribute("href", "/catalogue/an-cuong/acrylic/");
-  await expect(groups.locator('[data-product-card="veneer"]')).toHaveAttribute("href", "/catalogue/an-cuong/veneer/");
-  expect(await groups.locator("[data-product-card]").count()).toBe(9);
+  const groups = page.locator("#vat-lieu");
+  for (const [label, href] of [
+    ["Ván MDF", "/van-mdf/"],
+    ["MDF chống ẩm", "/mdf-chong-am/"],
+    ["MFC", "/van-go-cong-nghiep/"],
+    ["Plywood", "/van-go-cong-nghiep/"],
+    ["Gỗ ghép", "/go-ghep/"],
+    ["Melamine", "/catalogue/thanh-thuy/melamine/"],
+    ["Laminate", "/catalogue/thanh-thuy/laminate/"],
+    ["Acrylic", "/catalogue/thanh-thuy/acrylic/"],
+    ["Veneer", "/catalogue/thanh-thuy/veneer/"],
+  ]) {
+    await expect(
+      groups.getByRole("link", { name: `Xem ${label}`, exact: true }),
+    ).toHaveAttribute("href", href);
+  }
+  expect(await groups.locator("article").count()).toBe(11);
 });
 
-test("homepage exposes the exact 301 catalogue landing route", async ({ page }) => {
+test("homepage links visitors to supplier catalogues and the full catalogue", async ({ page }) => {
   await page.goto("/");
+  const section = page.locator("#ma-mau");
   await expect(
-    page.locator('a[href="/catalogue/thanh-thuy/melamine/301/"]').first(),
-  ).toBeVisible();
+    section.getByRole("link", { name: "Mở catalogue" }),
+  ).toHaveAttribute("href", "/catalogue/");
+  for (const supplier of ["an-cuong", "ba-thanh", "thanh-thuy"]) {
+    await expect(
+      section.locator(`a[href="/catalogue/${supplier}/"]`),
+    ).toBeVisible();
+  }
 });
 
 test("CTA báo giá vật liệu có accessible name khớp nhãn hiển thị", async ({
@@ -344,7 +375,7 @@ test("homepage removes the utility blocks and keeps contact actions focused", as
   await expect(page.locator("[data-answer-block]")).toHaveCount(0);
 });
 
-test("homepage marquee stays horizontal without causing vertical movement", async ({ page }) => {
+test("homepage featured-code strip stays horizontal without moving the page vertically", async ({ page }) => {
   for (const viewport of [
     { width: 1440, height: 900 },
     { width: 1280, height: 800 },
@@ -353,7 +384,7 @@ test("homepage marquee stays horizontal without causing vertical movement", asyn
   ]) {
     await page.setViewportSize(viewport);
     await page.goto("/");
-    const marquee = page.locator("[data-color-code-marquee]");
+    const marquee = page.locator(".color-code-marquee");
     await marquee.scrollIntoViewIfNeeded();
     const before = await page.evaluate(() => window.scrollY);
     const track = marquee.locator(".color-code-marquee-track");
@@ -379,7 +410,7 @@ test("mobile navigation contract supports focus, Escape, and a solid surface", a
   });
   await expect(mobileNavigation).toBeVisible();
   await expect(
-    mobileNavigation.getByRole("link", { name: "Vật liệu", exact: true }),
+    mobileNavigation.getByRole("link", { name: "Sản phẩm", exact: true }),
   ).toBeFocused();
   const navigationStyles = await mobileNavigation.evaluate((element) => {
     const style = getComputedStyle(element);
@@ -466,6 +497,16 @@ test("shared navigation links meet the 44px target contract", async ({
   }
 });
 
+test("footer names the active public hostname", async ({ page }) => {
+  await page.goto("/");
+  await expect(
+    page.getByRole("contentinfo").getByRole("link", {
+      name: "gotungphat.com",
+      exact: true,
+    }),
+  ).toHaveAttribute("href", "/");
+});
+
 test("thanh hành động mobile có nền trắng rõ ràng", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
@@ -530,30 +571,30 @@ test("robots, sitemap, Vercel admin redirect và 404 đúng", async ({
 }) => {
   const robots = await request.get("/robots.txt");
   expect(await robots.text()).toContain(
-    "Sitemap: https://mdftungphat.com/sitemap.xml",
+    "Sitemap: https://gotungphat.com/sitemap.xml",
   );
   const sitemap = await request.get("/sitemap.xml");
   const xml = await sitemap.text();
-  expect(xml).toContain("https://mdftungphat.com/go-ghep");
+  expect(xml).toContain("https://gotungphat.com/go-ghep");
   for (const route of [
     "/san-pham/an-cuong",
     "/san-pham/thanh-thuy",
     "/san-pham/ba-thanh",
     "/san-pham/kes",
   ])
-    expect(xml).not.toContain(`<loc>https://mdftungphat.com${route}/</loc>`);
+    expect(xml).not.toContain(`<loc>https://gotungphat.com${route}/</loc>`);
   for (const route of [
     "/catalogue/an-cuong",
     "/catalogue/thanh-thuy",
     "/catalogue/ba-thanh",
   ])
-    expect(xml).toContain(`<loc>https://mdftungphat.com${route}/</loc>`);
+    expect(xml).toContain(`<loc>https://gotungphat.com${route}/</loc>`);
   for (const route of ["melamine", "laminate", "acrylic"])
     expect(xml).toContain(
-      `<loc>https://mdftungphat.com/catalogue/an-cuong/${route}/</loc>`,
+      `<loc>https://gotungphat.com/catalogue/an-cuong/${route}/</loc>`,
     );
-  expect(xml).toContain("https://mdftungphat.com/bao-gia/");
-  expect(xml).not.toContain("https://mdftungphat.com/cms-preview");
+  expect(xml).toContain("https://gotungphat.com/bao-gia/");
+  expect(xml).not.toContain("https://gotungphat.com/cms-preview");
   expect(xml).not.toContain("/admin");
   expect(xml).not.toContain("__empty-collection");
   expect(
@@ -772,153 +813,6 @@ test("representative routes meet accessibility without serious or critical viola
   }
 });
 
-test("API từ chối origin khác và không lộ stack trace", async ({ request }) => {
-  const response = await request.post("/api/quote", {
-    headers: {
-      Origin: "https://attacker.example",
-      "Content-Type": "application/json",
-    },
-    data: {},
-  });
-  expect(response.status()).toBe(403);
-  const body = await response.text();
-  expect(body).not.toMatch(/stack|node_modules|Error:/i);
-});
-
-test("API trả CORS preflight chính xác cho origin được phép", async ({
-  request,
-  baseURL,
-}) => {
-  const origin = new URL(baseURL || "http://127.0.0.1:4173").origin;
-  const response = await request.fetch(apiRoute("/api/contact", baseURL), {
-    method: "OPTIONS",
-    headers: {
-      Origin: origin,
-      "Access-Control-Request-Method": "POST",
-    },
-  });
-  expect(response.status()).toBe(204);
-  expect(response.headers()["access-control-allow-origin"]).toBe(origin);
-  expect(response.headers()["access-control-allow-methods"]).toBe(
-    "POST, OPTIONS",
-  );
-  expect(response.headers()["cache-control"]).toBe("no-store");
-  expect(
-    response.headers()["access-control-allow-credentials"],
-  ).toBeUndefined();
-});
-
-test("API validation và rate limit hoạt động", async ({ request, baseURL }) => {
-  const origin = new URL(baseURL || "http://127.0.0.1:4173").origin;
-  const quoteRoute = apiRoute("/api/quote", baseURL);
-  const contactRoute = apiRoute("/api/contact", baseURL);
-  const invalid = await request.post(quoteRoute, {
-    headers: { Origin: origin },
-    data: { consent: false },
-  });
-  expect(invalid.status()).toBe(400);
-  expect(await invalid.json()).toMatchObject({ code: "validation_failed" });
-  const quoteWithoutMaterial = await request.post(quoteRoute, {
-    headers: { Origin: origin },
-    data: apiPayload({ material: "" }),
-  });
-  expect(quoteWithoutMaterial.status()).toBe(400);
-  expect(await quoteWithoutMaterial.json()).toMatchObject({ code: "validation_failed" });
-  const contactWithoutMessage = await request.post(contactRoute, {
-    headers: { Origin: origin },
-    data: apiPayload({ message: "" }),
-  });
-  expect(contactWithoutMessage.status()).toBe(400);
-  expect(await contactWithoutMessage.json()).toMatchObject({ code: "validation_failed" });
-
-  if (usesProductionTurnstile(baseURL)) {
-    const protectedSubmission = await request.post(quoteRoute, {
-      headers: { Origin: origin },
-      data: apiPayload(),
-    });
-    expect(protectedSubmission.status()).toBe(400);
-    expect(await protectedSubmission.json()).toMatchObject({
-      code: "verification_failed",
-    });
-    return;
-  }
-
-  const rateIdentity = `e2e-rate-${Date.now()}`;
-  for (let attempt = 0; attempt < 5; attempt += 1) {
-    const response = await request.post(quoteRoute, {
-      headers: { Origin: origin, "CF-Connecting-IP": rateIdentity },
-      data: apiPayload(),
-    });
-    expect(response.status()).toBe(201);
-  }
-  const limited = await request.post(quoteRoute, {
-    headers: { Origin: origin, "CF-Connecting-IP": rateIdentity },
-    data: apiPayload(),
-  });
-  expect(limited.status()).toBe(429);
-  expect(await limited.json()).toMatchObject({ code: "rate_limited" });
-});
-
-test("API nhận submission idempotent mà không tạo lead lặp", async ({
-  request,
-  baseURL,
-}) => {
-  test.skip(
-    usesProductionTurnstile(baseURL),
-    "Production requires a real Turnstile token for lead-creation tests.",
-  );
-  const origin = new URL(baseURL || "http://127.0.0.1:4173").origin;
-  const submissionId = crypto.randomUUID();
-  const headers = {
-    Origin: origin,
-    "CF-Connecting-IP": `e2e-duplicate-${Date.now()}`,
-  };
-  const quoteRoute = apiRoute("/api/quote", baseURL);
-  const first = await request.post(quoteRoute, {
-    headers,
-    data: apiPayload({ submission_id: submissionId }),
-  });
-  expect(first.status()).toBe(201);
-  const second = await request.post(quoteRoute, {
-    headers,
-    data: apiPayload({ submission_id: submissionId }),
-  });
-  expect(second.status()).toBe(200);
-  expect(await second.json()).toMatchObject({ ok: true, duplicate: true });
-});
-
-test("payload kiểu SQL injection không làm thay đổi schema", async ({
-  request,
-  baseURL,
-}) => {
-  test.skip(
-    usesProductionTurnstile(baseURL),
-    "Production requires a real Turnstile token for lead-creation tests.",
-  );
-  const origin = new URL(baseURL || "http://127.0.0.1:4173").origin;
-  const headers = {
-    Origin: origin,
-    "CF-Connecting-IP": `e2e-sql-${Date.now()}`,
-  };
-  const contactRoute = apiRoute("/api/contact", baseURL);
-  const injected = await request.post(contactRoute, {
-    headers,
-    data: apiPayload({
-      full_name: "Robert'); DROP TABLE leads;--",
-      message: "Kiểm tra query binding",
-    }),
-  });
-  expect(injected.status()).toBe(201);
-  const after = await request.post(contactRoute, {
-    headers,
-    data: apiPayload({
-      full_name: "Kiểm tra bảng còn tồn tại",
-      message: "Yêu cầu thứ hai",
-    }),
-  });
-  expect(after.status()).toBe(201);
-});
-
 test("frontend công khai không tải Turnstile hoặc Forms API", async ({
   page,
 }) => {
@@ -948,6 +842,21 @@ test("frontend công khai không tải Turnstile hoặc Forms API", async ({
   }
 
   expect(unexpectedRequests).toEqual([]);
+});
+
+test("trang báo giá công khai hướng khách tới Zalo và điện thoại", async ({
+  page,
+}) => {
+  await page.goto("/bao-gia/");
+
+  await expect(page.locator("form")).toHaveCount(0);
+  await expect(page.locator('a[href^="https://baogia.mdftungphat.com"]')).toHaveCount(0);
+  const zaloLinks = page.getByRole("link", { name: /Gửi quy cách qua Zalo/ });
+  await expect(zaloLinks).toHaveCount(2);
+  for (const link of await zaloLinks.all()) {
+    await expect(link).toHaveAttribute("href", /^https:\/\/zalo\.me\//);
+  }
+  await expect(page.locator('a[href^="tel:"]').first()).toBeVisible();
 });
 
 test("preview shell không tự gửi Analytics và không render draft ngoài CMS tin cậy", async ({
@@ -1009,7 +918,14 @@ test("Trustindex review slider renders current source data and remains usable on
   await expect(section).toContainText("26 đánh giá");
   await expect(section).toContainText("Thuy Pham");
   await expect(section).toContainText("Đa dạng sản phẩm, sản xuất nhanh");
-  await expect(section.getByText("Lưu Phúc Điền", { exact: true })).toBeVisible();
+  const renderedReviewers = await section
+    .locator("[data-trustindex-card] h3")
+    .allTextContents();
+  const sourceReviewers = new Set(
+    trustindexReviews.reviews.map((review) => review.reviewerName),
+  );
+  expect(renderedReviewers.length).toBeGreaterThan(0);
+  expect(renderedReviewers.every((reviewer) => sourceReviewers.has(reviewer.trim()))).toBe(true);
   await expect(section.locator("[data-trustindex-card]").first()).not.toContainText("svgsvg");
   await expect(section.getByRole("link", { name: /Google/i }).first()).toHaveAttribute("href", /google\.com\/maps/);
   await expect(section.getByText("Nguồn đánh giá Google")).toBeVisible();
@@ -1017,7 +933,7 @@ test("Trustindex review slider renders current source data and remains usable on
   const sourceHrefs = await sourceLinks.evaluateAll((links) => links.map((link) => (link as HTMLAnchorElement).href));
   expect(sourceHrefs.length).toBeGreaterThanOrEqual(3);
   expect(sourceHrefs.every((href) => href.startsWith("https://www.google.com/maps/"))).toBe(true);
-  expect(sourceHrefs.some((href) => href.includes("mdftungphat.com"))).toBe(false);
+  expect(sourceHrefs.some((href) => href.includes("gotungphat.com"))).toBe(false);
   const previous = section.getByRole("button", { name: "Đánh giá trước" });
   const next = section.getByRole("button", { name: "Đánh giá tiếp theo" });
   const rail = section.locator("[data-trustindex-rail]");

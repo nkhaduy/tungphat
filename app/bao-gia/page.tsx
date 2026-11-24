@@ -1,13 +1,11 @@
 import Link from "next/link";
-import { ArrowRight, Check, MessageCircle, Phone } from "lucide-react";
+import { Check, MessageCircle, Phone } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteShell } from "@/components/site/SiteShell";
 import { TrackedLink } from "@/components/TrackedLink";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { PHONE_DISPLAY, PHONE_HREF, ZALO_URL, breadcrumbSchema, createPageMetadata, webPageSchema } from "@/lib/seo";
-
-const QUOTE_APP_URL = "https://baogia.mdftungphat.com";
 
 export const metadata = createPageMetadata({
   title: "Báo giá ván MDF, MFC và gia công CNC TP.HCM",
@@ -40,7 +38,7 @@ export default function QuotePage() {
         breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Báo giá MDF, MFC", path: "/bao-gia" }]),
       ]} />
       <SiteShell>
-        <PageHero compact breadcrumbs={[{ label: "Trang chủ", href: "/" }, { label: "Báo giá MDF, MFC" }]} eyebrow="Báo giá theo quy cách thực tế" title="Báo giá ván MDF, MFC & gia công CNC" description={description} actions={<><a href={QUOTE_APP_URL} target="_blank" rel="noopener noreferrer" className="pressable inline-flex min-h-14 items-center justify-center gap-2 bg-wood-600 px-6 text-sm font-extrabold text-white hover:bg-wood-700">Mở công cụ báo giá <ArrowRight size={17} aria-hidden="true" /></a><TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "quote_hero", channel: "zalo" }} className="pressable inline-flex min-h-14 items-center justify-center gap-2 border border-forest-900/20 bg-white px-6 text-sm font-extrabold text-forest-950"><MessageCircle size={18} aria-hidden="true" />Gửi quy cách qua Zalo</TrackedLink></>} />
+        <PageHero compact breadcrumbs={[{ label: "Trang chủ", href: "/" }, { label: "Báo giá MDF, MFC" }]} eyebrow="Báo giá theo quy cách thực tế" title="Báo giá ván MDF, MFC & gia công CNC" description={description} actions={<><TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "quote_hero", channel: "zalo" }} className="pressable inline-flex min-h-14 items-center justify-center gap-2 bg-wood-600 px-6 text-sm font-extrabold text-white hover:bg-wood-700"><MessageCircle size={18} aria-hidden="true" />Gửi quy cách qua Zalo</TrackedLink><TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: "quote_hero" }} className="pressable inline-flex min-h-14 items-center justify-center gap-2 border border-forest-900/20 bg-white px-6 text-sm font-extrabold text-forest-950"><Phone size={18} aria-hidden="true" />Gọi {PHONE_DISPLAY}</TrackedLink></>} />
 
         <section className="section-space bg-[#f7f8f5]">
           <div className="container-shell">
@@ -59,9 +57,9 @@ export default function QuotePage() {
             </div>
             <div className="border border-forest-900/10 bg-[#edf4ef] p-7 sm:p-9">
               <h2 className="text-2xl font-extrabold text-forest-950">Chọn cách nhận báo giá</h2>
-              <p className="mt-4 leading-7 text-slate-700">Dùng công cụ báo giá để chuẩn bị danh sách vật liệu, hoặc liên hệ trực tiếp khi cần đối chiếu mã màu và yêu cầu CNC.</p>
+              <p className="mt-4 leading-7 text-slate-700">Gửi loại vật liệu, quy cách và số lượng qua Zalo để Tùng Phát kiểm tra báo giá. Nếu cần trao đổi trực tiếp, bạn có thể gọi điện.</p>
               <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                <a href={QUOTE_APP_URL} target="_blank" rel="noopener noreferrer" className="pressable inline-flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-6 text-sm font-extrabold text-white hover:bg-wood-600">Xem bảng giá đang áp dụng <ArrowRight size={17} aria-hidden="true" /></a>
+                <TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "quote_page", channel: "zalo" }} className="pressable inline-flex min-h-14 items-center justify-center gap-2 bg-wood-500 px-6 text-sm font-extrabold text-white hover:bg-wood-600"><MessageCircle size={18} aria-hidden="true" />Gửi quy cách qua Zalo</TrackedLink>
                 <TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: "quote_page" }} className="pressable inline-flex min-h-14 items-center justify-center gap-2 border border-forest-900/20 bg-white px-6 text-sm font-extrabold text-forest-950"><Phone size={18} aria-hidden="true" />Gọi {PHONE_DISPLAY}</TrackedLink>
               </div>
               <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm font-extrabold text-forest-950">
