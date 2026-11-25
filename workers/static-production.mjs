@@ -1,19 +1,45 @@
 const PRODUCTION_CMS_ORIGIN = "https://cms.mdftungphat.com";
+const STAGING_CMS_ORIGIN = "https://tungphat-payload-cms-staging.nkhaduy.workers.dev";
 
-export default {
+const staticWorker = {
   async fetch(request, env) {
     const incoming = new URL(request.url);
-    const analyticsOrigin = env.ANALYTICS_ORIGIN || env.CMS_ORIGIN || PRODUCTION_CMS_ORIGIN;
+    const isReleaseStaging = env.RELEASE_STAGING === "true";
+    const applyStagingNoIndex = (response) => {
+      if (!isReleaseStaging) return response;
+      const headers = new Headers(response.headers);
+      headers.set("X-Robots-Tag", "noindex, nofollow");
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers,
+      });
+    };
+
+    if (isReleaseStaging && incoming.pathname === "/robots.txt") {
+      return applyStagingNoIndex(
+        new Response("User-agent: *\nDisallow: /\n", {
+          headers: { "Content-Type": "text/plain; charset=utf-8" },
+        }),
+      );
+    }
+
+    // Keep staging writes isolated even if its deploy-time analytics vars are missing or wrong.
+    const analyticsOrigin = isReleaseStaging
+      ? STAGING_CMS_ORIGIN
+      : env.ANALYTICS_ORIGIN || env.CMS_ORIGIN || PRODUCTION_CMS_ORIGIN;
     const mediaOrigin = env.MEDIA_ORIGIN || env.CMS_ORIGIN || PRODUCTION_CMS_ORIGIN;
 
     if (incoming.pathname === "/api/analytics/track") {
       if (request.method !== "POST") {
-        return new Response(null, { status: 405, headers: { Allow: "POST" } });
+        return applyStagingNoIndex(
+          new Response(null, { status: 405, headers: { Allow: "POST" } }),
+        );
       }
 
       const contentType = request.headers.get("content-type") || "text/plain;charset=UTF-8";
       if (!/^(?:text\/plain|application\/json)(?:;|$)/i.test(contentType)) {
-        return new Response(null, { status: 415 });
+        return applyStagingNoIndex(new Response(null, { status: 415 }));
       }
 
       try {
@@ -26,20 +52,28 @@ export default {
           signal: AbortSignal.timeout(15_000),
         });
         if (typeof env.ANALYTICS_SERVICE?.fetch === "function") {
-          return await env.ANALYTICS_SERVICE.fetch(analyticsRequest);
+          return applyStagingNoIndex(
+            await env.ANALYTICS_SERVICE.fetch(analyticsRequest),
+          );
         }
-        return await fetch(analyticsRequest);
+        return applyStagingNoIndex(await fetch(analyticsRequest));
       } catch {
-        return new Response(null, { status: 502, headers: { "Cache-Control": "no-store" } });
+        return applyStagingNoIndex(
+          new Response(null, { status: 502, headers: { "Cache-Control": "no-store" } }),
+        );
       }
     }
 
-    if (!incoming.pathname.startsWith("/catalog/")) return env.ASSETS.fetch(request);
+    if (!incoming.pathname.startsWith("/catalog/")) {
+      return applyStagingNoIndex(await env.ASSETS.fetch(request));
+    }
     if (request.method !== "GET" && request.method !== "HEAD") {
-      return new Response(null, {
-        status: 405,
-        headers: { Allow: "GET, HEAD", "X-Content-Type-Options": "nosniff" },
-      });
+      return applyStagingNoIndex(
+        new Response(null, {
+          status: 405,
+          headers: { Allow: "GET, HEAD", "X-Content-Type-Options": "nosniff" },
+        }),
+      );
     }
 
     const upstream = new URL(mediaOrigin);
@@ -52,17 +86,21 @@ export default {
     }
 
     try {
-      return await fetch(new Request(upstream, {
+      return applyStagingNoIndex(await fetch(new Request(upstream, {
         method: request.method,
         headers,
         redirect: "manual",
         signal: AbortSignal.timeout(15_000),
-      }));
+      })));
     } catch {
-      return new Response("Media origin unavailable", {
-        status: 502,
-        headers: { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" },
-      });
+      return applyStagingNoIndex(
+        new Response("Media origin unavailable", {
+          status: 502,
+          headers: { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" },
+        }),
+      );
     }
   },
 };
+
+export default staticWorker;
