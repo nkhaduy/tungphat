@@ -1,13 +1,26 @@
 import { expect, test } from "@playwright/test";
 
+const isReleaseStaging =
+  new URL(
+    process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:4173",
+  ).hostname === "tungphat-release-staging-20261123.nkhaduy.workers.dev";
+
 test("canonical catalogue stays indexable while filter URLs are crawlable and noindexed after hydration", async ({ page, request }) => {
   const robots = await (await request.get("/robots.txt")).text();
-  expect(robots).toContain("Allow: /catalogue/*?supplier=");
-  expect(robots).toContain("Allow: /catalogue/*?material=");
-  expect(robots).toContain("Allow: /catalogue/*?query=");
-  expect(robots).not.toContain("Allow: /catalogue/*?search=");
+  if (isReleaseStaging) {
+    expect(robots).toContain("Allow: /");
+    expect(robots).not.toContain("Sitemap:");
+  } else {
+    expect(robots).toContain("Allow: /catalogue/*?supplier=");
+    expect(robots).toContain("Allow: /catalogue/*?material=");
+    expect(robots).toContain("Allow: /catalogue/*?query=");
+    expect(robots).not.toContain("Allow: /catalogue/*?search=");
+  }
 
-  await page.goto("/catalogue/");
+  const catalogueResponse = await page.goto("/catalogue/");
+  if (isReleaseStaging) {
+    expect(catalogueResponse?.headers()["x-robots-tag"]).toContain("noindex");
+  }
   await expect(page.getByRole("heading", { name: /\d[\d.]* mã màu/ })).toBeVisible();
   await expect(page).toHaveURL(/\/catalogue\/$/);
   await expect(page.locator('meta[name="robots"][content*="noindex"]')).toHaveCount(0);

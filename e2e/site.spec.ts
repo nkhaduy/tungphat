@@ -3,6 +3,11 @@ import AxeBuilder from "@axe-core/playwright";
 import { readFileSync } from "node:fs";
 import trustindexReviews from "../data/trustindex-reviews.json";
 
+const isReleaseStaging =
+  new URL(
+    process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:4173",
+  ).hostname === "tungphat-release-staging-20261123.nkhaduy.workers.dev";
+
 const publicRoutes = [
   "/",
   "/san-pham/",
@@ -570,9 +575,16 @@ test("robots, sitemap, Vercel admin redirect và 404 đúng", async ({
   request,
 }) => {
   const robots = await request.get("/robots.txt");
-  expect(await robots.text()).toContain(
-    "Sitemap: https://gotungphat.com/sitemap.xml",
-  );
+  const robotsText = await robots.text();
+  if (isReleaseStaging) {
+    expect(robotsText).toContain("Allow: /");
+    expect(robotsText).not.toContain("Sitemap:");
+    expect(robots.headers()["x-robots-tag"]).toContain("noindex");
+  } else {
+    expect(robotsText).toContain(
+      "Sitemap: https://gotungphat.com/sitemap.xml",
+    );
+  }
   const sitemap = await request.get("/sitemap.xml");
   const xml = await sitemap.text();
   expect(xml).toContain("https://gotungphat.com/go-ghep");

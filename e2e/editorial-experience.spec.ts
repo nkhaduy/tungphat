@@ -101,6 +101,7 @@ test("every published article uses the shared editorial layout and remains respo
       await page.emulateMedia({ reducedMotion: "reduce" });
       await page.evaluate(async () => {
         await document.fonts.ready;
+        await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
       });
       const disclosure = page.locator(".editorial-toc__disclosure");
       const summary = disclosure.locator("summary");
