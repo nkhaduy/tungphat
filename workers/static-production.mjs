@@ -1,14 +1,31 @@
 const PRODUCTION_CMS_ORIGIN = "https://cms.mdftungphat.com";
 const STAGING_CMS_ORIGIN = "https://tungphat-payload-cms-staging.nkhaduy.workers.dev";
+const SECURITY_HEADERS = {
+  "X-Content-Type-Options": "nosniff",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+  "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://cdn.mdftungphat.com https://cms.mdftungphat.com https://media.mdftungphat.com https://*.googleusercontent.com https://www.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://cms.mdftungphat.com https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://www.google.com https://challenges.cloudflare.com; frame-src https://www.google.com https://challenges.cloudflare.com; media-src 'self' https://cdn.mdftungphat.com https://cms.mdftungphat.com https://media.mdftungphat.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self' https://cms.mdftungphat.com https://tungphat-cms.pages.dev https://preview.tungphat-cms.pages.dev http://127.0.0.1:4174 http://localhost:4174; form-action 'self'; upgrade-insecure-requests",
+};
 
 const staticWorker = {
   async fetch(request, env) {
     const incoming = new URL(request.url);
     const isReleaseStaging = env.RELEASE_STAGING === "true";
-    const applyStagingNoIndex = (response) => {
-      if (!isReleaseStaging) return response;
+    const isAnalyticsEndpoint = incoming.pathname === "/api/analytics/track";
+    const applyWorkerHeaders = (response) => {
       const headers = new Headers(response.headers);
-      headers.set("X-Robots-Tag", "noindex, nofollow");
+      for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
+        if (!headers.has(name)) headers.set(name, value);
+      }
+      if (incoming.protocol === "https:" && !headers.has("Strict-Transport-Security")) {
+        headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+      }
+      if (isReleaseStaging || isAnalyticsEndpoint) {
+        headers.set("X-Robots-Tag", "noindex, nofollow");
+      }
+      if (isAnalyticsEndpoint && !headers.has("Cache-Control")) {
+        headers.set("Cache-Control", "no-store");
+      }
       return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
@@ -17,8 +34,8 @@ const staticWorker = {
     };
 
     if (isReleaseStaging && incoming.pathname === "/robots.txt") {
-      return applyStagingNoIndex(
-        new Response("User-agent: *\nDisallow: /\n", {
+      return applyWorkerHeaders(
+        new Response("User-agent: *\nAllow: /\n", {
           headers: { "Content-Type": "text/plain; charset=utf-8" },
         }),
       );
@@ -32,14 +49,14 @@ const staticWorker = {
 
     if (incoming.pathname === "/api/analytics/track") {
       if (request.method !== "POST") {
-        return applyStagingNoIndex(
+        return applyWorkerHeaders(
           new Response(null, { status: 405, headers: { Allow: "POST" } }),
         );
       }
 
       const contentType = request.headers.get("content-type") || "text/plain;charset=UTF-8";
       if (!/^(?:text\/plain|application\/json)(?:;|$)/i.test(contentType)) {
-        return applyStagingNoIndex(new Response(null, { status: 415 }));
+        return applyWorkerHeaders(new Response(null, { status: 415 }));
       }
 
       try {
@@ -52,23 +69,23 @@ const staticWorker = {
           signal: AbortSignal.timeout(15_000),
         });
         if (typeof env.ANALYTICS_SERVICE?.fetch === "function") {
-          return applyStagingNoIndex(
+          return applyWorkerHeaders(
             await env.ANALYTICS_SERVICE.fetch(analyticsRequest),
           );
         }
-        return applyStagingNoIndex(await fetch(analyticsRequest));
+        return applyWorkerHeaders(await fetch(analyticsRequest));
       } catch {
-        return applyStagingNoIndex(
+        return applyWorkerHeaders(
           new Response(null, { status: 502, headers: { "Cache-Control": "no-store" } }),
         );
       }
     }
 
     if (!incoming.pathname.startsWith("/catalog/")) {
-      return applyStagingNoIndex(await env.ASSETS.fetch(request));
+      return applyWorkerHeaders(await env.ASSETS.fetch(request));
     }
     if (request.method !== "GET" && request.method !== "HEAD") {
-      return applyStagingNoIndex(
+      return applyWorkerHeaders(
         new Response(null, {
           status: 405,
           headers: { Allow: "GET, HEAD", "X-Content-Type-Options": "nosniff" },
@@ -86,14 +103,14 @@ const staticWorker = {
     }
 
     try {
-      return applyStagingNoIndex(await fetch(new Request(upstream, {
+      return applyWorkerHeaders(await fetch(new Request(upstream, {
         method: request.method,
         headers,
         redirect: "manual",
         signal: AbortSignal.timeout(15_000),
       })));
     } catch {
-      return applyStagingNoIndex(
+      return applyWorkerHeaders(
         new Response("Media origin unavailable", {
           status: 502,
           headers: { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" },

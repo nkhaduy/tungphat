@@ -88,8 +88,55 @@ describe("static Worker analytics forwarding", () => {
   });
 });
 
+describe("static Worker proxy response headers", () => {
+  it("keeps shared security headers and noindex on analytics/media proxy responses", async () => {
+    const networkFetch = vi.fn(async () => new Response("ok", { status: 201 }));
+    vi.stubGlobal("fetch", networkFetch);
+
+    const analytics = await worker.fetch(
+      new Request("https://gotungphat.com/api/analytics/track", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ event_name: "page_view" }),
+      }),
+      {
+        ASSETS: { fetch: vi.fn() },
+        ANALYTICS_ORIGIN: "https://cms.mdftungphat.com",
+      },
+    );
+
+    const media = await worker.fetch(
+      new Request("https://gotungphat.com/catalog/test.webp"),
+      {
+        ASSETS: { fetch: vi.fn() },
+        MEDIA_ORIGIN: "https://cms.mdftungphat.com",
+      },
+    );
+
+    for (const response of [analytics, media]) {
+      expect(response.headers.get("X-Content-Type-Options")).toBe("nosniff");
+      expect(response.headers.get("Referrer-Policy")).toBe(
+        "strict-origin-when-cross-origin",
+      );
+      expect(response.headers.get("Permissions-Policy")).toBe(
+        "camera=(), microphone=(), geolocation=()",
+      );
+      expect(response.headers.get("Strict-Transport-Security")).toBe(
+        "max-age=31536000; includeSubDomains",
+      );
+      expect(response.headers.get("Content-Security-Policy")).toContain(
+        "default-src 'self'",
+      );
+    }
+
+    expect(analytics.headers.get("X-Robots-Tag")).toBe("noindex, nofollow");
+    expect(analytics.headers.get("Cache-Control")).toBe("no-store");
+    expect(networkFetch).toHaveBeenCalledTimes(2);
+  });
+});
+
 describe("static Worker staging indexability", () => {
-  it("serves a disallow-all robots file and noindex header only on staging", async () => {
+  it("lets crawlers read staging noindex headers without publishing a sitemap", async () => {
     const assetsFetch = vi.fn(
       async () =>
         new Response("<main>Trang kiểm thử</main>", {
@@ -103,7 +150,7 @@ describe("static Worker staging indexability", () => {
       env,
     );
     expect(robots.status).toBe(200);
-    expect(await robots.text()).toBe("User-agent: *\nDisallow: /\n");
+    expect(await robots.text()).toBe("User-agent: *\nAllow: /\n");
     expect(robots.headers.get("X-Robots-Tag")).toBe("noindex, nofollow");
     expect(assetsFetch).not.toHaveBeenCalled();
 
