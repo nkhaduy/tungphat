@@ -17,6 +17,7 @@
     "verify": "npm run lint && npm run typecheck && npm test && npm run catalog:suppliers:validate && npm run catalog:suppliers:test && npm --prefix payload-cms run verify && npm run build && npm run validate:links && git diff --check",
     "deploy:site": "npm run verify && wrangler deploy --config wrangler.static-production.jsonc",
     "deploy:site:staging": "npm run verify && wrangler deploy --config wrangler.static-staging.jsonc",
+    "release:manifest": "node scripts/create-static-release-manifest.mjs",
     "deploy:cloudflare:preview": "npm run verify && wrangler pages deploy out --project-name tungphat-website --branch cloudflare-migration",
     "deploy:cloudflare": "npm run verify && wrangler pages deploy out --project-name tungphat-website --branch main",
     "deploy:cms": "npm --prefix payload-cms run deploy:verified",

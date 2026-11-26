@@ -10,12 +10,12 @@ test.describe("Mã màu customer journeys", () => {
     await page.goto("/");
 
     const nav = page.getByRole("navigation", { name: "Điều hướng chính" });
-    await nav.getByRole("button", { name: "Mã màu / Catalogue", exact: true }).click();
+    await nav.getByRole("button", { name: "Mã màu", exact: true }).click();
     await expect(nav.getByRole("link", { name: "Tìm mã màu", exact: true })).toHaveAttribute("href", "/catalogue/");
     await expect(
       page
         .getByRole("contentinfo")
-        .getByRole("link", { name: "Mã màu / Catalogue", exact: true }),
+        .getByRole("link", { name: "Mã màu", exact: true }),
     ).toHaveAttribute("href", "/catalogue/");
   });
 
@@ -394,7 +394,7 @@ test.describe("Mã màu mobile navigation", () => {
         .getByRole("dialog", {
           name: "Điều hướng di động",
         })
-        .getByRole("link", { name: "Mã màu / Catalogue", exact: true }),
+        .getByRole("link", { name: "Mã màu", exact: true }),
     ).toHaveAttribute("href", "/catalogue/");
     await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
 

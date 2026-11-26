@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { coreMaterialCards, surfaceCatalogueCards } from "@/lib/product-taxonomy";
+import { homeProductCards } from "@/lib/product-taxonomy";
 
 describe("material discovery redesign", () => {
   const hero = readFileSync("components/home/HomeHero.tsx", "utf8");
@@ -11,7 +11,8 @@ describe("material discovery redesign", () => {
   it("restores the supplied board hero while preserving working discovery and quote actions", () => {
     expect(hero).toContain("bg-white");
     expect(hero).toContain("material-panels-hero.webp");
-    expect(hero).toContain('href="#ma-mau"');
+    expect(hero).toContain("DEFAULT_CATALOGUE_URL");
+    expect(hero).toContain("prefetch={false}");
     expect(hero).toContain("ZALO_URL");
     expect(hero).toContain('fetchPriority="high"');
   });
@@ -20,15 +21,13 @@ describe("material discovery redesign", () => {
     expect(home).toContain("getPublicColorCodes");
     expect(home).toContain('featuredCodes("thanh-thuy", 8)');
     expect(home).toContain('featuredCodes("ba-thanh", 8)');
-    expect(home).toContain("FAQ");
+    expect(home).toContain('href="/catalogue/?supplier=thanh-thuy"');
   });
 
   it("links discovery to useful material routes", () => {
-    const cards = [...coreMaterialCards, ...surfaceCatalogueCards];
-    expect(cards.length).toBeGreaterThanOrEqual(10);
-    expect(new Set(cards.map((card) => card.id)).size).toBe(cards.length);
-    expect(cards.every((card) => card.href.startsWith("/") && card.image && card.alt)).toBe(true);
-    expect(surfaceCatalogueCards.filter((card) => ["melamine", "laminate", "acrylic"].includes(card.id)).every((card) => card.href.includes("thanh-thuy"))).toBe(true);
+    expect(homeProductCards).toHaveLength(10);
+    expect(new Set(homeProductCards.map((card) => card.id)).size).toBe(10);
+    expect(homeProductCards.every((card) => card.href.startsWith("/") && card.image.startsWith("/sanpham-media/") && card.alt.length > 20)).toBe(true);
   });
 
   it("explains the different counts used by brand pages and color-code catalogues", () => {
