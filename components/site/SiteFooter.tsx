@@ -5,7 +5,9 @@ import { TrackedLink } from "@/components/TrackedLink";
 import { LocalizedText } from "@/components/site/LocalizedText";
 import business from "@/content/settings/business.json";
 import { branchPathForLocationId } from "@/lib/branch-pages";
-import { PHONE_HREF, ZALO_URL } from "@/lib/seo";
+import { PHONE_HREF, SITE_URL, ZALO_URL } from "@/lib/seo";
+
+const publicHostname = new URL(SITE_URL).hostname;
 
 const materialLinks = [
   ["Ván MDF", "/van-mdf"],
@@ -52,8 +54,8 @@ export function SiteFooter() {
             {navigationLinks.map(([label, href]) => <Link key={label} href={href} prefetch={href === "/catalogue" ? false : undefined} className="flex min-h-11 items-center text-sm text-slate-700 hover:text-wood-600">{label}</Link>)}
           </nav>
           <nav aria-label="Chính sách" className="mt-4 grid gap-1 text-xs text-slate-600">
-            <Link href="/chinh-sach-bao-mat" className="flex min-h-10 items-center hover:text-wood-600"><LocalizedText vi="Chính sách bảo mật" en="Privacy Policy" /></Link>
-            <Link href="/dieu-khoan-su-dung" className="flex min-h-10 items-center hover:text-wood-600"><LocalizedText vi="Điều khoản sử dụng" en="Terms of Use" /></Link>
+            <Link href="/chinh-sach-bao-mat" className="flex min-h-11 items-center hover:text-wood-600"><LocalizedText vi="Chính sách bảo mật" en="Privacy Policy" /></Link>
+            <Link href="/dieu-khoan-su-dung" className="flex min-h-11 items-center hover:text-wood-600"><LocalizedText vi="Điều khoản sử dụng" en="Terms of Use" /></Link>
           </nav>
         </div>
 
@@ -89,7 +91,7 @@ export function SiteFooter() {
       <div className="border-t border-slate-200 bg-white py-4 text-slate-600">
         <div className="container-shell flex flex-col gap-2 text-xs sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 {business.businessName} · MST {business.taxId}</span>
-          <Link href="/" className="min-h-11 content-center hover:text-slate-950">mdftungphat.com</Link>
+          <Link href="/" className="min-h-11 content-center hover:text-slate-950">{publicHostname}</Link>
         </div>
       </div>
     </footer>

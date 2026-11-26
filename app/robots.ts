@@ -7,7 +7,21 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: "/",
+      // Static export cannot vary the initial meta robots tag by query string.
+      // Let crawlers render catalogue filter URLs so the client can apply noindex after hydration.
+      allow: [
+        "/",
+        "/catalogue/*?q=",
+        "/catalogue/*?query=",
+        "/catalogue/*?supplier=",
+        "/catalogue/*?material=",
+        "/catalogue/*?pattern=",
+        "/catalogue/*?surface=",
+        "/catalogue/*?sort=",
+        "/catalogue/*?type=",
+        "/catalogue/*?group=",
+        "/catalogue/*?category=",
+      ],
       disallow: [
         "/api/",
         "/admin/",
@@ -21,6 +35,10 @@ export default function robots(): MetadataRoute.Robots {
         "/*?query=",
         "/*?category=",
         "/*?sort=",
+        "/*?supplier=",
+        "/*?material=",
+        "/*?pattern=",
+        "/*?surface=",
       ]
     },
     sitemap: `${SITE_URL}/sitemap.xml`

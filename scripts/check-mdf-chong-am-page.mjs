@@ -7,7 +7,7 @@ import {
   headingHierarchyErrors,
 } from "./lib/product-page-audit.mjs";
 
-const canonicalUrl = "https://mdftungphat.com/mdf-chong-am/";
+const canonicalUrl = "https://gotungphat.com/mdf-chong-am/";
 const routePath = "/mdf-chong-am/";
 const baselineWords = 435;
 const requiredLinks = ["/van-mdf/", "/gia-cong-cnc-mdf/"];

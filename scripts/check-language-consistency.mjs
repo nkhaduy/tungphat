@@ -4,7 +4,7 @@ import path from "node:path";
 import process from "node:process";
 import { chromium } from "playwright";
 
-const CANONICAL_ORIGIN = "https://mdftungphat.com";
+const CANONICAL_ORIGIN = "https://gotungphat.com";
 const EXPECTED_PROTECTED_HASH = "ee572e5e90440382d341ec9480a728b047997ed305981e2227043d58db82b9c2";
 const EXPECTED_QUOTE_APP = {
   fileCount: 14252,

@@ -30,8 +30,8 @@ describe("branch landing page model", () => {
       buildLocalBusinessSchema(location, "/chi-nhanh/14-tam-binh/"),
     ).toMatchObject({
       "@type": "LocalBusiness",
-      "@id": "https://mdftungphat.com/chi-nhanh/14-tam-binh/#local-business",
-      url: "https://mdftungphat.com/chi-nhanh/14-tam-binh/",
+      "@id": "https://gotungphat.com/chi-nhanh/14-tam-binh/#local-business",
+      url: "https://gotungphat.com/chi-nhanh/14-tam-binh/",
       hasMap: location.directionsUrl,
       address: {
         "@type": "PostalAddress",

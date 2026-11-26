@@ -35,7 +35,7 @@ const titles = new Set();
 const descriptions = new Set();
 for (const route of indexableRoutes) {
   const html = htmlFor(route);
-  const expectedCanonical = `https://mdftungphat.com${route}`;
+  const expectedCanonical = `https://gotungphat.com${route}`;
   if (canonical(html) !== expectedCanonical) errors.push(`Canonical sai ${route}: ${canonical(html)}`);
   if ((html.match(/<h1\b/gi) || []).length !== 1) errors.push(`H1 không duy nhất: ${route}`);
   if (!title(html) || titles.has(title(html))) errors.push(`Title thiếu/trùng: ${route}`);
@@ -67,8 +67,8 @@ if (/src=["']https?:\/\/www\.gothanhthuy\.com/i.test(catalogueHtml)) errors.push
 if (/1900633668|2827\/3A Quốc Lộ/i.test(catalogueHtml)) errors.push("Phát hiện thông tin liên hệ nhà cung cấp trong output.");
 
 const sitemap = fs.readFileSync(path.join(out, "sitemap.xml"), "utf8");
-for (const route of indexableRoutes) if (!sitemap.includes(`https://mdftungphat.com${route}`)) errors.push(`Sitemap thiếu: ${route}`);
-for (const product of noindex.slice(0, 20)) if (sitemap.includes(`https://mdftungphat.com${routeForProduct(product)}`)) errors.push(`Sitemap chứa noindex: ${product.slug}`);
+for (const route of indexableRoutes) if (!sitemap.includes(`https://gotungphat.com${route}`)) errors.push(`Sitemap thiếu: ${route}`);
+for (const product of noindex.slice(0, 20)) if (sitemap.includes(`https://gotungphat.com${routeForProduct(product)}`)) errors.push(`Sitemap chứa noindex: ${product.slug}`);
 if (/<loc>[^<]*\?|<loc>[^<]*gothanhthuy\.com/i.test(sitemap)) errors.push("Sitemap chứa query/source URL.");
 
 const robots = fs.readFileSync(path.join(out, "robots.txt"), "utf8");

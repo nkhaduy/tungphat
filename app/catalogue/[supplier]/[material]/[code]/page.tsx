@@ -13,6 +13,7 @@ import { breadcrumbSchema, createPageMetadata, ZALO_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { SiteShell } from "@/components/site/SiteShell";
 import { SupplierMediaGallery } from "@/components/catalog/SupplierMediaGallery";
+import { SupplierBrandLogo } from "@/components/catalog/SupplierBrandLogo";
 
 type RouteProps = { params: Promise<{ supplier: string; material: string; code: string }> };
 const imagePriority = ["swatch", "fullsheet", "actual-photo", "product", "application"] as const;
@@ -56,7 +57,10 @@ export default async function SupplierColorCodeRoute({ params }: RouteProps) {
         <div className="mt-7 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,.8fr)] lg:items-start">
           <div><SupplierMediaGallery images={galleryImages} /></div>
           <div className="border border-forest-900/10 bg-white p-6 shadow-card sm:p-8">
-            <p className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">{supplierName} · {materialLabel}</p>
+            <div className="flex items-center gap-3">
+              <SupplierBrandLogo supplierId={record.supplier} variant="detail" />
+              <p className="text-xs font-extrabold uppercase tracking-[.16em] text-wood-600">{supplierName} · {materialLabel}</p>
+            </div>
             <h1 className="mt-3 break-words text-3xl font-extrabold leading-tight text-forest-950" translate="no">{seo.h1}</h1>
             <p className="mt-3 text-sm leading-6 text-slate-700">Tra cứu mã bề mặt theo dữ liệu catalogue đã xác minh.</p>
             <dl className="mt-6 grid gap-3 text-sm text-slate-700"><div><dt className="font-bold text-forest-950">Mã</dt><dd translate="no">{record.codeRaw}</dd></div><div><dt className="font-bold text-forest-950">Tên</dt><dd>{record.displayName ?? record.codeRaw}</dd></div><div><dt className="font-bold text-forest-950">Bề mặt</dt><dd>{record.surfaceEffect || materialLabel}</dd></div><div><dt className="font-bold text-forest-950">Loại vân</dt><dd>{record.patternType || "Chưa công bố"}</dd></div><div><dt className="font-bold text-forest-950">Bộ sưu tập</dt><dd>{record.collection || "Chưa công bố"}</dd></div><div><dt className="font-bold text-forest-950">Nguồn catalogue</dt><dd><a href={record.sourceUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-wood-600 hover:text-wood-700">Mở nguồn</a></dd></div></dl>

@@ -7,26 +7,22 @@ import { supplierDefinitions } from "@/lib/catalog/core/registry";
 describe("catalogue hub customer journey", () => {
   it("renders search and primary selectors before supplier browsing", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
-    const heading = "Tra cứu mã màu";
-    const placeholder = "Nhập mã màu, tên màu hoặc thương hiệu...";
-    const selector = "Melamine";
+    const heading = "Bộ lọc";
+    const search = "Nhập mã hoặc tên màu";
+    const brand = "Thanh Thuỳ";
 
     expect(markup).toContain(heading);
-    expect(markup).toContain(placeholder);
-    expect(markup).toContain(selector);
-    expect(markup.indexOf(heading)).toBeLessThan(markup.indexOf(placeholder));
-    expect(markup.indexOf(placeholder)).toBeLessThan(markup.indexOf(selector));
-    expect(markup.indexOf("catalogue-filter-deck")).toBeLessThan(
-      markup.indexOf("Theo nhà cung cấp"),
-    );
+    expect(markup).toContain(search);
+    expect(markup).toContain(brand);
+    expect(markup.indexOf("catalogue-material-hero")).toBeLessThan(markup.indexOf(search));
+    expect(markup.indexOf(search)).toBeLessThan(markup.indexOf(heading));
+    expect(markup.indexOf(heading)).toBeLessThan(markup.indexOf("Theo nhà cung cấp"));
   });
 
   it("renders only one catalogue search interface", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
 
-    expect(
-      markup.match(/aria-label="Nhập mã màu, tên màu hoặc thương hiệu\.\.\."/g),
-    ).toHaveLength(1);
+    expect(markup.match(/id="catalogue-search"/g)).toHaveLength(1);
     expect(markup).not.toContain('data-testid="catalogue-search-floating"');
     expect(markup).not.toContain("inert=");
   });
@@ -34,7 +30,9 @@ describe("catalogue hub customer journey", () => {
   it("renders a full-bleed image hero before the separate search interface", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
 
-    expect(markup).toContain("%2Fimages%2Fmaterial-color-hero.webp");
+    expect(markup).toContain("/images/material-color-hero-780.avif 780w");
+    expect(markup).toContain("/images/material-color-hero-1170.avif 1170w");
+    expect(markup).toContain('src="/images/material-color-hero.webp"');
     expect(markup).toContain(
       'alt="Các tấm ván MDF phủ bề mặt với nhiều màu và vân gỗ"',
     );
@@ -43,19 +41,14 @@ describe("catalogue hub customer journey", () => {
     expect(markup).not.toContain(">Mã màu vật liệu</h1>");
     expect(markup).toContain('aria-label="Breadcrumb"');
     expect(markup).toContain("catalogue-hero-breadcrumb");
-    expect(markup).toContain("catalogue-search-panel");
-    expect(markup).toContain("catalogue-filter-deck");
+    expect(markup).toContain("id=\"catalogue-search\"");
+    expect(markup).toContain("aria-label=\"Bộ lọc catalogue\"");
     expect(markup).not.toContain("catalogue-liquid-glass");
     expect(markup).toContain("whitespace-nowrap");
     expect(markup.indexOf("catalogue-material-hero")).toBeLessThan(
-      markup.indexOf('aria-label="Nhập mã màu, tên màu hoặc thương hiệu..."'),
+      markup.indexOf('id="catalogue-search"'),
     );
-    expect(
-      markup.indexOf('aria-label="Nhập mã màu, tên màu hoặc thương hiệu..."'),
-    ).toBeLessThan(markup.indexOf("catalogue-filter-deck"));
-    expect(markup.indexOf("catalogue-search-panel")).toBeLessThan(
-      markup.indexOf("catalogue-filter-deck"),
-    );
+    expect(markup.indexOf('id="catalogue-search"')).toBeLessThan(markup.indexOf('aria-label="Bộ lọc catalogue"'));
     expect(markup).not.toContain("Tra cứu theo mã thực tế");
     expect(markup).not.toContain(
       "Tra nhanh mã, tên màu và thương hiệu từ thư viện vật liệu đã xác minh.",
@@ -65,17 +58,12 @@ describe("catalogue hub customer journey", () => {
   it("uses compact customer-facing labels without the ranking note", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
 
-    expect(markup).toContain(">Phân loại</p>");
-    expect(markup).toContain(">Theo thương hiệu</span>");
-    expect(markup.match(/>Theo thương hiệu<\/span>/g)).toHaveLength(1);
-    expect(markup).toContain(">Tất cả thương hiệu</option>");
-    expect(markup).not.toContain("Chọn nhóm vật liệu");
-    expect(markup).not.toContain("Lọc theo nhà cung cấp");
+    expect(markup).toContain("Lọc theo thương hiệu");
+    expect(markup).toContain("Loại mã / bề mặt");
+    expect(markup).toContain("Nhóm vân");
+    expect(markup).not.toContain("Tông màu");
+    expect(markup).not.toContain("Ứng dụng");
     expect(markup).not.toContain("Mặc định ưu tiên ý định tra mã Melamine");
-    expect(markup).toContain("catalogue-filter-row");
-    expect(markup).not.toContain("Kiểu vân / màu");
-    expect(markup).not.toContain("2.829</span>");
-    expect(markup).not.toContain("846</span>");
   });
 
   it("keeps the requested ma-mau URL as a permanent alias", () => {
@@ -97,7 +85,7 @@ describe("catalogue hub customer journey", () => {
   it("renders matching results before supplier sections", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
 
-    expect(markup.indexOf("Kết quả phù hợp")).toBeLessThan(
+    expect(markup.indexOf("2.910 mã màu")).toBeLessThan(
       markup.indexOf("Theo nhà cung cấp"),
     );
   });
@@ -121,14 +109,18 @@ describe("catalogue hub customer journey", () => {
 
   it("renders supplier logos and routes while deferring the full code grid", () => {
     const markup = renderToStaticMarkup(SupplierCataloguePage());
+    const explorer = readFileSync("components/catalog/shared/CatalogueResultsExplorer.tsx", "utf8");
 
     expect(markup).toContain("%2Fpartners%2Fthanh-thuy-logo.png");
-    expect(supplierDefinitions.map((supplier) => supplier.logoSrc)).toEqual([
-      "/partners/thanh-thuy-logo.png",
-      "/partners/ba-thanh-logo.png",
-      "/partners/an-cuong-logo.png",
-    ]);
+    expect(supplierDefinitions.map((supplier) => supplier.logoSrc)).toEqual(
+      expect.arrayContaining([
+        "/partners/thanh-thuy-logo.png",
+        "/partners/an-cuong-logo.png",
+        "/partners/ba-thanh-logo.png",
+      ]),
+    );
     expect(markup).toContain("Mở mã màu Thanh Thuỳ");
-    expect(markup).not.toContain('data-testid="catalogue-card-link"');
+    expect(markup.match(/data-testid="catalogue-card-link"/g)).toHaveLength(48);
+    expect(explorer).toContain("/data/catalogue-search-");
   });
 });

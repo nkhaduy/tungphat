@@ -30,7 +30,7 @@ describe("Thanh Thuy metadata", () => {
       "/san-pham/melamine/lp-101-104g/",
     );
     expect(metadata.alternates?.canonical).toBe(
-      "https://mdftungphat.com/san-pham/melamine/lp-101-104g/",
+      "https://gotungphat.com/san-pham/melamine/lp-101-104g/",
     );
     expect(metadata.title).toMatchObject({
       absolute: expect.stringContaining("LP 101/104G"),
@@ -49,7 +49,7 @@ describe("Thanh Thuy metadata", () => {
     );
     expect(metadata.robots).toMatchObject({ index: false, follow: false });
     expect(metadata.alternates?.canonical).toBe(
-      "https://mdftungphat.com/san-pham/melamine/lp-101-104g/",
+      "https://gotungphat.com/san-pham/melamine/lp-101-104g/",
     );
   });
 });
@@ -72,7 +72,7 @@ describe("Thanh Thuy JSON-LD", () => {
     expect(schema.sku).toBe("LP 101/104G");
     expect(schema.material).toBe("Melamine");
     expect(schema.url).toBe(
-      "https://mdftungphat.com/san-pham/melamine/lp-101-104g/",
+      "https://gotungphat.com/san-pham/melamine/lp-101-104g/",
     );
     expect(schema.brand).toEqual({ "@type": "Brand", name: "Thanh Thuỳ" });
     expect(schema).not.toHaveProperty("offers");
@@ -87,7 +87,7 @@ describe("Thanh Thuy JSON-LD", () => {
       Record<string, unknown>
     >;
     expect(breadcrumbItems[1].item).toBe(
-      "https://mdftungphat.com/san-pham/melamine/",
+      "https://gotungphat.com/san-pham/melamine/",
     );
 
     const itemList = createThanhThuyItemListSchema(
@@ -98,6 +98,6 @@ describe("Thanh Thuy JSON-LD", () => {
     const listItems = itemList.itemListElement as Array<
       Record<string, unknown>
     >;
-    expect(listItems[0].url).toContain("mdftungphat.com/san-pham/melamine/");
+    expect(listItems[0].url).toContain("gotungphat.com/san-pham/melamine/");
   });
 });

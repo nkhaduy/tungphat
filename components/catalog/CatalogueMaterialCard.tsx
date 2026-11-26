@@ -1,7 +1,7 @@
-import Image from "next/image";
+import { CatalogueDeferredImage } from "@/components/catalog/CatalogueDeferredImage";
+import { SupplierBrandLogo } from "@/components/catalog/SupplierBrandLogo";
 import Link from "next/link";
 import type { SupplierId } from "@/lib/catalog/core/types";
-import { supplierRegistry } from "@/lib/catalog/core/registry";
 import { resolveMediaUrl } from "@/lib/media";
 
 type CatalogueMaterialCardProps = {
@@ -13,7 +13,15 @@ type CatalogueMaterialCardProps = {
   taxonomy: string;
   thumbnail?: string;
   thumbnailAlt?: string;
+  deferImages?: boolean;
+  priorityImage?: boolean;
+  showSupplierLogo?: boolean;
+  showSupplierName?: boolean;
 };
+
+function CardImage({ defer, priority = false, fallbackLabel, ...props }: { defer: boolean; priority?: boolean; fallbackLabel?: string; src: string; alt: string; sizes: string; className: string }) {
+  return <CatalogueDeferredImage {...props} eager={!defer} priority={priority} fallbackLabel={fallbackLabel} />;
+}
 
 export function CatalogueMaterialCard({
   href,
@@ -24,9 +32,11 @@ export function CatalogueMaterialCard({
   taxonomy,
   thumbnail,
   thumbnailAlt = "",
+  deferImages = false,
+  priorityImage = false,
+  showSupplierLogo = true,
+  showSupplierName = false,
 }: CatalogueMaterialCardProps) {
-  const supplier = supplierRegistry.get(supplierId);
-
   return (
     <article className="catalogue-material-card group min-w-0 overflow-hidden rounded-lg border border-forest-900/10 bg-white shadow-[0_1px_2px_rgba(7,59,40,.04),0_7px_20px_rgba(7,59,40,.045)] transition-[transform,border-color,box-shadow] duration-200 motion-reduce:transition-none">
       <Link
@@ -35,41 +45,43 @@ export function CatalogueMaterialCard({
         aria-label={`${supplierName}, ${code ? `mã ${code}` : title}, xem chi tiết`}
         className="block h-full cursor-pointer rounded-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-wood-600"
       >
-        <div className="relative aspect-[4/3] overflow-hidden bg-[#e9ede8]">
+        <div className="relative aspect-[2/1] overflow-hidden bg-[#e9ede8]">
           {thumbnail ? (
-            <Image
+            <CardImage
+              defer={deferImages && !priorityImage}
+              priority={priorityImage}
               src={resolveMediaUrl(thumbnail)}
-              alt={thumbnailAlt}
-              fill
-              sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw"
+              alt={thumbnailAlt || `${supplierName}, mã ${code ?? title}: bề mặt vật liệu`}
+              sizes="(max-width: 639px) calc((100vw - 44px) / 2), (max-width: 1023px) calc((100vw - 72px) / 2), (max-width: 1279px) 34vw, (max-width: 1535px) 22vw, (max-width: 1919px) 16rem, 15rem"
               className="object-cover transition-transform duration-300 motion-reduce:transition-none"
+              fallbackLabel="Không tải được ảnh xem trước từ nguồn."
             />
           ) : (
-            <span className="grid h-full place-items-center px-3 text-center text-xs font-bold text-slate-600">
-              Nguồn chưa cung cấp ảnh màu
-            </span>
+            <>
+              <CardImage
+                defer={deferImages && !priorityImage}
+                priority={priorityImage}
+                src="/images/catalogue-preview-unavailable.svg"
+                alt=""
+                sizes="(max-width: 639px) calc((100vw - 44px) / 2), (max-width: 1023px) calc((100vw - 72px) / 2), (max-width: 1279px) 34vw, (max-width: 1535px) 22vw, (max-width: 1919px) 16rem, 15rem"
+                className="object-contain"
+              />
+              <span className="relative z-10 grid h-full place-items-center px-3 text-center text-xs font-bold text-slate-600">
+                Nguồn chưa cung cấp ảnh màu
+              </span>
+            </>
           )}
         </div>
         <div className="grid min-h-[6.75rem] grid-cols-[minmax(0,1fr)_auto] items-start gap-x-3 gap-y-1.5 p-4">
           <h3
-            className="line-clamp-2 min-w-0 text-base font-extrabold leading-[1.4] tracking-[-.015em] text-forest-950 transition-colors group-hover:text-wood-600 sm:text-[1.05rem]"
+            className={`${showSupplierLogo ? "" : "col-span-2"} line-clamp-2 min-w-0 text-base font-extrabold leading-[1.4] tracking-[-.015em] text-forest-950 transition-colors group-hover:text-wood-600 sm:text-[1.05rem]`}
             translate="no"
           >
             {title}
           </h3>
-          {supplier?.logoSrc ? (
-            <span className="relative mt-0.5 block h-8 w-16 shrink-0 sm:h-9 sm:w-24" aria-hidden="true">
-              <Image
-                src={supplier.logoSrc}
-                alt=""
-                fill
-                sizes="96px"
-                className="object-contain object-right"
-              />
-            </span>
-          ) : null}
+          {showSupplierLogo ? <SupplierBrandLogo supplierId={supplierId} /> : null}
           <p className="col-span-2 line-clamp-2 text-xs leading-5 text-slate-600">
-            {taxonomy}
+            {showSupplierName ? <><span className="font-medium text-slate-700">{supplierName}</span>{taxonomy ? " · " : ""}</> : null}{taxonomy}
           </p>
         </div>
       </Link>

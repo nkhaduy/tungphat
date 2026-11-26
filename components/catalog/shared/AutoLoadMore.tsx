@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 type AutoLoadMoreProps = {
   hasMore: boolean;
-  onLoadMore: () => void;
+  onLoadMore: () => void | Promise<void>;
   remaining: number;
   pageSize: number;
 };
@@ -23,14 +23,16 @@ export function AutoLoadMore({
   const loadingRef = useRef(false);
   const onLoadMoreRef = useRef(onLoadMore);
   const [isLoading, setIsLoading] = useState(false);
+  const [loadFailed, setLoadFailed] = useState(false);
   const [observerSupported, setObserverSupported] = useState<boolean | null>(null);
 
   useEffect(() => {
     onLoadMoreRef.current = onLoadMore;
   }, [onLoadMore]);
 
-  const requestLoadMore = useCallback(() => {
-    if (!hasMore || loadingRef.current) return;
+  const requestLoadMore = useCallback((explicitRetry = false) => {
+    if (!hasMore || loadingRef.current || (loadFailed && !explicitRetry)) return;
+    if (explicitRetry) setLoadFailed(false);
 
     loadingRef.current = true;
     setIsLoading(true);
@@ -43,19 +45,20 @@ export function AutoLoadMore({
       : LOAD_DELAY_MS;
 
     timerRef.current = window.setTimeout(() => {
-      onLoadMoreRef.current();
-      loadingRef.current = false;
-      setIsLoading(false);
-      timerRef.current = null;
+      Promise.resolve(onLoadMoreRef.current()).catch(() => setLoadFailed(true)).finally(() => {
+        loadingRef.current = false;
+        setIsLoading(false);
+        timerRef.current = null;
+      });
     }, delay);
-  }, [hasMore]);
+  }, [hasMore, loadFailed]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     const supported = typeof window.IntersectionObserver === "function";
     setObserverSupported(supported);
-    if (!supported || !hasMore || isLoading || !sentinelRef.current) return;
+    if (!supported || !hasMore || isLoading || loadFailed || !sentinelRef.current) return;
 
     const observer = new window.IntersectionObserver(
       (observerEntries) => {
@@ -67,7 +70,7 @@ export function AutoLoadMore({
     );
     observer.observe(sentinelRef.current);
     return () => observer.disconnect();
-  }, [hasMore, isLoading, requestLoadMore]);
+  }, [hasMore, isLoading, loadFailed, requestLoadMore]);
 
   useEffect(
     () => () => {
@@ -91,7 +94,7 @@ export function AutoLoadMore({
         aria-live="polite"
         className={isLoading ? "mx-auto mt-2 text-center text-sm font-bold text-forest-900" : "sr-only"}
       >
-        {isLoading ? "Đang tải thêm mã màu" : ""}
+        {isLoading ? "Đang tải thêm mã màu" : loadFailed ? "Tải mã màu chưa thành công." : ""}
       </p>
       {isLoading ? (
         <div
@@ -108,14 +111,14 @@ export function AutoLoadMore({
       ) : null}
       <button
         type="button"
-        onClick={requestLoadMore}
+        onClick={() => requestLoadMore(true)}
         className={
-          observerSupported === false
+          loadFailed || observerSupported === false
             ? "pressable mx-auto mt-4 flex min-h-12 items-center justify-center border border-forest-900/20 bg-white px-6 text-sm font-extrabold text-forest-950"
             : "sr-only focus:not-sr-only focus-visible:ring-2 focus-visible:ring-wood-500"
         }
       >
-        Tải thêm {Math.min(pageSize, remaining)} mã
+        {loadFailed ? "Thử tải lại" : `Tải thêm ${Math.min(pageSize, remaining)} mã`}
       </button>
     </div>
   );

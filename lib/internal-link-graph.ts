@@ -1,11 +1,14 @@
 export type InternalLinkPage = { url: string; html: string };
 type LinkType = "contextual" | "navigation" | "breadcrumb";
+import { LEGACY_SITE_HOSTS } from "@/lib/site-domain";
+import { SITE_URL } from "@/lib/seo";
 
 function normalizeInternalUrl(value: string) {
   if (!value || value.startsWith("#") || /^(mailto:|tel:|javascript:)/iu.test(value)) return null;
   try {
-    const url = new URL(value, "https://mdftungphat.com");
-    if (url.hostname !== "mdftungphat.com") return null;
+    const canonicalHost = new URL(SITE_URL).hostname;
+    const url = new URL(value, SITE_URL);
+    if (url.hostname !== canonicalHost && !LEGACY_SITE_HOSTS.includes(url.hostname as (typeof LEGACY_SITE_HOSTS)[number])) return null;
     const path = url.pathname === "/" ? "/" : `${url.pathname.replace(/\/+$/u, "")}/`;
     return path;
   } catch {

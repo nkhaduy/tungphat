@@ -1,6 +1,6 @@
 const MEDIA_PATH = /^(?:\/)?(?:assets\/catalog|catalog|gallery|media|supplier|thumbnails|uploads|uploads-thumbnails|vendor|videos)(?:\/|$)/iu;
 const MEDIA_URL = /(?:https?:)?\/\/[^\s"'<>\\]+|\/(?:assets\/catalog|catalog|gallery|media|supplier|thumbnails|uploads|uploads-thumbnails|vendor|videos)\/[^\s"'<>\\),]+/giu;
-const MAIN_HOSTS = new Set(["mdftungphat.com", "www.mdftungphat.com"]);
+const MAIN_HOSTS = new Set(["gotungphat.com", "www.gotungphat.com", "mdftungphat.com", "www.mdftungphat.com"]);
 const CMS_HOSTS = new Set(["cms.mdftungphat.com", "media.mdftungphat.com"]);
 const MEDIA_FILE = /\.(?:avif|gif|jpe?g|mp4|pdf|png|svg|webm|webp)$/iu;
 

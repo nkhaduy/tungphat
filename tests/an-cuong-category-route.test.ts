@@ -13,7 +13,7 @@ describe("An Cuong representative category routes", () => {
     expect(parameters).toContainEqual({ supplier: "an-cuong", material: "melamine" });
 
     const metadata = await generateMetadata({ params: Promise.resolve({ supplier: "an-cuong", material: "melamine" }) });
-    expect(metadata.alternates?.canonical).toBe("https://mdftungphat.com/catalogue/an-cuong/melamine/");
+    expect(metadata.alternates?.canonical).toBe("https://gotungphat.com/catalogue/an-cuong/melamine/");
     expect(metadata.robots).not.toEqual({ index: false, follow: true });
 
     const veneerMetadata = await generateMetadata({ params: Promise.resolve({ supplier: "an-cuong", material: "veneer" }) });

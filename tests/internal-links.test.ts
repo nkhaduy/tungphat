@@ -8,19 +8,27 @@ function classify(rawHref: string, anchorTag = `<a href="${rawHref}">`) {
 
 describe("internal navigational link classification", () => {
   it.each([
-    ["homepage", "/", "https://mdftungphat.com/", false],
-    ["route missing slash", "/lien-he", "https://mdftungphat.com/lien-he", true],
-    ["route with slash", "/lien-he/", "https://mdftungphat.com/lien-he/", false],
-    ["query", "/lien-he?source=home", "https://mdftungphat.com/lien-he?source=home", true],
-    ["fragment", "/van-mdf#quy-cach", "https://mdftungphat.com/van-mdf#quy-cach", true],
-    ["query and fragment", "/van-mdf?source=home#quy-cach", "https://mdftungphat.com/van-mdf?source=home#quy-cach", true],
-    ["absolute same-origin", "https://mdftungphat.com/lien-he", "https://mdftungphat.com/lien-he", true]
+    ["homepage", "/", "https://gotungphat.com/", false],
+    ["route missing slash", "/lien-he", "https://gotungphat.com/lien-he", true],
+    ["route with slash", "/lien-he/", "https://gotungphat.com/lien-he/", false],
+    ["query", "/lien-he?source=home", "https://gotungphat.com/lien-he?source=home", true],
+    ["fragment", "/van-mdf#quy-cach", "https://gotungphat.com/van-mdf#quy-cach", true],
+    ["query and fragment", "/van-mdf?source=home#quy-cach", "https://gotungphat.com/van-mdf?source=home#quy-cach", true],
+    ["absolute same-origin", "https://gotungphat.com/lien-he", "https://gotungphat.com/lien-he", true]
   ])("keeps %s navigational semantics", (_name, rawHref, resolvedTarget, invalidTrailingSlash) => {
     const result = classify(rawHref);
     expect(result.kind).toBe("internal");
     if (result.kind !== "internal") return;
     expect(result.resolvedTarget).toBe(resolvedTarget);
     expect(result.invalidTrailingSlash).toBe(invalidTrailingSlash);
+  });
+
+  it("recognizes legacy-host links and reports them for canonicalization", () => {
+    const result = classify("https://mdftungphat.com/van-mdf/");
+    expect(result.kind).toBe("internal");
+    if (result.kind !== "internal") return;
+    expect(result.legacyOrigin).toBe(true);
+    expect(result.resolvedTarget).toBe("https://mdftungphat.com/van-mdf/");
   });
 
   it.each([

@@ -40,6 +40,12 @@ describe("productSchema", () => {
       featuredImage: "https://cdn.mdftungphat.com/uploads/v%E1%BA%ADt-li%E1%BB%87u.webp",
     }).success).toBe(true);
   });
+  it("chấp nhận canonical theo hostname công khai hiện tại", () => {
+    expect(productSchema.safeParse({
+      ...product,
+      canonical: "https://gotungphat.com/van-mdf-kiem-thu",
+    }).success).toBe(true);
+  });
   it("chuẩn hóa Date từ dữ liệu migration cũ", () => {
     const result = productSchema.safeParse({
       ...product,

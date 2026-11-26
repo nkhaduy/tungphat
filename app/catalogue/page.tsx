@@ -7,6 +7,8 @@ import { PageContainer } from "@/components/ui/PageContainer";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { buildSupplierZaloInquiryUrl } from "@/lib/catalog/inquiry";
 import { getSupplierTotals } from "@/lib/catalog/suppliers/search-index";
+import { getCatalogueListingEntries } from "@/lib/catalog/listing";
+import { deriveCatalogueFacets } from "@/lib/catalog/facets";
 import {
   createPageMetadata,
   PHONE_DISPLAY,
@@ -54,6 +56,7 @@ function supplierCards() {
 
 export default function SupplierCataloguePage() {
   const suppliers = supplierCards();
+  const catalogueCodes = getCatalogueListingEntries();
 
   return (
     <SiteShell
@@ -65,7 +68,11 @@ export default function SupplierCataloguePage() {
         className="catalogue-page scroll-mt-28 overflow-clip border-b border-slate-200 bg-white pb-6 sm:pb-8 lg:pb-10"
       >
         <PageContainer className="relative">
-          <SupplierCatalogSearch />
+          <SupplierCatalogSearch
+            entries={catalogueCodes.slice(0, 48)}
+            totalCount={catalogueCodes.length}
+            initialFacets={deriveCatalogueFacets(catalogueCodes)}
+          />
         </PageContainer>
       </section>
 

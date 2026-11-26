@@ -10,6 +10,7 @@ import { absoluteUrl } from "@/lib/seo";
 import { isReservedRootSlug } from "@/lib/reserved-slugs";
 import staticPages from "@/content/settings/static-pages.json";
 import { getSupplierSitemapEntries } from "@/lib/catalog/suppliers/sitemap";
+import { CATALOGUE_PAGE_SIZE, getCatalogueListingEntries } from "@/lib/catalog/listing";
 import { getThanhThuyCatalog } from "@/lib/thanh-thuy";
 import { buildThanhThuySitemapEntries } from "@/lib/thanh-thuy-sitemap";
 import { getMaterialDataset } from "@/lib/materials";
@@ -97,6 +98,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getThanhThuyCatalog(),
     staticPages.updatedAt,
   ).filter((entry) => !supplierUrls.has(entry.url));
+  const cataloguePageCount = Math.ceil(getCatalogueListingEntries().length / CATALOGUE_PAGE_SIZE);
+  const cataloguePaginationEntries: MetadataRoute.Sitemap = Array.from(
+    { length: Math.max(0, cataloguePageCount - 1) },
+    (_, index) => ({
+      url: absoluteUrl(`/catalogue/page/${index + 2}/`),
+      lastModified: staticPages.updatedAt,
+      changeFrequency: "weekly",
+      priority: 0.5,
+    }),
+  );
   return [
     ...staticEntries,
     ...branchEntries,
@@ -106,5 +117,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...projectEntries,
     ...supplierEntries,
     ...legacyThanhThuyEntries,
+    ...cataloguePaginationEntries,
   ];
 }

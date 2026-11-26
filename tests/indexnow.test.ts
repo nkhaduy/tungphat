@@ -3,10 +3,10 @@ import { extractSitemapUrls, normalizeIndexNowHtml, selectIndexNowDelta, shouldN
 
 describe("IndexNow safety helpers", () => {
   it("extracts canonical sitemap URLs and suppresses unchanged notifications", () => {
-    const xml = "<urlset><url><loc>https://mdftungphat.com/</loc></url><url><loc>https://mdftungphat.com/van-mdf/</loc></url></urlset>";
+    const xml = "<urlset><url><loc>https://gotungphat.com/</loc></url><url><loc>https://gotungphat.com/van-mdf/</loc></url></urlset>";
     expect(extractSitemapUrls(xml)).toEqual([
-      "https://mdftungphat.com/",
-      "https://mdftungphat.com/van-mdf/",
+      "https://gotungphat.com/",
+      "https://gotungphat.com/van-mdf/",
     ]);
     expect(shouldNotifyIndexNow("same-hash", "same-hash")).toBe(false);
     expect(shouldNotifyIndexNow("old-hash", "new-hash")).toBe(true);
@@ -15,23 +15,23 @@ describe("IndexNow safety helpers", () => {
 
   it("rejects foreign, non-canonical, and query-string sitemap URLs", () => {
     expect(() => extractSitemapUrls("<urlset><url><loc>https://evil.example/</loc></url></urlset>")).toThrow(/canonical/u);
-    expect(() => extractSitemapUrls("<urlset><url><loc>https://mdftungphat.com/van-mdf</loc></url></urlset>")).toThrow(/trailing slash/u);
-    expect(() => extractSitemapUrls("<urlset><url><loc>https://mdftungphat.com/van-mdf/?ref=test</loc></url></urlset>")).toThrow(/canonical/u);
+    expect(() => extractSitemapUrls("<urlset><url><loc>https://gotungphat.com/van-mdf</loc></url></urlset>")).toThrow(/trailing slash/u);
+    expect(() => extractSitemapUrls("<urlset><url><loc>https://gotungphat.com/van-mdf/?ref=test</loc></url></urlset>")).toThrow(/canonical/u);
   });
 
   it("deduplicates canonical URLs before submission", () => {
-    const xml = "<urlset><url><loc>https://mdftungphat.com/</loc></url><url><loc>https://mdftungphat.com/</loc></url></urlset>";
-    expect(extractSitemapUrls(xml)).toEqual(["https://mdftungphat.com/"]);
+    const xml = "<urlset><url><loc>https://gotungphat.com/</loc></url><url><loc>https://gotungphat.com/</loc></url></urlset>";
+    expect(extractSitemapUrls(xml)).toEqual(["https://gotungphat.com/"]);
   });
 
   it("submits only changed, new, and deleted canonical URLs", () => {
     expect(selectIndexNowDelta({
-      previous: { "https://mdftungphat.com/": "same", "https://mdftungphat.com/old/": "old" },
-      current: { "https://mdftungphat.com/": "same", "https://mdftungphat.com/van-mdf/": "new" },
+      previous: { "https://gotungphat.com/": "same", "https://gotungphat.com/old/": "old" },
+      current: { "https://gotungphat.com/": "same", "https://gotungphat.com/van-mdf/": "new" },
     })).toEqual({
-      changed: ["https://mdftungphat.com/van-mdf/"],
-      deleted: ["https://mdftungphat.com/old/"],
-      urlList: ["https://mdftungphat.com/old/", "https://mdftungphat.com/van-mdf/"],
+      changed: ["https://gotungphat.com/van-mdf/"],
+      deleted: ["https://gotungphat.com/old/"],
+      urlList: ["https://gotungphat.com/old/", "https://gotungphat.com/van-mdf/"],
     });
   });
 
@@ -51,9 +51,9 @@ describe("IndexNow safety helpers", () => {
       endpoint: "https://api.indexnow.org/indexnow",
       payload: {
         host: "mdftungphat.com",
-        key: "test-key-12345678",
-        keyLocation: "https://mdftungphat.com/indexnow-key.txt",
-        urlList: ["https://mdftungphat.com/"],
+        key: "testkey1234",
+        keyLocation: "https://gotungphat.com/indexnow-key.txt",
+        urlList: ["https://gotungphat.com/"],
       },
       fetcher,
       sleep: async () => undefined,
@@ -73,9 +73,9 @@ describe("IndexNow safety helpers", () => {
       endpoint: "https://api.indexnow.org/indexnow",
       payload: {
         host: "mdftungphat.com",
-        key: "test-key-12345678",
-        keyLocation: "https://mdftungphat.com/indexnow-key.txt",
-        urlList: ["https://mdftungphat.com/"],
+        key: "testkey1234",
+        keyLocation: "https://gotungphat.com/indexnow-key.txt",
+        urlList: ["https://gotungphat.com/"],
       },
       fetcher,
       sleep: async () => undefined,

@@ -24,8 +24,9 @@ describe("Wave 3 public knowledge copy", () => {
   it("keeps the hub customer-facing", () => {
     const hub = source("app/bai-viet/page.tsx");
 
-    expect(hub).toContain("Đọc trước khi hỏi hàng");
-    expect(hub).toContain("Đọc hướng dẫn");
+    expect(hub).toContain("editorial-listing-header__title");
+    expect(hub).toContain("editorial-category-nav");
+    expect(hub).toContain("EditorialArticleCard");
     expect(hub).not.toContain("CMS");
     expect(hub).not.toContain("publish");
     expect(hub).not.toContain("không thay thế");

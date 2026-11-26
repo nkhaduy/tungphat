@@ -22,8 +22,8 @@ describe("buildProductLandingSchema", () => {
   it("uses CollectionPage for guide hubs with canonical page URLs", () => {
     expect(buildProductLandingSchema(product)).toMatchObject({
       "@type": "CollectionPage",
-      "@id": "https://mdftungphat.com/go-ghep/#webpage",
-      url: "https://mdftungphat.com/go-ghep/",
+      "@id": "https://gotungphat.com/go-ghep/#webpage",
+      url: "https://gotungphat.com/go-ghep/",
     });
   });
 
@@ -37,8 +37,8 @@ describe("buildProductLandingSchema", () => {
       }),
     ).toMatchObject({
       "@type": "Product",
-      "@id": "https://mdftungphat.com/van-mdf/#product",
-      url: "https://mdftungphat.com/van-mdf/",
+      "@id": "https://gotungphat.com/van-mdf/#product",
+      url: "https://gotungphat.com/van-mdf/",
       brand: { "@type": "Brand", name: "Nhà cung cấp xác minh" },
     });
   });
@@ -54,8 +54,8 @@ describe("buildServiceLandingSchema", () => {
       }),
     ).toMatchObject({
       "@type": "Service",
-      "@id": "https://mdftungphat.com/cat-cnc-go/#service",
-      url: "https://mdftungphat.com/cat-cnc-go/",
+      "@id": "https://gotungphat.com/cat-cnc-go/#service",
+      url: "https://gotungphat.com/cat-cnc-go/",
     });
   });
 });
