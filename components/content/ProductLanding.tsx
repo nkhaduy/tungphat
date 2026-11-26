@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { MaterialLanding } from "@/components/products/MaterialLanding";
+import { getMaterialEditorial } from "@/lib/product-editorial";
 import { ArrowRight, Check, MessageCircle, Phone } from "lucide-react";
 import { ContentEngagementTracker } from "@/components/analytics/ContentEngagementTracker";
 import { FaqList } from "@/components/content/FaqList";
@@ -20,6 +22,8 @@ import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, absolutePageUrl, breadcr
 const waveOneProductSlugs = new Set(["go-ghep", "go-ghep-cao-su", "go-ghep-tram", "van-mdf", "mdf-chong-am", "van-go-cong-nghiep"]);
 
 export function ProductLanding({ product }: { product: ContentEntry<ProductFrontmatter> }) {
+  const editorial = getMaterialEditorial(product.slug);
+  if (editorial) return <MaterialLanding product={product} editorial={editorial} />;
   const productPath = `/${product.slug}`;
   const productUrl = absolutePageUrl(productPath);
   const localCopy = getLocalSeoCopy(product.slug);

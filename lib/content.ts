@@ -11,6 +11,7 @@ import {
 import { filterPublishedContent } from "@/lib/listing-indexability";
 import { hasMinimumProductEvidence } from "@/lib/content-evidence";
 import { resolveMediaUrl } from "@/lib/media";
+import { mergeProductEditorial } from "@/lib/product-editorial";
 
 type MediaMetadata = { width?: number; height?: number; type?: string };
 export type ContentEntry<T> = T & { body: string; sourcePath: string; mediaMetadata?: { featuredImage?: MediaMetadata; ogImage?: MediaMetadata } };
@@ -56,7 +57,7 @@ export async function getPublishedArticles() { return getArticles(); }
 export async function getArticle(slug: string, options: { includeDrafts?: boolean } = {}) { return (await getArticles(options)).find((entry) => entry.slug === slug); }
 
 export async function getProducts(options: { includeDrafts?: boolean } = {}) {
-  return (await readCollection<ProductFrontmatter>("products", productSchema))
+  return mergeProductEditorial(await readCollection<ProductFrontmatter>("products", productSchema))
     .filter((entry) => options.includeDrafts || (!entry.draft && !entry.noindex && hasMinimumProductEvidence(entry)))
     .sort((a, b) => a.title.localeCompare(b.title, "vi"));
 }

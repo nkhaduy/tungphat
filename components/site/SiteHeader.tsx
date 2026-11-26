@@ -17,6 +17,7 @@ import {
   type SiteHeaderTone,
 } from "@/lib/site-header";
 import { ZALO_URL } from "@/lib/seo";
+import { homeProductCards } from "@/lib/product-taxonomy";
 
 export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
   const { lang, setLang } = useLang();
@@ -30,17 +31,12 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
     lang === "vi"
       ? "Chuyển ngôn ngữ VI | EN"
       : "Switch language VI | EN";
-  const materialChildren: NavigationChild[] = [
-    { label: lang === "vi" ? "MDF" : "MDF", href: "/van-mdf", active: pathname === "/van-mdf" },
-    { label: lang === "vi" ? "MDF chống ẩm" : "Moisture-resistant MDF", href: "/mdf-chong-am", active: pathname === "/mdf-chong-am" },
-    { label: lang === "vi" ? "MFC & Plywood" : "MFC & Plywood", href: "/van-go-cong-nghiep", active: pathname === "/van-go-cong-nghiep" },
-    { label: lang === "vi" ? "Gỗ ghép" : "Joined wood", href: "/go-ghep", active: pathname === "/go-ghep" || pathname === "/go-ghep-cao-su" || pathname === "/go-ghep-tram" },
-    { label: "Melamine Thanh Thùy", href: "/catalogue/thanh-thuy/melamine", active: pathname === "/catalogue/thanh-thuy/melamine", prefetch: false },
-    { label: "Laminate Thanh Thùy", href: "/catalogue/thanh-thuy/laminate", active: pathname === "/catalogue/thanh-thuy/laminate", prefetch: false },
-    { label: "Acrylic Thanh Thùy", href: "/catalogue/thanh-thuy/acrylic", active: pathname === "/catalogue/thanh-thuy/acrylic", prefetch: false },
-    { label: "PVC Film / PET", href: "/catalogue/thanh-thuy/pvc", active: pathname === "/catalogue/thanh-thuy/pvc", prefetch: false },
-    { label: "Chỉ nẹp & vật tư", href: "/thuong-hieu/thanh-thuy", active: pathname === "/thuong-hieu/thanh-thuy" },
-  ];
+  const materialChildren: NavigationChild[] = homeProductCards.map((card) => ({
+    label: card.title,
+    href: card.href,
+    active: pathname === card.href.replace(/\/$/u, ""),
+    prefetch: false,
+  }));
   const catalogueChildren: NavigationChild[] = [
     { label: lang === "vi" ? "Tìm mã màu" : "Find a surface code", href: "/catalogue", active: pathname === "/catalogue", prefetch: false },
     { label: "Thanh Thuỳ", href: "/catalogue/thanh-thuy", active: pathname.startsWith("/catalogue/thanh-thuy"), prefetch: false },
@@ -55,24 +51,19 @@ export function SiteHeader({ tone = "light" }: { tone?: SiteHeaderTone }) {
       children: materialChildren,
     },
     {
-      label: lang === "vi" ? "Mã màu / Catalogue" : "Surface codes / Catalogue",
+      label: lang === "vi" ? "Mã màu" : "Color codes",
       href: "/catalogue",
       prefetch: false,
       active: pathname === "/catalogue" || pathname.startsWith("/catalogue/") || pathname.startsWith("/ma-mau-melamine/"),
       children: catalogueChildren,
     },
     {
-      label: lang === "vi" ? "Cắt & CNC" : "Cutting & CNC",
+      label: lang === "vi" ? "Cắt CNC" : "Cutting & CNC",
       href: "/gia-cong-cnc",
       active: pathname === "/gia-cong-cnc" || pathname === "/cat-cnc-go" || pathname === "/gia-cong-cnc-mdf",
     },
     {
-      label: lang === "vi" ? "Xưởng & chi nhánh" : "Workshop & branches",
-      href: "/du-an",
-      active: pathname.startsWith("/du-an") || pathname.startsWith("/chi-nhanh"),
-    },
-    {
-      label: lang === "vi" ? "Kiến thức" : "Insights",
+      label: lang === "vi" ? "Bài viết" : "Articles",
       href: "/bai-viet",
       active: pathname.startsWith("/bai-viet"),
     },

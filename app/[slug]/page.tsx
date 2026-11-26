@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { CncServiceContent, cncServiceCopy, isCncServiceSlug } from "@/components/content/CncServiceContent";
+import { resolveCncEditorial } from "@/lib/cnc-service-editorial";
+import { createPageMetadata } from "@/lib/seo";
 import { ProductLanding } from "@/components/content/ProductLanding";
 import { ServiceLanding } from "@/components/content/ServiceLanding";
 import { getProducts, getServicePages } from "@/lib/content";
@@ -26,6 +29,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: RootContentRouteProps): Promise<Metadata> {
   const { slug } = await params;
   const entry = await rootContent(slug);
+  if (entry && !("status" in entry) && isCncServiceSlug(slug)) {
+    const copy = cncServiceCopy[slug];
+    const editorial = resolveCncEditorial(entry);
+    return createPageMetadata({ title: editorial?.seoTitle || editorial?.title || copy.title, description: editorial?.seoDescription || editorial?.excerpt || copy.description, path: `/${slug}`, noIndex: entry.noindex || entry.draft });
+  }
   return entry ? createContentMetadata(entry, `/${entry.slug}`) : {};
 }
 
@@ -34,5 +42,5 @@ export default async function RootContentRoute({ params }: RootContentRouteProps
   const entry = await rootContent(slug);
   if (!entry) notFound();
 
-  return "status" in entry ? <ProductLanding product={entry} /> : <ServiceLanding page={entry} />;
+  return "status" in entry ? <ProductLanding product={entry} /> : isCncServiceSlug(slug) ? <CncServiceContent slug={slug} page={entry} /> : <ServiceLanding page={entry} />;
 }

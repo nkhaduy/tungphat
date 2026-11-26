@@ -1,34 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Check, FileCheck2, MessageCircle, Phone, Upload } from "lucide-react";
-import { JsonLd } from "@/components/JsonLd";
-import { LocalIntentLinks } from "@/components/content/LocalIntentLinks";
-import { SiteShell } from "@/components/site/SiteShell";
-import { TrackedLink } from "@/components/TrackedLink";
-import { ContactCTA } from "@/components/ui/ContactCTA";
-import { PageHero } from "@/components/ui/PageHero";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { getLocalSeoCopy } from "@/lib/local-seo";
-import { PHONE_DISPLAY, PHONE_HREF, SITE_URL, ZALO_URL, absolutePageUrl, breadcrumbSchema, createPageMetadata, schemaPageId, webPageSchema } from "@/lib/seo";
-
-const localCopy = getLocalSeoCopy("gia-cong-cnc");
-const serviceName = localCopy?.h1 ?? "Gia công CNC gỗ theo yêu cầu";
-const serviceDescription = localCopy?.heroDescription ?? "Cắt, khoan, soi rãnh và gia công chi tiết ván gỗ theo file hoặc bản phác thảo.";
-export const metadata = createPageMetadata({ title: localCopy?.title ?? "Gia công CNC gỗ theo kích thước, bản vẽ", description: localCopy?.description ?? serviceDescription, path: "/gia-cong-cnc" });
-
-const serviceId = schemaPageId("/gia-cong-cnc", "service");
-const serviceSchema = { "@context": "https://schema.org", "@type": "Service", "@id": serviceId, name: serviceName, serviceType: "Gia công CNC ván gỗ", description: serviceDescription, url: absolutePageUrl("/gia-cong-cnc"), areaServed: { "@type": "City", name: "TP. Hồ Chí Minh" }, provider: { "@id": `${SITE_URL}/#organization` } };
-const pageSchema = webPageSchema({ path: "/gia-cong-cnc", name: serviceName, description: serviceDescription, primaryEntityId: serviceId });
-const jobTypes = [["Cắt theo kích thước", "Danh sách dài, rộng, số lượng, vật liệu và đơn vị đo."], ["CNC theo file", "Đường cắt, biên dạng, lỗ, rãnh, mặt gia công và từng mã chi tiết."], ["Cắt biên dạng", "Ghi phần cần giữ lại, cạnh để lộ và bước hoàn thiện tiếp theo nếu có."]] as const;
-const fileNotes = ["Loại vật liệu, độ dày và bề mặt nếu đã có.", "Kích thước, số lượng và đơn vị đo cho từng chi tiết.", "Đường cắt, lỗ, rãnh, mặt gia công và cạnh để lộ.", "File mới nhất, PDF hoặc bản phác thảo khi chưa có file CNC."];
-
-export default function CncServicePage() {
-  return <><JsonLd data={[pageSchema, breadcrumbSchema([{ name: "Trang chủ", path: "/" }, { name: "Gia công CNC", path: "/gia-cong-cnc" }]), serviceSchema]} /><SiteShell>
-    <PageHero breadcrumbs={[{ label: "Trang chủ", href: "/" }, { label: "Gia công CNC" }]} eyebrow="Gia công CNC tại Thủ Đức" title={serviceName} description={serviceDescription} image={{ src: "/images/cnc-service.webp", alt: "Ảnh tham khảo máy CNC gia công một tấm ván", priority: true }} actions={<><TrackedLink href={ZALO_URL} target="_blank" rel="noopener noreferrer" eventName="request_quote" eventProperties={{ location: "cnc_hero", channel: "zalo" }} className="pressable inline-flex min-h-14 items-center justify-center gap-2 bg-wood-600 px-6 text-sm font-extrabold text-white hover:bg-wood-700"><MessageCircle size={18} aria-hidden="true" />Gửi file qua Zalo</TrackedLink><TrackedLink href={PHONE_HREF} eventName="click_phone" eventProperties={{ location: "cnc_hero" }} className="pressable inline-flex min-h-14 items-center justify-center gap-2 border border-forest-900/20 bg-white px-6 text-sm font-extrabold text-forest-950"><Phone size={18} aria-hidden="true" />Gọi {PHONE_DISPLAY}</TrackedLink></>} />
-    <section data-answer-block className="border-b border-forest-900/10 bg-[#edf4ef] py-8"><div className="container-shell max-w-4xl"><p className="text-xs font-extrabold uppercase tracking-[.15em] text-wood-600">Gửi job CNC</p><h2 className="mt-2 text-2xl font-extrabold text-forest-950">Gia công CNC tại Thủ Đức cần gửi những gì?</h2><p className="mt-3 text-base leading-8 text-slate-700">{localCopy?.answerDescription ?? serviceDescription}</p></div></section>
-    <section className="section-space bg-white"><div className="container-shell"><SectionHeader eyebrow="Chọn đúng phần việc" title="Mua tấm, cắt thẳng hay CNC theo file?" description="Ba nhu cầu có đầu vào khác nhau. Ghi rõ phần cần làm để xưởng đọc đúng job ngay từ đầu." /><div className="mt-9 grid gap-5 md:grid-cols-3">{jobTypes.map(([title, description]) => <article key={title} className="border border-forest-900/10 bg-[#f7f8f5] p-7"><h2 className="text-xl font-extrabold text-forest-950">{title}</h2><p className="mt-3 text-sm leading-7 text-slate-700">{description}</p></article>)}</div></div></section>
-    <section className="section-space bg-[#f7f8f5]"><div className="container-shell grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-center"><div className="relative aspect-[4/3] overflow-hidden border border-forest-900/10"><Image src="/images/cnc-service.webp" alt="Đầu máy CNC cắt đường biên trên tấm ván" fill sizes="(max-width: 1024px) 100vw, 45vw" className="object-cover" /></div><div><SectionHeader eyebrow="File và bản vẽ" title="Để xưởng không phải suy đoán" description="Một file rõ ràng giúp tránh nhầm đơn vị, mặt gia công hoặc phiên bản chi tiết." /><ul className="mt-7 grid gap-3">{fileNotes.map((item) => <li key={item} className="flex items-start gap-3 text-sm leading-6 text-slate-700"><Check className="mt-0.5 shrink-0 text-wood-600" size={18} aria-hidden="true" />{item}</li>)}</ul><div className="mt-7 flex flex-wrap gap-4"><Link href="/cat-cnc-go/" className="pressable inline-flex min-h-12 items-center gap-2 text-sm font-extrabold text-wood-600">Xem hướng dẫn cắt CNC gỗ <ArrowRight size={17} aria-hidden="true" /></Link><Link href="/gia-cong-cnc-mdf/" className="pressable inline-flex min-h-12 items-center gap-2 text-sm font-extrabold text-forest-900">CNC MDF theo file <ArrowRight size={17} aria-hidden="true" /></Link></div></div></div></section>
-    <section className="section-space bg-white"><div className="container-shell"><SectionHeader eyebrow="Từ yêu cầu đến báo giá" title="Một gói thông tin ngắn là đủ để bắt đầu" description="Gửi vật liệu, độ dày, kích thước, số lượng, đơn vị đo và file hoặc bản phác thảo. Nếu mục nào chưa chốt, ghi rõ “cần trao đổi”." /><div className="mt-8 flex flex-col gap-5 border border-forest-900/10 bg-[#edf4ef] p-7 sm:flex-row sm:items-center sm:justify-between"><div className="flex gap-4"><FileCheck2 size={25} className="mt-1 shrink-0 text-forest-900" aria-hidden="true" /><p className="max-w-2xl text-sm leading-7 text-slate-700">Giá và khả năng nhận job phụ thuộc vật liệu, file, kích thước và số lượng. Gửi đúng phiên bản file để trao đổi nhanh hơn.</p></div><a href="/cnc-preflight-checklist.csv" className="pressable inline-flex min-h-12 shrink-0 items-center gap-2 text-sm font-extrabold text-forest-900">Tải checklist CNC <Upload size={17} aria-hidden="true" /></a></div></div></section>
-    <LocalIntentLinks currentSlug="gia-cong-cnc" /><ContactCTA eyebrow="Gửi file qua Zalo" title="Chuẩn bị file CNC và thông tin vật liệu?" description="Gửi file qua Zalo cùng vật liệu, độ dày, số lượng, đơn vị đo và yêu cầu gia công." zaloLabel="Gửi file qua Zalo" />
-  </SiteShell></>;
-}
+import { CncServiceContent, cncServiceCopy } from "@/components/content/CncServiceContent";
+import { createPageMetadata } from "@/lib/seo";
+const copy = cncServiceCopy["gia-cong-cnc"];
+export const metadata = createPageMetadata({ title: copy.title, description: copy.description, path: "/gia-cong-cnc" });
+export default function CncServicePage() { return <CncServiceContent slug="gia-cong-cnc" />; }

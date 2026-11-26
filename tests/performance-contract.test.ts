@@ -24,11 +24,12 @@ describe("homepage performance contracts", () => {
     );
     expect(header).toContain("prefetch={item.prefetch}");
     expect(mobileNavigation).toContain("prefetch={item.prefetch}");
-    expect(hero).toContain('href="#ma-mau"');
+    expect(hero).toContain("DEFAULT_CATALOGUE_URL");
+    expect(hero).toContain("prefetch={false}");
     expect(hero).toContain('fetchPriority="high"');
     expect(hero).not.toContain('href="/catalogue"');
     expect(featuredCodes).toContain('href={code.href} prefetch={false}');
-    expect(footer).toContain('["Mã màu / Catalogue", "/catalogue"]');
-    expect(footer).toContain('prefetch={href === "/catalogue" ? false : undefined}');
+    expect(footer).toContain('["Mã màu", DEFAULT_CATALOGUE_URL]');
+    expect(footer).toContain("prefetch={href === DEFAULT_CATALOGUE_URL ? false : undefined}");
   });
 });

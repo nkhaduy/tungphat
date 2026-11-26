@@ -21,7 +21,8 @@ describe("homepage product and trust refinement", () => {
   it("uses the company, CNC, article-image, and Google Maps trust surfaces", () => {
     expect(content).toContain('id="chi-nhanh"');
     expect(content).toContain("branch.embedSrc");
-    expect(content).toContain("Gửi kích thước / file để nhận báo giá");
+    expect(content).toContain("Gửi yêu cầu báo giá");
+    expect(content).toContain("Xem dịch vụ Cắt CNC");
     expect(content).toContain("article.featuredImage");
     expect(content).toContain("branch.directionsUrl");
     expect(footer).toContain("Google Maps");
