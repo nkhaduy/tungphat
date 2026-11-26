@@ -31,6 +31,7 @@ const restoredProductRoutes = [
 
 test("homepage matches the approved hero, ten cards, navigation, and Zalo quote path", async ({ page }) => {
   await page.goto("/", { waitUntil: "domcontentloaded" });
+  await expect(page).toHaveTitle("Tùng Phát | Ván gỗ công nghiệp & Gia công CNC tại Thủ Đức");
 
   const hero = page.locator("#trang-chu");
   const heading = (await hero.getByRole("heading", { level: 1 }).innerText()).replace(/\s+/gu, " ").trim();

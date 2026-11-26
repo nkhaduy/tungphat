@@ -56,7 +56,8 @@ describe("production homepage baseline", () => {
     expect(html).toContain(heroDescription);
   });
 
-  it("keeps the approved homepage metadata description", () => {
+  it("keeps the approved homepage SEO title and description", () => {
+    expect(homepageMetadata.title).toEqual({ absolute: "Tùng Phát | Ván gỗ công nghiệp & Gia công CNC tại Thủ Đức" });
     expect(homepageMetadata.description).toBe(homepageMetaDescription);
   });
 
