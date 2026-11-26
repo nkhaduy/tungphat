@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-26T05:50:35.917Z",
+  "source": {
+    "branch": "hotfix/restore-production-regressions",
+    "commit": "791f5a72ac0701bf0fc088b8e18c91a200a104e9",
+    "baseCommit": "74a9f8958a9fde5edd90674deeb94592452d930f"
+  },
+  "productionBeforeRelease": {
+    "worker": "tungphat-static-assets",
+    "versionId": "16750c49-4e3d-4c2f-aa8a-0b50cf1ff3c4",
+    "sourceBranch": "codex/gotungphat-release",
+    "sourceCommit": "d4e5d1efc454afb18662099ad677a86ae1d98993",
+    "attribution": "high confidence from branch source and upload timestamp; exact old bundle was not retrievable"
+  },
+  "productionAfterRelease": {
+    "worker": "tungphat-static-assets",
+    "versionId": "b43086b6-d8d0-4355-8842-fbe476d25890"
+  },
+  "build": {
+    "command": "npm run verify",
+    "nodeVersion": "v24.20.0",
+    "outputDirectory": "out",
+    "fileCount": 7587,
+    "htmlPageCount": 3652,
+    "totalBytes": 662951919,
+    "artifactSha256": "ad2482cce756f526d263d0571b33b851f515afd1ec5d5556922ff862c1fe1b47",
+    "publicCanonicalOrigin": "https://gotungphat.com",
+    "configurationSha256": {
+      "next.config.mjs": "9f63f6d4fde25ed0e836bb87a3e0b70cc720553b6385f6e14859f2df2b67252c",
+      "package.json": "a561b55957c03e2ba7d1b12a62c26fb28a09688ab60a55e9ca8ea238b27a4687",
+      "package-lock.json": "b480085ef6f8412a86665adafd1809e6c6f3d641fa146457b883b49de9c789d5",
+      "wrangler.static-production.jsonc": "9edc33ba547b429b8cbfcb5800b8ff2fd2f93d6a774797950a257a7c2429bc17",
+      "wrangler.static-staging.jsonc": "a44741288dd1cb4b00d5a03290c92ec321fb4229e572b7404f19e644042c0b71",
+      "lib/site-domain.ts": "d94914383d9f95edc090db042ad3fc4ee54c60d8cdc7eb1fd47d35a8ba46a6fd",
+      "content/categories/product-publication.json": "763d38ad34a99d2d25fa6ec6b1ac73fe841b50227eaf5ae0121795057c87dd1f",
+      "data/trustindex-reviews.json": "f4e209f1a9585dedcdc8b688560632da5f7d35b130640114543752b6f92d272d"
+    }
+  },
+  "contentSnapshot": {
+    "path": "docs/production-regression-recovery/evidence/release-content-snapshot.json",
+    "sha256": "6ab6bb75f7858c99cc5ef1196e2f9f5c0e81361673f27659cd5a4fd52a1d9953",
+    "routeCount": 3652
+  },
+  "stagingDeployment": {
+    "worker": "tungphat-release-staging-20261123",
+    "versionId": "c21ec26c-6077-473e-aa6d-7e878d5b75f0",
+    "url": "https://tungphat-release-staging-20261123.nkhaduy.workers.dev",
+    "robots": "X-Robots-Tag: noindex, nofollow"
+  },
+  "regressionGuards": [
+    "tests/production-home-regression.test.ts",
+    "e2e/production-regression-recovery.spec.ts"
+  ]
+}
