@@ -43,6 +43,8 @@ test("homepage matches the approved hero, ten cards, navigation, and Zalo quote 
     items.map((item) => [item.querySelector("h3")?.textContent?.trim(), item.querySelector("h3 a")?.getAttribute("href")]),
   );
   expect(cards).toEqual(approvedCards);
+  const supplierLogos = await page.locator('#ma-mau .grid img[alt^="Logo "]').evaluateAll((images) => images.map((image) => image.getAttribute("alt")));
+  expect(supplierLogos).toEqual(["Logo Thanh Thùy", "Logo An Cường", "Logo Ba Thanh"]);
   await expect(page.locator(".site-header")).toContainText("Mã màu");
   await expect(page.locator(".site-header")).toContainText("Cắt CNC");
   await expect(page.locator(".site-header")).toContainText("Bài viết");

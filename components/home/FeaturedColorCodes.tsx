@@ -14,8 +14,8 @@ export type FeaturedCode = {
 export function FeaturedColorCodes({ thanhThuy, baThanh }: { thanhThuy: FeaturedCode[]; baThanh: FeaturedCode[] }) {
   const suppliers = [
     { name: "Thanh Thùy", slug: "thanh-thuy", logo: "/partners/thanh-thuy-logo.webp" },
-    { name: "Ba Thanh", slug: "ba-thanh", logo: "/partners/ba-thanh-logo.webp" },
     { name: "An Cường", slug: "an-cuong", logo: "/partners/an-cuong-logo.webp" },
+    { name: "Ba Thanh", slug: "ba-thanh", logo: "/partners/ba-thanh-logo.webp" },
   ] as const;
   const codes = Array.from({ length: Math.max(thanhThuy.length, baThanh.length) }, (_, index) => [
     thanhThuy[index],
@@ -40,7 +40,7 @@ export function FeaturedColorCodes({ thanhThuy, baThanh }: { thanhThuy: Featured
         <div className="color-code-marquee-track">
           {[...codes, ...codes].map((code, index) => {
             const duplicate = index >= codes.length;
-            const supplier = code.id.startsWith("thanh-thuy:") ? suppliers[0] : suppliers[1];
+            const supplier = code.id.startsWith("thanh-thuy:") ? suppliers[0] : suppliers[2];
             return (
               <Link key={`${code.id}-${index}`} href={code.href} prefetch={false} aria-hidden={duplicate || undefined} tabIndex={duplicate ? -1 : undefined} className="group color-code-marquee-card rounded-lg">
                 <span className="relative block aspect-[4/3] w-full overflow-hidden bg-[#edf1ec]"><Image src={code.image} alt={duplicate ? "" : `Mã màu ${code.code} ${code.name}`} fill sizes="200px" className="object-cover transition-transform duration-300 group-hover:scale-[1.025]" /></span>
