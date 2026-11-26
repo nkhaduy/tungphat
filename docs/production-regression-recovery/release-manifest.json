@@ -1,33 +1,31 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-26T08:55:23.884Z",
+  "generatedAt": "2026-11-26T09:54:57.915Z",
   "source": {
     "branch": "detached HEAD (clean post-merge checkout)",
-    "commit": "c2ef53a16b2a34033ba3ca2d0202832449c0b7c7",
-    "baseCommit": "74a9f8958a9fde5edd90674deeb94592452d930f",
+    "commit": "0dc79ba2e21b88b2303cadfbe4a67a9a140e9a98",
+    "baseCommit": "fc44c78f4df5879d1fa59db58da9fff8d1eaea13",
     "integrationBranch": "main",
-    "mergedFromBranch": "hotfix/restore-production-regressions",
-    "hotfixHead": "91a3451926c27d63c710e8bf6e72e6b0e8e5e47a",
-    "approvedAppSource": "791f5a72ac0701bf0fc088b8e18c91a200a104e9",
-    "pullRequest": "https://github.com/nkhaduy/tungphat/pull/38"
+    "mergedFromBranch": "codex/center-final-product-cards",
+    "hotfixHead": "a2cc8c37dd19b965c73c0055ae851a0646a4c4a6",
+    "pullRequest": "https://github.com/nkhaduy/tungphat/pull/40"
   },
   "productionBeforeRelease": {
     "worker": "tungphat-static-assets",
-    "versionId": "16750c49-4e3d-4c2f-aa8a-0b50cf1ff3c4",
-    "sourceBranch": "codex/gotungphat-release",
-    "sourceCommit": "d4e5d1efc454afb18662099ad677a86ae1d98993",
-    "attribution": "high confidence from branch source and upload timestamp; exact old bundle was not retrievable"
+    "versionId": "d1fcf3ef-d514-4d32-b2d4-828e6ad0d759",
+    "sourceBranch": "main",
+    "sourceCommit": "c2ef53a16b2a34033ba3ca2d0202832449c0b7c7",
+    "attribution": "verified as active production version immediately before PR #40 deployment"
   },
   "productionAfterRelease": {
     "worker": "tungphat-static-assets",
-    "versionId": "d1fcf3ef-d514-4d32-b2d4-828e6ad0d759",
-    "deploymentId": "b5355b83-fee3-4754-b4fe-c7695c125be6",
-    "createdAt": "2026-11-26T08:43:41.658295Z",
+    "versionId": "a98fb876-df8a-4879-a281-154c6fe571be",
+    "createdAt": "2026-11-26T09:53:35.895Z",
     "trafficPercent": 100,
-    "sourceCommit": "c2ef53a16b2a34033ba3ca2d0202832449c0b7c7",
-    "artifactSha256": "a6cf04b5718db30cb9f663887f6585bd9abd51e506364d40e75c2c99262194c6",
+    "sourceCommit": "0dc79ba2e21b88b2303cadfbe4a67a9a140e9a98",
+    "artifactSha256": "1024abecb96c9729f1e54d6eed7305b961beb07fcb22dc1d5d19af8aa5908464",
     "contentSnapshotSha256": "6ab6bb75f7858c99cc5ef1196e2f9f5c0e81361673f27659cd5a4fd52a1d9953",
-    "rollbackTargetVersionId": "16750c49-4e3d-4c2f-aa8a-0b50cf1ff3c4"
+    "rollbackTargetVersionId": "d1fcf3ef-d514-4d32-b2d4-828e6ad0d759"
   },
   "build": {
     "command": "npm run deploy:site (runs npm run verify before Wrangler deployment)",
@@ -35,8 +33,8 @@
     "outputDirectory": "out",
     "fileCount": 7587,
     "htmlPageCount": 3652,
-    "totalBytes": 662951919,
-    "artifactSha256": "a6cf04b5718db30cb9f663887f6585bd9abd51e506364d40e75c2c99262194c6",
+    "totalBytes": 662951646,
+    "artifactSha256": "1024abecb96c9729f1e54d6eed7305b961beb07fcb22dc1d5d19af8aa5908464",
     "publicCanonicalOrigin": "https://gotungphat.com",
     "configurationSha256": {
       "next.config.mjs": "9f63f6d4fde25ed0e836bb87a3e0b70cc720553b6385f6e14859f2df2b67252c",
@@ -65,44 +63,28 @@
     "e2e/production-regression-recovery.spec.ts"
   ],
   "productionSmokeChecks": {
-    "checkedAt": "2026-11-26T08:54:00Z",
+    "checkedAt": "2026-11-26T09:56:26.892Z",
     "homepage": {
       "httpStatus": 200,
-      "h1": "Ván gỗ công nghiệp & gia công CNC",
       "seoTitle": "Tùng Phát | Ván gỗ công nghiệp & Gia công CNC tại Thủ Đức",
-      "productCards": 10
+      "h1": "Ván gỗ công nghiệp & gia công CNC",
+      "productCards": 10,
+      "finalTwoCardsCenteredAt1440px": true
     },
-    "restoredMaterialRoutes": {
+    "featuredColors": {
       "httpStatus": 200,
-      "count": 12
-    },
-    "catalogue": {
-      "httpStatus": 200,
-      "totalColorCodes": 2910,
-      "filtersPresent": true,
-      "infiniteScrollPresent": true,
-      "staticPaginationPresent": true
-    },
-    "editorial": {
-      "httpStatus": 200,
-      "tocPresent": true
+      "obsoleteNoteRemoved": true
     },
     "cnc": {
-      "httpStatus": 200,
-      "zaloCta": "https://zalo.me/0909259160"
+      "label": "CNC Tùng Phát",
+      "accentRgb": "rgb(150, 61, 0)"
+    },
+    "productionRoutes": {
+      "checked": 18,
+      "failed": 0
     },
     "robotsAndSitemap": {
       "httpStatus": 200
-    },
-    "visualComparison": {
-      "desktop": {
-        "approvedCandidate": "docs/production-regression-recovery/evidence/recovered-candidate-desktop.png",
-        "productionAfter": "docs/production-regression-recovery/evidence/production-after-deploy-desktop.png"
-      },
-      "mobile": {
-        "approvedCandidate": "docs/production-regression-recovery/evidence/recovered-candidate-mobile.png",
-        "productionAfter": "docs/production-regression-recovery/evidence/production-after-deploy-mobile.png"
-      }
     }
   }
 }
