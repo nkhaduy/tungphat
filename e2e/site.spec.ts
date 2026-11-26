@@ -194,7 +194,7 @@ test("homepage có hero ván gỗ, hai CTA và một ảnh LCP ưu tiên", async
   await expect(
     hero.getByRole("heading", {
       level: 1,
-      name: "Ván gỗ công nghiệp & gia công CNC tại Thủ Đức",
+      name: "Ván gỗ công nghiệp & gia công CNC",
     }),
   ).toBeVisible();
   await expect(hero.getByRole("link")).toHaveCount(2);
@@ -302,18 +302,18 @@ test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", asyn
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
   for (const heading of [
-    "Khám phá vật liệu tại Tùng Phát",
+    "Danh mục sản phẩm",
     "Mã màu",
-    "Gửi kích thước, xưởng kiểm tra cách làm",
+    "Lên bản vẽ, cắt CNC và dán chỉ",
     "Địa chỉ",
-    "Kiến thức chọn vật liệu",
+    "Bài viết nổi bật",
   ]) {
     await expect(
       page.getByRole("heading", { level: 2, name: heading, exact: true }),
     ).toBeVisible();
   }
   const maps = page.locator('iframe[src*="google.com/maps"]');
-  await expect(maps).toHaveCount(3);
+  await expect(maps).toHaveCount(4);
   const mapEmbeds = await maps.evaluateAll((frames) =>
     frames.map((frame) => ({
       loading: frame.getAttribute("loading"),
@@ -327,22 +327,21 @@ test("homepage có đủ cấu trúc nội dung chính và chỉ một H1", asyn
 test("homepage product taxonomy links to the current material and surface routes", async ({ page }) => {
   await page.goto("/");
   const groups = page.locator("#vat-lieu");
-  for (const [label, href] of [
-    ["Ván MDF", "/van-mdf/"],
-    ["MDF chống ẩm", "/mdf-chong-am/"],
-    ["MFC", "/van-go-cong-nghiep/"],
-    ["Plywood", "/van-go-cong-nghiep/"],
-    ["Gỗ ghép", "/go-ghep/"],
-    ["Melamine", "/catalogue/thanh-thuy/melamine/"],
-    ["Laminate", "/catalogue/thanh-thuy/laminate/"],
-    ["Acrylic", "/catalogue/thanh-thuy/acrylic/"],
-    ["Veneer", "/catalogue/thanh-thuy/veneer/"],
-  ]) {
-    await expect(
-      groups.getByRole("link", { name: `Xem ${label}`, exact: true }),
-    ).toHaveAttribute("href", href);
-  }
-  expect(await groups.locator("article").count()).toBe(11);
+  const cards = await groups.locator("article").evaluateAll((items) =>
+    items.map((item) => [item.querySelector("h3")?.textContent?.trim(), item.querySelector("h3 a")?.getAttribute("href")]),
+  );
+  expect(cards).toEqual([
+    ["Ván MDF – HDF", "/van-mdf/"],
+    ["MDF chống ẩm (LMR – MMR – HMR)", "/mdf-chong-am/"],
+    ["Ván Okal – MFC (Ván dăm)", "/van-okal/"],
+    ["Ván ép – Plywood", "/van-plywood/"],
+    ["Gỗ ghép cao su", "/go-ghep-cao-su/"],
+    ["Melamine", "/melamine/"],
+    ["Laminate", "/laminate/"],
+    ["Ván phủ Veneer", "/tam-veneer/"],
+    ["Ván nhựa", "/van-nhua-pvc/"],
+    ["Chỉ dán cạnh", "/chi-nep-nhua/"],
+  ]);
 });
 
 test("homepage links visitors to supplier catalogues and the full catalogue", async ({ page }) => {
@@ -350,7 +349,8 @@ test("homepage links visitors to supplier catalogues and the full catalogue", as
   const section = page.locator("#ma-mau");
   await expect(
     section.getByRole("link", { name: "Mở catalogue" }),
-  ).toHaveAttribute("href", "/catalogue/");
+  ).toHaveAttribute("href", "/catalogue/?supplier=thanh-thuy");
+  await expect(section.getByRole("link", { name: "Tìm mã khác" })).toHaveAttribute("href", "/catalogue/");
   for (const supplier of ["an-cuong", "ba-thanh", "thanh-thuy"]) {
     await expect(
       section.locator(`a[href="/catalogue/${supplier}/"]`),
