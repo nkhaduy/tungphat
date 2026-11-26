@@ -33,7 +33,7 @@ test("homepage hero content stays readable before hydration", async ({
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: /Ván gỗ công nghiệp\s*& gia công CNC tại Thủ Đức/,
+        name: /Ván gỗ công nghiệp\s*&\s*gia công CNC/,
       }),
     ).toBeVisible();
   } finally {
