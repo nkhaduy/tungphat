@@ -41,7 +41,7 @@ export async function HomeContent() {
       <section id="vat-lieu" className="scroll-mt-24 border-b border-forest-900/10 bg-white py-16 lg:py-24">
         <div className="container-shell">
           <h2 className="font-display text-3xl font-extrabold tracking-[-.035em] text-forest-950 sm:text-4xl">Danh mục sản phẩm</h2>
-          <div className="mt-8 material-grid grid grid-cols-2 gap-3 sm:mt-10 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">{homeProductCards.map((card) => <MaterialCard key={card.id} card={card} showDescription={false} />)}</div>
+          <div className="mt-8 material-grid grid grid-cols-2 gap-3 sm:mt-10 sm:gap-5 md:grid-cols-3 xl:grid-cols-4 [&>*:nth-last-child(2)]:xl:col-start-2 [&>*:last-child]:xl:col-start-3">{homeProductCards.map((card) => <MaterialCard key={card.id} card={card} showDescription={false} />)}</div>
         </div>
       </section>
 
@@ -57,7 +57,7 @@ export async function HomeContent() {
 
       <section id="nang-luc-cnc" className="scroll-mt-24 border-b border-forest-900/10 bg-white py-16 lg:py-24">
         <div className="container-shell grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <div><p className="text-xs font-bold uppercase tracking-[.18em] text-slate-500">CNC Tùng Phát</p><h2 className="mt-3 font-display text-3xl font-extrabold tracking-[-.035em] text-forest-950 sm:text-4xl">Lên bản vẽ, cắt CNC và dán chỉ</h2><p className="mt-5 text-base leading-8 text-slate-700">Tùng Phát nhận cắt ván theo kích thước, gia công CNC và dán chỉ cạnh theo bản vẽ hoặc yêu cầu của khách hàng, đáp ứng nhu cầu gia công vật liệu gỗ cho nhiều hạng mục nội thất.</p><div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap"><Link href="/bao-gia/" className="inline-flex min-h-12 items-center justify-center gap-2 bg-forest-900 px-6 text-sm font-bold text-white hover:bg-forest-800">Gửi yêu cầu báo giá <ArrowRight size={16} aria-hidden="true" /></Link><Link href="/gia-cong-cnc/" className="inline-flex min-h-12 items-center justify-center border border-forest-900/25 px-6 text-sm font-bold text-forest-950 hover:border-forest-900 hover:text-wood-600">Xem dịch vụ Cắt CNC <ArrowRight size={16} aria-hidden="true" /></Link></div></div>
+          <div><p className="text-xs font-bold uppercase tracking-[.18em] text-wood-600">CNC Tùng Phát</p><h2 className="mt-3 font-display text-3xl font-extrabold tracking-[-.035em] text-forest-950 sm:text-4xl">Lên bản vẽ, cắt CNC và dán chỉ</h2><p className="mt-5 text-base leading-8 text-slate-700">Tùng Phát nhận cắt ván theo kích thước, gia công CNC và dán chỉ cạnh theo bản vẽ hoặc yêu cầu của khách hàng, đáp ứng nhu cầu gia công vật liệu gỗ cho nhiều hạng mục nội thất.</p><div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap"><Link href="/bao-gia/" className="inline-flex min-h-12 items-center justify-center gap-2 bg-forest-900 px-6 text-sm font-bold text-white hover:bg-forest-800">Gửi yêu cầu báo giá <ArrowRight size={16} aria-hidden="true" /></Link><Link href="/gia-cong-cnc/" className="inline-flex min-h-12 items-center justify-center border border-forest-900/25 px-6 text-sm font-bold text-forest-950 hover:border-forest-900 hover:text-wood-600">Xem dịch vụ Cắt CNC <ArrowRight size={16} aria-hidden="true" /></Link></div></div>
           <CncCarousel />
         </div>
       </section>
