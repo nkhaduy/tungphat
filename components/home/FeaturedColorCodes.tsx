@@ -51,7 +51,6 @@ export function FeaturedColorCodes({ thanhThuy, baThanh }: { thanhThuy: Featured
           })}
         </div>
       </div>
-      <p className="mt-4 text-xs leading-6 text-slate-600">Ảnh mẫu giúp tra cứu mã; màu hiển thị có thể khác mẫu vật liệu thực tế. Gửi mã để kiểm tra quy cách và tồn kho.</p>
     </div>
   );
 }
