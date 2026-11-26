@@ -1,10 +1,15 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-26T05:50:35.917Z",
+  "generatedAt": "2026-11-26T08:55:23.884Z",
   "source": {
-    "branch": "hotfix/restore-production-regressions",
-    "commit": "791f5a72ac0701bf0fc088b8e18c91a200a104e9",
-    "baseCommit": "74a9f8958a9fde5edd90674deeb94592452d930f"
+    "branch": "detached HEAD (clean post-merge checkout)",
+    "commit": "c2ef53a16b2a34033ba3ca2d0202832449c0b7c7",
+    "baseCommit": "74a9f8958a9fde5edd90674deeb94592452d930f",
+    "integrationBranch": "main",
+    "mergedFromBranch": "hotfix/restore-production-regressions",
+    "hotfixHead": "91a3451926c27d63c710e8bf6e72e6b0e8e5e47a",
+    "approvedAppSource": "791f5a72ac0701bf0fc088b8e18c91a200a104e9",
+    "pullRequest": "https://github.com/nkhaduy/tungphat/pull/38"
   },
   "productionBeforeRelease": {
     "worker": "tungphat-static-assets",
@@ -15,16 +20,23 @@
   },
   "productionAfterRelease": {
     "worker": "tungphat-static-assets",
-    "versionId": "b43086b6-d8d0-4355-8842-fbe476d25890"
+    "versionId": "d1fcf3ef-d514-4d32-b2d4-828e6ad0d759",
+    "deploymentId": "b5355b83-fee3-4754-b4fe-c7695c125be6",
+    "createdAt": "2026-11-26T08:43:41.658295Z",
+    "trafficPercent": 100,
+    "sourceCommit": "c2ef53a16b2a34033ba3ca2d0202832449c0b7c7",
+    "artifactSha256": "a6cf04b5718db30cb9f663887f6585bd9abd51e506364d40e75c2c99262194c6",
+    "contentSnapshotSha256": "6ab6bb75f7858c99cc5ef1196e2f9f5c0e81361673f27659cd5a4fd52a1d9953",
+    "rollbackTargetVersionId": "16750c49-4e3d-4c2f-aa8a-0b50cf1ff3c4"
   },
   "build": {
-    "command": "npm run verify",
+    "command": "npm run deploy:site (runs npm run verify before Wrangler deployment)",
     "nodeVersion": "v24.20.0",
     "outputDirectory": "out",
     "fileCount": 7587,
     "htmlPageCount": 3652,
     "totalBytes": 662951919,
-    "artifactSha256": "ad2482cce756f526d263d0571b33b851f515afd1ec5d5556922ff862c1fe1b47",
+    "artifactSha256": "a6cf04b5718db30cb9f663887f6585bd9abd51e506364d40e75c2c99262194c6",
     "publicCanonicalOrigin": "https://gotungphat.com",
     "configurationSha256": {
       "next.config.mjs": "9f63f6d4fde25ed0e836bb87a3e0b70cc720553b6385f6e14859f2df2b67252c",
@@ -51,5 +63,46 @@
   "regressionGuards": [
     "tests/production-home-regression.test.ts",
     "e2e/production-regression-recovery.spec.ts"
-  ]
+  ],
+  "productionSmokeChecks": {
+    "checkedAt": "2026-11-26T08:54:00Z",
+    "homepage": {
+      "httpStatus": 200,
+      "h1": "Ván gỗ công nghiệp & gia công CNC",
+      "seoTitle": "Tùng Phát | Ván gỗ công nghiệp & Gia công CNC tại Thủ Đức",
+      "productCards": 10
+    },
+    "restoredMaterialRoutes": {
+      "httpStatus": 200,
+      "count": 12
+    },
+    "catalogue": {
+      "httpStatus": 200,
+      "totalColorCodes": 2910,
+      "filtersPresent": true,
+      "infiniteScrollPresent": true,
+      "staticPaginationPresent": true
+    },
+    "editorial": {
+      "httpStatus": 200,
+      "tocPresent": true
+    },
+    "cnc": {
+      "httpStatus": 200,
+      "zaloCta": "https://zalo.me/0909259160"
+    },
+    "robotsAndSitemap": {
+      "httpStatus": 200
+    },
+    "visualComparison": {
+      "desktop": {
+        "approvedCandidate": "docs/production-regression-recovery/evidence/recovered-candidate-desktop.png",
+        "productionAfter": "docs/production-regression-recovery/evidence/production-after-deploy-desktop.png"
+      },
+      "mobile": {
+        "approvedCandidate": "docs/production-regression-recovery/evidence/recovered-candidate-mobile.png",
+        "productionAfter": "docs/production-regression-recovery/evidence/production-after-deploy-mobile.png"
+      }
+    }
+  }
 }
