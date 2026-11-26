@@ -66,6 +66,14 @@ test("recovered homepage stays accessible and fits desktop and mobile widths", a
   }
 });
 
+test("mobile homepage hero resolves its responsive image asset", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+
+  const heroImage = page.locator(".material-panels-hero-image");
+  await expect.poll(() => heroImage.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
+});
+
 test("all twelve previously published material guide URLs resolve with gotungphat canonicals", async ({ page }) => {
   for (const route of restoredProductRoutes) {
     const response = await page.goto(route, { waitUntil: "domcontentloaded" });
