@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { calculateTotals, normalizePayment, quantityToMilli } from "../shared/calculations";
+import { calculateTotals, discountPercentToBasisPoints, normalizePayment, quantityToMilli } from "../shared/calculations";
 import { officialBranch } from "../shared/branches";
 
 const vnd = z.number().int().min(0).max(Number.MAX_SAFE_INTEGER);
@@ -11,6 +11,13 @@ const quantity = z.number().superRefine((value, context) => {
     context.addIssue({ code: "custom", message: error instanceof Error ? error.message : "Số lượng không hợp lệ." });
   }
 });
+const discountPercent = z.number().superRefine((value, context) => {
+  try {
+    discountPercentToBasisPoints(value);
+  } catch (error) {
+    context.addIssue({ code: "custom", message: error instanceof Error ? error.message : "Chiết khấu không hợp lệ." });
+  }
+});
 
 export const quoteItemSchema = z.object({
   id: z.string().uuid().optional(),
@@ -19,6 +26,7 @@ export const quoteItemSchema = z.object({
   quantity,
   unit: text(50),
   unitPrice: vnd,
+  discountPercent: discountPercent.optional().default(0),
   note: text(500),
 });
 

@@ -2,6 +2,7 @@ import type { PaymentStatus, QuoteItemInput, QuoteMoneyInput, QuoteStatus, Quote
 
 const MAX_VND = Number.MAX_SAFE_INTEGER;
 export const QUANTITY_SCALE = 1_000;
+const DISCOUNT_BASIS_POINT_SCALE = 10_000;
 const MAX_QUANTITY = 1_000_000_000;
 
 export function assertVnd(value: number, field: string): number {
@@ -18,6 +19,45 @@ export function calculateLineTotal(quantity: number, unitPrice: number): number 
   const total = (scaledTotal + BigInt(QUANTITY_SCALE / 2)) / BigInt(QUANTITY_SCALE);
   if (total > BigInt(MAX_VND)) throw new Error("Thành tiền vượt quá giới hạn an toàn.");
   return Number(total);
+}
+
+export function discountPercentToBasisPoints(discountPercent: number): number {
+  if (!Number.isFinite(discountPercent) || discountPercent < 0 || discountPercent > 100) {
+    throw new Error("Chiết khấu phải từ 0 đến 100%.");
+  }
+  const basisPoints = Math.round(discountPercent * 100);
+  if (Math.abs(discountPercent * 100 - basisPoints) > 1e-8) {
+    throw new Error("Chiết khấu chỉ được có tối đa 2 chữ số thập phân.");
+  }
+  return basisPoints;
+}
+
+export function calculateDiscountedUnitPrice(unitPrice: number, discountPercent: number): number {
+  assertVnd(unitPrice, "Đơn giá");
+  const basisPoints = discountPercentToBasisPoints(discountPercent);
+  const remainingBasisPoints = BigInt(DISCOUNT_BASIS_POINT_SCALE - basisPoints);
+  const roundedPrice = (BigInt(unitPrice) * remainingBasisPoints + 5_000n) / BigInt(DISCOUNT_BASIS_POINT_SCALE);
+  if (roundedPrice > BigInt(MAX_VND)) throw new Error("Đơn giá sau chiết khấu vượt quá giới hạn an toàn.");
+  return Number(roundedPrice);
+}
+
+export function calculateLineAmounts(quantity: number, unitPrice: number, discountPercent = 0) {
+  const discountedUnitPrice = calculateDiscountedUnitPrice(unitPrice, discountPercent);
+  const grossLineTotal = calculateLineTotal(quantity, unitPrice);
+  const lineTotal = calculateLineTotal(quantity, discountedUnitPrice);
+  return { discountedUnitPrice, lineTotal, discount: grossLineTotal - lineTotal };
+}
+
+export function calculateItemDiscountTotal(items: QuoteItemInput[]): number {
+  return items.reduce((sum, item) => {
+    const lineDiscount = calculateLineAmounts(item.quantity, item.unitPrice, item.discountPercent ?? 0).discount;
+    return assertVnd(sum + lineDiscount, "Chiết khấu sản phẩm");
+  }, 0);
+}
+
+export function formatDiscountPercent(value: number): string {
+  discountPercentToBasisPoints(value);
+  return new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 2 }).format(value);
 }
 
 export function quantityToMilli(quantity: number): number {
@@ -46,7 +86,9 @@ export function calculateTotals(items: QuoteItemInput[], money: QuoteMoneyInput)
     const next = sum + calculateLineTotal(item.quantity, item.unitPrice);
     return assertVnd(next, "Tiền hàng");
   }, 0);
-  const discount = assertVnd(money.discount, "Chiết khấu");
+  const extraDiscount = assertVnd(money.discount, "Chiết khấu");
+  const productDiscount = calculateItemDiscountTotal(items);
+  const discount = assertVnd(productDiscount + extraDiscount, "Chiết khấu");
   const shippingFee = assertVnd(money.shippingFee, "Phí vận chuyển");
   const processingFee = assertVnd(money.processingFee, "Phí gia công");
   const vatAmount = assertVnd(money.vatAmount, "Thuế VAT");

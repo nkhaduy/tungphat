@@ -1,7 +1,7 @@
 import { Archive, Copy, Edit3, FileDown, Printer, RotateCcw, Trash2, XCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { formatVnd, formatVndNumber } from "../../shared/calculations";
+import { calculateDiscountedUnitPrice, formatDiscountPercent, formatVnd, formatVndNumber } from "../../shared/calculations";
 import { buildQuotePdfFilename, formatEmployeeContact, shouldShowSpecificationColumn } from "../../shared/display";
 import type { AppSettings, QuoteRecord } from "../../shared/types";
 import { buildVietQrUrl } from "../../shared/vietqr";
@@ -10,6 +10,13 @@ import { api, downloadProtected } from "../api";
 import { useAuth } from "../auth";
 import { PageHeader } from "../components/PageHeader";
 import { OldDebtNotice } from "../components/OldDebtNotice";
+
+function previewColumnWidths(showSpecifications: boolean, showNotes: boolean): number[] {
+  if (showSpecifications && showNotes) return [4, 17, 13, 6, 5, 9, 6, 13, 13, 14];
+  if (showSpecifications) return [5, 22, 15, 7, 6, 10, 6, 14, 15];
+  if (showNotes) return [5, 25, 7, 6, 10, 6, 15, 14, 12];
+  return [5, 30, 7, 6, 12, 6, 16, 18];
+}
 import { StatusBadge } from "../components/StatusBadge";
 
 export function QuotePreviewPage({ admin = false }: { admin?: boolean }) {
@@ -118,6 +125,7 @@ export function QuotePreviewPage({ admin = false }: { admin?: boolean }) {
   const cn2Address = headerBranches.find((branch) => branch.code === "TP81")?.address ?? "81B Tam Bình, Hiệp Bình, TP.HCM";
   const showItemNotes = quote.items.some((item) => item.note.trim());
   const showSpecifications = shouldShowSpecificationColumn(quote.items);
+  const itemColumnWidths = previewColumnWidths(showSpecifications, showItemNotes);
   return (
     <div>
       <div className="no-print">
@@ -161,7 +169,7 @@ export function QuotePreviewPage({ admin = false }: { admin?: boolean }) {
         <h1>BẢNG BÁO GIÁ</h1>
         <div className="preview-meta"><span><b>Mã báo giá:</b> {quote.quoteNumber}</span><span><b>Ngày lập:</b> {quote.quoteDate.split("-").reverse().join("/")}</span><span><b>Chi nhánh:</b> {quote.branchName} ({quote.branchAddress})</span><span><b>Người lập:</b> {employeeContact}</span></div>
         <section className="preview-customer"><span><b>Khách hàng:</b> {quote.customerName || "—"}</span><span><b>Điện thoại:</b> {quote.customerPhone || "—"}</span><span><b>Địa chỉ:</b> {quote.customerAddress || "—"}</span></section>
-        <div className={`preview-table-wrap ${showItemNotes ? "with-notes" : "without-notes"} ${showSpecifications ? "with-specifications" : "without-specifications"}`}><table className="preview-table"><thead><tr><th>STT</th><th>Tên sản phẩm</th>{showSpecifications && <th>Quy cách</th>}<th>SL</th><th>ĐVT</th><th>Đơn giá</th><th>Thành tiền</th>{showItemNotes && <th>Ghi chú</th>}</tr></thead><tbody>{quote.items.map((item, index) => <tr key={item.id}><td>{index + 1}</td><td>{item.productName}</td>{showSpecifications && <td>{item.specification}</td>}<td className="money">{item.quantity.toLocaleString("vi-VN")}</td><td>{item.unit}</td><td className="money">{formatVndNumber(item.unitPrice)}</td><td className="money">{formatVndNumber(item.lineTotal)}</td>{showItemNotes && <td>{item.note}</td>}</tr>)}</tbody></table></div>
+        <div className={`preview-table-wrap ${showItemNotes ? "with-notes" : "without-notes"} ${showSpecifications ? "with-specifications" : "without-specifications"}`}><table className="preview-table"><colgroup>{itemColumnWidths.map((width, index) => <col key={index} style={{ width: `${width}%` }} />)}</colgroup><thead><tr><th>STT</th><th>Tên sản phẩm</th>{showSpecifications && <th>Quy cách</th>}<th className="numeric">SL</th><th>ĐVT</th><th className="numeric">Đơn giá</th><th className="numeric">CK (%)</th><th className="numeric">Đơn giá sau CK</th><th className="numeric">Thành tiền sau CK</th>{showItemNotes && <th>Ghi chú</th>}</tr></thead><tbody>{quote.items.map((item, index) => <tr key={item.id}><td>{index + 1}</td><td>{item.productName}</td>{showSpecifications && <td>{item.specification}</td>}<td className="numeric">{item.quantity.toLocaleString("vi-VN")}</td><td>{item.unit}</td><td className="numeric">{formatVndNumber(item.unitPrice)}</td><td className="numeric">{formatDiscountPercent(item.discountPercent ?? 0)}</td><td className="numeric">{formatVndNumber(calculateDiscountedUnitPrice(item.unitPrice, item.discountPercent ?? 0))}</td><td className="numeric">{formatVndNumber(item.lineTotal)}</td>{showItemNotes && <td>{item.note}</td>}</tr>)}</tbody></table></div>
         <section className="preview-summary"><div className="preview-bank"><h2>Thông tin chuyển khoản</h2><div className="preview-bank-details"><span><b>Ngân hàng:</b> <strong>{settings.bank.bankCode}</strong></span><span><b>Số tài khoản:</b> <strong>{settings.bank.accountNumber}</strong></span><span><b>Chủ tài khoản:</b> <strong>{settings.bank.holder}</strong></span></div>{qrUrl && !qrFailed ? <img src={qrUrl} onError={() => setQrFailed(true)} alt={oldDebtAmount > 0 ? "VietQR thanh toán không điền sẵn số tiền" : `VietQR thanh toán ${formatVnd(quote.totals.remainingAmount)}`} /> : isPaid ? <strong className="paid-text">ĐÃ THANH TOÁN ĐỦ</strong> : qrUrl ? <strong className="qr-error">Không tải được VietQR. PDF sẽ không được phát hành nếu QR không hợp lệ.</strong> : <strong className="zero-payment">KHÔNG PHÁT SINH THANH TOÁN</strong>}</div><dl><div><dt>Tiền hàng</dt><dd>{formatVnd(quote.totals.subtotal)}</dd></div><div><dt>Chiết khấu</dt><dd>{quote.totals.discount > 0 ? `-${formatVnd(quote.totals.discount)}` : formatVnd(0)}</dd></div><div><dt>Phí vận chuyển</dt><dd>{formatVnd(quote.totals.shippingFee)}</dd></div><div><dt>Phí gia công</dt><dd>{formatVnd(quote.totals.processingFee)}</dd></div><div><dt>Thuế VAT</dt><dd>{formatVnd(quote.totals.vatAmount)}</dd></div><div className="preview-grand"><dt>TỔNG THANH TOÁN</dt><dd>{formatVnd(quote.totals.grandTotal)}</dd></div><OldDebtNotice amount={oldDebtAmount} /><div><dt>{paymentReceivedLabel(quote.paymentStatus)}</dt><dd>{formatVnd(quote.totals.depositAmount)}</dd></div><div className="preview-remaining"><dt>CÒN LẠI</dt><dd>{formatVnd(quote.totals.remainingAmount)}</dd></div></dl></section>
         {(quote.deliveryNote || quote.generalNote) && <section className="preview-notes"><h2>Ghi chú</h2>{quote.deliveryNote && <p>{quote.deliveryNote}</p>}{quote.generalNote && <p>{quote.generalNote}</p>}</section>}
       </article>

@@ -1,7 +1,7 @@
 import fontkit from "@pdf-lib/fontkit";
 import type { Context } from "hono";
 import { PDFDocument, type PDFFont, type PDFImage, type PDFPage, rgb } from "pdf-lib";
-import { deriveQuoteStatus, formatQuantity, formatVnd, formatVndNumber } from "../shared/calculations";
+import { calculateDiscountedUnitPrice, deriveQuoteStatus, formatDiscountPercent, formatQuantity, formatVnd, formatVndNumber } from "../shared/calculations";
 import { OFFICIAL_BRANCHES } from "../shared/branches";
 import { buildQuotePdfContentDisposition, formatEmployeeContact } from "../shared/display";
 import { paymentReceivedLabel, shouldShowPaymentQr } from "../shared/payment";
@@ -267,40 +267,48 @@ function drawQuoteIntro(page: PDFPage, regular: PDFFont, bold: PDFFont, snapshot
 }
 
 type Column = { key: string; label: string; width: number; align?: "right" };
-function tableColumns(quote: QuoteRecord): Column[] {
+export function buildPdfTableColumns(quote: QuoteRecord): Column[] {
   const showNote = quote.items.some((item) => item.note.trim());
   const showSpecification = shouldShowSpecificationColumn(quote.items);
   const definitions = showNote && showSpecification ? [
-    ["position", "STT", 0.055], ["product", "Tên sản phẩm", 0.23], ["spec", "Quy cách", 0.16],
-    ["quantity", "SL", 0.075], ["unit", "ĐVT", 0.07], ["price", "Đơn giá", 0.14],
-    ["total", "Thành tiền", 0.145], ["note", "Ghi chú", 0.125],
+    ["position", "STT", 0.05], ["product", "Tên sản phẩm", 0.18], ["spec", "Quy cách", 0.11],
+    ["quantity", "SL", 0.05], ["unit", "ĐVT", 0.05], ["price", "Đơn giá", 0.10], ["discount", "CK (%)", 0.055],
+    ["discountedPrice", "Đơn giá sau CK", 0.135], ["total", "Thành tiền sau CK", 0.17], ["note", "Ghi chú", 0.10],
   ] : showNote ? [
-    ["position", "STT", 0.055], ["product", "Tên sản phẩm", 0.32], ["quantity", "SL", 0.075],
-    ["unit", "ĐVT", 0.07], ["price", "Đơn giá", 0.14], ["total", "Thành tiền", 0.145], ["note", "Ghi chú", 0.195],
+    ["position", "STT", 0.05], ["product", "Tên sản phẩm", 0.26], ["quantity", "SL", 0.055],
+    ["unit", "ĐVT", 0.055], ["price", "Đơn giá", 0.10], ["discount", "CK (%)", 0.055],
+    ["discountedPrice", "Đơn giá sau CK", 0.13], ["total", "Thành tiền sau CK", 0.16], ["note", "Ghi chú", 0.135],
   ] : showSpecification ? [
-    ["position", "STT", 0.06], ["product", "Tên sản phẩm", 0.30], ["spec", "Quy cách", 0.19],
-    ["quantity", "SL", 0.08], ["unit", "ĐVT", 0.08], ["price", "Đơn giá", 0.14],
-    ["total", "Thành tiền", 0.15],
+    ["position", "STT", 0.06], ["product", "Tên sản phẩm", 0.23], ["spec", "Quy cách", 0.14],
+    ["quantity", "SL", 0.06], ["unit", "ĐVT", 0.06], ["price", "Đơn giá", 0.105], ["discount", "CK (%)", 0.06],
+    ["discountedPrice", "Đơn giá sau CK", 0.13], ["total", "Thành tiền sau CK", 0.155],
   ] : [
-    ["position", "STT", 0.06], ["product", "Tên sản phẩm", 0.49], ["quantity", "SL", 0.08],
-    ["unit", "ĐVT", 0.08], ["price", "Đơn giá", 0.14], ["total", "Thành tiền", 0.15],
+    ["position", "STT", 0.06], ["product", "Tên sản phẩm", 0.40], ["quantity", "SL", 0.065],
+    ["unit", "ĐVT", 0.065], ["price", "Đơn giá", 0.11], ["discount", "CK (%)", 0.06],
+    ["discountedPrice", "Đơn giá sau CK", 0.12], ["total", "Thành tiền sau CK", 0.12],
   ];
   return definitions.map(([key, label, ratio], index) => ({
     key: String(key),
     label: String(label),
     width: index === definitions.length - 1 ? CONTENT_WIDTH - definitions.slice(0, -1).reduce((total, current) => total + CONTENT_WIDTH * Number(current[2]), 0) : CONTENT_WIDTH * Number(ratio),
-    align: new Set(["quantity", "price", "total"]).has(String(key)) ? "right" as const : undefined,
+    align: new Set(["quantity", "price", "discount", "discountedPrice", "total"]).has(String(key)) ? "right" as const : undefined,
   }));
 }
 
 function drawTableHeader(page: PDFPage, font: PDFFont, y: number, columns: Column[]): number {
-  const height = 27;
+  const height = 32;
   page.drawRectangle({ x: MARGIN, y: y - height, width: CONTENT_WIDTH, height, color: GREEN });
   let x = MARGIN;
   columns.forEach((column, index) => {
-    const width = font.widthOfTextAtSize(column.label, 8.1);
-    const textX = column.align === "right" ? x + column.width - width - 5 : x + 5;
-    page.drawText(column.label, { x: textX, y: y - 17.2, font, size: 8.1, color: rgb(1, 1, 1) });
+    const size = 7.1;
+    const lines = wrapText(column.label, font, size, column.width - 8).slice(0, 2);
+    const lineHeight = 8.4;
+    const firstY = y - (height - (lines.length - 1) * lineHeight) / 2 - 7;
+    lines.forEach((line, lineIndex) => {
+      const textWidth = font.widthOfTextAtSize(line, size);
+      const textX = column.align === "right" ? x + column.width - textWidth - 4 : x + 4;
+      page.drawText(line, { x: textX, y: firstY + (lines.length - lineIndex - 1) * lineHeight, font, size, color: rgb(1, 1, 1) });
+    });
     x += column.width;
     if (index < columns.length - 1) page.drawLine({ start: { x, y }, end: { x, y: y - height }, thickness: 0.45, color: rgb(0.3, 0.53, 0.44) });
   });
@@ -316,6 +324,8 @@ export function buildPdfItemValues(quote: QuoteRecord, index: number): Record<st
     quantity: formatQuantity(item.quantity),
     unit: item.unit,
     price: formatVndNumber(item.unitPrice),
+    discount: formatDiscountPercent(item.discountPercent ?? 0),
+    discountedPrice: formatVndNumber(calculateDiscountedUnitPrice(item.unitPrice, item.discountPercent ?? 0)),
     total: formatVndNumber(item.lineTotal),
     note: item.note,
   };
@@ -423,7 +433,7 @@ export async function generateQuotePdf(snapshot: QuoteSnapshot, assets: PdfAsset
   let page = addPage(pdf);
   let y = drawCompanyHeader(page, regular, bold, logo, snapshot);
   y = drawQuoteIntro(page, regular, bold, snapshot, y);
-  const columns = tableColumns(snapshot.quote);
+  const columns = buildPdfTableColumns(snapshot.quote);
   y = drawTableHeader(page, bold, y, columns);
   let itemIndex = 0;
   while (itemIndex < snapshot.quote.items.length) {

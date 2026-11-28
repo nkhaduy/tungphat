@@ -4,7 +4,7 @@ import { PDFDocument } from "pdf-lib";
 import { describe, expect, it } from "vitest";
 import type { AppSettings, QuoteRecord } from "../src/shared/types";
 import { buildVietQrUrl } from "../src/shared/vietqr";
-import { buildPdfItemValues, buildPdfTotalsRows, generateQuotePdf, type QuoteSnapshot } from "../src/worker/pdf";
+import { buildPdfItemValues, buildPdfTableColumns, buildPdfTotalsRows, generateQuotePdf, type QuoteSnapshot } from "../src/worker/pdf";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const settings: AppSettings = {
@@ -39,6 +39,22 @@ describe("server PDF", () => {
     const values = buildPdfItemValues(quote(1), 0);
     expect(values.price).toBe("203.000");
     expect(values.total).toBe("406.000");
+  });
+
+  it("includes per-item discount and after-discount price columns in PDF rows", () => {
+    const sample = quote(1);
+    sample.items[0].discountPercent = 20;
+    sample.items[0].lineTotal = 324_800;
+    const values = buildPdfItemValues(sample, 0);
+    expect(values).toMatchObject({
+      price: "203.000",
+      discount: "20",
+      discountedPrice: "162.400",
+      total: "324.800",
+    });
+    expect(buildPdfTableColumns(sample).map((column) => column.label)).toEqual([
+      "STT", "Tên sản phẩm", "Quy cách", "SL", "ĐVT", "Đơn giá", "CK (%)", "Đơn giá sau CK", "Thành tiền sau CK", "Ghi chú",
+    ]);
   });
 
   it("places old debt directly after the grand total without adding it to the total", () => {

@@ -5,7 +5,7 @@ const input = {
   quoteDate: "2026-11-18", customerName: "Khách thử", customerPhone: "", customerAddress: "",
   deliveryNote: "", generalNote: "", discount: 0, shippingFee: 0, processingFee: 0,
   vatAmount: 0, depositAmount: 0, paymentStatus: "UNPAID",
-  items: [{ productName: "MDF", specification: "", quantity: 1, unit: "tấm", unitPrice: 100, note: "" }],
+  items: [{ productName: "MDF", specification: "", quantity: 1, unit: "tấm", unitPrice: 100, discountPercent: 0, note: "" }],
 };
 
 describe("quote save validation", () => {
@@ -20,7 +20,7 @@ describe("editor save payload", () => {
   it("does not send the empty spreadsheet row against the 500 product limit", async () => {
     const { payload } = await import("../src/client/pages/QuoteEditorPage");
     const rows = Array.from({ length: 500 }, (_, i) => ({ clientId: String(i), ...input.items[0] }));
-    rows.push({ clientId: "blank", productName: "", specification: "", quantity: 0, unit: "", unitPrice: 0, note: "" });
+    rows.push({ clientId: "blank", productName: "", specification: "", quantity: 0, unit: "", unitPrice: 0, discountPercent: 0, note: "" });
     const body = payload({ ...input, oldDebtAmount: 0, branchId: "branch", paymentStatus: "UNPAID", rows });
     expect(body.items).toHaveLength(500);
     expect(quoteInputSchema.safeParse(body).success).toBe(true);

@@ -1,7 +1,9 @@
 import type { Context } from "hono";
 import {
-  calculateLineTotal,
+  calculateItemDiscountTotal,
+  calculateLineAmounts,
   calculateTotals,
+  discountPercentToBasisPoints,
   lifecycleStatusForPayment,
   normalizePayment,
   paymentStatusFromLegacyQuote,
@@ -60,6 +62,7 @@ export type ItemRow = {
   quantity_milli: number;
   unit: string;
   unit_price: number;
+  discount_basis_points: number;
   line_total: number;
   note: string;
 };
@@ -116,6 +119,7 @@ export function mapQuote(row: QuoteRow, items: ItemRow[]): QuoteRecord {
       quantity: quantityFromMilli(item.quantity_milli),
       unit: item.unit,
       unitPrice: item.unit_price,
+      discountPercent: item.discount_basis_points / 100,
       lineTotal: item.line_total,
       note: item.note,
     })),
@@ -160,14 +164,14 @@ export async function loadQuote(env: QuoteAppEnv, quoteId: string, user: Session
   const row = await env.DB.prepare(`${quoteSelect} WHERE q.id=?1 AND q.deleted_at IS NULL`).bind(quoteId).first<QuoteRow>();
   if (!row || !canAccessQuote(user, row.created_by)) throw new HttpError(404, "Không tìm thấy báo giá.");
   const { results } = await env.DB.prepare(`
-    SELECT id,position,product_name,specification,quantity_milli,unit,unit_price,line_total,note
+    SELECT id,position,product_name,specification,quantity_milli,unit,unit_price,discount_basis_points,line_total,note
     FROM quote_items WHERE quote_id=?1 AND deleted_at IS NULL ORDER BY position
   `).bind(quoteId).all<ItemRow>();
   return mapQuote(row, results);
 }
 
 function meaningfulItems(items: QuoteItemInput[]): QuoteItemInput[] {
-  return items.filter((item) => item.productName || item.specification || item.quantity || item.unit || item.unitPrice || item.note);
+  return items.filter((item) => item.productName || item.specification || item.quantity || item.unit || item.unitPrice || item.discountPercent || item.note);
 }
 
 async function branchForCreate(env: QuoteAppEnv, user: SessionUser, requestedBranchId?: string) {
@@ -231,11 +235,11 @@ async function createQuote(env: QuoteAppEnv, user: SessionUser, rawInput: unknow
   if (customerStatement) statements.push(customerStatement);
   items.forEach((item, index) => {
     statements.push(env.DB.prepare(`
-      INSERT INTO quote_items(id,quote_id,position,product_name,specification,quantity_milli,unit,unit_price,line_total,note,created_at,updated_at)
-      VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?11)
+      INSERT INTO quote_items(id,quote_id,position,product_name,specification,quantity_milli,unit,unit_price,discount_basis_points,line_total,note,created_at,updated_at)
+      VALUES(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?12)
     `).bind(
       crypto.randomUUID(), id, index + 1, item.productName, item.specification, quantityToMilli(item.quantity), item.unit, item.unitPrice,
-      calculateLineTotal(item.quantity, item.unitPrice), item.note, now,
+      discountPercentToBasisPoints(item.discountPercent ?? 0), calculateLineAmounts(item.quantity, item.unitPrice, item.discountPercent ?? 0).lineTotal, item.note, now,
     ));
   });
   statements.push(auditStatement(env, {
@@ -306,12 +310,12 @@ export async function updateQuoteHandler(c: Context<AppBindings>): Promise<Respo
   ];
   items.forEach((item, index) => {
     statements.push(c.env.DB.prepare(`
-      INSERT INTO quote_items(id,quote_id,position,product_name,specification,quantity_milli,unit,unit_price,line_total,note,created_at,updated_at)
-      SELECT ?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?11
-      WHERE EXISTS(SELECT 1 FROM quotes WHERE id=?2 AND revision_token=?12)
+      INSERT INTO quote_items(id,quote_id,position,product_name,specification,quantity_milli,unit,unit_price,discount_basis_points,line_total,note,created_at,updated_at)
+      SELECT ?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?12
+      WHERE EXISTS(SELECT 1 FROM quotes WHERE id=?2 AND revision_token=?13)
     `).bind(
       crypto.randomUUID(), quote.id, index + 1, item.productName, item.specification, quantityToMilli(item.quantity), item.unit,
-      item.unitPrice, calculateLineTotal(item.quantity, item.unitPrice), item.note, now, revisionToken,
+      item.unitPrice, discountPercentToBasisPoints(item.discountPercent ?? 0), calculateLineAmounts(item.quantity, item.unitPrice, item.discountPercent ?? 0).lineTotal, item.note, now, revisionToken,
     ));
   });
   const customerStatement = customerUpsertStatement(c.env, {
@@ -454,7 +458,7 @@ export async function duplicateQuoteHandler(c: Context<AppBindings>): Promise<Re
     deliveryNote: source.deliveryNote,
     generalNote: source.generalNote,
     oldDebtAmount: source.oldDebtAmount ?? 0,
-    discount: source.totals.discount,
+    discount: Math.max(0, source.totals.discount - calculateItemDiscountTotal(source.items)),
     shippingFee: source.totals.shippingFee,
     processingFee: source.totals.processingFee,
     vatAmount: source.totals.vatAmount,

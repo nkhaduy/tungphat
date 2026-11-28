@@ -25,11 +25,25 @@ describe("quote editor VAT input", () => {
 describe("quote grid money input", () => {
   it("renders unit prices with Vietnamese thousand separators", () => {
     const html = renderToStaticMarkup(createElement(QuoteGrid, {
-      rows: [{ clientId: "row-1", productName: "MDF", specification: "18mm", quantity: 2, unit: "Tấm", unitPrice: 203_000, note: "" }],
+      rows: [{ clientId: "row-1", productName: "MDF", specification: "18mm", quantity: 2, unit: "Tấm", unitPrice: 203_000, discountPercent: 0, note: "" }],
       onChange: () => undefined,
       readOnly: true,
     }));
     expect(html).toContain('value="203.000"');
     expect(html).toContain(">406.000<");
+  });
+
+  it("shows the per-product discount and both after-discount amounts in order", () => {
+    const html = renderToStaticMarkup(createElement(QuoteGrid, {
+      rows: [{ clientId: "row-1", productName: "MDF", specification: "18mm", quantity: 2, unit: "Tấm", unitPrice: 203_000, discountPercent: 20, note: "" }],
+      onChange: () => undefined,
+      readOnly: true,
+    }));
+    expect(html).toContain("CK (%)");
+    expect(html).toContain("Đơn giá sau CK");
+    expect(html).toContain("Thành tiền sau CK");
+    expect(html).toContain('value="20"');
+    expect(html).toContain(">162.400<");
+    expect(html).toContain(">324.800<");
   });
 });

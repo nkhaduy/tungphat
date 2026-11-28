@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 const migrationPath = fileURLToPath(new URL("../migrations/0006_quote_payment_status.sql", import.meta.url));
 const vatMigrationPath = fileURLToPath(new URL("../migrations/0007_quote_vat_rate.sql", import.meta.url));
 const oldDebtMigrationPath = fileURLToPath(new URL("../migrations/0008_quote_old_debt.sql", import.meta.url));
+const itemDiscountMigrationPath = fileURLToPath(new URL("../migrations/0010_quote_item_discount.sql", import.meta.url));
 
 describe("quote payment migration", () => {
   it("is additive and never deletes or rebuilds real quote data", async () => {
@@ -30,6 +31,15 @@ describe("quote old debt migration", () => {
     const sql = await readFile(oldDebtMigrationPath, "utf8");
     expect(sql).toMatch(/ALTER TABLE quotes ADD COLUMN old_debt_amount/i);
     expect(sql).toMatch(/DEFAULT 0/i);
+    expect(sql).not.toMatch(/\b(?:UPDATE|DELETE|DROP|TRUNCATE|REPLACE)\b/i);
+  });
+});
+
+describe("quote item discount migration", () => {
+  it("adds a zero-default percentage basis-point column without rewriting quote data", async () => {
+    const sql = await readFile(itemDiscountMigrationPath, "utf8");
+    expect(sql).toMatch(/ALTER TABLE quote_items\s+ADD COLUMN discount_basis_points INTEGER NOT NULL DEFAULT 0/i);
+    expect(sql).toMatch(/CHECK\s*\(\s*discount_basis_points\s+BETWEEN\s+0\s+AND\s+10000\s*\)/i);
     expect(sql).not.toMatch(/\b(?:UPDATE|DELETE|DROP|TRUNCATE|REPLACE)\b/i);
   });
 });

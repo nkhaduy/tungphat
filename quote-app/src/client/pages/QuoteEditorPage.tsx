@@ -1,7 +1,7 @@
 import { Check, Eye, FileDown, Printer, Save, Wifi } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useBlocker, useNavigate, useParams } from "react-router-dom";
-import { calculateLineTotal, calculateTotals, formatVnd, formatVndInput, parseVndInput } from "../../shared/calculations";
+import { calculateItemDiscountTotal, calculateLineAmounts, calculateLineTotal, calculateTotals, formatVnd, formatVndInput, parseVndInput } from "../../shared/calculations";
 import { buildQuotePdfFilename, formatEmployeeContact } from "../../shared/display";
 import type { AppSettings, CustomerRecord, PaymentStatus, QuoteRecord } from "../../shared/types";
 import { ApiError, api, apiWithTimeout, downloadProtected, refreshSessionForUser } from "../api";
@@ -67,13 +67,13 @@ function quoteToForm(quote: QuoteRecord): QuoteForm {
     deliveryNote: quote.deliveryNote,
     generalNote: quote.generalNote,
     oldDebtAmount: quote.oldDebtAmount ?? 0,
-    discount: quote.totals.discount,
+    discount: Math.max(0, quote.totals.discount - calculateItemDiscountTotal(quote.items)),
     shippingFee: quote.totals.shippingFee,
     processingFee: quote.totals.processingFee,
     vatAmount: quote.totals.vatAmount,
     depositAmount: quote.totals.depositAmount,
     paymentStatus: quote.paymentStatus,
-    rows: [...quote.items.map((item) => ({ ...item, clientId: item.id })), emptyRow()],
+    rows: [...quote.items.map((item) => ({ ...item, discountPercent: item.discountPercent ?? 0, clientId: item.id })), emptyRow()],
   };
 }
 
@@ -95,12 +95,13 @@ export function payload(form: QuoteForm, version?: number) {
     vatRate: null,
     depositAmount: form.depositAmount,
     paymentStatus: form.paymentStatus,
-    items: form.rows.filter((item) => item.productName || item.specification || item.quantity || item.unit || item.unitPrice || item.note).map((item) => ({
+    items: form.rows.filter((item) => item.productName || item.specification || item.quantity || item.unit || item.unitPrice || item.discountPercent || item.note).map((item) => ({
       productName: item.productName,
       specification: item.specification,
       quantity: item.quantity,
       unit: item.unit,
       unitPrice: item.unitPrice,
+      discountPercent: item.discountPercent,
       note: item.note,
     })),
   };
@@ -385,23 +386,30 @@ export function QuoteEditorPage() {
   }, [blocker]);
 
   const calculation = useMemo(() => {
-    if (!form) return { totals: null, error: "" };
-    try { return { totals: calculateTotals(form.rows, form), error: "" }; }
+    if (!form) return { totals: null, productDiscount: 0, error: "" };
+    const productDiscount = form.rows.reduce((sum, row) => {
+      try { return Math.min(Number.MAX_SAFE_INTEGER, sum + calculateLineAmounts(row.quantity, row.unitPrice, row.discountPercent).discount); }
+      catch { return sum; }
+    }, 0);
+    try { return { totals: calculateTotals(form.rows, form), productDiscount, error: "" }; }
     catch (caught) {
       const subtotal = form.rows.reduce((sum, row) => {
         try { return Math.min(Number.MAX_SAFE_INTEGER, sum + calculateLineTotal(row.quantity, row.unitPrice)); }
         catch { return sum; }
       }, 0);
-      const taxableBase = Math.max(0, subtotal - form.discount + form.shippingFee + form.processingFee);
+      const discount = Math.min(Number.MAX_SAFE_INTEGER, productDiscount + form.discount);
+      const taxableBase = Math.max(0, subtotal - discount + form.shippingFee + form.processingFee);
       const vatAmount = form.vatAmount;
       const grandTotal = Math.max(0, taxableBase + vatAmount);
       return {
-        totals: { subtotal, discount: form.discount, shippingFee: form.shippingFee, processingFee: form.processingFee, vatAmount, grandTotal, depositAmount: form.depositAmount, remainingAmount: Math.max(0, grandTotal - form.depositAmount) },
+        totals: { subtotal, discount, shippingFee: form.shippingFee, processingFee: form.processingFee, vatAmount, grandTotal, depositAmount: form.depositAmount, remainingAmount: Math.max(0, grandTotal - form.depositAmount) },
+        productDiscount,
         error: caught instanceof Error ? caught.message : "Số tiền không hợp lệ.",
       };
     }
   }, [form]);
   const totals = calculation.totals;
+  const productDiscount = calculation.productDiscount;
 
   const saveThen = async (action: "preview" | "pdf" | "print") => {
     const saved = dirty || !quote ? await save() : quote;
@@ -517,7 +525,7 @@ export function QuoteEditorPage() {
               <label className="wide"><span>Địa chỉ</span><input value={form.customerAddress} onChange={(event) => change({ ...form, customerAddress: event.target.value })} /></label>
             </div>
           </section>
-          <section className="form-section grid-section"><div className="section-heading"><div><h2>Bảng sản phẩm</h2><p>Thành tiền được khóa và tự tính theo số lượng × đơn giá.</p></div></div><QuoteGrid rows={form.rows} onChange={(rows) => change({ ...form, rows })} /></section>
+          <section className="form-section grid-section"><div className="section-heading"><div><h2>Bảng sản phẩm</h2><p>Chiết khấu áp dụng theo từng dòng. Đơn giá và thành tiền sau CK tự tính; cuộn ngang để xem đủ cột.</p></div></div><QuoteGrid rows={form.rows} onChange={(rows) => change({ ...form, rows })} /></section>
           <section className="form-section notes-grid">
             <label><span>Ghi chú giao hàng</span><textarea rows={4} value={form.deliveryNote} onChange={(event) => change({ ...form, deliveryNote: event.target.value })} /></label>
             <label><span>Ghi chú chung</span><textarea rows={4} value={form.generalNote} onChange={(event) => change({ ...form, generalNote: event.target.value })} /></label>
@@ -525,8 +533,9 @@ export function QuoteEditorPage() {
         </div>
         <aside className="totals-panel">
           <div><h2>Tổng thanh toán</h2><span>{quote?.quoteNumber ?? "Mã được cấp khi lưu"}</span></div>
-          <dl><div><dt>Tiền hàng</dt><dd>{formatVnd(totals.subtotal)}</dd></div></dl>
-          {moneyField("discount", "Chiết khấu")}
+          <dl><div><dt>Tiền hàng</dt><dd>{formatVnd(totals.subtotal)}</dd></div><div><dt>Chiết khấu sản phẩm</dt><dd>{productDiscount > 0 ? `-${formatVnd(productDiscount)}` : formatVnd(0)}</dd></div></dl>
+          {moneyField("discount", "Chiết khấu bổ sung")}
+          <dl><div><dt>Tổng chiết khấu</dt><dd>{totals.discount > 0 ? `-${formatVnd(totals.discount)}` : formatVnd(0)}</dd></div></dl>
           {moneyField("shippingFee", "Phí vận chuyển")}
           {moneyField("processingFee", "Phí gia công")}
           {moneyField("vatAmount", "Thuế VAT")}

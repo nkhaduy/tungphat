@@ -10,6 +10,7 @@ export type QuoteItemInput = {
   quantity: number;
   unit: string;
   unitPrice: number;
+  discountPercent?: number;
   note: string;
 };
 

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  calculateLineAmounts,
   calculateLineTotal,
   calculateTotals,
   derivePaymentStatus,
@@ -13,6 +14,29 @@ import {
 } from "../src/shared/calculations";
 
 describe("quote calculations", () => {
+  it("applies a product discount to the displayed unit price and line total", () => {
+    expect(calculateLineAmounts(31, 508_000, 20)).toEqual({
+      discountedUnitPrice: 406_400,
+      lineTotal: 12_598_400,
+      discount: 3_149_600,
+    });
+    expect(calculateLineAmounts(12, 332_000, 20)).toEqual({
+      discountedUnitPrice: 265_600,
+      lineTotal: 3_187_200,
+      discount: 796_800,
+    });
+    expect(() => calculateLineAmounts(1, 100_000, 100.01)).toThrow(/0 đến 100/);
+    expect(() => calculateLineAmounts(1, 100_000, 12.345)).toThrow(/2 chữ số thập phân/);
+  });
+
+  it("adds each product discount to the existing extra quote discount", () => {
+    const totals = calculateTotals([
+      { productName: "MDF", specification: "", quantity: 12, unit: "Tấm", unitPrice: 332_000, discountPercent: 20, note: "" },
+      { productName: "MDF chống ẩm", specification: "", quantity: 31, unit: "Tấm", unitPrice: 508_000, discountPercent: 20, note: "" },
+    ], { discount: 250_000, shippingFee: 0, processingFee: 0, vatAmount: 0, depositAmount: 0 });
+    expect(totals).toMatchObject({ subtotal: 19_732_000, discount: 4_196_400, grandTotal: 15_535_600 });
+  });
+
   it("formats editable VND values with Vietnamese thousand separators", () => {
     const cases: Array<[number, string]> = [
       [0, "0"],
